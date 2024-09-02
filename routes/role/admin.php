@@ -9,3 +9,7 @@ Route::get('admin/admin', function(){
 Route::get('admin/category', function(){
     return view('admin.pages.categories.index');
 })->name('category.index');
+
+Route::get('admin/kursus', function(){
+    return view('admin.pages.kursus.index');
+})->name('kursus.index');
