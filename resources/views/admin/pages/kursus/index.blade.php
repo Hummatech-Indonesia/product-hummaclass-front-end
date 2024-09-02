@@ -45,6 +45,7 @@
                     <th class="fs-4 fw-semibold mb-0">No</th>
                     <th class="fs-4 fw-semibold mb-0">Title</th>
                     <th class="fs-4 fw-semibold mb-0">Subtitle</th>
+                    <th class="fs-4 fw-semibold mb-0">Deskripsi</th>
                     <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
@@ -57,6 +58,9 @@
                         </td>
                         <td>
                             Lorem, ipsum...
+                        </td>
+                        <td>
+                            Lorem, ipsum dolor...
                         </td>
                         <td>
                             <div class="d-flex justify-content-center gap-3">
