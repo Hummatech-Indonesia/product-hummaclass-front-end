@@ -81,7 +81,7 @@
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">Courses</a>
                                         <ul class="sub-menu">
-                                            <li><a href="courses.html">All Courses</a></li>
+                                            <li><a href="{{ route('courses.index') }}">All Courses</a></li>
                                             <li><a href="course-details.html">Course Details</a></li>
                                             <li><a href="lesson.html">Course Lesson</a></li>
                                         </ul>

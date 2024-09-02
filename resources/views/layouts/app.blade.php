@@ -59,7 +59,7 @@
 
     <!-- main-area -->
     <main class="main-area fix">
-        @yield('content')
+        @yield('content')   
     </main>
     <!-- main-area-end -->
 
