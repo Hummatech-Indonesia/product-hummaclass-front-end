@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->group(function () {
-    Route::get('admin', function () {
+    Route::get('', function () {
         return view('admin.index');
     })->name('admin.index');
 
@@ -14,6 +15,7 @@ Route::prefix('admin')->group(function () {
     })->name('category.index');
 
     Route::resource('courses', AdminCourseController::class)->only(['index', 'create', 'edit']);
+    Route::get('sub-modules', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
 
     Route::get('kursus/detail', function () {
         return view('admin.pages.kursus.detail');
@@ -28,12 +30,12 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::resource('modules', ModuleController::class);
-
-    Route::get('admin/users', function () {
+    
+    Route::get('users', function(){
         return view('admin.pages.users.index');
     })->name('users.index');
 
-    Route::get('admin/detail-users', function () {
+    Route::get('detail-users', function(){
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
 });
