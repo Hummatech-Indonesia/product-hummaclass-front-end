@@ -13,3 +13,7 @@ Route::get('admin/category', function(){
 Route::get('admin/kursus', function(){
     return view('admin.pages.kursus.index');
 })->name('kursus.index');
+
+Route::get('admin/users', function(){
+    return view('admin.pages.users.index');
+})->name('users.index');
