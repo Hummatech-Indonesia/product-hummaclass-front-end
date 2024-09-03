@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
@@ -12,9 +13,7 @@ Route::prefix('admin')->group(function () {
         return view('admin.pages.categories.index');
     })->name('category.index');
 
-    Route::get('kursus', function () {
-        return view('admin.pages.kursus.index');
-    })->name('kursus.index');
+    Route::resource('courses', AdminCourseController::class)->only(['index', 'create', 'edit']);
 
     Route::get('kursus/detail',function(){
         return view('admin.pages.kursus.detail');

@@ -146,10 +146,10 @@
                                                     <li><a href="instructor-setting.html">Settings</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="menu-item-has-children"><a href="student-dashboard.html">Student Dashboard</a>
+                                            <li class="menu-item-has-children"><a href="{{ route('student.dashboard') }}">Student Dashboard</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="student-dashboard.html">Dashboard</a></li>
-                                                    <li><a href="student-profile.html">Profile</a></li>
+                                                    <li><a href="{{ route('student.dashboard') }}">Dashboard</a></li>
+                                                    <li><a href="{{ route('student.profile') }}">Profile</a></li>
                                                     <li><a href="student-enrolled-courses.html">Enrolled Courses</a></li>
                                                     <li><a href="student-wishlist.html">Wishlist</a></li>
                                                     <li><a href="student-review.html">Reviews</a></li>
