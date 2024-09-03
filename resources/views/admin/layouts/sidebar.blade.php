@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('users.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>

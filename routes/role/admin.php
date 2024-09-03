@@ -17,4 +17,9 @@ Route::prefix('admin')->group(function () {
     })->name('kursus.index');
 
     Route::resource('modules', ModuleController::class);
+    
+    Route::get('admin/users', function(){
+        return view('admin.pages.users.index');
+    })->name('users.index');
 });
+
