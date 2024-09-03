@@ -223,7 +223,7 @@
                 <div class="message-body" data-simplebar>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-1.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
@@ -232,7 +232,7 @@
                   </a>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-2.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">New message</h6>
@@ -241,7 +241,7 @@
                   </a>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-3.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">Bianca sent payment</h6>
@@ -250,7 +250,7 @@
                   </a>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-4.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">Jolly completed tasks</h6>
@@ -259,7 +259,7 @@
                   </a>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-5.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">John received payment</h6>
@@ -268,7 +268,7 @@
                   </a>
                   <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                     <span class="me-3">
-                      <img src="../../dist/images/profile/user-1.jpg" alt="user" class="rounded-circle" width="48" height="48" />
+                      <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" alt="user" class="rounded-circle" width="48" height="48" />
                     </span>
                     <div class="w-75 d-inline-block v-middle">
                       <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
@@ -285,7 +285,7 @@
               <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="d-flex align-items-center">
                   <div class="user-profile-img">
-                    <img src="../../dist/images/profile/user-1.jpg" class="rounded-circle" width="35" height="35" alt="" />
+                    <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" class="rounded-circle" width="35" height="35" alt="" />
                   </div>
                 </div>
               </a>
@@ -295,7 +295,7 @@
                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                   </div>
                   <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                    <img src="../../dist/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="" />
+                    <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}" class="rounded-circle" width="80" height="80" alt="" />
                     <div class="ms-3">
                       <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                       <span class="mb-1 d-block text-dark">Designer</span>
@@ -342,7 +342,7 @@
                         </div>
                         <div class="col-6">
                           <div class="m-n4">
-                            <img src="../../dist/images/backgrounds/unlimited-bg.png" alt="" class="w-100">
+                            <img src="{{ asset('admin/dist/images/backgrounds/unlimited-bg.png') }}" alt="" class="w-100">
                           </div>
                         </div>
                       </div>
