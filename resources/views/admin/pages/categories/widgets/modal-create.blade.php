@@ -10,7 +10,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2 fw-semibold text-dark">Nama Kategori</label>
-                            <input type="text" class="form-modal" placeholder="Masukan nama kategori" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" placeholder="Masukan nama kategori" name="name" value="{{ old('name') }}">
                             @error('name')
                                 <span class="text-danger error-create">{{ $message }}</span>
                             @enderror
