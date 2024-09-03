@@ -1,19 +1,25 @@
 <?php
 
+use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin/admin', function(){
-    return view('admin.index');
-})->name('admin.index');
+Route::prefix('admin')->group(function () { 
+    Route::get('admin', function () {
+        return view('admin.index');
+    })->name('admin.index');
 
-Route::get('admin/category', function(){
-    return view('admin.pages.categories.index');
-})->name('category.index');
+    Route::get('category', function () {
+        return view('admin.pages.categories.index');
+    })->name('category.index');
 
-Route::get('admin/kursus', function(){
-    return view('admin.pages.kursus.index');
-})->name('kursus.index');
+    Route::get('kursus', function () {
+        return view('admin.pages.kursus.index');
+    })->name('kursus.index');
 
-Route::get('admin/users', function(){
-    return view('admin.pages.users.index');
-})->name('users.index');
+    Route::resource('modules', ModuleController::class)->only('index');
+
+    Route::get('admin/users', function(){
+        return view('admin.pages.users.index');
+    })->name('users.index');
+});
+
