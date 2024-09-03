@@ -46,18 +46,29 @@
             <ul class="nav nav-tabs d-flex justify-content-between" role="tablist">
                 <div class="d-flex">
                     <li class="nav-item home">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#description" role="tab">
                             <span>Deskripsi</span>
                         </a>
                     </li>
                     <li class="nav-item list">
                         <a class="nav-link" data-bs-toggle="tab" href="#list" role="tab">
-                            <span>Daftar Modul</span>
+                            <span>Daftar Materi</span>
                         </a>
                     </li>
                 </div>
                 <div class="">
                     <li class="">
+                        <button class="btn" style="background:#E8E8E8;">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M5 12l14 0" />
+                                    <path d="M5 12l6 6" />
+                                    <path d="M5 12l6 -6" />
+                                </svg> Kembali</span>
+                        </button>
                         <button class="btn btn-warning editDescription">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -68,71 +79,56 @@
                                     <path d="M13.5 6.5l4 4" />
                                 </svg> Edit Deskripsi</span>
                         </button>
-                        <button class="btn btn-primary d-none addModul">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                    <path d="M9 8h6" />
-                                </svg> Tambah Modul</span>
-                        </button>
+
                     </li>
                 </div>
             </ul>
         </div>
     </div>
-    
-    <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">
 
-            <div class="card position-relative">
-                <div class="badge badge-warning position-absolute text-dark p-2 shadow"
-                    style="font-weight:bold;top: 10px; left: 10px;background-color:#FFC224;">Development
-                </div>
-                <div class="d-flex">
-                    <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="" class="rounded">
-                    <div class="align-items-start p-3">
-                        <div class="align-items-center">
-                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
-                                class="rounded-circle" width="34" height="34">
-                            <span>David Millar</span>
-                        </div>
-                        <h4 style="font-weight: bold;" class="my-3">Learning Javascript With Javascript</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae fuga eligendi ratione at
-                            accusamus repudiandae consequatur deleniti placeat possimus enim fugiat dolorem dolores
-                            delectus, magni culpa alias voluptatem? Eveniet, blanditiis!</p>
-                        <h5 style="font-weight: bold;" class="text-primary">Rp. 300.000 <span class="text-dark fw-normal"> /
-                                <span class="text-warning">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        viewBox="0 0 24 24" fill="currentColor"
-                                        class="icon icon-tabler icons-tabler-filled icon-tabler-star">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
-                                    </svg>
-                                </span>
-                                (4.8 Reviews)</span></h5>
-                        <div class="col-4">
-                            <div
-                                class="btn d-flex btn-light-warning w-100 d-block text-warning font-medium mt-3 d-flex justify-content-start align-items-center">
-                                <span class="badge text-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                        class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                        <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                        <path d="M9 8h6" />
-                                    </svg><span class="text-dark" style="font-weight: bold;"> 8 Materi</span>
-                                </span>
-                            </div>
-                        </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex gap-3">
+
+                <div class="">
+                    <div class="text-warning bg-light-warning d-flex align-items-center rounded-circle p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="icon icon-tabler icon-tabler-book-2">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+                            <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+                            <path d="M9 8h6" />
+                        </svg>
                     </div>
                 </div>
+
+                <div class="">
+                    <h3 class="text-dark" style="font-weight: bold;">Learning Javascript With Imagination</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique ipsa atque magni beatae, facere
+                        tempore nam rerum voluptatibus. Recusandae a officiis tenetur odio praesentium sit quasi veniam nam
+                        similique amet!</p>
+                    <div class="text-primary d-flex align-items-center" style="font-weight: bold;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                            <path d="M9 12h6" />
+                            <path d="M9 16h6" />
+                        </svg>
+                        <span> 8 Materi</span>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">
 
             <div class="card">
                 <div class="p-3">

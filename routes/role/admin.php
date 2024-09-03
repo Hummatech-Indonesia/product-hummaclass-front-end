@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function () { 
+Route::prefix('admin')->group(function () {
     Route::get('admin', function () {
         return view('admin.index');
     })->name('admin.index');
@@ -15,17 +15,25 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('courses', AdminCourseController::class)->only(['index', 'create', 'edit']);
 
-    Route::get('kursus/detail',function(){
+    Route::get('kursus/detail', function () {
         return view('admin.pages.kursus.detail');
     });
 
+    Route::get('kursus/detail/edit',function(){
+        return view('admin.pages.kursus.edit');
+    });
+
+    Route::get('kursus/detail-2', function () {
+        return view('admin.pages.kursus.detail-2');
+    });
+
     Route::resource('modules', ModuleController::class);
-    
-    Route::get('admin/users', function(){
+
+    Route::get('admin/users', function () {
         return view('admin.pages.users.index');
     })->name('users.index');
 
-    Route::get('admin/detail-users', function(){
+    Route::get('admin/detail-users', function () {
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
 });
