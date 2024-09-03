@@ -21,5 +21,9 @@ Route::prefix('admin')->group(function () {
     Route::get('admin/users', function(){
         return view('admin.pages.users.index');
     })->name('users.index');
+
+    Route::get('admin/detail-users', function(){
+        return view('admin.pages.users.detail-users');
+    })->name('detail-users.index');
 });
 

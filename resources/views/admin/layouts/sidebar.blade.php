@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index5.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('modules.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-activity-heartbeat"></i>
                         </span>
