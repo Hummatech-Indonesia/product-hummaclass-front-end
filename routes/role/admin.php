@@ -16,8 +16,12 @@ Route::prefix('admin')->group(function () {
         return view('admin.pages.kursus.index');
     })->name('kursus.index');
 
-    Route::resource('modules', ModuleController::class)->only('index');
+    Route::get('kursus/detail',function(){
+        return view('admin.pages.kursus.detail');
+    });
 
+    Route::resource('modules', ModuleController::class);
+    
     Route::get('admin/users', function(){
         return view('admin.pages.users.index');
     })->name('users.index');
