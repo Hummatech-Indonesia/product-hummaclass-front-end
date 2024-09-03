@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     public function index() {
-        return view('dashboard.student.profile');
+        return view('user.pages.dashboard.student.profile');
     }
 }

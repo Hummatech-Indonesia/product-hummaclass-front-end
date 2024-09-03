@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 class CourseController extends Controller
 {
     public function index() {
-        return view('courses.index');
+        return view('user.pages.courses.index');
     }
 
     public function show() {
-        return view('courses.details');
+        return view('user.pages.courses.details');
     }
 
 
     public function student() {
-        return view('dashboard.student.courses');
+        return view('user.pages.dashboard.student.courses');
     }
 }
