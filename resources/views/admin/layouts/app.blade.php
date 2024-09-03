@@ -21,6 +21,7 @@
     
     <!-- Core Css -->
     <link  id="themeColors"  rel="stylesheet" href="{{ asset('admin/dist/css/style.min.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     @yield('style')
   </head>
@@ -509,6 +510,7 @@
     <script src="{{ asset('admin/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('admin/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/dist/js/dashboard.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     @yield('script')
   </body>
