@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="card position-relative overflow-hidden" style="background-color: #E8DEF3; box-shadow: 0px 4px 5px rgba(78, 78, 78, 0.3);">
+<div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
