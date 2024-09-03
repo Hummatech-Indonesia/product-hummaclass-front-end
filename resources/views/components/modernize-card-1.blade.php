@@ -1,4 +1,5 @@
 <div class="card">
+    <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">Development</button>
     <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" class="card-img-top" alt="...">
     <div class="card-body p-3">
 
