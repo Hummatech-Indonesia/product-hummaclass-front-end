@@ -17,8 +17,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.categories.index');
     })->name('categories.index');
 
-
-
     Route::resources([
         'categories' => CategoryController::class,
         'courses' => AdminCourseController::class,
