@@ -5,14 +5,15 @@ use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Admin\ModuleController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
+
     Route::get('', function () {
         return view('admin.index');
-    })->name('admin.index');
+    })->name('index');
 
-    Route::get('category', function () {
+    Route::get('categories', function () {
         return view('admin.pages.categories.index');
-    })->name('category.index');
+    })->name('categories.index');
 
     Route::resource('courses', AdminCourseController::class)->only(['index', 'create', 'edit']);
     Route::get('sub-modules', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
