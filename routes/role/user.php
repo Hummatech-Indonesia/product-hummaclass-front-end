@@ -13,4 +13,4 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
     });
-}
+});
