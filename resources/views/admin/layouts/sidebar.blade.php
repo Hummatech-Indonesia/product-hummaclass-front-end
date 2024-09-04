@@ -40,14 +40,6 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="index3.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-currency-dollar"></i>
-                        </span>
-                        <span class="hide-menu">Sub Kategori</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('courses.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-cpu"></i>
