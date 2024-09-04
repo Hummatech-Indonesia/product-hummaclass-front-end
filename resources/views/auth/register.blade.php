@@ -28,33 +28,38 @@
                         <div class="account__divider">
                             <span>or</span>
                         </div>
-                        <form action="#" class="account__form">
+                        <form action="#" class="account__form" id="register-form">
                             <div class="row gutter-20">
                                 <div class="col-md-12">
                                     <div class="form-grp">
-                                        <label for="fast-name">First Name</label>
-                                        <input type="text" id="fast-name" placeholder="First Name">
+                                        <label for="fast-name">Name</label>
+                                        <input type="text" id="name" placeholder="First Name" name="name">
+                                        <div class="invalid-feedback">error</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-grp">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" placeholder="email">
+                                <input type="email" id="email" placeholder="email" name="email">
+                                <div class="invalid-feedback">error</div>
                             </div>
                             <div class="form-grp">
                                 <label for="password">Password</label>
-                                <input type="password" id="password" placeholder="password">
+                                <input type="password" id="password" placeholder="password" name="password">
+                                <div class="invalid-feedback">error</div>
                             </div>
                             <div class="form-grp">
                                 <label for="confirm-password">Confirm Password</label>
-                                <input type="password" id="confirm-password" placeholder="Confirm Password">
+                                <input type="password" id="password_confirmation" placeholder="Confirm Password"
+                                    name="password_confirmation">
+                                <div class="invalid-feedback">error</div>
                             </div>
                             <button type="submit" class="btn btn-two arrow-btn">Sign Up<img
                                     src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img"
                                     class="injectable"></button>
                         </form>
                         <div class="account__switch">
-                            <p>Already have an account?<a href="login.html">Login</a></p>
+                            <p>Already have an account?<a href="{{ route('login') }}">Login</a></p>
                         </div>
                     </div>
                 </div>
@@ -64,22 +69,68 @@
     <!-- singUp-area-end -->
 @endsection
 
-{{-- @extends('layouts.app')
-
-@section('content')
-    
-@endsection --}}
-
 @section('script')
     <script>
-        $.ajax({
-            type: "get",
-            url: "http://127.0.0.1:8000/api/categories",
-            success: function(response) {
-                $.each(response.data, function(indexInArray, valueOfElement) {
-                    console.log(valueOfElement);
+        $(document).ready(function() {
+            $('#register-form').submit(function(e) {
+                e.preventDefault(); // Mencegah submit form secara default
+
+                // Mengonversi data form ke objek
+                var formData = {};
+                $(this).serializeArray().forEach(function(field) {
+                    formData[field.name] = field.value;
                 });
-            }
+
+                // Mengirim data menggunakan AJAX
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/register',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        console.log(response);
+                        localStorage.setItem('hummaclass-token', response.data.token);
+
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        });
+                    },
+                    error: function(error) {
+                        let errors = error.responseJSON.data || {};
+                        let message = error.responseJSON.meta.message;
+
+                        console.log(error);
+
+                        // Reset status is-invalid
+                        $('#email, #password').removeClass('is-invalid');
+
+                        // Tampilkan pesan error pada field email dan password jika ada
+                        if (errors.name || errors.email || errors.password || errors
+                            .password_confirmation) {
+                            if (errors.email) {
+                                $('#name').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.name[0]);
+                            }
+                            if (errors.email) {
+                                $('#email').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.email[0]);
+                            }
+                            if (errors.password) {
+                                $('#password').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.password[0]);
+                            }
+                            if (errors.password) {
+                                $('#password_confirmation').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.password[0]);
+                            }
+                        } else {
+                            $('#email, #password').addClass('is-invalid')
+                                .next('.invalid-feedback').text(message);
+                        }
+                    }
+                });
+            });
         });
     </script>
 @endsection

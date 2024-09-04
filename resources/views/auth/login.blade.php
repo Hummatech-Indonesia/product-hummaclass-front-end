@@ -52,7 +52,7 @@
                                     src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></button>
                         </form>
                         <div class="account__switch">
-                            <p>Don't have an account?<a href="registration.html">Sign Up</a></p>
+                            <p>Don't have an account?<a href="{{ route('register') }}">Sign Up</a></p>
                         </div>
                     </div>
                 </div>
@@ -74,12 +74,9 @@
             $('#login-form').submit(function(e) {
                 e.preventDefault(); // Mencegah submit form secara default
 
-                // Mendapatkan data form sebagai array objek
-                var formDataArray = $(this).serializeArray();
-
-                // Mengonversi array objek ke dalam format yang diinginkan (jika perlu)
+                // Mengonversi data form ke objek
                 var formData = {};
-                $.each(formDataArray, function(i, field) {
+                $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
 
@@ -90,47 +87,35 @@
                     data: formData,
                     success: function(response) {
                         console.log(response);
-
-                        localStorage.setItem('hummaclass-token', response.data.token)
+                        localStorage.setItem('hummaclass-token', response.data.token);
                     },
                     error: function(error) {
-                        let errors = error.responseJSON.data;
+                        let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;
 
                         console.log(error);
 
-                        if (errors != null) {
+                        // Reset status is-invalid
+                        $('#email, #password').removeClass('is-invalid');
+
+                        // Tampilkan pesan error pada field email dan password jika ada
+                        if (errors.email || errors.password) {
                             if (errors.email) {
-                                $('#email').addClass('is-invalid');
-                                $('#email').next('.invalid-feedback').text(errors.email[0]);
+                                $('#email').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.email[0]);
                             }
                             if (errors.password) {
-                                $('#email').addClass('is-invalid');
-                                $('#password').next('.invalid-feedback').text(errors.password[
-                                    0]);
+                                $('#password').addClass('is-invalid')
+                                    .next('.invalid-feedback').text(errors.password[0]);
                             }
                         } else {
-                            console.log(message);
-
-                            $('#email').addClass('is-invalid');
-                            $('#email').next('.invalid-feedback').text(message);
-
-                            $('#password').addClass('is-invalid');
-                            $('#password').next('.invalid-feedback').text(message);
+                            // Jika tidak ada error spesifik pada email atau password, tampilkan pesan umum
+                            $('#email, #password').addClass('is-invalid')
+                                .next('.invalid-feedback').text(message);
                         }
                     }
                 });
             });
         });
-
-        // $.ajax({
-        //     type: "get",
-        //     url: "http://127.0.0.1:8000/api/categories",
-        //     success: function(response) {
-        //         $.each(response.data, function(indexInArray, valueOfElement) {
-        //             console.log(valueOfElement);
-        //         });
-        //     }
-        // });
     </script>
 @endsection
