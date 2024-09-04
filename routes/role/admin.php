@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ModuleController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
-use App\Http\Controllers\Admin\ModuleController;
-use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -15,14 +17,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.categories.index');
     })->name('categories.index');
 
-    Route::resource('courses', AdminCourseController::class)->only(['index', 'create', 'edit']);
-    Route::get('sub-modules', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
+
+    Route::resource('categories', CategoryController::class)->only(['index']);
+    Route::resource('courses', AdminCourseController::class)->only(['index', 'create']);
+    Route::resource('users', UserController::class)->only(['index', 'show']);
+    Route::resource('modules', ModuleController::class)->only(['index']);
+    Route::resource('sub-modules', AdminSubModuleController::class)->only(['index']);
 
     Route::get('kursus/detail', function () {
         return view('admin.pages.kursus.detail');
     });
 
-    Route::get('kursus/detail/edit',function(){
+    Route::get('kursus/detail/edit', function () {
         return view('admin.pages.kursus.edit');
     });
 
@@ -30,14 +36,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.kursus.detail-2');
     });
 
-    Route::resource('modules', ModuleController::class);
-    
-    Route::get('users', function(){
-        return view('admin.pages.users.index');
-    })->name('users.index');
-
-    Route::get('detail-users', function(){
-        return view('admin.pages.users.detail-users');
-    })->name('detail-users.index');
 });
-

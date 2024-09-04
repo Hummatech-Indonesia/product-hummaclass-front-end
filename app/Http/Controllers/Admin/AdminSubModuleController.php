@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AdminSubModuleController extends Controller
 {
-    public function show() {
+    public function index() {
         return view('admin.pages.sub-modul.detail');
     }
 }
