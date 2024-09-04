@@ -37,4 +37,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('kursus/detail-2', function () {
         return view('admin.pages.kursus.detail-2');
     });
+
+    Route::get('detail-users', function () {
+        return view('admin.pages.users.detail-users');
+    })->name('detail-users.index');
 });
