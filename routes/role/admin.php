@@ -18,11 +18,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('categories.index');
 
 
-    Route::resource('categories', CategoryController::class)->only(['index']);
-    Route::resource('courses', AdminCourseController::class)->only(['index', 'show', 'create']);
-    Route::resource('users', UserController::class)->only(['index', 'show']);
-    Route::resource('modules', ModuleController::class)->only(['index', 'show']);
-    Route::resource('sub-modules', AdminSubModuleController::class)->only(['index']);
+
+    Route::resources([
+        'categories' => CategoryController::class,
+        'courses' => AdminCourseController::class,
+        'users' => UserController::class,
+        'modules' => ModuleController::class,
+        'sub-modules' => AdminSubModuleController::class
+    ]);
+
 
     Route::get('kursus/detail', function () {
         return view('admin.pages.kursus.detail');
