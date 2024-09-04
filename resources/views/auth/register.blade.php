@@ -1,77 +1,85 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
+
+@section('style')
+    <style>
+        .side-img {}
+    </style>
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+    <!-- singUp-area -->
+    <section class="singUp-area section-py-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 text-end pe-md-0">
+                    <img class="side-img" src="{{ asset('assets/img/auth/register-img.png') }}" alt="">
+                </div>
+                <div class="col-xl-6 col-lg-8 ps-md-0">
+                    <div class="singUp-wrap rounded-start-0">
+                        <h2 class="title">Create Your Account</h2>
+                        <p>Hey there! Ready to join the party? We just need a few details from you to get <br> started.
+                            Let's do this!</p>
+                        <div class="account__social">
+                            <a href="#" class="account__social-btn">
+                                <img src="assets/img/icons/google.svg" alt="img">
+                                Continue with google
+                            </a>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="account__divider">
+                            <span>or</span>
                         </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <form action="#" class="account__form">
+                            <div class="row gutter-20">
+                                <div class="col-md-12">
+                                    <div class="form-grp">
+                                        <label for="fast-name">First Name</label>
+                                        <input type="text" id="fast-name" placeholder="First Name">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="form-grp">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="email">
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="form-grp">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="password">
                             </div>
+                            <div class="form-grp">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input type="password" id="confirm-password" placeholder="Confirm Password">
+                            </div>
+                            <button type="submit" class="btn btn-two arrow-btn">Sign Up<img
+                                    src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img"
+                                    class="injectable"></button>
+                        </form>
+                        <div class="account__switch">
+                            <p>Already have an account?<a href="login.html">Login</a></p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+    <!-- singUp-area-end -->
+@endsection
+
+{{-- @extends('layouts.app')
+
+@section('content')
+    
+@endsection --}}
+
+@section('script')
+    <script>
+        $.ajax({
+            type: "get",
+            url: "http://127.0.0.1:8000/api/categories",
+            success: function(response) {
+                $.each(response.data, function(indexInArray, valueOfElement) {
+                    console.log(valueOfElement);
+                });
+            }
+        });
+    </script>
 @endsection
