@@ -34,12 +34,12 @@
     <section class="all-courses-area section-py-120">
         <div class="container">
             <div class="row">
-                @include('courses.widgets.index.filter')
+                @include('user.pages.courses.widgets.index.filter')
                 <div class="col-xl-9 col-lg-8">
-                    @include('courses.widgets.index.sort')
+                    @include('user.pages.courses.widgets.index.sort')
                     <div class="tab-content" id="myTabContent">
-                        @include('courses.widgets.index.grid')
-                        @include('courses.widgets.index.list')
+                        @include('user.pages.courses.widgets.index.grid')
+                        @include('user.pages.courses.widgets.index.list')
                     </div>
                 </div>
             </div>

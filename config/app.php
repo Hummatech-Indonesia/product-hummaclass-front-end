@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'category.index' => 'http://127.0.0.1:8000/api/courses',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

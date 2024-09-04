@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 
 class ModernizeCard1 extends Component
 {
+    public $id;
     public $author;
     public $title;
     public $subtitle;
@@ -21,6 +22,7 @@ class ModernizeCard1 extends Component
      * Create a new component instance.
      */
     public function __construct(
+        $id,
         $author,
         $title,
         $subtitle,
@@ -31,11 +33,12 @@ class ModernizeCard1 extends Component
         $modules,
         $sold,
     ) {
+        $this->id = $id;
         $this->author = $author;
         $this->title = $title;
         $this->subtitle = $subtitle;
         $this->content = $content;
-        $this->img = $img?? null;
+        $this->img = $img ?? null;
         $this->price = $price;
         $this->review = $review;
         $this->modules = $modules;

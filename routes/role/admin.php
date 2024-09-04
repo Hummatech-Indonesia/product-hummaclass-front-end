@@ -19,9 +19,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
     Route::resource('categories', CategoryController::class)->only(['index']);
-    Route::resource('courses', AdminCourseController::class)->only(['index', 'create']);
+    Route::resource('courses', AdminCourseController::class)->only(['index', 'show', 'create']);
     Route::resource('users', UserController::class)->only(['index', 'show']);
-    Route::resource('modules', ModuleController::class)->only(['index']);
+    Route::resource('modules', ModuleController::class)->only(['index', 'show']);
     Route::resource('sub-modules', AdminSubModuleController::class)->only(['index']);
 
     Route::get('kursus/detail', function () {
@@ -35,5 +35,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('kursus/detail-2', function () {
         return view('admin.pages.kursus.detail-2');
     });
-
 });

@@ -111,7 +111,7 @@
             </div>
         </div>
         <div class="d-flex gap-2">
-            <button class="btn" style="background:#E8E8E8;"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+            <a href="{{ route('admin.courses.show', 2) }}" class="btn" style="background:#E8E8E8;"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round"
                     class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -119,7 +119,7 @@
                     <path d="M5 12l14 0" />
                     <path d="M5 12l6 6" />
                     <path d="M5 12l6 -6" />
-                </svg> Kembali</button>
+                </svg> Kembali</a>
             <button class="btn btn-primary text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -141,7 +141,7 @@
                     ke-1</span>
             </div>
             <div class="d-flex gap-2 align-items-center position-absolute" style="right:5%;">
-                <button class="btn btn-primary text-white">Lihat Detail <svg xmlns="http://www.w3.org/2000/svg"
+                <a href="{{ route('admin.sub-modules.index') }}" class="btn btn-primary text-white">Lihat Detail <svg xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right">
@@ -149,7 +149,7 @@
                         <path d="M5 12l14 0" />
                         <path d="M13 18l6 -6" />
                         <path d="M13 6l6 6" />
-                    </svg> </button>
+                    </svg> </a>
                 <a class="text-warning"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round"

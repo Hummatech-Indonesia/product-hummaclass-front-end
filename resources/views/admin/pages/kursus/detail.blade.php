@@ -84,7 +84,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel">
 
@@ -214,7 +214,7 @@
                                             <path d="M9 8h6" />
                                         </svg><span class="text-dark" style="font-weight: bold;"> 8 Materi</span></span>
                                 </div>
-                                <button
+                                <a href="{{ route('admin.modules.show', 2) }}"
                                     class="btn btn-primary mt-3 w-100 d-flex align-items-center justify-content-center">Lihat
                                     Materi <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -224,7 +224,7 @@
                                         <path d="M5 12l14 0" />
                                         <path d="M13 18l6 -6" />
                                         <path d="M13 6l6 6" />
-                                    </svg></button>
+                                    </svg></a>
                             </div>
                         </div>
                     </div>

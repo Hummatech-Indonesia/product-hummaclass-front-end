@@ -42,8 +42,9 @@
 
         <div class="row">
 
-            <div class="col col-md-7 pe-0">
-                <a href="#" class="btn text-white fs-2" style="background: #7209DB; width: 100%;">Lihat Detail</a>
+            <div class="col-md-7 pe-0">
+                <a href="{{ route('admin.courses.show', $id) }}" class="btn text-white fs-2"
+                    style="background: #815FB4; width: 100%;">Lihat Detail</a>
             </div>
 
             <div class="col col-md-5 d-flex flex-direction-row pe-0 gap-2">

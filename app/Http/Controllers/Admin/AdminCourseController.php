@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 
 class AdminCourseController extends Controller
 {
-    public function index() {
-        return view('admin.pages.kursus.index');
+    public function index()
+    {
+        // return view('admin.pages.kursus.index');
+        return view('admin.pages.modul.index');
     }
-    public function create() {
+
+    public function show()
+    {
+        return view('admin.pages.kursus.detail');
+    }
+    public function create()
+    {
         return view('admin.pages.kursus.create');
     }
 }

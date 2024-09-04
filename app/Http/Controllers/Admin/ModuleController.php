@@ -10,4 +10,7 @@ class ModuleController extends Controller
     public function index() {
         return view('admin.pages.modul.index');
     }
+    public function show() {
+        return view('admin.pages.kursus.detail-2');
+    }
 }
