@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('category.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
                         <span>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 3a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/></svg>    
                         </span>
@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('modules.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.modules.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-activity-heartbeat"></i>
                         </span>
@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('users.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
