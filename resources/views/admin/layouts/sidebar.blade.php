@@ -24,7 +24,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.home') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-aperture"></i>
                         </span>
@@ -34,7 +34,8 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
                         <span>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 3a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/></svg>    
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 3a3 3 0 1 0 6 0a3 3 0 1 0-6 0" /></svg>
                         </span>
                         <span class="hide-menu">Kategori</span>
                     </a>
@@ -47,7 +48,7 @@
                         <span class="hide-menu">Kursus</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.modules.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-activity-heartbeat"></i>
@@ -62,7 +63,7 @@
                         </span>
                         <span class="hide-menu">Sub Modul</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
                         <span>
@@ -102,3 +103,13 @@
     </div>
     <!-- End Sidebar scroll-->
 </aside>
+
+
+<style>
+    .sidebar-nav ul .sidebar-item.selected>.sidebar-link,
+    .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active,
+    .sidebar-nav ul .sidebar-item>.sidebar-link.active {
+        background-color: var(--purple-primary);
+    }
+
+</style>
