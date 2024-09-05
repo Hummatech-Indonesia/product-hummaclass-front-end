@@ -4,12 +4,12 @@
     <!-- breadcrumb-area -->
     <div class="breadcrumb__area breadcrumb__bg breadcrumb__bg-three" data-background="assets/img/bg/breadcrumb_bg.jpg">
         <div class="breadcrumb__shape-wrap">
-            <img src="assets/img/others/breadcrumb_shape01.svg" alt="img" class="alltuchtopdown">
-            <img src="assets/img/others/breadcrumb_shape02.svg" alt="img" data-aos="fade-right" data-aos-delay="300">
-            <img src="assets/img/others/breadcrumb_shape03.svg" alt="img" data-aos="fade-up" data-aos-delay="400">
-            <img src="assets/img/others/breadcrumb_shape04.svg" alt="img" data-aos="fade-down-left"
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left"
                 data-aos-delay="400">
-            <img src="assets/img/others/breadcrumb_shape05.svg" alt="img" data-aos="fade-left" data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
         </div>
     </div>
     <!-- breadcrumb-area-end -->
@@ -22,7 +22,7 @@
                 <div class="dashboard__instructor-info">
                     <div class="dashboard__instructor-info-left">
                         <div class="thumb">
-                            <img src="assets/img/courses/details_instructors01.jpg" alt="img">
+                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
                         </div>
                         <div class="content">
                             <h4 class="title">John Due</h4>
@@ -40,12 +40,12 @@
                     </div>
                     <div class="dashboard__instructor-info-right">
                         <a href="#" class="btn btn-two arrow-btn">Create a New Course <img
-                                src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
+                                src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                @include('dashboard.widgets.sidebar')
+                @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
                     <div class="dashboard__content-wrap dashboard__content-wrap-two mb-30">
                         <div class="dashboard__content-title">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('dashboard.widgets.completed')
+                    @include('user.pages.dashboard.widgets.completed')
                     <div class="dashboard__content-wrap">
                         <div class="dashboard__content-title">
                             <h4 class="title">challenge Baru Baru Ini Dikerjakan</h4>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="load-more-btn text-center mt-20">
                             <a href="#" class="link-btn">Browse All Course <img
-                                    src="assets/img/icons/right_arrow.svg" alt="" class="injectable"></a>
+                                    src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="" class="injectable"></a>
                         </div>
                     </div>
                 </div>

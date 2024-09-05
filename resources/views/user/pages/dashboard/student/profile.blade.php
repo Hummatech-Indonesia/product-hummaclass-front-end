@@ -27,7 +27,7 @@
                 <div class="dashboard__instructor-info">
                     <div class="dashboard__instructor-info-left">
                         <div class="thumb">
-                            <img src="assets/img/courses/details_instructors01.jpg" alt="img">
+                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
                         </div>
                         <div class="content">
                             <h4 class="title">John Due</h4>
@@ -50,27 +50,52 @@
                 </div>
             </div>
             <div class="row">
-                @include('dashboard.widgets.sidebar')
+                @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
                     <div class="dashboard__content-wrap">
-                        <div class="dashboard__content-title">
-                            <h4 class="title">My Profile</h4>
+                        <div class="dashboard__content-title d-flex justify-content-between">
+                            <h4 class="title">Biodata</h4>
+                            <button class="btn btn-sm bg-warning shadow-none px-4 py-2" id="edit-profile-btn"
+                                style="height: fit-content">Edit</button>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="profile__content-wrap">
-                                    <ul class="list-wrap">
-                                        <li><span>Bergabung Pada</span> February 28, 2026 8:01 am</li>
-                                        <li><span>Nama Depan</span> Emily</li>
-                                        <li><span>Nama Belakang</span> Hannah</li>
-                                        <li><span>Nama Pengguna</span> instructor</li>
-                                        <li><span>Email</span> example@gmail.com</li>
-                                        <li><span>Nomor Telepon</span> +1-202-555-0174</li>
-                                        <li><span>Skill</span> Application Developer</li>
+                                    <ul class="list-wrap" id="profile">
+                                        <li><span>Bergabung Pada</span> <span id="dispay-join-on"></span>
+                                        </li>
+                                        <li><span>Nama</span> <span id="display-name"></span></li>
+                                        <li><span>Nama Pengguna</span> <span id="display-username"></span></li>
+                                        <li><span>Email</span> <span id="display-email">example</span></li>
+                                        <li><span>Nomor Telepon</span> <span id="display-phone-number"></span></li>
+                                        <li><span>Alamat</span> <span id="display-address"></span></li>
+                                        {{-- <li><span>Skill</span> Application Developer</li>
                                         <li><span>Biodata</span> I'm the Front-End Developer for #ThemeGenix in New York,
                                             OR. I have a serious passion for UI effects, animations, and
-                                            creating intuitive, dynamic user experiences.</li>
+                                            creating intuitive, dynamic user experiences.</li> --}}
                                     </ul>
+                                    <form action="" id="edit-profile-form" class="d-none">
+                                        <ul class="list-wrap">
+                                            <li><span>Bergabung Pada</span>February 28, 2026 8:01</li>
+                                            <li><span>Nama</span> <input type="text" name="name" id="name"
+                                                    class="form-control"></li>
+                                            <li><span>Nama Pengguna</span> <input type="text" name="user_name"
+                                                    id="user_name" class="form-control"></li>
+                                            <li><span>Email</span> <input type="email" name="email" id="email"
+                                                    class="form-control"></li>
+                                            <li><span>Nomor Telepon</span> <input type="number" name="phone_number"
+                                                    id="phone_number" class="form-control"></li>
+                                            <li><span>Nomor Telepon</span>
+                                                <textarea name="address" id="address" class="form-control"></textarea>
+                                            </li>
+                                            {{-- <li><span>Skill</span> Application Developer</li>
+                                        <li><span>Biodata</span> I'm the Front-End Developer for #ThemeGenix in New York,
+                                            OR. I have a serious passion for UI effects, animations, and
+                                            creating intuitive, dynamic user experiences.</li> --}}
+                                        </ul>
+                                        <button class="btn btn-primary py-2 shadow-none"
+                                            style="height: fit-content">Simpan</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -80,4 +105,89 @@
         </div>
     </section>
     <!-- dashboard-area-end -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#edit-profile-btn').click(function() {
+                toggleEdit();
+            });
+        });
+
+        function toggleEdit() {
+            $('#edit-profile-form').toggleClass('d-none');
+            $('#profile').toggleClass('d-none');
+        }
+
+
+        $.ajax({
+            type: "GET",
+            url: "{{ env('API_URL') }}" + "/api/user",
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+            },
+            dataType: "json",
+            success: function(response) {
+                append(response)
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
+                });
+            }
+        });
+
+        $("#edit-profile-form").submit(function(e) {
+            e.preventDefault();
+
+            // Mengonversi data form ke objek
+            var formData = {};
+            $(this).serializeArray().forEach(function(field) {
+                formData[field.name] = field.value;
+            });
+
+            console.log(formData);
+
+
+            $.ajax({
+                type: "post",
+                url: "{{ env('API_URL') }}" + "/api/profile-update",
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                },
+                dataType: "json",
+                data: formData,
+                success: function(response) {
+                    append(response.data.user)
+                    toggleEdit();
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+
+        function append(data) {
+            console.log(data);
+
+            $('#display-name').text(data.name ?? '-');
+            $('#display-username').text(data.username ?? '-');
+            $('#display-email').text(data.email ?? '-');
+            $('#display-phone-number').text(data.phone_number ?? '-');
+            $('#display-address').text(data.address ?? '-');
+
+            $('#name').val(data.name);
+            $('#email').val(data.email);
+            $('#username').val(data.username);
+            $('#phone_number').val(data.phone_number);
+            $('#address').val(data.address);
+        }
+    </script>
 @endsection
