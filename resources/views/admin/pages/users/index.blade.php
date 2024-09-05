@@ -68,14 +68,14 @@
                     <td>2 Kursus</td>
                     <td>
                         <div class="d-flex gap-3">
-                            <button class="btn px-2 text-white" style="background-color: #7209DB">
+                            <a href="{{ route('admin.detail-users.index') }}" class="btn px-2 text-white" style="background-color: #7209DB">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                         <path d="M3 13c3.6-8 14.4-8 18 0" />
                                         <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
                                     </g>
                                 </svg>
-                            </button>
+                            </a>
                             <button class="btn px-2 text-white" style="background-color: #DB0909;" data-bs-toggle="modal" data-bs-target="#modal-delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" /></svg>
