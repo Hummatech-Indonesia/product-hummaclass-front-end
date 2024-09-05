@@ -15,10 +15,10 @@ class AdminCourseController extends Controller
 
     public function show()
     {
-        return view('admin.pages.kursus.detail');
+        return view('admin.pages.courses.detail');
     }
     public function create()
     {
-        return view('admin.pages.kursus.create');
+        return view('admin.pages.courses.create');
     }
 }
