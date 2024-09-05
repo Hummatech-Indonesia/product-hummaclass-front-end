@@ -9,9 +9,9 @@ use App\Http\Controllers\Admin\AdminSubModuleController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
-    Route::get('', function () {
+    Route::get('home', function () {
         return view('admin.index');
-    })->name('index');
+    })->name('home');
 
     Route::get('categories', function () {
         return view('admin.pages.categories.index');
@@ -26,16 +26,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     ]);
 
 
-    Route::get('kursus/detail', function () {
-        return view('admin.pages.kursus.detail');
+    Route::get('courses/detail', function () {
+        return view('admin.pages.courses.detail');
     });
 
-    Route::get('kursus/detail/edit', function () {
-        return view('admin.pages.kursus.edit');
+    Route::get('courses/detail/edit', function () {
+        return view('admin.pages.courses.edit');
     });
 
-    Route::get('kursus/detail-2', function () {
-        return view('admin.pages.kursus.detail-2');
+    Route::get('courses/detail-2', function () {
+        return view('admin.pages.courses.detail-2');
     });
 
     Route::get('detail-users', function () {
