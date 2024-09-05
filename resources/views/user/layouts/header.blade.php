@@ -34,28 +34,29 @@
                     <div class="tgmenu__wrap">
                         <nav class="tgmenu__nav">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
+                                <a href="/"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation">
                                     <li class="active menu-item-has-children"><a href="#">Home</a>
-                                        <ul class="sub-menu mega-menu">
-                                            <li>
+                                        <ul class="sub-menu">
+                                            <li><a href="/">Main Home</a></li>
+                                            {{-- <li>
                                                 <ul class="list-wrap mega-sub-menu">
                                                     <li class="active">
-                                                        <a href="index.html">Main Home</a>
+                                                        <a href="/">Main Home</a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-2.html">Online Course <span class="tg-badge">Hot</span></a>
+                                                        <a href="javascript:void(0)">Online Course <span class="tg-badge">Hot</span></a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-3.html">University <span class="tg-badge-two">New</span></a>
+                                                        <a href="javascript:void(0)">University <span class="tg-badge-two">New</span></a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-4.html">Yoga Instructor<span class="tg-badge-two">New</span></a>
+                                                        <a href="javascript:void(0)">Yoga Instructor<span class="tg-badge-two">New</span></a>
                                                     </li>
                                                     <li>
-                                                        <a href="index-5.html">Kindergarten<span class="tg-badge">Hot</span></a>
+                                                        <a href="javascript:void(0)">Kindergarten<span class="tg-badge">Hot</span></a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -74,20 +75,20 @@
                                             </li>
                                             <li>
                                                 <div class="mega-menu-img">
-                                                    <a href="courses.html"><img src="{{ asset('assets/img/others/mega_menu_img.jpg') }}" alt="img"></a>
+                                                    <a href="{{ route('dashboard.courses.index') }}"><img src="{{ asset('assets/img/others/mega_menu_img.jpg') }}" alt="img"></a>
                                                 </div>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">Courses</a>
                                         <ul class="sub-menu">
-                                            <li><a href="{{ route('courses.index') }}">All Courses</a></li>
-                                            <li><a href="course-details.html">Course Details</a></li>
-                                            <li><a href="lesson.html">Course Lesson</a></li>
+                                            <li><a href="{{ route('dashboard.courses.index') }}">All Courses</a></li>
+                                            {{-- <li><a href="course-details.html">Course Details</a></li>
+                                            <li><a href="lesson.html">Course Lesson</a></li> --}}
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Pages</a>
-                                        <ul class="sub-menu">
+                                    <li class="menu-item-has-children"><a href="javascript:void(0)">Pages</a>
+                                        {{-- <ul class="sub-menu">
                                             <li><a href="about-us.html">About Us</a></li>
                                             <li class="menu-item-has-children">
                                                 <a href="instructors.html">Our Instructors</a>
@@ -108,7 +109,7 @@
                                                 <ul class="sub-menu">
                                                     <li><a href="shop.html">Shop Page</a></li>
                                                     <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="cart.html">Cart Page</a></li>
+                                                    <li><a href="javascript:void(0)">Cart Page</a></li>
                                                     <li><a href="check-out.html">Checkout</a></li>
                                                 </ul>
                                             </li>
@@ -121,14 +122,17 @@
                                                     <li><a href="blog-details.html">Blog Details</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="login.html">Student Login</a></li>
+                                            <li><a href="{{ route('login') }}">Student Login</a></li>
                                             <li><a href="registration.html">Student Registration</a></li>
                                             <li><a href="404.html">404 Page</a></li>
                                             <li><a href="contact.html">contact</a></li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                     <li class="menu-item-has-children"><a href="#">Dashboard</a>
                                         <ul class="sub-menu">
+                                            <li><a href="{{ route('dashboard.student.dashboard') }}">Dashboard</a></li>
+                                        </ul>
+                                        {{-- <ul class="sub-menu">
                                             <li class="menu-item-has-children">
                                                 <a href="instructor-dashboard.html">Instructor Dashboard</a>
                                                 <ul class="sub-menu">
@@ -146,10 +150,10 @@
                                                     <li><a href="instructor-setting.html">Settings</a></li>
                                                 </ul>
                                             </li>
-                                            <li class="menu-item-has-children"><a href="{{ route('student.dashboard') }}">Student Dashboard</a>
+                                            <li class="menu-item-has-children"><a href="{{ route('dashboard.student.dashboard') }}">Student Dashboard</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="{{ route('student.dashboard') }}">Dashboard</a></li>
-                                                    <li><a href="{{ route('student.profile') }}">Profile</a></li>
+                                                    <li><a href="{{ route('dashboard.student.dashboard') }}">Dashboard</a></li>
+                                                    <li><a href="{{ route('dashboard.student.profile') }}">Profile</a></li>
                                                     <li><a href="student-enrolled-courses.html">Enrolled Courses</a></li>
                                                     <li><a href="student-wishlist.html">Wishlist</a></li>
                                                     <li><a href="student-review.html">Reviews</a></li>
@@ -158,7 +162,7 @@
                                                     <li><a href="student-setting.html">Settings</a></li>
                                                 </ul>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </li>
                                 </ul>
                             </div>
@@ -186,24 +190,24 @@
                             <div class="tgmenu__action">
                                 <ul class="list-wrap">
                                     <li class="wishlist-icon">
-                                        <a href="cart.html" class="cart-count">
+                                        <a href="javascript:void(0)" class="cart-count">
                                             <img src="{{ asset('assets/img/icons/heart.svg') }}" class="injectable" alt="img">
                                             <span class="wishlist-count">0</span>
                                         </a>
                                     </li>
                                     <li class="mini-cart-icon">
-                                        <a href="cart.html" class="cart-count">
+                                        <a href="javascript:void(0)" class="cart-count">
                                             <img src="{{ asset('assets/img/icons/cart.svg') }}" class="injectable" alt="img">
                                             <span class="mini-cart-count">0</span>
                                         </a>
                                     </li>
                                     <li class="header-btn login-btn">
-                                        <a href="login.html">Log in</a>
+                                        <a href="{{ route('login') }}">Log in</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="mobile-login-btn">
-                                <a href="login.html"><img src="{{ asset('assets/img/icons/user.svg') }}" alt="" class="injectable"></a>
+                                <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}" alt="" class="injectable"></a>
                             </div>
                             <div class="mobile-nav-toggler"><i class="tg-flaticon-menu-1"></i></div>
                         </nav>
@@ -213,7 +217,7 @@
                         <nav class="tgmobile__menu-box">
                             <div class="close-btn"><i class="tg-flaticon-close-1"></i></div>
                             <div class="nav-logo">
-                                <a href="index.html"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
+                                <a href="/"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
                             </div>
                             <div class="tgmobile__search">
                                 <form action="#">
