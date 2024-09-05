@@ -55,6 +55,21 @@
                             <span>Daftar Modul</span>
                         </a>
                     </li>
+                    <li class="nav-item test">
+                        <a class="nav-link" data-bs-toggle="tab" href="#test" role="tab">
+                            <span>Pre Test</span>
+                        </a>
+                    </li>
+                    <li class="nav-item post">
+                        <a class="nav-link" data-bs-toggle="tab" href="#post" role="tab">
+                            <span>Post Test</span>
+                        </a>
+                    </li>
+                    <li class="nav-item task">
+                        <a class="nav-link" data-bs-toggle="tab" href="#task" role="tab">
+                            <span>Tugas Akhir</span>
+                        </a>
+                    </li>
                 </div>
                 <div class="">
                     <li class="">
@@ -79,6 +94,16 @@
                                     <path d="M9 8h6" />
                                 </svg> Tambah Modul</span>
                         </button>
+                        <button class="btn btn-warning editWeinght">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                                    <path d="M13.5 6.5l4 4" />
+                                </svg> Atur Bobot Nilai Soal</span>
+                        </button>
                     </li>
                 </div>
             </ul>
@@ -87,7 +112,6 @@
 
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel">
-
             <div class="card position-relative">
                 <div class="badge badge-warning position-absolute text-dark p-2 shadow"
                     style="font-weight:bold;top: 10px; left: 10px;background-color:#FFC224;">Development
@@ -133,7 +157,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="p-3">
                     <h3 style="font-weight: bold;">Deskripsi</h3>
@@ -146,7 +169,6 @@
                         molestias alias voluptatem.</p>
                 </div>
             </div>
-
         </div>
 
         <div class="tab-pane" id="list" role="tabpanel">
@@ -231,6 +253,25 @@
                 @endfor
             </div>
         </div>
+
+        <div class="tab-pane" id="test" role="tabpanel">
+            <div>
+                <h5 class="fw-semibold">
+                    Telah Di Isi 30 Soal
+                </h5>
+                <div class="d-flex justify-content-between">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="post" role="tabpanel">
+
+        </div>
+
+        <div class="tab-pane" id="task" role="tabpanel">
+
+        </div>
     </div>
 @endsection
 @section('script')
@@ -239,11 +280,31 @@
             $(document).on('click', '.home', function() {
                 $('.addModul').addClass('d-none');
                 $('.editDescription').removeClass('d-none');
+                $('.editWeinght').addClass('d-none');
             });
 
             $(document).on('click', '.list', function() {
                 $('.editDescription').addClass('d-none');
                 $('.addModul').removeClass('d-none');
+                $('.editWeinght').addClass('d-none');
+            });
+
+            $(document).on('click', '.test', function() {
+                $('.editDescription').addClass('d-none');
+                $('.addModul').addClass('d-none');
+                $('.editWeinght').removeClass('d-none');
+            });
+
+            $(document).on('click', '.post', function() {
+                $('.editDescription').addClass('d-none');
+                $('.addModul').addClass('d-none');
+                $('.editWeinght').removeClass('d-none');
+            });
+
+            $(document).on('click', '.task', function() {
+                $('.editDescription').addClass('d-none');
+                $('.addModul').addClass('d-none');
+                $('.editWeinght').addClass('d-none');
             });
         });
     </script>
