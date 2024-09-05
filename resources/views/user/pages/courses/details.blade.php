@@ -88,14 +88,14 @@
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            @include('courses.widgets.details.overview')
-                            @include('courses.widgets.details.curriculumn')
-                            @include('courses.widgets.details.instructors')
-                            @include('courses.widgets.details.reviews')
+                            @include('user.pages.courses.widgets.details.overview')
+                            @include('user.pages.courses.widgets.details.curriculumn')
+                            @include('user.pages.courses.widgets.details.instructors')
+                            @include('user.pages.courses.widgets.details.reviews')
                         </div>
                     </div>
                 </div>
-                @include('courses.widgets.details.courses-detail-sidebar')
+                @include('user.pages.courses.widgets.details.courses-detail-sidebar')
             </div>
         </div>
     </section>

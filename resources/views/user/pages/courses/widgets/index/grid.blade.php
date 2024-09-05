@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
-                        <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
+                        <a href="{{ route('dashboard.courses.show', $item) }}" class="shine__animate-link">
                             <img src="{{ 'assets/img/courses/course_thumb0' . $item . '.jpg' }}" alt="img">
                         </a>
                     </div>
@@ -15,12 +15,12 @@
                             </li>
                             <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.show', $item) }}">The Complete Graphic
+                        <h5 class="title"><a href="{{ route('dashboard.courses.show', $item) }}">The Complete Graphic
                                 Design for Beginners</a></h5>
                         <p class="author">By <a href="#">Jenny Wilson</a></p>
                         <div class="courses__item-bottom">
                             <div class="button">
-                                <a href="{{ route('courses.show', $item) }}">
+                                <a href="{{ route('dashboard.courses.show', $item) }}">
                                     <span class="text">Enroll Now</span>
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
