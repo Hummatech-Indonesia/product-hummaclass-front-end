@@ -40,7 +40,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('courses.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('admin.courses.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-cpu"></i>
                         </span>
