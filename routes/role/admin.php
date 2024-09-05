@@ -41,4 +41,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('detail-users', function () {
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
+
+    Route::get('create-modul', function() {
+        return view('admin.pages.courses.create-materi');
+    })->name('ccreate-materi.index');
 });
