@@ -114,28 +114,6 @@
                             <i class="ti ti-arrow-left fs-4 text-dark"></i>
                             Kembali
                     </button>
-                    <button class="btn btn-warning d-none editDescription">
-                        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                <path d="M13.5 6.5l4 4" />
-                            </svg> Edit Deskripsi</span>
-                    </button>
-                    <a href="{{ route('admin.create-materi.index') }}" class="btn btn-primary addMateri">
-                        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                <path d="M9 8h6" />
-                            </svg> Tambah Materi</span>
-                    </a>
-                    <button class="btn btn-warning d-none editWeinght">
-                        <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                <path d="M13.5 6.5l4 4" />
-                            </svg> Atur Bobot Nilai Soal</span>
-                    </button>
                 </li>
             </div>
         </ul>
@@ -143,157 +121,16 @@
 </div>
 
 <div class="tab-content">
-    <div class="tab-pane active" id="home" role="tabpanel">
-        <div class="row">
-            @foreach (range(1,7) as $item)
-            <div class="col-lg-4">
-                <div class="card card-body">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="fw-semibold" style="color: var(--purple-primary)">Step Ke-1</span>
-                        <div class="d-flex gap-2 align-items-center">
-                            <a class="text-warning" href="{{ route('admin.sub-modules.index') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
-                                    <path fill="currentColor" d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" /></svg>
-                            </a>
-                            <a style="color: #DB0909;">
-                                <i class="ti ti-trash fs-7"></i>
-                            </a>
-                        </div>
-                    </div>
-    
-                    <h5 class="text-dark me-1 fw-semibold"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                            <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                            <path d="M9 8h6" />
-                        </svg>
-                        Belajar Dasar Pemrograman Web
-                    </h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ex commodi inventore fugiat, accusantium totam?</p>
-    
-                    <div>
-                        <button class="btn text-white w-100" style="background-color: var(--purple-primary)">
-                            Lihat Materi
-                            <i class="ti ti-arrow-right fs-5"></i>
-                        </button>
-                    </div>
-                    {{-- <div class="card-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <h5 class="text-dark" style="font-weight: bold;"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                    <path d="M9 8h6" />
-                                </svg> Belajar Dasar Pemrograman Web</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae explicabo quibusdam veritatis.
-                                Impedit
-                                aspernatur ex qui vero temporibus facilis ut harum. Perspiciatis minima ex natus eos quam! Natus,
-                                veritatis nobis?</p>
-                        </div>
-                        <div class="col-4">
-                            <div class="row">
-                                <div class="col-6 border-start">
-                                    <div class="d-flex flex-column gap-2">
-                                        <button type="button"
-                                            class="btn d-flex btn-light-warning w-100 d-block text-warning font-medium align-items-center">
-                                            <span class="badge">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text text-warning">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                                    <path
-                                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                                    <path d="M9 12h6" />
-                                                    <path d="M9 16h6" />
-                                                </svg>
-                                            </span>
-                                            <span class="text-dark" style="font-weight: bold;">8 Tugas</span>
-                                        </button>
-                                        <button type="button"
-                                            class="btn d-flex btn-light-warning w-100 d-block text-warning font-medium align-items-center">
-                                            <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text text-warning">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                                    <path
-                                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                                    <path d="M9 12h6" />
-                                                    <path d="M9 16h6" />
-                                                </svg></span>
-                                            <span class="text-dark" style="font-weight: bold;">8 Pre-test</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-6 border-start">
-                                    <div class="d-flex flex-column gap-2">
-                                        <button type="button"
-                                            class="btn d-flex btn-light-warning w-100 d-block text-warning font-medium align-items-center">
-                                            <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text text-warning">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                                    <path
-                                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                                    <path d="M9 12h6" />
-                                                    <path d="M9 16h6" />
-                                                </svg></span>
-                                            <span class="text-dark" style="font-weight: bold;">8 post-test</span>
-                                        </button>
-                                        <button type="button"
-                                            class="btn d-flex btn-light-warning w-100 d-block text-warning font-medium align-items-center">
-                                            <span class="badge"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-text text-warning">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path
-                                                        d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
-                                                    <path
-                                                        d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
-                                                    <path d="M9 12h6" />
-                                                    <path d="M9 16h6" />
-                                                </svg></span>
-                                            <span class="text-dark" style="font-weight: bold;">8 Kuis</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-
-    <div class="tab-pane" id="list" role="tabpanel">
-        @include('admin.pages.courses.panes.moduls.tab-list-moduls')
-    </div>
-
-    <div class="tab-pane" id="test" role="tabpanel">
-        @include('admin.pages.courses.panes.pre-test.tab-pretest')
-    </div>
-
-    <div class="tab-pane" id="post" role="tabpanel">
-        @include('admin.pages.courses.panes.post-test.tab-posttest')
+    <div class="tab-pane active" id="materi" role="tabpanel">
+        @include('admin.pages.courses.panes.moduls.panes.tab-materials')
     </div>
 
     <div class="tab-pane" id="task" role="tabpanel">
-        @include('admin.pages.courses.panes.task.tab-task')
+        @include('admin.pages.courses.panes.moduls.panes.tab-task')
+    </div>
+
+    <div class="tab-pane" id="quiz" role="tabpanel">
+        @include('admin.pages.courses.panes.moduls.panes.tab-quiz')
     </div>
 </div>
 
