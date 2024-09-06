@@ -60,4 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('create-task', function() {
         return view('admin.pages.courses.panes.moduls.create-task');
     })->name('create-task.index');
+
+    Route::get('question-bank', function() {
+        return view('admin.pages.question-bank.index');
+    })->name('question-bank.index');
 });
