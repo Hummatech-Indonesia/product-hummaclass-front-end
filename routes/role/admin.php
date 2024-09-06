@@ -39,7 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::get('courses/detail-2', function () {
-        return view('admin.pages.courses.detail-2');
+        return view('admin.pages.courses.panes.moduls.detail-2');
     });
 
     Route::get('detail-users', function () {
@@ -49,4 +49,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('create-modul', function() {
         return view('admin.pages.courses.panes.moduls.create-modul');
     })->name('create-moduls.index');
+
+    Route::get('create-materi', function() {
+        return view('admin.pages.courses.panes.moduls.create-materi');
+    })->name('create-materi.index');
 });
