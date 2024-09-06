@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-            <img src="/assets/images/background/buble.png" alt="Description" class="img-fluid" style="max-width: 100px; height: auto;">
+            <img src="{{ asset('admin/assets/images/background/bubble-purple.png') }}" alt="Description" class="img-fluid" style="max-width: 100px; height: auto;">
         </div>
     </div>
     @endforeach
