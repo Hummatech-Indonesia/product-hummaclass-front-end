@@ -24,7 +24,8 @@
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin/dist/css/style.min.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('admin/summernote/summernote.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('admin/summernote/summernote.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.css') }}">
 
     @yield('style')
 </head>
@@ -603,7 +604,8 @@
     <script src="{{ asset('admin/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/dist/js/dashboard.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('admin/summernote/summernote.min.js') }}"></script>
+    {{-- <script src="{{ asset('admin/summernote/summernote.min.js') }}"></script> --}}
+    <script src="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
