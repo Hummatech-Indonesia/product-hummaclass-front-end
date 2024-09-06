@@ -73,7 +73,7 @@
                 </div>
                 <div class="">
                     <li class="">
-                        <button class="btn btn-warning editDescription">
+                        <button class="btn btn-warning d-none editDescription">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -94,7 +94,7 @@
                                     <path d="M9 8h6" />
                                 </svg> Tambah Modul</span>
                         </button>
-                        <button class="btn btn-warning editWeinght">
+                        <button class="btn btn-warning d-none editWeinght">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -112,58 +112,26 @@
 
     <div class="tab-content">
         <div class="tab-pane active" id="home" role="tabpanel">
-            @include('admin.pages.courses.panes.tab-description')
+            @include('admin.pages.courses.panes.description.tab-description')
         </div>
 
         <div class="tab-pane" id="list" role="tabpanel">
-            @include('admin.pages.courses.panes.tab-list-moduls')
+            @include('admin.pages.courses.panes.moduls.tab-list-moduls')
         </div>
 
         <div class="tab-pane" id="test" role="tabpanel">
-            @include('admin.pages.courses.panes.tab-pretest')
+            @include('admin.pages.courses.panes.pre-test.tab-pretest')
         </div>
 
         <div class="tab-pane" id="post" role="tabpanel">
-            @include('admin.pages.courses.panes.tab-posttest')
+            @include('admin.pages.courses.panes.post-test.tab-posttest')
         </div>
 
         <div class="tab-pane" id="task" role="tabpanel">
-            @include('admin.pages.courses.panes.tab-task')
+            @include('admin.pages.courses.panes.task.tab-task')
         </div>
     </div>
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
-            $(document).on('click', '.home', function() {
-                $('.addModul').addClass('d-none');
-                $('.editDescription').removeClass('d-none');
-                $('.editWeinght').addClass('d-none');
-            });
-
-            $(document).on('click', '.list', function() {
-                $('.editDescription').addClass('d-none');
-                $('.addModul').removeClass('d-none');
-                $('.editWeinght').addClass('d-none');
-            });
-
-            $(document).on('click', '.test', function() {
-                $('.editDescription').addClass('d-none');
-                $('.addModul').addClass('d-none');
-                $('.editWeinght').removeClass('d-none');
-            });
-
-            $(document).on('click', '.post', function() {
-                $('.editDescription').addClass('d-none');
-                $('.addModul').addClass('d-none');
-                $('.editWeinght').removeClass('d-none');
-            });
-
-            $(document).on('click', '.task', function() {
-                $('.editDescription').addClass('d-none');
-                $('.addModul').addClass('d-none');
-                $('.editWeinght').addClass('d-none');
-            });
-        });
-    </script>
+    @include('admin.pages.courses.scripts.index')
 @endsection
