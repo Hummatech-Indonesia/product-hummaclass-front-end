@@ -56,4 +56,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('create-materi', function() {
         return view('admin.pages.courses.panes.moduls.create-materi');
     })->name('create-materi.index');
+
+    Route::get('create-task', function() {
+        return view('admin.pages.courses.panes.moduls.create-task');
+    })->name('create-task.index');
 });
