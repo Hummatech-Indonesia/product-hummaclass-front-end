@@ -17,6 +17,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.categories.index');
     })->name('categories.index');
 
+    Route::get('module-questions', function () {
+        return view('admin.pages.courses.modules.module-questions.index');
+    });
+
     Route::resources([
         'categories' => CategoryController::class,
         'courses' => AdminCourseController::class,
@@ -43,6 +47,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('detail-users.index');
 
     Route::get('create-modul', function() {
-        return view('admin.pages.courses.create-materi');
-    })->name('ccreate-materi.index');
+        return view('admin.pages.courses.panes.moduls.create-modul');
+    })->name('create-moduls.index');
 });
