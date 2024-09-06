@@ -20,6 +20,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('module-questions', function () {
         return view('admin.pages.courses.modules.module-questions.index');
     });
+    Route::get('module-questions-create', function () {
+        return view('admin.pages.courses.modules.module-questions.create');
+    });
 
     Route::resources([
         'categories' => CategoryController::class,
