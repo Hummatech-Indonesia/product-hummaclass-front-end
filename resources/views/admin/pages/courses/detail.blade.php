@@ -6,15 +6,15 @@
     }
 
     .btn.btn-primary {
-        background-color: #7209DB !important;
+        background-color: var(--purple-primary) !important;
     }
 
     .nav-link.active {
-        background-color: #7209DB !important;
+        background-color: var(--purple-primary) !important;
     }
 
     .text-primary {
-        color: #7209DB !important;
+        color: var(--purple-primary) !important;
     }
 
 </style>
