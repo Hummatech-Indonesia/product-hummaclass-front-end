@@ -20,6 +20,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('module-questions', function () {
         return view('admin.pages.courses.modules.module-questions.index');
     });
+    Route::get('module-questions-create', function () {
+        return view('admin.pages.courses.modules.module-questions.create');
+    });
 
     Route::resources([
         'categories' => CategoryController::class,
@@ -53,4 +56,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('create-materi', function() {
         return view('admin.pages.courses.panes.moduls.create-materi');
     })->name('create-materi.index');
+
+    Route::get('create-task', function() {
+        return view('admin.pages.courses.panes.moduls.create-task');
+    })->name('create-task.index');
+
+    Route::get('question-bank', function() {
+        return view('admin.pages.question-bank.index');
+    })->name('question-bank.index');
 });

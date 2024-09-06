@@ -5,18 +5,19 @@
             background-color: #E8DEF3 !important;
         }
 
-        .btn.btn-primary {
-            background-color: #7209DB !important;
-        }
+    .btn.btn-primary {
+        background-color: var(--purple-primary) !important;
+    }
 
-        .nav-link.active {
-            background-color: #7209DB !important;
-        }
+    .nav-link.active {
+        background-color: var(--purple-primary) !important;
+    }
 
-        .text-primary {
-            color: #7209DB !important;
-        }
-    </style>
+    .text-primary {
+        color: var(--purple-primary) !important;
+    }
+
+</style>
 @endsection
 @section('content')
 <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
