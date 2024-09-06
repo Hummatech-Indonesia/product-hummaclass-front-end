@@ -11,6 +11,6 @@ class ModuleController extends Controller
         return view('admin.pages.modul.index');
     }
     public function show() {
-        return view('admin.pages.courses.detail-2');
+        return view('admin.pages.courses.panes.moduls.detail-2');
     }
 }

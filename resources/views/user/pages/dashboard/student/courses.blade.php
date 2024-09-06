@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="row">
-                @include('dashboard.widgets.sidebar')
+                @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
                     <div class="dashboard__content-wrap dashboard__content-wrap-two mb-30">
                         <div class="dashboard__content-title">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    @include('dashboard.widgets.completed')
+                    @include('user.pages.dashboard.widgets.completed')
                 </div>
             </div>
         </div>

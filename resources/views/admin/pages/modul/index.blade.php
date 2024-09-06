@@ -46,16 +46,14 @@
             Tambah
         </a>
     </div>
-    <div class="row row-cols-md-4 mt-4">
-        @forelse (range(1,4) as $item)
-            <div class="col">
-                <x-modernize-card-1 id="2" author="David Miliar" title="Learning JavaScript WithImagination"
-                    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, maiores."
-                    content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, maiores." img=""
-                    price="100000" review="4.5" modules="5" sold="20" />
-            </div>
-        @empty
-        @endforelse
+    <div class="row row-cols-md-4 mt-4" id="list-card">
     </div>
-    {{-- modal tambah --}}
+    @include('components.modernize-card-1')
+    <x-delete-modal-component />
+@endsection
+
+@section('script')
+    <script>
+        
+    </script>
 @endsection
