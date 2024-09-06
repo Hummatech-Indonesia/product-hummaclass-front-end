@@ -86,8 +86,9 @@
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         localStorage.setItem('hummaclass-token', response.data.token);
+                        window.location.href = "{{ route('dashboard.courses.index') }}";
                     },
                     error: function(error) {
                         let errors = error.responseJSON.data || {};

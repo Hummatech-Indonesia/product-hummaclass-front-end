@@ -182,40 +182,44 @@
             table();
 
             $(document).on('click', '.deleteCategory', function() {
+                console.log('sdfsfsdfsfd');
+                
                 const id = $(this).data('id');
                 $('#modal-delete').modal('show');
-                $('#deleteForm').attr('action', `http://127.0.0.1:8000/api/categories/${id}`);
+                $('#deleteForm').attr('action', "{{ env('API_URL') }}" + `/api/categories/${id}`);
+
             });
 
             $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: $('#deleteForm').attr('action'),
-                    dataType: "json",
-                    success: function(response) {
-                        $('#modal-delete').modal('hide');
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: response.meta.message,
-                            icon: "success"
-                        });
-                        table();
-                    },
-                    error: function(xhr) {
-                        let errorMessages = [];
-                        $.each(xhr.responseJSON.errors, function(index, value) {
-                            errorMessages.push(value);
-                        });
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            html: errorMessages.join('<br>'),
-                            icon: "error"
-                        });
-                    }
-                });
-            });
+                console.log($('#deleteForm').attr('action'));
 
+                e.preventDefault();
+                // $.ajax({
+                //     type: "DELETE",
+                //     url: $('#deleteForm').attr('action'),
+                //     dataType: "json",
+                //     success: function(response) {
+                //         $('#modal-delete').modal('hide');
+                //         Swal.fire({
+                //             title: "Berhasil!",
+                //             text: response.meta.message,
+                //             icon: "success"
+                //         });
+                //         table();
+                //     },
+                //     error: function(xhr) {
+                //         let errorMessages = [];
+                //         $.each(xhr.responseJSON.errors, function(index, value) {
+                //             errorMessages.push(value);
+                //         });
+                //         Swal.fire({
+                //             title: "Terjadi Kesalahan!",
+                //             html: errorMessages.join('<br>'),
+                //             icon: "error"
+                //         });
+                //     }
+                // });
+            });
         });
     </script>
 

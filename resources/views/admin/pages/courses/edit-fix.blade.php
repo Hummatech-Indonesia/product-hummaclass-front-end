@@ -30,7 +30,7 @@
             <h5 class="mb-0">Tambah Kursus</h5>
         </div>
         <div class="card-body">
-            <form action="#" enctype="multipart/form-data" id="create-course-form">
+            <form action="#" enctype="multipart/form-data" id="edit-course-form">
                 <div class="row">
                     <div class="col col-md-12">
                         <label for="" class="form-label">Thumbnail</label>
@@ -84,21 +84,52 @@
                         <button type="submit" class="btn btn-light-primary text-primary font-medium">
                             Tambah
                         </button>
-                        <button type="reset" class="btn btn-light-danger text-danger font-medium">
+                        <a href="{{ route('admin.courses.index') }}" class="btn btn-light-danger text-danger font-medium">
                             Kembali
-                        </button>
+                        </a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
 @endsection
 @section('script')
     <script>
         $(document).ready(function() {
             $('#description').summernote();
 
-            $('#create-course-form').submit(function(e) {
+            function setValue(data) {
+                $('#title').val(data.title);
+                $('#sub_title').val(data.sub_title);
+                $('#price').val(data.price);
+                $(`#status option[text="${data.status}"]`)
+                $('#status').val(data.status);
+                // $('#sub_category_id').val(data.sub_category);
+                $('#is_premium').val(data.is_premium);
+                $('#description').summernote('code', data.description);
+                // console.log(data);
+
+            }
+            // get
+            $.ajax({
+                type: "GET",
+                url: "{{ env('API_URL') }}" + "/api/courses/" + "{{ request()->course }}",
+                dataType: "json",
+                success: function(response) {
+                    setValue(response.data);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            // create
+            $('#edit-course-form').submit(function(e) {
                 e.preventDefault(); // Mencegah submit form secara default
 
                 // Mengonversi data form ke objek
@@ -106,10 +137,12 @@
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
+
+
                 // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/api/courses',
-                    type: 'POST',
+                    url: "{{ env('API_URL') }}" + "/api/courses/{{ request()->course }}",
+                    type: 'PATCH',
                     data: formData,
                     success: function(response) {
                         Swal.fire({
@@ -117,7 +150,7 @@
                             text: response.meta.title,
                             icon: "success"
                         }).then(function(param) {
-                            location.href = '/admin/courses';
+                            // window.location.reload();
                         });
                     },
                     error: function(error) {
@@ -126,7 +159,7 @@
 
                         // console.log(errors);
 
-                        console.log(formData);
+                        // console.log(formData);
 
 
                         if (errors) {
@@ -146,25 +179,6 @@
                                 }
                             }
                         }
-
-                        // Reset status is-invalid
-                        // $('#email, #password').removeClass('is-invalid');
-
-                        // Tampilkan pesan error pada field email dan password jika ada
-                        // if (errors.email || errors.password) {
-                        //     if (errors.email) {
-                        //         $('#email').addClass('is-invalid')
-                        //             .next('.invalid-feedback').text(errors.email[0]);
-                        //     }
-                        //     if (errors.password) {
-                        //         $('#password').addClass('is-invalid')
-                        //             .next('.invalid-feedback').text(errors.password[0]);
-                        //     }
-                        // } else {
-                        //     // Jika tidak ada error spesifik pada email atau password, tampilkan pesan umum
-                        //     $('#email, #password').addClass('is-invalid')
-                        //         .next('.invalid-feedback').text(message);
-                        // }
                     }
                 });
             });

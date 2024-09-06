@@ -5,7 +5,7 @@
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('dashboard.courses.show', $item) }}" class="shine__animate-link">
-                            <img src="{{ 'assets/img/courses/course_thumb0' . $item . '.jpg' }}" alt="img">
+                            <img src="{{ asset('assets/img/courses/course_thumb0' . $item . '.jpg') }}" alt="img">
                         </a>
                     </div>
                     <div class="courses__item-content">
