@@ -1,5 +1,15 @@
 @extends('admin.layouts.app')
 
+@section('style')
+<style>
+    .btn-default {
+        background-color: transparent;
+        color: #000000;
+    }
+
+</style>
+@endsection
+
 @section('content')
 <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3; box-shadow: 0px 4px 5px rgba(78, 78, 78, 0.3);">
     <div class="card-body px-4 py-3">
@@ -35,8 +45,12 @@
         </div>
         <div class="col-12 mb-3">
             <label for="" class="fw-semibold form-label">Deskripsi</label>
-            <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+@include('admin.pages.courses.scripts.index')
 @endsection
