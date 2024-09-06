@@ -21,4 +21,8 @@ class AdminCourseController extends Controller
     {
         return view('admin.pages.courses.create');
     }
+    public function edit()
+    {
+        return view('admin.pages.courses.edit-fix');
+    }
 }

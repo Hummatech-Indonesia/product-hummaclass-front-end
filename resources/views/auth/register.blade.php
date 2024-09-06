@@ -95,6 +95,8 @@
                             text: response.meta.message,
                             icon: "success"
                         });
+
+                        window.location.href = "{{ route('dashboard.courses.index') }}";
                     },
                     error: function(error) {
                         let errors = error.responseJSON.data || {};
