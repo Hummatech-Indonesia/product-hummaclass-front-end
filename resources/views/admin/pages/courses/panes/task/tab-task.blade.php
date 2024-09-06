@@ -7,7 +7,7 @@
         </div>
         <div class="col-12 mt-2">
             <label for="" class="form-label">Deskripsi</label>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Masukan deskripsi" class="form-control"></textarea>
+            <textarea name="" id="summernote-task" cols="30" rows="10" placeholder="Masukan deskripsi" class="form-control"></textarea>
         </div>
     </div>
 </div>
