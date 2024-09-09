@@ -39,7 +39,7 @@
             let formData = new FormData($('.createForm')[0]);
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:9000/api/categories",
+                url: "{{ env('API_URL') }}/api/categories",
                 data: formData,
                 dataType: "json",
                 processData: false,

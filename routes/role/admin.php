@@ -49,19 +49,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
 
-    Route::get('create-modul/{course}', function() {
+    Route::get('create-modul/{course}', function () {
         return view('admin.pages.courses.panes.moduls.create-modul');
-    })->name('create-moduls.index');
+    })->name('create.moduls.index');
 
-    Route::get('create-materi', function() {
+    Route::get('create-materi', function () {
         return view('admin.pages.courses.panes.moduls.create-materi');
     })->name('create-materi.index');
 
-    Route::get('create-task', function() {
+    Route::get('create-task', function () {
         return view('admin.pages.courses.panes.moduls.create-task');
     })->name('create-task.index');
 
-    Route::get('question-bank', function() {
+    Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
 });
