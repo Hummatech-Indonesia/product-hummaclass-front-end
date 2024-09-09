@@ -24,7 +24,6 @@
         </div>
     </div>
 
-
     <div class="card">
         <div class="card-header bg-white border-bottom">
             <h5 class="mb-0">Tambah Kursus</h5>
@@ -66,9 +65,15 @@
                     </div>
                     <div class="col col-md-6 mt-3">
                         <label for="" class="form-label">Kategori</label>
+                        <select name="category_id" id="category_id" class="form-select">
+                            <option value="">Pilih Kategori</option>
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col col-md-6 mt-3">
+                        <label for="" class="form-label">Sub Kategori</label>
                         <select name="sub_category_id" id="sub_category_id" class="form-select">
-                            <option value="1">Kategori 1</option>
-                            <option value="0">Kategori 2</option>
+                            <option value="">Pilih Sub Kategori</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -97,77 +102,114 @@
     <script>
         $(document).ready(function() {
             $('#description').summernote();
+            category()
 
-            $('#create-course-form').submit(function(e) {
-                e.preventDefault(); // Mencegah submit form secara default
-
-                // Mengonversi data form ke objek
-                var formData = {};
-                $(this).serializeArray().forEach(function(field) {
-                    formData[field.name] = field.value;
-                });
-                // Mengirim data menggunakan AJAX
+            function category() {
                 $.ajax({
-                    url: 'http://127.0.0.1:8000/api/courses',
-                    type: 'POST',
-                    data: formData,
+                    type: "GET",
+                    url: "{{ env('API_URL') }}" + "/api/categories",
+                    dataType: "json",
                     success: function(response) {
-                        Swal.fire({
-                            title: "Success",
-                            text: response.meta.title,
-                            icon: "success"
-                        }).then(function(param) {
-                            location.href = '/admin/courses';
+                        $('#category_id').empty().append(
+                            '<option value="">Pilih Kategori</option>'
+                        ); // Kosongkan select dan tambahkan placeholder
+                        $.each(response.data.data, function(index, value) {
+                            $('#category_id').append(
+                                `<option value="${value.id}">${value.name}</option>`
+                            );
                         });
                     },
-                    error: function(error) {
-                        let errors = error.responseJSON.data || {};
-                        let message = error.responseJSON.meta.message;
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
 
-                        // console.log(errors);
+            function sub_category(category_id) {
+                if (!category_id) {
+                    $('#sub_category_id').empty().append(
+                        '<option value="">Pilih Sub Kategori</option>'
+                    );
+                    return;
+                }
 
-                        console.log(formData);
+                $.ajax({
+                    type: "GET",
+                    url: "{{ env('API_URL') }}" + "/api/sub-categories/category/" + category_id,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#sub_category_id').empty().append(
+                            '<option value="">Pilih Sub Kategori</option>'
+                        );
+
+                        $.each(response.data, function(index, value) {
+                            $('#sub_category_id').append(
+                                `<option value="${value.id}">${value.name}</option>`
+                            );
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data sub kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            $('#category_id').on('change', function() {
+                var category_id = $(this).val();
+                sub_category(category_id);
+            });
+
+            category();
 
 
-                        if (errors) {
-                            for (let key in errors) {
-                                if (errors.hasOwnProperty(key)) {
-                                    console.log(`${key}: ${errors[key]}`);
-                                    if (key == 'description') {
-                                        let feedback = $(`.invalid-feedback`).closest(
-                                            `.${key}`);
-                                        console.log(feedback);
-                                        feedback.text(errors[key])
-                                        feedback.removeClass('d-none')
-                                    } else {
-                                        $(`#${key}`).addClass('is-invalid')
-                                            .closest('.invalid-feedback').text(errors[key]);
-                                    }
-                                }
-                            }
+            $('#create-course-form').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ env('API_URL') }}/api/courses",
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        window.location.href = "/admin/courses";
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $.each(errors, function(field, messages) {
+                                console.log(messages[0]);
+
+                                // Tambahkan kelas is-invalid pada input yang error
+                                $(`[name="${field}"]`).addClass('is-invalid');
+
+                                // Temukan elemen dengan kelas .invalid-feedback yang berada di dalam .col terdekat
+                                $(`[name="${field}"]`).closest('.col').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
                         }
-
-                        // Reset status is-invalid
-                        // $('#email, #password').removeClass('is-invalid');
-
-                        // Tampilkan pesan error pada field email dan password jika ada
-                        // if (errors.email || errors.password) {
-                        //     if (errors.email) {
-                        //         $('#email').addClass('is-invalid')
-                        //             .next('.invalid-feedback').text(errors.email[0]);
-                        //     }
-                        //     if (errors.password) {
-                        //         $('#password').addClass('is-invalid')
-                        //             .next('.invalid-feedback').text(errors.password[0]);
-                        //     }
-                        // } else {
-                        //     // Jika tidak ada error spesifik pada email atau password, tampilkan pesan umum
-                        //     $('#email, #password').addClass('is-invalid')
-                        //         .next('.invalid-feedback').text(message);
-                        // }
                     }
                 });
             });
+
         });
     </script>
 @endsection
