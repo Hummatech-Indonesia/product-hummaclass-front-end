@@ -27,6 +27,50 @@
     {{-- <link rel="stylesheet" href="{{ asset('admin/summernote/summernote.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.css') }}">
 
+    <style>
+        @media (max-width: 600px) {
+            .filter {
+                display: grid;
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+                gap: 1rem;
+            }
+
+            .position-relative {
+                grid-column: span 5 / span 5;
+            }
+
+            .pagination-page {
+                grid-column: span 4 / span 4;
+            }
+
+            .status-join {
+                grid-column: span 2 / span 2;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .cover-filter {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1rem;
+            }
+
+            .filter {
+                display: grid;
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                gap: 1rem;
+            }
+
+            .position-relative {
+                grid-column: span 2 / span 2;
+            }
+
+            .pagination-page {
+                grid-column: span 2 / span 2;
+
+            }
+        }
+    </style>
     @yield('style')
 </head>
 
@@ -608,6 +652,80 @@
     <script src="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        function handlePaginate(pagination) {
+            const paginate = $('<ul>').addClass('pagination')
+            const currentPage = pagination.current_page
+            const lastPage = pagination.last_page
+            if (lastPage >= 11) {
+                var startPage = currentPage
+                var endPage = currentPage + 1
+                if (startPage > 1) startPage = currentPage - 1
+                if (currentPage == lastPage) endPage -= 1
+                for (var page = startPage; page <= endPage; page++) {
+                    const pageItem = $('<li>').addClass('page-item')
+                    page == currentPage ? pageItem.addClass('active') : '';
+                    const pageLink =
+                        `<button class="page-link" onclick="get(${page})" >${page}</button>`
+                    pageItem.html(pageLink)
+                    paginate.append(pageItem)
+                }
+                const morePage = `<li class="page-item disabled">
+                            <button
+                            class="page-link"
+                            tabindex="-1"
+                            aria-disabled="true"
+                            >...</button>
+                        </li>`
+                if (currentPage >= 3) {
+                    var leftPage = 3;
+                    if (currentPage == 3) leftPage = 1
+                    if (currentPage == 4) leftPage = 2
+                    if (currentPage >= 6) paginate.prepend(morePage)
+                    for (var page = leftPage; page >= 1; page--) {
+                        const pageItem = $('<li>').addClass('page-item')
+                        const pageLink =
+                            `<button  class="page-link" onclick="get(${page})">${page}</button>`
+                        pageItem.html(pageLink)
+                        paginate.prepend(pageItem)
+                    }
+                }
+                if (currentPage <= (lastPage - 2)) {
+                    var rightPage = 1
+                    if (currentPage == (lastPage - 2)) rightPage = 0
+                    if (currentPage == (lastPage - 3)) rightPage = 1
+                    if (currentPage < (lastPage - 4)) paginate.append(morePage)
+                    for (var page = (lastPage - rightPage); page <= lastPage; page++) {
+                        const pageItem = $('<li>').addClass('page-item')
+                        const pageLink = `<button class="page-link" onclick="get(${page})">${page}</button>`
+                        pageItem.html(pageLink)
+                        paginate.append(pageItem)
+                    }
+                }
+            } else {
+                for (var page = 1; page <= lastPage; page++) {
+                    const pageItem = $('<li>').addClass('page-item')
+                    page == currentPage ? pageItem.addClass('active') : '';
+                    const pageLink = `<button class="page-link" onclick="get(${page})">${page}</button>`
+                    pageItem.append(pageLink)
+                    paginate.append(pageItem)
+                }
+            }
+            const previous = `<li class="page-item ${currentPage == 1 ? 'disabled' : ''}" ${currentPage != 1 ? 'onclick="get('+(currentPage - 1)+')"' : ''}>
+                            <button
+                            class="page-link"
+                            tabindex="-1"
+                            aria-disabled="true"
+                            >Previous</button>
+                        </li>`
+            const next = `<li class="page-item ${currentPage == lastPage ? 'disabled' : ''}" ${currentPage != lastPage ? 'onclick="get('+(pagination.current_page + 1)+')"' : ''}>
+                                <button class="page-link" href="#">Next</button>
+                        </li>`
+            paginate.prepend(previous)
+            paginate.append(next)
+            return paginate
+        }
+    </script>
 
     @yield('script')
 </body>

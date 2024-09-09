@@ -108,5 +108,5 @@
 @endsection
 
 @section('script')
-    @include('admin.pages.courses.scripts.index')
+    @include('admin.pages.courses.scripts.index') 
 @endsection
