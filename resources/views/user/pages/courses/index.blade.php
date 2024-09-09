@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumb__content">
-                        <h3 class="title">All Courses</h3>
+                        <h3 class="title">Kursus</h3>
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
                                 <a href="index.html">Home</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Courses</span>
+                            <span property="itemListElement" typeof="ListItem">Kursus</span>
                         </nav>
                     </div>
                 </div>

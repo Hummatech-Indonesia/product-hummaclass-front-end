@@ -1,7 +1,7 @@
 <div class="col-xl-3 col-lg-4 order-2 order-lg-0">
     <aside class="courses__sidebar">
         <div class="courses-widget">
-            <h4 class="widget-title">Categories</h4>
+            <h4 class="widget-title">Kategori</h4>
             <div class="courses-cat-list">
                 <ul class="list-wrap">
                     <li>

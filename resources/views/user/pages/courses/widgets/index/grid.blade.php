@@ -21,11 +21,11 @@
                         <div class="courses__item-bottom">
                             <div class="button">
                                 <a href="{{ route('courses.show', $item) }}">
-                                    <span class="text">Enroll Now</span>
+                                    <span class="text">Lihat Detail</span>
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
                             </div>
-                            <h5 class="price">$19.00</h5>
+                            <h5 class="price">Rp.300.000</h5>
                         </div>
                     </div>
                 </div>
