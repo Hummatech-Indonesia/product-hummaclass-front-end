@@ -69,9 +69,9 @@
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-7">
                 <div class="section__title text-center mb-40">
-                    <span class="sub-title">Trending Categories</span>
-                    <h2 class="title">Top Category We Have</h2>
-                    <p class="desc">when known printer took a galley of type scrambl edmake</p>
+                    <span class="sub-title">Kategori Teratas</span>
+                    <h2 class="title">Kami Punya Kategori Teratas</h2>
+                    <p class="desc">Daftar kategori teratas</p>
                 </div>
             </div>
         </div>
@@ -245,7 +245,7 @@
             <div class="col-lg-6">
                 <div class="about__content">
                     <div class="section__title">
-                        <span class="sub-title">Get More About Us</span>
+                        <span class="sub-title">Tentang Kami</span>
                         <h2 class="title">
                             Thousand Of Top
                             <span class="position-relative">
@@ -274,7 +274,7 @@
                         </li>
                     </ul>
                     <div class="tg-button-wrap">
-                        <a href="about-us.html" class="btn arrow-btn">Start Free Trial <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
+                        <a href="javascript:void(0)" class="btn arrow-btn">Uji Coba Gratis <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                     </div>
                 </div>
             </div>
@@ -290,25 +290,25 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section__title text-center mb-40">
-                        <span class="sub-title">Top Class Courses</span>
-                        <h2 class="title">Explore Our World's Best Courses</h2>
-                        <p class="desc">When known printer took a galley of type scrambl edmake</p>
+                        <span class="sub-title">Kelas Kursus Teratas</span>
+                        <h2 class="title">Jelajahi Kursus Terbaik Dunia Kami</h2>
+                        <p class="desc">Kelas Kursus terbaik kami</p>
                     </div>
                     <div class="courses__nav">
                         <ul class="nav nav-tabs" id="courseTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">
-                                    All Courses
+                                    Semua Kursus
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="false">
-                                    Design
+                                    Desain
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="business-tab" data-bs-toggle="tab" data-bs-target="#business-tab-pane" type="button" role="tab" aria-controls="business-tab-pane" aria-selected="false">
-                                    Business
+                                    Bisnis
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
