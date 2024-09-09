@@ -34,19 +34,20 @@
 <script>
     $(document).ready(function() {
         let id;
-        $(document).on('click', '.editCategory', function() {
+        $(document).on('click', '.btn-update', function() {
             $('#modal-edit').modal('show');
             id = $(this).data('id');
+
             const name = $(this).data('name');
             $('#name').val(name);
         });
 
         $('.updateConfirmation').click(function(e) {
             e.preventDefault();
-            let url = `http://127.0.0.1:8000/api/categories/${id}`;
+
+            let url = "{{ env('API_URL') }}" + "/api/categories/" + id;
             let formData = new FormData($('.editForm')[0]);
 
-            console.log(formData.get('name'));
 
             $.ajax({
                 type: "POST",
@@ -62,7 +63,7 @@
                         text: response.meta.message,
                         icon: "success"
                     });
-                    table();
+                    get(1);
                 },
                 error: function(response) {
                     let errorMessages = [];

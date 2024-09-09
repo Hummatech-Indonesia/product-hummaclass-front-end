@@ -51,7 +51,7 @@
                         text: response.meta.message,
                         icon: "success"
                     });
-                    table();
+                    get(1);
                 },
                 error: function(response) {
                     let errorMessages = [];

@@ -184,7 +184,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li>
-                                        <button class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                             <i class="fs-4 ti ti-edit"></i>Edit
                                         </button>
                                     </li>
