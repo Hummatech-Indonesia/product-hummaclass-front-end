@@ -41,16 +41,8 @@
     });
 
     $(document).ready(function() {
-        $('#summernote-moduls').summernote({
-            height: 200
-        });
-    });
-
-    $(document).ready(function() {
         $('#question').summernote({
             height: 200
         });
     });
-
-
 </script>

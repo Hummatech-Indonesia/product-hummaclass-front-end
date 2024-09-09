@@ -13,9 +13,9 @@ class AdminCourseController extends Controller
         return view('admin.pages.modul.index');
     }
 
-    public function show()
+    public function show(string $id)
     {
-        return view('admin.pages.courses.detail');
+        return view('admin.pages.courses.detail', compact('id'));
     }
     public function create()
     {

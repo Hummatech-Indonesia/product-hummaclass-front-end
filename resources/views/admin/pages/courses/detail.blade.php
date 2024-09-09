@@ -5,41 +5,41 @@
             background-color: #E8DEF3 !important;
         }
 
-    .btn.btn-primary {
-        background-color: var(--purple-primary) !important;
-    }
+        .btn.btn-primary {
+            background-color: var(--purple-primary) !important;
+        }
 
-    .nav-link.active {
-        background-color: var(--purple-primary) !important;
-    }
+        .nav-link.active {
+            background-color: var(--purple-primary) !important;
+        }
 
-    .text-primary {
-        color: var(--purple-primary) !important;
-    }
-
-</style>
+        .text-primary {
+            color: var(--purple-primary) !important;
+        }
+    </style>
 @endsection
 @section('content')
-<div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
-    <div class="card-body px-4 py-3">
-        <div class="row align-items-center">
-            <div class="col-9">
-                <h4 style="font-weight: bold;">Detail Modul</h4>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Banner</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-3">
-                <div class="text-center mb-n1">
-                    <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt="" class="img-fluid mb-n3" />
+    <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h4 style="font-weight: bold;">Detail Modul</h4>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Banner</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <div class="text-center mb-n1">
+                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                            class="img-fluid mb-n3" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
     <div class="card p-3">
         <div>
@@ -83,7 +83,7 @@
                                     <path d="M13.5 6.5l4 4" />
                                 </svg> Edit Deskripsi</span>
                         </button>
-                        <a href="{{ route('admin.create-moduls.index') }}" class="btn btn-primary d-none addModul">
+                        <a href="{{ route('admin.create.moduls.index', $id) }}" class="btn btn-primary d-none addModul">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"

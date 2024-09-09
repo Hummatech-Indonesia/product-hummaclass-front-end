@@ -35,7 +35,7 @@
     </div>
 
     <div class="card p-3">
-        <form action="" id="create-module-form"> 
+        <form action="" id="create-module-form">
             <div class="row">
                 <div class="col-10 mb-3">
                     <label for="" class="fw-semibold form-label">Judul</label>
@@ -46,8 +46,8 @@
                     <input type="number" class="form-control" id="order" name="order" placeholder="Masukan Step">
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="" class="fw-semibold form-label">Subitile</label>
-                    <textarea name="subtitle" id="summernote-moduls" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="" class="fw-semibold form-label">Sub Judul</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Masukan Sub judul">
                 </div>
             </div>
             <div class="d-flex">

@@ -215,8 +215,6 @@
         get(1);
 
         $(document).on('click', '.deleteCategory', function() {
-            console.log('sdfsfsdfsfd');
-
             const id = $(this).data('id');
             $('#modal-delete').modal('show');
             $('#deleteForm').attr('action', "{{ env('API_URL') }}" + `/api/categories/${id}`);
