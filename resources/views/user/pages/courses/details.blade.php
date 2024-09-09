@@ -69,27 +69,33 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
                                     data-bs-target="#overview-tab-pane" type="button" role="tab"
-                                    aria-controls="overview-tab-pane" aria-selected="true">Overview</button>
+                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
                                     data-bs-target="#curriculum-tab-pane" type="button" role="tab"
-                                    aria-controls="curriculum-tab-pane" aria-selected="false">Curriculum</button>
+                                    aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="task-list-tab" data-bs-toggle="tab"
+                                    data-bs-target="#task-list-tab-pane" type="button" role="tab"
+                                    aria-controls="task-list-tab-pane" aria-selected="false">Daftar Tugas</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
                                     data-bs-target="#instructors-tab-pane" type="button" role="tab"
-                                    aria-controls="instructors-tab-pane" aria-selected="false">Instructors</button>
+                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
                                     data-bs-target="#reviews-tab-pane" type="button" role="tab"
-                                    aria-controls="reviews-tab-pane" aria-selected="false">reviews</button>
+                                    aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             @include('user.pages.courses.widgets.details.overview')
                             @include('user.pages.courses.widgets.details.curriculumn')
+                            @include('user.pages.courses.widgets.details.task-list')
                             @include('user.pages.courses.widgets.details.instructors')
                             @include('user.pages.courses.widgets.details.reviews')
                         </div>
