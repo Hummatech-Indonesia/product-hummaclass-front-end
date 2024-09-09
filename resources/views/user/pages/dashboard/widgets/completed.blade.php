@@ -31,7 +31,7 @@
                                 <div class="swiper-slide">
                                     <div class="courses__item courses__item-two shine__animate-item">
                                         <div class="courses__item-thumb courses__item-thumb-two">
-                                            <a href="{{ route('dashboard.courses.show', $item) }}" class="shine__animate-link">
+                                            <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
                                                 <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}"
                                                     alt="img">
                                             </a>
@@ -42,7 +42,7 @@
                                                     <a href="course.html">Development</a>
                                                 </li>
                                             </ul>
-                                            <h5 class="title"><a href="{{ route('dashboard.courses.show', $item) }}">Learning
+                                            <h5 class="title"><a href="{{ route('courses.show', $item) }}">Learning
                                                     JavaScript With
                                                     Imagination</a></h5>
                                             <div class="courses__item-content-bottom">
@@ -95,7 +95,7 @@
                                 <div class="swiper-slide">
                                     <div class="courses__item courses__item-two shine__animate-item">
                                         <div class="courses__item-thumb courses__item-thumb-two">
-                                            <a href="{{ route('dashboard.courses.show', $item) }}" class="shine__animate-link">
+                                            <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
                                                 <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}"
                                                     alt="img">
                                             </a>
@@ -107,7 +107,7 @@
                                                 </li>
                                                 <li class="price"><del>$20.00</del>$10.00</li>
                                             </ul>
-                                            <h5 class="title"><a href="{{ route('dashboard.courses.show', $item) }}">The
+                                            <h5 class="title"><a href="{{ route('courses.show', $item) }}">The
                                                     Complete
                                                     Graphic Design
                                                     for Beginners</a></h5>

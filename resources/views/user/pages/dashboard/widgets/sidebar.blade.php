@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('dashboard.student.profile') }}">
+                    <a href="{{ route('dashboard.users.profile') }}">
                         <i class="skillgro-avatar"></i>
                         Profil Saya
                     </a>

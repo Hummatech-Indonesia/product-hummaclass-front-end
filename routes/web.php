@@ -32,10 +32,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ================== USER ==================
 
+Route::resource('courses', CourseController::class)->only(['index', 'show']);
+
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::resource('courses', CourseController::class)->only(['index', 'show']);
     
-    Route::prefix('student')->name('student.')->group(function ()  {
+    Route::prefix('users')->name('users.')->group(function ()  {
         Route::get('', [StudentDashboardController::class,'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
