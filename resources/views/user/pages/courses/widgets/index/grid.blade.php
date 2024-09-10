@@ -36,9 +36,9 @@
     <nav class="pagination__wrap mt-30">
         <ul class="list-wrap">
             <li class="active"><a href="#">1</a></li>
-            <li><a href="courses.html">2</a></li>
-            <li><a href="courses.html">3</a></li>
-            <li><a href="courses.html">4</a></li>
+            <li><a href="/courses">2</a></li>
+            <li><a href="/courses">3</a></li>
+            <li><a href="/courses">4</a></li>
         </ul>
     </nav>
 </div>
