@@ -12,22 +12,22 @@
                                         <p class="card-text">${data.sub_title}</p>
                                 
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h4 class="fw-bolder fs-5" style="color: #7209DB">Rp. ${data.price}</h4>
+                                            <h4 class="fw-bolder fs-4" style="color: #7209DB">Rp. ${data.price}</h4>
                                 
                                             <div class="d-flex align-items-center gap-1">
-                                                <span class="text-warning"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                <span class="text-warning"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="15" height="15"
                                                         viewBox="0 0 24 24" fill="currentColor"
                                                         class="icon icon-tabler icons-tabler-filled icon-tabler-star">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path
                                                             d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                                     </svg></span>
-                                                <p class="fs-2 mb-0">(4.5, Reviews)</p>
+                                                <p class="fs-1 mb-0">(4.5, Reviews)</p>
                                             </div>
                                         </div>
                                 
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <p class="text-muted fs-3"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            <p class="text-muted fs-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -39,7 +39,7 @@
                                                 5 Materi
                                             </p>
                                 
-                                            <p class="text-muted fs-3">20 Terjual</p>
+                                            <p class="text-muted fs-2">20 Terjual</p>
                                         </div>
                                 
                                         <div class="row">
@@ -52,7 +52,7 @@
                                             <div class="col col-md-5 d-flex flex-direction-row pe-0 gap-2">
                                 
                                                 <a href="${"{{ route('admin.courses.edit', ':id') }}".replace(':id', data.id)}" class="btn btn-sm btn-warning fs-1"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                         class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -63,8 +63,8 @@
                                 
                                                 <button
                                                 data-id="${data.id}"
-                                                class="btn btn-sm btn-danger text-white fs-1 btn-delete" data-id="${data.id}"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                class="btn btn-sm btn-danger text-white btn-delete" data-id="${data.id}"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                         class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
