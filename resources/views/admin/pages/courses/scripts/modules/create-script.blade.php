@@ -3,35 +3,39 @@
         $('#create-module-form').submit(function(e) {
             e.preventDefault();
 
-            var formData = {};
-            $(this).serializeArray().forEach(function(field) {
-                formData[field.name] = field.value;
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: "{{ env('API_URL') }}/api/modules",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    window.location.href = "/admin/courses";
+                },
+                error: function(response) {
+                    if (response.status === 422) {
+                        let errors = response.responseJSON.data;
+
+                        $.each(errors, function(field, messages) {
+                            console.log(messages[0]);
+
+                            $(`[name="${field}"]`).addClass('is-invalid');
+
+                            $(`[name="${field}"]`).closest('.col').find(
+                                '.invalid-feedback').text(messages[0]);
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                }
             });
-
-            formData['course_id'] = "{{ request()->course }}";
-
-            console.log(formData);
-
-
-            // $.ajax({
-            //     type: "POST",
-            //     url: "{{ env('API_URL') }}" + "/api/modules",
-            //     data: formData,
-            //     success: function(response) {
-            //         Swal.fire({
-            //             title: "Berhasil!",
-            //             text: response.meta.message,
-            //             icon: "success"
-            //         });
-            //     },
-            //     error: function(xhr) {
-            //         Swal.fire({
-            //             title: "Terjadi Kesalahan!",
-            //             text: "Tidak dapat memuat data kategori.",
-            //             icon: "error"
-            //         });
-            //     }
-            // });
         });
     });
 </script>

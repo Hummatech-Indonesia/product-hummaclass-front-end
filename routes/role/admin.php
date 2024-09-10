@@ -51,7 +51,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('create-modul/{course}', function () {
         return view('admin.pages.courses.panes.moduls.create-modul');
-    })->name('create.moduls.index');
+    })->name('create-moduls.index');
 
     Route::get('create-materi', function () {
         return view('admin.pages.courses.panes.moduls.create-materi');

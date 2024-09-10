@@ -192,10 +192,8 @@
                             $.each(errors, function(field, messages) {
                                 console.log(messages[0]);
 
-                                // Tambahkan kelas is-invalid pada input yang error
                                 $(`[name="${field}"]`).addClass('is-invalid');
 
-                                // Temukan elemen dengan kelas .invalid-feedback yang berada di dalam .col terdekat
                                 $(`[name="${field}"]`).closest('.col').find(
                                     '.invalid-feedback').text(messages[0]);
                             });

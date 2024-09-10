@@ -43,11 +43,11 @@
                 </div>
                 <div class="col-2 mb-3">
                     <label for="" class="fw-semibold form-label">Step</label>
-                    <input type="number" class="form-control" id="order" name="order" placeholder="Masukan Step">
+                    <input type="number" class="form-control" id="step" name="step" placeholder="Masukan Step">
                 </div>
                 <div class="col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Sub Judul</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Masukan Sub judul">
+                    <input type="text" class="form-control" id="sub_title" name="sub_title" placeholder="Masukan Sub judul">
                 </div>
             </div>
             <div class="d-flex">
