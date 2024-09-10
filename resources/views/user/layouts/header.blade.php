@@ -37,11 +37,11 @@
                                 <a href="/"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
-                                <ul class="navigation">
-                                    <li class="active menu-item-has-children"><a href="#">Home</a>
-                                        <ul class="sub-menu">
+                                <ul class="navigation gap-3">
+                                    <li class="active menu-item"><a href="/">Home</a>
+                                        {{-- <ul class="sub-menu">
                                             <li><a href="/">Main Home</a></li>
-                                            {{-- <li>
+                                            <li>
                                                 <ul class="list-wrap mega-sub-menu">
                                                     <li class="active">
                                                         <a href="/">Main Home</a>
@@ -77,61 +77,17 @@
                                                 <div class="mega-menu-img">
                                                     <a href="{{ route('dashboard.courses.index') }}"><img src="{{ asset('assets/img/others/mega_menu_img.jpg') }}" alt="img"></a>
                                                 </div>
-                                            </li> --}}
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="#">Courses</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="{{ route('courses.index') }}">All Courses</a></li>
-                                            {{-- <li><a href="course-details.html">Course Details</a></li>
-                                            <li><a href="lesson.html">Course Lesson</a></li> --}}
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children"><a href="javascript:void(0)">Pages</a>
-                                        {{-- <ul class="sub-menu">
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li class="menu-item-has-children">
-                                                <a href="instructors.html">Our Instructors</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="instructors.html">Our Instructors</a></li>
-                                                    <li><a href="instructor-details.html">Instructor Details</a></li>
-                                                </ul>
                                             </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="events.html">Our Events</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="events.html">Our Events</a></li>
-                                                    <li><a href="events-details.html">Event Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="shop.html">Shop</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="shop.html">Shop Page</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                    <li><a href="javascript:void(0)">Cart Page</a></li>
-                                                    <li><a href="check-out.html">Checkout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="blog.html">Blog</a>
-                                                <ul class="sub-menu">
-                                                    <li><a href="blog.html">Blog Right Sidebar</a></li>
-                                                    <li><a href="blog-2.html">Blog Left Sidebar</a></li>
-                                                    <li><a href="blog-3.html">Blog Full Width</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="{{ route('login') }}">Student Login</a></li>
-                                            <li><a href="registration.html">Student Registration</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                            <li><a href="contact.html">contact</a></li>
                                         </ul> --}}
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Dashboard</a>
-                                        <ul class="sub-menu">
+                                    <li class="menu-item"><a href="{{ route('courses.index') }}">Courses</a>
+                                    </li>
+                                    <li class="menu-item"><a href="javascript:void(0)">Event</a>
+                                    </li>
+                                    <li class="menu-item"><a href="{{ route('dashboard.users.dashboard') }}">Profile</a>
+                                        {{-- <ul class="sub-menu">
                                             <li><a href="{{ route('dashboard.users.dashboard') }}">Dashboard</a></li>
-                                        </ul>
+                                        </ul> --}}
                                         {{-- <ul class="sub-menu">
                                             <li class="menu-item-has-children">
                                                 <a href="instructor-dashboard.html">Instructor Dashboard</a>
