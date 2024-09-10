@@ -35,9 +35,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('courses', CourseController::class)->only(['index', 'show']);
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    
-    Route::prefix('users')->name('users.')->group(function ()  {
-        Route::get('', [StudentDashboardController::class,'index'])->name('dashboard');
+
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
     });
@@ -96,19 +96,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
 
-    Route::get('create-modul/{course}', function() {
-        return view('admin.pages.courses.panes.moduls.create-modul');
-    })->name('create-moduls.index');
 
-    Route::get('create-materi', function() {
+
+    Route::get('create-modul/{course}', [ModuleController::class, 'create'])->name('create.moduls.index');
+    Route::get('create-materi', function () {
         return view('admin.pages.courses.panes.moduls.create-materi');
     })->name('create-materi.index');
 
-    Route::get('create-task', function() {
+    Route::get('create-task', function () {
         return view('admin.pages.courses.panes.moduls.create-task');
     })->name('create-task.index');
 
-    Route::get('question-bank', function() {
+    Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
 });

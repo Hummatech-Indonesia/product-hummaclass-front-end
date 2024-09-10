@@ -2,31 +2,36 @@
     $(document).ready(function() {
         $('#create-module-form').submit(function(e) {
             e.preventDefault();
+            var id = "{{ $id }}"; // Mendapatkan id dari Blade
 
             var formData = new FormData(this);
 
             $.ajax({
                 type: "POST",
-                url: "{{ env('API_URL') }}/api/modules",
+                url: "{{ env('API_URL') }}/api/modules/" + id,
                 data: formData,
                 dataType: "json",
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    window.location.href = "/admin/courses";
+                    window.location.href = "/admin/courses/" + id;
                 },
                 error: function(response) {
                     if (response.status === 422) {
                         let errors = response.responseJSON.data;
 
-                        $.each(errors, function(field, messages) {
-                            console.log(messages[0]);
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.invalid-feedback').text('');
 
-                            $(`[name="${field}"]`).addClass('is-invalid');
+                        $.each(errors, function(field, messages) {
+                            $(`[name="${field}"]`).addClass(
+                                'is-invalid');
 
                             $(`[name="${field}"]`).closest('.col').find(
-                                '.invalid-feedback').text(messages[0]);
+                                    '.invalid-feedback')
+                                .text(messages[0]);
                         });
+
                     } else {
                         Swal.fire({
                             title: "Terjadi Kesalahan!",
@@ -37,5 +42,6 @@
                 }
             });
         });
+
     });
 </script>

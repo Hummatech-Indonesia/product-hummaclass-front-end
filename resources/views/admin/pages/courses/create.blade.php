@@ -81,8 +81,8 @@
 
                 <div class="mt-3">
                     <label for="" class="form-label">Deskripsi</label>
-                    <div class="text-danger ivalid-feedback-description d-none">sdfasdfasdsf</div>
                     <textarea id="description" name="description"></textarea>
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-actions mt-3">
                     <div class="text-end">
@@ -190,7 +190,6 @@
                             let errors = response.responseJSON.data;
 
                             $.each(errors, function(field, messages) {
-                                console.log(messages[0]);
 
                                 $(`[name="${field}"]`).addClass('is-invalid');
 
