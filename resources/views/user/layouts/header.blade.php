@@ -219,7 +219,8 @@
         cursor: pointer;
         text-align: start;
         padding-left: 10px;
-        font-size: 12px;
+        font-size: 14px;
+        color: black;
         font-weight: 200;
     }
 
