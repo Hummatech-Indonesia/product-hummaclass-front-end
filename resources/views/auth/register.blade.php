@@ -24,17 +24,17 @@
                     <div class="card position-relative" style="background-color: #D6B7F5; height: 605px; border-radius: 20px;">
                         <div class="p-5">
                             <div>
-                                <h1 class="text-white fw-semibold">Tingkatkan</h1>
-                                <h1 class="text-white fw-semibold">Kemampuanmu Di</h1>
-                                <h1 class="fw-bold fs-12 mt-2 mb-3" style="color: #9425FE; position: relative; display: inline-block;">
+                                <h2 class="text-white fw-semibold">Tingkatkan</h2>
+                                <h2 class="text-white fw-semibold">Kemampuanmu Di</h2>
+                                <h2 class="fw-bold fs-12 mt-2 mb-3" style="color: #9425FE; position: relative; display: inline-block;">
                                     HummaClass
                                     <span style="position: absolute; bottom: -10px; left: 0px; width: calc(70% + 10px); height: 4px; background-color: #9425FE;"></span>
-                                </h1>
+                                </h2>
                             </div>
 
                             <div class="position-absolute bottom-0 end-0">
-                                <div style="width: 500px; height: 420px; background-image: url('{{ asset('assets/img/auth/log-oval.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center;">
-                                    <div class="ms-5 ps-5 pt-3 mt-5" style="max-width: 300px; color: white; font-size: 19px;">
+                                <div class="p-3" style="width: 400px; height: 420px; background-image: url('{{ asset('assets/img/auth/log-oval.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center;">
+                                    <div class="ms-5 ps-5 px-4 pt-4 mt-5" style="max-width: 300px; color: white; font-size: 16px;">
                                         Groove’s intuitive shared inbox makes it easy for team members to organize, prioritize and.In this episode of the Smashing Pod we’re
                                         talking about Web Platform Baseline.
                                     </div>
@@ -42,9 +42,11 @@
 
                             </div>
 
+                            {{-- <div class="position-absolute bottom-0 end-0">
+                                <img src="{{ asset('assets/img/auth/log-oval.png') }}" style="max-width: 430px; height: auto;" alt=""> --}}
                         </div>
                         <div class="position-absolute bottom-0 start-0">
-                            <img src="{{ asset('assets/img/auth/instructor_two.png') }}" style="max-width: 290px; height: auto;" alt="">
+                            <img src="{{ asset('assets/img/auth/instructor_two.png') }}" style="max-width: 280px; height: auto;" alt="">
                         </div>
                     </div>
                 </div>
@@ -52,13 +54,13 @@
         </div>
         <div class="col-lg-6">
             <div class="p-5">
-                <div class="px-5 mx-3 py-3">
+                <div class="px-5 mx-5 py-3">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.svg" width="150px;" alt="Logo"></a>
+                        <a href="/"><img src="assets/img/logo/logo.svg" width="100px;" alt="Logo"></a>
                     </div>
-                    <h3 class="fw-bold mt-5">
+                    <h4 class="fw-bold mt-5">
                         Buat Akun Baru
-                    </h3>
+                    </h4>
                     <p style="color: #6D6C80;">Just enter your username and password below and you'll be back in action in no time. Let's go!</p>
                     <button class="w-100 btn bg-transparent border border-1" style="border-radius: 15px;">
                         <svg xmlns="http://www.w3.org/2000/svg" class="me-1 mb-1" width="17" height="17" viewBox="0 0 256 262">
@@ -80,21 +82,26 @@
 
                     <form action="" class="mt-4">
                         <div class="position-relative mb-3">
-                            <input type="text" class="form-control form-control-lg ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Email">
-                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="-5 -2 24 24">
+                            <input type="text" class="form-control form-control-md ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Email">
+                            {{-- <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                                <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 144h448M112 256h288M208 368h96" /></svg> --}}
+                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="-5 -2 24 24">
                                 <path fill="#8B8B8B" d="M3.534 10.07a1 1 0 1 1 .733 1.86A3.58 3.58 0 0 0 2 15.26V17a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.647a3.66 3.66 0 0 0-2.356-3.419a1 1 0 1 1 .712-1.868A5.66 5.66 0 0 1 14 15.353V17a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-1.74a5.58 5.58 0 0 1 3.534-5.19M7 0a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V4a2 2 0 0 0-2-2" /></svg>
                         </div>
                         <div class="position-relative mb-3">
-                            <input type="text" class="form-control form-control-lg ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Password">
-                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                                <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" /></svg> </div>
+                            <input type="text" class="form-control form-control-md ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Password">
+                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16">
+                                <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" /></svg>
+                        </div>
+
                         <div class="position-relative">
-                            <input type="text" class="form-control form-control-lg ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Konfirmasi Password">
-                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
-                                <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" /></svg> </div>
+                            <input type="text" class="form-control form-control-md ps-5 border-0 px-5" style="background-color: #F3F3F3;border-radius: 12px" name="name" value="{{ old('name', request('name')) }}" placeholder="Konfirmasi Password">
+                            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-4" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16">
+                                <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" /></svg>
+                        </div>
                     </form>
 
-                    <button class="btn text-white btn-lg mt-3 w-100" style="background-color: #9425FE;border-radius: 10px;">
+                    <button class="btn text-white btn-md mt-3 w-100" style="background-color: #9425FE;border-radius: 10px;">
                         Buat Akun
                     </button>
                     <div class="text-center mt-2">
