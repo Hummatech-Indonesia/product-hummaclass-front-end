@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
+use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +41,16 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
+
+        Route::get('settings', function () {
+            return view('user.pages.dashboard.student.settings');
+        })->name('settings.index');
     });
+});
+
+Route::prefix('password')->name('password.')->group(function () {
+    Route::get('email', [ResetPasswordController::class, 'email'])->name('send-email');
+    Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
 

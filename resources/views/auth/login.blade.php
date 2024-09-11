@@ -131,7 +131,7 @@
                                 Remember me
                             </label>
                         </div>
-                        <a href="" style="color: #9425FE">Forgot Password</a>
+                        <a href="{{ route('password.send-email') }}" style="color: #9425FE">Forgot Password</a>
                     </div>
                     <button type="submit" class="btn text-white btn-md mt-3 w-100"
                         style="background-color: #9425FE;border-radius: 10px;">

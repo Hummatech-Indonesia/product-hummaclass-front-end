@@ -95,7 +95,7 @@
     });
 
     function card(index, value) {
-        return `<div class="col-4">
+        return `<div class="col-lg-4">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.show', '') }}/${value.id}" class="shine__animate-link">
