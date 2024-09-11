@@ -73,7 +73,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    window.location.href = "/admin/courses/";
+                    window.location.href = "/admin/modules/" + response.data.module_id;
                 },
                 error: function(response) {
                     if (response.status === 422) {
