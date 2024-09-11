@@ -186,7 +186,6 @@
                         let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;
 
-                        console.log(error);
 
                         // Reset status is-invalid
                         $('#email, #password').removeClass('is-invalid');
