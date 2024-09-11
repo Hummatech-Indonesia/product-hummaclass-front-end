@@ -27,13 +27,22 @@ Route::get('/', function () {
     return view('user.pages.welcome');
 });
 
-Auth::routes();
+Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+
+Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ================== USER ==================
 
-Route::resource('courses', CourseController::class)->only(['index', 'show']);
+Route::prefix('courses')->name('courses.')->group(function () {
+
+    Route::resource('courses', CourseController::class)->only(['index', 'show']);
+    Route::get('courses-lesson', function () {
+        return view('user.pages.courses.courses-lesson');
+    })->name('course-lesson.index');
+
+});
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
 

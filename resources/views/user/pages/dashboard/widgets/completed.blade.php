@@ -42,7 +42,7 @@
                                                     <a href="course.html">Development</a>
                                                 </li>
                                             </ul>
-                                            <h5 class="title"><a href="{{ route('courses.show', $item) }}">Learning
+                                            <h5 class="title"><a href="{{ route('courses.courses.show', $item) }}">Learning
                                                     JavaScript With
                                                     Imagination</a></h5>
                                             <div class="courses__item-content-bottom">
@@ -107,7 +107,7 @@
                                                 </li>
                                                 <li class="price"><del>$20.00</del>$10.00</li>
                                             </ul>
-                                            <h5 class="title"><a href="{{ route('courses.show', $item) }}">The
+                                            <h5 class="title"><a href="{{ route('courses.courses.show', $item) }}">The
                                                     Complete
                                                     Graphic Design
                                                     for Beginners</a></h5>
