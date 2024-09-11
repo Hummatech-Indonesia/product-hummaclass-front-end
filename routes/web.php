@@ -27,6 +27,10 @@ Route::get('/', function () {
     return view('user.pages.welcome');
 });
 
+Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+
+Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ================== USER ==================
