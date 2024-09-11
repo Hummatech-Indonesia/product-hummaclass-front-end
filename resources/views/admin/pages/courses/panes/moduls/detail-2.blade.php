@@ -96,7 +96,7 @@
                                 <path d="M9 12h6" />
                                 <path d="M9 16h6" />
                             </svg>
-                            8 Materi
+                            <span id="sub_modul_count"></span> Materi
                         </span>
                     </div>
                 </div>
@@ -243,6 +243,7 @@
                     $('#title').html(response.data.title);
                     $('#sub_title').html(response.data.sub_title);
                     $('#step').html(response.data.step);
+                    $('#sub_modul_count').html(response.data.sub_module_count);
                     $.each(response.data.sub_modules, function(index, value) {
                         $('#cardSubModul').append(subModul(index,
                             value));
