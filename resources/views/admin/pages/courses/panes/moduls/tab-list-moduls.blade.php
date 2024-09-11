@@ -55,7 +55,7 @@
                             </span>
                     </div>
                     <div class="d-flex gap-2 pe-4">
-                        <a href="{{ route('admin.modules.show', 2) }}" class="btn text-white"
+                        <a href="{{ route('admin.modules.show', '') }}/${value.id}" class="btn text-white"
                             style="background-color: var(--purple-primary)">
                             Lihat Modul
                             <svg xmlns="http://www.w3.org/2000/svg" class="ms-1" width="17" height="17"
