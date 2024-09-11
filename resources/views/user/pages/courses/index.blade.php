@@ -1,5 +1,18 @@
 @extends('user.layouts.app')
 
+@section('style')
+<style>
+    .courses__item-bottom .price {
+        font-size: 17px;
+        line-height: 1;
+        color: var(--tg-theme-primary);
+        font-weight: var(--tg-fw-bold);
+        margin: 0 0;
+    }
+
+</style>
+@endsection
+
 @section('content')
 <!-- breadcrumb-area -->
 <section class="breadcrumb__area breadcrumb__bg" data-background="assets/img/bg/breadcrumb_bg.jpg">
@@ -59,7 +72,7 @@
             , dataType: "json"
             , success: function(response) {
                 console.log(response);
-                
+
 
                 $.each(response.data, function(index, value) {
                     $('#courses-grid').append(card(index
@@ -71,7 +84,7 @@
             }
             , error: function(xhr) {
                 console.log(xhr);
-                
+
                 Swal.fire({
                     title: "Terjadi Kesalahan!"
                     , text: "Tidak dapat memuat data kategori."
@@ -99,14 +112,16 @@
                         <h5 class="title"><a href="{{ route('courses.show', '') }}/${value.id}">The Complete Graphic
                                 Design for Beginners</a></h5>
                         <p class="author">By <a href="#">Jenny Wilson</a></p>
-                        <div class="courses__item-bottom">
+                        <div class="courses__item-bottom d-flex justify-content-between">
                             <div class="button">
                                 <a href="{{ route('courses.show', '') }}/${value.id}">
                                     <span class="text">Lihat Detail</span>
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
                             </div>
-                            <h5 class="price">Rp. ${value.price}</h5>
+                            <div>
+                                <h6 class="price">${value.price}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
