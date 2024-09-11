@@ -104,10 +104,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 
-    Route::get('create-modul/{course}', [ModuleController::class, 'create'])->name('create.moduls.index');
-    Route::get('create-materi', function () {
-        return view('admin.pages.courses.panes.moduls.create-materi');
-    })->name('create-materi.index');
+    Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
+
+    Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
 
     Route::get('create-task', function () {
         return view('admin.pages.courses.panes.moduls.create-task');
