@@ -85,28 +85,39 @@
                                 ${value.title}
                             </h5>
                             <p>${value.sub_title}</p>
-
                         </div>
                         <div class="col-lg-4">
                             <div class="p-1">
                                 <h5 class="fw-semibold">Meliputi</h5>
                                 <div class="row">
-                                    @foreach (range(1, 3) as $item)
-                                        <div class="col-lg-6 mb-2">
-                                            <div class="btn btn-light-warning text-warning w-100">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                                    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                                    <path d="M9 8h6" />
-                                                </svg><span class="text-dark ms-2" style="font-weight: bold;">8
-                                                    Materi</span>
-                                            </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="btn btn-light-warning text-warning w-100">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+                                                <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+                                                <path d="M9 8h6" />
+                                            </svg><span class="text-dark ms-2" style="font-weight: bold;">8
+                                                Materi</span>
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="btn btn-light-warning text-warning w-100">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+                                                <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+                                                <path d="M9 8h6" />
+                                            </svg><span class="text-dark ms-2" style="font-weight: bold;">10
+                                                Soal</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
