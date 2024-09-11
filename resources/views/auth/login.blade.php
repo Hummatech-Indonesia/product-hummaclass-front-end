@@ -62,7 +62,7 @@
                         Selamat Datang👋
                     </h4>
                     <p style="color: #6D6C80;">Just enter your username and password below and you'll be back in action in no time. Let's go!</p>
-                    <button class="w-100 btn bg-transparent border border-1" style="border-radius: 15px;">
+                    <button class="w-100 btn bg-transparent border border-1" style="border-radius: 15px;" id="google-login">
                         <svg xmlns="http://www.w3.org/2000/svg" class="me-1 mb-1" width="17" height="17" viewBox="0 0 256 262">
                             <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622l38.755 30.023l2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" />
                             <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055c-34.523 0-63.824-22.773-74.269-54.25l-1.531.13l-40.298 31.187l-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" />
@@ -115,5 +115,14 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#google-login').click(function (e) { 
+                e.preventDefault();
+                window.location.href=`{{ env('API_URL') }}/api/auth/google`;
+            });
+        });
+    </script>
 </body>
 </html>
