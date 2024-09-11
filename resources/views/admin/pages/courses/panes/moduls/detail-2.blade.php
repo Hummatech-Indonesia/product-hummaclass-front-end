@@ -44,7 +44,7 @@
     <div class="card position-relative">
         <div class="p-2 mt-3"
             style="left: 0;top:5%;background:linear-gradient(to right,#FFA41C, #FFD08A); border-radius:0 8px 8px 0;width:200px">
-            <span class="text-white ps-3 fs-5" style="font-weight: bold;">Step ke-1</span>
+            <span class="text-white ps-3 fs-5" style="font-weight: bold;">Step ke- <span id="step"></span></span>
         </div>
         <div class="card-body">
             <div class="d-flex gap-3">
@@ -96,7 +96,7 @@
                                 <path d="M9 12h6" />
                                 <path d="M9 16h6" />
                             </svg>
-                            8 Materi
+                            <span id="sub_modul_count"></span> Materi
                         </span>
                     </div>
                 </div>
@@ -242,7 +242,12 @@
                 success: function(response) {
                     $('#title').html(response.data.title);
                     $('#sub_title').html(response.data.sub_title);
-
+                    $('#step').html(response.data.step);
+                    $('#sub_modul_count').html(response.data.sub_module_count);
+                    $.each(response.data.sub_modules, function(index, value) {
+                        $('#cardSubModul').append(subModul(index,
+                            value));
+                    });
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -252,6 +257,48 @@
                     });
                 }
             });
+
+            function subModul(index, value) {
+
+                return `<div class="col-lg-4">
+                            <div class="card card-body">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span class="fw-semibold" style="color: var(--purple-primary)">Step Ke-${value.step}</span>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <a class="text-warning" href="{{ route('admin.sub-modules.index') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
+                                                <path fill="currentColor"
+                                                    d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
+                                            </svg>
+                                        </a>
+                                        <a style="color: #DB0909;">
+                                            <i class="ti ti-trash fs-7"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <h5 class="text-dark me-1 fw-semibold"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+                                        <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+                                        <path d="M9 8h6" />
+                                    </svg>
+                                   ${value.title}
+                                </h5>
+                                <p>${value.sub_title}</p>
+
+                                <div>
+                                    <button class="btn text-white w-100" style="background-color: var(--purple-primary)">
+                                        Lihat Materi
+                                        <i class="ti ti-arrow-right fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+            }
         });
     </script>
 @endsection
