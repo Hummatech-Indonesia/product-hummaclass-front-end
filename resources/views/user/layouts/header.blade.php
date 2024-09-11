@@ -41,7 +41,11 @@
                                     <li class="menu-item {{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a>
 
                                     </li>
-                                    <li class="menu-item {{ Route::currentRouteName() == 'courses.index' ? 'active' : '' }}"><a href="{{ route('courses.index') }}">Courses</a>
+                                    <li class="menu-item-has-children {{ Route::is('courses.courses.index', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Courses</a>
+                                        <ul class="sub-menu">
+                                            <li class="{{ Route::currentRouteName() == 'courses.courses.index' ? 'active' : '' }}"><a href="{{ route('courses.courses.index') }}">Semua Kursus</a></li>
+                                            <li class="{{ Route::currentRouteName() == 'courses.course-lesson.index' ? 'active' : '' }}"><a href="{{ route('courses.course-lesson.index') }}">Kursus Pelajaran</a></li>
+                                        </ul>
                                     </li>
                                     <li class="menu-item {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}"><a href="javascript:void(0)">Event</a>
                                     </li>

@@ -4,7 +4,7 @@
             <div class="col">
                 <div class="courses__item courses__item-three shine__animate-item">
                     <div class="courses__item-thumb">
-                        <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
+                        <a href="{{ route('courses.courses.show', $item) }}" class="shine__animate-link">
                             <img src="{{ asset('assets/img/courses/course_thumb0' . $item . '.jpg') }}" />
                         </a>
                     </div>
@@ -18,14 +18,14 @@
                             </li>
                             <li class="price"><del>$29.00</del>$15.00</li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.show', $item) }}">Resolving Conflicts
+                        <h5 class="title"><a href="{{ route('courses.courses.show', $item) }}">Resolving Conflicts
                                 Between Designers And Engineers</a></h5>
                         <p class="author">By <a href="#">David Millar</a></p>
                         <p class="info">when an unknown printer took a galley of type and
                             scrambled type specimen book It has survived not only.</p>
                         <div class="courses__item-bottom">
                             <div class="button">
-                                <a href="{{ route('courses.show', $item) }}">
+                                <a href="{{ route('courses.courses.show', $item) }}">
                                     <span class="text">Enroll Now</span>
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
