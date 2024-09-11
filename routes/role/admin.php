@@ -45,10 +45,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.pages.courses.panes.moduls.detail-2');
     });
 
-    Route::get('detail-users', function () {
-        return view('admin.pages.users.detail-users');
-    })->name('detail-users.index');
-
     Route::get('create-modul/{course}', function () {
         return view('admin.pages.courses.panes.moduls.create-modul');
     })->name('create-moduls.index');

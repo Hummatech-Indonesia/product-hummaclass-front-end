@@ -12,8 +12,8 @@ class UserController extends Controller
         return view('admin.pages.users.index');
     }
 
-    public function show()
+    public function show(string $id)
     {
-        return view('admin.pages.users.detail-users');
+        return view('admin.pages.users.detail-users', compact('id'));
     }
 }
