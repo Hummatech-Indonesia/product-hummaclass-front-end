@@ -277,7 +277,8 @@
     }
 
     .subcategory-dropdown .subcategory-item:hover {
-        background-color: #f0f0f0;
+        background-color: #8121FB;
+        color: #fff;
     }
 </style>
 
