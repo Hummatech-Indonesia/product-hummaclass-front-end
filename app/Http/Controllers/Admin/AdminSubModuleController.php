@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class AdminSubModuleController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.pages.sub-modul.detail');
+    }
+
+    public function create(string $id)
+    {
+        return view('admin.pages.courses.panes.moduls.create-materi', compact('id'));
     }
 }

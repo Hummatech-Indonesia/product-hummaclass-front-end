@@ -11,9 +11,9 @@ class ModuleController extends Controller
     {
         return view('admin.pages.modul.index');
     }
-    public function show()
+    public function show(string $id)
     {
-        return view('admin.pages.courses.panes.moduls.detail-2');
+        return view('admin.pages.courses.panes.moduls.detail-2', compact('id'));
     }
 
     public function create(string $id)
