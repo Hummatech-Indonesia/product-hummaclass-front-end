@@ -40,6 +40,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
+
+        Route::get('settings', function () {
+            return view('user.pages.dashboard.student.settings');
+        })->name('settings.index');
     });
 });
 

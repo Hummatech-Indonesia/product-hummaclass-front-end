@@ -45,8 +45,11 @@
                                     </li>
                                     <li class="menu-item {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}"><a href="javascript:void(0)">Event</a>
                                     </li>
-                                    <li class="menu-item {{ Route::currentRouteName() == 'dashboard.users.dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard.users.dashboard') }}">Profile</a>
-
+                                    <li class="menu-item-has-children {{ Route::is('dashboard.users.dashboard', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Profile</a>
+                                        <ul class="sub-menu">
+                                            <li class="{{ Route::currentRouteName() == 'dashboard.users.dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard.users.dashboard') }}">Profile</a></li>
+                                            <li class="{{ Route::currentRouteName() == 'dashboard.users.settings.index' ? 'active' : '' }}"><a href="{{ route('dashboard.users.settings.index') }}">Pengaturan Akun</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </div>
