@@ -1,6 +1,6 @@
 <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
-    <div class="row courses__grid-wrap row-cols-1 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1">
-        @forelse (range(1,9) as $item)
+    <div class="row courses__grid-wrap row-cols-1 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1" id="courses-grid">
+        {{-- @forelse (range(1,9) as $item)
             <div class="col">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         @empty
-        @endforelse
+        @endforelse --}}
     </div>
     <nav class="pagination__wrap mt-30">
         <ul class="list-wrap">
