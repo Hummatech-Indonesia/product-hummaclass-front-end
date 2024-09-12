@@ -300,45 +300,18 @@
                         <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
                             <div class="swiper courses-swiper-active">
                                 <div class="swiper-wrapper" id="top-category">
-                                    <div class="swiper-slide">
+                                    
+                                    {{-- <div class="swiper-slide">
                                         <div class="courses__item shine__animate-item">
                                             <div class="courses__item-thumb">
-                                                <a href="course-details.html" class="shine__animate-link">
-                                                    <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="img">
-                                                </a>
-                                            </div>
-                                            <div class="courses__item-content">
-                                                <ul class="courses__item-meta list-wrap">
-                                                    <li class="courses__item-tag">
-                                                        <a href="course.html">Development</a>
-                                                    </li>
-                                                    <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
-                                                </ul>
-                                                <h5 class="title"><a href="course-details.html">Learning JavaScript With Imagination</a></h5>
-                                                <p class="author">By <a href="#">David Millar</a></p>
-                                                <div class="courses__item-bottom">
-                                                    <div class="button">
-                                                        <a href="course-details.html">
-                                                            <span class="text">Enroll Now</span>
-                                                            <i class="flaticon-arrow-right"></i>
-                                                        </a>
-                                                    </div>
-                                                    <h5 class="price">$15.00</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="courses__item shine__animate-item">
-                                            <div class="courses__item-thumb">
-                                                <a href="course-details.html" class="shine__animate-link">
+                                                <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
                                                     <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" alt="img">
                                                 </a>
                                             </div>
                                             <div class="courses__item-content">
                                                 <ul class="courses__item-meta list-wrap">
                                                     <li class="courses__item-tag">
-                                                        <a href="course.html">Design</a>
+                                                        <a href="{{ route('courses.courses.index') }}">Design</a>
                                                     </li>
                                                     <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
                                                 </ul>
@@ -366,7 +339,7 @@
                                             <div class="courses__item-content">
                                                 <ul class="courses__item-meta list-wrap">
                                                     <li class="courses__item-tag">
-                                                        <a href="course.html">Marketing</a>
+                                                        <a href="{{ route('courses.courses.index') }}">Marketing</a>
                                                     </li>
                                                     <li class="avg-rating"><i class="fas fa-star"></i> (4.3 Reviews)</li>
                                                 </ul>
@@ -394,7 +367,7 @@
                                             <div class="courses__item-content">
                                                 <ul class="courses__item-meta list-wrap">
                                                     <li class="courses__item-tag">
-                                                        <a href="course.html">Business</a>
+                                                        <a href="{{ route('courses.courses.index') }}">Business</a>
                                                     </li>
                                                     <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
                                                 </ul>
@@ -422,7 +395,7 @@
                                             <div class="courses__item-content">
                                                 <ul class="courses__item-meta list-wrap">
                                                     <li class="courses__item-tag">
-                                                        <a href="course.html">Data Science</a>
+                                                        <a href="{{ route('courses.courses.index') }}">Data Science</a>
                                                     </li>
                                                     <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
                                                 </ul>
@@ -450,7 +423,7 @@
                                             <div class="courses__item-content">
                                                 <ul class="courses__item-meta list-wrap">
                                                     <li class="courses__item-tag">
-                                                        <a href="course.html">Mathematic</a>
+                                                        <a href="{{ route('courses.courses.index') }}">Mathematic</a>
                                                     </li>
                                                     <li class="avg-rating"><i class="fas fa-star"></i> (4.7 Reviews)</li>
                                                 </ul>
@@ -467,7 +440,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="courses__nav">
@@ -931,5 +904,70 @@
 
 
 @section('script')
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET"
+            , url: "{{config('app.api_url')}}" + "/api/courses"
+            , headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+            }
+            , dataType: "json"
+            , success: function(response) {
+                console.log(response);
 
+
+                $.each(response.data, function(index, value) {
+                    $('#top-category').append(card(index
+                        , value));
+                });
+
+            }
+            , error: function(xhr) {
+                console.log(xhr);
+
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
+                });
+            }
+        });
+    });
+
+    function card(index, value) {
+        return `
+        <div class="swiper-slide">
+            <div class="courses__item shine__animate-item">
+                <div class="courses__item-thumb">
+                    <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
+                        <img src="${value.photo}" alt="img">
+                    </a>
+                </div>
+                <div class="courses__item-content">
+                    <ul class="courses__item-meta list-wrap">
+                        <li class="courses__item-tag">
+                            <a href="{{ route('courses.courses.index') }}">${value.category}</a>
+                        </li>
+                        <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
+                    </ul>
+                    <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.id}">${value.title}</a></h5>
+                    <div class="courses__item-bottom">
+                        <div class="button">
+                            <a href="{{ route('courses.courses.show', '') }}/${value.id}">
+                                <span class="text">Daftar</span>
+                                <i class="flaticon-arrow-right"></i>
+                            </a>
+                        </div>
+                        <h5 class="price">${value.price}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+
+    // jangan dihapus
+    // <p class="author">By <a href="#">David Millar</a></p>
+</script>
 @endsection

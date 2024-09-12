@@ -5,7 +5,7 @@
                 let card = `<div class="col">
                                 <div class="card">
                                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${data.sub_category}</button>
-                                    <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" class="card-img-top" alt="...">
+                                    <img src="${data.photo}" class="card-img-top" alt="...">
                                     <div class="card-body p-3">
                                         <p class="card-title fw-bolder">${data.title}</p>
                                         <p class="card-text">${data.sub_title}</p>

@@ -101,7 +101,9 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('#description').summernote();
+            $('#description').summernote({
+                height: 200
+            });
             category()
 
             function category() {
