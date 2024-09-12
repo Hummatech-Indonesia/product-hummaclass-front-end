@@ -31,7 +31,7 @@
                                 <div class="swiper-slide">
                                     <div class="courses__item courses__item-two shine__animate-item">
                                         <div class="courses__item-thumb courses__item-thumb-two">
-                                            <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
+                                            <a href="{{ route('courses.courses.show', $item) }}" class="shine__animate-link">
                                                 <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}"
                                                     alt="img">
                                             </a>
@@ -95,7 +95,7 @@
                                 <div class="swiper-slide">
                                     <div class="courses__item courses__item-two shine__animate-item">
                                         <div class="courses__item-thumb courses__item-thumb-two">
-                                            <a href="{{ route('courses.show', $item) }}" class="shine__animate-link">
+                                            <a href="{{ route('courses.courses.show', $item) }}" class="shine__animate-link">
                                                 <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}"
                                                     alt="img">
                                             </a>

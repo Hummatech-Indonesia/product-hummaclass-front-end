@@ -5,6 +5,10 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
 
+
+Route::get('aaaaaaa', function() {
+    dd('sdfsdsfd');
+});
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::resource('courses', CourseController::class)->only(['index', 'show']);
     

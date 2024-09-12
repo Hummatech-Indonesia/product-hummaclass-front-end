@@ -124,20 +124,21 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label fw-semibold" for="flexCheckDefault">
-                                Remember me
-                            </label>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value=""
+                                    id="flexCheckDefault">
+                                <label class="form-check-label fw-semibold" for="flexCheckDefault">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="{{ route('password.send-email') }}" style="color: #9425FE">Forgot Password</a>
                         </div>
-                        <a href="{{ route('password.send-email') }}" style="color: #9425FE">Forgot Password</a>
-                    </div>
-                    <button type="submit" class="btn text-white btn-md mt-3 w-100"
-                        style="background-color: #9425FE;border-radius: 10px;">
-                        Masuk
-                    </button>
-                </form>
+                        <button type="submit" class="btn text-white btn-md mt-3 w-100"
+                            style="background-color: #9425FE;border-radius: 10px;">
+                            Masuk
+                        </button>
+                    </form>
 
                     <div class="text-center mt-2">
                         <p style="color: #989898;">Belum punya akun? <a href="{{ route('register') }}"
@@ -178,9 +179,22 @@
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        // console.log(response);
-                        localStorage.setItem('hummaclass-token', response.data.token);
-                        window.location.href = "{{ route('dashboard.users.courses') }}";
+                        $.ajax({
+                            url: "{{ route('save-token') }}", // URL untuk menyimpan token ke session
+                            type: 'POST',
+                            data: {
+                                _token: "{{ csrf_token() }}", // Kirim CSRF token untuk keamanan
+                                token: response.data
+                                    .token, // Kirim token dari API ke server Laravel
+                                user: response.data
+                                    .user
+                            },
+                            success: function() {
+                                // Setelah berhasil disimpan di session, redirect pengguna
+                                window.location.href =
+                                    "{{ route('dashboard.users.courses') }}";
+                            }
+                        });
                     },
                     error: function(error) {
                         let errors = error.responseJSON.data || {};
