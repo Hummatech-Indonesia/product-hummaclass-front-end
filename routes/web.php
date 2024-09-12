@@ -44,7 +44,7 @@ Route::prefix('courses')->name('courses.')->group(function () {
 
 });
 
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
+Route::middleware('auth_custom')->prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
@@ -73,7 +73,7 @@ Route::prefix('password')->name('password.')->group(function () {
 // ================== ADMIN ==================
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth_custom')->group(function () {
 
     Route::get('home', function () {
         return view('admin.index');
@@ -114,8 +114,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('detail-users', function () {
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
-
-
 
     Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
 
