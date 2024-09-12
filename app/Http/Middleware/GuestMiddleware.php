@@ -13,7 +13,7 @@ class GuestMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         foreach (session('user')['roles'] as $role) {
             if ($role['name'] == 'guest') {

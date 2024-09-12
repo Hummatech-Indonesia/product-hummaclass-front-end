@@ -48,7 +48,6 @@ Route::prefix('courses')->name('courses.')->group(function () {
 });
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
-
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -64,12 +63,6 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('email', [ResetPasswordController::class, 'email'])->name('send-email');
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
-
-
-
-
-
-
 
 
 
