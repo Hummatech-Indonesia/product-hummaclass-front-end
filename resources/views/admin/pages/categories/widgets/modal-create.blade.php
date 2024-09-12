@@ -39,13 +39,14 @@
             let formData = new FormData($('.createForm')[0]);
             $.ajax({
                 type: "POST",
-                url: "{{config('app.api_url')}}/api/categories",
+                url: "{{ config('app.api_url') }}/api/categories",
                 data: formData,
                 dataType: "json",
                 processData: false,
                 contentType: false,
                 success: function(response) {
                     $('#modal-create').modal('hide');
+                    $('#modal-create-subcategory').find('input').val('');
                     Swal.fire({
                         title: "Berhasil!",
                         text: response.meta.message,
