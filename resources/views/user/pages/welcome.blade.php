@@ -1,5 +1,17 @@
 @extends('user.layouts.app')
 
+@section('style')
+<style>
+    .btn {
+        background: #9425FE none repeat scroll 0 0;
+    }
+
+    :root {
+    --tg-theme-primary: #9425FE;
+    }
+</style>
+@endsection
+
 @section('content')
 <!-- banner-area -->
 <section class="banner-area banner-bg tg-motion-effects" data-background="{{ asset('assets/img/banner/banner_bg.png') }}">
@@ -13,9 +25,9 @@
                             <span class="svg-icon" id="banner-svg">
                                 <!-- SVG langsung di sini -->
                                 <svg width="61" height="68" viewBox="0 0 61 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9456 42.4604C12.35 35.8453 15.0985 20.3798 14.8574 11.4385" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
-                                    <path d="M27.4487 52.5191C33.5478 49.598 47.4807 42.3448 54.4199 36.7009" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
-                                    <path d="M20.1039 44.2553C23.1559 40.986 29.8591 33.2239 32.2559 28.3291" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
+                                    <path d="M10.9456 42.4604C12.35 35.8453 15.0985 20.3798 14.8574 11.4385" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
+                                    <path d="M27.4487 52.5191C33.5478 49.598 47.4807 42.3448 54.4199 36.7009" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
+                                    <path d="M20.1039 44.2553C23.1559 40.986 29.8591 33.2239 32.2559 28.3291" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
                                 </svg>
                             </span>
                             <svg x="0px" y="0px" preserveAspectRatio="none" viewBox="0 0 209 59" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +37,7 @@
                         </span>
                         <br>Di Kelas Industri <b>Hummatech</b>
                     </h3>
-                    
+
                     <p data-aos="fade-right" data-aos-delay="600">Meningkatkan skill guru dan siswa dengan program kelas berbasis Industri.</p>
                     <div class="banner__btn-wrap" data-aos="fade-right" data-aos-delay="800">
                         <a href="javascript:void(0)" class="btn arrow-btn">Uji Coba Gratis <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
@@ -1156,17 +1168,15 @@
             <div class="col-lg-6">
                 <div class="faq__img-wrap tg-svg">
                     <div class="faq__round-text">
-                        <div class="curved-circle">
-                            * Education * System * can * Make * Change *
-                        </div>
+                        <div class="curved-circle" style="position: absolute; height: 258.115px;"><span class="char1" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-83.0204deg); transform-origin: center 14em;">*</span><span class="char2" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-79.9802deg); transform-origin: center 14em;">&nbsp;</span><span class="char3" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(-76.8231deg); transform-origin: center 14em;">E</span><span class="char4" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(-72.6136deg); transform-origin: center 14em;">d</span><span class="char5" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-68.0534deg); transform-origin: center 14em;">u</span><span class="char6" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-63.4931deg); transform-origin: center 14em;">c</span><span class="char7" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-59.1667deg); transform-origin: center 14em;">a</span><span class="char8" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-54.9572deg); transform-origin: center 14em;">t</span><span class="char9" style="position: absolute; left: 50%; margin-left: -0.275em; transform: rotate(-51.5662deg); transform-origin: center 14em;">i</span><span class="char10" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-47.9414deg); transform-origin: center 14em;">o</span><span class="char11" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-43.2642deg); transform-origin: center 14em;">n</span><span class="char12" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-39.7563deg); transform-origin: center 14em;">&nbsp;</span><span class="char13" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-36.7161deg); transform-origin: center 14em;">*</span><span class="char14" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-33.6759deg); transform-origin: center 14em;">&nbsp;</span><span class="char15" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-30.4018deg); transform-origin: center 14em;">S</span><span class="char16" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(-26.0754deg); transform-origin: center 14em;">y</span><span class="char17" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-21.749deg); transform-origin: center 14em;">s</span><span class="char18" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-17.5395deg); transform-origin: center 14em;">t</span><span class="char19" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(-13.447deg); transform-origin: center 14em;">e</span><span class="char20" style="position: absolute; left: 50%; margin-left: -0.575em; transform: rotate(-8.76976deg); transform-origin: center 14em;">m</span><span class="char21" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-4.91107deg); transform-origin: center 14em;">&nbsp;</span><span class="char22" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-1.87088deg); transform-origin: center 14em;">*</span><span class="char23" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(1.1693deg); transform-origin: center 14em;">&nbsp;</span><span class="char24" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(4.56028deg); transform-origin: center 14em;">c</span><span class="char25" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(9.12055deg); transform-origin: center 14em;">a</span><span class="char26" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(13.7978deg); transform-origin: center 14em;">n</span><span class="char27" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(17.3057deg); transform-origin: center 14em;">&nbsp;</span><span class="char28" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(20.3458deg); transform-origin: center 14em;">*</span><span class="char29" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(23.386deg); transform-origin: center 14em;">&nbsp;</span><span class="char30" style="position: absolute; left: 50%; margin-left: -0.575em; transform: rotate(27.2447deg); transform-origin: center 14em;">M</span><span class="char31" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(32.2727deg); transform-origin: center 14em;">a</span><span class="char32" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(36.833deg); transform-origin: center 14em;">k</span><span class="char33" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(41.0425deg); transform-origin: center 14em;">e</span><span class="char34" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(44.1996deg); transform-origin: center 14em;">&nbsp;</span><span class="char35" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(47.2398deg); transform-origin: center 14em;">*</span><span class="char36" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(50.28deg); transform-origin: center 14em;">&nbsp;</span><span class="char37" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(53.7879deg); transform-origin: center 14em;">C</span><span class="char38" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(58.4651deg); transform-origin: center 14em;">h</span><span class="char39" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(63.1423deg); transform-origin: center 14em;">a</span><span class="char40" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(67.8195deg); transform-origin: center 14em;">n</span><span class="char41" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(72.4967deg); transform-origin: center 14em;">g</span><span class="char42" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(76.8231deg); transform-origin: center 14em;">e</span><span class="char43" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(79.9802deg); transform-origin: center 14em;">&nbsp;</span><span class="char44" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(83.0204deg); transform-origin: center 14em;">*</span></div>
                     </div>
                     <div class="faq__img">
-                        <img src="{{ asset('assets/img/others/faq_img.png') }}" alt="img">
+                        <img src="assets/img/others/faq_img.png" alt="img">
                         <div class="shape-one">
-                            <img src="{{ asset('assets/img/others/faq_shape01.svg') }}" class="injectable tg-motion-effects4" alt="img">
+                            <img src="assets/img/others/faq_shape01.svg" class="injectable tg-motion-effects4" alt="img">
                         </div>
                         <div class="shape-two">
-                            <span class="svg-icon" id="faq-svg" data-svg-icon="{{ asset('assets/img/others/faq_shape02.svg') }}"></span>
+                            <span class="svg-icon" id="faq-svg" data-svg-icon="assets/img/others/faq_shape02.svg"></span>
                         </div>
                     </div>
                 </div>
@@ -1242,7 +1252,7 @@
 <!-- faq-area-end -->
 
 <!-- features-area -->
-<section class="features__area">
+<section class="features__area" style="background-color: #5A00A1;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6">
@@ -1304,7 +1314,7 @@
 <!-- features-area-end -->
 
 <!-- instructor-area-two -->
-<section class="instructor__area-two">
+<section class="instructor__area-two" style="background-color: #5A00A1;">
     <div class="container">
         <div class="instructor__item-wrap-two">
             <div class="row">
@@ -1388,7 +1398,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
