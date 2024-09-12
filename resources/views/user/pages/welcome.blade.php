@@ -7,8 +7,19 @@
     }
 
     :root {
-    --tg-theme-primary: #9425FE;
+        --tg-theme-primary: #9425FE;
     }
+
+    .section__title.white-title .sub-title {
+        background: var(--tg-common-color-white);
+        color: var(--tg-theme-primary);
+    }
+
+    .icon h1:hover {
+        color: #FFFFFF !important;
+        /* Warna putih ketika di-hover */
+    }
+
 </style>
 @endsection
 
@@ -94,78 +105,78 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-graphic-design"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">12</h1>
                                         </div>
                                         <span class="name">Graphic Design</span>
-                                        <span class="courses">(22)</span>
+                                        {{-- <span class="courses">(22)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-investment"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">21</h1>
                                         </div>
                                         <span class="name">Finance</span>
-                                        <span class="courses">(41)</span>
+                                        {{-- <span class="courses">(41)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-coding"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">11</h1>
                                         </div>
                                         <span class="name">Development</span>
-                                        <span class="courses">(29)</span>
+                                        {{-- <span class="courses">(29)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-email"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">4</h1>
                                         </div>
                                         <span class="name">Marketing</span>
-                                        <span class="courses">(31)</span>
+                                        {{-- <span class="courses">(31)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-fashion"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">5</h1>
                                         </div>
                                         <span class="name">Life Style</span>
-                                        <span class="courses">(23)</span>
+                                        {{-- <span class="courses">(23)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-interaction"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">12</h1>
                                         </div>
                                         <span class="name">Management</span>
-                                        <span class="courses">(19)</span>
+                                        {{-- <span class="courses">(19)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-web-design"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">2</h1>
                                         </div>
                                         <span class="name">App Design</span>
-                                        <span class="courses">(18)</span>
+                                        {{-- <span class="courses">(18)</span> --}}
                                     </a>
                                 </div>
                             </div>

@@ -39,22 +39,27 @@
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation gap-3">
                                     <li class="menu-item {{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a>
-
                                     </li>
-                                    <li class="menu-item-has-children {{ Route::is('courses.courses.index', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Courses</a>
+                                    <li class="menu-item {{ Route::currentRouteName() == 'courses.courses.index' ? 'active' : '' }}"><a href="{{ route('courses.courses.index') }}">Kursus</a>
+                                    </li>
+                                    {{-- <li class="menu-item-has-children {{ Route::is('courses.courses.index', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Kursus</a>
                                         <ul class="sub-menu">
                                             <li class="{{ Route::currentRouteName() == 'courses.courses.index' ? 'active' : '' }}"><a href="{{ route('courses.courses.index') }}">Semua Kursus</a></li>
                                             <li class="{{ Route::currentRouteName() == 'courses.course-lesson.index' ? 'active' : '' }}"><a href="{{ route('courses.course-lesson.index') }}">Kursus Pelajaran</a></li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                     <li class="menu-item {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}"><a href="javascript:void(0)">Event</a>
                                     </li>
-                                    <li class="menu-item-has-children {{ Route::is('dashboard.users.dashboard', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Profile</a>
+                                    <li class="menu-item"><a href="javascript:void(0)">Berita</a>
+                                    </li>
+                                    <li class="menu-item"><a href="javascript:void(0)">FAQ</a>
+                                    </li>
+                                    {{-- <li class="menu-item-has-children {{ Route::is('dashboard.users.dashboard', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Profile</a>
                                         <ul class="sub-menu">
                                             <li class="{{ Route::currentRouteName() == 'dashboard.users.dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard.users.dashboard') }}">Profile</a></li>
                                             <li class="{{ Route::currentRouteName() == 'dashboard.users.settings.index' ? 'active' : '' }}"><a href="{{ route('dashboard.users.settings.index') }}">Pengaturan Akun</a></li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                             <div class="tgmenu__search d-none d-md-block">
