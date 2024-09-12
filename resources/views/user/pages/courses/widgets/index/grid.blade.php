@@ -17,7 +17,7 @@
     $(document).ready(function() {
         $.ajax({
             type: "GET"
-            , url: "{{ env('API_URL') }}" + "api/courses"
+            , url: "{{ env('API_URL') }}" + "/api/courses"
             , headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
             }
@@ -57,7 +57,7 @@
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="course.html">Design</a>
+                                <a href="#">Design</a>
                             </li>
                             <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
                         </ul>
