@@ -6,8 +6,13 @@ use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
+use App\Http\Middleware\CustomAuthMiddleware;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::get('testing', function() {
+
+})->middleware('auth_custom');
+
+Route::prefix('admin')->name('admin.')->middleware('auth_custom')->group(function () {
 
     Route::get('home', function () {
         return view('admin.index');

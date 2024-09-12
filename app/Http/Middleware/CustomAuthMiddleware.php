@@ -16,8 +16,9 @@ class CustomAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $response = Http::get(env('API_URL') . '/api/login');
-        $data = $response->object();
+        $token = session('hummaclass-token');
+        // dd($token);
+        $response = Http::withToken($token)->get(env('API_URL') . '/api/user');
         if ($response->successful()) {
             return $next($request);
         }

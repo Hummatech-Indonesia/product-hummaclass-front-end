@@ -31,6 +31,10 @@ Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name
 
 Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 
+
+Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+Route::post('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ================== USER ==================
@@ -41,10 +45,9 @@ Route::prefix('courses')->name('courses.')->group(function () {
     Route::get('courses-lesson', function () {
         return view('user.pages.courses.courses-lesson');
     })->name('course-lesson.index');
-
 });
 
-Route::middleware('auth_custom')->prefix('dashboard')->name('dashboard.')->group(function () {
+Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
@@ -73,7 +76,7 @@ Route::prefix('password')->name('password.')->group(function () {
 // ================== ADMIN ==================
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('home', function () {
         return view('admin.index');
