@@ -87,7 +87,7 @@
             $('#tableBody').empty();
             $.ajax({    
                 type: "GET",
-                url: "{{ env('API_URL') }}" + "/api/categories?page=" + page,
+                url: "{{config('app.api_url')}}" + "/api/categories?page=" + page,
                 dataType: "json",
                 data: {
                     name: $('#search-name').val(),
@@ -217,7 +217,7 @@
         $(document).on('click', '.deleteCategory', function() {
             const id = $(this).data('id');
             $('#modal-delete').modal('show');
-            $('#deleteForm').attr('action', "{{ env('API_URL') }}" + `/api/categories/${id}`);
+            $('#deleteForm').attr('action', "{{config('app.api_url')}}" + `/api/categories/${id}`);
 
         });
 

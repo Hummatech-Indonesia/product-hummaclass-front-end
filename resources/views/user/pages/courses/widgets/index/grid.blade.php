@@ -17,7 +17,7 @@
     $(document).ready(function() {
         $.ajax({
             type: "GET"
-            , url: "{{ env('API_URL') }}" + "/api/courses"
+            , url: "{{config('app.api_url')}}" + "/api/courses"
             , headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
             }

@@ -234,7 +234,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{ env('API_URL') }}" + "/api/modules/detail/" + id,
+                url: "{{config('app.api_url')}}" + "/api/modules/detail/" + id,
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
                 },

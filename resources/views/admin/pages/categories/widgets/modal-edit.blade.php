@@ -45,7 +45,7 @@
         $('.updateConfirmation').click(function(e) {
             e.preventDefault();
 
-            let url = "{{ env('API_URL') }}" + "/api/categories/" + id;
+            let url = "{{config('app.api_url')}}" + "/api/categories/" + id;
             let formData = new FormData($('.editForm')[0]);
 
 

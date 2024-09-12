@@ -1,7 +1,6 @@
 @section('script')
     <script>
         $(document).ready(function() {
-
             function cardCourse(data) {
                 let card = `<div class="col">
                                 <div class="card">
@@ -81,11 +80,12 @@
                                 </div>
                             </div>`
                 $('#list-card').append(card);
-            }
-
+            }        
+                        
+            
             $.ajax({
                 type: "GET",
-                url: "{{ env('API_URL') }}" + "/api/courses",
+                url: "{{config('app.api_url')}}" + "/api/courses",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
                 },
@@ -96,7 +96,7 @@
                     });
 
                     $('.btn-delete').click(function() {
-                        $('#deleteForm').attr('action', "{{ env('API_URL') }}" +
+                        $('#deleteForm').attr('action', "{{config('app.api_url')}}" +
                             "/api/courses/" + $(this).data(
                                 'id'));
                         $('#modal-delete').modal('show');

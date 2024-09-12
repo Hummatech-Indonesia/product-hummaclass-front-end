@@ -178,7 +178,7 @@
         $(document).ready(function() {
             $('#google-login').click(function(e) {
                 e.preventDefault();
-                window.location.href = `{{ env('API_URL') }}/api/auth/google`;
+                window.location.href = `{{config('app.api_url')}}/api/auth/google`;
             });
         });
 
@@ -196,7 +196,7 @@
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: `{{ env('API_URL') }}/api/register`,
+                    url: `{{config('app.api_url')}}/api/register`,
                     type: 'POST',
                     data: formData,
                     success: function(response) {
