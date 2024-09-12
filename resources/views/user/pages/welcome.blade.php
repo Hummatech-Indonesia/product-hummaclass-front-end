@@ -20,6 +20,16 @@
         /* Warna putih ketika di-hover */
     }
 
+    /* Default: sebelum di-hover, panah berwarna putih */
+    .arrow-btn img {
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+    }
+
+    .arrow-btn:hover img {
+        filter: brightness(0);
+    }
+
 </style>
 @endsection
 
@@ -1140,7 +1150,7 @@
 <!-- fact-area -->
 <section class="fact__area">
     <div class="container">
-        <div class="fact__inner-wrap">
+        <div class="fact__inner-wrap" style="background: linear-gradient(to right, #9C40F7, #7209DB);">
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
@@ -1392,7 +1402,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
@@ -1426,7 +1436,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
@@ -1443,16 +1453,16 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post04.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
                             <ul class="list-wrap">
                                 <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
+                                <li><i class="flaticon-user-1"></i>by <a href="javscript:void(0)">Admin</a></li>
                             </ul>
                         </div>
-                        <h4 class="title"><a href="blog-details.html">What we are capable to usually discovered</a></h4>
+                        <h4 class="title"><a href="javscript:void(0)">What we are capable to usually discovered</a></h4>
                     </div>
                 </div>
             </div>
