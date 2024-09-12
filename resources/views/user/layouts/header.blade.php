@@ -34,7 +34,7 @@
                     <div class="tgmenu__wrap">
                         <nav class="tgmenu__nav">
                             <div class="logo">
-                                <a href="/"><img src="{{ asset('assets/img/logo/logo.svg') }}" alt="Logo"></a>
+                                <a href="/"><img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" width="70px" alt="Logo"></a>
                             </div>
                             <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex">
                                 <ul class="navigation gap-3">

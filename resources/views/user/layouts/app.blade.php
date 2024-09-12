@@ -33,7 +33,12 @@
     @yield('style')
 </head>
 
-<body>
+<body style="
+        transform: scale(0.8);
+        transform-origin: 0 0;
+        width: 125%;
+        height: 125%;
+        overflow-x: hidden; ">
 
     <!--Preloader-->
     <div id="preloader">
