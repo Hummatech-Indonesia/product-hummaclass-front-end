@@ -85,9 +85,9 @@
 
         function get(page) {
             $('#tableBody').empty();
-            $.ajax({    
+            $.ajax({
                 type: "GET",
-                url: "{{config('app.api_url')}}" + "/api/categories?page=" + page,
+                url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
                 dataType: "json",
                 data: {
                     name: $('#search-name').val(),
@@ -166,7 +166,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-create-subcategory">
+                            <button class="add-sub-category btn btn-success" data-id="${value.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/>
                                 </svg>
@@ -189,7 +189,7 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
+                                        <button data-id="${value.id}" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
                                             <i class="fs-4 ti ti-trash"></i>Hapus
                                         </button>
                                     </li>
@@ -211,46 +211,49 @@
                 `;
         }
 
-
         get(1);
 
-        $(document).on('click', '.deleteCategory', function() {
+
+        //delete catagory
+        $(document).on('click', '.btn-delete', function() {
             const id = $(this).data('id');
+            const url = "{{ config('app.api_url') }}/api/categories/" + id;
+
             $('#modal-delete').modal('show');
-            $('#deleteForm').attr('action', "{{config('app.api_url')}}" + `/api/categories/${id}`);
-
+            deleteCategory(url);
         });
 
-        $('.deleteConfirmation').click(function(e) {
-            console.log($('#deleteForm').attr('action'));
+        function deleteCategory(url) {
+            console.log(url);
 
-            e.preventDefault();
-            // $.ajax({
-            //     type: "DELETE",
-            //     url: $('#deleteForm').attr('action'),
-            //     dataType: "json",
-            //     success: function(response) {
-            //         $('#modal-delete').modal('hide');
-            //         Swal.fire({
-            //             title: "Berhasil!",
-            //             text: response.meta.message,
-            //             icon: "success"
-            //         });
-            //         table();
-            //     },
-            //     error: function(xhr) {
-            //         let errorMessages = [];
-            //         $.each(xhr.responseJSON.errors, function(index, value) {
-            //             errorMessages.push(value);
-            //         });
-            //         Swal.fire({
-            //             title: "Terjadi Kesalahan!",
-            //             html: errorMessages.join('<br>'),
-            //             icon: "error"
-            //         });
-            //     }
-            // });
-        });
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        });
+                        get(1)
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+        }
+        //end delete category
     </script>
 
     {{-- modal kategori --}}

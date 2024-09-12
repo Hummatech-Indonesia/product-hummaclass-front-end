@@ -1,8 +1,6 @@
 <div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="tambahdataLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <form id="deleteForm" class="modal-content" method="post">
-            @csrf
-            @method('DELETE')
+        <form id="deleteForm" class="modal-content">
             <div class="modal-header d-flex align-items-center"
                 style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
                 <h4 class="modal-title text-white" id="myModalLabel">
@@ -18,7 +16,7 @@
                     data-bs-dismiss="modal">
                     Batal
                 </button>
-                <button type="submit" class="btn text-white deleteConfirmation" style="background-color: #DB0909;"
+                <button type="button" class="btn text-white deleteConfirmation" style="background-color: #DB0909;"
                     data-bs-dismiss="modal">
                     Hapus
                 </button>
