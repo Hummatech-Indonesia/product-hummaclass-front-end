@@ -56,8 +56,8 @@
                                 By
                                 <a href="#">David Millar</a>
                             </li>
-                            <li class="date"><i class="flaticon-calendar"></i>24/07/2024</li>
-                            <li><i class="flaticon-mortarboard"></i>2,250 Students</li>
+                            <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
+                            <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
                         </ul>
                     </div>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -108,7 +108,12 @@
 
                 $('#detail-title').append(response.data.title);
                 $('#detail-category').append(response.data.category);
+                $('#detail-count-user').append(response.data.user_courses_count);
+                $('#detail-date').append(response.data.created);
 
+                // tab deskripsi
+                $('#description-title').append(response.data.title);
+                $('#description-description').append(response.data.description);
             }
             , error: function(xhr) {
                 console.log(xhr);
