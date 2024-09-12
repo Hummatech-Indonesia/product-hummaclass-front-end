@@ -85,7 +85,7 @@
 
         function get(page) {
             $('#tableBody').empty();
-            $.ajax({
+            $.ajax({    
                 type: "GET",
                 url: "{{ env('API_URL') }}" + "/api/categories?page=" + page,
                 dataType: "json",
