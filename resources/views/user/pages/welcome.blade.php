@@ -908,7 +908,7 @@
     $(document).ready(function() {
         $.ajax({
             type: "GET"
-            , url: "{{config('app.api_url')}}" + "/api/courses"
+            , url: "{{config('app.api_url')}}" + "/api/courses?order=best seller"
             , headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
             }
