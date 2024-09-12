@@ -2,7 +2,7 @@
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "{{ env('API_URL') }}" + "/api/courses/{{ request()->course }}",
+            url: "{{config('app.api_url')}}" + "/api/courses/{{ request()->course }}",
             data: "data",
             dataType: "json",
             success: function(response) {

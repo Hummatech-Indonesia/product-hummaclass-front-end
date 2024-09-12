@@ -87,7 +87,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{ env('API_URL') }}/api/password/reset",
+                url: "{{config('app.api_url')}}/api/password/reset",
                 data: formData,
                 dataType: "json",
                 success: function(response) {

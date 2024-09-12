@@ -5,7 +5,7 @@
 
     $.ajax({
         type: "GRT",
-        url: "{{ env('API_URL') }}" + "/api/task",
+        url: "{{config('app.api_url')}}" + "/api/task",
         dataType: "json",
         success: function (response) {
             

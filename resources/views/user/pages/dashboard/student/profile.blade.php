@@ -123,7 +123,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ env('API_URL') }}" + "/api/user",
+            url: "{{config('app.api_url')}}" + "/api/user",
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
             },
@@ -154,7 +154,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{{ env('API_URL') }}" + "/api/profile-update",
+                url: "{{config('app.api_url')}}" + "/api/profile-update",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
                 },
