@@ -114,7 +114,7 @@
             // get
             $.ajax({
                 type: "GET",
-                url: "{{ env('API_URL') }}" + "/api/courses/" + "{{ request()->course }}",
+                url: "{{config('app.api_url')}}" + "/api/courses/" + "{{ request()->course }}",
                 dataType: "json",
                 success: function(response) {
                     setValue(response.data);
@@ -141,7 +141,7 @@
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: "{{ env('API_URL') }}" + "/api/courses/{{ request()->course }}",
+                    url: "{{config('app.api_url')}}" + "/api/courses/{{ request()->course }}",
                     type: 'PATCH',
                     data: formData,
                     success: function(response) {

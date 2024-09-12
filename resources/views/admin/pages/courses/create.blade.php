@@ -107,7 +107,7 @@
             function category() {
                 $.ajax({
                     type: "GET",
-                    url: "{{ env('API_URL') }}" + "/api/categories",
+                    url: "{{config('app.api_url')}}" + "/api/categories",
                     dataType: "json",
                     success: function(response) {
                         $('#category_id').empty().append(
@@ -139,7 +139,7 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "{{ env('API_URL') }}" + "/api/sub-categories/category/" + category_id,
+                    url: "{{config('app.api_url')}}" + "/api/sub-categories/category/" + category_id,
                     dataType: "json",
                     success: function(response) {
                         $('#sub_category_id').empty().append(
@@ -177,7 +177,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ env('API_URL') }}/api/courses",
+                    url: "{{config('app.api_url')}}/api/courses",
                     data: formData,
                     dataType: "json",
                     contentType: false,

@@ -57,7 +57,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: `{{ env('API_URL') }}/api/forgot-password`,
+                    url: `{{config('app.api_url')}}/api/forgot-password`,
                     data: {
                         'email': $('#email').val()
                     },

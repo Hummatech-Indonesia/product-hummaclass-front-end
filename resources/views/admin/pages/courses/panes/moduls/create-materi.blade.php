@@ -67,7 +67,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: "POST",
-                url: "{{ env('API_URL') }}/api/sub-modules/" + id,
+                url: "{{config('app.api_url')}}/api/sub-modules/" + id,
                 data: formData,
                 dataType: "json",
                 contentType: false,

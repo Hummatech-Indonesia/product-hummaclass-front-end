@@ -1,5 +1,38 @@
 @extends('user.layouts.app')
 
+@section('style')
+<style>
+    .btn {
+        background: #9425FE none repeat scroll 0 0;
+    }
+
+    :root {
+        --tg-theme-primary: #9425FE;
+    }
+
+    .section__title.white-title .sub-title {
+        background: var(--tg-common-color-white);
+        color: var(--tg-theme-primary);
+    }
+
+    .icon h1:hover {
+        color: #FFFFFF !important;
+        /* Warna putih ketika di-hover */
+    }
+
+    /* Default: sebelum di-hover, panah berwarna putih */
+    .arrow-btn img {
+        filter: brightness(0) invert(1);
+        transition: filter 0.3s ease;
+    }
+
+    .arrow-btn:hover img {
+        filter: brightness(0);
+    }
+
+</style>
+@endsection
+
 @section('content')
 <!-- banner-area -->
 <section class="banner-area banner-bg tg-motion-effects" data-background="{{ asset('assets/img/banner/banner_bg.png') }}">
@@ -8,25 +41,25 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="banner__content">
                     <h3 class="title tg-svg" data-aos="fade-right" data-aos-delay="400">
-                        Never Stop
+                        Selamat
                         <span class="position-relative">
                             <span class="svg-icon" id="banner-svg">
                                 <!-- SVG langsung di sini -->
                                 <svg width="61" height="68" viewBox="0 0 61 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.9456 42.4604C12.35 35.8453 15.0985 20.3798 14.8574 11.4385" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
-                                    <path d="M27.4487 52.5191C33.5478 49.598 47.4807 42.3448 54.4199 36.7009" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
-                                    <path d="M20.1039 44.2553C23.1559 40.986 29.8591 33.2239 32.2559 28.3291" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round"/>
+                                    <path d="M10.9456 42.4604C12.35 35.8453 15.0985 20.3798 14.8574 11.4385" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
+                                    <path d="M27.4487 52.5191C33.5478 49.598 47.4807 42.3448 54.4199 36.7009" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
+                                    <path d="M20.1039 44.2553C23.1559 40.986 29.8591 33.2239 32.2559 28.3291" stroke="#031333" stroke-width="3.07158" stroke-linejoin="round" />
                                 </svg>
                             </span>
                             <svg x="0px" y="0px" preserveAspectRatio="none" viewBox="0 0 209 59" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M4.74438 7.70565C69.7006 -1.18799 136.097 -2.38304 203.934 4.1205C207.178 4.48495 209.422 7.14626 208.933 10.0534C206.793 23.6481 205.415 36.5704 204.801 48.8204C204.756 51.3291 202.246 53.5582 199.213 53.7955C136.093 59.7623 74.1922 60.5985 13.5091 56.3043C10.5653 56.0924 7.84371 53.7277 7.42158 51.0325C5.20725 38.2627 2.76333 25.6511 0.0898448 13.1978C-0.465589 10.5873 1.61173 8.1379 4.73327 7.70565" fill="currentcolor" />
                             </svg>
-                            Learning
+                            Datang
                         </span>
-                        <br>Life <b>Never Stop</b> Teaching
+                        <br>Di Kelas Industri <b>Hummatech</b>
                     </h3>
-                    
-                    <p data-aos="fade-right" data-aos-delay="600">Every teaching and learning journey is unique Following We'll help guide your way.</p>
+
+                    <p data-aos="fade-right" data-aos-delay="600">Meningkatkan skill guru dan siswa dengan program kelas berbasis Industri.</p>
                     <div class="banner__btn-wrap" data-aos="fade-right" data-aos-delay="800">
                         <a href="javascript:void(0)" class="btn arrow-btn">Uji Coba Gratis <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
                     </div>
@@ -82,78 +115,78 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-graphic-design"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">12</h1>
                                         </div>
                                         <span class="name">Graphic Design</span>
-                                        <span class="courses">(22)</span>
+                                        {{-- <span class="courses">(22)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-investment"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">21</h1>
                                         </div>
                                         <span class="name">Finance</span>
-                                        <span class="courses">(41)</span>
+                                        {{-- <span class="courses">(41)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-coding"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">11</h1>
                                         </div>
                                         <span class="name">Development</span>
-                                        <span class="courses">(29)</span>
+                                        {{-- <span class="courses">(29)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-email"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">4</h1>
                                         </div>
                                         <span class="name">Marketing</span>
-                                        <span class="courses">(31)</span>
+                                        {{-- <span class="courses">(31)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-fashion"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">5</h1>
                                         </div>
                                         <span class="name">Life Style</span>
-                                        <span class="courses">(23)</span>
+                                        {{-- <span class="courses">(23)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-interaction"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">12</h1>
                                         </div>
                                         <span class="name">Management</span>
-                                        <span class="courses">(19)</span>
+                                        {{-- <span class="courses">(19)</span> --}}
                                     </a>
                                 </div>
                             </div>
                             <div class="swiper-slide">
                                 <div class="categories__item">
-                                    <a href="courses.html">
+                                    <a href="{{ route('courses.courses.index') }}">
                                         <div class="icon">
-                                            <i class="flaticon-web-design"></i>
+                                            <h1 style="font-size: 50px;color: #6D6C80">2</h1>
                                         </div>
                                         <span class="name">App Design</span>
-                                        <span class="courses">(18)</span>
+                                        {{-- <span class="courses">(18)</span> --}}
                                     </a>
                                 </div>
                             </div>
@@ -202,14 +235,15 @@
                     <div class="section__title">
                         <span class="sub-title">Tentang Kami</span>
                         <h2 class="title">
-                            Thousand Of Top
+                            Program
                             <span class="position-relative">
                                 <svg x="0px" y="0px" preserveAspectRatio="none" viewBox="0 0 209 59" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.74438 7.70565C69.7006 -1.18799 136.097 -2.38304 203.934 4.1205C207.178 4.48495 209.422 7.14626 208.933 10.0534C206.793 23.6481 205.415 36.5704 204.801 48.8204C204.756 51.3291 202.246 53.5582 199.213 53.7955C136.093 59.7623 74.1922 60.5985 13.5091 56.3043C10.5653 56.0924 7.84371 53.7277 7.42158 51.0325C5.20725 38.2627 2.76333 25.6511 0.0898448 13.1978C-0.465589 10.5873 1.61173 8.1379 4.73327 7.70565" fill="currentcolor" />
                                 </svg>
-                                Courses
+                                HummaClass
                             </span>
-                            Now in One Place
+                            Didesain untuk meningkatkan
+                            <br> kemampuan Anda
                         </h2>
                     </div>
                     <p class="desc">Groove’s intuitive shared inbox makes it easy for team members to
@@ -994,36 +1028,6 @@
 </section>
 <!-- course-area-end -->
 
-<!-- newsletter-area -->
-<section class="newsletter__area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4">
-                <div class="newsletter__img-wrap">
-                    <img src="{{ asset('assets/img/others/newsletter_img.png') }}" alt="img">
-                    <img src="{{ asset('assets/img/others/newsletter_shape01.png') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-                    <img src="{{ asset('assets/img/others/newsletter_shape02.png') }}" alt="img" class="alltuchtopdown">
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="newsletter__content">
-                    <h2 class="title">Want to stay <span>informed</span> about <br> new <span>courses & study?</span></h2>
-                    <div class="newsletter__form">
-                        <form action="#">
-                            <input type="email" placeholder="Type your e-mail">
-                            <button type="submit" class="btn">Subscribe Now</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="newsletter__shape">
-        <img src="{{ asset('assets/img/others/newsletter_shape03.png') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
-    </div>
-</section>
-<!-- newsletter-area-end -->
-
 <!-- instructor-area -->
 <section class="instructor__area">
     <div class="container">
@@ -1031,12 +1035,12 @@
             <div class="col-xl-4">
                 <div class="instructor__content-wrap">
                     <div class="section__title mb-15">
-                        <span class="sub-title">Skilled Introduce</span>
+                        <span class="sub-title">Perkenalan Mentor</span>
                         <h2 class="title">Our Top Class & Expert Instructors in One Place</h2>
                     </div>
                     <p>when an unknown printer took a galley of type and scrambled makespecimen book has survived not only five centuries</p>
                     <div class="tg-button-wrap">
-                        <a href="instructors.html" class="btn arrow-btn">See All Instructors <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
+                        <a href="instructors.html" class="btn arrow-btn">Lihat Semua Mentor <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
                     </div>
                 </div>
             </div>
@@ -1146,18 +1150,18 @@
 <!-- fact-area -->
 <section class="fact__area">
     <div class="container">
-        <div class="fact__inner-wrap">
+        <div class="fact__inner-wrap" style="background: linear-gradient(to right, #9C40F7, #7209DB);">
             <div class="row">
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="45"></span>K+</h2>
-                        <p>Active Students</p>
+                        <p>Pelajar Aktif</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="89"></span>+</h2>
-                        <p>Faculty Courses</p>
+                        <p>Mata Kuliah Fakultas</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -1169,7 +1173,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="42"></span>K</h2>
-                        <p>Award Achieved</p>
+                        <p>Penghargaan Dicapai</p>
                     </div>
                 </div>
             </div>
@@ -1185,17 +1189,15 @@
             <div class="col-lg-6">
                 <div class="faq__img-wrap tg-svg">
                     <div class="faq__round-text">
-                        <div class="curved-circle">
-                            * Education * System * can * Make * Change *
-                        </div>
+                        <div class="curved-circle" style="position: absolute; height: 258.115px;"><span class="char1" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-83.0204deg); transform-origin: center 14em;">*</span><span class="char2" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-79.9802deg); transform-origin: center 14em;">&nbsp;</span><span class="char3" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(-76.8231deg); transform-origin: center 14em;">E</span><span class="char4" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(-72.6136deg); transform-origin: center 14em;">d</span><span class="char5" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-68.0534deg); transform-origin: center 14em;">u</span><span class="char6" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-63.4931deg); transform-origin: center 14em;">c</span><span class="char7" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-59.1667deg); transform-origin: center 14em;">a</span><span class="char8" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-54.9572deg); transform-origin: center 14em;">t</span><span class="char9" style="position: absolute; left: 50%; margin-left: -0.275em; transform: rotate(-51.5662deg); transform-origin: center 14em;">i</span><span class="char10" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-47.9414deg); transform-origin: center 14em;">o</span><span class="char11" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(-43.2642deg); transform-origin: center 14em;">n</span><span class="char12" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-39.7563deg); transform-origin: center 14em;">&nbsp;</span><span class="char13" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-36.7161deg); transform-origin: center 14em;">*</span><span class="char14" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-33.6759deg); transform-origin: center 14em;">&nbsp;</span><span class="char15" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-30.4018deg); transform-origin: center 14em;">S</span><span class="char16" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(-26.0754deg); transform-origin: center 14em;">y</span><span class="char17" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-21.749deg); transform-origin: center 14em;">s</span><span class="char18" style="position: absolute; left: 50%; margin-left: -0.45em; transform: rotate(-17.5395deg); transform-origin: center 14em;">t</span><span class="char19" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(-13.447deg); transform-origin: center 14em;">e</span><span class="char20" style="position: absolute; left: 50%; margin-left: -0.575em; transform: rotate(-8.76976deg); transform-origin: center 14em;">m</span><span class="char21" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(-4.91107deg); transform-origin: center 14em;">&nbsp;</span><span class="char22" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(-1.87088deg); transform-origin: center 14em;">*</span><span class="char23" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(1.1693deg); transform-origin: center 14em;">&nbsp;</span><span class="char24" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(4.56028deg); transform-origin: center 14em;">c</span><span class="char25" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(9.12055deg); transform-origin: center 14em;">a</span><span class="char26" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(13.7978deg); transform-origin: center 14em;">n</span><span class="char27" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(17.3057deg); transform-origin: center 14em;">&nbsp;</span><span class="char28" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(20.3458deg); transform-origin: center 14em;">*</span><span class="char29" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(23.386deg); transform-origin: center 14em;">&nbsp;</span><span class="char30" style="position: absolute; left: 50%; margin-left: -0.575em; transform: rotate(27.2447deg); transform-origin: center 14em;">M</span><span class="char31" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(32.2727deg); transform-origin: center 14em;">a</span><span class="char32" style="position: absolute; left: 50%; margin-left: -0.475em; transform: rotate(36.833deg); transform-origin: center 14em;">k</span><span class="char33" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(41.0425deg); transform-origin: center 14em;">e</span><span class="char34" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(44.1996deg); transform-origin: center 14em;">&nbsp;</span><span class="char35" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(47.2398deg); transform-origin: center 14em;">*</span><span class="char36" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(50.28deg); transform-origin: center 14em;">&nbsp;</span><span class="char37" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(53.7879deg); transform-origin: center 14em;">C</span><span class="char38" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(58.4651deg); transform-origin: center 14em;">h</span><span class="char39" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(63.1423deg); transform-origin: center 14em;">a</span><span class="char40" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(67.8195deg); transform-origin: center 14em;">n</span><span class="char41" style="position: absolute; left: 50%; margin-left: -0.5em; transform: rotate(72.4967deg); transform-origin: center 14em;">g</span><span class="char42" style="position: absolute; left: 50%; margin-left: -0.425em; transform: rotate(76.8231deg); transform-origin: center 14em;">e</span><span class="char43" style="position: absolute; left: 50%; margin-left: -0.25em; transform: rotate(79.9802deg); transform-origin: center 14em;">&nbsp;</span><span class="char44" style="position: absolute; left: 50%; margin-left: -0.4em; transform: rotate(83.0204deg); transform-origin: center 14em;">*</span></div>
                     </div>
                     <div class="faq__img">
-                        <img src="{{ asset('assets/img/others/faq_img.png') }}" alt="img">
+                        <img src="assets/img/others/faq_img.png" alt="img">
                         <div class="shape-one">
-                            <img src="{{ asset('assets/img/others/faq_shape01.svg') }}" class="injectable tg-motion-effects4" alt="img">
+                            <img src="assets/img/others/faq_shape01.svg" class="injectable tg-motion-effects4" alt="img">
                         </div>
                         <div class="shape-two">
-                            <span class="svg-icon" id="faq-svg" data-svg-icon="{{ asset('assets/img/others/faq_shape02.svg') }}"></span>
+                            <span class="svg-icon" id="faq-svg" data-svg-icon="assets/img/others/faq_shape02.svg"></span>
                         </div>
                     </div>
                 </div>
@@ -1203,7 +1205,7 @@
             <div class="col-lg-6">
                 <div class="faq__content">
                     <div class="section__title pb-10">
-                        <span class="sub-title">Faq’s</span>
+                        <span class="sub-title">Faq</span>
                         <h2 class="title">Start Learning From <br> World’s Pro Instructors</h2>
                     </div>
                     <p>Groove’s intuitive shared inbox makes it easy for team members to organize, prioritize and.In this episode.</p>
@@ -1271,13 +1273,13 @@
 <!-- faq-area-end -->
 
 <!-- features-area -->
-<section class="features__area">
+<section class="features__area" style="background-color: #5A00A1;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-6">
                 <div class="section__title white-title text-center mb-50">
-                    <span class="sub-title">How We Start Journey</span>
-                    <h2 class="title">Start your Learning Journey Today!</h2>
+                    <span class="sub-title">Bagaimana Kami Memulai Perjalanan</span>
+                    <h2 class="title">Mulailah Perjalanan Belajar Anda Hari ini!</h2>
                     <p>Groove’s intuitive shared inbox makesteam members together <br> organize, prioritize and.In this episode.</p>
                 </div>
             </div>
@@ -1333,7 +1335,7 @@
 <!-- features-area-end -->
 
 <!-- instructor-area-two -->
-<section class="instructor__area-two">
+<section class="instructor__area-two" style="background-color: #5A00A1;">
     <div class="container">
         <div class="instructor__item-wrap-two">
             <div class="row">
@@ -1349,10 +1351,10 @@
                             </div>
                         </div>
                         <div class="instructor__content-two">
-                            <h3 class="title"><a href="contact.html">Become a Instructor</a></h3>
+                            <h3 class="title"><a href="contact.html">Jadilah Mentor</a></h3>
                             <p>To take a trivial example, which of us undertakes physical exercise yes is this happen here.</p>
                             <div class="tg-button-wrap">
-                                <a href="contact.html" class="btn arrow-btn">Apply Now <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
+                                <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                             </div>
                         </div>
                     </div>
@@ -1369,10 +1371,10 @@
                             </div>
                         </div>
                         <div class="instructor__content-two">
-                            <h3 class="title"><a href="contact.html">Become a Student</a></h3>
+                            <h3 class="title"><a href="contact.html">Jadilah Murid</a></h3>
                             <p>Join millions of people from around the world learning together. Online learning.</p>
                             <div class="tg-button-wrap">
-                                <a href="contact.html" class="btn arrow-btn">Apply Now <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
+                                <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                             </div>
                         </div>
                     </div>
@@ -1389,8 +1391,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section__title text-center mb-40">
-                    <span class="sub-title">News & Blogs</span>
-                    <h2 class="title">Our Latest News Feed</h2>
+                    <span class="sub-title">Berita $ Event</span>
+                    <h2 class="title">Berita Terbaru</h2>
                     <p>when known printer took a galley of type scrambl edmake</p>
                 </div>
             </div>
@@ -1400,7 +1402,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
@@ -1417,7 +1419,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
@@ -1434,7 +1436,7 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
@@ -1451,16 +1453,16 @@
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
                         <a href="blog-details.html" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post04.jpg') }}" alt="img"></a>
-                        <a href="blog.html" class="post-tag">Marketing</a>
+                        <a href="blog.html" class="post-tag bg-warning">Marketing</a>
                     </div>
                     <div class="blog__post-content">
                         <div class="blog__post-meta">
                             <ul class="list-wrap">
                                 <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
+                                <li><i class="flaticon-user-1"></i>by <a href="javscript:void(0)">Admin</a></li>
                             </ul>
                         </div>
-                        <h4 class="title"><a href="blog-details.html">What we are capable to usually discovered</a></h4>
+                        <h4 class="title"><a href="javscript:void(0)">What we are capable to usually discovered</a></h4>
                     </div>
                 </div>
             </div>

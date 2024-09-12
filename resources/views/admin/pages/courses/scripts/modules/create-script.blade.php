@@ -8,7 +8,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{ env('API_URL') }}/api/modules/" + id,
+                url: "{{config('app.api_url')}}/api/modules/" + id,
                 data: formData,
                 dataType: "json",
                 contentType: false,
