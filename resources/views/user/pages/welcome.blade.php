@@ -202,14 +202,15 @@
                     <div class="section__title">
                         <span class="sub-title">Tentang Kami</span>
                         <h2 class="title">
-                            Thousand Of Top
+                            Program
                             <span class="position-relative">
                                 <svg x="0px" y="0px" preserveAspectRatio="none" viewBox="0 0 209 59" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M4.74438 7.70565C69.7006 -1.18799 136.097 -2.38304 203.934 4.1205C207.178 4.48495 209.422 7.14626 208.933 10.0534C206.793 23.6481 205.415 36.5704 204.801 48.8204C204.756 51.3291 202.246 53.5582 199.213 53.7955C136.093 59.7623 74.1922 60.5985 13.5091 56.3043C10.5653 56.0924 7.84371 53.7277 7.42158 51.0325C5.20725 38.2627 2.76333 25.6511 0.0898448 13.1978C-0.465589 10.5873 1.61173 8.1379 4.73327 7.70565" fill="currentcolor" />
                                 </svg>
-                                Courses
+                                HummaClass
                             </span>
-                            Now in One Place
+                            Didesain untuk meningkatkan
+                            <br> kemampuan Anda
                         </h2>
                     </div>
                     <p class="desc">Groove’s intuitive shared inbox makes it easy for team members to
@@ -994,36 +995,6 @@
 </section>
 <!-- course-area-end -->
 
-<!-- newsletter-area -->
-<section class="newsletter__area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4">
-                <div class="newsletter__img-wrap">
-                    <img src="{{ asset('assets/img/others/newsletter_img.png') }}" alt="img">
-                    <img src="{{ asset('assets/img/others/newsletter_shape01.png') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-                    <img src="{{ asset('assets/img/others/newsletter_shape02.png') }}" alt="img" class="alltuchtopdown">
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="newsletter__content">
-                    <h2 class="title">Want to stay <span>informed</span> about <br> new <span>courses & study?</span></h2>
-                    <div class="newsletter__form">
-                        <form action="#">
-                            <input type="email" placeholder="Type your e-mail">
-                            <button type="submit" class="btn">Subscribe Now</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="newsletter__shape">
-        <img src="{{ asset('assets/img/others/newsletter_shape03.png') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
-    </div>
-</section>
-<!-- newsletter-area-end -->
-
 <!-- instructor-area -->
 <section class="instructor__area">
     <div class="container">
@@ -1031,12 +1002,12 @@
             <div class="col-xl-4">
                 <div class="instructor__content-wrap">
                     <div class="section__title mb-15">
-                        <span class="sub-title">Skilled Introduce</span>
+                        <span class="sub-title">Perkenalan Mentor</span>
                         <h2 class="title">Our Top Class & Expert Instructors in One Place</h2>
                     </div>
                     <p>when an unknown printer took a galley of type and scrambled makespecimen book has survived not only five centuries</p>
                     <div class="tg-button-wrap">
-                        <a href="instructors.html" class="btn arrow-btn">See All Instructors <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
+                        <a href="instructors.html" class="btn arrow-btn">Lihat Semua Mentor <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
                     </div>
                 </div>
             </div>
@@ -1151,13 +1122,13 @@
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="45"></span>K+</h2>
-                        <p>Active Students</p>
+                        <p>Pelajar Aktif</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="89"></span>+</h2>
-                        <p>Faculty Courses</p>
+                        <p>Mata Kuliah Fakultas</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -1169,7 +1140,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="fact__item">
                         <h2 class="count"><span class="odometer" data-count="42"></span>K</h2>
-                        <p>Award Achieved</p>
+                        <p>Penghargaan Dicapai</p>
                     </div>
                 </div>
             </div>
@@ -1203,7 +1174,7 @@
             <div class="col-lg-6">
                 <div class="faq__content">
                     <div class="section__title pb-10">
-                        <span class="sub-title">Faq’s</span>
+                        <span class="sub-title">Faq</span>
                         <h2 class="title">Start Learning From <br> World’s Pro Instructors</h2>
                     </div>
                     <p>Groove’s intuitive shared inbox makes it easy for team members to organize, prioritize and.In this episode.</p>
@@ -1276,8 +1247,8 @@
         <div class="row justify-content-center">
             <div class="col-xl-6">
                 <div class="section__title white-title text-center mb-50">
-                    <span class="sub-title">How We Start Journey</span>
-                    <h2 class="title">Start your Learning Journey Today!</h2>
+                    <span class="sub-title">Bagaimana Kami Memulai Perjalanan</span>
+                    <h2 class="title">Mulailah Perjalanan Belajar Anda Hari ini!</h2>
                     <p>Groove’s intuitive shared inbox makesteam members together <br> organize, prioritize and.In this episode.</p>
                 </div>
             </div>
@@ -1349,10 +1320,10 @@
                             </div>
                         </div>
                         <div class="instructor__content-two">
-                            <h3 class="title"><a href="contact.html">Become a Instructor</a></h3>
+                            <h3 class="title"><a href="contact.html">Jadilah Mentor</a></h3>
                             <p>To take a trivial example, which of us undertakes physical exercise yes is this happen here.</p>
                             <div class="tg-button-wrap">
-                                <a href="contact.html" class="btn arrow-btn">Apply Now <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
+                                <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                             </div>
                         </div>
                     </div>
@@ -1369,10 +1340,10 @@
                             </div>
                         </div>
                         <div class="instructor__content-two">
-                            <h3 class="title"><a href="contact.html">Become a Student</a></h3>
+                            <h3 class="title"><a href="contact.html">Jadilah Murid</a></h3>
                             <p>Join millions of people from around the world learning together. Online learning.</p>
                             <div class="tg-button-wrap">
-                                <a href="contact.html" class="btn arrow-btn">Apply Now <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
+                                <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                             </div>
                         </div>
                     </div>
@@ -1389,8 +1360,8 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section__title text-center mb-40">
-                    <span class="sub-title">News & Blogs</span>
-                    <h2 class="title">Our Latest News Feed</h2>
+                    <span class="sub-title">Berita $ Event</span>
+                    <h2 class="title">Berita Terbaru</h2>
                     <p>when known printer took a galley of type scrambl edmake</p>
                 </div>
             </div>
