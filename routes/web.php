@@ -73,7 +73,7 @@ Route::prefix('password')->name('password.')->group(function () {
 // ================== ADMIN ==================
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth_custom')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('home', function () {
         return view('admin.index');
