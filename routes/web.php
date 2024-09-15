@@ -74,6 +74,15 @@ Route::prefix('events')->name('events.')->group(function () {
     })->name('detail.event');
 });
 
+Route::prefix('news')->name('news.')->group(function(){
+    Route::get('news', function(){
+        return view('user.pages.news.index');
+    })->name('index');
+    Route::get('detail-news', function(){
+        return view('user.pages.news.detail-news');
+    })->name('detail.news');
+});
+
 // ================== ADMIN ==================
 
 
