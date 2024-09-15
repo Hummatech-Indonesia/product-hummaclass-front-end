@@ -83,6 +83,20 @@ Route::prefix('news')->name('news.')->group(function(){
     })->name('detail.news');
 });
 
+Route::get('contacts', function(){
+    return view('user.pages.contacts.index');
+})->name('contacts.index');
+
+Route::get('404', function(){
+    return view('user.errors.404');
+})->name('404.index');
+
+Route::get('list-mentors', function(){
+    return view('user.pages.list-mentors.index');
+})->name('list-mentors.index');
+
+
+
 // ================== ADMIN ==================
 
 
