@@ -64,7 +64,15 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
-
+Route::prefix('events')->name('events.')->group(function () {
+    Route::get('events', function(){
+        return view('user.pages.events.index');
+    })->name('index');
+    
+    Route::get('events-detail', function(){
+        return view('user.pages.events.detail-events');
+    })->name('detail.event');
+});
 
 // ================== ADMIN ==================
 
