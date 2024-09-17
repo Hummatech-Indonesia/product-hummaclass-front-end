@@ -22,7 +22,7 @@
                                 <li><a href="events-details.html">Kursus</a></li>
                                 <li><a href="events-details.html">Events</a></li>
                                 <li><a href="events-details.html">Berita</a></li>
-                                <li><a href="events-details.html">Hubungi Kami</a></li>
+                                <li><a href="{{ route('contacts.index') }}">Hubungi Kami</a></li>
                                 <li><a href="events-details.html">FAQ</a></li>
                             </ul>
                         </div>

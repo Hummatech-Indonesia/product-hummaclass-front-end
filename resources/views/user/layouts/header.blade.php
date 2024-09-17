@@ -28,9 +28,9 @@
                                             </li>
                                         </ul>
                                     </li> --}}
-                                    <li class="menu-item {{ Route::currentRouteName() == 'event.index' ? 'active' : '' }}"><a href="javascript:void(0)">Event</a>
+                                    <li class="menu-item {{ Route::currentRouteName() == 'events.index' ? 'active' : '' }}"><a href="{{ route('events.index') }}">Event</a>
                                     </li>
-                                    <li class="menu-item"><a href="javascript:void(0)">Berita</a>
+                                    <li class="menu-item {{ Route::currentRouteName() == 'news.index' ? 'active' : '' }}"><a href="{{ route('news.index') }}">Berita</a>
                                     </li>
                                     <li class="menu-item"><a href="javascript:void(0)">FAQ</a>
                                     </li>

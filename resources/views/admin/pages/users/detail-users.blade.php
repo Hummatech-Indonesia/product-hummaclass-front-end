@@ -69,12 +69,12 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            const id = @json($id);
+            const id = "{{ $id }}";
 
             if (id) {
                 $.ajax({
                     type: "GET",
-                    url: `http://127.0.0.1:8000/api/users/${id}`,
+                    url: `{{ config('app.api_url') }}/api/users/${id}`,
                     dataType: "json",
                     success: function(response) {
                         console.log(response);

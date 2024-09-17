@@ -43,13 +43,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('courses')->name('courses.')->group(function () {
 
     Route::resource('courses', CourseController::class)->only(['index', 'show']);
-    Route::get('courses-lesson', function () {
-        return view('user.pages.courses.courses-lesson');
-    })->name('course-lesson.index');
+    Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index');
 });
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
-
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -66,13 +63,40 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
+Route::prefix('events')->name('events.')->group(function () {
+    Route::get('events', function () {
+        return view('user.pages.events.index');
+    })->name('index');
 
+    Route::get('events-detail', function () {
+        return view('user.pages.events.detail-events');
+    })->name('detail.event');
+});
 
+Route::prefix('news')->name('news.')->group(function () {
+    Route::get('news', function () {
+        return view('user.pages.news.index');
+    })->name('index');
+    Route::get('detail-news', function () {
+        return view('user.pages.news.detail-news');
+    })->name('detail.news');
+});
 
+Route::get('contacts', function () {
+    return view('user.pages.contacts.index');
+})->name('contacts.index');
 
+Route::get('404', function () {
+    return view('user.errors.404');
+})->name('404.index');
 
+Route::get('list-mentors', function () {
+    return view('user.pages.list-mentors.index');
+})->name('list-mentors.index');
 
-
+Route::get('learning-path', function(){
+    return view('user.pages.learning-path.index');
+})->name('learning-path.index');
 
 // ================== ADMIN ==================
 
