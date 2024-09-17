@@ -51,7 +51,7 @@
                             <li class="courses__item-tag">
                                 <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li id="detail-rating" class="avg-rating"><i class="fas fa-star"></i>s</li>
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)</li>
                         </ul>
                         <h2 class="title mb-0" id="detail-title"></h2>
                         <p id="sub-title"></p>
@@ -126,7 +126,7 @@
                     $('#photo').attr('src', photo);
                     $('#sub-title').append(response.data.sub_title);
                     $('#detail-title').append(response.data.title);
-                    $('#detail-category').append(response.data.sub_category);
+                    $('#detail-category').append(response.data.category);
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(response.data.created);
                     $('#detail-rating').append(response.data.rating);
@@ -137,6 +137,10 @@
                     $.each(response.data.modules, function(index, value) {
                         $('#module-content').append(moduleContent(index, value));
                     });
+
+                    // tab konten kursus
+
+                    
                 },
                 error: function(xhr) {
                     console.log(xhr);
