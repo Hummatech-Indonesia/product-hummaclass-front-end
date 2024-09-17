@@ -47,28 +47,40 @@
                 </div>
             </div> --}}
                     <div class="courses__details-content lesson__details-content">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
-                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
-                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
-                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
-                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
-                                    data-bs-target="#reviews-tab-pane" type="button" role="tab"
-                                    aria-controls="reviews-tab-pane" aria-selected="false">Reviews</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            @include('user.pages.courses.tab-content.description')
-                            @include('user.pages.courses.tab-content.instructor')
-                            @include('user.pages.courses.tab-content.review')
-
+                        <div class="courses__overview-wrap">
+                            <h3 class="title">Course Description</h3>
+                            <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
+                                Risus commodo viverra maecenas accumsan lacus vel facilisis.dolor sit amet,
+                                consectetur adipiscing elited do eiusmod tempor incididunt ut labore et dolore magna
+                                aliqua.</p>
+                            <h3 class="title">What you'll learn in this course?</h3>
+                            <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
+                                Risus commodo viverra maecenas accumsan.</p>
+                            <ul class="about__info-list list-wrap">
+                                <li class="about__info-list-item">
+                                    <i class="flaticon-angle-right"></i>
+                                    <p class="content">Work with color & Gradients & Grids</p>
+                                </li>
+                                <li class="about__info-list-item">
+                                    <i class="flaticon-angle-right"></i>
+                                    <p class="content">All the useful shortcuts</p>
+                                </li>
+                                <li class="about__info-list-item">
+                                    <i class="flaticon-angle-right"></i>
+                                    <p class="content">Be able to create Flyers, Brochures, Advertisements</p>
+                                </li>
+                                <li class="about__info-list-item">
+                                    <i class="flaticon-angle-right"></i>
+                                    <p class="content">How to work with Images & Text</p>
+                                </li>
+                            </ul>
+                            <p class="last-info">Morem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse
+                                ultrices gravida. Risus commodo viverra maecenas accumsan.Dorem ipsum dolor sit
+                                amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                dolore magn.</p>
                         </div>
                     </div>
                 </div>
@@ -84,7 +96,6 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
-
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/list-module/" + id,
@@ -101,7 +112,7 @@
                 error: function(xhr) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
+                        text: "Tidak dapat memuat data materi.",
                         icon: "error"
                     });
                 }
@@ -122,7 +133,7 @@
                                 data-bs-target="#collapse-${index}" aria-expanded="true" aria-controls="collapse-${index}">
                                 ${value.title}
                             </button>
-                            </h2>
+                        </h2>
                         <div id="collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="heading-${index}"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
@@ -134,6 +145,26 @@
                     </div>
                 `;
             }
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data materi.",
+                        icon: "error"
+                    });
+                }
+            });
         });
     </script>
     {{-- <script>
