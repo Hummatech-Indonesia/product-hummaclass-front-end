@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item mt-3">
+            <div class="accordion-item mt-2">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
                         2
@@ -134,7 +134,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item mt-3">
+            <div class="accordion-item">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
                         3

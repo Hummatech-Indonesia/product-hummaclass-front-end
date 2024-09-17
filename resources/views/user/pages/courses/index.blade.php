@@ -60,6 +60,4 @@
 <!-- all-courses-end -->
 @endsection
 
-@section('script')
 
-@endsection
