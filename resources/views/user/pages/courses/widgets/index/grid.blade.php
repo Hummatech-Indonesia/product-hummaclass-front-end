@@ -51,18 +51,17 @@
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
-                            <img src="assets/img/courses/course_thumb01.jpg" alt="img">
+                            <img src="${value.photo}" alt="img">
                         </a>
                     </div>
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="#">Design</a>
+                                <a href="#">${value.category}</a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
+                            <li class="avg-rating"><i class="fas fa-star"></i> (${value.rating} Reviews)</li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.id}">The Complete Graphic
-                                Design for Beginners</a></h5>
+                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.id}">${value.title}</a></h5>
                         <p class="author">By <a href="#">Jenny Wilson</a></p>
                         <div class="courses__item-bottom d-flex justify-content-between">
                             <div class="button">
@@ -72,7 +71,7 @@
                                 </a>
                             </div>
                             <div>
-                                <h6 class="price">${value.price}</h6>
+                                <h6 class="price">Rp. ${value.price}</h6>
                             </div>
                         </div>
                     </div>
