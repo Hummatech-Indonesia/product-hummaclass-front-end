@@ -108,74 +108,30 @@
             });
 
             function contentCourse(index, value) {
+                const subModules = value.sub_modules.map(subModule => {
+                    return `<li class="course-item open-item">
+                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
+                                    <span>${subModule.title}</span>
+                                </a>
+                            </li>`;
+                }).join('');
                 return `
                     <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Introduction
-                                        <span>1/3</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        {{-- <ul class="list-wrap">
-                                        <li class="course-item open-item">
-                                            <a href="#" class="course-item-link active">
-                                                <span class="item-name">Course Installation</span>
-                                                <div class="course-item-meta">
-                                                    <span class="item-meta duration">03:03</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="course-item">
-                                            <a href="#" class="course-item-link">
-                                                <span class="item-name">Create a Simple React App</span>
-                                                <div class="course-item-meta">
-                                                    <span class="item-meta duration">07:48</span>
-                                                    <span class="item-meta course-item-status">
-                                                        <img src="{{ asset('assets/img/icons/lock.svg') }}" alt="icon">
-                                    </span>
-                                </div>
-                                </a>
-                                </li>
-                                <li class="course-item">
-                                    <a href="#" class="course-item-link">
-                                        <span class="item-name">React for the Rest of us</span>
-                                        <div class="course-item-meta">
-                                            <span class="item-meta duration">10:48</span>
-                                            <span class="item-meta course-item-status">
-                                                <img src="{{ asset('assets/img/icons/lock.svg') }}" alt="icon">
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                                </ul> --}}
-                                        <ul class="list-wrap">
-                                            <li class="course-item open-item"
-                                                onclick="changeContent('Course Installation', 'assets/video/installation.mp4', 'Course Description Installation')">
-                                                <a href="#" class="course-item-link active">
-                                                    <span class="item-name">Course Installation</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">03:03</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item open-item"
-                                                onclick="changeContent('React for Beginners', 'assets/video/react.mp4')">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">React for Beginners</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">05:10</span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
+                        <h2 class="accordion-header" id="heading-${index}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-${index}" aria-expanded="true" aria-controls="collapse-${index}">
+                                ${value.title}
+                            </button>
+                            </h2>
+                        <div id="collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="heading-${index}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="list-wrap" id="list-warp">
+                                    ${subModules}
+                                </ul>
                             </div>
+                        </div>
+                    </div>
                 `;
             }
         });
