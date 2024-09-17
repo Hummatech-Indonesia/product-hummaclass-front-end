@@ -23,7 +23,6 @@ class CourseController extends Controller
 
     public function courseLesson($id)
     {
-        dd($id);
-        return view('user.pages.courses.courses-lesson');
+        return view('user.pages.courses.courses-lesson', compact('id'));
     }
 }
