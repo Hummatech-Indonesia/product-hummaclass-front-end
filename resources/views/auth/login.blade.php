@@ -157,9 +157,11 @@
                     , type: 'POST'
                     , data: formData
                     , success: function(response) {
+                        console.log(response);
+                        
                         $.ajax({
                             url: "{{ route('save-token') }}", // URL untuk menyimpan token ke session
-                            type: 'POST'
+                            type: 'GET'
                             , data: {
                                 _token: "{{ csrf_token() }}", // Kirim CSRF token untuk keamanan
                                 token: response.data
@@ -175,6 +177,8 @@
                         });
                     }
                     , error: function(error) {
+                        console.log(error);
+                        
                         let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;
 

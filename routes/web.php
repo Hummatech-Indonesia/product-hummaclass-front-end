@@ -33,7 +33,8 @@ Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])
 
 
 Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
-Route::post('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
+Route::get('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
+Route::get('save-token-google', [App\Http\Controllers\AuthController::class, 'saveTokenGoogle'])->name('save-token-google');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

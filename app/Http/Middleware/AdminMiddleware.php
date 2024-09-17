@@ -15,7 +15,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        foreach (session('user')['roles'] as $role) {
+        $user = session('user');
+        foreach ($user['roles'] as $role) {
             if ($role['name'] == 'admin') {
                 return $next($request);
             } else {

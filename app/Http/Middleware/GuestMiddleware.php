@@ -15,7 +15,10 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        foreach (session('user')['roles'] as $role) {
+        // dd(session('user'));
+        // $user = json_decode(session('user'), true);
+        $user = session('user');
+        foreach ($user['roles'] as $role) {
             if ($role['name'] == 'guest') {
                 return $next($request);
             } else {
