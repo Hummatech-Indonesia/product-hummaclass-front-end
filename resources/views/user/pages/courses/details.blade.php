@@ -115,7 +115,6 @@
             let photo;
             var id = "{{ $id }}";
             $.ajax({
-                const id = $(this).data('id')
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
                 headers: {
