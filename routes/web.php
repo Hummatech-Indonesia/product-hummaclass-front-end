@@ -95,7 +95,9 @@ Route::get('list-mentors', function(){
     return view('user.pages.list-mentors.index');
 })->name('list-mentors.index');
 
-
+Route::get('learning-path', function(){
+    return view('user.pages.learning-path.index');
+})->name('learning-path.index');
 
 // ================== ADMIN ==================
 

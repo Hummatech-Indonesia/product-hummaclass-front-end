@@ -38,7 +38,7 @@
         transform-origin: 0 0;
         width: 125%;
         height: 700px;
-        overflow-x: hidden; ">
+        overflow-x: hidden;">
 
     <!--Preloader-->
     <div id="preloader">
