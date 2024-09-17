@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('user.pages.courses.index');
     }
 
-    public function show() {
-        return view('user.pages.courses.details');
-    }   
+    public function show($id)
+    {
+        return view('user.pages.courses.details', compact('id'));
+    }
 
-    public function student() {
+    public function student()
+    {
         return view('user.pages.dashboard.student.courses');
     }
 }

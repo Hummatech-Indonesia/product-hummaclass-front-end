@@ -21,8 +21,8 @@ class AdminCourseController extends Controller
     {
         return view('admin.pages.courses.create');
     }
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.pages.courses.edit-fix');
+        return view('admin.pages.courses.edit-fix', compact('id'));
     }
 }

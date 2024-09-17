@@ -5,7 +5,7 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h5 class="fw-semibold mb-8">Tambah Kursus</h5>
+                    <h5 class="fw-semibold mb-8">Edit Kursus</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
@@ -27,10 +27,10 @@
 
     <div class="card">
         <div class="card-header bg-white border-bottom">
-            <h5 class="mb-0">Tambah Kursus</h5>
+            <h5 class="mb-0">Edit Kursus</h5>
         </div>
         <div class="card-body">
-            <form action="#" enctype="multipart/form-data" id="edit-course-form">
+            <form action="#" enctype="multipart/form-data" id="create-course-form">
                 <div class="row">
                     <div class="col col-md-12">
                         <label for="" class="form-label">Thumbnail</label>
@@ -52,23 +52,28 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col col-md-6">
+                        <label for="" class="form-label">Status</label>
+                        <select name="is_premium" id="is_premium" class="form-select">
+
+                        </select>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col col-md-6">
                         <label for="" class="form-label">Harga</label>
                         <input type="number" class="form-control" id="price" name="price">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Status</label>
-                        <select name="is_premium" id="is_premium" class="form-select">
-                            <option value="1">Premium</option>
-                            <option value="0">Gratis</option>
+                    <div class="col col-md-6 mt-3">
+                        <label for="" class="form-label">Kategori</label>
+                        <select name="category_id" id="category_id" class="form-select">
+                            <option value="">Pilih Kategori</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6 mt-3">
-                        <label for="" class="form-label">Kategori</label>
+                        <label for="" class="form-label">Sub Kategori</label>
                         <select name="sub_category_id" id="sub_category_id" class="form-select">
-                            <option value="1">Kategori 1</option>
-                            <option value="0">Kategori 2</option>
+                            <option value="">Pilih Sub Kategori</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
@@ -76,45 +81,56 @@
 
                 <div class="mt-3">
                     <label for="" class="form-label">Deskripsi</label>
-                    <div class="text-danger ivalid-feedback-description d-none">sdfasdfasdsf</div>
                     <textarea id="description" name="description"></textarea>
+                    <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-actions mt-3">
                     <div class="text-end">
                         <button type="submit" class="btn btn-light-primary text-primary font-medium">
                             Tambah
                         </button>
-                        <a href="{{ route('admin.courses.index') }}" class="btn btn-light-danger text-danger font-medium">
+                        <button type="reset" class="btn btn-light-danger text-danger font-medium">
                             Kembali
-                        </a>
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-
 @endsection
 @section('script')
     <script>
         $(document).ready(function() {
+            var id = "{{ $id }}";
             $('#description').summernote();
 
             function setValue(data) {
                 $('#title').val(data.title);
                 $('#sub_title').val(data.sub_title);
                 $('#price').val(data.price);
-                $(`#status option[text="${data.status}"]`)
-                $('#status').val(data.status);
-                // $('#sub_category_id').val(data.sub_category);
-                $('#is_premium').val(data.is_premium);
                 $('#description').summernote('code', data.description);
-                // console.log(data);
 
+                $('#is_premium').append(status(data.is_premium));
             }
-            // get
+
+            function status(is_premium) {
+                let option;
+                if (is_premium == 0) {
+                    option = `<option value="1">Premium</option>
+                            <option selected value="0">Gratis</option>`;
+                } else {
+                    option = `<option selected value="1">Premium</option>
+                            <option value="0">Gratis</option>`;
+                }
+                return option
+            }
+
+
+
+            // get course
             $.ajax({
                 type: "GET",
-                url: "{{config('app.api_url')}}" + "/api/courses/" + "{{ request()->course }}",
+                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
                 dataType: "json",
                 success: function(response) {
                     setValue(response.data);
@@ -128,20 +144,61 @@
                 }
             });
 
+            //get category
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/categories",
+                dataType: "json",
+                success: function(response) {
+
+                    $.each(response.data.data, function(index, value) {
+                        $('#category_id').append(
+                            `<option value="${value.id}">${value.name}</option>`);
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            function subCategory(categoryId) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/sub-categories/" + categoryId,
+                    dataType: "json",
+                    success: function(response) {
+
+                        $.each(response.data.data, function(index, value) {
+                            $('#sub_category_id').append(
+                                `<option value="${value.id}">${value.name}</option>`);
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
             // create
             $('#edit-course-form').submit(function(e) {
-                e.preventDefault(); // Mencegah submit form secara default
+                e.preventDefault();
 
-                // Mengonversi data form ke objek
                 var formData = {};
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
 
 
-                // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: "{{config('app.api_url')}}" + "/api/courses/{{ request()->course }}",
+                    url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
                     type: 'PATCH',
                     data: formData,
                     success: function(response) {
@@ -156,12 +213,6 @@
                     error: function(error) {
                         let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;
-
-                        // console.log(errors);
-
-                        // console.log(formData);
-
-
                         if (errors) {
                             for (let key in errors) {
                                 if (errors.hasOwnProperty(key)) {

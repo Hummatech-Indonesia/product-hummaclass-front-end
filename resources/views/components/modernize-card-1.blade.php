@@ -5,7 +5,7 @@
                 let card = `<div class="col">
                                 <div class="card">
                                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${data.sub_category}</button>
-                                    <img src="${data.photo}" class="card-img-top" alt="...">
+                                    <img src="{{ config('app.api_url') }}${data.photo}" class="card-img-top" alt="...">
                                     <div class="card-body p-3">
                                         <p class="card-title fw-bolder">${data.title}</p>
                                         <p class="card-text">${data.sub_title}</p>
@@ -35,10 +35,10 @@
                                                     <path d="M9 8h6" />
                                                 </svg>
                                 
-                                                5 Materi
+                                                ${data.modules_count} Materi
                                             </p>
                                 
-                                            <p class="text-muted fs-2">20 Terjual</p>
+                                            <p class="text-muted fs-2">${data.user_courses_count} Terjual</p>
                                         </div>
                                 
                                         <div class="row">
@@ -80,12 +80,12 @@
                                 </div>
                             </div>`
                 $('#list-card').append(card);
-            }        
-                        
-            
+            }
+
+
             $.ajax({
                 type: "GET",
-                url: "{{config('app.api_url')}}" + "/api/courses",
+                url: "{{ config('app.api_url') }}" + "/api/courses",
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
                 },
@@ -96,7 +96,7 @@
                     });
 
                     $('.btn-delete').click(function() {
-                        $('#deleteForm').attr('action', "{{config('app.api_url')}}" +
+                        $('#deleteForm').attr('action', "{{ config('app.api_url') }}" +
                             "/api/courses/" + $(this).data(
                                 'id'));
                         $('#modal-delete').modal('show');

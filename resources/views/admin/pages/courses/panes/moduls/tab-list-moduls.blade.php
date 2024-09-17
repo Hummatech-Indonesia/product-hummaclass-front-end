@@ -15,38 +15,41 @@
     </form>
 </div>
 <div class="row" id="cardBody">
+
 </div>
 @push('script')
-<script>
-    $(document).ready(function() {
-        var id = "{{ $id }}";
-        $.ajax({
-            type: "GET",
-            url: "{{config('app.api_url')}}" + "/api/modules/" + id,
-            headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
-            },
-            dataType: "json",
-            success: function(response) {
+    <script>
+        $(document).ready(function() {
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.data.length === 0) {
+                        $('#cardBody').append(empty());
+                    } else {
+                        $.each(response.data, function(index, value) {
+                            $('#cardBody').append(card(index, value));
+                        });
+                    }
 
-                $.each(response.data, function(index, value) {
-                    $('#cardBody').append(card(index,
-                        value));
-                });
-
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
-                });
-            }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
         });
-    });
 
-    function card(index, value) {
-        return `<div class="col-md-12">
+        function card(index, value) {
+            return `<div class="col-md-12">
         <div class="card position-relative">
             <div class="d-flex justify-content-between align-items-center my-3">
                 <div class="p-2"
@@ -55,7 +58,7 @@
                         </span>
                 </div>
                 <div class="d-flex gap-2 pe-4">
-                    <a href="{{ route('admin.modules.show', 2) }}" class="btn text-white"
+                    <a href="{{ route('admin.modules.show', ['']) }}/${value.id}" class="btn text-white"
                         style="background-color: var(--purple-primary)">
                         Lihat Modul
                         <svg xmlns="http://www.w3.org/2000/svg" class="ms-1" width="17" height="17"
@@ -125,6 +128,6 @@
             </div>
         </div>
     </div>`;
-    }
-</script>
+        }
+    </script>
 @endpush
