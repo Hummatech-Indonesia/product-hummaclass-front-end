@@ -96,6 +96,9 @@
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + session('hummaclass-token');
+                },
                 dataType: "json",
                 data: {
                     name: $('#search-name').val(),
