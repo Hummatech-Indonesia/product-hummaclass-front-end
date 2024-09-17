@@ -20,4 +20,10 @@ class CourseController extends Controller
     {
         return view('user.pages.dashboard.student.courses');
     }
+
+    public function courseLesson($id)
+    {
+        dd($id);
+        return view('user.pages.courses.courses-lesson');
+    }
 }

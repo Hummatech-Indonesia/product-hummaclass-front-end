@@ -113,6 +113,7 @@
     <script>
         $(document).ready(function() {
             let photo;
+            var id = "{{ $id }}";
             $.ajax({
                 const id = $(this).data('id')
                 type: "GET",
@@ -134,6 +135,9 @@
                     // tab deskripsi
                     $('#description-title').append(response.data.title);
                     $('#description-description').append(response.data.description);
+                    $.each(response.data.modules, function(index, value) {
+                        $('#module-content').append(moduleContent(index, value));
+                    });
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -145,6 +149,49 @@
                     });
                 }
             });
+
+            function moduleContent(index, value) {
+                const subModules = value.sub_modules.map(course => {
+                    return `<li class="course-item open-item">
+                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${value.slug}" class="">
+                                    <span>${course.title}</span>
+                                </a>
+                            </li>`;
+                }).join('');
+                return `
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-${index}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse-${index}" aria-expanded="true" aria-controls="collapse-${index}">
+                                ${value.title}
+                            </button>
+                            <p>${value.sub_title}</p>
+                            <div class="d-flex">
+                            <p class="rounded" style="background-color:#FEF5EE;color:black;padding:0.4rem;font-weight:700;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" style="color:#FFB649;" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+                                    <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1"/>
+                                </svg>
+                                8 Kuis</p>
+                            <p class="rounded" style="background-color:#FEF5EE;color:black;padding:0.4rem;font-weight:700; margin-left:1rem">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" style="color:#FFB649; margin-bottom:0.2rem" height="16" fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
+                                    <path d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"/>
+                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1"/>
+                                </svg>
+                                8 Kuis</p>
+                            </div>
+                            </h2>
+                        <div id="collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="heading-${index}"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul class="list-wrap" id="list-warp">
+                                    ${subModules}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
         });
     </script>
 @endsection
