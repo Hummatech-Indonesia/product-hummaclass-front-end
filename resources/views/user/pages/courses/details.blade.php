@@ -51,7 +51,8 @@
                             <li class="courses__item-tag">
                                 <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)</li>
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
+                            </li>
                         </ul>
                         <h2 class="title mb-0" id="detail-title"></h2>
                         <p id="sub-title"></p>
@@ -140,7 +141,7 @@
 
                     // tab konten kursus
 
-                    
+
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -154,10 +155,10 @@
             });
 
             function moduleContent(index, value) {
-                const subModules = value.sub_modules.map(course => {
+                const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${value.slug}" class="">
-                                    <span>${course.title}</span>
+                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
+                                    <span>${subModule.title}</span>
                                 </a>
                             </li>`;
                 }).join('');

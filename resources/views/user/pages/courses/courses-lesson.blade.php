@@ -21,8 +21,95 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="lesson__content">
                         <h2 class="title">Konten Kursus</h2>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
+                        <div class="accordion" id="content-course">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-8">
+                    {{-- <div class="lesson__video-wrap">
+                <div class="lesson__video-wrap-top">
+                    <div class="lesson__video-wrap-top-left">
+                        <a href="#"><i class="flaticon-arrow-right"></i></a>
+                        <span>The Complete Design Course: From Zero to Expert!</span>
+                    </div>
+                    <div class="lesson__video-wrap-top-right">
+                        <a href="#"><i class="fas fa-times"></i></a>
+                    </div>
+                </div>
+                <video id="player" playsinline controls data-poster="assets/img/bg/video_bg.webp">
+                    <source src="assets/video/video.mp4" type="video/mp4" />
+                    <source src="https://html.themegenix.com/path/to/video.webm" type="video/webm" />
+                </video>
+                <div class="lesson__next-prev-button">
+                    <button class="prev-button" title="Create a Simple React App"><i class="flaticon-arrow-right"></i></button>
+                    <button class="next-button" title="React for the Rest of us"><i class="flaticon-arrow-right"></i></button>
+                </div>
+            </div> --}}
+                    <div class="courses__details-content lesson__details-content">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
+                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
+                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+                                    data-bs-target="#reviews-tab-pane" type="button" role="tab"
+                                    aria-controls="reviews-tab-pane" aria-selected="false">Reviews</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            @include('user.pages.courses.tab-content.description')
+                            @include('user.pages.courses.tab-content.instructor')
+                            @include('user.pages.courses.tab-content.review')
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- lesson-area-end -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            let photo;
+            var id = "{{ $id }}";
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/list-module/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.each(response.data, function(index, value) {
+                        $('#content-course').append(contentCourse(index, value));
+                    });
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            function contentCourse(index, value) {
+                return `
+                    <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -89,180 +176,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Capacitance and Inductance
-                                        <span>1/5</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <ul class="list-wrap">
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Course Installation</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">03:03</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Create a Simple React App</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">07:48</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">React for the Rest of us</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">10:48</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Create a Simple React App</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">07:48</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">React for the Rest of us</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">10:48</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        Final Audit
-                                        <span>1/2</span>
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <ul class="list-wrap">
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Course Installation</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">03:03</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Create a Simple React App</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta duration">07:48</span>
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-9 col-lg-8">
-                    {{-- <div class="lesson__video-wrap">
-                <div class="lesson__video-wrap-top">
-                    <div class="lesson__video-wrap-top-left">
-                        <a href="#"><i class="flaticon-arrow-right"></i></a>
-                        <span>The Complete Design Course: From Zero to Expert!</span>
-                    </div>
-                    <div class="lesson__video-wrap-top-right">
-                        <a href="#"><i class="fas fa-times"></i></a>
-                    </div>
-                </div>
-                <video id="player" playsinline controls data-poster="assets/img/bg/video_bg.webp">
-                    <source src="assets/video/video.mp4" type="video/mp4" />
-                    <source src="https://html.themegenix.com/path/to/video.webm" type="video/webm" />
-                </video>
-                <div class="lesson__next-prev-button">
-                    <button class="prev-button" title="Create a Simple React App"><i class="flaticon-arrow-right"></i></button>
-                    <button class="next-button" title="React for the Rest of us"><i class="flaticon-arrow-right"></i></button>
-                </div>
-            </div> --}}
-                    <div class="courses__details-content lesson__details-content">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
-                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
-                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
-                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
-                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
-                                    data-bs-target="#reviews-tab-pane" type="button" role="tab"
-                                    aria-controls="reviews-tab-pane" aria-selected="false">Reviews</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            @include('user.pages.courses.tab-content.description')
-                            @include('user.pages.courses.tab-content.instructor')
-                            @include('user.pages.courses.tab-content.review')
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </section>
-    <!-- lesson-area-end -->
-@endsection
-
-@section('script')
+                `;
+            }
+        });
+    </script>
     {{-- <script>
     function changeContent(title, videoSrc) {
         // Mengubah judul video
@@ -278,7 +195,7 @@
 
 </script> --}}
 
-    <script>
+    {{-- <script>
         function changeContent(title, videoSrc, description) {
             // Mengubah judul tugas
             document.getElementById('course-title').textContent = title;
@@ -293,5 +210,5 @@
             videoSource.src = videoSrc; // Mengubah sumber video
             videoElement.load(); // Memuat ulang video dengan sumber yang baru
         }
-    </script>
+    </script> --}}
 @endsection
