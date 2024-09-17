@@ -51,7 +51,7 @@
                             <li class="courses__item-tag">
                                 <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i> (4.5 Reviews)</li>
+                            <li id="detail-rating" class="avg-rating"><i class="fas fa-star"></i>s</li>
                         </ul>
                         <h2 class="title mb-0" id="detail-title"></h2>
                         <p id="sub-title"></p>
@@ -95,7 +95,7 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             @include('user.pages.courses.widgets.details.overview')
-                            @include('user.pages.courses.widgets.kdetails.curriculumn')
+                            @include('user.pages.courses.widgets.details.curriculumn')
                             @include('user.pages.courses.widgets.details.task-list')
                             @include('user.pages.courses.widgets.details.instructors')
                             @include('user.pages.courses.widgets.details.reviews')
@@ -114,8 +114,9 @@
         $(document).ready(function() {
             let photo;
             $.ajax({
+                const id = $(this).data('id')
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses/{{ request()->course }}",
+                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
                 },
@@ -128,6 +129,7 @@
                     $('#detail-category').append(response.data.sub_category);
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(response.data.created);
+                    $('#detail-rating').append(response.data.rating);
 
                     // tab deskripsi
                     $('#description-title').append(response.data.title);
