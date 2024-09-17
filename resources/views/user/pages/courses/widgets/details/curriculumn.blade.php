@@ -1,10 +1,8 @@
 <div class="tab-pane fade" id="curriculum-tab-pane" role="tabpanel" aria-labelledby="curriculum-tab" tabindex="0">
     <div class="courses__curriculum-wrap">
-        <h3 class="title">Course Curriculum</h3>
-        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan.</p>
 
         <div class="accordion" id="module-content">
-            <div class="accordion-item">
+            {{-- <div class="accordion-item">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
                         1
@@ -68,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item mt-2">
+            <div class="accordion-item mt-3">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
                         2
@@ -134,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item mt-3">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
                         3
@@ -200,7 +198,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
