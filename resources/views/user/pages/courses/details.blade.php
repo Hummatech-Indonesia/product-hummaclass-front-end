@@ -150,10 +150,10 @@
             });
 
             function moduleContent(index, value) {
-                const subModules = value.sub_modules.map(subModule => {
+                const subModules = value.sub_modules.map(course => {
                     return `<li class="course-item open-item">
-                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
-                                    <span>${subModule.title}</span>
+                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${value.slug}" class="">
+                                    <span>${course.title}</span>
                                 </a>
                             </li>`;
                 }).join('');
