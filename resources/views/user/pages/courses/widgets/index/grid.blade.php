@@ -50,7 +50,7 @@
         return `<div class="col-lg-4">
                     <div class="courses__item shine__animate-item">
                         <div class="courses__item-thumb">
-                            <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
+                            <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
                                 <img src="${value.photo}" alt="img">
                             </a>
                         </div>
@@ -61,11 +61,11 @@
                                 </li>
                                 <li class="avg-rating"><i class="fas fa-star"></i> (${value.rating} Reviews)</li>
                             </ul>
-                            <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.id}">${value.title}</a></h5>
+                            <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
                             <p class="author">By <a href="#">Jenny Wilson</a></p>
                             <div class="courses__item-bottom d-flex justify-content-between">
                                 <div class="button">
-                                    <a href="{{ route('courses.courses.show', '') }}/${value.id}">
+                                    <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
                                         <span class="text">Lihat Detail</span>
                                         <i class="flaticon-arrow-right"></i>
                                     </a>
