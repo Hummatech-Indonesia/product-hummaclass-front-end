@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- breadcrumb-area -->
-<div class="breadcrumb__area breadcrumb__bg breadcrumb__bg-two" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
+<div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -129,6 +129,14 @@
                 // tab ulasan
                 $('#review-rating').append(response.data.rating);
                 $('#review-rating-count').append(response.data.course_review_count);
+                // $('#review-users').append(response.data.course_reviews.user.name);
+                // console.log(response.data.course_reviews);
+
+                
+                response.data.course_reviews.forEach(review => {
+                    console.log(review.user.name);
+                    
+                });
 
             }
             , error: function(xhr) {
@@ -194,4 +202,5 @@
     });
 
 </script>
+
 @endsection
