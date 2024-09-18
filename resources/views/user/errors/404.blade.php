@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg" data-background="assets/img/bg/breadcrumb_bg.jpg" style="padding: 50px 0;">
+<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg" style="padding: 50px 0;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -36,11 +36,11 @@
             <div class="col-lg-8">
                 <div class="error-wrap text-center">
                     <div class="error-img">
-                        <img src="{{ asset('assets/img/no-data/empty.svg') }}" alt="img" class="injectable">
+                        <img src="{{ asset('assets/img/no-data/404.png') }}" alt="img" class="injectable">
                     </div>
                     <div class="error-content pt-5">
-                        <h2>Halaman Kosong</span></h2>
-                        <h6>Tidak ada data yang ditampilakan di halaman ini</h6>
+                        <h2>404 Not Found</span></h2>
+                        <h6>Kembali ke halaman Sebelumnya</h6>
                     </div>
                 </div>
             </div>
