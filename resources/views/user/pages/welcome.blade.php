@@ -333,7 +333,7 @@
                                         {{-- <div class="swiper-slide">
                                         <div class="courses__item shine__animate-item">
                                             <div class="courses__item-thumb">
-                                                <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
+                                                <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
                                                     <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" alt="img">
                                                 </a>
                                             </div>
@@ -1110,7 +1110,7 @@
         <div class="swiper-slide">
             <div class="courses__item shine__animate-item">
                 <div class="courses__item-thumb">
-                    <a href="{{ route('courses.courses.show', '') }}/${value.id}" class="shine__animate-link">
+                    <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
                         <img src="{{ config('app.api_url') }}${value.photo}" alt="img">
                     </a>
                 </div>
@@ -1121,10 +1121,10 @@
                         </li>
                         <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
                     </ul>
-                    <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.id}">${value.title}</a></h5>
+                    <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
                     <div class="courses__item-bottom">
                         <div class="button">
-                            <a href="{{ route('courses.courses.show', '') }}/${value.id}">
+                            <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
                                 <span class="text">Daftar</span>
                                 <i class="flaticon-arrow-right"></i>
                             </a>
