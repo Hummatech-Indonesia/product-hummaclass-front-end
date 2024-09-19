@@ -1,5 +1,6 @@
 <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
-    <div class="row courses__grid-wrap row-cols-1 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1" id="courses-grid">
+    <div class="row courses__grid-wrap row-cols-1 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1"
+        id="courses-grid">
     </div>
     <nav class="pagination__wrap mt-30">
         <ul class="list-wrap">
@@ -13,56 +14,54 @@
 
 
 @push('script')
-<script>
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET"
-            , url: "{{config('app.api_url')}}" + "/api/courses"
-            , headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
-            }
-            , dataType: "json"
-            , success: function(response) {
-                console.log(response);
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses",
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
 
 
-                $.each(response.data, function(index, value) {
-                    $('#courses-grid').append(card(index
-                        , value));
-                    // $('#courses-list').append(card(index
-                    //     , value));
-                });
+                    $.each(response.data, function(index, value) {
+                        $('#courses-grid').append(card(index, value));
+                        // $('#courses-list').append(card(index
+                        //     , value));
+                    });
 
-            }
-            , error: function(xhr) {
-                console.log(xhr);
+                },
+                error: function(xhr) {
+                    console.log(xhr);
 
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
         });
-    });
 
-    function card(index, value) {
-        return `<div class="col-lg-4">
+        function card(index, value) {
+            return `<div class="col-lg-4">
                     <div class="courses__item shine__animate-item">
                         <div class="courses__item-thumb">
                             <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                                <img src="${value.photo}" alt="img">
+                                <img src="{{ config('app.api_url') }}${value.photo}" alt="img">
                             </a>
                         </div>
                         <div class="courses__item-content">
                             <ul class="courses__item-meta list-wrap">
                                 <li class="courses__item-tag">
-                                    <a href="#">${value.category}</a>
+                                    <a href="#">${value.sub_category}</a>
                                 </li>
-                                <li class="avg-rating"><i class="fas fa-star"></i> (${value.rating} Reviews)</li>
+                                <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
                             </ul>
                             <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
-                            <p class="author">By <a href="#">Jenny Wilson</a></p>
                             <div class="courses__item-bottom d-flex justify-content-between">
                                 <div class="button">
                                     <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
@@ -77,7 +76,6 @@
                         </div>
                     </div>
                 </div>`;
-    }
-
-</script>
+        }
+    </script>
 @endpush

@@ -1104,7 +1104,6 @@
         });
 
         function card(index, value) {
-            console.log(value.photo);
 
             return `
         <div class="swiper-slide">
@@ -1117,7 +1116,7 @@
                 <div class="courses__item-content">
                     <ul class="courses__item-meta list-wrap">
                         <li class="courses__item-tag">
-                            <a href="{{ route('courses.courses.index') }}">${value.category}</a>
+                            <a href="{{ route('courses.courses.index') }}">${value.sub_category}</a>
                         </li>
                         <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
                     </ul>
