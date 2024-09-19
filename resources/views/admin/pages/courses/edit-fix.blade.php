@@ -102,6 +102,8 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
+            console.log(id);
+            
             $('#description').summernote();
 
             function setValue(data) {
@@ -131,6 +133,9 @@
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                headers: {
+                    'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                },
                 dataType: "json",
                 success: function(response) {
                     setValue(response.data);

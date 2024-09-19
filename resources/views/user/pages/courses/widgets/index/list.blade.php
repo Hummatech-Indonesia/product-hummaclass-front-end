@@ -19,7 +19,7 @@
             type: "GET"
             , url: "{{ env('API_URL') }}" + "/api/courses"
             , headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {

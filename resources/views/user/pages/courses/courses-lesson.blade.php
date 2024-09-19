@@ -113,7 +113,7 @@
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/list-module/" + id
             , headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {
@@ -163,7 +163,7 @@
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id
             , headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {
