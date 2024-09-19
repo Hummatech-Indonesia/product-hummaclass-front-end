@@ -102,8 +102,6 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
-            console.log(id);
-            
             $('#description').summernote();
 
             function setValue(data) {
