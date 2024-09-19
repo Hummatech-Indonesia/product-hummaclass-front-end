@@ -180,6 +180,9 @@
                 $.ajax({
                     type: "POST",
                     url: "{{config('app.api_url')}}/api/courses",
+                    headers: {
+                        'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                    },
                     data: formData,
                     dataType: "json",
                     contentType: false,
