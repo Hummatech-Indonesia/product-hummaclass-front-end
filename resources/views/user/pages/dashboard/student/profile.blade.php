@@ -66,7 +66,7 @@
                                         </li>
                                         <li><span>Nama</span> <span id="display-name"></span></li>
                                         {{-- <li><span>Nama Pengguna</span> <span id="display-username"></span></li> --}}
-                                        <li><span>Email</span> <span id="display-email">example</span></li>
+                                        <li><span>Email</span> <span id="display-email"></span></li>
                                         <li><span>Nomor Telepon</span> <span id="display-phone-number"></span></li>
                                         <li><span>Alamat</span> <span id="display-address"></span></li>
                                         {{-- <li><span>Skill</span> Application Developer</li>
@@ -76,7 +76,6 @@
                                     </ul>
                                     <form action="" id="edit-profile-form" class="d-none">
                                         <ul class="list-wrap">
-                                            <li><span>Bergabung Pada</span><span id="created"></span></li>
                                             <li><span>Nama</span> <input type="text" name="name" id="name"
                                                     class="form-control"></li>
                                             {{-- <li><span>Nama Pengguna</span> <input type="text" name="user_name"
@@ -123,7 +122,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{config('app.api_url')}}" + "/api/user",
+            url: "{{ config('app.api_url') }}" + "/api/user",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
@@ -154,7 +153,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{{config('app.api_url')}}" + "/api/profile-update",
+                url: "{{ config('app.api_url') }}" + "/api/profile-update",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -175,14 +174,26 @@
         });
 
         function append(data) {
-            console.log(data);
+            // console.log(data);
+            const dateStr = data.created_at;
+            const date = new Date(dateStr);
+
+            // Mengambil komponen tanggal dan waktu
+            const day = date.getDate();
+            const month = date.getMonth() + 1; // Bulan dimulai dari 0
+            const year = date.getFullYear();
+            const hours = String(date.getHours()).padStart(2, '0'); // Menambahkan nol di depan jika perlu
+            const minutes = String(date.getMinutes()).padStart(2, '0'); // Menambahkan nol di depan jika perlu
+
+            // Menggabungkan menjadi format yang diinginkan
+            const formattedDate = `${day}-${month}-${year}, ${hours}:${minutes}`;
 
             $('#display-name').text(data.name ?? '-');
             $('#display-username').text(data.username ?? '-');
             $('#display-email').text(data.email ?? '-');
             $('#display-phone-number').text(data.phone_number ?? '-');
             $('#display-address').text(data.address ?? '-');
-            $('#display-created').text(data.created_at);
+            $('#display-created').text(formattedDate);
 
             $('#name').val(data.name);
             $('#email').val(data.email);

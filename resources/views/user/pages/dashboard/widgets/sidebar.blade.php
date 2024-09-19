@@ -5,13 +5,13 @@
         </div>
         <nav class="dashboard__sidebar-menu">
             <ul class="list-wrap">
-                <li class="active">
-                    <a href="instructor-dashboard.html">
+                <li class="{{ request()->routeIs('dashboard.users.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.dashboard') }}">
                         <i class="fas fa-home"></i>
                         Dashboard
                     </a>
                 </li>
-                <li>
+                <li class="{{ request()->routeIs('dashboard.users.profile') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.users.profile') }}">
                         <i class="skillgro-avatar"></i>
                         Profil Saya
@@ -54,8 +54,8 @@
         </div>
         <nav class="dashboard__sidebar-menu">
             <ul class="list-wrap">
-                <li>
-                    <a href="instructor-setting.html">
+                <li class="{{ request()->routeIs('dashboard.users.settings.index') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.settings.index') }}">
                         <i class="skillgro-settings"></i>
                         Pengaturan
                     </a>
