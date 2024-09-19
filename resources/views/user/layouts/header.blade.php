@@ -74,6 +74,7 @@
                             </div>
                             <div class="tgmenu__action">
                                 <ul class="list-wrap">
+                                    @auth
                                     <li>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -81,11 +82,10 @@
                                                 <a href="{{ route('dashboard.users.profile',session('user')['id'])  }}">
                                                     <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded rounded-circle" width="45px" alt="Profile Image" class="profile-image">
                                                 </a>
-                                                <button type="submit" class="btn btn-two shadow-none py-3">Keluar</button>
+                                                {{-- <button type="submit" class="btn btn-two shadow-none py-3">Keluar</button> --}}
                                             </div>
                                         </form>
                                     </li>
-                                    @auth
                                     @else
                                     <li class="header-btn login-btn">
                                         {{-- @session('user')
