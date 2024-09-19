@@ -97,7 +97,7 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
                 headers: {
-                    Authorization: 'Bearer ' + session('hummaclass-token');
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 data: {
@@ -271,7 +271,7 @@
             $('#modal-delete').modal('show');
             deleteSubCategory(url);
         });
-       
+
 
         function deleteSubCategory(url) {
 
