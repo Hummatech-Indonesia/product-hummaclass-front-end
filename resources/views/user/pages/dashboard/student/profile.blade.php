@@ -27,10 +27,10 @@
                 <div class="dashboard__instructor-info">
                     <div class="dashboard__instructor-info-left">
                         <div class="thumb">
-                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
+                            <img class="detail-photo" alt="img">
                         </div>
                         <div class="content">
-                            <h4 class="title">John Due</h4>
+                            <h4 class="title detail-name"></h4>
                             <div class="review__wrap review__wrap-two">
                                 <div class="rating">
                                     <i class="fas fa-star"></i>
@@ -62,10 +62,10 @@
                             <div class="col-lg-12">
                                 <div class="profile__content-wrap">
                                     <ul class="list-wrap" id="profile">
-                                        <li><span>Bergabung Pada</span> <span id="dispay-join-on"></span>
+                                        <li><span>Bergabung Pada</span> <span id="display-created"></span>
                                         </li>
                                         <li><span>Nama</span> <span id="display-name"></span></li>
-                                        <li><span>Nama Pengguna</span> <span id="display-username"></span></li>
+                                        {{-- <li><span>Nama Pengguna</span> <span id="display-username"></span></li> --}}
                                         <li><span>Email</span> <span id="display-email">example</span></li>
                                         <li><span>Nomor Telepon</span> <span id="display-phone-number"></span></li>
                                         <li><span>Alamat</span> <span id="display-address"></span></li>
@@ -76,11 +76,11 @@
                                     </ul>
                                     <form action="" id="edit-profile-form" class="d-none">
                                         <ul class="list-wrap">
-                                            <li><span>Bergabung Pada</span>February 28, 2026 8:01</li>
+                                            <li><span>Bergabung Pada</span><span id="created"></span></li>
                                             <li><span>Nama</span> <input type="text" name="name" id="name"
                                                     class="form-control"></li>
-                                            <li><span>Nama Pengguna</span> <input type="text" name="user_name"
-                                                    id="user_name" class="form-control"></li>
+                                            {{-- <li><span>Nama Pengguna</span> <input type="text" name="user_name"
+                                                    id="user_name" class="form-control"></li> --}}
                                             <li><span>Email</span> <input type="email" name="email" id="email"
                                                     class="form-control"></li>
                                             <li><span>Nomor Telepon</span> <input type="number" name="phone_number"
@@ -125,7 +125,7 @@
             type: "GET",
             url: "{{config('app.api_url')}}" + "/api/user",
             headers: {
-                Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
             dataType: "json",
             success: function(response) {
@@ -156,7 +156,7 @@
                 type: "post",
                 url: "{{config('app.api_url')}}" + "/api/profile-update",
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('hummaclass-token')
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 data: formData,
@@ -182,12 +182,17 @@
             $('#display-email').text(data.email ?? '-');
             $('#display-phone-number').text(data.phone_number ?? '-');
             $('#display-address').text(data.address ?? '-');
+            $('#display-created').text(data.created_at);
 
             $('#name').val(data.name);
             $('#email').val(data.email);
             $('#username').val(data.username);
             $('#phone_number').val(data.phone_number);
             $('#address').val(data.address);
+            $('#created').val(data.created_at);
+
+            $('.detail-name').text(data.name);
+            $('.detail-photo').text(data.photo)
         }
     </script>
 @endsection
