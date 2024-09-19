@@ -140,23 +140,6 @@
                                             </g>
                                         </svg>
                                     </a>
-                                    <button class="btn px-2 text-white" style="background-color: #DB0909;"
-                                        data-bs-toggle="modal" data-bs-target="#modal-delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2.0"
-                                                d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
-                                    </button>
-                                    <button class="btn px-2 btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#modal-edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="-2.5 -2.5 24 24">
-                                            <path fill="currentColor"
-                                                d="m16.318 6.11l-3.536-3.535l1.415-1.414c.63-.63 2.073-.755 2.828 0l.707.707c.755.755.631 2.198 0 2.829zm-1.414 1.415l-9.9 9.9l-4.596 1.06l1.06-4.596l9.9-9.9z" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </td>
                         </tr>

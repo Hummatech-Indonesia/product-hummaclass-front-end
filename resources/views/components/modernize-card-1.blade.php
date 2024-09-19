@@ -44,7 +44,7 @@
                                         <div class="row">
                                 
                                             <div class="col-md-7 pe-0">
-                                                <a href="{{ route('admin.courses.show', '') }}/${data.id}" class="btn text-white fs-2"
+                                                <a href="{{ route('admin.courses.show', '') }}/${data.slug}" class="btn text-white fs-2"
                                                     style="background: #815FB4; width: 100%;">Lihat Detail</a>
                                             </div>
                                 
