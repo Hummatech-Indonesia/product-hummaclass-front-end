@@ -9,6 +9,7 @@ class AdminCourseController extends Controller
 {
     public function index()
     {
+
         // return view('admin.pages.kursus.index');
         return view('admin.pages.modul.index');
     }

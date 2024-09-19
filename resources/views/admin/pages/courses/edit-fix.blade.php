@@ -102,6 +102,8 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
+            var course;
+
             $('#description').summernote();
 
             function setValue(data) {
@@ -111,6 +113,7 @@
                 $('#description').summernote('code', data.description);
 
                 $('#is_premium').append(status(data.is_premium));
+                course = data;
             }
 
             function status(is_premium) {
@@ -125,6 +128,42 @@
                 return option
             }
 
+            $('#create-course-form').submit(function(e) {
+                e.preventDefault();
+
+                let formData = {};
+                $(this).serializeArray().forEach(function(field) {
+                    formData[field.name] = field.value;
+                });
+
+                $.ajax({
+                    type: "PUT",
+                    url: "{{ config('app.api_url') }}/api/courses/" + course.id,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil memperbarui data data.",
+                            icon: "success"
+                        });
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+            $('#category_id').change(function() {
+                subCategory($(this).val());
+            })
 
 
             // get course
@@ -137,6 +176,8 @@
                 dataType: "json",
                 success: function(response) {
                     setValue(response.data);
+                    getCategories();
+                    subCategory(course.category.id);
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -148,37 +189,48 @@
             });
 
             //get category
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/categories",
-                dataType: "json",
-                success: function(response) {
-
-                    $.each(response.data.data, function(index, value) {
-                        $('#category_id').append(
-                            `<option value="${value.id}">${value.name}</option>`);
-                    });
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
-
-            function subCategory(categoryId) {
+            function getCategories() {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/sub-categories/" + categoryId,
+                    url: "{{ config('app.api_url') }}" + "/api/categories",
+                    headers: {
+                        'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                    },
                     dataType: "json",
                     success: function(response) {
 
                         $.each(response.data.data, function(index, value) {
+                            $('#category_id').append(
+                                `<option value="${value.id}">${value.name}</option>`);
+                        });
+                        $('#category_id').val(course.category.id).trigger('change');
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function subCategory(categoryId) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/sub-categories/category/" + categoryId,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#sub_category_id').empty();
+                        $.each(response.data, function(index, value) {
                             $('#sub_category_id').append(
                                 `<option value="${value.id}">${value.name}</option>`);
                         });
+                        $('#sub_category_id').val(course.sub_category.id).trigger('change');
                     },
                     error: function(xhr) {
                         Swal.fire({
@@ -202,6 +254,9 @@
 
                 $.ajax({
                     url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
                     type: 'PATCH',
                     data: formData,
                     success: function(response) {

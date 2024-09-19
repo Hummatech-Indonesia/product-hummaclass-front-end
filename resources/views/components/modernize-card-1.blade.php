@@ -50,7 +50,7 @@
                                 
                                             <div class="col col-md-5 d-flex flex-direction-row pe-0 gap-2">
                                 
-                                                <a href="${"{{ route('admin.courses.edit', ':id') }}".replace(':id', data.id)}" class="btn btn-sm btn-warning fs-1"><svg xmlns="http://www.w3.org/2000/svg"
+                                                <a href="${"{{ route('admin.courses.edit', ':id') }}".replace(':id', data.slug)}" class="btn btn-sm btn-warning fs-1"><svg xmlns="http://www.w3.org/2000/svg"
                                                         width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                         class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
