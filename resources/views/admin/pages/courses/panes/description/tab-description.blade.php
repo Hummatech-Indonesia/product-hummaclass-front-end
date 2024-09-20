@@ -5,10 +5,7 @@
     <div class="d-flex">
         <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="" class="rounded">
         <div class="align-items-start p-3">
-            <div class="d-flex align-items-center gap-2">
-                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user1" width="30" class="rounded-circle">
-                <p class="mt-3">David Milair</p>
-            </div>
+
             <h4 style="font-weight: bold;" class="my-3" id="title"></h4>
             <p id="sub_title"></p>
 

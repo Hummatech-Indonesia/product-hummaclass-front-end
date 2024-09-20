@@ -3,6 +3,9 @@
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/courses/{{ request()->course }}",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
             data: "data",
             dataType: "json",
             success: function(response) {
@@ -12,7 +15,9 @@
                         if (key == 'description')
                             $(`#${key}`).html(response.data[key])
                         else if (key == 'price')
-                            $('#price').html(formatRupiah(response.data[key]));
+                            $('#price').html(formatRupiah(response.data[key]))
+                        else if (key == 'sub_category')
+                            $('#sub_category').html(response.data[key].name)
                         else
                             $(`#${key}`).text(response.data[key])
                     }

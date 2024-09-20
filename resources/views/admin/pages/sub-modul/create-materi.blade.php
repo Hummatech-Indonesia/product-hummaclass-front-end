@@ -48,6 +48,11 @@
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col col-12 mb-3">
+                    <label for="" class="fw-semibold form-label">Url Youtube</label>
+                    <input type="text" name="url_youtube" class="form-control" placeholder="Masukan Link Youtube">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
                     <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
