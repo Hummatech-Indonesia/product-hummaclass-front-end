@@ -74,7 +74,7 @@
                                 <path fill="currentColor"
                                     d="M6 0h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6m0 2a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V6a4 4 0 0 0-4-4zm6 7h3a1 1 0 0 1 0 2h-3a1 1 0 0 1 0-2m-2 4h5a1 1 0 0 1 0 2h-5a1 1 0 0 1 0-2m0-8h5a1 1 0 0 1 0 2h-5a1 1 0 1 1 0-2m-4.172 5.243L7.95 8.12a1 1 0 1 1 1.414 1.415l-2.828 2.828a1 1 0 0 1-1.415 0L3.707 10.95a1 1 0 0 1 1.414-1.414z" />
                             </svg>
-                            8 Tugas
+                            <span id="module_task_count"></span> Tugas
                         </span>
                         <span class="badge bg-light-warning text-dark fw-semibold pe-5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-warning mb-1 me-1" width="16"
@@ -236,11 +236,12 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/modules/detail/" + id,
                 headers: {
-                    Authorization: 'Bearer ' + session('hummaclass-token');
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 success: function(response) {
                     $('#title').html(response.data.title);
+                    $('#module_task_count').html(response.data.module_task_count);
                     $('#sub_title').html(response.data.sub_title);
                     $('#step').html(response.data.step);
                     $('#sub_modul_count').html(response.data.sub_module_count);

@@ -132,84 +132,8 @@
                 <div class="col-12">
                     <div class="categories__wrap">
                         <div class="swiper categories-active">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">12</h1>
-                                            </div>
-                                            <span class="name">Graphic Design</span>
-                                            {{-- <span class="courses">(22)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">21</h1>
-                                            </div>
-                                            <span class="name">Finance</span>
-                                            {{-- <span class="courses">(41)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">11</h1>
-                                            </div>
-                                            <span class="name">Development</span>
-                                            {{-- <span class="courses">(29)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">4</h1>
-                                            </div>
-                                            <span class="name">Marketing</span>
-                                            {{-- <span class="courses">(31)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">5</h1>
-                                            </div>
-                                            <span class="name">Life Style</span>
-                                            {{-- <span class="courses">(23)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">12</h1>
-                                            </div>
-                                            <span class="name">Management</span>
-                                            {{-- <span class="courses">(19)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">2</h1>
-                                            </div>
-                                            <span class="name">App Design</span>
-                                            {{-- <span class="courses">(18)</span> --}}
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="swiper-wrapper" id="category_count">
+
                             </div>
                         </div>
                         <div class="categories__nav">
@@ -235,7 +159,7 @@
     </section>
     <!-- categories-area-end -->
 
-    <!-- about-area -->
+    {{-- <!-- about-area -->
     <section class="about-area tg-motion-effects section-py-120">
         <div class="container">
             <div class="row align-items-center justify-content-center">
@@ -304,7 +228,7 @@
             </div>
         </div>
     </section>
-    <!-- about-area-end -->
+    <!-- about-area-end --> --}}
 
     <!-- course-area -->
     <section class="courses-area section-pt-120 section-pb-90"
@@ -1077,6 +1001,44 @@
 
 @section('script')
     <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/categories",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.each(response.data.data, function(index, value) {
+                        $('#category_count').append(
+                            `<div class="swiper-slide">
+                                    <div class="categories__item">
+                                        <a href="{{ route('courses.courses.index') }}">
+                                            <div class="icon">
+                                                <h1 style="font-size: 50px;color: #6D6C80">${value.course_item_count}</h1>
+                                            </div>
+                                            <span class="name">${value.name}</span>
+                                            {{-- <span class="courses">(22)</span> --}}
+                                        </a>
+                                    </div>
+                            </div>`
+                        );
+                    });
+
+                },
+                error: function(xhr) {
+
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+
+
         $(document).ready(function() {
             $.ajax({
                 type: "GET",

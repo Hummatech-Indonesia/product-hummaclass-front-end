@@ -67,7 +67,10 @@
             var formData = new FormData(this);
             $.ajax({
                 type: "POST",
-                url: "{{config('app.api_url')}}/api/sub-modules/" + id,
+                url: "{{ config('app.api_url') }}/api/sub-modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
                 data: formData,
                 dataType: "json",
                 contentType: false,
