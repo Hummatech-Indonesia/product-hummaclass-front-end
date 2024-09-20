@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class AdminSubModuleController extends Controller
 {
-    public function index()
+    public function show(string $id)
     {
-        return view('admin.pages.sub-modul.detail');
+        return view('admin.pages.sub-modul.detail', compact('id'));
     }
 
     public function create(string $id)

@@ -291,10 +291,12 @@
                                 <p>${value.sub_title}</p>
 
                                 <div>
-                                    <button class="btn text-white w-100" style="background-color: var(--purple-primary)">
-                                        Lihat Materi
-                                        <i class="ti ti-arrow-right fs-5"></i>
-                                    </button>
+                                    <a href="/admin/sub-modules/${value.slug}">
+                                        <button class="btn text-white w-100" style="background-color: var(--purple-primary)">
+                                            Lihat Materi
+                                            <i class="ti ti-arrow-right fs-5"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>`;

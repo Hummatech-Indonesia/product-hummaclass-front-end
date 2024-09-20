@@ -18,5 +18,4 @@
             $('.editMateriText').addClass('d-none');
         });
     });
-
 </script>
