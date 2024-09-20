@@ -94,7 +94,7 @@ Route::get('list-mentors', function () {
     return view('user.pages.list-mentors.index');
 })->name('list-mentors.index');
 
-Route::get('learning-path', function(){
+Route::get('learning-path', function () {
     return view('user.pages.learning-path.index');
 })->name('learning-path.index');
 
@@ -119,13 +119,16 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     });
 
     Route::resources([
-        'categories' => CategoryController::class,
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
         'modules' => ModuleController::class,
-        'sub-modules' => AdminSubModuleController::class
     ]);
 
+    Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
+    Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
+
+
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
     Route::get('courses/detail', function () {
         return view('admin.pages.courses.detail');
@@ -145,7 +148,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
 
-    Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
 
     Route::get('create-task', function () {
         return view('admin.pages.courses.panes.moduls.create-task');
@@ -155,11 +157,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
 
-    Route::get('profile', function(){
+    Route::get('profile', function () {
         return view('admin.pages.profile.index');
     })->name('profile.index');
 
-    Route::get('profile-update', function(){
+    Route::get('profile-update', function () {
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
 });

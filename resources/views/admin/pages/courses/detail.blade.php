@@ -135,5 +135,4 @@
 @section('script')
     @include('admin.pages.courses.scripts.index')
     @include('admin.pages.courses.panes.description.scripts.show-course')
-    @include('admin.pages.courses.panes.task.scripts.index')
 @endsection

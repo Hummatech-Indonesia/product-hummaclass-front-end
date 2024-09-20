@@ -1,4 +1,5 @@
-<iframe style="width:100%; height: 400px;border-radius: 15px;" id="url_youtube" src="" title="YouTube video player" frameborder="0"
+<iframe style="width:100%; height: 400px;border-radius: 15px;" id="url_youtube" src="" title="YouTube video player"
+    frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 <div class="card mt-4">
@@ -29,6 +30,11 @@
                 success: function(response) {
                     $('#title').html(response.data.title);
                     $('#content').html(response.data.content);
+
+                    var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
+                        .module_id);
+
+                    $('#button-back').attr('href', url);
                     if (response.data.url_youtube != null) {
                         $('#url_youtube').attr('src', response.data.url_youtube);
                     } else {
