@@ -39,7 +39,7 @@
                                 <path d="M19 16h-12a2 2 0 0 0 -2 2" />
                                 <path d="M9 8h6" />
                             </svg><span class="text-dark" style="font-weight: bold;"> <span id="modules_count"></span>
-                                Materi</span>
+                                Modul</span>
                         </span>
                     </div>
                 </div>
