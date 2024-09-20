@@ -1,12 +1,21 @@
 @section('script')
-    <script>
-        $(document).ready(function() {
-            function cardCourse(data) {
-                let card = `<div class="col">
+<script>
+    $(document).ready(function() {
+        function cardCourse(data) {
+            let card = `<div class="col">
                                 <div class="card">
                                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${data.sub_category}</button>
                                     <img src="{{ config('app.api_url') }}${data.photo}" class="card-img-top" alt="...">
                                     <div class="card-body p-3">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user1" width="30" class="rounded-circle">
+                                                <p class="mt-3">David Milair</p>
+                                            </div>
+                                            <div>
+                                                <span class="badge rounded-pill bg-light-warning text-warning fw-semibold mt-3">Premium</span>
+                                            </div>
+                                        </div>
                                         <p class="card-title fw-bolder">${data.title}</p>
                                         <p class="card-text">${data.sub_title}</p>
                                 
@@ -50,19 +59,13 @@
                                 
                                             <div class="col col-md-5 d-flex flex-direction-row pe-0 gap-2">
                                 
-                                                <a href="${"{{ route('admin.courses.edit', ':id') }}".replace(':id', data.slug)}" class="btn btn-sm btn-warning fs-1"><svg xmlns="http://www.w3.org/2000/svg"
-                                                        width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                                        <path d="M16 5l3 3" />
-                                                    </svg></a>
+                                                <a href="${"{{ route('admin.courses.edit', ':id') }}".replace(':id', data.slug)}" class="btn btn-sm btn-warning fs-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 48 48"><path fill="currentColor" d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z"/></svg>    
+                                                </a>
                                 
                                                 <button
                                                 data-id="${data.id}"
-                                                class="btn btn-sm btn-danger text-white btn-delete" data-id="${data.id}"><svg xmlns="http://www.w3.org/2000/svg"
+                                                class="btn btn-sm btn-danger text-white btn-delete" style="background-color: #DB0909;" data-id="${data.id}"><svg xmlns="http://www.w3.org/2000/svg"
                                                         width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                         class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
@@ -79,39 +82,40 @@
                                     </div>
                                 </div>
                             </div>`
-                $('#list-card').append(card);
+            $('#list-card').append(card);
+        }
+
+
+        $.ajax({
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/courses"
+            , headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
+            , dataType: "json"
+            , success: function(response) {
+                response.data.forEach(data => {
+                    cardCourse(data);
+                });
 
-
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    response.data.forEach(data => {
-                        cardCourse(data);
-                    });
-
-                    $('.btn-delete').click(function() {
-                        $('#deleteForm').attr('action', "{{ config('app.api_url') }}" +
-                            "/api/courses/" + $(this).data(
-                                'id'));
-                        $('#modal-delete').modal('show');
-                    });
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
+                $('.btn-delete').click(function() {
+                    $('#deleteForm').attr('action', "{{ config('app.api_url') }}" +
+                        "/api/courses/" + $(this).data(
+                            'id'));
+                    $('#modal-delete').modal('show');
+                });
+            }
+            , error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
+                });
+            }
         });
-    </script>
+    });
+
+</script>
 @endsection
 
 <style scoped>
@@ -130,4 +134,5 @@
         /* Sesuaikan dengan jumlah baris yang diinginkan */
         line-height: 1.2em;
     }
+
 </style>
