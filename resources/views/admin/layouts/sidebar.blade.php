@@ -78,6 +78,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-calendar"></i>
+                        </span>
+                        <span class="hide-menu">Berita</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
