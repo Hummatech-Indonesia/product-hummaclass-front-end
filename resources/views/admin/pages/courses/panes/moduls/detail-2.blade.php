@@ -260,7 +260,6 @@
             });
 
             function subModul(index, value) {
-
                 return `<div class="col-lg-4">
                             <div class="card card-body">
                                 <div class="d-flex justify-content-between mb-3">
