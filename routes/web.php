@@ -154,4 +154,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
+
+    Route::get('profile', function(){
+        return view('admin.pages.profile.index');
+    })->name('profile.index');
+
+    Route::get('profile-update', function(){
+        return view('admin.pages.profile.panes.tab-update-profile');
+    })->name('profile-update.php');
 });
