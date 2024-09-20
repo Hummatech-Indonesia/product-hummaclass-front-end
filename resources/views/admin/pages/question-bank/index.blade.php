@@ -5,11 +5,10 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 style="font-weight: bold;">Detail Modul</h4>
+                <h4 style="font-weight: bold;">Bank Soal</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
-                        <li class="breadcrumb-item" aria-current="page">Banner</li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Detail kursus  dan daftar modul pada kursus</a></li>
                     </ol>
                 </nav>
             </div>
@@ -53,7 +52,7 @@
                         5 Modul
                     </span>
 
-                    <a href="{{ route('admin.courses.show', 2) }}" class="btn text-white fs-2" style="background: var(--purple-primary);">Lihat Detail</a>
+                    <a href="{{ route('admin.list-question-bank.index') }}" class="btn text-white fs-2" style="background: var(--purple-primary);">Lihat Detail</a>
                 </div>
             </div>
         </div>

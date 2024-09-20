@@ -85,6 +85,14 @@
                         <span class="hide-menu">Profile</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.question-bank.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-calendar"></i>
+                        </span>
+                        <span class="hide-menu">Bank Soal</span>
+                    </a>
+                </li>
             </ul>
             {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
           <div class="d-flex">
