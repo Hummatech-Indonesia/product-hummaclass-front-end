@@ -39,7 +39,7 @@
                         if (response.data.length > 0) {
                             // Jika ada data, append card
                             $.each(response.data, function(index, value) {
-                                listParent.append(card(index, value));
+                                listParent.append(card1(index, value));
                             });
                         } else {
                             // Jika tidak ada data
