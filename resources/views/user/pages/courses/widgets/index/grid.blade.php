@@ -12,7 +12,6 @@
     </nav>
 </div>
 
-
 @push('script')
     <script>
         $(document).ready(function() {
@@ -88,7 +87,7 @@
                     <div class="courses__item shine__animate-item">
                         <div class="courses__item-thumb">
                             <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                                <img src="{{ config('app.api_url') }}${value.photo}" alt="img">
+                                <img src="${value.photo}" alt="img">
                             </a>
                         </div>
                         <div class="courses__item-content">
