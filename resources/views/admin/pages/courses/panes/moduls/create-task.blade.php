@@ -45,7 +45,7 @@
         </div>
         <div class="col-12 mb-3">
             <label for="" class="fw-semibold form-label">Deskripsi</label>
-            <textarea name="" id="summernote-moduls" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="" id="summernote-task" cols="30" rows="10" class="form-control"></textarea>
         </div>
     </div>
 </div>

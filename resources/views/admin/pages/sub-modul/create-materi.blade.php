@@ -57,7 +57,10 @@
                     <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <div class="d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-danger px-4">Batal</button>
+                    <button type="submit" class="btn text-white px-4" style="background-color: var(--purple-primary)">Tambah</button>
+                </div>
             </form>
         </div>
     </div>

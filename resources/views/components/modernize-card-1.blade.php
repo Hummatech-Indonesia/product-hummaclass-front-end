@@ -4,7 +4,7 @@
         function cardCourse(data) {
             let card = `<div class="col">
                                 <div class="card">
-                                    <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${data.sub_category}</button>
+                                    <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">${data.sub_category}</button>
                                     <img src="{{ config('app.api_url') }}${data.photo}" class="card-img-top" alt="...">
                                     <div class="card-body p-3">
                                         <div class="d-flex justify-content-between">

@@ -153,6 +153,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.courses.panes.moduls.create-task');
     })->name('create-task.index');
 
+    Route::get('detail-task', function(){
+        return view('admin.pages.courses.panes.moduls.detail-task');
+    })->name('detail-task.blade.php');
+
     Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');

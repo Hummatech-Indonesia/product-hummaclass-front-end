@@ -45,4 +45,10 @@
             height: 200
         });
     });
+
+    $(document).ready(function() {
+        $('#summernote-task').summernote({
+            height: 200
+        });
+    });
 </script>
