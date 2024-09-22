@@ -35,11 +35,11 @@
                     <button class="btn btn-light" style="color: var(--purple-primary)">
                         20+ Points
                     </button>
-                    <button class="btn text-white d-flex align-items-center"
+                    <a href="{{ route('admin.detail-task.blade.php') }}" class="btn text-white d-flex align-items-center"
                         style="background-color: var(--purple-primary)">
                         Lihat Tugas
                         <i class="ti ti-arrow-right fs-5 ms-1"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
