@@ -1,34 +1,33 @@
 @extends('user.layouts.app')
 
 @section('style')
-<style>
-    :root {
-        --tg-theme-primary: #9425FE;
-    }
+    <style>
+        :root {
+            --tg-theme-primary: #9425FE;
+        }
 
-    .lesson__content .course-item-link .item-name::before {
-        background-image: none;
-        width: 0;
-    }
-
-</style>
+        .lesson__content .course-item-link .item-name::before {
+            background-image: none;
+            width: 0;
+        }
+    </style>
 @endsection
 
 @section('content')
-<!-- lesson-area -->
-<section class="lesson__area section-pb-120">
-    <div class="container-fluid p-0">
-        <div class="row gx-2">
-            <div class="col-xl-3 col-lg-4">
-                <div class="lesson__content">
-                    <h2 class="title">Konten Kursus</h2>
-                    <div class="accordion" id="content-course">
+    <!-- lesson-area -->
+    <section class="lesson__area section-pb-120">
+        <div class="container-fluid p-0">
+            <div class="row gx-2">
+                <div class="col-xl-3 col-lg-4">
+                    <div class="lesson__content">
+                        <h2 class="title">Konten Kursus</h2>
+                        <div class="accordion" id="content-course">
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-9 col-lg-8">
-                {{-- <div class="lesson__video-wrap">
+                <div class="col-xl-9 col-lg-8">
+                    {{-- <div class="lesson__video-wrap">
                     <div class="lesson__video-wrap-top">
                         <div class="lesson__video-wrap-top-left">
                             <a href="#"><i class="flaticon-arrow-right"></i></a>
@@ -47,99 +46,67 @@
                         <button class="next-button" title="React for the Rest of us"><i class="flaticon-arrow-right"></i></button>
                     </div>
                 </div> --}}
-                <div class="courses__details-content lesson__details-content">
-                    <div class="courses__overview-wrap">
-                        <ul class="courses__item-meta list-wrap">
-                            <li class="courses__item-tag">
-                                <a href="http://127.0.0.1:9000/courses/courses" id="detail-category">Development</a>
-                            </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating">4.5</span>&nbsp;Review)
-                            </li>
-                        </ul>
-                        <h3 class="fw-semibold">Resolving Conflicts Between Designers And Engineers</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo.</p>
-                        <div style="border-bottom: 1px solid #CCCCCC;"></div>
-                        <h3 class="title mt-4">Course Description</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo viverra maecenas accumsan lacus vel facilisis.dolor sit amet,
-                            consectetur adipiscing elited do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua.</p>
-                        <h3 class="title">What you'll learn in this course?</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo viverra maecenas accumsan.</p>
-                        <ul class="about__info-list list-wrap">
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">Work with color & Gradients & Grids</p>
-                            </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">All the useful shortcuts</p>
-                            </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">Be able to create Flyers, Brochures, Advertisements</p>
-                            </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">How to work with Images & Text</p>
-                            </li>
-                        </ul>
-                        <p class="last-info">Morem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse
-                            ultrices gravida. Risus commodo viverra maecenas accumsan.Dorem ipsum dolor sit
-                            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magn.</p>
+                    <div class="courses__details-content lesson__details-content">
+                        <div class="courses__overview-wrap">
+                            <ul class="courses__item-meta list-wrap">
+                                <li class="courses__item-tag">
+                                    <a href="http://127.0.0.1:9000/courses/courses" id="course_sub_category"></a>
+                                </li>
+                                <li class="avg-rating"><i class="fas fa-star"></i>(<span
+                                        id="detail-rating">4.5</span>&nbsp;Review)
+                                </li>
+                            </ul>
+                            <h3 class="fw-semibold" id="course_title"></h3>
+                            <p id="course_sub_title"></p>
+                            <div style="border-bottom: 1px solid #CCCCCC;"></div>
+                            <h3 class="title mt-4">Konten</h3>
+                            <div class="" id="content"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-</section>
-<!-- lesson-area-end -->
+        </div>
+    </section>
+    <!-- lesson-area-end -->
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        let photo;
-        var id = "{{ $id }}";
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/list-module/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                $.each(response.data, function(index, value) {
-                    $('#content-course').append(contentCourse(index, value));
-                });
+    <script>
+        $(document).ready(function() {
+            let photo;
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/list-module/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.each(response.data, function(index, value) {
+                        $('#content-course').append(contentCourse(index, value));
+                    });
 
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data materi."
-                    , icon: "error"
-                });
-            }
-        });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data materi.",
+                        icon: "error"
+                    });
+                }
+            });
 
-        function contentCourse(index, value) {
-            const subModules = value.sub_modules.map(subModule => {
-                return `<li class="course-item open-item">
+            function contentCourse(index, value) {
+                const subModules = value.sub_modules.map(subModule => {
+                    return `<li class="course-item open-item">
                                <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;
-            }).join('');
-            return `
+                }).join('');
+                return `
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-${index}">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -157,31 +124,34 @@
                         </div>
                     </div>
                 `;
-        }
+            }
 
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                console.log(response);
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response.data);
 
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data materi."
-                    , icon: "error"
-                });
-            }
+                    $('#course_sub_category').html(response.data.course_sub_category);
+                    $('#course_sub_title').html(response.data.course_sub_title);
+                    $('#content').html(response.data.content);
+                    $('#course_title').html(response.data.course_title);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data materi.",
+                        icon: "error"
+                    });
+                }
+            });
         });
-    });
-
-</script>
-{{-- <script>
+    </script>
+    {{-- <script>
     function changeContent(title, videoSrc) {
         // Mengubah judul video
         document.querySelector('.lesson__video-wrap-top-left span').innerText = title;
@@ -196,7 +166,7 @@
 
 </script> --}}
 
-{{-- <script>
+    {{-- <script>
         function changeContent(title, videoSrc, description) {
             // Mengubah judul tugas
             document.getElementById('course-title').textContent = title;

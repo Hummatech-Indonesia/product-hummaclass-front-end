@@ -1,24 +1,19 @@
 @section('script')
-<script>
-    $(document).ready(function() {
-        function cardCourse(data) {
-            let card = `<div class="col">
+    <script>
+        $(document).ready(function() {
+            function cardCourse(data) {
+                let card = `<div class="col">
                                 <div class="card">
                                     <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">${data.sub_category}</button>
                                     <img src="{{ config('app.api_url') }}${data.photo}" class="card-img-top" alt="...">
                                     <div class="card-body p-3">
                                         <div class="d-flex justify-content-between">
-                                            <div class="d-flex align-items-center gap-2">
-                                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user1" width="30" class="rounded-circle">
-                                                <p class="mt-3">David Milair</p>
-                                            </div>
                                             <div>
                                                 <span class="badge rounded-pill bg-light-warning text-warning fw-semibold mt-3">Premium</span>
                                             </div>
                                         </div>
                                         <p class="card-title fw-bolder">${data.title}</p>
                                         <p class="card-text">${data.sub_title}</p>
-                                
                                         <div class="d-flex align-items-center justify-content-between">
                                             <h4 class="fw-bolder fs-4" style="color: #7209DB">${formatRupiah(data.price)}</h4>
                                 
@@ -82,40 +77,39 @@
                                     </div>
                                 </div>
                             </div>`
-            $('#list-card').append(card);
-        }
+                $('#list-card').append(card);
+            }
 
 
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                response.data.forEach(data => {
-                    cardCourse(data);
-                });
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    response.data.forEach(data => {
+                        cardCourse(data);
+                    });
 
-                $('.btn-delete').click(function() {
-                    $('#deleteForm').attr('action', "{{ config('app.api_url') }}" +
-                        "/api/courses/" + $(this).data(
-                            'id'));
-                    $('#modal-delete').modal('show');
-                });
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
+                    $('.btn-delete').click(function() {
+                        $('#deleteForm').attr('action', "{{ config('app.api_url') }}" +
+                            "/api/courses/" + $(this).data(
+                                'id'));
+                        $('#modal-delete').modal('show');
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
         });
-    });
-
-</script>
+    </script>
 @endsection
 
 <style scoped>
@@ -134,5 +128,4 @@
         /* Sesuaikan dengan jumlah baris yang diinginkan */
         line-height: 1.2em;
     }
-
 </style>
