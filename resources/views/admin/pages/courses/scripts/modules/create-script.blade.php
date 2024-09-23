@@ -8,13 +8,13 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{config('app.api_url')}}/api/modules/" + id,
+                url: "{{ config('app.api_url') }}/api/modules/" + id,
                 data: formData,
                 dataType: "json",
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    window.location.href = "/admin/courses/" + id;
+                    window.location.href = "/admin/courses/" + id + "#list";
                 },
                 error: function(response) {
                     if (response.status === 422) {

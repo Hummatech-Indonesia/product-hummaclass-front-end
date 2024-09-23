@@ -124,8 +124,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'modules' => ModuleController::class,
     ]);
 
-    Route::get('create-quiz', function(){
-        return view('admin.pages.courses.panes.moduls.create-quiz');
+    Route::get('create-quiz/{id}', function (string $id) {
+        return view('admin.pages.courses.panes.moduls.create-quiz', compact('id'));
     })->name('create-quiz.index');
 
     Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
@@ -161,7 +161,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.courses.panes.moduls.detail-task');
     })->name('detail-task.blade.php');
 
-    Route::get('fill-task-manual', function(){
+    Route::get('fill-task-manual', function () {
         return view('admin.pages.courses.create-fill-manual');
     })->name('fill-manual.index');
 
@@ -201,7 +201,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('create-news', function () {
             return view('admin.pages.news.create-news');
         })->name('create');
-        Route::get('detail-news', function(){
+        Route::get('detail-news', function () {
             return view('admin.pages.news.detail-news');
         })->name('detail');
     });
@@ -213,7 +213,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('create-events', function () {
             return view('admin.pages.events.create-events');
         })->name('create');
-        Route::get('detail-events', function(){
+        Route::get('detail-events', function () {
             return view('admin.pages.events.detail-events');
         })->name('detail');
     });
