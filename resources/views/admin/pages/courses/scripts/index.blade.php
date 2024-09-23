@@ -45,21 +45,31 @@
                 $('.editDescription').removeClass('d-none');
                 $('.editWeinght').addClass('d-none');
                 $('.edittask').addClass('d-none');
+                $('.addVoucher').addClass('d-none');
             } else if (hash === "#list") {
                 $('.editDescription').addClass('d-none');
                 $('.addModul').removeClass('d-none');
                 $('.editWeinght').addClass('d-none');
                 $('.edittask').addClass('d-none');
+                $('.addVoucher').addClass('d-none');
             } else if (hash === "#test") {
                 $('.editDescription').addClass('d-none');
                 $('.addModul').addClass('d-none');
                 $('.editWeinght').removeClass('d-none');
                 $('.edittask').addClass('d-none');
+                $('.addVoucher').addClass('d-none');
             } else if (hash === "#task") {
                 $('.editDescription').addClass('d-none');
                 $('.addModul').addClass('d-none');
                 $('.editWeinght').addClass('d-none');
                 $('.edittask').removeClass('d-none');
+                $('.addVoucher').addClass('d-none');
+            } else if (hash === "#voucher") {
+                $('.editDescription').addClass('d-none');
+                $('.addModul').addClass('d-none');
+                $('.editWeinght').addClass('d-none');
+                $('.edittask').addClass('d-none');
+                $('.addVoucher').removeClass('d-none');
             }
         }
 
@@ -142,4 +152,30 @@
         });
     });
 
+</script>
+
+<script>
+    function copyToClipboard() {
+        // Dapatkan elemen dengan ID kode dan ambil teksnya
+        const textToCopy = document.getElementById("kode").innerText;
+
+        // Salin teks ke clipboard menggunakan Clipboard API
+        navigator.clipboard.writeText(textToCopy).then(function() {
+            // Tampilkan SweetAlert setelah berhasil menyalin
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Teks berhasil disalin ke clipboard!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }, function(err) {
+            // Jika ada kesalahan saat menyalin, tampilkan SweetAlert error
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: 'Gagal menyalin teks: ' + err,
+            });
+        });
+    }
 </script>
