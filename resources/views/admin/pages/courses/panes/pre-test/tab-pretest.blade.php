@@ -44,9 +44,9 @@
             data-bs-target="#modal-create-fill-manual">
                 Isi Soal Otomatis
             </button>
-            <button class="btn text-white" style="background-color: var(--purple-primary)">
+            <a href="{{ route('admin.fill-manual.index') }}" class="btn text-white" style="background-color: var(--purple-primary)">
                 Isi Soal Manual
-            </button>
+            </a>
         </div>
     </div>
 

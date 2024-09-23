@@ -157,6 +157,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.courses.panes.moduls.detail-task');
     })->name('detail-task.blade.php');
 
+    Route::get('fill-task-manual', function(){
+        return view('admin.pages.courses.create-fill-manual');
+    })->name('fill-manual.index');
+
     Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
