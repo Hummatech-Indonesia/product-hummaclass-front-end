@@ -124,6 +124,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'modules' => ModuleController::class,
     ]);
 
+    Route::get('create-quiz', function(){
+        return view('admin.pages.courses.panes.moduls.create-quiz');
+    })->name('create-quiz.index');
+
     Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
     Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
 
@@ -194,5 +198,23 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('news', function () {
             return view('admin.pages.news.index');
         })->name('index');
+        Route::get('create-news', function () {
+            return view('admin.pages.news.create-news');
+        })->name('create');
+        Route::get('detail-news', function(){
+            return view('admin.pages.news.detail-news');
+        })->name('detail');
+    });
+
+    Route::prefix('events')->name('events.')->group(function () {
+        Route::get('events', function () {
+            return view('admin.pages.events.index');
+        })->name('index');
+        Route::get('create-events', function () {
+            return view('admin.pages.events.create-events');
+        })->name('create');
+        Route::get('detail-events', function(){
+            return view('admin.pages.events.detail-events');
+        })->name('detail');
     });
 });

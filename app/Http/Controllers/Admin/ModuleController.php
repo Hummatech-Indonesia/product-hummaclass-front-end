@@ -20,4 +20,8 @@ class ModuleController extends Controller
     {
         return view('admin.pages.courses.panes.moduls.create-modul', compact('id'));
     }
+    public function edit(string $id)
+    {
+        return view('admin.pages.courses.panes.moduls.edit-modul', compact('id'));
+    }
 }
