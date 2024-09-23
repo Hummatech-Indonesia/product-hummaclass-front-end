@@ -194,5 +194,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('news', function () {
             return view('admin.pages.news.index');
         })->name('index');
+        Route::get('create-news', function () {
+            return view('admin.pages.news.create-news');
+        })->name('create');
     });
 });
