@@ -180,4 +180,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('profile-update', function () {
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
+
+    Route::prefix('configuration')->name('configuration.')->group(function () {
+        Route::get('footer', function () {
+            return view('admin.pages.configuration.footer');
+        })->name('footer.index');
+    });
 });
