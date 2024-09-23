@@ -1,6 +1,6 @@
 <div>
     <div class="text-end mb-3">
-        <a class="btn text-white d-none addQuiz" style="background-color: var(--purple-primary)">
+        <a href="{{ route('admin.create-quiz.index') }}" class="btn text-white d-none addQuiz" style="background-color: var(--purple-primary)">
             <svg xmlns="http://www.w3.org/2000/svg" class="text-white mb-1 me-1" width="16"
                 height="16" viewBox="0 0 32 32">
                 <path fill="currentColor"
