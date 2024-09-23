@@ -149,11 +149,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
 
 
-    Route::get('create-task', function () {
-        return view('admin.pages.courses.panes.moduls.create-task');
+    Route::get('create-task/{id}', function (string $id) {
+        return view('admin.pages.courses.panes.moduls.create-task', compact('id'));
     })->name('create-task.index');
 
-    Route::get('detail-task', function(){
+    Route::get('detail-task', function () {
         return view('admin.pages.courses.panes.moduls.detail-task');
     })->name('detail-task.blade.php');
 
@@ -165,15 +165,15 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.question-bank.index');
     })->name('question-bank.index');
 
-    Route::get('list-question-bank',function(){
+    Route::get('list-question-bank', function () {
         return view('admin.pages.question-bank.list-question-bank');
     })->name('list-question-bank.index');
 
-    Route::get('detail-question-detail', function(){
+    Route::get('detail-question-detail', function () {
         return view('admin.pages.question-bank.detail-question-bank');
     })->name('detail-question.index');
 
-    Route::get('profile', function(){
+    Route::get('profile', function () {
         return view('admin.pages.profile.index');
     })->name('profile.index');
 
