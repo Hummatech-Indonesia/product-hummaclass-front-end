@@ -181,10 +181,10 @@
     </div>
 
     {{-- modal pengaturan kuis --}}
-    @include('admin.pages.courses.panes.moduls.widgets.modal-settings-quiz')
 @endsection
 
 @section('script')
+    @include('admin.pages.courses.panes.moduls.widgets.modal-settings-quiz')
     @include('admin.pages.courses.panes.moduls.scripts.index')
     <script>
         $(document).ready(function() {
@@ -203,12 +203,22 @@
                     $('#sub_title').html(response.data.sub_title);
                     $('#step').html(response.data.step);
                     $('#sub_modul_count').html(response.data.sub_module_count);
-                    $.each(response.data.sub_modules, function(index, value) {
-                        $('#cardSubModul').append(subModul(index, value));
-                    });
-                    $.each(response.data.module_tasks, function(index, value) {
-                        $('#module-task-show').append(moduleTasks(index, value));
-                    });
+
+                    if (response.data.sub_modules.length === 0) {
+                        $('#cardSubModul').append(empty());
+                    } else {
+                        $.each(response.data.sub_modules, function(index, value) {
+                            $('#cardSubModul').append(moduleTasks(index, value));
+                        });
+                    }
+                    if (response.data.module_tasks.length === 0) {
+                        $('#module-task-show').append(empty());
+                    } else {
+                        $.each(response.data.module_tasks, function(index, value) {
+                            $('#module-task-show').append(moduleTasks(index, value));
+                        });
+                    }
+
                 },
                 error: function(xhr) {
                     Swal.fire({
