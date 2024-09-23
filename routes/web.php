@@ -185,5 +185,14 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('footer', function () {
             return view('admin.pages.configuration.footer');
         })->name('footer.index');
+        Route::get('faq', function () {
+            return view('admin.pages.configuration.faq');
+        })->name('faq.index');
+    });
+
+    Route::prefix('news')->name('news.')->group(function () {
+        Route::get('news', function () {
+            return view('admin.pages.news.index');
+        })->name('index');
     });
 });
