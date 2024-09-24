@@ -74,7 +74,7 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.news.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.news.index', 'admin.news.show') ? 'active' : '' }}" href="{{ route('admin.news.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
@@ -82,7 +82,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.events.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.events.index', 'admin.events.show') ? 'active' : '' }}" href="{{ route('admin.events.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
@@ -94,7 +94,7 @@
                     <span class="hide-menu">LANDING PAGE</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+                    <a class="sidebar-link has-arrow {{ Route::is('admin.configuration.faq.index', 'admin.configuration.footer.index') ? 'active' : '' }}" href="#" aria-expanded="false">
                         <span class="d-flex">
                             <i class="ti ti-chart-donut-3"></i>
                         </span>

@@ -85,7 +85,7 @@
             , success: function(response) {
                 $('#category_id').empty().append(
                     '<option value="">Pilih Kategori</option>'
-                ); // Kosongkan select dan tambahkan placeholder
+                );
                 $.each(response.data.data, function(index, value) {
                     $('#category_id').append(
                         `<option value="${value.id}">${value.name}</option>`
