@@ -5,11 +5,11 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h5 class="fw-semibold mb-8">Daftar Kursus</h5>
+                <h5 class="fw-semibold mb-8">Event</h5>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted " href="index-2.html">Daftar pengguna yang sudah membeli kursus</a>
+                            <a class="text-muted " href="javascript:void(0)">Daftar event pada hummaclass</a>
                         </li>
                     </ol>
                 </nav>
@@ -37,11 +37,11 @@
             </div>
         </form>
         <div>
-            <a href="{{ route('admin.news.create') }}" class="btn text-white" style="background-color: var(--purple-primary)">
+            <a href="{{ route('admin.events.create') }}" class="btn text-white" style="background-color: var(--purple-primary)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M19.875 3H4.125C2.953 3 2 3.897 2 5v14c0 1.103.953 2 2.125 2h15.75C21.047 21 22 20.103 22 19V5c0-1.103-.953-2-2.125-2m0 16H4.125c-.057 0-.096-.016-.113-.016q-.01 0-.012.008L3.988 5.046c.007-.01.052-.046.137-.046h15.75c.079.001.122.028.125.008l.012 13.946c-.007.01-.052.046-.137.046" />
                     <path fill="currentColor" d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z" /></svg>
-                Tambah Berita
+                Tambah Event
             </a>
         </div>
     </div>
@@ -63,8 +63,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="d-flex gap-2">
-                            <a href="{{ route('admin.news.detail') }}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
-                            <a href="{{ route('admin.news.update') }}" class="btn btn-warning btn-sm py-2" style="width: 15%">
+                            <a href="{{ route('admin.events.detail') }}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
+                            <a href="{{ route('admin.events.update') }}" class="btn btn-warning btn-sm py-2" style="width: 15%">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 28 28"><path fill="currentColor" d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z"/></svg>
                             </a>
                             <button class="btn text-white btn-sm py-2" style="width: 15%; background-color: #DB0909;">

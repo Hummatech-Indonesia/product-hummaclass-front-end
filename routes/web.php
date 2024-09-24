@@ -201,6 +201,9 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('create-news', function () {
             return view('admin.pages.news.create-news');
         })->name('create');
+        Route::get('update-news', function () {
+            return view('admin.pages.news.edit-news');
+        })->name('update');
         Route::get('detail-news', function () {
             return view('admin.pages.news.detail-news');
         })->name('detail');
@@ -213,6 +216,9 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('create-events', function () {
             return view('admin.pages.events.create-events');
         })->name('create');
+        Route::get('update-events', function () {
+            return view('admin.pages.events.edit-events');
+        })->name('update');
         Route::get('detail-events', function () {
             return view('admin.pages.events.detail-events');
         })->name('detail');
