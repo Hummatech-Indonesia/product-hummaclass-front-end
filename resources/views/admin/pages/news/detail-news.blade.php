@@ -47,7 +47,7 @@
 
     <div class="card-body">
         <span class="mb-1 badge rounded-pill font-medium text-white px-4" style="background-color: var(--purple-primary)">Seminar</span>
-        <h4 class="fw-semibold text-dark fs-7 mt-2">Streaming video way before it was cool, go dark tomorrow</h4>
+        <h4 class="fw-semibold text-dark fs-8 mt-2">Streaming video way before it was cool, go dark tomorrow</h4>
         <div class="d-flex gap-5 mt-3">
             <p class="d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
