@@ -46,8 +46,8 @@
     </div>
 
     <div class="card-body">
-        <span class="mb-1 badge rounded-pill font-medium text-white px-4" id="detail-category" style="background-color: var(--purple-primary)">Seminar</span>
-        <h4 class="fw-semibold text-dark fs-8 mt-2">Streaming video way before it was cool, go dark tomorrow</h4>
+        <span class="badge rounded-pill font-medium text-white px-4" id="detail-category" style="background-color: var(--purple-primary)"></span>
+        <h4 class="fw-semibold text-dark fs-8 mt-2" id="detail-title"></h4>
         <div class="d-flex gap-5 mt-3">
             <p class="d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@
                 </svg>
                 2252
             </p>
-            <p class="d-flex align-items-center gap-2">
+            <p class="d-flex align-items-center gap-2" id="detail-created">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 8h16M4 8v8.8c0 1.12 0 1.68.218 2.108a2 2 0 0 0 .874.874c.427.218.987.218 2.105.218h9.606c1.118 0 1.677 0 2.104-.218c.377-.192.683-.498.875-.874c.218-.428.218-.986.218-2.104V8M4 8v-.8c0-1.12 0-1.68.218-2.108c.192-.377.497-.682.874-.874C5.52 4 6.08 4 7.2 4H8m12 4v-.803c0-1.118 0-1.678-.218-2.105a2 2 0 0 0-.875-.874C18.48 4 17.92 4 16.8 4H16m0-2v2m0 0H8m0-2v2" /></svg>
                 20 Juni 2023
@@ -113,11 +113,11 @@
             },
             dataType: "json",
             success: function(response) {
-                $('#detail-category').html(response.data.category);
-                $('#module_task_count').html(response.data.module_task_count);
-                $('#sub_title').html(response.data.sub_title);
-                $('#step').html(response.data.step);
-                $('#sub_modul_count').html(response.data.sub_module_count);
+                $('#detail-category').html(response.data.category.name);
+                $('#detail-title').html(response.data.title);
+                // $('#detail-view').html(response.data.category.name);
+                $('#detail-created').html(response.data.created);
+                // $('#detail-description').html(response.data.category.name);
             },
             error: function(xhr) {
                 Swal.fire({
