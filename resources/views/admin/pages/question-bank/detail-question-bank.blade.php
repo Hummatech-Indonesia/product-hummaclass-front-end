@@ -91,9 +91,8 @@
         <div class="d-flex gap-2">
             <div class="input-group">
                 <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                         <path d="M21 21l-6 -6" />
@@ -138,35 +137,50 @@
         </div>
     </div>
 
-    @foreach (range(1,4) as $item)
-    <div class="card position-relative">
-        <div class="p-3">
-            <div class="d-flex justify-content-between">
-                <b>10. Fungsi yang dapat digunakan untuk menampilkan luaran program di java adalah</b>
-                <button class="btn btn-light-danger text-danger p-1">
-                    <i class="ti ti-trash fs-6 fw-semibold"></i>
-                </button>
-            </div>
-            <div class="mt-2">
-                <h6 class="mb-3 ms-1">A. "hello wold!"</h6>
-                <h6 class="mb-3 ms-1">B. Public static void main(String[] args)</h6>
-                <div class="d-flex gap-2 mb-3">
-                    <span class="badge bg-light-success rounded-2 py-1 ps-1 pe-5">
-                        <h6>C. System.out.print()</h6>
-                    </span>
-                    <div class="text-success mt-1">
-                        <i class="ti ti-check fs-3"></i>
-                        Jawaban
-                    </div>
-                </div>
-                <h6 class="mb-3 ms-1">D. Import java.io.File;</h6>
-                <h6 class="mb-3 ms-1">E. Int Umur = 16;</h6>
-            </div>
-        </div>
-        <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-            <img src="{{ asset('admin/assets/images/background/bubble-purple.png') }}" alt="Description" class="img-fluid" style="max-width: 100px; height: auto;">
-        </div>
+    <div class="moduleQuestionContainer">
     </div>
-    @endforeach
-    
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ env('API_URL') }}/api/module-questions",
+                dataType: "json",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                success: function(response) {
+                    console.log(response);
+                    $.each(response.data, function(index, value) {
+                        $('.moduleQuestionContainer').append(
+                            `
+                        <div class="card position-relative">
+        <div class="p-3">
+                <div class="d-flex justify-content-between">
+                    <b>${index + 1}. ${value.question}</b>
+                    <button class="btn btn-light-danger text-danger p-1">
+                        <i class="ti ti-trash fs-6 fw-semibold"></i>
+                    </button>
+                </div>
+                <div class="mt-2">
+                    <h6 class="mb-3 ms-1 ${value.answer === 'option_a' ? 'text-success' : ''}">A. ${value.option_a}</h6>
+                    <h6 class="mb-3 ms-1 ${value.answer === 'option_b' ? 'text-success' : ''}">B. ${value.option_b}</h6>
+                    <h6 class="mb-3 ms-1 ${value.answer === 'option_c' ? 'text-success' : ''}">C. ${value.option_c}</h6>
+                    <h6 class="mb-3 ms-1 ${value.answer === 'option_d' ? 'text-success' : ''}">D. ${value.option_d}</h6>
+                    <h6 class="mb-3 ms-1 ${value.answer === 'option_e' ? 'text-success' : ''}">E. ${value.option_e}</h6>
+                </div>
+
+                </div>
+                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                    <img src="{{ asset('admin/assets/images/background/bubble-purple.png') }}" alt="Description" class="img-fluid" style="max-width: 100px; height: auto;">
+                </div>
+        </div>
+                        `
+                        );
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
