@@ -131,9 +131,11 @@
                         <tr class="sub_category">
                             <td></td>
                             <td></td>
-                            <td style="padding-left: 350px !important;">${subValue.name}</td>
-                            <td>
-                                <div class="dropdown dropstart" style="padding-right: 40px;">
+                            <td></td>
+                            <td style="padding-left: 30px !important;"></td>
+                            <td style="background-color: #F1F1F1;">${subValue.name}</td>
+                            <td style="background-color: #F1F1F1;">
+                                <div class="dropdown dropstart" style="padding-right: 7px;">
                                     <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div class="category">
                                             <span class="more-options text-dark">
@@ -142,11 +144,7 @@
                                         </div>
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li>
-                                            <button data-id="${value.id}" class="add-sub-category dropdown-item d-flex align-items-center gap-3">
-                                                <i class="fs-4 ti ti-edit"></i>Tambah Sub Kategori
-                                            </button>
-                                        </li>
+
                                         <li>
                                             <button data-id="${subValue.id}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
                                                 <i class="fs-4 ti ti-edit"></i>Edit
@@ -205,6 +203,11 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <button data-id="${value.id}" class="add-sub-category dropdown-item d-flex align-items-center gap-3">
+                                            <i class="fs-4 ti ti-plus"></i>Tambah Sub Kategori
+                                        </button>
+                                    </li>
                                     <li>
                                         <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                             <i class="fs-4 ti ti-edit"></i>Edit
