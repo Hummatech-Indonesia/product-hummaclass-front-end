@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
 use App\Http\Controllers\Password\ResetPasswordController;
@@ -77,7 +78,7 @@ Route::prefix('news')->name('news.')->group(function () {
     Route::get('news', function () {
         return view('user.pages.news.index');
     })->name('index');
-    Route::get('detail-news', function () {
+    Route::get('detail-news/{id}', function () {
         return view('user.pages.news.detail-news');
     })->name('detail.news');
 });
@@ -199,19 +200,20 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         })->name('faq.index');
     });
 
-    Route::prefix('news')->name('news.')->group(function () {
-        Route::get('news', function () {
-            return view('admin.pages.news.index');
-        })->name('index');
-        Route::get('create-news', function () {
-            return view('admin.pages.news.create-news');
-        })->name('create');
-        Route::get('update-news', function () {
-            return view('admin.pages.news.edit-news');
-        })->name('update');
-        Route::get('detail-news', function () {
-            return view('admin.pages.news.detail-news');
-        })->name('detail');
+    Route::prefix('news')->group(function () {
+        // Route::get('news', function () {
+        //     return view('admin.pages.news.index');
+        // })->name('index');
+        // Route::get('create-news', function () {
+        //     return view('admin.pages.news.create-news');
+        // })->name('create');
+        // Route::get('update-news', function () {
+        //     return view('admin.pages.news.edit-news');
+        // })->name('update');
+        // Route::get('detail-news', function () {
+        //     return view('admin.pages.news.detail-news');
+        // })->name('detail');
+        Route::resource('news', BlogController::class);
     });
 
     Route::prefix('events')->name('events.')->group(function () {

@@ -46,7 +46,7 @@
     </div>
 
     <div class="card-body">
-        <span class="mb-1 badge rounded-pill font-medium text-white px-4" style="background-color: var(--purple-primary)">Seminar</span>
+        <span class="mb-1 badge rounded-pill font-medium text-white px-4" id="detail-category" style="background-color: var(--purple-primary)">Seminar</span>
         <h4 class="fw-semibold text-dark fs-8 mt-2">Streaming video way before it was cool, go dark tomorrow</h4>
         <div class="d-flex gap-5 mt-3">
             <p class="d-flex align-items-center gap-2">
@@ -98,4 +98,35 @@
         </ul>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        var id = "{{ $id }}";
+
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/blogs/" + id,
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                $('#detail-category').html(response.data.category);
+                $('#module_task_count').html(response.data.module_task_count);
+                $('#sub_title').html(response.data.sub_title);
+                $('#step').html(response.data.step);
+                $('#sub_modul_count').html(response.data.sub_module_count);
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
+            }
+        });
+    });
+</script>
 @endsection
