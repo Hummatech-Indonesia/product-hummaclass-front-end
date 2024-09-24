@@ -98,6 +98,11 @@ Route::get('learning-path', function () {
     return view('user.pages.learning-path.index');
 })->name('learning-path.index');
 
+Route::get('quiz-question', function(){
+    return view('user.pages.question-quiz.index');
+})->name('quetion-quiz.index');
+
+
 // ================== ADMIN ==================
 
 
