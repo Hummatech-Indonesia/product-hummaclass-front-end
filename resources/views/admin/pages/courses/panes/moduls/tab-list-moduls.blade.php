@@ -74,6 +74,13 @@
                                     </g>
                                 </svg>
                             </a>
+                            <a href="#"  class="btn text-white btn-warning moduleForward" data-id="${value.id}">
+                                <i class="ti ti-arrow-up"></i>
+                            </a>
+                            <a href="#"  class="btn text-white btn-warning moduleBackward" data-id="${value.id}">
+                                <i class="ti ti-arrow-down"></i>
+                            </a>
+                            
                             <!-- Dropdown -->
                             <div class="dropdown">
                                 <i class="ti ti-settings text-warning fs-7 mt-1" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
@@ -138,6 +145,44 @@
             </div>
                     `;
         }
+
+        $(document).on('click', '.moduleBackward', function() {
+            const id = $(this).data('id')
+            $.ajax({
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                type: "PATCH",
+                url: "{{ env('API_URL') }}/api/modules-backward/" + id,
+                dataType: "json",
+                success: function(response) {
+                    get();
+                    console.log('berhasil forward module');
+                },
+                error: function(xhr) {
+                    console.log('gagal forward module');
+                }
+            });
+        })
+        $(document).on('click', '.moduleForward', function() {
+            const id = $(this).data('id')
+            $.ajax({
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                type: "PATCH",
+                url: "{{ env('API_URL') }}/api/modules-forward/" + id,
+                dataType: "json",
+                success: function(response) {
+                    get();
+                    console.log('berhasil forward module');
+                },
+                error: function(xhr) {
+                    console.log('gagal forward module');
+                }
+            });
+        })
+
         $(document).on('click', '.btn-delete', function() {
             const id = $(this).data('id')
             $('#modal-delete').modal('show');
