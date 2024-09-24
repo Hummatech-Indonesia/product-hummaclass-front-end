@@ -31,6 +31,18 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">KONTEN</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.courses.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-cpu"></i>
+                        </span>
+                        <span class="hide-menu">Kursus</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
                         <span>
@@ -39,14 +51,6 @@
                             </svg>
                         </span>
                         <span class="hide-menu">Kategori</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.courses.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-cpu"></i>
-                        </span>
-                        <span class="hide-menu">Kursus</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">
@@ -65,13 +69,9 @@
                         <span class="hide-menu">Sub Modul</span>
                     </a>
                 </li> --}}
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-calendar"></i>
-                        </span>
-                        <span class="hide-menu">User</span>
-                    </a>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.news.index') }}" aria-expanded="false">
@@ -82,28 +82,16 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-calendar"></i>
-                        </span>
-                        <span class="hide-menu">Profile</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.question-bank.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-calendar"></i>
-                        </span>
-                        <span class="hide-menu">Bank Soal</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.events.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
                         <span class="hide-menu">Event</span>
                     </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">LANDING PAGE</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
@@ -131,6 +119,34 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">PROFILE</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-calendar"></i>
+                        </span>
+                        <span class="hide-menu">User</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-calendar"></i>
+                        </span>
+                        <span class="hide-menu">Profile</span>
+                    </a>
+                </li>
+                {{-- <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('admin.question-bank.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-calendar"></i>
+                        </span>
+                        <span class="hide-menu">Bank Soal</span>
+                    </a>
+                </li> --}}
             </ul>
             {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
           <div class="d-flex">
