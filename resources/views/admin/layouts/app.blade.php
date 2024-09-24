@@ -741,7 +741,7 @@
 
         function empty() {
             return `<div class="d-flex justify-content-center flex-column align-items-center">    
-                            <img src="{{ asset('assets/8961448_3973477.svg') }}" width="75%" alt="" srcset="">
+                            <img src="{{ asset('assets/8961448_3973477.svg') }}" width="35%" alt="" srcset="">
                             <h4 class="text-center">Data kosong</h4>
                     </div>`
         }
