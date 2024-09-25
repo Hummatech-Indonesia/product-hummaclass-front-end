@@ -80,9 +80,10 @@
             }
 
             handleGetCourses(); // Panggil fungsi saat halaman di-load
-
             // Fungsi untuk menampilkan card
             function card(index, value) {
+                console.log(value.photo);
+                
                 return `<div class="col-lg-4">
                     <div class="courses__item shine__animate-item">
                         <div class="courses__item-thumb">

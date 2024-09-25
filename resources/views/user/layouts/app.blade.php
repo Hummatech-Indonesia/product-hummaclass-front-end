@@ -3,6 +3,7 @@
 
 
 <!-- Mirrored from html.themegenix.com/skillgro/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Aug 2024 06:41:22 GMT -->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -33,7 +34,8 @@
     @yield('style')
 </head>
 
-<body style="
+<body
+    style="
         transform: scale(0.8);
         transform-origin: 0 0;
         width: 125%;
@@ -57,21 +59,21 @@
     <!-- Scroll-top-end-->
 
     <!-- header-area -->
-        @include('user.layouts.header')
+    @include('user.layouts.header')
     <!-- header-area-end -->
 
 
 
     <!-- main-area -->
     <main class="main-area fix">
-        @yield('content')   
+        @yield('content')
     </main>
     <!-- main-area-end -->
 
 
 
     <!-- footer-area -->
-        @include('user.layouts.footer')
+    @include('user.layouts.footer')
     <!-- footer-area-end -->
 
 
@@ -100,6 +102,15 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script>
         SVGInject(document.querySelectorAll("img.injectable"));
+
+        function formatRupiah(price) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+        }
     </script>
 
     @yield('script')
@@ -108,4 +119,5 @@
 
 
 <!-- Mirrored from html.themegenix.com/skillgro/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Aug 2024 06:42:43 GMT -->
+
 </html>

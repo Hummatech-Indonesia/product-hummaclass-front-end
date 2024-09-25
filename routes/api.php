@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
+
+Route::get('testing', function () {
+    return response()->json(asset('storage'));
+});
