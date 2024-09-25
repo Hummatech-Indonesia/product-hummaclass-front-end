@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -128,6 +129,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
         'modules' => ModuleController::class,
+        'events' => EventController::class,
     ]);
 
     Route::get('create-quiz/{id}', function (string $id) {
@@ -216,18 +218,18 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::resource('news', BlogController::class);
     });
 
-    Route::prefix('events')->name('events.')->group(function () {
-        Route::get('events', function () {
-            return view('admin.pages.events.index');
-        })->name('index');
-        Route::get('create-events', function () {
-            return view('admin.pages.events.create-events');
-        })->name('create');
-        Route::get('update-events', function () {
-            return view('admin.pages.events.edit-events');
-        })->name('update');
-        Route::get('detail-events', function () {
-            return view('admin.pages.events.detail-events');
-        })->name('detail');
-    });
+    // Route::prefix('events')->name('events.')->group(function () {
+    //     Route::get('events', function () {
+    //         return view('admin.pages.events.index');
+    //     })->name('index');
+    //     Route::get('create-events', function () {
+    //         return view('admin.pages.events.create-events');
+    //     })->name('create');
+    //     Route::get('update-events', function () {
+    //         return view('admin.pages.events.edit-events');
+    //     })->name('update');
+    //     Route::get('detail-events', function () {
+    //         return view('admin.pages.events.detail-events');
+    //     })->name('detail');
+    // });
 });
