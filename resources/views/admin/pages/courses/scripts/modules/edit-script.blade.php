@@ -1,10 +1,27 @@
 <script>
     $(document).ready(function() {
-        $('#create-module-form').submit(function(e) {
+
+        var id = "{{ $id }}"; // Mendapatkan id dari Blade
+        let courseSlug;
+        $.ajax({
+            type: "GET",
+            url: "{{ env('API_URL') }}/api/modules/detail/" + id,
+            dataType: "json",
+            success: function(response) {
+                courseSlug = response.data.course.slug;
+                $('#title').val(response.data.title)
+                $('#sub_title').val(response.data.sub_title)
+            },
+            error: function(xhr) {
+                console.log('Gagal mengambil data');
+            }
+        });
+
+        $('#edit-module-form').submit(function(e) {
             e.preventDefault();
-            var id = "{{ $id }}"; // Mendapatkan id dari Blade
 
             var formData = new FormData(this);
+            console.log(formData);
 
             $.ajax({
                 type: "POST",
@@ -14,7 +31,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    window.location.href = "/admin/courses/" + id + "#list";
+                    window.location.href = "/admin/courses/" + courseSlug;
                 },
                 error: function(response) {
                     if (response.status === 422) {

@@ -46,6 +46,9 @@
                 type: "POST",
                 url: "{{ config('app.api_url') }}/api/sub-categories/" + id,
                 data: formData,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
                 dataType: "json",
                 contentType: false,
                 processData: false,
@@ -54,9 +57,10 @@
                         title: "Sukses",
                         text: "Berhasil menambah data data.",
                         icon: "success"
-                    });
-                    $('#modal-edit-sub-category').modal('hide');
-                    $('#modal-edit-sub-category').find('input').val('');
+                    }).then(
+                        window.location.href = "/admin/courses";
+                    );
+
 
                     get(1);
                 },

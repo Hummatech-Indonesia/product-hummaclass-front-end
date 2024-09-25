@@ -16,18 +16,58 @@
 
 @section('content')
 <!-- lesson-area -->
-<section class="lesson__area section-pb-120">
+<section class="lesson__area section-pb-0">
     <div class="container-fluid p-0">
-        <div class="row gx-2">
+        <div class="row gx-0">
             <div class="col-xl-3 col-lg-4">
                 <div class="lesson__content">
                     <h2 class="title">Konten Kursus</h2>
-                    <div class="accordion" id="content-course">
+                    <div class="accordion">
+                        <div id="content-course">
 
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Final Audit
+                                    <span>1/2</span>
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample" style="">
+                                <div class="accordion-body">
+                                    <ul class="list-wrap">
+                                        <li class="course-item open-item">
+                                            <form action="{{ url()->current() }}" method="GET">
+                                                <a href="{{ url()->current() }}?item=quiz" class="ps-2">
+                                                    Quiz
+                                                </a>
+                                            </form>
+                                        </li>
+                                        <li class="course-item">
+                                            <form action="{{ url()->current() }}" method="GET">
+                                                {{-- <a href="{{ url()->current() }}?item=tugas-akhir" class="ps-2">
+                                                Tugas Akhir
+                                                </a> --}}
+                                                <a href="#" class="course-item-link">
+                                                    <span class="item-name">Tugas Akhir</span>
+                                                    <div class="course-item-meta">
+                                                        <span class="item-meta course-item-status">
+                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}" alt="icon">
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-8">
+            <div class="col-xl-9 col-lg-8" style="background-color: #F1F1F1;">
                 {{-- <div class="lesson__video-wrap">
                     <div class="lesson__video-wrap-top">
                         <div class="lesson__video-wrap-top-left">
@@ -47,54 +87,99 @@
                         <button class="next-button" title="React for the Rest of us"><i class="flaticon-arrow-right"></i></button>
                     </div>
                 </div> --}}
-                <div class="courses__details-content lesson__details-content">
+                {{-- <div class="courses__details-content lesson__details-content">
                     <div class="courses__overview-wrap">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="http://127.0.0.1:9000/courses/courses" id="detail-category">Development</a>
+                                <a href="http://127.0.0.1:9000/courses/courses" id="course_sub_category"></a>
                             </li>
                             <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating">4.5</span>&nbsp;Review)
                             </li>
                         </ul>
-                        <h3 class="fw-semibold">Resolving Conflicts Between Designers And Engineers</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo.</p>
+                        <h3 class="fw-semibold" id="course_title"></h3>
+                        <p id="course_sub_title"></p>
                         <div style="border-bottom: 1px solid #CCCCCC;"></div>
-                        <h3 class="title mt-4">Course Description</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo viverra maecenas accumsan lacus vel facilisis.dolor sit amet,
-                            consectetur adipiscing elited do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua.</p>
-                        <h3 class="title">What you'll learn in this course?</h3>
-                        <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida.
-                            Risus commodo viverra maecenas accumsan.</p>
-                        <ul class="about__info-list list-wrap">
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">Work with color & Gradients & Grids</p>
+                        <h3 class="title mt-4">Konten</h3>
+                        <div class="" id="content"></div>
+                    </div>
+                </div> --}}
+                <div class="courses__details-content lesson__details-content mx-0">
+                    @if (request('item') == 'quiz')
+                    <div class="lesson__video-wrap mb-0">
+                        <div class="lesson__video-wrap-top">
+                            <div class="lesson__video-wrap-top-left">
+                                <a href="#"><i class="flaticon-arrow-right"></i></a>
+                                <span>Resolving Conflicts Between Designers And Engineers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="card p-5 border-0">
+                            <h4 class="fw-semibold">Aturan</h4>
+                            <p>
+                                Anda akan menemui ujian (quiz, exam, atau ujian akhir) seperti ini untuk memastikan Anda sudah mengerti dan memahami materi pembelajaran yang telah diberikan. Pada ujian akan tersedia beberapa pertanyaan dengan opsi jawaban pilihan ganda. 
+                            </p>
+                            <p>
+                                Ujian memiliki standar minimum kelulusan. Jika tidak memenuhi standar nilai minimum, maka Anda wajib mengulang kembali sampai memenuhi standar tersebut. Perhatikan bahwa jika Anda mau mengulang ujian, akan ada waktu tunggu / jeda yang Anda harus lewati. Setelahnya, Anda dapat mengambil kembali ujian yang baru. Waktu tunggu ini berbeda-beda, mulai dari 1 menit hingga berhari-hari. Jadi agar waktu Anda lebih efisien, pastikan Anda sudah siap secara materi, sebelum mengambil ujian. 
+                            </p>
+                            <p>
+                                Setiap ujian juga memiliki durasi waktu yang berbeda. Anda wajib menyelesaikan seluruh pertanyaan pada durasi waktu yang telah diberikan. Jika waktu yang diberikan habis, maka ujian akan otomatis selesai. Sistem hanya akan menilai pertanyaan yang sudah terjawab. Jadi, usahakan Anda telah menjawab sebanyak mungkin pertanyaan hingga tuntas, sebelum durasi waktu habis. 
+                            </p>
+                            <p>
+                                Mari kita coba fitur ujian pada Dicoding Academy. Jika sudah siap mencoba, klik tombol Ambil di bawah. Anda hanya bisa lanjut ke modul pelajaran berikutnya jika telah lulus dari ujian ini.
+                            </p>
+
+                            <ul style="list-style: disc">
+                                <li>Jumlah Soal : 5</li>
+                                <li>Syarat Nilai Kelulusan : 80</li>
+                                <li>Durasi Ujian : 5 Menit</li>
+                                <li>Waktu tunggu ujian ulang ; 1 menit</li>
+                            </ul>
+                            <div class="text-end mt-3 mb-4">
+                                <a href="{{ route('quetion-quiz.index') }}" class="btn">Mulai Ujian</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer__bottom" style="background-color: #FFFFFF;">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="d-flex justify-content-between">
+                                    <a href="" class="text-dark fw-bolder fs-6">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 9"><path fill="currentColor" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"/><path fill="currentColor" d="M6 8.5a.47.47 0 0 1-.35-.15l-3.5-3.5c-.2-.2-.2-.51 0-.71L5.65.65c.2-.2.51-.2.71 0s.2.51 0 .71L3.21 4.51l3.15 3.15c.2.2.2.51 0 .71c-.1.1-.23.15-.35.15Z"/></svg>
+                                        Kembali
+                                    </a>
+                                    <a href="" class="text-dark fw-bolder fs-6">
+                                        Selanjutnya
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 9"><path fill="currentColor" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5"/><path fill="currentColor" d="M10 8.5a.47.47 0 0 1-.35-.15c-.2-.2-.2-.51 0-.71l3.15-3.15l-3.15-3.15c-.2-.2-.2-.51 0-.71s.51-.2.71 0l3.5 3.5c.2.2.2.51 0 .71l-3.5 3.5c-.1.1-.23.15-.35.15Z"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @elseif (request('item') == 'tugas-akhir')
+                    <h3 class="fw-semibold">Tugas Akhir</h3>
+                    <p>Ini adalah deskripsi tugas akhir. Pastikan untuk menyelesaikan tugas ini sebelum deadline.</p>
+                    <div class="task-details">
+                        <p><strong>Deadline:</strong> 30 September 2024</p>
+                        <p><strong>File Submission:</strong> Upload tugas dalam format PDF.</p>
+                    </div>
+                    @else
+                    <div class="courses__overview-wrap">
+                        <ul class="courses__item-meta list-wrap">
+                            <li class="courses__item-tag">
+                                <a href="http://127.0.0.1:9000/courses/courses" id="course_sub_category"></a>
                             </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">All the useful shortcuts</p>
-                            </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">Be able to create Flyers, Brochures, Advertisements</p>
-                            </li>
-                            <li class="about__info-list-item">
-                                <i class="flaticon-angle-right"></i>
-                                <p class="content">How to work with Images & Text</p>
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating">4.5</span>&nbsp;Review)
                             </li>
                         </ul>
-                        <p class="last-info">Morem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse
-                            ultrices gravida. Risus commodo viverra maecenas accumsan.Dorem ipsum dolor sit
-                            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magn.</p>
+                        <h3 class="fw-semibold" id="course_title"></h3>
+                        <p id="course_sub_title"></p>
+                        <div style="border-bottom: 1px solid #CCCCCC;"></div>
+                        <h3 class="title mt-4">Konten</h3>
+                        <div class="" id="content"></div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -135,7 +220,7 @@
             const subModules = value.sub_modules.map(subModule => {
                 return `<li class="course-item open-item">
                                <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
-                                    <span>${subModule.title}</span>
+                                    <span class="ps-2">${subModule.title}</span>
                                 </a>
                             </li>`;
             }).join('');
@@ -150,7 +235,7 @@
                         <div id="collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="heading-${index}"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
-                                <ul class="list-wrap" id="list-warp">
+                                <ul class="list-wrap" id="list-wrap">
                                     ${subModules}
                                 </ul>
                             </div>
@@ -161,14 +246,18 @@
 
         $.ajax({
             type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id
+            , url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/" + id
             , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response);
+                console.log(response.data);
 
+                $('#course_sub_category').html(response.data.course_sub_category);
+                $('#course_sub_title').html(response.data.course_sub_title);
+                $('#content').html(response.data.content);
+                $('#course_title').html(response.data.course_title);
             }
             , error: function(xhr) {
                 Swal.fire({

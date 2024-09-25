@@ -63,11 +63,12 @@
             <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
                 <thead class="text-dark fs-4">
                     <tr class="">
-                        <th class="fs-4 fw-semibold mb-0">No</th>
-                        <th class="fs-4 fw-semibold mb-0">Kategori</th>
-                        <th class="fs-4 fw-semibold mb-0">Sub Kategori</th>
-                        <th class="fs-4 fw-semibold mb-0">Tambah</th>
-                        <th class="fs-4 fw-semibold mb-0">Aksi</th>
+                        <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE"></th>
+                        <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">No</th>
+                        <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Kategori</th>
+                        <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Sub Kategori</th>
+                        {{-- <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Tambah</th> --}}
+                        <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-center" id="tableBody">
@@ -128,22 +129,33 @@
                 $.each(value.sub_category, function(subIndex, subValue) {
                     subCategoryRows += `
                         <tr class="sub_category">
-                            <td style="background-color: #F6EEFE;"></td>
-                            <td style="background-color: #F6EEFE;"></td>
-                            <td>${subIndex + 1}</td>
-                            <td class="ps-4">${subValue.name}</td>
-                            <td>
-                                <div class="d-flex justify-content-center gap-3">
-                                    <button data-id="${subValue.id}" data-name="${subValue.name}" class="btn-edit-sub-category btn btn-warning" data-bs-toggle="modal" >
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-2.5 -2.5 24 24">
-                                            <path fill="currentColor" d="m16.318 6.11l-3.536-3.535l1.415-1.414c.63-.63 2.073-.755 2.828 0l.707.707c.755.755.631 2.198 0 2.829zm-1.414 1.415l-9.9 9.9l-4.596 1.06l1.06-4.596l9.9-9.9z"/>
-                                        </svg>
-                                    </button>
-                                     <button class="btn-delete-sub-category btn text-white" style="background-color: #DB0909;" data-id="${subValue.id}" data-bs-toggle="modal" data-bs-target="#modal-delete">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/>
-                                        </svg>
-                                    </button>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="padding-left: 30px !important;"></td>
+                            <td style="background-color: #F1F1F1;">${subValue.name}</td>
+                            <td style="background-color: #F1F1F1;">
+                                <div class="dropdown dropstart" style="padding-right: 7px;">
+                                    <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <div class="category">
+                                            <span class="more-options text-dark">
+                                                <i class="ti ti-dots-vertical fs-5"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                        <li>
+                                            <button data-id="${subValue.id}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
+                                                <i class="fs-4 ti ti-edit"></i>Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button data-id="${subValue.id}" class="btn-delete-sub-category dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
+                                                <i class="fs-4 ti ti-trash"></i>Hapus
+                                            </button>
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>
@@ -159,28 +171,28 @@
 
             return `
                     <tr class="fw-semibold">
-                        <td>${index + 1}</td>
+                        <td class="px-0">
+                            <p>
+                                <button class="btn btn-sm text-white px-1 py-1 ms-2 toggle-btn" type="button" style="background-color: #9425FE;" data-bs-toggle="collapse" data-bs-target="#collapseExample${index + 1}" aria-expanded="false" aria-controls="collapseExample${index + 1}">
+                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="m17 14l-5-5l-5 5"/>
+                                    </svg>
+                                </button>
+                            </p>
+                        </td>
+                        <td class="px-0">
+                            <div class="">
+                                ${index + 1}
+                            </div>
+                        </td>
                         <td>${value.name}</td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 ${value.sub_category.length} Sub Kategori
-                                <p>
-                                    <button class="btn btn-sm text-white px-1 py-1 ms-2 toggle-btn" type="button" style="background-color: #815FB4;" data-bs-toggle="collapse" data-bs-target="#collapseExample${index + 1}" aria-expanded="false" aria-controls="collapseExample${index + 1}">
-                                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="m17 14l-5-5l-5 5"/>
-                                        </svg>
-                                    </button>
-                                </p>
+                                
                             </div>
                         </td>
-                        <td>
-                            <button class="add-sub-category btn btn-success" data-id="${value.id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z"/>
-                                </svg>
-                                Tambah Sub Kategori
-                            </button>
-                        </td>
+
                         <td>
                             <div class="dropdown dropstart">
                                 <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -191,6 +203,11 @@
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li>
+                                        <button data-id="${value.id}" class="add-sub-category dropdown-item d-flex align-items-center gap-3">
+                                            <i class="fs-4 ti ti-plus"></i>Tambah Sub Kategori
+                                        </button>
+                                    </li>
                                     <li>
                                         <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
                                             <i class="fs-4 ti ti-edit"></i>Edit
@@ -215,6 +232,7 @@
                                 </table>
                             </div>
                         </td>
+                       
                     </tr>
                 `;
         }

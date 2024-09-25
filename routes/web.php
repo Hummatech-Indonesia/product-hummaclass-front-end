@@ -5,8 +5,10 @@ use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -77,7 +79,7 @@ Route::prefix('news')->name('news.')->group(function () {
     Route::get('news', function () {
         return view('user.pages.news.index');
     })->name('index');
-    Route::get('detail-news', function () {
+    Route::get('detail-news/{id}', function () {
         return view('user.pages.news.detail-news');
     })->name('detail.news');
 });
@@ -97,6 +99,11 @@ Route::get('list-mentors', function () {
 Route::get('learning-path', function () {
     return view('user.pages.learning-path.index');
 })->name('learning-path.index');
+
+Route::get('quiz-question', function(){
+    return view('user.pages.question-quiz.index');
+})->name('quetion-quiz.index');
+
 
 // ================== ADMIN ==================
 
@@ -122,7 +129,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
         'modules' => ModuleController::class,
+        'events' => EventController::class,
     ]);
+
+    Route::get('create-quiz/{id}', function (string $id) {
+        return view('admin.pages.courses.panes.moduls.create-quiz', compact('id'));
+    })->name('create-quiz.index');
 
     Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
     Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
@@ -149,9 +161,17 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
 
 
-    Route::get('create-task', function () {
-        return view('admin.pages.courses.panes.moduls.create-task');
+    Route::get('create-task/{id}', function (string $id) {
+        return view('admin.pages.courses.panes.moduls.create-task', compact('id'));
     })->name('create-task.index');
+
+    Route::get('detail-task', function () {
+        return view('admin.pages.courses.panes.moduls.detail-task');
+    })->name('detail-task.blade.php');
+
+    Route::get('fill-task-manual', function () {
+        return view('admin.pages.courses.create-fill-manual');
+    })->name('fill-manual.index');
 
     Route::get('question-bank', function () {
         return view('admin.pages.question-bank.index');
@@ -172,6 +192,46 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('profile-update', function () {
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
+
+    Route::prefix('configuration')->name('configuration.')->group(function () {
+        Route::get('footer', function () {
+            return view('admin.pages.configuration.footer');
+        })->name('footer.index');
+        Route::get('faq', function () {
+            return view('admin.pages.configuration.faq');
+        })->name('faq.index');
+    });
+
+    Route::prefix('news')->group(function () {
+        // Route::get('news', function () {
+        //     return view('admin.pages.news.index');
+        // })->name('index');
+        // Route::get('create-news', function () {
+        //     return view('admin.pages.news.create-news');
+        // })->name('create');
+        // Route::get('update-news', function () {
+        //     return view('admin.pages.news.edit-news');
+        // })->name('update');
+        // Route::get('detail-news', function () {
+        //     return view('admin.pages.news.detail-news');
+        // })->name('detail');
+        Route::resource('news', BlogController::class);
+    });
+
+    // Route::prefix('events')->name('events.')->group(function () {
+    //     Route::get('events', function () {
+    //         return view('admin.pages.events.index');
+    //     })->name('index');
+    //     Route::get('create-events', function () {
+    //         return view('admin.pages.events.create-events');
+    //     })->name('create');
+    //     Route::get('update-events', function () {
+    //         return view('admin.pages.events.edit-events');
+    //     })->name('update');
+    //     Route::get('detail-events', function () {
+    //         return view('admin.pages.events.detail-events');
+    //     })->name('detail');
+    // });
 });
 
 

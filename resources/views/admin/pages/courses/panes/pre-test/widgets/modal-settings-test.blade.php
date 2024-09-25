@@ -1,8 +1,8 @@
-<div class="modal fade" id="modal-create-fill-manual" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+<div class="modal fade" id="settings-task" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-md">
             <div class="modal-header" style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
-                <h5 class="modal-title text-white" id="importPegawai">Isi Otomatis</h5>
+                <h5 class="modal-title text-white" id="importPegawai">Pengaturan Test</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="POST" id="create-sub-category-form" enctype="multipart/form-data">

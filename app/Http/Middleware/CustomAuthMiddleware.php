@@ -19,8 +19,8 @@ class CustomAuthMiddleware
     {
         Session::put('next-request', $request->fullUrl());
         $token = session('hummaclass-token');
-        // dd($token);
-        $response = Http::withToken($token)->get(env('API_URL') . '/api/user');
+        // dd(config('app.api_url') . '/api/user');
+        $response = Http::withToken($token)->get(config('app.api_url') . '/api/user');
         if ($response->successful()) {
             return $next($request);
         }

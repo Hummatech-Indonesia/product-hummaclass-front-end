@@ -651,6 +651,8 @@
     {{-- <script src="{{ asset('admin/summernote/summernote.min.js') }}"></script> --}}
     <script src="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+
 
     <script>
         function handlePaginate(pagination) {
@@ -739,7 +741,7 @@
 
         function empty() {
             return `<div class="d-flex justify-content-center flex-column align-items-center">    
-                            <img src="{{ asset('assets/8961448_3973477.svg') }}" width="75%" alt="" srcset="">
+                            <img src="{{ asset('assets/8961448_3973477.svg') }}" width="35%" alt="" srcset="">
                             <h4 class="text-center">Data kosong</h4>
                     </div>`
         }

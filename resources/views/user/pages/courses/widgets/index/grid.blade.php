@@ -51,7 +51,6 @@
                         loading = false; // Nonaktifkan loading state
                     },
                     error: function(xhr) {
-                        // Identifikasi masalah berdasarkan status kode
                         let errorMessage = '';
                         if (xhr.status === 0) {
                             errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
@@ -66,12 +65,12 @@
                         if (retryCount < maxRetries) {
                             retryCount++;
                             setTimeout(() => {
-                                handleGetCourses(); // Coba lagi setelah 1 detik
+                                handleGetCourses();
                             }, 1000);
                         } else {
-                            // Jika retry gagal setelah beberapa kali percobaan
                             gridParent.empty(); // Kosongkan grid
-                            gridParent.append(`<p style="width:100%; text-align: center;">${errorMessage}</p>`);
+                            gridParent.append(
+                                `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
                             console.log('Gagal memuat data setelah beberapa kali percobaan.');
                             loading = false; // Hentikan loading state
                         }
