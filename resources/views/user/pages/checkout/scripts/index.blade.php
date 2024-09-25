@@ -10,8 +10,6 @@
                 'total_price': 0,
             };
             const checkoutData = {
-                'course_id': '',
-                'user_id': '',
                 'voucher_code': '',
                 'payment_method': '',
             }
@@ -123,21 +121,6 @@
 
             // Fetch course vouchers
             function fetchCourseVouchers() {
-                // try {
-                //     if (!course) return; // Ensure course is loaded first
-                // const response = ajaxRequest(
-                // `{{ config('app.api_url') }}/api/course-vouchers/${course.id}/check`,
-                // {
-                //     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                // },
-                // {
-                //     'voucher_code': $('#voucher').val()
-                // }
-                // );
-                // console.log(response);
-                // } catch (error) {
-                // console.error('Error fetching course vouchers:', error);
-                // }
                 $.ajax({
                     type: "get",
                     url: `{{ config('app.api_url') }}/api/course-vouchers/${course.id}/check`,
@@ -157,6 +140,25 @@
                     }
                 });
             }
+
+            $('#checkout-btn').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "get",
+                    url: `{{ config('app.api_url') }}/api/transaction-create/${course.id}`,
+                    data: checkoutData,
+                    dataType: "json",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
+                    }, 
+                    error: function(xhr, status, error) {
+                        console.error('Error creating transaction:', error);
+                    }
+                });
+            });
 
             function eWalletChild(data) {
                 return `<li class="px-3 rounded-4 border d-flex justify-content-between align-items-center">
