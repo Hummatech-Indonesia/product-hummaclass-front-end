@@ -1,96 +1,175 @@
 @push('script')
     <script>
-        $(document).ready(function() {
+        $(document).ready(async function() {
 
+            let course;
             const pricingData = {
                 'course_price': 0,
                 'fee_service': 0,
                 'discount': 0,
                 'total_price': 0,
+            };
+            const checkoutData = {
+                'course_id': '',
+                'user_id': '',
+                'voucher_code': '',
+                'payment_method': '',
             }
+            $("#voucher-form").submit(function(e) {
+                e.preventDefault();
 
-            let course;
+                // console.log($("#voucher-form"));
+                fetchCourseVouchers();
+                // console.log('sdfsdfsdfsdf');
+
+            });
 
             function updatePricing() {
                 $('#order_amount').text(formatRupiah(pricingData.course_price));
                 $('#fee_service').text(formatRupiah(pricingData.fee_service));
-                $('#voucher_discount').text(formatRupiah(pricingData.discount));
-                $('#total_amount').text(formatRupiah(pricingData.course_price - pricingData.discount + pricingData
-                    .fee_service));
+                $('#total_amount').text(formatRupiah(pricingData.course_price - (pricingData.course_price * (
+                        pricingData.discount / 100)) +
+                    pricingData.fee_service));
+
+                // console.log($('#discount_row').is(':empty'));
 
                 if (pricingData.discount > 0) {
-                    $('#course_price_row').after(`
-                        <div class="d-flex justify-content-between">
+                    if ($('#discount_row').length == 0) {
+                        $('#course_price_row').after(`
+                        <div class="d-flex justify-content-between" id="discount_row">
                             <p>Diskon Voucher</p>
-                            <p><span id="voucher_discount">0</span></p>
-                        </div>
-                    `)
+                            <p><span id="voucher_discount">${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
+                            </div>
+                            `);
+                    } else {
+                        $('#voucher_discount').text(formatRupiah(pricingData.discount));
+                    }
                 }
             }
-            // fetch course detail
-            $.ajax({
-                type: "get",
-                url: "{{ config('app.api_url') }}/api/courses/{{ $slug }}",
-                dataType: "json",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                success: function(response) {
+
+            // Wrapper function for $.ajax using Promise to support async/await
+            function ajaxRequest(url, method = 'get', headers = {}, data = {}) {
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        type: method,
+                        url: url,
+                        data: data,
+                        headers: headers,
+                        dataType: "json",
+                        success: function(response) {
+                            resolve(response);
+                        },
+                        error: function(xhr, status, error) {
+                            reject(error);
+                        }
+                    });
+                });
+            }
+
+            // Fetch course detail
+            async function fetchCourseDetail() {
+                try {
+                    const response = await ajaxRequest(
+                        "{{ config('app.api_url') }}/api/courses/{{ $slug }}", 'get', {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        });
+
                     course = response.data;
-                    
 
                     pricingData.course_price = course.price;
+                    checkoutData.course_price = course.id;
                     updatePricing();
+
                     $('.price').text(formatRupiah(course.price));
                     $('.title').text(course.title);
                     $('.course_photo').text(course.photo);
                     $('.category').text(course.category.name);
                     $('#description').html(course.description);
+
+                } catch (error) {
+                    console.error('Error fetching course details:', error);
                 }
-            });
+            }
 
-            const eWallet = $('#e_wallet');
-            const vAccount = $('#virtual_account');
-            const paymentData = {
-                'payment_method': '',
-                'voucher': '',
-            };
+            // Fetch payment channels
+            async function fetchPaymentChannels() {
+                try {
+                    const response = await ajaxRequest("{{ config('app.api_url') }}/api/payment-channels");
 
-            // fetch payment channels
-            $.ajax({
-                type: "get",
-                url: "{{ config('app.api_url') }}/api/payment-channels",
-                dataType: "json",
-                success: function(response) {
                     let eWalletChilds = '';
                     let vAccountChilds = '';
 
-                    // append list channel
+                    // Append list channel
                     response.data.virtual_account.forEach(channel => {
-                        eWalletChilds += eWalletChild(channel);
-                    });
-                    response.data.e_wallet.forEach(channel => {
                         vAccountChilds += eWalletChild(channel);
                     });
+                    response.data.e_wallet.forEach(channel => {
+                        eWalletChilds += eWalletChild(channel);
+                    });
 
-                    eWallet.append(eWalletChilds);
-                    vAccount.append(vAccountChilds);
+                    $('#e_wallet').append(eWalletChilds);
+                    $('#virtual_account').append(vAccountChilds);
 
                     $('.payment-method').change(function() {
-                        paymentData.payment_method = $(this).val();
                         pricingData.fee_service = $(this).data('fee');
+                        checkoutData.payment_method = $(this).data('code');
                         updatePricing();
                     });
+
+                } catch (error) {
+                    console.error('Error fetching payment channels:', error);
                 }
-            });
+            }
+
+            // Fetch course vouchers
+            function fetchCourseVouchers() {
+                // try {
+                //     if (!course) return; // Ensure course is loaded first
+                // const response = ajaxRequest(
+                // `{{ config('app.api_url') }}/api/course-vouchers/${course.id}/check`,
+                // {
+                //     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                // },
+                // {
+                //     'voucher_code': $('#voucher').val()
+                // }
+                // );
+                // console.log(response);
+                // } catch (error) {
+                // console.error('Error fetching course vouchers:', error);
+                // }
+                $.ajax({
+                    type: "get",
+                    url: `{{ config('app.api_url') }}/api/course-vouchers/${course.id}/check`,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: {
+                        'voucher_code': $('#voucher').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        pricingData.discount = response.data.discount;
+                        updatePricing();
+                    },
+                    error: function(err) {
+                        console.log(err.status)
+                    }
+                });
+            }
 
             function eWalletChild(data) {
                 return `<li class="px-3 rounded-4 border d-flex justify-content-between align-items-center">
                     <label for="${data.code}" class="py-3" style="width: 100%;"><img src="${data.icon_url}"/></label>
                     <input class="form-check-input payment-method" id="${data.code}" type="radio" value="${data.code}"
-                    name="payment-method" data-fee="${data.fee_merchant.flat}">
-                    </li>`;
+                    name="payment-method" data-fee="${data.fee_merchant.flat}" data-code="${data.code}">
+                </li>`;
             }
+
+            // Call the async functions
+            await fetchCourseDetail();
+            await fetchPaymentChannels();
+
         });
     </script>
 @endpush

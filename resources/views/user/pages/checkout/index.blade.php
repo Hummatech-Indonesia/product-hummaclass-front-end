@@ -33,13 +33,14 @@
                                     <div class="col col-md-8 d-flex flex-column justify-content-between">
                                         <div>
                                             <h5 class="title">
-                                                <a
-                                                    href="{{ route('courses.courses.show', '') }}/${value.slug}" id="title"></a>
+                                                <a href="{{ route('courses.courses.show', '') }}/${value.slug}"
+                                                    id="title"></a>
                                             </h5>
                                             <p class="author fs-10">By <a href="#">David Millar</a></p>
                                         </div>
                                     </div>
-                                    <p class="info"><span class="fw-bolder price" style="color: #9425fe">Rp. 100.000 </span>/
+                                    <p class="info"><span class="fw-bolder price" style="color: #9425fe">Rp. 100.000
+                                        </span>/
                                         (<span class="review">4.8</span>
                                         Reviews)</p>
                                 </div>
@@ -47,7 +48,8 @@
                         </div>
                         <div class="col-12 border-top">
                             <h5>Deskripsi: </h5>
-                            <p class="self-direction-column" id="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                            <p class="self-direction-column" id="description">Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit.
                                 Perferendis dicta earum corrupti iure magni eius eveniet sapiente aspernatur soluta,
                                 recusandae
                                 quasi alias nesciunt sint assumenda aliquam praesentium ipsa! Architecto, illo!</p>
@@ -92,34 +94,36 @@
                 <div class="card">
                     <div class="card-body">
                         <h5>Pembayaran</h5>
-                        <label for="voucher" class="form-label"></label>
-                        <div class="d-flex gap-3 align-items-center">
-                            <input type="text" class="form-control" id="voucher" name="voucher"
-                                placeholder="Kode Voucher">
-                            <button class="btn btn-primary">Cek</button>
-                        </div>
-                        <hr class="border border-1 border-secondary">
-                        <div class="d-flex justify-content-between" id="course_price_row">
-                            <p>Harga Pesanan</p>
-                            <p><span id="order_amount">0</span></p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p>Biaya Layanan</p>
-                            <p><span id="fee_service">0</span></p>
-                        </div>
-                        <hr class="border border-1 border-secondary">
-                        <div class="d-flex justify-content-between">
-                            <p class="fw-semibold">Total Pesanan</p>
-                            <p class="fw-semibold fs-5"><span id="total_amount">0</span></p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <p class=""><span id="fee_service">0</span></p>
-                        </div>
-                        <button class="btn btn-two w-100 m-auto" id="checkout-btn">Beli Sekarang</button>
+                        <form action="" id="voucher-form">
+                            <label for="voucher" class="form-label"></label>
+                            <div class="d-flex gap-3 align-items-center">
+                                <input type="text" class="form-control" id="voucher" name="voucher"
+                                    placeholder="Kode Voucher">
+                                <button type="submit" class="btn btn-primary" id="btn-check-voucher">Cek</button>
+                        </form>
                     </div>
+                    <hr class="border border-1 border-secondary">
+                    <div class="d-flex justify-content-between" id="course_price_row">
+                        <p>Harga Pesanan</p>
+                        <p><span id="order_amount">0</span></p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Biaya Layanan</p>
+                        <p><span id="fee_service">0</span></p>
+                    </div>
+                    <hr class="border border-1 border-secondary">
+                    <div class="d-flex justify-content-between">
+                        <p class="fw-semibold">Total Pesanan</p>
+                        <p class="fw-semibold fs-5"><span id="total_amount">0</span></p>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <p class=""><span id="fee_service">0</span></p>
+                    </div>
+                    <button class="btn btn-two w-100 m-auto" id="checkout-btn">Beli Sekarang</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
 @include('user.pages.checkout.scripts.index')

@@ -22,8 +22,11 @@ class AuthController extends Controller
         Session::put('hummaclass-token', $request->token);
         Session::put('user', $request->user);
 
+        $nextUrl = session('next-request');
+        Session::forget('next-request');
+        
         // return [session('hummaclass-token'), session('user')];
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'next-url' => $nextUrl]);
     }
 
     public function saveTokenGoogle(Request $request)
@@ -42,6 +45,7 @@ class AuthController extends Controller
     {
         Session::forget('hummaclass-token');
         Session::forget('user');
+        Session::forget('next-request');
         return redirect()->route('login');
     }
 }

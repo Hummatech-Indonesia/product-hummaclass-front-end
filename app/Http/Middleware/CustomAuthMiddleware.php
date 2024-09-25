@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class CustomAuthMiddleware
@@ -16,6 +17,7 @@ class CustomAuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        Session::put('next-request', $request->fullUrl());
         $token = session('hummaclass-token');
         // dd($token);
         $response = Http::withToken($token)->get(env('API_URL') . '/api/user');

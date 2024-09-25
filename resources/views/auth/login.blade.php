@@ -172,7 +172,7 @@
                             , success: function() {
                                 // Setelah berhasil disimpan di session, redirect pengguna
                                 window.location.href =
-                                    "{{ route('dashboard.users.courses') }}";
+                                    "{{ session('next-request') ?? route('dashboard.users.profile') }}";
                             }
                         });
                     }
