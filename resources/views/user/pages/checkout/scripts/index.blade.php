@@ -43,6 +43,9 @@
                         $('#voucher_discount').text(formatRupiah(pricingData.discount));
                     }
                 }
+                // console.log('pricing', pricingData);
+                // console.log('checkout', checkoutData);
+                
             }
 
             // Wrapper function for $.ajax using Promise to support async/await
@@ -109,8 +112,8 @@
                     $('#virtual_account').append(vAccountChilds);
 
                     $('.payment-method').change(function() {
-                        pricingData.fee_service = $(this).data('fee');
                         checkoutData.payment_method = $(this).data('code');
+                        pricingData.fee_service = $(this).data('fee');
                         updatePricing();
                     });
 
@@ -133,6 +136,7 @@
                     dataType: "json",
                     success: function(response) {
                         pricingData.discount = response.data.discount;
+                        checkoutData.voucher_code = response.data.code;
                         updatePricing();
                     },
                     error: function(err) {
@@ -152,9 +156,11 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     success: function(response) {
-                        console.log(response);
+                        alert(response.meta.message);
+                        console.log(response.meta.message);
                     }, 
                     error: function(xhr, status, error) {
+                        allert('Error creating transaction:', error);
                         console.error('Error creating transaction:', error);
                     }
                 });
