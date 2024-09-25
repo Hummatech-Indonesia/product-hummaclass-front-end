@@ -26,11 +26,11 @@
 <div class="card p-3">
     <h5 class="fw-semibold">Tambah Event</h5>
     <hr>
-    <form action="" id="create-module-form">
+    <form action="" id="create-events-form">
         <div class="row">
             <div class="col-12 mb-3">
                 <label for="" class="fw-semibold form-label">Thumbnail</label>
-                <input type="file" class="form-control" id="title" name="title">
+                <input type="file" class="form-control" id="image" name="image">
                 <div class="invalid-feedback"></div>
             </div>
             <div class="col-6 mb-3">
@@ -40,7 +40,7 @@
             </div>
             <div class="col col-md-6">
                 <label for="" class="form-label">Status</label>
-                <select name="is_premium" id="is_premium" class="form-select">
+                <select name="has_certificate" id="is_premium" class="form-select">
                     <option value="0">Gratis</option>
                     <option value="1">Premium</option>
                 </select>
@@ -51,9 +51,40 @@
                 <input type="number" class="form-control" id="price" name="price">
                 <div class="invalid-feedback"></div>
             </div>
+            <div class="col-6 mb-3">
+                <label for="" class="fw-semibold form-label">Kapasitas</label>
+                <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Masukan jumlah kapasitas">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="" class="fw-semibold form-label">Lokasi</label>
+                <select name="location" id="is_premium" class="form-select">
+                    <option value="online">Online</option>
+                    <option value="offline">Offline</option>
+                </select>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col col-md-6">
+                <label for="" class="form-label">Online</label>
+                <select name="is_online" id="is_premium" class="form-select">
+                    <option value="0">Online</option>
+                    <option value="1">Offline</option>
+                </select>
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="" class="fw-semibold form-label">Tanggal Mulai</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Masukan jumlah kapasitas">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="" class="fw-semibold form-label">Harga</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Masukan jumlah kapasitas">
+                <div class="invalid-feedback"></div>
+            </div>
             <div class="col-12 mb-3">
                 <label for="" class="fw-semibold form-label">Deskripsi</label>
-                <textarea name="" id="summernote-description" cols="30" rows="10"></textarea>
+                <textarea name="description" id="summernote-description" cols="30" rows="10"></textarea>
                 <div class="invalid-feedback"></div>
             </div>
         </div>
@@ -154,7 +185,115 @@
                     $(this).slideUp(deleteElement);
                 }
             },
-            // isFirstItemUndeletable: true // Mencegah penghapusan elemen pertama
+        });
+    });
+
+</script>
+
+<script>
+    function category() {
+        $.ajax({
+            type: "GET"
+            , url: "{{config('app.api_url')}}" + "/api/categories"
+            , dataType: "json"
+            , success: function(response) {
+                $('#category_id').empty().append(
+                    '<option value="">Pilih Kategori</option>'
+                );
+                $.each(response.data.data, function(index, value) {
+                    $('#category_id').append(
+                        `<option value="${value.id}">${value.name}</option>`
+                    );
+                });
+            }
+            , error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
+                });
+            }
+        });
+    }
+
+    function sub_category(category_id) {
+        if (!category_id) {
+            $('#sub_category_id').empty().append(
+                '<option value="">Pilih Sub Kategori</option>'
+            );
+            return;
+        }
+
+        $.ajax({
+            type: "GET"
+            , url: "{{config('app.api_url')}}" + "/api/sub-categories/category/" + category_id
+            , dataType: "json"
+            , success: function(response) {
+                $('#sub_category_id').empty().append(
+                    '<option value="">Pilih Sub Kategori</option>'
+                );
+
+                $.each(response.data, function(index, value) {
+                    $('#sub_category_id').append(
+                        `<option value="${value.id}">${value.name}</option>`
+                    );
+                });
+            }
+            , error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data sub kategori."
+                    , icon: "error"
+                });
+            }
+        });
+    }
+
+    $('#category_id').on('change', function() {
+        var category_id = $(this).val();
+        sub_category(category_id);
+    });
+
+    category();
+
+
+    $('#create-events-form').submit(function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: "POST"
+            , url: "{{config('app.api_url')}}/api/events"
+            , headers: {
+                'Authorization': `Bearer {{ session('hummaclass-token') }}`
+            }
+            , data: formData
+            , dataType: "json"
+            , contentType: false
+            , processData: false
+            , success: function(response) {
+                window.location.href = "/admin/events";
+            }
+            , error: function(response) {
+                if (response.status === 422) {
+                    let errors = response.responseJSON.data;
+
+                    $.each(errors, function(field, messages) {
+
+                        $(`[name="${field}"]`).addClass('is-invalid');
+
+                        $(`[name="${field}"]`).closest('.col').find(
+                            '.invalid-feedback').text(messages[0]);
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!"
+                        , text: "Ada kesalahan saat menyimpan data."
+                        , icon: "error"
+                    });
+                }
+            }
         });
     });
 
