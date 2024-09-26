@@ -108,7 +108,6 @@
         });
 
         function reviewContent(value) {            
-            console.log(value.user.name);
             
             return `
                     <div class="course-review-head">

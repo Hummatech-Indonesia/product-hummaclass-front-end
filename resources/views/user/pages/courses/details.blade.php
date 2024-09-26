@@ -105,26 +105,27 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        let photo;
-        var id = "{{ $id }}";
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                photo = `{{ config('app.api_url') }}${response.data.photo}`;
-                $('#photo').attr('src', photo);
-                $('#sub-title').append(response.data.sub_title);
-                $('#detail-title').append(response.data.title);
-                $('#detail-category').append(response.data.category);
-                $('#detail-count-user').append(response.data.user_courses_count);
-                $('#detail-date').append(response.data.created);
-                $('#detail-rating').append(response.data.rating);
+    <script>
+        $(document).ready(function() {
+            let photo;
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    photo = `${response.data.photo}`;
+                    $('#photo').attr('src', photo);
+                    $('#sub-title').append(response.data.sub_title);
+                    $('#detail-title').append(response.data.title);
+                    $('#detail-category').append(response.data.sub_category.name);
+                    $('#detail-count-user').append(response.data.user_courses_count);
+                    $('#detail-date').append(response.data.created);
+                    $('#detail-rating').append(response.data.rating);
 
                     // tab deskripsi
                     $('#description-title').append(response.data.title);
@@ -149,8 +150,6 @@
 
                 },
                 error: function(xhr) {
-                    console.log(xhr);
-
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         text: "Tidak dapat memuat data kategori.",

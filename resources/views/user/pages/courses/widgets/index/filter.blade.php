@@ -4,260 +4,28 @@
             <h4 class="widget-title">Kategori</h4>
             <div class="bd-example bg-light">
                 <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                                Art & Desain (8)
-                            </button>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
-                            <div class="accordion-body">
-                                <div class="courses-cat-list">
-                                    <ul class="list-wrap">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_1">
-                                                <label class="form-check-label" for="cat_1">Lorem, ipsum (8)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_2">
-                                                <label class="form-check-label" for="cat_2">Lorem, ipsum (12)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_3">
-                                                <label class="form-check-label" for="cat_3">Lorem, ipsum (7)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_4">
-                                                <label class="form-check-label" for="cat_4">Lorem, ipsum (10)</label>
-                                            </div>
-                                        </li>
-                                    </ul>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Bisnis
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div class="courses-cat-list">
-                                    <ul class="list-wrap">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_1">
-                                                <label class="form-check-label" for="cat_1">Lorem, ipsum (8)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_2">
-                                                <label class="form-check-label" for="cat_2">Lorem, ipsum (12)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_3">
-                                                <label class="form-check-label" for="cat_3">Lorem, ipsum (7)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_4">
-                                                <label class="form-check-label" for="cat_4">Lorem, ipsum (10)</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                Data Science
-                            </button>
-                        </h2>
-                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample" style="">
-                            <div class="accordion-body">
-                                <div class="courses-cat-list">
-                                    <ul class="list-wrap">
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_1">
-                                                <label class="form-check-label" for="cat_1">Lorem, ipsum (8)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_2">
-                                                <label class="form-check-label" for="cat_2">Lorem, ipsum (12)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_3">
-                                                <label class="form-check-label" for="cat_3">Lorem, ipsum (7)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="cat_4">
-                                                <label class="form-check-label" for="cat_4">Lorem, ipsum (10)</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-more ms-3">
-                    <a href="#">Show More +</a>
                 </div>
             </div>
+        </div>
 
-        </div>
         <div class="courses-widget">
-            <h4 class="widget-title">Language</h4>
+            <h4 class="widget-title">Harga</h4>
             <div class="courses-cat-list">
-                <ul class="list-wrap">
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="lang_1">
-                            <label class="form-check-label" for="lang_1">All Language</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="lang_2">
-                            <label class="form-check-label" for="lang_2">Arabic (11)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="lang_3">
-                            <label class="form-check-label" for="lang_3">English (53)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="lang_4">
-                            <label class="form-check-label" for="lang_4">Spanish (22)</label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="show-more">
-                <a href="#">Show More +</a>
+                <div class="input-group">
+                    <span class="input-group-text">Rp</span>
+                    <input type="number" id="minimum" class="form-control" placeholder="Harga Minimum">
+                </div>
+                <div class="input-group my-4">
+                    <span class="input-group-text">Rp</span>
+                    <input type="number" id="maksimum" class="form-control" placeholder="Harga Maksimum">
+                </div>
+                <button id="filter_price" class="btn"
+                    style="background-color: #ffc224;color:black; width:100%">Terapkan</button>
             </div>
         </div>
         <div class="courses-widget">
-            <h4 class="widget-title">Price</h4>
-            <div class="courses-cat-list">
-                <ul class="list-wrap">
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="price_1">
-                            <label class="form-check-label" for="price_1">All Price</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="price_2">
-                            <label class="form-check-label" for="price_2">Free</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="price_3">
-                            <label class="form-check-label" for="price_3">Paid</label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="courses-widget">
-            <h4 class="widget-title">Skill level</h4>
-            <div class="courses-cat-list">
-                <ul class="list-wrap">
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="difficulty_1">
-                            <label class="form-check-label" for="difficulty_1">All Skills</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="difficulty_2">
-                            <label class="form-check-label" for="difficulty_2">Beginner (55)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="difficulty_3">
-                            <label class="form-check-label" for="difficulty_3">Intermediate
-                                (22)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="difficulty_4">
-                            <label class="form-check-label" for="difficulty_4">High (42)</label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="courses-widget">
-            <h4 class="widget-title">Instructors</h4>
-            <div class="courses-cat-list">
-                <ul class="list-wrap">
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ins_1">
-                            <label class="form-check-label" for="ins_1">David Millar (10)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ins_2">
-                            <label class="form-check-label" for="ins_2">Wade Warren (13)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ins_3">
-                            <label class="form-check-label" for="ins_3">Jenny Wilson (22)</label>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="ins_4">
-                            <label class="form-check-label" for="ins_4">Jacob Jones (42)</label>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="show-more">
-                <a href="#">Show More +</a>
-            </div>
-        </div>
-        <div class="courses-widget">
-            <h4 class="widget-title">Ratings</h4>
+            <h4 class="widget-title">Rating</h4>
             <div class="courses-rating-list">
                 <ul class="list-wrap">
                     <li>
@@ -377,5 +145,85 @@
         font-size: 17px;
         color: #6D6C80;
     }
-
 </style>
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#filter_price').click(function(e) {
+                e.preventDefault();
+                getCategories();
+            });
+
+            getCategories();
+        });
+
+        function getCategories() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/categories",
+                // data: {
+                //     minimum: $('#minimum').val(),
+                //     maksimum: $('#maksimum').val(),
+                // },
+                dataType: "json",
+                success: function(response) {
+                    $('#accordionFlushExample').empty(); // Clear existing data before appending new data
+
+                    $.each(response.data.data, function(index, value) {
+                        $('#accordionFlushExample').append(filterCategories(index, value));
+                    });
+                },
+                error: function(xhr) {
+                    let errorMessage = '';
+                    if (xhr.status === 0) {
+                        errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
+                    } else if (xhr.status >= 500) {
+                        errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
+                    } else if (xhr.status >= 400 && xhr.status < 500) {
+                        errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
+                    } else {
+                        errorMessage = 'Gagal memuat data. Coba lagi nanti.';
+                    }
+                    console.error(errorMessage);
+                }
+            });
+        }
+
+        function filterCategories(index, value) {
+            let subCategoryRows = '';
+
+            if (value.sub_category.length > 0) {
+                $.each(value.sub_category, function(subIndex, subValue) {
+                    subCategoryRows += `
+                <li>
+                    <div class="form-check">
+                        <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
+                        <label class="form-check-label" for="cat_1">${subValue.name} (${subValue.course_count})</label>
+                    </div>
+                </li>
+                `;
+                });
+            }
+            return `
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapse-${index}" aria-expanded="true"
+                    aria-controls="flush-collapse-${index}">
+                   ${value.name} (${value.course_item_count})
+                </button>
+            </h2>
+            <div id="flush-collapse-${index}" class="accordion-collapse collapse show"
+                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                <div class="accordion-body">
+                    <div class="courses-cat-list">
+                        <ul class="list-wrap">
+                         ${subCategoryRows}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        }
+    </script>
+@endpush
