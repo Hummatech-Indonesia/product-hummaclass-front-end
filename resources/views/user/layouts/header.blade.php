@@ -102,6 +102,22 @@
                                         </li>
                                     @else
                                         <li class="header-btn login-btn">
+                                            {{-- @session('user')
+                                            <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-two shadow-none py-3">Keluar</button>
+                                            </form>
+                                            @else
+                                            <a href="{{ route('login') }}">Masuk</a>
+                                            @endsession --}}
+
+                                            {{-- <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <div class="user-profile">
+                                                <img src="{{ Auth::user()->profile_image }}" alt="Profile Image" class="profile-image">
+                                                <button type="submit" class="btn btn-two shadow-none py-3">Keluar</button>
+                                            </div>
+                                            </form> --}}
                                             <a href="{{ route('login') }}">Masuk</a>
                                         </li>
                                     @endsession
