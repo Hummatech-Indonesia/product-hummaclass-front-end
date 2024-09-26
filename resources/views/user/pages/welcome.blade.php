@@ -1072,7 +1072,7 @@
             <div class="courses__item shine__animate-item">
                 <div class="courses__item-thumb">
                     <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                        <img src="{{ config('app.api_url') }}${value.photo}" alt="img">
+                        <img src="${value.photo}" alt="img">
                     </a>
                 </div>
                 <div class="courses__item-content">
@@ -1090,7 +1090,7 @@
                                 <i class="flaticon-arrow-right"></i>
                             </a>
                         </div>
-                        <h5 class="price">${value.price}</h5>
+                        <h5 class="price">${formatRupiah(value.price)}</h5>
                     </div>
                 </div>
             </div>

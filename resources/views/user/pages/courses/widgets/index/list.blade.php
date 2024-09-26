@@ -98,7 +98,7 @@
                                         <i class="fas fa-star"></i> (${value.rating} Review)
                                     </div>
                                 </li>
-                                <li class="price"><del>${value.price}</del>${value.price}</li>
+                                <li class="price"><del>${formatRupiah(value.price)}</del>${formatRupiah(value.price)}</li>
                             </ul>
                             <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
                             <p class="author">By <a href="#">David Millar</a></p>

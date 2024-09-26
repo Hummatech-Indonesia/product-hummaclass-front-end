@@ -106,7 +106,7 @@
                                     </a>
                                 </div>
                                 <div>
-                                    <h6 class="price">Rp. ${value.price}</h6>
+                                    <h6 class="price">Rp. ${formatRupiah(value.price)}</h6>
                                 </div>
                             </div>
                         </div>
