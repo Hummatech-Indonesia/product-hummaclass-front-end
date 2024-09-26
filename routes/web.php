@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name
 
 Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 
+Route::get('landing-dashboard', [LandingController::class, 'getDashboard']);
 
 Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
@@ -100,7 +102,7 @@ Route::get('learning-path', function () {
     return view('user.pages.learning-path.index');
 })->name('learning-path.index');
 
-Route::get('quiz-question', function(){
+Route::get('quiz-question', function () {
     return view('user.pages.question-quiz.index');
 })->name('quetion-quiz.index');
 
