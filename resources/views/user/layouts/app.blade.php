@@ -36,11 +36,10 @@
 
 <body
     style="
-        transform: scale(0.8);
-        transform-origin: 0 0;
-        width: 125%;
-        height: 700px;
-        overflow-x: hidden;">
+    zoom: 0.8;
+    width: 100%;
+    height: 700px;
+    overflow-x: hidden;">
 
     <!--Preloader-->
     <div id="preloader">

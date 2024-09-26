@@ -30,12 +30,6 @@
             filter: brightness(0);
         }
 
-        body {
-            transform: scale(0.8);
-            transform-origin: 0 0;
-            width: 125%;
-            height: 125%;
-        }
     </style>
 @endsection
 
