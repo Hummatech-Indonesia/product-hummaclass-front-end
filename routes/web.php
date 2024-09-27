@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminModuleController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AdminBlogController;
+use App\Http\Controllers\AdminEventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
@@ -116,6 +120,10 @@ Route::get('quiz-question', function () {
     return view('user.pages.question-quiz.index');
 })->name('quetion-quiz.index');
 
+Route::resources([
+    'news' => AdminCourseController::class,
+]);
+
 
 // ================== ADMIN ==================
 
@@ -139,10 +147,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::resources([
         'courses' => AdminCourseController::class,
-        'users' => UserController::class,
-        'modules' => ModuleController::class,
-        'news' => BlogController::class,
-        'events' => EventController::class,
+        'users' => AdminUserController::class,
+        'modules' => AdminModuleController::class,
+        'news' => AdminBlogController::class,
+        'events' => AdminEventController::class,
     ]);
 
     Route::get('create-quiz/{id}', function (string $id) {
