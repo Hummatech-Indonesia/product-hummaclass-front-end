@@ -27,7 +27,7 @@
                 <div class="dashboard__instructor-info">
                     <div class="dashboard__instructor-info-left">
                         <div class="thumb">
-                            <img class="detail-photo" alt="img">
+                            <img class="detail-photo" src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
                         </div>
                         <div class="content">
                             <h4 class="title detail-name"></h4>
