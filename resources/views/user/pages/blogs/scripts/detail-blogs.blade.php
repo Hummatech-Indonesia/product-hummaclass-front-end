@@ -15,7 +15,7 @@
                 });
 
                 $('#detail-thumbnail').html(response.data.thumbnail);
-                $('#detail-title').html(response.data.title);
+                $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
                 $('#detail-created').html(response.data.created);
                 $('#detail-description').html(response.data.description);

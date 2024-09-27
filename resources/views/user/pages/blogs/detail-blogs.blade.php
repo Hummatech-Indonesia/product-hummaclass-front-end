@@ -17,7 +17,7 @@
                             <a href="{{ route('news.index') }}">Berita</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">How To Become idiculously Self-Aware In 20 Minutes</span>
+                        <span property="itemListElement" typeof="ListItem" class="detail-title"></span>
                     </nav>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             <div class="col-xl-9 col-lg-8">
                 <div class="blog__details-wrapper">
                     <div class="blog__details-thumb">
-                        <img src="{{ asset('assets/img/blog/blog_details.jpg') }}" alt="img">
+                        <img id="detail-thumbnail" alt="img">
                     </div>
                     <div class="blog__details-content">
                         <div class="blog__post-meta">
@@ -50,7 +50,7 @@
                                 <li><i class="far fa-comment-alt"></i> 05 Comments</li> --}}
                             </ul>
                         </div>
-                        <h3 class="title" id="detail-title"></h3>
+                        <h3 class="title detail-title" id="detail-title"></h3>
                         <p id="detail-description">Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend.</p>
                         {{-- <blockquote>
                             <p>“ urabitur varius eros rutrum consequat Mauris areathe sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>
@@ -210,7 +210,7 @@
                         </div>
                     </div> --}}
                     <div class="blog-widget" id="news-latest-content">
-                        <h4 class="widget-title">Latest Post</h4>
+                        <h4 class="widget-title">Berita Terbaru</h4>
                         
                         {{-- <div class="rc-post-item">
                             <div class="rc-post-thumb">
