@@ -126,7 +126,7 @@
         }
     </script>
     <script>
-        function renderPagination(lastPage, currentPage) {
+        function renderPagination(lastPage, currentPage, onPageClick) {
             const paginationWrap = $('.pagination__wrap .list-wrap');
             paginationWrap.empty();
 
@@ -154,10 +154,18 @@
                 paginationWrap.append(`<li><a href="#" data-page="${lastPage}">${lastPage}</a></li>`);
             }
 
-            paginationWrap.find('a').on('click', function(event) {
+            // Hapus event listener sebelumnya
+            paginationWrap.off('click', 'a');
+
+            // Tambahkan event listener untuk setiap link pagination
+            paginationWrap.on('click', 'a', function(event) {
                 event.preventDefault();
                 const page = $(this).data('page');
-                handleGetCourses(page);
+
+                // Panggil fungsi callback yang diterima sebagai parameter
+                if (typeof onPageClick === 'function') {
+                    onPageClick(page);
+                }
             });
         }
     </script>

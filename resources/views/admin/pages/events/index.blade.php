@@ -1,140 +1,150 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
-    <div class="card-body px-4 py-3">
-        <div class="row align-items-center">
-            <div class="col-9">
-                <h5 class="fw-semibold mb-8">Event</h5>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a class="text-muted " href="javascript:void(0)">Daftar event pada hummaclass</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-3">
-                <div class="text-center mb-n1">
-                    <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt="" class="img-fluid mb-n3" />
+    <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h5 class="fw-semibold mb-8">Event</h5>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a class="text-muted " href="javascript:void(0)">Daftar event pada hummaclass</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <div class="text-center mb-n1">
+                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                            class="img-fluid mb-n3" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="mb-3">
-    <div class="d-flex justify-content-between">
-        <form action="" class="d-flex gap-3">
-            <div class="position-relative">
-                <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff" name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" style="color: #8B8B8B"></i>
+    <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <form action="" class="d-flex gap-3">
+                <div class="position-relative">
+                    <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
+                        name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                        style="color: #8B8B8B"></i>
+                </div>
+                <div class="position-relative">
+                    <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
+                        name="name" value="{{ old('name', request('name')) }}" id="input-filter" placeholder="Terbaru">
+                    <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                        <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
+                    </svg>
+                </div>
+            </form>
+            <div>
+                <a href="{{ route('admin.events.create') }}" class="btn text-white"
+                    style="background-color: var(--purple-primary)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M19.875 3H4.125C2.953 3 2 3.897 2 5v14c0 1.103.953 2 2.125 2h15.75C21.047 21 22 20.103 22 19V5c0-1.103-.953-2-2.125-2m0 16H4.125c-.057 0-.096-.016-.113-.016q-.01 0-.012.008L3.988 5.046c.007-.01.052-.046.137-.046h15.75c.079.001.122.028.125.008l.012 13.946c-.007.01-.052.046-.137.046" />
+                        <path fill="currentColor" d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z" />
+                    </svg>
+                    Tambah Event
+                </a>
             </div>
-            <div class="position-relative">
-                <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff" name="name" value="{{ old('name', request('name')) }}" id="input-filter" placeholder="Terbaru">
-                <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                    <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M32 144h448M112 256h288M208 368h96" /></svg>
-            </div>
-        </form>
-        <div>
-            <a href="{{ route('admin.events.create') }}" class="btn text-white" style="background-color: var(--purple-primary)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M19.875 3H4.125C2.953 3 2 3.897 2 5v14c0 1.103.953 2 2.125 2h15.75C21.047 21 22 20.103 22 19V5c0-1.103-.953-2-2.125-2m0 16H4.125c-.057 0-.096-.016-.113-.016q-.01 0-.012.008L3.988 5.046c.007-.01.052-.046.137-.046h15.75c.079.001.122.028.125.008l.012 13.946c-.007.01-.052.046-.137.046" />
-                    <path fill="currentColor" d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z" /></svg>
-                Tambah Event
-            </a>
         </div>
     </div>
-</div>
 
-<div class="row" id="contentEvents">
+    <div class="row" id="contentEvents">
 
-</div>
+    </div>
 @endsection
 
 
 @section('script')
-<script>
-    $(document).on('click', '.btn-delete', function() {
-        var id = $(this).data('id');
-        var url = "{{ config('app.api_url') }}" + "/api/events/" + id;
+    <script>
+        $(document).on('click', '.btn-delete', function() {
+            var id = $(this).data('id');
+            var url = "{{ config('app.api_url') }}" + "/api/events/" + id;
 
-        $('#modal-delete').modal('show');
+            $('#modal-delete').modal('show');
 
-        funDelete(url);
-    });
+            funDelete(url);
+        });
 
-    function funDelete(url) {
+        function funDelete(url) {
 
-        $('.deleteConfirmation').click(function(e) {
-            e.preventDefault();
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
 
-            $.ajax({
-                type: "DELETE"
-                , url: url
-                , headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , success: function(response) {
-                    $('#modal-delete').modal('hide');
-                    Swal.fire({
-                        title: "Sukses"
-                        , text: "Berhasil menghapus data."
-                        , icon: "success"
-                    });
-                    get();
-                }
-                , error: function(response) {
-                    $('#modal-delete').modal('hide');
-                    if (response.status == 400) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    success: function(response) {
+                        $('#modal-delete').modal('hide');
                         Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: response.responseJSON.meta.message
-                            , icon: "error"
+                            title: "Sukses",
+                            text: "Berhasil menghapus data.",
+                            icon: "success"
                         });
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: "Ada kesalahan saat menghapus data."
-                            , icon: "error"
-                        });
+                        get();
+                    },
+                    error: function(response) {
+                        $('#modal-delete').modal('hide');
+                        if (response.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: response.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menghapus data.",
+                                icon: "error"
+                            });
+                        }
                     }
+                });
+            });
+        }
+
+        function get(page) {
+            $('#contentNews').empty();
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/events",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                data: {
+                    name: $('#search-name').val(),
+                },
+                success: function(response) {
+
+                    $.each(response.data.data, function(index, value) {
+                        $('#contentEvents').append(event(index, value));
+                    });
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
                 }
             });
-        });
-    }
+        }
 
-    function get(page) {
-        $('#contentNews').empty();
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/events"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , data: {
-                name: $('#search-name').val()
-            , }
-            , success: function(response) {
-
-                $.each(response.data, function(index, value) {
-                    $('#contentEvents').append(news(index, value));
-                });
-
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-    }
-
-    function news(index, value) {
-        return `
+        function event(index, value) {
+            return `
                 <div class="col-lg-4">
                     <div class="card" style="border-radius: 15px;">
                         <img src="${value.thumbnail}" style="border-radius: 15px 15px 0 0;height:200px;object-fit: cover;" class="card-img-top" alt="...">
@@ -165,9 +175,8 @@
                     </div>
                 </div>
             `;
-    }
+        }
 
-    get(1);
-
-</script>
+        get(1);
+    </script>
 @endsection
