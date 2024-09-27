@@ -16,11 +16,11 @@
 
         .placeholder {
             /* position: absolute;
-                                    top: 0;
-                                    left: 0;
-                                    width: 100%;
-                                    height: 100%;
-                                    /* Prevent interaction with the overlay */
+                                                top: 0;
+                                                left: 0;
+                                                width: 100%;
+                                                height: 100%;
+                                                /* Prevent interaction with the overlay */
             animation: loading 1.5s infinite;
             pointer-events: none;
             min-width: 100px;
@@ -37,18 +37,18 @@
         }
 
         /* @keyframes loading {
-                            0% {
-                                background-image: linear-gradient(90deg, rgb(195, 195, 195), grey);
-                            }
+                                        0% {
+                                            background-image: linear-gradient(90deg, rgb(195, 195, 195), grey);
+                                        }
 
-                            50% {
-                                background-image: linear-gradient(90deg, grey, rgb(195, 195, 195), grey);
-                            }
+                                        50% {
+                                            background-image: linear-gradient(90deg, grey, rgb(195, 195, 195), grey);
+                                        }
 
-                            100% {
-                                background-image: linear-gradient(90deg, grey, rgb(195, 195, 195));
-                            }
-                        } */
+                                        100% {
+                                            background-image: linear-gradient(90deg, grey, rgb(195, 195, 195));
+                                        }
+                                    } */
 
 
         /* Wrapper untuk skeleton */
@@ -94,6 +94,10 @@
             width: 100%;
             height: 200px;
         }
+
+        .accordion-collapse.collapse.show {
+            background: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -106,7 +110,7 @@
                         <div class="d-flex justify-content-between border-bottom py-3" id="course_price_row">
                             <p class="m-0" id="title">Title</p>
                             <div class="d-flex gap-5">
-                                <p class="m-0">- <del class="discount">0</del></p>
+                                <p class="m-0"><del class="discount">0</del></p>
                                 <p class="m-0"><span class="text-purlple fw-bold" id="amount"></span></p>
                             </div>
                         </div>
@@ -216,6 +220,8 @@
                         <h5>Status Pembayaran</h5>
                         <img src="" alt="">
                         <h5 class="text-center">Pembayaran Berhasil</h5>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-two w-100 m-auto rounded-3" id="checkout-btn">Kembali</button>
