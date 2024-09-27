@@ -35,8 +35,8 @@
                                         <a href="{{ route('events.index') }}">Event</a>
                                     </li>
                                     <li
-                                        class="menu-item {{ Route::currentRouteName() == 'news.index' ? 'active' : '' }}">
-                                        <a href="{{ route('news.index') }}">Berita</a>
+                                        class="menu-item {{ Route::currentRouteName() == 'blogs.index' ? 'active' : '' }}">
+                                        <a href="{{ route('blogs.index') }}">Berita</a>
                                     </li>
                                     <li class="menu-item"><a href="javascript:void(0)">FAQ</a>
                                     </li>

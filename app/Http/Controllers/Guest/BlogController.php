@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('user.');
+        return view('user.pages.blogs.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.news.create-news');
+        // 
     }
 
     /**
@@ -37,7 +37,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        return view('admin.pages.news.detail-news', compact('id'));
+        return view('user.pages.blogs.detail-blogs', compact('id'));
     }
 
     /**
@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.pages.news.edit-news', compact('id'));
+        // 
     }
 
     /**
