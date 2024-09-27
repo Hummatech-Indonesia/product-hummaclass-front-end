@@ -56,6 +56,9 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
 
+        Route::get('events', function(){
+            return view('user.pages.dashboard.student.events');
+        })->name('events');
         Route::get('settings', function () {
             return view('user.pages.dashboard.student.settings');
         })->name('settings.index');
@@ -131,6 +134,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
         'modules' => ModuleController::class,
+        'news' => BlogController::class,
         'events' => EventController::class,
     ]);
 
@@ -204,21 +208,21 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         })->name('faq.index');
     });
 
-    Route::prefix('news')->group(function () {
-        // Route::get('news', function () {
-        //     return view('admin.pages.news.index');
-        // })->name('index');
-        // Route::get('create-news', function () {
-        //     return view('admin.pages.news.create-news');
-        // })->name('create');
-        // Route::get('update-news', function () {
-        //     return view('admin.pages.news.edit-news');
-        // })->name('update');
-        // Route::get('detail-news', function () {
-        //     return view('admin.pages.news.detail-news');
-        // })->name('detail');
-        Route::resource('news', BlogController::class);
-    });
+    // Route::prefix('news')->group(function () {
+    //     // Route::get('news', function () {
+    //     //     return view('admin.pages.news.index');
+    //     // })->name('index');
+    //     // Route::get('create-news', function () {
+    //     //     return view('admin.pages.news.create-news');
+    //     // })->name('create');
+    //     // Route::get('update-news', function () {
+    //     //     return view('admin.pages.news.edit-news');
+    //     // })->name('update');
+    //     // Route::get('detail-news', function () {
+    //     //     return view('admin.pages.news.detail-news');
+    //     // })->name('detail');
+    //     Route::resource('news', BlogController::class);
+    // });
 
     // Route::prefix('events')->name('events.')->group(function () {
     //     Route::get('events', function () {
