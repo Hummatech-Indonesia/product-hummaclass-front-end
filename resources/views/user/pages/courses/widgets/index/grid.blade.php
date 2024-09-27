@@ -22,7 +22,7 @@
                 gridParent.append(loadingCard(6)); // Tampilkan loading cards
             }
 
-          
+
 
             let retryCount = 0;
             const maxRetries = 3;
