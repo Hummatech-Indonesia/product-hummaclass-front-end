@@ -47,7 +47,7 @@
             , dataType: "json"
             , success: function(response) {
                 $.each(response.data.data, function(index, value) {
-                    $('#tags-news-content').append(card(index, value));
+                    $('#news-content').append(card(index, value));
                 });
 
             }

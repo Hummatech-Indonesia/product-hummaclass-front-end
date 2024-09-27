@@ -156,7 +156,7 @@
                     <div class="tab-content" id="courseTabContent">
                         <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
                             <div class="swiper courses-swiper-active">
-                                <div class="swiper-wrapper" id="top-category">
+                                <div class="swiper-wrapper" id="course-content">
                                 </div>
                             </div>
                             <div class="courses__nav">
