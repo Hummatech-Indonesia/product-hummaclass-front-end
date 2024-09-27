@@ -47,7 +47,7 @@
             , dataType: "json"
             , success: function(response) {
                 $.each(response.data.data, function(index, value) {
-                    $('#top-category').append(card(index, value));
+                    $('#course-content').append(listCourse(index, value));
                 });
 
             }
@@ -62,19 +62,21 @@
         });
     });
 
-    function card(index, value) {
+    function listCourse(index, value) {
+        console.log(card);
+        
         return `
         <div class="swiper-slide">
             <div class="courses__item shine__animate-item">
                 <div class="courses__item-thumb">
-                    <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
+                    <a href="{{ route('courses.courses.show', '') }}/${value.slug} class="shine__animate-link">
                         <img src="${value.photo}" alt="img">
                     </a>
                 </div>
                 <div class="courses__item-content">
                     <ul class="courses__item-meta list-wrap">
                         <li class="courses__item-tag">
-                            <a href="{{ route('courses.courses.index') }}">${value.sub_category}</a>
+                            <a href="javascript:void(0)">${value.sub_category}</a>
                         </li>
                         <li class="avg-rating"><i class="fas fa-star"></i> (4.8 Reviews)</li>
                     </ul>

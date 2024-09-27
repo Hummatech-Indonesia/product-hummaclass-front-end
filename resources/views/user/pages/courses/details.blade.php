@@ -176,7 +176,7 @@
                         <p class="mt-2">${value.sub_title}</p>
                         <h2 class="accordion-header" id="heading-${index}">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse-${index}" aria-expanded="true" aria-controls="collapse-${index}">
+                                data-bs-target="#collapse-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse-${index}">
                                 <div class="d-flex gap-2">
                                     <span class="badge text-dark fw-semibold pe-5" style="background-color: #FEF5EE">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-warning mb-1 me-1" width="16" height="16" viewBox="0 0 32 32">
@@ -192,8 +192,8 @@
                                     </span>
                                 </div>
                             </button>
-                            </h2>
-                        <div id="collapse-${index}" class="accordion-collapse collapse show" aria-labelledby="heading-${index}"
+                        </h2>
+                        <div id="collapse-${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="heading-${index}"
                             data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <ul class="list-wrap" id="list-warp">
