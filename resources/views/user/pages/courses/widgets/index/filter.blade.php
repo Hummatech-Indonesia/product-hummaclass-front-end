@@ -149,51 +149,43 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#filter_price').click(function(e) {
-                e.preventDefault();
-                console.log("horeef");
 
-            });
-        });
+            getCategories();
 
-        function getCategories() {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/categories",
-                // data: {
-                //     minimum: $('#minimum').val(),
-                //     maksimum: $('#maksimum').val(),
-                // },
-                dataType: "json",
-                success: function(response) {
-                    $('#accordionFlushExample').empty(); // Clear existing data before appending new data
+            function getCategories() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/categories",
+                    dataType: "json",
+                    success: function(response) {
 
-                    $.each(response.data.data, function(index, value) {
-                        $('#accordionFlushExample').append(filterCategories(index, value));
-                    });
-                },
-                error: function(xhr) {
-                    let errorMessage = '';
-                    if (xhr.status === 0) {
-                        errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
-                    } else if (xhr.status >= 500) {
-                        errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
-                    } else if (xhr.status >= 400 && xhr.status < 500) {
-                        errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
-                    } else {
-                        errorMessage = 'Gagal memuat data. Coba lagi nanti.';
+                        $('#accordionFlushExample').empty();
+                        $.each(response.data.data, function(index, value) {
+                            $('#accordionFlushExample').append(filterCategories(index, value));
+                        });
+                    },
+                    error: function(xhr) {
+                        let errorMessage = '';
+                        if (xhr.status === 0) {
+                            errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
+                        } else if (xhr.status >= 500) {
+                            errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
+                        } else if (xhr.status >= 400 && xhr.status < 500) {
+                            errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
+                        } else {
+                            errorMessage = 'Gagal memuat data. Coba lagi nanti.';
+                        }
+                        console.error(errorMessage);
                     }
-                    console.error(errorMessage);
-                }
-            });
-        }
+                });
+            }
 
-        function filterCategories(index, value) {
-            let subCategoryRows = '';
+            function filterCategories(index, value) {
+                let subCategoryRows = '';
 
-            if (value.sub_category.length > 0) {
-                $.each(value.sub_category, function(subIndex, subValue) {
-                    subCategoryRows += `
+                if (value.sub_category.length > 0) {
+                    $.each(value.sub_category, function(subIndex, subValue) {
+                        subCategoryRows += `
                 <li>
                     <div class="form-check">
                         <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
@@ -201,9 +193,9 @@
                     </div>
                 </li>
                 `;
-                });
-            }
-            return `
+                    });
+                }
+                return `
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -223,6 +215,7 @@
                 </div>
             </div>
         </div>`;
-        }
+            }
+        });
     </script>
 @endpush
