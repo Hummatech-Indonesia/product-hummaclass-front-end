@@ -17,7 +17,7 @@
                             <a href="{{ route('news.index') }}">Berita</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">How To Become idiculously Self-Aware In 20 Minutes</span>
+                        <span property="itemListElement" typeof="ListItem" class="detail-title"></span>
                     </nav>
                 </div>
             </div>
@@ -40,52 +40,27 @@
             <div class="col-xl-9 col-lg-8">
                 <div class="blog__details-wrapper">
                     <div class="blog__details-thumb">
-                        <img src="{{ asset('assets/img/blog/blog_details.jpg') }}" alt="img">
+                        <img id="detail-thumbnail" alt="img">
                     </div>
                     <div class="blog__details-content">
                         <div class="blog__post-meta">
                             <ul class="list-wrap">
-                                <li><i class="flaticon-calendar"></i> 20 July, 2024</li>
-                                <li><i class="flaticon-user-1"></i> by <a href="#">Admin</a></li>
-                                <li><i class="far fa-comment-alt"></i> 05 Comments</li>
+                                <li><i class="flaticon-calendar"></i> <span id="detail-created"></span></li>
+                                {{-- <li><i class="flaticon-user-1"></i> by <a href="#">Admin</a></li>
+                                <li><i class="far fa-comment-alt"></i> 05 Comments</li> --}}
                             </ul>
                         </div>
-                        <h3 class="title">How To Become idiculously Self-Aware In 20 Minutes</h3>
-                        <p>Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend.</p>
-                        <p>Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend.</p>
-                        <blockquote>
+                        <h3 class="title detail-title" id="detail-title"></h3>
+                        <p id="detail-description">Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend.</p>
+                        {{-- <blockquote>
                             <p>“ urabitur varius eros rutrum consequat Mauris areathe sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>
-                        </blockquote>
-                        <p>Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>
-                        <div class="blog__details-content-inner">
-                            <h4 class="inner-title">What Will I Learn From This Course?</h4>
-                            <p>Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus non viverra dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere.</p>
-                            <ul class="about__info-list list-wrap">
-                                <li class="about__info-list-item">
-                                    <i class="flaticon-angle-right"></i>
-                                    <p class="content">Work with color & Gradients & Grids</p>
-                                </li>
-                                <li class="about__info-list-item">
-                                    <i class="flaticon-angle-right"></i>
-                                    <p class="content">All the useful shortcuts</p>
-                                </li>
-                                <li class="about__info-list-item">
-                                    <i class="flaticon-angle-right"></i>
-                                    <p class="content">Be able to create Flyers, Brochures, Advertisements</p>
-                                </li>
-                                <li class="about__info-list-item">
-                                    <i class="flaticon-angle-right"></i>
-                                    <p class="content">How to work with Images & Text</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <p>Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonVestibulum ante ipsum primis</p>
-                        <div class="blog__details-bottom">
+                        </blockquote> --}}
+                        {{-- <div class="blog__details-bottom">
                             <div class="row align-items-center">
                                 <div class="col-xl-6 col-md-7">
                                     <div class="tg-post-tag">
                                         <h5 class="tag-title">Tags :</h5>
-                                        <ul class="list-wrap p-0 mb-0">
+                                        <ul class="list-wrap p-0 mb-0" id="tags-news-list">
                                             <li><a href="#">Bath Cleaning</a></li>
                                             <li><a href="#">Cleaning</a></li>
                                         </ul>
@@ -103,10 +78,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                <div class="blog__post-author">
+                {{-- <div class="blog__post-author">
                     <div class="blog__post-author-thumb">
                         <a href="#"><img src="{{ asset('assets/img/blog/author.png') }}" alt="img"></a>
                     </div>
@@ -194,7 +169,7 @@
                             <button class="btn btn-two arrow-btn">Post Comment <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></button>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-xl-3 col-lg-4">
                 <aside class="blog-sidebar">
@@ -206,10 +181,10 @@
                             </form>
                         </div>
                     </div>
-                    <div class="blog-widget">
+                    {{-- <div class="blog-widget">
                         <h4 class="widget-title">Kategori</h4>
                         <div class="shop-cat-list">
-                            <ul class="list-wrap">
+                            <ul class="list-wrap" id="list-category">
                                 <li>
                                     <a href="#"><i class="flaticon-angle-right"></i>Art & Design</a>
                                 </li>
@@ -233,21 +208,11 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="blog-widget">
-                        <h4 class="widget-title">Latest Post</h4>
-                        <div class="rc-post-item">
-                            <div class="rc-post-thumb">
-                                <a href="blog-details.html">
-                                    <img src="{{ asset('assets/img/blog/latest_post01.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="rc-post-content">
-                                <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
-                                <h4 class="title"><a href="blog-details.html">the Right Learning Path for your</a></h4>
-                            </div>
-                        </div>
-                        <div class="rc-post-item">
+                    </div> --}}
+                    <div class="blog-widget" id="news-latest-content">
+                        <h4 class="widget-title">Berita Terbaru</h4>
+                        
+                        {{-- <div class="rc-post-item">
                             <div class="rc-post-thumb">
                                 <a href="blog-details.html">
                                     <img src="{{ asset('assets/img/blog/latest_post02.jpg') }}" alt="img">
@@ -279,9 +244,9 @@
                                 <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
                                 <h4 class="title"><a href="blog-details.html">The Growing Need Management</a></h4>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="blog-widget">
+                    {{-- <div class="blog-widget">
                         <h4 class="widget-title">Tag</h4>
                         <div class="tagcloud">
                             <a href="#">Education</a>
@@ -291,12 +256,18 @@
                             <a href="#">Course</a>
                             <a href="#">LMS</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </aside>
             </div>
         </div>
     </div>
 </section>
 <!-- blog-details-area-end -->
+
+@endsection
+
+@section('script')
+
+    @include('user.pages.blogs.scripts.detail-blogs')
 
 @endsection

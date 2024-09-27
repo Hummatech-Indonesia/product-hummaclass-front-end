@@ -13,7 +13,6 @@
 
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
-
                 $.ajax({
                     type: "DELETE",
                     url: url,
@@ -60,7 +59,7 @@
                 dataType: "json",
                 success: function(response) {
                     $('#list-card').empty();
-                    response.data.forEach(data => {
+                    response.data.data.forEach(data => {
                         cardCourse(data);
                     });
                 },

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\cr;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class AdminEventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.pages.news.index');
+        return view('admin.pages.events.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.news.create-news');
+        return view('admin.pages.events.create-events');
     }
 
     /**
@@ -36,21 +36,21 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        return view('admin.pages.news.detail-news', compact('id'));
+        return view('admin.pages.events.detail-events', compact('id'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(string $id)
     {
-        return view('admin.pages.news.edit-news', compact('id'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +58,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         //
     }
