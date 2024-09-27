@@ -17,16 +17,16 @@
                         Profil Saya
                     </a>
                 </li>
-                <li>
-                    <a href="instructor-enrolled-courses.html">
+                <li class="{{ request()->routeIs('dashboard.users.courses') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.courses') }}">
                         <i class="skillgro-book"></i>
                         Daftar Kursus
                     </a>
                 </li>
-                <li>
-                    <a href="instructor-wishlist.html">
+                <li class="{{ request()->routeIs('dashboard.users.events') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.events') }}">
                         <i class="skillgro-label"></i>
-                        Daftar Keinginan
+                        Daftar Event
                     </a>
                 </li>
                 <li>
