@@ -11,12 +11,6 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('dashboard.users.profile') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard.users.profile') }}">
-                        <i class="skillgro-avatar"></i>
-                        Profil Saya
-                    </a>
-                </li>
                 <li class="{{ request()->routeIs('dashboard.users.courses') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.users.courses') }}">
                         <i class="skillgro-book"></i>
@@ -29,24 +23,30 @@
                         Daftar Event
                     </a>
                 </li>
-                <li>
-                    <a href="instructor-review.html">
+                <li class="{{ request()->routeIs('dashboard.users.reviews') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.reviews') }}">
                         <i class="skillgro-book-2"></i>
-                        Review
+                        Reviews
                     </a>
                 </li>
-                <li>
-                    <a href="instructor-attempts.html">
-                        <i class="skillgro-question"></i>
-                        Daftar Kuis
-                    </a>
-                </li>
-                <li>
-                    <a href="instructor-history.html">
+                <li class="{{ request()->routeIs('dashboard.users.history-transaction') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.history-transaction') }}">
                         <i class="skillgro-satchel"></i>
                         Riwayat Pesanan
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('dashboard.users.profile') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.users.profile') }}">
+                        <i class="skillgro-avatar"></i>
+                        Profil Saya
+                    </a>
+                </li>
+                {{-- <li>
+                    <a href="instructor-attempts.html">
+                        <i class="skillgro-question"></i>
+                        Daftar Kuis
+                    </a>
+                </li> --}}
             </ul>
         </nav>
         <div class="dashboard__sidebar-title mt-30 mb-20">
