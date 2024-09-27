@@ -2,6 +2,32 @@
     <script>
         $(document).ready(async function() {
 
+            const data = {
+                "title": "lorem ipsum",
+                "description": "lorem ipsum dolor sit amet is simply dummy text for industries",
+                "location": "permata regency 1 karangploso malang",
+                "capacity": 2,
+                "price": 10000,
+                "start_date": "2024-09-23",
+                "has_certificate": true,
+                "is_online": true,
+                "user_id": [
+                    "e9c93721-dd7b-314c-b6c0-010ac7711821",
+                    "e9c93721-dd7b-314c-b6c0-010ac7711821"
+                ],
+                "start": [
+                    "09:00:00",
+                    "14:00:00"
+                ],
+                "end": [
+                    "11:00:00",
+                    "16:00:00"
+                ],
+                "session": [
+                    "Session 1",
+                    "Session 2"
+                ]
+            }
             let course;
             const pricingData = {
                 'course_price': 0,
@@ -15,11 +41,7 @@
             }
             $("#voucher-form").submit(function(e) {
                 e.preventDefault();
-
-                // console.log($("#voucher-form"));
                 fetchCourseVouchers();
-                // console.log('sdfsdfsdfsdf');
-
             });
 
             function updatePricing() {
@@ -45,7 +67,7 @@
                 }
                 // console.log('pricing', pricingData);
                 // console.log('checkout', checkoutData);
-                
+
             }
 
             // Wrapper function for $.ajax using Promise to support async/await
@@ -156,9 +178,11 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     success: function(response) {
-                        alert(response.meta.message);
-                        console.log(response.meta.message);
-                    }, 
+                        let transactionId = response.data.transaction.data.reference;
+                        let url = "{{ route('checkout.show', ':reference') }}".replace(':reference', transactionId);
+                        
+                        window.location.href = url;
+                    },
                     error: function(xhr, status, error) {
                         allert('Error creating transaction:', error);
                         console.error('Error creating transaction:', error);

@@ -110,6 +110,20 @@
                 maximumFractionDigits: 0
             }).format(price);
         }
+
+        function ajaxWithToken(method, url, data= null, dataType = 'json', success, error) { 
+            $.ajax({
+                type: method,
+                url: url,
+                headers: {
+                    Authorization: "Bearer " + "{{ session('hummaclass-token') }}"
+                },
+                data: data,
+                dataType: dataType,
+                success: success,
+                error: error
+            });
+        }
     </script>
 
     @yield('script')
