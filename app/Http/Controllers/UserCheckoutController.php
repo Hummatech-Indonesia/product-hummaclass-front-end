@@ -25,9 +25,10 @@ class UserCheckoutController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $reference)
     {
-        //
+        // return view('user.pages.checkout.finish', compact('method', 'id'));
+        return view('user.pages.checkout.detail', compact('reference'));
     }
 
     /**
