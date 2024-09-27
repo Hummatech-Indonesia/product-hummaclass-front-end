@@ -51,7 +51,7 @@
                 @include('user.pages.courses.widgets.index.sort')
                 <div class="tab-content" id="myTabContent">
                     @include('user.pages.courses.widgets.index.grid')
-                    @include('user.pages.courses.widgets.index.list')
+                    {{-- @include('user.pages.courses.widgets.index.list') --}}
                 </div>
             </div>
         </div>

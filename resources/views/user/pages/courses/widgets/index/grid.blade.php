@@ -46,7 +46,10 @@
                             });
 
                             renderPagination(response.data.paginate.last_page, response.data.paginate
-                                .current_page);
+                                .current_page,
+                                function(page) {
+                                    handleGetCourses(page);
+                                });
                         } else {
                             gridParent.append('<p>No courses found.</p>');
                         }

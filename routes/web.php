@@ -9,10 +9,10 @@ use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\AdminEventController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
@@ -121,7 +121,7 @@ Route::get('quiz-question', function () {
 })->name('quetion-quiz.index');
 
 Route::resources([
-    'news' => AdminCourseController::class,
+    'blogs' => BlogController::class,
 ]);
 
 
