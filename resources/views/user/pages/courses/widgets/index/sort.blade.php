@@ -19,7 +19,7 @@
                         </select>
                     </div>
                 </div>
-                <ul class="nav nav-tabs courses__nav-tabs" id="myTab" role="tablist">
+                {{-- <ul class="nav nav-tabs courses__nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="grid-tab" data-bs-toggle="tab" data-bs-target="#grid"
                             type="button" role="tab" aria-controls="grid" aria-selected="true">
@@ -55,7 +55,7 @@
                             </svg>
                         </button>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </div>
