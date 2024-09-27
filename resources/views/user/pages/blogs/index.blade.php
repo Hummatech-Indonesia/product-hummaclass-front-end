@@ -34,211 +34,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-9 col-lg-8">
-                <div class="row gutter-20">
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post01.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Marketing</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">How To Become idiculously Self-Aware In 20 Minutes</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post02.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Students</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">Get Started With UI Design With Tips To Speed</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post03.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Science</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">Make Your Own Expanding Contracting Content</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post04.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post05.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post06.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post07.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post08.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post09.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post10.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post11.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6">
-                        <div class="blog__post-item shine__animate-item">
-                            <div class="blog__post-thumb">
-                                <a href="{{ route('news.detail.news') }}" class="shine__animate-link"><img src="{{ asset('assets/img/blog/blog_post12.jpg') }}" alt="img"></a>
-                                <a href="{{ route('news.index') }}" class="post-tag">Agency</a>
-                            </div>
-                            <div class="blog__post-content">
-                                <div class="blog__post-meta">
-                                    <ul class="list-wrap">
-                                        <li><i class="flaticon-calendar"></i>20 July, 2024</li>
-                                        <li><i class="flaticon-user-1"></i>by <a href="{{ route('news.detail.news') }}">Admin</a></li>
-                                    </ul>
-                                </div>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">What we are capable to usually discovered</a></h4>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row gutter-20" id="news-list-content">
+                    
                 </div>
                 <nav class="pagination__wrap mt-25">
                     <ul class="list-wrap">
@@ -259,7 +56,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="blog-widget">
+                    {{-- <div class="blog-widget">
                         <h4 class="widget-title">Categories</h4>
                         <div class="shop-cat-list">
                             <ul class="list-wrap">
@@ -286,55 +83,11 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="blog-widget">
+                    </div> --}}
+                    <div class="blog-widget" id="news-latest-content">
                         <h4 class="widget-title">Berita Terbaru</h4>
-                        <div class="rc-post-item">
-                            <div class="rc-post-thumb">
-                                <a href="{{ route('news.detail.news') }}">
-                                    <img src="{{ asset('assets/img/blog/latest_post01.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="rc-post-content">
-                                <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">the Right Learning Path for your</a></h4>
-                            </div>
-                        </div>
-                        <div class="rc-post-item">
-                            <div class="rc-post-thumb">
-                                <a href="{{ route('news.detail.news') }}">
-                                    <img src="{{ asset('assets/img/blog/latest_post02.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="rc-post-content">
-                                <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">The Growing Need Management</a></h4>
-                            </div>
-                        </div>
-                        <div class="rc-post-item">
-                            <div class="rc-post-thumb">
-                                <a href="{{ route('news.detail.news') }}">
-                                    <img src="{{ asset('assets/img/blog/latest_post03.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="rc-post-content">
-                                <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">the Right Learning Path for your</a></h4>
-                            </div>
-                        </div>
-                        <div class="rc-post-item">
-                            <div class="rc-post-thumb">
-                                <a href="{{ route('news.detail.news') }}">
-                                    <img src="{{ asset('assets/img/blog/latest_post04.jpg') }}" alt="img">
-                                </a>
-                            </div>
-                            <div class="rc-post-content">
-                                <span class="date"><i class="flaticon-calendar"></i> April 13, 2024</span>
-                                <h4 class="title"><a href="{{ route('news.detail.news') }}">The Growing Need Management</a></h4>
-                            </div>
-                        </div>
                     </div>
-                    <div class="blog-widget">
+                    {{-- <div class="blog-widget">
                         <h4 class="widget-title">Tag</h4>
                         <div class="tagcloud">
                             <a href="#">Education</a>
@@ -344,7 +97,7 @@
                             <a href="#">Course</a>
                             <a href="#">LMS</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </aside>
             </div>
         </div>
@@ -352,4 +105,8 @@
 </section>
 <!-- blog-area-end -->
 
+@endsection
+
+@section('script')
+    @include('user.pages.blogs.scripts.index')
 @endsection
