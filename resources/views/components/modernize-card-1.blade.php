@@ -13,7 +13,6 @@
 
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
-
                 $.ajax({
                     type: "DELETE",
                     url: url,
@@ -60,7 +59,7 @@
                 dataType: "json",
                 success: function(response) {
                     $('#list-card').empty();
-                    response.data.forEach(data => {
+                    response.data.data.forEach(data => {
                         cardCourse(data);
                     });
                 },
@@ -88,7 +87,7 @@
                                         <p class="card-title fw-bolder">${data.title}</p>
                                         <p class="card-text">${data.sub_title}</p>
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <h4 class="fw-bolder fs-4" style="color: #7209DB">${data.price}</h4>
+                                            <h4 class="fw-bolder fs-4" style="color: #7209DB">${formatRupiah(data.price)}</h4>
                                 
                                             <div class="d-flex align-items-center gap-1">
                                                 <span class="text-warning"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="15" height="15"

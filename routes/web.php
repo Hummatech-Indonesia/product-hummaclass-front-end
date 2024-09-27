@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminModuleController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminBlogController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
@@ -56,6 +60,16 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
 
+        Route::get('events', function(){
+            return view('user.pages.dashboard.student.events');
+        })->name('events');
+
+        Route::get('reviews', function(){
+            return view('user.pages.dashboard.student.reviews');
+        })->name('reviews');
+        Route::get('history-transaction', function(){
+            return view('user.pages.dashboard.student.history-transaction');
+        })->name('history-transaction');
         Route::get('settings', function () {
             return view('user.pages.dashboard.student.settings');
         })->name('settings.index');
@@ -106,6 +120,10 @@ Route::get('quiz-question', function () {
     return view('user.pages.question-quiz.index');
 })->name('quetion-quiz.index');
 
+Route::resources([
+    'news' => AdminCourseController::class,
+]);
+
 
 // ================== ADMIN ==================
 
@@ -129,9 +147,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::resources([
         'courses' => AdminCourseController::class,
-        'users' => UserController::class,
-        'modules' => ModuleController::class,
-        'events' => EventController::class,
+        'users' => AdminUserController::class,
+        'modules' => AdminModuleController::class,
+        'news' => AdminBlogController::class,
+        'events' => AdminEventController::class,
     ]);
 
     Route::get('create-quiz/{id}', function (string $id) {
@@ -204,21 +223,21 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         })->name('faq.index');
     });
 
-    Route::prefix('news')->group(function () {
-        // Route::get('news', function () {
-        //     return view('admin.pages.news.index');
-        // })->name('index');
-        // Route::get('create-news', function () {
-        //     return view('admin.pages.news.create-news');
-        // })->name('create');
-        // Route::get('update-news', function () {
-        //     return view('admin.pages.news.edit-news');
-        // })->name('update');
-        // Route::get('detail-news', function () {
-        //     return view('admin.pages.news.detail-news');
-        // })->name('detail');
-        Route::resource('news', BlogController::class);
-    });
+    // Route::prefix('news')->group(function () {
+    //     // Route::get('news', function () {
+    //     //     return view('admin.pages.news.index');
+    //     // })->name('index');
+    //     // Route::get('create-news', function () {
+    //     //     return view('admin.pages.news.create-news');
+    //     // })->name('create');
+    //     // Route::get('update-news', function () {
+    //     //     return view('admin.pages.news.edit-news');
+    //     // })->name('update');
+    //     // Route::get('detail-news', function () {
+    //     //     return view('admin.pages.news.detail-news');
+    //     // })->name('detail');
+    //     Route::resource('news', BlogController::class);
+    // });
 
     // Route::prefix('events')->name('events.')->group(function () {
     //     Route::get('events', function () {

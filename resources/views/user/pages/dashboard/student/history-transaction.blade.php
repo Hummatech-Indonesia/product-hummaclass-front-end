@@ -1,8 +1,9 @@
 @extends('user.layouts.app')
 
+
 @section('content')
     <!-- breadcrumb-area -->
-    <div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-three" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
+    <div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-three" data-background="assets/img/bg/breadcrumb_bg.jpg">
         <div class="breadcrumb__shape-wrap">
             <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
             <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
@@ -22,7 +23,7 @@
                 <div class="dashboard__instructor-info">
                     <div class="dashboard__instructor-info-left">
                         <div class="thumb">
-                            <img src="assets/img/courses/details_instructors01.jpg" alt="img">
+                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
                         </div>
                         <div class="content">
                             <h4 class="title">John Due</h4>
@@ -47,47 +48,31 @@
             <div class="row">
                 @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
-                    {{-- <div class="dashboard__content-wrap dashboard__content-wrap-two mb-30">
-                        <div class="dashboard__content-title">
-                            <h4 class="title">Dashboard</h4>
+                    <div class="card p-5 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                        <h5 class="mb-3">Riwayat Transaksi</h5>
+                        <div class="table-responsive">
+                            <table id="demo-foo-addrow" class="table table-striped m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg" data-paging="true" data-paging-size="7" style="">
+                                <thead>
+                                    <tr class="footable-header">
+                                        <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Nama Kursus</th>
+                                        <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Tanggal Pembelian</th>
+                                        <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Harga</th>
+                                        <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Pembayaran</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (range(1,3) as $item)
+                                    <tr>
+                                        <td class="text-start" style="display: table-cell;">Jeneng Kursus</td>
+                                        <td class="text-start" style="display: table-cell;">10 Januari 2023</td>
+                                        <td class="text-start" style="display: table-cell;">Rp. 300.000</td>
+                                        <td class="text-start" style="display: table-cell;">Gopay</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="dashboard__counter-item">
-                                    <div class="icon">
-                                        <i class="skillgro-book"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="count odometer" data-count="30"></span>
-                                        <p>ENROLLED COURSES</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="dashboard__counter-item">
-                                    <div class="icon">
-                                        <i class="skillgro-tutorial"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="count odometer" data-count="10"></span>
-                                        <p>ACTIVE COURSES</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="dashboard__counter-item">
-                                    <div class="icon">
-                                        <i class="skillgro-diploma-1"></i>
-                                    </div>
-                                    <div class="content">
-                                        <span class="count odometer" data-count="7"></span>
-                                        <p>COMPLETED COURSES</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-                    @include('user.pages.dashboard.widgets.completed')
+                    </div>
                 </div>
             </div>
         </div>

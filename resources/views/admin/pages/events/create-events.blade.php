@@ -48,7 +48,7 @@
             </div>
             <div class="col col-md-12 mb-3" id="price-container" style="display: none">
                 <label for="" class="form-label">Harga</label>
-                <input type="number" class="form-control" id="price" name="price">
+                <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga">
                 <div class="invalid-feedback"></div>
             </div>
             <div class="col-6 mb-3">
@@ -56,30 +56,22 @@
                 <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Masukan jumlah kapasitas">
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="col-6 mb-3">
-                <label for="" class="fw-semibold form-label">Lokasi</label>
-                <select name="location" id="is_premium" class="form-select">
-                    <option value="online">Online</option>
-                    <option value="offline">Offline</option>
-                </select>
-                <div class="invalid-feedback"></div>
-            </div>
             <div class="col col-md-6">
-                <label for="" class="form-label">Online</label>
-                <select name="is_online" id="is_premium" class="form-select">
-                    <option value="0">Online</option>
-                    <option value="1">Offline</option>
+                <label for="" class="form-label">Status Online</label>
+                <select name="is_online" id="is_online" class="form-select">
+                    <option value="0">Offline</option>
+                    <option value="1">Online</option>
                 </select>
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="col-6 mb-3">
+            <div class="col-12 mb-3" id="location-container" style="display: none">
+                <label for="" class="fw-semibold form-label">Lokasi</label>
+                <input type="text" name="location" id="location" class="form-control" placeholder="Masukan lokasi">
+                <div class="invalid-feedback"></div>
+            </div>
+            <div class="col-12 mb-3">
                 <label for="" class="fw-semibold form-label">Tanggal Mulai</label>
                 <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Masukan jumlah kapasitas">
-                <div class="invalid-feedback"></div>
-            </div>
-            <div class="col-6 mb-3">
-                <label for="" class="fw-semibold form-label">Harga</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Masukan jumlah kapasitas">
                 <div class="invalid-feedback"></div>
             </div>
             <div class="col-12 mb-3">
@@ -97,45 +89,44 @@
                         <h5 class="fw-semibold mt-3">Runtunan Acara</h5>
                         <hr>
                         <div class="row">
-                            {{-- <input type="email" class="form-control" placeholder="Email"> --}}
-                            <div class="col-5 mb-3">
-                                <label for="" class="fw-semibold form-label">Jam Mulai</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Masukan jam mulai">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-1 mb-3"></div>
-                            <div class="col-5 mb-3">
-                                <label for="" class="fw-semibold form-label">Jam Akhir</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Masukan jam akhir">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-11 mb-3">
-                                <label for="" class="fw-semibold form-label">Pengisi Acara</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Masukan pengisi acara">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-11 mb-3">
-                                <label for="" class="fw-semibold form-label">Deskripsi Acara</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="Masukan deskripsi acara">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-1 mb-3">
-                                <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" style="margin-top: 30px;" type="button">
-                                    <i class="ti ti-circle-x fs-5"></i>
-                                </button>
+                            <div class="col-11">
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label for="" class="fw-semibold form-label">Jam Mulai</label>
+                                        <input type="time" class="form-control start" id="start" name="start" placeholder="Masukan jam mulai">
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="" class="fw-semibold form-label">Jam Akhir</label>
+                                        <input type="time" class="form-control" id="end" name="end" placeholder="Masukan jam akhir">
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="fw-semibold form-label">Pengisi Acara</label>
+                                        <input type="text" class="form-control" id="session" name="session" placeholder="Masukan pengisi acara">
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
                             </div>
 
+                            <div class="col-1 mb-3 d-flex flex-column justify-content-end">
+                                <div>
+                                    <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" style="margin-top: 30px;" type="button">
+                                        <i class="ti ti-circle-x fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button type="button" data-repeater-create="" class="btn text-white" style="background-color: var(--purple-primary)">
                     <div class="d-flex align-items-center">
-                        <i class="ti ti-plus ms-1 fs-5 me-1"></i>
-                        Tambah Acara
+                        <i class="ti ti-plus ms-1 fs-5 me-1"></i> Tambah Acara
                     </div>
                 </button>
             </div>
-         
+
+
         </div>
 
         <div class="text-end">
@@ -167,6 +158,16 @@
         }
     });
 
+    document.getElementById('is_online').addEventListener('change', function() {
+        var priceContainer = document.getElementById('location-container');
+
+        if (this.value == '1') {
+            priceContainer.style.display = 'block';
+        } else {
+            priceContainer.style.display = 'none';
+        }
+    });
+
 </script>
 
 <script>
@@ -184,8 +185,8 @@
                 if (confirm('Apakah kamu yakin ingin menghapus email ini?')) {
                     $(this).slideUp(deleteElement);
                 }
-            },
-        });
+            }
+        , });
     });
 
 </script>
@@ -256,11 +257,61 @@
 
     category();
 
+    const eventDetails = 
+        {
+            // "title": "lorem ipsum"
+            // , "description": "lorem ipsum dolor sit amet is simply dummy text for industries"
+            // , "location": "permata regency 1 karangploso malang"
+            // , "capacity": 2
+            // , "price": 10000
+            // , "start_date": "2024-09-23"
+            // , "has_certificate": true
+            // , "is_online": true
+            // , "user_id": [
+            //     "e9c93721-dd7b-314c-b6c0-010ac7711821"
+            //     , "e9c93721-dd7b-314c-b6c0-010ac7711821"
+            // ]
+             "start": [
+                "09:00:00"
+                , "14:00:00"
+            ]
+            , "end": [
+                "11:00:00"
+                , "16:00:00"
+            ]
+            , "session": [
+                "Session 1"
+                , "Session 2"
+            ]
+        }
 
     $('#create-events-form').submit(function(e) {
+
+        
         e.preventDefault();
 
         var formData = new FormData(this);
+
+        // var eventDetails = [];
+        $('[data-repeater-item]').each(function(index, data) {
+            var start = $(`input[name="repeater-group[${index}][start]"]`).val();
+            var end = $(`input[name="repeater-group[${index}][end]"]`).val();
+            var session = $(`input[name="repeater-group[${index}][session]"]`).val();
+            // console.log( $(this).find('input[name="start"]'));
+            // console.log(index);
+            // console.log($(`input[name="repeater-group[${index}][start]"]`));
+            
+            
+            
+            var end = $(this).find('input[name="end"]').val();
+            var session = $(this).find('input[name="session"]').val();
+
+            eventDetails.start.push(start);
+            
+        });
+        console.log(eventDetails.start);
+
+        formData.append('event_details', JSON.stringify(eventDetails));
 
         $.ajax({
             type: "POST"
@@ -272,9 +323,9 @@
             , dataType: "json"
             , contentType: false
             , processData: false
-            , success: function(response) {
-                window.location.href = "/admin/events";
-            }
+                // , success: function(response) {
+                //     window.location.href = "/admin/events";
+                // }
             , error: function(response) {
                 if (response.status === 422) {
                     let errors = response.responseJSON.data;
@@ -298,5 +349,6 @@
     });
 
 </script>
+
 
 @endsection

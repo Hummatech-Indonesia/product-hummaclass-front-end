@@ -159,7 +159,7 @@
             , contentType: false
             , processData: false
             , success: function(response) {
-                window.location.href = "/admin/news/news";
+                window.location.href = "/admin/news";
             }
             , error: function(response) {
                 if (response.status === 422) {

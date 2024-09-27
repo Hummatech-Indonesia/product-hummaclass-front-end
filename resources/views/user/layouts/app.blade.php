@@ -34,8 +34,7 @@
     @yield('style')
 </head>
 
-<body
-    style="
+<body style="
     zoom: 0.8;
     width: 100%;
     height: 700px;
@@ -112,7 +111,7 @@
             }).format(price);
         }
 
-        function ajaxWithToken(method, url, data= null, dataType = 'json', success, error) { 
+        function ajaxWithToken(method, url, data = null, dataType = 'json', success, error) {
             $.ajax({
                 type: method,
                 url: url,
@@ -123,6 +122,42 @@
                 dataType: dataType,
                 success: success,
                 error: error
+            });
+        }
+    </script>
+    <script>
+        function renderPagination(lastPage, currentPage) {
+            const paginationWrap = $('.pagination__wrap .list-wrap');
+            paginationWrap.empty();
+
+            const maxVisiblePages = 5; // Jumlah halaman yang ingin ditampilkan
+            const startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            const endPage = Math.min(lastPage, startPage + maxVisiblePages - 1);
+
+            if (startPage > 1) {
+                paginationWrap.append('<li><a href="#" data-page="1">1</a></li>');
+                if (startPage > 2) {
+                    paginationWrap.append('<li><span>...</span></li>');
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const isActive = i === currentPage ? 'active' : '';
+                const pageItem = `<li class="${isActive}"><a href="#" data-page="${i}">${i}</a></li>`;
+                paginationWrap.append(pageItem);
+            }
+
+            if (endPage < lastPage) {
+                if (endPage < lastPage - 1) {
+                    paginationWrap.append('<li><span>...</span></li>');
+                }
+                paginationWrap.append(`<li><a href="#" data-page="${lastPage}">${lastPage}</a></li>`);
+            }
+
+            paginationWrap.find('a').on('click', function(event) {
+                event.preventDefault();
+                const page = $(this).data('page');
+                handleGetCourses(page);
             });
         }
     </script>
