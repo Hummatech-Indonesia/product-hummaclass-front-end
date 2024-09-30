@@ -18,6 +18,8 @@
                             $('#price').html(formatRupiah(response.data[key]))
                         else if (key == 'sub_category')
                             $('#sub_category').html(response.data[key].name)
+                        else if (key == 'photo')
+                            $('#thumbnail').attr('src', response.data.photo);
                         else
                             $(`#${key}`).text(response.data[key])
                     }

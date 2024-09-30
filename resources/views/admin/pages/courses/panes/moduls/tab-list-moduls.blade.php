@@ -74,11 +74,11 @@
                                     </g>
                                 </svg>
                             </a>
-                            <a href="#"  class="btn text-white btn-warning moduleForward" data-id="${value.id}">
-                                <i class="ti ti-arrow-up"></i>
-                            </a>
-                            <a href="#"  class="btn text-white btn-warning moduleBackward" data-id="${value.id}">
+                            <a class="btn text-white btn-warning moduleForward" data-id="${value.id}">
                                 <i class="ti ti-arrow-down"></i>
+                            </a>
+                            <a class="btn text-white btn-warning moduleBackward" data-id="${value.id}">
+                                <i class="ti ti-arrow-up"></i>
                             </a>
                             
                             <!-- Dropdown -->

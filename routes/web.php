@@ -179,7 +179,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.users.detail-users');
     })->name('detail-users.index');
 
-    Route::get('create-modul/{id}', [ModuleController::class, 'create'])->name('create.moduls.index');
+    Route::get('create-modul/{id}', [AdminModuleController::class, 'create'])->name('create.moduls.index');
 
 
     Route::get('create-task/{id}', function (string $id) {

@@ -208,7 +208,7 @@
                         $('#cardSubModul').append(empty());
                     } else {
                         $.each(response.data.sub_modules, function(index, value) {
-                            $('#cardSubModul').append(moduleTasks(index, value));
+                            $('#cardSubModul').append(subModul(index, value));
                         });
                     }
                     if (response.data.module_tasks.length === 0) {

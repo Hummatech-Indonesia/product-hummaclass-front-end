@@ -48,18 +48,14 @@
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col col-12 mb-3">
-                    <label for="" class="fw-semibold form-label">Url Youtube</label>
-                    <input type="text" name="url_youtube" class="form-control" placeholder="Masukan Link Youtube">
-                    <div class="invalid-feedback"></div>
-                </div>
-                <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
                     <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
                     <button type="submit" class="btn btn-danger px-4">Batal</button>
-                    <button type="submit" class="btn text-white px-4" style="background-color: var(--purple-primary)">Tambah</button>
+                    <button type="submit" class="btn text-white px-4"
+                        style="background-color: var(--purple-primary)">Tambah</button>
                 </div>
             </form>
         </div>
