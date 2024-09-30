@@ -61,7 +61,6 @@
                             errorMessages.push(message);
                         });
                     });
-                    console.log(errorMessages);
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         html: errorMessages.join('<br>'),

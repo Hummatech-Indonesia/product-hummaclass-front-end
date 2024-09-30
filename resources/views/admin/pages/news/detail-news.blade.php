@@ -43,8 +43,8 @@
 
     <div class="card" style="border-radius: 15px">
         <div class="card-header p-0">
-            <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}"
-                style="border-radius: 15px 15px 0 0;height:300px;object-fit: cover" class="w-100" alt="">
+            <img src="" id="thumbnail" style="border-radius: 15px 15px 0 0;object-fit: cover" class="w-100"
+                alt="">
         </div>
 
         <div class="card-body">
@@ -121,6 +121,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    $('#thumbnail').attr('src', response.data.thumbnail);
                     $('#detail-category').html(response.data.sub_category);
                     $('#detail-title').html(response.data.title);
                     $('#detail-view').html(response.data.view_count);

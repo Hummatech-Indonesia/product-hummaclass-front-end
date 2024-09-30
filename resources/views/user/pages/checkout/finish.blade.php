@@ -37,7 +37,8 @@
                             <p class="m-0">Pesanan Dibuat</p>
                             <p class="m-0"><span id="paid_date">0</span></p>
                         </div>
-                        <button class="btn btn-primary   w-100 m-auto mb-3 rounded-3" id="checkout-btn">Simpan Pembayaran</button>
+                        <button class="btn btn-primary   w-100 m-auto mb-3 rounded-3" id="checkout-btn">Simpan
+                            Pembayaran</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                     <div class="card-body rounded-4">
                         <h5>Status Pembayaran</h5>
                         <img src="" alt="">
-                        <h5 class="text-center">Pembayaran Berhasil</h5>
+                        <h5 class="text-center">Silahkan Lakukan Pembayaran</h5>
                     </div>
                 </div>
                 <button class="btn btn-two w-100 m-auto rounded-3" id="checkout-btn">Beli Sekarang</button>

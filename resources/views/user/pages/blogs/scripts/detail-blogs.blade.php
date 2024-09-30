@@ -13,8 +13,7 @@
                 $.each(response.data.data, function(index, value) {
                     $('#tags-news-list').append(tagsList(index, value));
                 });
-
-                $('#detail-thumbnail').html(response.data.thumbnail);
+                $('#detail-thumbnail').attr('src', response.data.thumbnail);
                 $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
                 $('#detail-created').html(response.data.created);
@@ -35,20 +34,18 @@
     //         <li><a href="#">${value.ta}</a></li>
     //     `;
     // }
-
-
 </script>
 
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/categories"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 $.each(response.data.data, function(index, value) {
                     $('#category_count').append(
                         `<div class="swiper-slide">
@@ -65,13 +62,13 @@
                     );
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -80,24 +77,24 @@
 
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/blogs"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/blogs",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
 
                 $.each(response.data.data, function(index, value) {
                     $('#news-latest-content').append(latestNews(index, value));
                 });
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -122,6 +119,4 @@
 
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
-
-
 </script>

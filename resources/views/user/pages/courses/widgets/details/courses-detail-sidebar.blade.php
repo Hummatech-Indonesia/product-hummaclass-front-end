@@ -78,21 +78,5 @@
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
             </ul>
         </div>
-
-        <div class="courses__details-social border-bottom-0">
-            <h5 class="title"><b>Learning Path</b></h5>
-            <p>Kelas ini merupakan langkah</p>
-            <span><a href="" class="link-primary" style="text-decoration: underline;">ke-1</a></span>
-            <p><a href="" class="text-muted"><b>Langkah Selanjutnya <i class="fas fa-arrow-right"></i></b></a>
-            </p>
-        </div>
-        <div class="courses__details-social border-bottom-0">
-            <span><i class="fas fa-chart-bar"></i> Langkah 2</span>
-            <h5 class="title border-bottom p-2"><b>Belajar membuat aplikasi</b></h5>
-            <div class="d-flex gap-2 align-items-center">
-                <span class="rounded-pill text-dark p-1" style="background: #EFEFF2;"><b>Development</b></span>
-                <span class="text-muted"><i class="fas fa-star" style="color:#F8BC24;"></i> (4.5) Ulasan</span>
-            </div>
-        </div>
     </div>
 </div>

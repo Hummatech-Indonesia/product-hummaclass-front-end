@@ -274,11 +274,9 @@
                         if (errors) {
                             for (let key in errors) {
                                 if (errors.hasOwnProperty(key)) {
-                                    console.log(`${key}: ${errors[key]}`);
                                     if (key == 'description') {
                                         let feedback = $(`.invalid-feedback`).closest(
                                             `.${key}`);
-                                        console.log(feedback);
                                         feedback.text(errors[key])
                                         feedback.removeClass('d-none')
                                     } else {

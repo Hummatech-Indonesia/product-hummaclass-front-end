@@ -105,7 +105,7 @@
 
                     $('.price').text(formatRupiah(course.price));
                     $('.title').text(course.title);
-                    $('.course_photo').text(course.photo);
+                    $('.course_photo').attr('src', course.photo);
                     $('.category').text(course.category.name);
                     $('#description').html(course.description);
 
@@ -179,8 +179,9 @@
                     },
                     success: function(response) {
                         let transactionId = response.data.transaction.data.reference;
-                        let url = "{{ route('checkout.show', ':reference') }}".replace(':reference', transactionId);
-                        
+                        let url = "{{ route('checkout.show', ':reference') }}".replace(
+                            ':reference', transactionId);
+
                         window.location.href = url;
                     },
                     error: function(xhr, status, error) {

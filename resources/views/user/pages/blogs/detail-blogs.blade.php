@@ -1,61 +1,69 @@
 @extends('user.layouts.app')
 
 @section('content')
-<!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb__content">
-                    <h3 class="title">Detail Berita</h3>
-                    <nav class="breadcrumb">
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="index.html">Home</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="{{ route('news.index') }}">Berita</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem" class="detail-title"></span>
-                    </nav>
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <h3 class="title">Detail Berita</h3>
+                        <nav class="breadcrumb">
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="index.html">Home</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="{{ route('news.index') }}">Berita</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem" class="detail-title"></span>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="breadcrumb__shape-wrap">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape02.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape03.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape04.svg') }}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape05.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
-    </div>
-</section>
-<!-- breadcrumb-area-end -->
+        <div class="breadcrumb__shape-wrap">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape02.svg') }}" alt="img" data-aos="fade-right"
+                data-aos-delay="300">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape03.svg') }}" alt="img" data-aos="fade-up"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape04.svg') }}" alt="img" data-aos="fade-down-left"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape05.svg') }}" alt="img" data-aos="fade-left"
+                data-aos-delay="400">
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
 
-<!-- blog-details-area -->
-<section class="blog-details-area section-py-120">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 col-lg-8">
-                <div class="blog__details-wrapper">
-                    <div class="blog__details-thumb">
-                        <img id="detail-thumbnail" alt="img">
-                    </div>
-                    <div class="blog__details-content">
-                        <div class="blog__post-meta">
-                            <ul class="list-wrap">
-                                <li><i class="flaticon-calendar"></i> <span id="detail-created"></span></li>
-                                {{-- <li><i class="flaticon-user-1"></i> by <a href="#">Admin</a></li>
-                                <li><i class="far fa-comment-alt"></i> 05 Comments</li> --}}
-                            </ul>
+    <!-- blog-details-area -->
+    <section class="blog-details-area section-py-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="blog__details-wrapper">
+                        <div class="blog__details-thumb">
+                            <img id="detail-thumbnail" alt="img" width="100%">
                         </div>
-                        <h3 class="title detail-title" id="detail-title"></h3>
-                        <p id="detail-description">Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra.Maximus ligula eleifend.</p>
-                        {{-- <blockquote>
+                        <div class="blog__details-content">
+                            <div class="blog__post-meta">
+                                <ul class="list-wrap">
+                                    <li><i class="flaticon-calendar"></i> <span id="detail-created"></span></li>
+                                    {{-- <li><i class="flaticon-user-1"></i> by <a href="#">Admin</a></li>
+                                <li><i class="far fa-comment-alt"></i> 05 Comments</li> --}}
+                                </ul>
+                            </div>
+                            <h3 class="title detail-title" id="detail-title"></h3>
+                            <p id="detail-description">Maximus ligula eleifend id nisl quis interdum. Sed malesuada tortor
+                                non turpis semper bibendum. Ut ac nisi porta, malesuada risus nonrra dolo areay Vestibulum
+                                ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae in tristique
+                                libero, quis ultrices diamraesent varius diam dui. Class aptent taciti sociosqu ad litora
+                                torquent per conubia nostra.Maximus ligula eleifend.</p>
+                            {{-- <blockquote>
                             <p>“ urabitur varius eros rutrum consequat Mauris areathe sollicitudin enim condimentum luctus enim justo non molestie nisl ”</p>
                         </blockquote> --}}
-                        {{-- <div class="blog__details-bottom">
+                            {{-- <div class="blog__details-bottom">
                             <div class="row align-items-center">
                                 <div class="col-xl-6 col-md-7">
                                     <div class="tg-post-tag">
@@ -79,9 +87,9 @@
                                 </div>
                             </div>
                         </div> --}}
+                        </div>
                     </div>
-                </div>
-                {{-- <div class="blog__post-author">
+                    {{-- <div class="blog__post-author">
                     <div class="blog__post-author-thumb">
                         <a href="#"><img src="{{ asset('assets/img/blog/author.png') }}" alt="img"></a>
                     </div>
@@ -170,18 +178,18 @@
                         </form>
                     </div>
                 </div> --}}
-            </div>
-            <div class="col-xl-3 col-lg-4">
-                <aside class="blog-sidebar">
-                    <div class="blog-widget widget_search">
-                        <div class="sidebar-search-form">
-                            <form action="#">
-                                <input type="text" placeholder="Search here">
-                                <button><i class="flaticon-search"></i></button>
-                            </form>
+                </div>
+                <div class="col-xl-3 col-lg-4">
+                    <aside class="blog-sidebar">
+                        <div class="blog-widget widget_search">
+                            <div class="sidebar-search-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Search here">
+                                    <button><i class="flaticon-search"></i></button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                    {{-- <div class="blog-widget">
+                        {{-- <div class="blog-widget">
                         <h4 class="widget-title">Kategori</h4>
                         <div class="shop-cat-list">
                             <ul class="list-wrap" id="list-category">
@@ -209,10 +217,10 @@
                             </ul>
                         </div>
                     </div> --}}
-                    <div class="blog-widget" id="news-latest-content">
-                        <h4 class="widget-title">Berita Terbaru</h4>
-                        
-                        {{-- <div class="rc-post-item">
+                        <div class="blog-widget" id="news-latest-content">
+                            <h4 class="widget-title">Berita Terbaru</h4>
+
+                            {{-- <div class="rc-post-item">
                             <div class="rc-post-thumb">
                                 <a href="blog-details.html">
                                     <img src="{{ asset('assets/img/blog/latest_post02.jpg') }}" alt="img">
@@ -245,8 +253,8 @@
                                 <h4 class="title"><a href="blog-details.html">The Growing Need Management</a></h4>
                             </div>
                         </div> --}}
-                    </div>
-                    {{-- <div class="blog-widget">
+                        </div>
+                        {{-- <div class="blog-widget">
                         <h4 class="widget-title">Tag</h4>
                         <div class="tagcloud">
                             <a href="#">Education</a>
@@ -257,17 +265,14 @@
                             <a href="#">LMS</a>
                         </div>
                     </div> --}}
-                </aside>
+                    </aside>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- blog-details-area-end -->
-
+    </section>
+    <!-- blog-details-area-end -->
 @endsection
 
 @section('script')
-
     @include('user.pages.blogs.scripts.detail-blogs')
-
 @endsection

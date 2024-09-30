@@ -250,7 +250,6 @@
         });
 
         function deleteCategory(url) {
-            console.log(url);
 
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
