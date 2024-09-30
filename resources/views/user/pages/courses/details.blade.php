@@ -10,11 +10,11 @@
                     <div class="breadcrumb__content">
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="index.html">Home</a>
+                                <a href="/">Home</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="index.html">Courses</a>
+                                <a href="/">Courses</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And

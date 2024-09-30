@@ -38,7 +38,7 @@
                                         class="menu-item {{ Route::currentRouteName() == 'blogs.index' ? 'active' : '' }}">
                                         <a href="{{ route('blogs.index') }}">Berita</a>
                                     </li>
-                                    <li class="menu-item"><a href="javascript:void(0)">FAQ</a>
+                                    <li class="menu-item {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}"><a href="{{ route('faqs.index') }}">FAQ</a>
                                     </li>
                                     {{-- <li class="menu-item-has-children {{ Route::is('dashboard.users.dashboard', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Profile</a>
                                     <ul class="sub-menu">

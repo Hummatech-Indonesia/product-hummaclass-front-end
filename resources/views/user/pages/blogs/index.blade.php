@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg">
+<section class="breadcrumb__area breadcrumb__bg py-5" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -10,7 +10,7 @@
                     <h3 class="title">Berita</h3>
                     <nav class="breadcrumb">
                         <span property="itemListElement" typeof="ListItem">
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                         <span property="itemListElement" typeof="ListItem">Berita</span>
@@ -40,9 +40,9 @@
                 <nav class="pagination__wrap mt-25">
                     <ul class="list-wrap">
                         <li class="active"><a href="#">1</a></li>
-                        <li><a href="{{ route('news.index') }}">2</a></li>
-                        <li><a href="{{ route('news.index') }}">3</a></li>
-                        <li><a href="{{ route('news.index') }}">4</a></li>
+                        <li><a href="/blogs">2</a></li>
+                        <li><a href="/blogs">3</a></li>
+                        <li><a href="/blogs">4</a></li>
                     </ul>
                 </nav>
             </div>

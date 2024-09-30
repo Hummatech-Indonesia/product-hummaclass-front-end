@@ -124,6 +124,10 @@ Route::resources([
     'blogs' => BlogController::class,
 ]);
 
+Route::get('faqs', function(){
+    return view('user.pages.faqs.index');
+})->name('faqs.index');
+
 
 // ================== ADMIN ==================
 

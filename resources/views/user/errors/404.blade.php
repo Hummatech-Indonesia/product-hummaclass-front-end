@@ -3,14 +3,14 @@
 @section('content')
 
 <!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg" style="padding: 50px 0;">
+<section class="breadcrumb__area breadcrumb__bg py-5" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}" style="padding: 50px 0;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="breadcrumb__content">
                     <nav class="breadcrumb">
                         <span property="itemListElement" typeof="ListItem">
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                         <span property="itemListElement" typeof="ListItem">Halaman Tidak Ditemukan</span>

@@ -15,7 +15,7 @@
 
 @section('content')
 <!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg">
+<section class="breadcrumb__area breadcrumb__bg py-5" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -23,7 +23,7 @@
                     <h3 class="title">Kursus</h3>
                     <nav class="breadcrumb">
                         <span property="itemListElement" typeof="ListItem">
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                         <span property="itemListElement" typeof="ListItem">Kursus</span>
