@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- breadcrumb-area -->
-<section class="breadcrumb__area breadcrumb__bg py-5" data-background="assets/img/bg/breadcrumb_bg.jpg" style="padding: 50px 0;">
+<section class="breadcrumb__area breadcrumb__bg py-5" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}" style="padding: 50px 0;">
     <div class="container">
         <div class="row">
             <div class="col-12">
