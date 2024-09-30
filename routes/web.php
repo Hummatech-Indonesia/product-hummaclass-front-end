@@ -60,14 +60,14 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         Route::get('profile', [ProfileController::class, 'index'])->name('profile');
         Route::get('courses', [CourseController::class, 'student'])->name('courses');
 
-        Route::get('events', function(){
+        Route::get('events', function () {
             return view('user.pages.dashboard.student.events');
         })->name('events');
 
-        Route::get('reviews', function(){
+        Route::get('reviews', function () {
             return view('user.pages.dashboard.student.reviews');
         })->name('reviews');
-        Route::get('history-transaction', function(){
+        Route::get('history-transaction', function () {
             return view('user.pages.dashboard.student.history-transaction');
         })->name('history-transaction');
         Route::get('settings', function () {

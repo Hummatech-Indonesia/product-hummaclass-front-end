@@ -157,11 +157,8 @@
                 dataType: "json",
                 success: function(response) {
                     get();
-                    console.log('berhasil forward module');
                 },
-                error: function(xhr) {
-                    console.log('gagal forward module');
-                }
+                error: function(xhr) {}
             });
         })
         $(document).on('click', '.moduleForward', function() {
@@ -175,11 +172,8 @@
                 dataType: "json",
                 success: function(response) {
                     get();
-                    console.log('berhasil forward module');
                 },
-                error: function(xhr) {
-                    console.log('gagal forward module');
-                }
+                error: function(xhr) {}
             });
         })
 

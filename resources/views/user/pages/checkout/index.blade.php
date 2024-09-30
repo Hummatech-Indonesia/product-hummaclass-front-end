@@ -10,7 +10,6 @@
     <div class="container">
         <div class="row">
             <div class="col col-md-8 row">
-
                 <div class="col-12">
                     <div class="courses__item courses__item-three shine__animate-item row row-gap-0">
                         <div class="col col-md-4">
@@ -39,7 +38,7 @@
                                             <p class="author fs-10">By <a href="#">David Millar</a></p>
                                         </div>
                                     </div>
-                                    <p class="info"><span class="fw-bolder price" style="color: #9425fe">Rp. 100.000
+                                    <p class="info"><span class="fw-bolder price" style="color: #9425fe">
                                         </span>/
                                         (<span class="review">4.8</span>
                                         Reviews)</p>
