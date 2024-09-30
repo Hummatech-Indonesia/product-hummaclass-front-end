@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ModuleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminModuleController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Middleware\CustomAuthMiddleware;
 
@@ -33,7 +34,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth_custom')->group(functio
         'categories' => CategoryController::class,
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
-        'modules' => ModuleController::class,
+        'modules' => AdminModuleController::class,
         'sub-modules' => AdminSubModuleController::class
     ]);
 
