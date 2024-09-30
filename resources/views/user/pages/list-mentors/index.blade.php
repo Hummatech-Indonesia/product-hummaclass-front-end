@@ -10,7 +10,7 @@
                     <h3 class="title">Daftar Mentor</h3>
                     <nav class="breadcrumb">
                         <span property="itemListElement" typeof="ListItem">
-                            <a href="index.html">Home</a>
+                            <a href="/">Home</a>
                         </span>
                         <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                         <span property="itemListElement" typeof="ListItem">Daftar Mentor</span>
