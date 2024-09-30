@@ -156,7 +156,7 @@
                                     <li><i class="flaticon-calendar"></i>${value.created}</li>
                                 </ul>
                             </div>
-                            <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title}</a></h4>
+                            <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title.length > 40 ? value.title.substring(0, 40) + '...' : value.title}</a></h4>
                         </div>
                     </div>
                 </div>
@@ -260,8 +260,7 @@
                     </a>
                 </div>
                 <div class="rc-post-content">
-                    <span class="date"><i class="flaticon-calendar"></i>${value.created}</span>
-                    <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title}</a></h4>
+                    <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
                 </div>
             </div>
         `;
