@@ -37,6 +37,7 @@
     //     });
 
     // });
+    let course;
     $(document).ready(function() {
 
         function handleTabDisplay(hash) {

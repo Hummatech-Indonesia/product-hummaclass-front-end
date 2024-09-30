@@ -94,7 +94,7 @@
                                         .forEach((step, index) => {
                                             // console.log(instruction.title);
                                             let title = instruction.title.toLowerCase().replace(/ /g, "_");
-                                            console.log($(`.${title}`));
+                                            // console.log($(`.${title}`));
                                             $($(`.${title}`)).append(
                                                 `<div class="courses-cat-list">
                                                     <ul class="list-wrap">

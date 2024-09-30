@@ -1,7 +1,28 @@
-<div class="row" id="voucher-list">
-    {{-- <div class="col-lg-4">
+@push('script')
+    <script>
+        const voucherListParent = $('#voucher-list');
+
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}/api/course-vouchers/{{ $id }}",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                let cardList = '';
+                response.data.forEach(function(data) {
+                    cardList += appendCard(data);
+                });
+                voucherListParent.append(cardList);
+            }
+        });
+
+
+        function appendCard(data) {
+            let card = `<div class="col-lg-4">
         <div class="card">
-            <div class="card-header" style="background-color: #DB0909;">
+            <div class="card-header" style="background-color: var(--purple-primary);">
                 <div class="row">
                     <div class="col-lg-11 d-flex justify-content-center">
                         <h5 class="text-white text-center ps-4">Kode Voucher</h5>
@@ -43,14 +64,14 @@
             <div class="card-body">
                 <div class="d-flex justify-content-center">
                     <div>
-                        <span class="mb-1 badge fw-semibold fs-5 p-2"
-                            style="border-radius: 8px;background-color: #F6EEFE;color: #A8A8A8;">Diskon 90%</span>
+                        <span class="mb-1 badge fw-semibold text-primary fs-5 p-2"
+                            style="border-radius: 8px;background-color: #F6EEFE;">Diskon ${data.discount}%</span>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-center mt-2">
                     <div>
-                        <h5 id="kode">testingggg
+                        <h5 id="kode">${data.code}
                             <a id="copylink" tooltip="Salin Link">
                                 <span class="badge ms-3 copyLink" style="background-color: #E9E9E9;"
                                     onclick="copyToClipboard()" id="copy">
@@ -71,21 +92,23 @@
 
                 <div class="text-center">
                     <div class="progress mt-2" style="height: 6px;background-color: #D1D1D1;">
-                        <div class="progress-bar" style="width: 20%; background-color: #DB0909" role="progressbar">
-                        </div>
+                        <div class="progress-bar" style="width: 20%; background-color: var(--purple-primary)"
+                            role="progressbar"></div>
                     </div>
-                    <p class="mt-2">0 Terpakai dari 12 stok</p>
+                    <p class="mt-2">${data.transactions_count} Terpakai dari ${data.usage_limit} stok</p>
                 </div>
 
                 <div class="text-center mt-4">
                     <h6 class="fw-semibold">Masa Aktif</h6>
                     <div class="mt-2">
-                        <h6 style="color: #DB0909">12 Januari 2022 - 12 Desember 2022</h6>
+                        <h6 style="color: var(--purple-primary)">12 Januari 2022 - 12 Desember 2022</h6>
                     </div>
                 </div>
             </div>
         </div>
-    </div> --}}
-</div>
+    </div>`;
 
-@include('admin.pages.courses.panes.vouchers.scripts.voucher-index')
+    return card;
+        }
+    </script>
+@endpush

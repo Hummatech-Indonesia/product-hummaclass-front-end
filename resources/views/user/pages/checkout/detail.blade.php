@@ -15,12 +15,6 @@
         }
 
         .placeholder {
-            /* position: absolute;
-                                                top: 0;
-                                                left: 0;
-                                                width: 100%;
-                                                height: 100%;
-                                                /* Prevent interaction with the overlay */
             animation: loading 1.5s infinite;
             pointer-events: none;
             min-width: 100px;
@@ -35,21 +29,6 @@
             height: 100%;
             position: absolute;
         }
-
-        /* @keyframes loading {
-                                        0% {
-                                            background-image: linear-gradient(90deg, rgb(195, 195, 195), grey);
-                                        }
-
-                                        50% {
-                                            background-image: linear-gradient(90deg, grey, rgb(195, 195, 195), grey);
-                                        }
-
-                                        100% {
-                                            background-image: linear-gradient(90deg, grey, rgb(195, 195, 195));
-                                        }
-                                    } */
-
 
         /* Wrapper untuk skeleton */
         .skeleton-wrapper {
