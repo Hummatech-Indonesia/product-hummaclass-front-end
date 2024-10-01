@@ -1,13 +1,13 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/categories"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 $.each(response.data.data, function(index, value) {
                     $('#category_count').append(
                         `<div class="swiper-slide">
@@ -24,13 +24,13 @@
                     );
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -39,24 +39,24 @@
 
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses?order=best seller"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/courses?order=best seller",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 $.each(response.data.data, function(index, value) {
                     $('#course-content').append(listCourse(index, value));
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -64,7 +64,7 @@
 
     function listCourse(index, value) {
         console.log(card);
-        
+
         return `
         <div class="swiper-slide">
             <div class="courses__item shine__animate-item">
@@ -99,5 +99,4 @@
 
     // jangan dihapus
     // <p class="author">By <a href="#">David Millar</a></p>
-
 </script>

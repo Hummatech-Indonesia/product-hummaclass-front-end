@@ -1,62 +1,24 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/categories"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/blogs",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                $.each(response.data.data, function(index, value) {
-                    $('#category_count').append(
-                        `<div class="swiper-slide">
-                                    <div class="categories__item">
-                                        <a href="{{ route('courses.courses.index') }}">
-                                            <div class="icon">
-                                                <h1 style="font-size: 50px;color: #6D6C80">${value.course_item_count}</h1>
-                                            </div>
-                                            <span class="name">${value.name}</span>
-                                            {{-- <span class="courses">(22)</span> --}}
-                                        </a>
-                                    </div>
-                            </div>`
-                    );
-                });
-
-            }
-            , error: function(xhr) {
-
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-    });
-
-
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/blogs"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 $.each(response.data.data, function(index, value) {
                     $('#news-content').append(card(index, value));
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -86,6 +48,4 @@
 
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
-
-
 </script>

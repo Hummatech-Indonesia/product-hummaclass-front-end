@@ -49,6 +49,7 @@
                 </div>
                 <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
+                    {{-- <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;" class="mb-5"></div> --}}
                     <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>

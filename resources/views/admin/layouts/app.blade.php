@@ -27,6 +27,8 @@
     {{-- <link rel="stylesheet" href="{{ asset('admin/summernote/summernote.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.css') }}">
 
+    @vite(['resources/js/codex-editor.js'])
+
     <style>
         @media (max-width: 600px) {
             .filter {

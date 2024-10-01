@@ -44,7 +44,7 @@ class AdminEventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.pages.events.edit-events', compact('id'));
     }
 
     /**

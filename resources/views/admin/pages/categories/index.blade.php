@@ -250,7 +250,6 @@
         });
 
         function deleteCategory(url) {
-
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
                 $.ajax({
