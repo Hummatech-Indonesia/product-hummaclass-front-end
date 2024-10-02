@@ -171,7 +171,6 @@
                                     <h3 class="fw-semibold" id="course_title"></h3>
                                     <p id="course_sub_title"></p>
                                     <div style="border-bottom: 1px solid #CCCCCC;"></div>
-                                    <h4 class="fw-semibold mt-3">Konten</h4>
                                     <div class="" id="content">
 
                                     </div>
