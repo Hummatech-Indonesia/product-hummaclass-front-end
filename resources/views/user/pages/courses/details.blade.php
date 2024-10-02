@@ -158,10 +158,12 @@
             });
 
             function moduleContent(index, value) {
+                // href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}"
 
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
+
+                               <a class="last_step_update" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;
@@ -205,6 +207,22 @@
                     </div>
                 `;
             }
+        });
+
+        $('.last_step_update').click(function(e) {
+            e.preventDefault();
+            var sub_modul_id = $(this).data('sub-modul-id');
+            console.log(sub_modul_id);
+
+            $.ajax({
+                type: "PUT",
+                // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
+                data: "data",
+                dataType: "dataType",
+                success: function(response) {
+
+                }
+            });
         });
     </script>
 @endsection

@@ -127,6 +127,7 @@
                 name: $('#search-name').val()
             , }
             , success: function(response) {
+                $('#contentNews').empty();
                 $.each(response.data.data, function(index, value) {
                     $('#contentNews').append(news(index, value));
                 });
