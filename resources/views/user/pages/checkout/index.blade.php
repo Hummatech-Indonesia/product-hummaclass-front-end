@@ -111,12 +111,9 @@
                         <p><span id="fee_service">0</span></p>
                     </div>
                     <hr class="border border-1 border-secondary">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between total_amount_row">
                         <p class="fw-semibold">Total Pesanan</p>
                         <p class="fw-semibold fs-5"><span id="total_amount">0</span></p>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <p class=""><span id="fee_service">0</span></p>
                     </div>
                     <button class="btn btn-two w-100 m-auto" id="checkout-btn">Beli Sekarang</button>
                 </div>

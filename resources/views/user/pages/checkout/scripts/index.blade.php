@@ -1,33 +1,6 @@
 @push('script')
     <script>
         $(document).ready(async function() {
-
-            const data = {
-                "title": "lorem ipsum",
-                "description": "lorem ipsum dolor sit amet is simply dummy text for industries",
-                "location": "permata regency 1 karangploso malang",
-                "capacity": 2,
-                "price": 10000,
-                "start_date": "2024-09-23",
-                "has_certificate": true,
-                "is_online": true,
-                "user_id": [
-                    "e9c93721-dd7b-314c-b6c0-010ac7711821",
-                    "e9c93721-dd7b-314c-b6c0-010ac7711821"
-                ],
-                "start": [
-                    "09:00:00",
-                    "14:00:00"
-                ],
-                "end": [
-                    "11:00:00",
-                    "16:00:00"
-                ],
-                "session": [
-                    "Session 1",
-                    "Session 2"
-                ]
-            }
             let course;
             const pricingData = {
                 'course_price': 0,
@@ -56,11 +29,17 @@
                 if (pricingData.discount > 0) {
                     if ($('#discount_row').length == 0) {
                         $('#course_price_row').after(`
-                        <div class="d-flex justify-content-between" id="discount_row">
-                            <p>Diskon Voucher</p>
-                            <p><span id="voucher_discount">${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
+                            <div class="d-flex justify-content-between" id="discount_row">
+                                <p>Diskon Voucher</p>
+                                <p><span id="voucher_discount">${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
                             </div>
-                            `);
+                        `);
+
+                        $('.total_amount_row').after(`
+                            <div class="d-flex justify-content-end fw-bold ">
+                                <p class="fw-bold" style="color: #9425fe">Hemat <span>${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
+                            </div>
+                        `);
                     } else {
                         $('#voucher_discount').text(formatRupiah(pricingData.discount));
                     }
@@ -162,7 +141,11 @@
                         updatePricing();
                     },
                     error: function(err) {
-                        console.log(err.status)
+                        Swal.fire({
+                            icon: 'error',
+                            title: err.responseJSON.meta.message,
+                        });
+                        err.responseJSON.meta.message
                     }
                 });
             }
