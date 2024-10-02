@@ -8,6 +8,8 @@
             },
             dataType: "json",
             success: function(response) {
+
+                $('#news-content').empty(); 
                 $.each(response.data.data, function(index, value) {
                     $('#news-content').append(card(index, value));
                 });
