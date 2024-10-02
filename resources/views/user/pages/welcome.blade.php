@@ -707,4 +707,5 @@
 @section('script')
     @include('user.pages.scripts.course')
     @include('user.pages.scripts.blogs')
+    @include('user.pages.scripts.footer')
 @endsection

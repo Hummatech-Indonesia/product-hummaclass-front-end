@@ -19,11 +19,11 @@
                         <h4 class="footer__widget-title">Halaman</h4>
                         <div class="footer__link">
                             <ul class="list-wrap">
-                                <li><a href="events-details.html">Kursus</a></li>
-                                <li><a href="events-details.html">Events</a></li>
-                                <li><a href="events-details.html">Berita</a></li>
+                                <li><a href="{{ route('courses.courses.index') }}">Kursus</a></li>
+                                <li><a href="{{ route('events.index') }}">Events</a></li>
+                                <li><a href="{{ route('news.index') }}">Berita</a></li>
                                 <li><a href="{{ route('contacts.index') }}">Hubungi Kami</a></li>
-                                <li><a href="events-details.html">FAQ</a></li>
+                                <li><a href="{{ route('faqs.index') }}">FAQ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,9 +33,9 @@
                         <h4 class="footer__widget-title">Sosial Media</h4>
                         <div class="footer__link">
                             <ul class="list-wrap">
-                                <li><a href="#">Instagram</a></li>
-                                <li><a href="#">Tweeter</a></li>
-                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#" id="detail-whatsapp">Whatsapp</a></li>
+                                <li><a href="#" id="detail-twitter">Twitter</a></li>
+                                <li><a href="#" id="detail-facebook">Facebook</a></li>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="footer__widget">
                         <h4 class="footer__widget-title">Kontak</h4>
                         <div class="footer__contact-content">
-                            <p>asdasdasd87@gmail.com <br> 0897-1278-1234</p>
+                            <p>asdasdasd87@gmail.com <br> <span id="detail-phone-number"></span></p>
                         </div>
                     </div>
                 </div>

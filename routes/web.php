@@ -120,6 +120,10 @@ Route::get('quiz-question', function () {
     return view('user.pages.question-quiz.index');
 })->name('quetion-quiz.index');
 
+Route::get('finish-test', function(){
+    return view('user.pages.question-quiz.test-finish');
+})->name('finish-test');
+
 Route::resources([
     'blogs' => BlogController::class,
 ]);
