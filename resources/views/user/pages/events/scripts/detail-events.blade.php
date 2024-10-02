@@ -18,6 +18,7 @@
                 $('#detail-has-certificate').html(response.data.has_certificate === 1 ? 'Incluide' : 'Excluide');
                 $('.detail-location').html(response.data.location);
                 $('#detail-description').html(response.data.description);
+                $('#detail-price').html(response.data.price);
 
                 // event details
                 $('#roundown-content').empty(); 
