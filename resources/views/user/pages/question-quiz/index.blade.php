@@ -57,18 +57,18 @@
 
     <div class="container custom-container mt-3">
         <div class="card border-0 px-4" style="background-color: #9425FE;border-radius: 9px;">
-            <div class="row align-items-center">
-                <div class="col-md-10 p-3">
+            <div class="row align-items-center p-3">
+                <div class="col-md-10">
                     <h4 class="text-white">2 Dikerjakan dari 5 soal</h4>
                 </div>
                 <div class="col-md-2">
-                    <span class="badge w-100 h-100 bg-white py-3 fs-6 fw-bolder text-warning">02.30.00 Sisa waktu</span>
+                    <span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">02.30.00 Sisa waktu</span>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
-            <div class="col-lg-9">
+            <div class="col-lg-9 mb-3">
                 @if (request('question') == 1 || is_null(request('question')))
                 <div class="card border-0">
                     <div class="p-4">
@@ -811,7 +811,7 @@
                 <div class="card border-0 p-4">
                     <h4 class="fw-bolder">Soal Ujian</h4>
                     <div class="row">
-                        @for ($i = 1; $i <= 10; $i++) <div class="col-md-3">
+                        @for ($i = 1; $i <= 10; $i++) <div class="col-3">
                             <div class="px-1 py-2">
                                 <a href="?question={{ $i }}" class="d-flex question-nav @if(request('question') == $i || (is_null(request('question')) && $i == 1)) active @endif">
                                     {{ $i }}
