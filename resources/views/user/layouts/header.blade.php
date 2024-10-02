@@ -92,11 +92,11 @@
                                                 <div class="user-profile">
                                                     <a href="{{ route('dashboard.users.profile', session('user')['id']) }}">
                                                         <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
-                                                            class="rounded rounded-circle" width="45px"
+                                                            class="rounded rounded-circle" width="48px"
                                                             alt="Profile Image" class="profile-image">
                                                     </a>
                                                     <button type="submit"
-                                                        class="btn btn-two shadow-none py-3">Keluar</button>
+                                                        class="btn shadow-none py-3 ms-3">Keluar</button>
                                                 </div>
                                             </form>
                                         </li>

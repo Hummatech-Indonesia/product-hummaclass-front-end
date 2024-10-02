@@ -131,7 +131,7 @@
                                     <div class="courses__details-sidebar">
                                         <div class="courses__cost-wrap">
                                             <span>Harga Masuk</span>
-                                            <h2 class="title">Rp. 230.000</h2>
+                                            <h2 class="title" id="detail-price">Rp. 230.000</h2>
                                         </div>
                                         <div class="courses__information-wrap">
                                             <h5 class="title">Informasi Event:</h5>
