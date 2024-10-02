@@ -4,6 +4,55 @@
         .list-payment img {
             width: 100px;
         }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-option .option-content {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .payment-option img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .payment-option span {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .payment-option input[type="radio"]:checked {
+            border: 2px solid #9425fe;
+            /* Warna ungu saat dipilih */
+        }
+
+        .checked {
+            border: 2px solid #9425fe;
+        }
+
+        .payment-option:hover {
+            border-color: #9425fe;
+        }
     </style>
 @endsection
 @section('content')
@@ -66,30 +115,53 @@
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <div class="card list-payment">
-                        <div class="card-body">
-                            <h6 class="m-0">TRANSFER VIRTUAL ACCOUNT</h6>
-                            <span>Dengan kode unik, semua jadi cepat</span>
-
-                            <ul class="m-0 p-0 mt-4" style="list-style: none;" id="virtual_account">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mb-4">
-                    <div class="card list-payment">
-                        <div class="card-body">
-                            <h6 class="m-0">E-Wallet</h6>
-                            <span>Pembayaran terhubung langsung dengan akun e-wallet kamu</span>
-
-                            <ul class="m-0 p-0 mt-4" style="list-style: none;" id="e_wallet">
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col" style="position: -webkit-sticky; position: sticky;">
+                <h4>Pilih Metode Pembayaran </h4>
+                <div class="card mb-3" id="intruction-list">
+                    <div class="card-body rounded-4">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse-virtual-account" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        Virtual Account
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse-virtual-account" class="accordion-collapse collapse show"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>Pembayaran terhubung langsung dengan akun e-wallet kamu</p>
+                                        <div class="row row-cols-4 payment-options" id="virtual_account">
+                                            <!-- Radio button for Gopay -->
+                                            <!-- Add more as needed -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse-ewallet" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        E-Wallet
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse-ewallet" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <p>Pembayaran terhubung langsung dengan akun e-wallet kamu</p>
+                                        <div class="row row-cols-4 payment-options" id="e_wallet">
+                                            <!-- Radio button for Gopay -->
+                                            <!-- Add more as needed -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <h5>Pembayaran</h5>
