@@ -21,7 +21,7 @@
 
                 // event details
                 $('#roundown-content').empty(); 
-                $.each(response.data, function(value) {
+                $.each(response.data.event_details, function(index, value) {                    
                     $('#roundown-content').append(cardRoundown(value));
                 });
             }
@@ -39,11 +39,11 @@
     function cardRoundown(value) {
         return `
             <tr>
-                <td style="display: table-cell;">${value.event_details.start} - ${value.event_details.end}</td>
-                <td class="text-start" style="display: table-cell;">${value.event_details.session}</td>
+                <td style="display: table-cell;">${value.start} - ${value.end}</td>
+                <td class="text-start" style="display: table-cell;">${value.session}</td>
                 <td class="text-start" style="display: table-cell;">
                     <div class="ms-3">
-                        <h6 class=" fw-semibold mb-0">${value.event_details.user}</h6>
+                        <h6 class=" fw-semibold mb-0">${value.user}</h6>
                         <span>Curriculum Developer</span>
                     </div>
                 </td>
