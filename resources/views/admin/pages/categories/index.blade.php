@@ -101,9 +101,6 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
-                data: {
-                    name: $('#search-name').val(),
-                },
                 success: function(response) {
                     $.each(response.data.data, function(index, value) {
                         $('#tableBody').append(category(index, value));
@@ -127,6 +124,7 @@
 
             if (value.sub_category.length > 0) {
                 $.each(value.sub_category, function(subIndex, subValue) {
+                    
                     subCategoryRows += `
                         <tr class="sub_category">
                             <td></td>

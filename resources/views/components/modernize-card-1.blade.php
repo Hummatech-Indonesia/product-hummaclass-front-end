@@ -1,5 +1,13 @@
 @section('script')
 <script>
+    let debounceTimer;
+        $('#search-name').keyup(function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                getCourse()
+            }, 500);
+        });
+
     $(document).on('click', '.btn-delete', function() {
         var id = $(this).data('id');
         var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
@@ -57,12 +65,25 @@
             , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
-            , dataType: "json"
+            , dataType: "json",
+            data: {
+                name: $('#search-name').val(),
+            }
             , success: function(response) {
                 $('#list-card').empty();
                 response.data.data.forEach(data => {
                     cardCourse(data);
                 });
+
+                if (response.data.data.length > 0) {
+                    response.data.data.forEach(data => {
+                        cardCourse(data);
+                    });
+                    $('#pagination').html(handlePaginate(response.data.paginate))
+
+                } else {
+                    $('#list-card').append(empty());
+                }
             }
             , error: function(xhr) {
                 Swal.fire({

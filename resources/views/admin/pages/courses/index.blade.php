@@ -36,7 +36,7 @@
     <div class="d-flex justify-content-between mt-2">
         <form action="" class="position-relative">
             <input type="text" class="form-control product-search px-4 ps-5" name="name"
-                value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
+                value="{{ old('name', request('name')) }}" id="search-name" style="background-color: #fff" placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
         <a href="{{ route('admin.courses.create') }}" class="btn text-white" style="background-color: #7209DB">
