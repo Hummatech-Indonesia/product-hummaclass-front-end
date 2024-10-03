@@ -20,7 +20,7 @@
 
         <div class="courses__details-enroll mb-5">
             <div class="tg-button-wrap">
-                <a href="{{ route('checkout', $id) }}" class="btn btn-two arrow-btn">
+                <a href="{{ route('checkout', $id) }}" class="btn btn-two arrow-btn w-100 d-flex justify-content-center">
                     Beli Sekarang
                     <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
                 </a>

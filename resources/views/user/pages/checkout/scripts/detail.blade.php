@@ -29,7 +29,7 @@
                 $('#payment_method').text(transactionData.tripay.payment_method);
                 $('#checkout_date').text(transactionData.transaction.created_at);
                 $('#paid_date').text(transactionData.tripay.paid_at);
-                $('#expired_date').text(transactionData.transaction.expirate_date);
+                $('#expired_date').text(transactionData.transaction.expiry_date);
                 $('#pay_code').text(transactionData.tripay.pay_code);
             }
 
@@ -66,10 +66,34 @@
                                 "{{ App\Enums\InvoiceStatusEnum::PAID->value }}") {
                                 $('#expired-date-row').remove();
                                 $('.pay-code-row').remove();
+                                $('#payment-status').prepend(
+                                    `<div class="card mb-3" id="success-card">
+                                        <div class="card-body rounded-4">
+                                            <h5>Status Pembayaran</h5>
+                                            <img class="d-block m-auto" src="{{ asset('assets/img/checkout/success.png') }}" alt="">
+                                            <h5 class="text-center">Pembayaran Berhasil</h5>
+                                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                </div>
+                                        </div>
+                                    </div>`
+                                )
                             } else {
                                 $('#checkout-date-row').remove();
                                 $('#paid-date-row').remove();
                                 $('#save-invoice-btn').remove();
+                                if (!transactionData.tripay.pay_code) {
+                                    $('.pay-code-row').remove();
+                                }
+                                $('#payment-status').prepend(
+                                    `<div class="card mb-3" id="intruction-list">
+                                        <div class="card-body rounded-4">
+                                            <h5>Intruksi Pembayaran</h5>
+                                            <img src="" alt="">
+                                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                            </div>
+                                        </div>
+                                    </div>`
+                                )
 
                                 transactionData.tripay.instructions.forEach((instruction,
                                     index) => {
@@ -78,8 +102,8 @@
                                     $('#accordionFlushExample').append(
                                         ` <div class="accordion-item">
                                         <h2 class="accordion-header" id="flush-headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#flush-collapse-${index}" aria-expanded="true"
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapse-${index}" aria-expanded="false"
                                                 aria-controls="flush-collapse-${index}" >
                                             ${instruction.title}
                                             </button>
@@ -93,7 +117,9 @@
                                     instruction.steps
                                         .forEach((step, index) => {
                                             // console.log(instruction.title);
-                                            let title = instruction.title.toLowerCase().replace(/ /g, "_");
+                                            let title = instruction.title
+                                                .toLowerCase().replace(/ /g,
+                                                    "_");
                                             // console.log($(`.${title}`));
                                             $($(`.${title}`)).append(
                                                 `<div class="courses-cat-list">
@@ -101,7 +127,7 @@
                                                         <li>${index+1}. ${step}</li>
                                                     </ul>
                                                 </div>`
-                                                    )
+                                            )
                                         });
                                 });
                             }

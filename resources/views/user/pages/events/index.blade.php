@@ -33,8 +33,8 @@
     <section class="event__area-two section-py-120">
         <div class="container">
             <div class="event__inner-wrap">
-                <div class="row justify-content-center">
-                    <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="row" id="events-list-content">
+                    {{-- <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="event__item shine__animate-item">
                             <div class="event__item-thumb">
                                 <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
@@ -51,157 +51,9 @@
                                     </div>
                                     <div>4 Hari lagi</div>
                                 </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="event__item shine__animate-item">
-                            <div class="event__item-thumb">
-                                <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
-                            </div>
-                            <div class="event__item-content">
-                                <span class="date">25 June, 2024</span>
-                                <h2 class="title"><a href="{{ route('events.detail.event') }}">The Accessible Target Sizes Cheatsheet</a></h2>
-                                <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
-                                
-                                <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                    <div class="d-flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                        Sisa Kuota: 150
-                                    </div>
-                                    <div>4 Hari lagi</div>
-                                </div>
-                                {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <nav class="pagination__wrap mt-30">
                     <ul class="list-wrap">
@@ -216,4 +68,8 @@
     </section>
     <!-- event-area-end -->
 
+@endsection
+
+@section('script')
+    @include('user.pages.events.scripts.index')
 @endsection

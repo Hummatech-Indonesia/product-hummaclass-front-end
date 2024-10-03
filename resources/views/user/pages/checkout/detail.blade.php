@@ -193,16 +193,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col" style="position: -webkit-sticky; position: sticky;">
-                <div class="card mb-3">
-                    <div class="card-body rounded-4">
-                        <h5>Status Pembayaran</h5>
-                        <img src="" alt="">
-                        <h5 class="text-center">Pembayaran Berhasil</h5>
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                        </div>
-                    </div>
-                </div>
+            <div class="col" style="position: -webkit-sticky; position: sticky;" id="payment-status">
                 <button class="btn btn-two w-100 m-auto rounded-3" id="checkout-btn">Kembali</button>
             </div>
         </div>

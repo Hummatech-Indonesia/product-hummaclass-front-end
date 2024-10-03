@@ -11,11 +11,12 @@ use App\Http\Controllers\Admin\AdminBlogController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\Guest\EventController;
 use App\Http\Controllers\Guest\BlogController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,7 +68,7 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         Route::get('reviews', function () {
             return view('user.pages.dashboard.student.reviews');
         })->name('reviews');
-        Route::get('history-transaction', function () {
+        Route::get('history-transaction/{id}', function ($id) {
             return view('user.pages.dashboard.student.history-transaction');
         })->name('history-transaction');
         Route::get('settings', function () {
@@ -81,15 +82,15 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
-Route::prefix('events')->name('events.')->group(function () {
-    Route::get('events', function () {
-        return view('user.pages.events.index');
-    })->name('index');
+// Route::prefix('events')->name('events.')->group(function () {
+//     Route::get('events', function () {
+//         return view('user.pages.events.index');
+//     })->name('index');
 
-    Route::get('events-detail', function () {
-        return view('user.pages.events.detail-events');
-    })->name('detail.event');
-});
+//     Route::get('events-detail', function () {
+//         return view('user.pages.events.detail-events');
+//     })->name('detail.event');
+// });
 
 Route::prefix('news')->name('news.')->group(function () {
     Route::get('news', function () {
@@ -126,6 +127,7 @@ Route::get('finish-test', function(){
 
 Route::resources([
     'blogs' => BlogController::class,
+    'events' => EventController::class,
 ]);
 
 Route::get('faqs', function(){

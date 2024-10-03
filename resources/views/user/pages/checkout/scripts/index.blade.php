@@ -1,34 +1,8 @@
 @push('script')
     <script>
         $(document).ready(async function() {
-
-            const data = {
-                "title": "lorem ipsum",
-                "description": "lorem ipsum dolor sit amet is simply dummy text for industries",
-                "location": "permata regency 1 karangploso malang",
-                "capacity": 2,
-                "price": 10000,
-                "start_date": "2024-09-23",
-                "has_certificate": true,
-                "is_online": true,
-                "user_id": [
-                    "e9c93721-dd7b-314c-b6c0-010ac7711821",
-                    "e9c93721-dd7b-314c-b6c0-010ac7711821"
-                ],
-                "start": [
-                    "09:00:00",
-                    "14:00:00"
-                ],
-                "end": [
-                    "11:00:00",
-                    "16:00:00"
-                ],
-                "session": [
-                    "Session 1",
-                    "Session 2"
-                ]
-            }
             let course;
+            let voucherChecked = false; // Flag untuk memastikan apakah voucher sudah dicek
             const pricingData = {
                 'course_price': 0,
                 'fee_service': 0,
@@ -39,6 +13,7 @@
                 'voucher_code': '',
                 'payment_method': '',
             }
+
             $("#voucher-form").submit(function(e) {
                 e.preventDefault();
                 fetchCourseVouchers();
@@ -51,23 +26,25 @@
                         pricingData.discount / 100)) +
                     pricingData.fee_service));
 
-                // console.log($('#discount_row').is(':empty'));
-
                 if (pricingData.discount > 0) {
                     if ($('#discount_row').length == 0) {
                         $('#course_price_row').after(`
                         <div class="d-flex justify-content-between" id="discount_row">
                             <p>Diskon Voucher</p>
                             <p><span id="voucher_discount">${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
-                            </div>
-                            `);
+                        </div>
+                    `);
+
+                        $('.total_amount_row').after(`
+                        <div class="d-flex justify-content-end fw-bold">
+                            <p class="fw-bold" style="color: #9425fe">Hemat <span>${formatRupiah(pricingData.course_price * (pricingData.discount / 100))}</span></p>
+                        </div>
+                    `);
                     } else {
-                        $('#voucher_discount').text(formatRupiah(pricingData.discount));
+                        $('#voucher_discount').text(formatRupiah(pricingData.course_price * (pricingData
+                            .discount / 100)));
                     }
                 }
-                // console.log('pricing', pricingData);
-                // console.log('checkout', checkoutData);
-
             }
 
             // Wrapper function for $.ajax using Promise to support async/await
@@ -123,8 +100,12 @@
                     let vAccountChilds = '';
 
                     // Append list channel
-                    response.data.virtual_account.forEach(channel => {
-                        vAccountChilds += eWalletChild(channel);
+                    response.data.virtual_account.forEach((channel, index) => {
+                        if (index == 0) {
+                            vAccountChilds += eWalletChild(channel, 'checked');
+                        } else {
+                            vAccountChilds += eWalletChild(channel);
+                        }
                     });
                     response.data.e_wallet.forEach(channel => {
                         eWalletChilds += eWalletChild(channel);
@@ -133,9 +114,20 @@
                     $('#e_wallet').append(eWalletChilds);
                     $('#virtual_account').append(vAccountChilds);
 
+                    // After appending all channels, trigger change on the first virtual account
+                    $('#virtual_account input[type="radio"]:first').prop('checked', true).trigger(
+                        'change');
+
+                    // Event listener for payment method change
                     $('.payment-method').change(function() {
                         checkoutData.payment_method = $(this).data('code');
                         pricingData.fee_service = $(this).data('fee');
+                        $('.payment-option').removeClass('active-payment');
+
+                        // Add the active class to the selected payment option
+                        if ($(this).is(':checked')) {
+                            $(this).closest('.payment-option').addClass('active-payment');
+                        }
                         updatePricing();
                     });
 
@@ -143,6 +135,7 @@
                     console.error('Error fetching payment channels:', error);
                 }
             }
+
 
             // Fetch course vouchers
             function fetchCourseVouchers() {
@@ -159,16 +152,47 @@
                     success: function(response) {
                         pricingData.discount = response.data.discount;
                         checkoutData.voucher_code = response.data.code;
+                        voucherChecked = true; // Voucher sudah dicek
                         updatePricing();
                     },
                     error: function(err) {
-                        console.log(err.status)
+                        Swal.fire({
+                            icon: 'error',
+                            title: err.responseJSON.meta.message,
+                        });
+                        voucherChecked = false; // Voucher gagal dicek
                     }
                 });
             }
 
+            // Handle checkout button click
             $('#checkout-btn').click(function(e) {
                 e.preventDefault();
+
+                // Cek apakah voucher sudah dicek
+                if (!voucherChecked && $('#voucher').val().trim() !== '') {
+                    // Jika belum dicek dan ada kode voucher, cek voucher terlebih dahulu
+                    fetchCourseVouchers();
+                    setTimeout(() => {
+                        if (voucherChecked) {
+                            submitCheckout();
+                        }
+                    }, 500);
+                } else {
+                    // Jika voucher sudah dicek atau tidak ada voucher, langsung submit
+                    submitCheckout();
+                }
+            });
+
+            // Function to submit checkout
+            function submitCheckout() {
+
+                if (checkoutData.payment_method == '') {
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Silahkan pilih metode pembayaran terlebih dahulu',
+                    });
+                }
                 $.ajax({
                     type: "get",
                     url: `{{ config('app.api_url') }}/api/transaction-create/${course.id}`,
@@ -179,24 +203,25 @@
                     },
                     success: function(response) {
                         let transactionId = response.data.transaction.data.reference;
-                        let url = "{{ route('checkout.show', ':reference') }}".replace(
-                            ':reference', transactionId);
-
+                        let url = "{{ route('checkout.show', ':reference') }}".replace(':reference',
+                            transactionId);
                         window.location.href = url;
                     },
                     error: function(xhr, status, error) {
-                        allert('Error creating transaction:', error);
+                        alert('Error creating transaction:', error);
                         console.error('Error creating transaction:', error);
                     }
                 });
-            });
+            }
 
-            function eWalletChild(data) {
-                return `<li class="px-3 rounded-4 border d-flex justify-content-between align-items-center">
-                    <label for="${data.code}" class="py-3" style="width: 100%;"><img src="${data.icon_url}"/></label>
-                    <input class="form-check-input payment-method" id="${data.code}" type="radio" value="${data.code}"
-                    name="payment-method" data-fee="${data.fee_merchant.flat}" data-code="${data.code}">
-                </li>`;
+            function eWalletChild(data, checked = '') {
+                return `
+            <label class="payment-option">
+                <input type="radio" class="payment-method" name="payment_method" data-code="${data.code}" id="${data.code}" data-fee="${data.fee_merchant.flat}" value="${data.code}" ${checked}>
+                <div class="option-content">
+                    <img src="${data.icon_url}" alt="Gopay logo" style="width: 100%;">
+                </div>
+            </label>`
             }
 
             // Call the async functions
