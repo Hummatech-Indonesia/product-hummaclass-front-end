@@ -2,7 +2,6 @@
 
 @section('style')
 <style>
-
     .accordion-body {
         padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
         border: 1px solid #9425FE;
@@ -70,20 +69,9 @@
             </div>
         </div>
         <div class="features__item-wrap">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Beginner - Understanding Data Types and How to Manipulate Strings
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the list.</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
+            <div class="accordion" id="accordionFaq">
+                
+                {{-- <div class="accordion-item">
                     <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Beginner - Understanding Data Types and How to Manipulate Strings
@@ -106,9 +94,65 @@
                             <strong>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the list.</strong>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/faqs"
+            , headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            }
+            , dataType: "json"
+            , success: function(response) {
+
+                $('#accordionFaq').empty();
+
+                if (response.data.length > 0) {
+                    $.each(response.data, function(index, value) {                        
+                        $('#accordionFaq').append(card(index, value));
+                    });
+
+                } else {
+                    $('#accordionFaq').append(empty());
+                }
+
+
+            }
+            , error: function(xhr) {
+
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
+                });
+            }
+        });
+    });
+
+    function card(index, value) {
+        return `
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-${index}">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-${index}" aria-expanded="true" aria-controls="collapse-${index}">
+                        ${value.question}
+                    </button>
+                </h2>
+                <div id="collapse-${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="heading-${index}" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>${value.answer}</strong>
+                    </div>
+                </div>
+            </div>
+    `;
+    }
+
+</script>
 @endsection
