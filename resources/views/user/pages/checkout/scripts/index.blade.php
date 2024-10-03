@@ -2,6 +2,7 @@
     <script>
         $(document).ready(async function() {
             let course;
+            let event;
             let voucherChecked = false; // Flag untuk memastikan apakah voucher sudah dicek
             const pricingData = {
                 'course_price': 0,
@@ -66,30 +67,61 @@
                 });
             }
 
-            // Fetch course detail
-            async function fetchCourseDetail() {
-                try {
-                    const response = await ajaxRequest(
-                        "{{ config('app.api_url') }}/api/courses/{{ $slug }}", 'get', {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                        });
+            @if (request()->route()->getName() == 'checkout.course')
+                // Fetch course detail
+                async function fetchCourseDetail() {
+                    try {
+                        const response = await ajaxRequest(
+                            "{{ config('app.api_url') }}/api/courses/{{ $slug }}", 'get', {
+                                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                            });
 
-                    course = response.data;
+                        course = response.data;
 
-                    pricingData.course_price = course.price;
-                    checkoutData.course_price = course.id;
-                    updatePricing();
+                        pricingData.course_price = course.price;
+                        checkoutData.course_price = course.id;
+                        updatePricing();
 
-                    $('.price').text(formatRupiah(course.price));
-                    $('.title').text(course.title);
-                    $('.course_photo').attr('src', course.photo);
-                    $('.category').text(course.category.name);
-                    $('#description').html(course.description);
+                        $('.price').text(formatRupiah(course.price));
+                        $('.title').text(course.title);
+                        $('.course_photo').attr('src', course.photo);
+                        $('.category').text(course.category.name);
+                        $('#description').html(course.description);
 
-                } catch (error) {
-                    console.error('Error fetching course details:', error);
+                    } catch (error) {
+                        console.error('Error fetching course details:', error);
+                    }
                 }
-            }
+            @endif
+
+            @if (request()->route()->getName() == 'checkout.event')
+                // Fetch events detail
+                async function fetchEventDetail() {
+                    try {
+                        const response = await ajaxRequest(
+                            "{{ config('app.api_url') }}/api/events/{{ $slug }}", 'get', {
+                                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                            });
+
+                        console.log(response);
+
+                        event = response.data;
+
+                        pricingData.course_price = event.price;
+                        checkoutData.course_price = event.id;
+                        updatePricing();
+
+                        $('.price').text(formatRupiah(event.price));
+                        $('.title').text(event.title);
+                        $('.course_photo').attr('src', event.image);
+                        // $('.category').text(event.category.name);
+                        $('#description').html(event.description);
+
+                    } catch (error) {
+                        console.error('Error fetching course details:', error);
+                    }
+                }
+            @endif
 
             // Fetch payment channels
             async function fetchPaymentChannels() {
@@ -186,25 +218,47 @@
 
             // Function to submit checkout
             function submitCheckout() {
-
+                let url;
+                @if (request()->route()->getName() == 'checkout.course')
+                    url = `{{ config('app.api_url') }}/api/transaction-create/course/${course.id}`;
+                @endif
+                @if (request()->route()->getName() == 'checkout.event')
+                    url = `{{ config('app.api_url') }}/api/transaction-create/event/${event.id}`;
+                @endif
                 if (checkoutData.payment_method == '') {
                     return Swal.fire({
                         icon: 'error',
                         title: 'Silahkan pilih metode pembayaran terlebih dahulu',
                     });
                 }
+
+
+                // console.log(url, );
+
                 $.ajax({
                     type: "get",
-                    url: `{{ config('app.api_url') }}/api/transaction-create/${course.id}`,
+                    url: url,
                     data: checkoutData,
                     dataType: "json",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     success: function(response) {
+                        console.log(response);
+
                         let transactionId = response.data.transaction.data.reference;
-                        let url = "{{ route('checkout.show', ':reference') }}".replace(':reference',
-                            transactionId);
+
+                        let url;
+                        @if (request()->route()->getName() == 'checkout.course')
+                            url = "{{ route('checkout.course.show', ':reference') }}".replace(
+                                ':reference',
+                                transactionId);
+                        @endif
+                        @if (request()->route()->getName() == 'checkout.event')
+                            url = "{{ route('checkout.event.show', ':reference') }}".replace(
+                                ':reference',
+                                transactionId);
+                        @endif
                         window.location.href = url;
                     },
                     error: function(xhr, status, error) {
@@ -225,7 +279,12 @@
             }
 
             // Call the async functions
-            await fetchCourseDetail();
+            @if (request()->route()->getName() == 'checkout.course')
+                await fetchCourseDetail();
+            @endif
+            @if (request()->route()->getName() == 'checkout.event')
+                await fetchEventDetail();
+            @endif
             await fetchPaymentChannels();
 
         });

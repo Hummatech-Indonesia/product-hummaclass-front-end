@@ -19,15 +19,24 @@ class CustomAuthMiddleware
     {
         Session::put('next-request', $request->fullUrl());
         $token = session('hummaclass-token');
-        // dd(config('app.api_url') . '/api/user');
-        $response = Http::withToken($token)->get(config('app.api_url') . '/api/user');
-        if ($response->successful()) {
-            return $next($request);
+
+        if (!$token) {
+            return redirect()->route('login');
         }
-        if ($response->failed()) {
-            if ($response->status()) {
+
+        try {
+            $response = Http::withToken($token)
+                ->maxRedirects(5)
+                ->get(config('app.api_url') . '/api/user');
+
+            if ($response->successful()) {
+                return $next($request);
+            } else {
                 return redirect()->route('login');
             }
+        } catch (\Exception $e) {
+            \Log::error('API request error: ' . $e->getMessage());
+            return redirect()->route('login');
         }
     }
 }
