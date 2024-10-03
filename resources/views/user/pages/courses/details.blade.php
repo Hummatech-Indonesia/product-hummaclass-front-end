@@ -158,12 +158,11 @@
             });
 
             function moduleContent(index, value) {
-                // href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}"
+
 
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-
-                               <a class="last_step_update" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
+                               <a class="last_step_update" href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;

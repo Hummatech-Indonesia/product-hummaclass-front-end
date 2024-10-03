@@ -38,7 +38,9 @@
                                         class="menu-item {{ Route::currentRouteName() == 'blogs.index' ? 'active' : '' }}">
                                         <a href="{{ route('blogs.index') }}">Berita</a>
                                     </li>
-                                    <li class="menu-item {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}"><a href="{{ route('faqs.index') }}">FAQ</a>
+                                    <li
+                                        class="menu-item {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
+                                        <a href="{{ route('faqs.index') }}">FAQ</a>
                                     </li>
                                     {{-- <li class="menu-item-has-children {{ Route::is('dashboard.users.dashboard', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Profile</a>
                                     <ul class="sub-menu">
@@ -63,14 +65,9 @@
                                                 fill="currentcolor" />
                                         </svg>
                                         <div class="dropdown-container">
-                                            <div id="category-dropdown" class="category-dropdown">Category</div>
+                                            <div id="category-dropdown" class="category-dropdown">Kategori</div>
                                             <div id="category-options" class="category-options">
-                                                <div class="category-item" data-category="business">Business</div>
-                                                <div class="category-item" data-category="data-science">Data Science
-                                                </div>
-                                                <div class="category-item" data-category="art-design">Art & Design</div>
-                                                <div class="category-item" data-category="marketing">Marketing</div>
-                                                <div class="category-item" data-category="finance">Finance</div>
+
                                             </div>
                                             <div id="subcategory-dropdown" class="subcategory-dropdown">
                                             </div>
@@ -90,7 +87,8 @@
                                             <form action="{{ route('logout') }}" method="POST">
                                                 @csrf
                                                 <div class="user-profile">
-                                                    <a href="{{ route('dashboard.users.profile', session('user')['id']) }}">
+                                                    <a
+                                                        href="{{ route('dashboard.users.profile', session('user')['id']) }}">
                                                         <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
                                                             class="rounded rounded-circle" width="45px"
                                                             alt="Profile Image" class="profile-image">
@@ -226,18 +224,56 @@
     }
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     const categoryDropdown = document.getElementById('category-dropdown');
     const categoryOptions = document.getElementById('category-options');
     const subcategoryDropdown = document.getElementById('subcategory-dropdown');
 
-    const categories = {
-        'business': ['Business Strategy', 'Entrepreneurship', 'Leadership'],
-        'data-science': ['Machine Learning', 'Statistics', 'Big Data'],
-        'art-design': ['Graphic Design', 'Painting', 'Photography'],
-        'marketing': ['Digital Marketing', 'Content Strategy', 'SEO'],
-        'finance': ['Investment', 'Corporate Finance', 'Personal Finance']
-    };
+    get();
+
+    const categories = {};
+
+    function get() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            data: {
+                name: $('#search-name').val(),
+            },
+            success: function(response) {
+                $.each(response.data.data, function(index, value) {
+
+                    $('#category-options').append(
+                        `<div class="category-item" data-category="business">${value.name}</div>`
+                    );
+
+                    response.data.data.forEach(item => {
+                        categories[item.name] = item.sub_category.map(sub => sub.name);
+                    });
+                });
+
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
+                });
+            }
+        });
+    }
+    // const categories = {
+    //     'business': ['Business Strategy', 'Entrepreneurship', 'Leadership'],
+    //     'data-science': ['Machine Learning', 'Statistics', 'Big Data'],
+    //     'art-design': ['Graphic Design', 'Painting', 'Photography'],
+    //     'marketing': ['Digital Marketing', 'Content Strategy', 'SEO'],
+    //     'finance': ['Investment', 'Corporate Finance', 'Personal Finance']
+    // };
 
     categoryOptions.addEventListener('mouseover', function(event) {
         const category = event.target.getAttribute('data-category');
@@ -288,7 +324,6 @@
     }
 
     categoryOptions.addEventListener('mouseleave', function() {
-        // Hide subcategory dropdown when leaving category options
         setTimeout(function() {
             if (!subcategoryDropdown.matches(':hover')) {
                 subcategoryDropdown.style.display = 'none';
