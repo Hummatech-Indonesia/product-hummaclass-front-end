@@ -219,8 +219,8 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            let photo;
             var id = "{{ $id }}";
+            let photo;
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/list-module/" + id,
@@ -234,13 +234,16 @@
                     });
                 },
                 error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data materi.",
-                        icon: "error"
-                    });
+                    // Swal.fire({
+                    //     title: "Terjadi Kesalahan!",
+                    //     text: "Tidak dapat memuat data materi.",
+                    //     icon: "error"
+                    // });
                 }
             });
+
+
+
 
             function contentCourse(index, value) {
                 console.log(value);
@@ -249,6 +252,14 @@
                     return `<li class="course-item open-item">
                                <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
                                     <span class="ps-2">${subModule.title}</span>
+                                </a>
+                            </li>`;
+                }).join('');
+                const quizzes = value.quizzes.map(quiz => {
+                    return `<li class="course-item open-item">
+                               <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
+                                    <span class="ps-2">Quiz</span>
+                                    <span class="ps-2"> ${quiz.total_question} Soal</span>
                                 </a>
                             </li>`;
                 }).join('');
@@ -272,6 +283,7 @@
                             <div class="accordion-body">
                                 <ul class="list-wrap" id="list-wrap">
                                     ${subModules}
+                                    ${quizzes}
                                 </ul>
                             </div>
                         </div>
@@ -304,35 +316,4 @@
             });
         });
     </script>
-    {{-- <script>
-    function changeContent(title, videoSrc) {
-        // Mengubah judul video
-        document.querySelector('.lesson__video-wrap-top-left span').innerText = title;
-
-        // Mengubah sumber video
-        const video = document.getElementById('player');
-        video.querySelector('source').src = videoSrc;
-        video.load(); // Reload video agar sumber baru diterapkan
-
-        // Tambahkan aksi lain yang diperlukan (misalnya mengganti teks deskripsi atau lainnya)
-    }
-
-</script> --}}
-
-    {{-- <script>
-        function changeContent(title, videoSrc, description) {
-            // Mengubah judul tugas
-            document.getElementById('course-title').textContent = title;
-
-            // Mengubah deskripsi tugas
-            document.getElementById('course-description').textContent = description;
-
-            // Mengubah sumber video
-            const videoElement = document.getElementById('player');
-            const videoSource = document.getElementById('videoSource');
-
-            videoSource.src = videoSrc; // Mengubah sumber video
-            videoElement.load(); // Memuat ulang video dengan sumber yang baru
-        }
-    </script> --}}
 @endsection
