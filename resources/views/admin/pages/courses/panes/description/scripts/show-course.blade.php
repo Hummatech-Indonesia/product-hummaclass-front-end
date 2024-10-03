@@ -15,7 +15,12 @@
                         if (key == 'description')
                             $(`#${key}`).html(response.data[key])
                         else if (key == 'price')
-                            $('#price').html(formatRupiah(response.data[key]))
+                            // $('#price').html(formatRupiah(response.data[key]))
+                            if (response.data.is_premium === 0) {
+                                $('#price').html('Gratis');
+                            } else {
+                                $('#price').html(formatRupiah(response.data[key]));
+                            }
                         else if (key == 'sub_category')
                             $('#sub_category').html(response.data[key].name)
                         else if (key == 'photo')
