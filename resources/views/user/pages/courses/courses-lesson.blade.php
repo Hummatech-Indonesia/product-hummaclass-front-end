@@ -182,7 +182,7 @@
                                 <div class="container">
                                     <div class="row align-items-center">
                                         <div class="d-flex justify-content-between">
-                                            <a href="" class="text-dark fw-bolder fs-6">
+                                            <a href="" id="prevButton" class="text-dark fw-bolder fs-6">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                     viewBox="0 0 16 9">
                                                     <path fill="currentColor"
@@ -192,7 +192,7 @@
                                                 </svg>
                                                 Kembali
                                             </a>
-                                            <a href="" class="text-dark fw-bolder fs-6">
+                                            <a href="" id="nextButton" class="text-dark fw-bolder fs-6">
                                                 Selanjutnya
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                     viewBox="0 0 16 9">
@@ -243,10 +243,43 @@
             });
 
 
+            let urlNext;
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/next/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlNext = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#nextButton').attr("href", urlNext);
+
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
+
+            let urlPrev;
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/prev/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlPrev = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#prevButton').attr("href", urlPrev);
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
 
 
             function contentCourse(index, value) {
-                console.log(value);
 
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
@@ -299,7 +332,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response.data);
 
                     $('#course_sub_title').html(response.data.sub_title);
                     $('#content').html(response.data.content);

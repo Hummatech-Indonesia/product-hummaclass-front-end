@@ -690,7 +690,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section__title text-center mb-40">
-                        <span class="sub-title">Berita $ Event</span>
+                        <span class="sub-title">Berita Terbaru</span>
                         <h2 class="title">Berita Terbaru</h2>
                         <p>when known printer took a galley of type scrambl edmake</p>
                     </div>

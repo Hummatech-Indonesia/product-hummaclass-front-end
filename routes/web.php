@@ -118,8 +118,8 @@ Route::get('learning-path', function () {
     return view('user.pages.learning-path.index');
 })->name('learning-path.index');
 
-Route::get('quiz-question', function () {
-    return view('user.pages.question-quiz.index');
+Route::get('quiz-question/{id}', function ($id) {
+    return view('user.pages.question-quiz.index', compact('id'));
 })->name('quetion-quiz.index');
 
 Route::get('finish-test', function () {

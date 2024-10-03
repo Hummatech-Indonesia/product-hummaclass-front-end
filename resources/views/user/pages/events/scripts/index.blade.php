@@ -33,7 +33,7 @@
                                 handleGetEvents(page);
                             });
                     } else {
-                        eventParent.append('<p class="text-center">Data Event kosong.</p>');
+                        eventParent.append(empty());
                     }
 
                     retryCount = 0;

@@ -115,7 +115,8 @@
                                     <li>Waktu tunggu ujian ulang ; 1 menit</li>
                                 </ul>
                                 <div class="text-end mt-3 mb-4">
-                                    <a href="{{ route('quetion-quiz.index') }}" class="btn">Mulai Ujian</a>
+                                    <a href="" id="start_quiz" class="btn">Mulai
+                                        Ujian</a>
                                 </div>
                             </div>
                         </div>
@@ -162,6 +163,7 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/list-module/detail/" + id,
@@ -175,52 +177,47 @@
                     });
                 },
                 error: function(xhr) {
-                    // Swal.fire({
-                    //     title: "Terjadi Kesalahan!",
-                    //     text: "Tidak dapat memuat data materi.",
-                    //     icon: "error"
-                    // });
+                    console.error("Error loading module details.");
                 }
             });
 
             function contentCourse(index, value) {
-                console.log(value);
-
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
-                                    <span class="ps-2">${subModule.title}</span>
-                                </a>
-                            </li>`;
+                        <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
+                            <span class="ps-2">${subModule.title}</span>
+                        </a>
+                    </li>`;
                 }).join('');
+
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
-                               <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
-                                    <span class="ps-2">Quiz</span>
-                                    <span class="ps-2"> ${quiz.total_question} Soal</span>
-                                </a>
-                            </li>`;
+                        <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
+                            <span class="ps-2">Quiz</span>
+                            <span class="ps-2"> ${quiz.total_question} Soal</span>
+                        </a>
+                    </li>`;
                 }).join('');
 
                 return `
-                   <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
-                                ${value.title}
-                            </button>
-                        </h2>
-                        <div id="collapse-${index}" class="accordion-collapse collapse" aria-labelledby="heading-${index}"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <ul class="list-wrap" id="list-wrap">
-                                    ${subModules}
-                                    ${quizzes}
-                                </ul>
-                            </div>
-                        </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-${index}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
+                        ${value.title}
+                    </button>
+                </h2>
+                <div id="collapse-${index}" class="accordion-collapse collapse" aria-labelledby="heading-${index}"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul class="list-wrap" id="list-wrap">
+                            ${subModules}
+                            ${quizzes}
+                        </ul>
                     </div>
-                `;
+                </div>
+            </div>
+        `;
             }
 
             $.ajax({
@@ -233,8 +230,9 @@
                 success: function(response) {
                     $('#total_question').html(response.data.total_question);
                     $('#duration').html(response.data.duration);
-                    $('#title_course').html(response.data.course_title)
-                    $('#course_title').html(response.data.title);
+
+                    var url = `{{ route('quetion-quiz.index', ['']) }}/${response.data.id}`;
+                    $('#start_quiz').attr('href', url);
                 },
                 error: function(xhr) {
                     Swal.fire({
