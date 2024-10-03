@@ -52,6 +52,13 @@
 <div class="row" id="contentNews">
 </div>
 
+<div class="d-flex justify-content-center">
+    <nav id="pagination">
+
+    </nav>
+</div>
+
+
 <x-delete-modal-component />
 @endsection
 
@@ -128,9 +135,22 @@
             , }
             , success: function(response) {
                 $('#contentNews').empty();
-                $.each(response.data.data, function(index, value) {
-                    $('#contentNews').append(news(index, value));
-                });
+
+                if (response.data.data.length > 0) {
+                    $.each(response.data.data, function(index, value) {
+                        $('#contentNews').append(news(index, value));
+                    });
+                    $('#pagination').html(handlePaginate(response.data.paginate))
+
+                    // renderPagination(response.data.paginate.last_page, response.data.paginate
+                    //     .current_page
+                    //     , function(page) {
+                    //         handleGetBlogs(page);
+                    //     });
+                } else {
+                    $('#contentNews').append(empty());
+                }
+
 
             }
             , error: function(xhr) {

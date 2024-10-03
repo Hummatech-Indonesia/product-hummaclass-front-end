@@ -124,7 +124,7 @@
                 </div>
                 `;
             }
-            return card;
+            return card;    
         }
     });
 
