@@ -232,7 +232,6 @@
                     $.each(response.data, function(index, value) {
                         $('#content-course').append(contentCourse(index, value));
                     });
-
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -244,6 +243,8 @@
             });
 
             function contentCourse(index, value) {
+                console.log(value);
+
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
                                <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
@@ -251,6 +252,13 @@
                                 </a>
                             </li>`;
                 }).join('');
+                // const moduleTasks = value.module_tasks.map(moduleTask => {
+                //     return `<li class="course-item open-item">
+            //                <a href="{{ route('courses.course-lesson.index', ['']) }}/${moduleTask.id}" class="">
+            //                     <span class="ps-2">${moduleTask.question}</span>
+            //                 </a>
+            //             </li>`;
+                // }).join('');
                 return `
                    <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-${index}">
