@@ -106,7 +106,7 @@
                                 handleGetBlogs(page);
                             });
                     } else {
-                        newsParent.append('<p>No blogs found.</p>');
+                        newsParent.append(empty());
                     }
 
                     retryCount = 0;

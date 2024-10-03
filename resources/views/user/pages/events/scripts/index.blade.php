@@ -57,7 +57,7 @@
                             handleGetEvents(1);
                         }, 1000);
                     } else {
-                        eventParent.empty();
+                        eventParent.append(empty());
                         eventParent.append(
                             `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
                         console.log('Gagal memuat data setelah beberapa kali percobaan.');
@@ -124,7 +124,7 @@
                 </div>
                 `;
             }
-            return card;
+            return card;    
         }
     });
 
