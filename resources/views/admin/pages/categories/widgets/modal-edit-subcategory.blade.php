@@ -20,7 +20,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn text-white" style="background-color: #DB0909;"
                         data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn text-white" style="background-color: #7209DB;">Tambah</button>
+                    <button type="submit" class="btn text-white updateConfirmationSub" style="background-color: #7209DB;">Edit</button>
                 </div>
             </form>
         </div>
@@ -28,50 +28,106 @@
 </div>
 
 <script>
-    $(document).on('click', '.btn-edit-sub-category', function() {
-        const id = $(this).data('id');
-        const name = $(this).data('name');
+    // $(document).on('click', '.btn-edit-sub-category', function() {
+    //     const id = $(this).data('id');
+    //     const name = $(this).data('name');
 
-        $("#modal-edit-sub-category").modal('show');
-        $('#name_sub_category').val(name);
-        updateSubCategory(id)
-    });
+    //     $("#modal-edit-sub-category").modal('show');
+    //     $('#name_sub_category').val(name);
+    //     updateSubCategory(id)
+    // });
 
 
-    function updateSubCategory(id) {
-        $('#form-update-sub-category').submit(function(e) {
+    // function updateSubCategory(id) {
+    //     $('#form-update-sub-category').submit(function(e) {
+    //         e.preventDefault();
+    //         var formData = new FormData(this);
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "{{ config('app.api_url') }}/api/sub-categories/" + id,
+    //             data: formData,
+    //             headers: {
+    //                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+    //             },
+    //             dataType: "json",
+    //             contentType: false,
+    //             processData: false,
+    //             success: function(response) {
+    //                 Swal.fire({
+    //                     title: "Sukses",
+    //                     text: "Berhasil menambah data data.",
+    //                     icon: "success"
+    //                 }).then(
+    //                     window.location.href = "/admin/categories";
+    //                 );
+
+
+    //                 get(1);
+    //             },
+    //             error: function(response) {
+    //                 Swal.fire({
+    //                     title: "Terjadi Kesalahan!",
+    //                     text: "Ada kesalahan saat menyimpan data.",
+    //                     icon: "error"
+    //                 });
+    //             }
+    //         });
+    //     });
+    // }
+
+
+    $(document).ready(function() {
+        let id;
+        $(document).on('click', '.btn-edit-sub-category', function() {
+            $('#modal-edit-sub-category').modal('show');
+            id = $(this).data('id');
+
+            const name = $(this).data('name');
+            $('#name_sub_category').val(name);
+        });
+
+        $('.updateConfirmationSub').click(function(e) {
             e.preventDefault();
-            var formData = new FormData(this);
+
+            let url = "{{config('app.api_url')}}" + "/api/sub-categories/" + id;
+            let formData = new FormData($('#form-update-sub-category')[0]);
+
+
             $.ajax({
                 type: "POST",
-                url: "{{ config('app.api_url') }}/api/sub-categories/" + id,
-                data: formData,
+                url: url,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
+                data: formData,
                 dataType: "json",
-                contentType: false,
                 processData: false,
+                contentType: false,
                 success: function(response) {
+                    $('#modal-edit-sub-category').modal('hide');
                     Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data data.",
+                        title: "Berhasil!",
+                        text: response.meta.message,
                         icon: "success"
-                    }).then(
-                        window.location.href = "/admin/courses";
-                    );
-
-
+                    });
                     get(1);
                 },
                 error: function(response) {
+                    console.log(response);
+                    
+                    let errorMessages = [];
+                    $.each(response.responseJSON.errors, function(field, messages) {
+                        $.each(messages, function(index, message) {
+                            errorMessages.push(message);
+                        });
+                    });
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
+                        html: errorMessages.join('<br>'),
                         icon: "error"
                     });
                 }
             });
         });
-    }
+    });
 </script>

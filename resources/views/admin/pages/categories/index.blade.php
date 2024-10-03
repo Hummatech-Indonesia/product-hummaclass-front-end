@@ -146,7 +146,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                         <li>
-                                            <button data-id="${subValue.id}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
+                                            <button data-id="${subValue.id}" data-name="${subValue.name}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
                                                 <i class="fs-4 ti ti-edit"></i>Edit
                                             </button>
                                         </li>
@@ -209,7 +209,7 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3">
                                             <i class="fs-4 ti ti-edit"></i>Edit
                                         </button>
                                     </li>
@@ -255,6 +255,9 @@
                 $.ajax({
                     type: "DELETE",
                     url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     dataType: "json",
                     contentType: false,
                     processData: false,
@@ -296,6 +299,9 @@
                 $.ajax({
                     type: "DELETE",
                     url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     dataType: "json",
                     contentType: false,
                     processData: false,
