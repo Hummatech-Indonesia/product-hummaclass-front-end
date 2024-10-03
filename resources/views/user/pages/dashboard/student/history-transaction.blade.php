@@ -78,7 +78,7 @@
 
         $.ajax({
             type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/transaction-signature" + id
+            , url: "{{ config('app.api_url') }}" + "/api/transactions-user" + id
             , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
