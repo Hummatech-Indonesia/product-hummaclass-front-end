@@ -46,7 +46,7 @@
             /* Warna ungu saat dipilih */
         }
 
-        .checked {
+        .active-payment {
             border: 2px solid #9425fe;
         }
 
