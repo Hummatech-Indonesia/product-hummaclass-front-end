@@ -53,6 +53,7 @@ Route::prefix('courses')->name('courses.')->group(function () {
 
     Route::resource('courses', CourseController::class)->only(['index', 'show']);
     Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index');
+    Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
 });
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
@@ -121,7 +122,7 @@ Route::get('quiz-question', function () {
     return view('user.pages.question-quiz.index');
 })->name('quetion-quiz.index');
 
-Route::get('finish-test', function(){
+Route::get('finish-test', function () {
     return view('user.pages.question-quiz.test-finish');
 })->name('finish-test');
 
@@ -130,7 +131,7 @@ Route::resources([
     'events' => EventController::class,
 ]);
 
-Route::get('faqs', function(){
+Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
 
