@@ -133,11 +133,7 @@
 
                     // Append list channel
                     response.data.virtual_account.forEach((channel, index) => {
-                        if (index == 0) {
-                            vAccountChilds += eWalletChild(channel, 'checked');
-                        } else {
-                            vAccountChilds += eWalletChild(channel);
-                        }
+                        vAccountChilds += eWalletChild(channel);
                     });
                     response.data.e_wallet.forEach(channel => {
                         eWalletChilds += eWalletChild(channel);
@@ -147,11 +143,13 @@
                     $('#virtual_account').append(vAccountChilds);
 
                     // After appending all channels, trigger change on the first virtual account
-                    $('#virtual_account input[type="radio"]:first').prop('checked', true).trigger(
-                        'change');
+                    // $('#virtual_account input[type="radio"]:first').prop('checked', true).trigger(
+                    //     'change');
 
                     // Event listener for payment method change
                     $('.payment-method').change(function() {
+                        console.log(this);
+
                         checkoutData.payment_method = $(this).data('code');
                         pricingData.fee_service = $(this).data('fee');
                         $('.payment-option').removeClass('active-payment');
