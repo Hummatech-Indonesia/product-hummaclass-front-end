@@ -189,38 +189,41 @@
             e.preventDefault();
             var formData = new FormData(this);
 
-            $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/events/" + id,
-                data: formData,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil mengubah data.",
-                        icon: "success"
-                    });
-                },
-                error: function(response) {
-                    if (response.responseJSON && response.responseJSON.errors) {
-                        $.each(response.responseJSON.errors, function(key, value) {
-                            $('#' + key).addClass('is-invalid');
-                            $('#' + key).next('.invalid-feedback').text(value[0]);
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
-                    }
-                }
-            });
+            console.log(formData);
+            
+
+            // $.ajax({
+            //     type: "PUT",
+            //     url: "{{ config('app.api_url') }}/api/events/" + id,
+            //     data: formData,
+            //     headers: {
+            //         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            //     },
+            //     dataType: "json",
+            //     contentType: false,
+            //     processData: false,
+            //     success: function(response) {
+            //         Swal.fire({
+            //             title: "Sukses",
+            //             text: "Berhasil mengubah data.",
+            //             icon: "success"
+            //         });
+            //     },
+            //     error: function(response) {
+            //         if (response.responseJSON && response.responseJSON.errors) {
+            //             $.each(response.responseJSON.errors, function(key, value) {
+            //                 $('#' + key).addClass('is-invalid');
+            //                 $('#' + key).next('.invalid-feedback').text(value[0]);
+            //             });
+            //         } else {
+            //             Swal.fire({
+            //                 title: "Terjadi Kesalahan!",
+            //                 text: "Ada kesalahan saat menyimpan data.",
+            //                 icon: "error"
+            //             });
+            //         }
+            //     }
+            // });
         });
 
         document.getElementById('is_premium').addEventListener('change', function() {

@@ -3,25 +3,33 @@
         $(document).ready(function() {
             let transactionData = {
                 'course': {},
+                'event': {},
                 'tripay': '',
                 'transaction': '',
             };
 
             function displayData() {
-                let discount = transactionData.transaction.voucher == null ?
-                    transactionData.transaction.course.price :
-                    transactionData.transaction.course.price -
-                    (transactionData.transaction.course.price *
-                        (transactionData.transaction.voucher.discount / 100));
+                @if (request()->route()->getName() == 'checkout.course.show')
+                    let discount = transactionData.transaction.voucher == null ?
+                        transactionData.transaction.course.price :
+                        transactionData.transaction.course.price -
+                        (transactionData.transaction.course.price *
+                            (transactionData.transaction.voucher.discount / 100));
 
-                $('#title').text(transactionData.course.title);
-                $('.discount').text(formatRupiah(transactionData.transaction.course.price));
-                $('.discount_amount').text(formatRupiah(
-                    transactionData.transaction.voucher == null ? 0 :
-                    transactionData.transaction.course.price *
-                    (transactionData.transaction.voucher.discount / 100)
-                ));
-                $('#amount').text(formatRupiah(discount));
+                    $('#title').text(transactionData.course.title);
+                    $('.discount').text(formatRupiah(transactionData.transaction.course.price));
+                    $('.discount_amount').text(formatRupiah(
+                        transactionData.transaction.voucher == null ? 0 :
+                        transactionData.transaction.course.price *
+                        (transactionData.transaction.voucher.discount / 100)
+                    ));
+                    $('#amount').text(formatRupiah(discount));
+                    $('.course_photo').attr('src', transactionData.transaction.course.photo);
+                @else
+                    $('.course_photo').attr('src', transactionData.transaction.course.photo);
+                    $('#amount').text(formatRupiah(transactionData.transaction.event.price));
+                    $('#title').text(transactionData.transaction.event.title);
+                @endif
                 $('#total_amount').text(formatRupiah(transactionData.tripay.amount + transactionData.tripay
                     .total_fee));
                 $('#transaction_code').text(transactionData.tripay.pay_code ? transactionData.tripay.reference :
