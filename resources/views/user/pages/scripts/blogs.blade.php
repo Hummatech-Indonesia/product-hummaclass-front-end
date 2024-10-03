@@ -1,26 +1,38 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/blogs",
-            headers: {
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/blogs"
+            , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
+            }
+            , dataType: "json"
+            , success: function(response) {
 
-                $('#news-content').empty(); 
-                $.each(response.data.data, function(index, value) {
-                    $('#news-content').append(card(index, value));
-                });
+                $('#news-content').empty();
 
-            },
-            error: function(xhr) {
+                if (response.data.data.length > 0) {
+                    $.each(response.data.data, function(index, value) {
+                        $('#news-content').append(card(index, value));
+                    });
+
+                    renderPagination(response.data.paginate.last_page, response.data.paginate
+                        .current_page
+                        , function(page) {
+                            handleGetEvents(page);
+                        });
+                } else {
+                    $('#news-content').append(empty());
+                }
+
+
+            }
+            , error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
                 });
             }
         });
@@ -50,4 +62,5 @@
 
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
+
 </script>
