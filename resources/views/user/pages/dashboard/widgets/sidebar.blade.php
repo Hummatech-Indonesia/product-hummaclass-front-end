@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('dashboard.users.history-transaction') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard.users.history-transaction', ['id' => Auth::user()->id]) }}">
+                    <a href="{{ route('dashboard.users.history-transaction', session('user')['id']) }}">
                         <i class="skillgro-satchel"></i>
                         Riwayat Pesanan
                     </a>
