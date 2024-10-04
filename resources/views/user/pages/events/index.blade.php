@@ -58,9 +58,9 @@
                 <nav class="pagination__wrap mt-30">
                     <ul class="list-wrap">
                         <li class="active"><a href="#">1</a></li>
-                        <li><a href="{{ route('events.index') }}">2</a></li>
-                        <li><a href="{{ route('events.index') }}">3</a></li>
-                        <li><a href="{{ route('events.index') }}">4</a></li>
+                        <li><a href="/events">2</a></li>
+                        <li><a href="/events">3</a></li>
+                        <li><a href="/events">4</a></li>
                     </ul>
                 </nav>
             </div>
