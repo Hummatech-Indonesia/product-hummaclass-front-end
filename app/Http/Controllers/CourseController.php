@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ShareHelper;
+use Jorenvh\Share\Share;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -19,7 +21,8 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        return view('user.pages.courses.details', compact('id'));
+        $shareLink = ShareHelper::shareLink($id);
+        return view('user.pages.courses.details', compact('id', 'shareLink'));
     }
 
     public function student()
