@@ -64,6 +64,7 @@
                             $('#checkout-card').removeClass('d-none');
                             $('#loading-card').remove();
                             transactionData.transaction = response.data;
+                            
                             displayData();
 
                             if (!transactionData.transaction.voucher) {
@@ -80,11 +81,11 @@
                                             <h5>Status Pembayaran</h5>
                                             <img class="d-block m-auto" src="{{ asset('assets/img/checkout/success.png') }}" alt="">
                                             <h5 class="text-center">Pembayaran Berhasil</h5>
-                                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                                </div>
+                                            <p class="text-purple text-center">Terimakasih telah melakukan pembelian</p>
                                         </div>
                                     </div>`
                                 )
+                                $('#status').remove();
                             } else {
                                 $('#checkout-date-row').remove();
                                 $('#paid-date-row').remove();
@@ -92,7 +93,7 @@
                                 if (!transactionData.tripay.pay_code) {
                                     $('.pay-code-row').remove();
                                 }
-                                $('#payment-status').prepend(
+                                $('#status').after(
                                     `<div class="card mb-3" id="intruction-list">
                                         <div class="card-body rounded-4">
                                             <h5>Intruksi Pembayaran</h5>

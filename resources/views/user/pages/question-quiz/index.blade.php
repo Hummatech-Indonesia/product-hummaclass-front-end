@@ -18,8 +18,8 @@
 
         .question-nav {
             display: inline-block;
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             margin: 5px;
             border-radius: 10px;
             background-color: #fff;
@@ -106,7 +106,7 @@
                 <div class="col-lg-3">
                     <div class="card border-0 p-4">
                         <h4 class="fw-bolder">Soal Ujian</h4>
-                        <div class="row" id="list_number"></div>
+                        <div class="row px-1" id="list_number"></div>
                         <p class="mt-4">Anda bisa menyelesaikan ujian ketika waktu ujian sisa 5 menit</p>
                         <button class="text-white border-0 py-2 fs-6"
                             style="background-color: #FFC224; border-radius: 7px;">Selesai Ujian</button>
