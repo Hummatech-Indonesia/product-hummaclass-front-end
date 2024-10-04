@@ -230,11 +230,11 @@
     const categoryOptions = document.getElementById('category-options');
     const subcategoryDropdown = document.getElementById('subcategory-dropdown');
 
-    get();
-
     const categories = {};
 
-    function get() {
+    getCategories();
+
+    function getCategories() {
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/categories",
@@ -242,21 +242,24 @@
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
             dataType: "json",
-            data: {
-                name: $('#search-name').val(),
-            },
             success: function(response) {
+                categoryOptions.innerHTML = ''; // Kosongkan sebelum memuat data baru
                 $.each(response.data.data, function(index, value) {
-
+                    // Tambahkan kategori ke dropdown
                     $('#category-options').append(
-                        `<div class="category-item" data-category="business">${value.name}</div>`
+                        `<div class="category-item" data-category="${value.name}">${value.name}</div>`
                     );
 
-                    response.data.data.forEach(item => {
-                        categories[item.name] = item.sub_category.map(sub => sub.name);
-                    });
+                    // Simpan subkategori untuk setiap kategori
+                    categories[value.name] = value.sub_category.map(sub => sub.name);
                 });
 
+                // Event listener untuk setiap item kategori yang diklik
+                $('#category-options .category-item').on('click', function() {
+                    const selectedCategory = $(this).data('category');
+                    $('#category-dropdown').text(selectedCategory); // Tampilkan kategori yang dipilih
+                    loadSubcategories(selectedCategory); // Muat subkategori terkait
+                });
             },
             error: function(xhr) {
                 Swal.fire({
@@ -266,6 +269,21 @@
                 });
             }
         });
+    }
+
+    function loadSubcategories(categoryName) {
+        const subcategories = categories[categoryName] || []; // Ambil subkategori berdasarkan kategori
+        subcategoryDropdown.innerHTML = ''; // Kosongkan sebelum menambahkan subkategori baru
+
+        if (subcategories.length > 0) {
+            subcategories.forEach(sub => {
+                $('#subcategory-dropdown').append(
+                    `<div class="subcategory-item">${sub}</div>`
+                );
+            });
+        } else {
+            $('#subcategory-dropdown').append('<div class="no-subcategory">Tidak ada subkategori</div>');
+        }
     }
     // const categories = {
     //     'business': ['Business Strategy', 'Entrepreneurship', 'Leadership'],
