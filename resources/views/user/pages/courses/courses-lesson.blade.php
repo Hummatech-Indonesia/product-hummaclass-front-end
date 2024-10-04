@@ -334,9 +334,29 @@
                 success: function(response) {
 
                     $('#course_sub_title').html(response.data.sub_title);
-                    $('#content').html(response.data.content);
                     $('#title_course').html(response.data.course_title)
                     $('#course_title').html(response.data.title);
+
+                    var contentData = JSON.parse(response.data.content);
+                    var contentHtml = '';
+
+                    contentData.blocks.forEach(function(block) {
+                        if (block.type === 'image') {
+                            contentHtml +=
+                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
+                        } else if (block.type === 'paragraph') {
+                            contentHtml += `<p>${block.data.text}</p>`;
+                        } else if (block.type === 'header') {
+                            contentHtml +=
+                                `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
+                        } else if (block.type === 'list') {
+                            const listItems = block.data.items.map(item => `<li>${item}</li>`)
+                                .join('');
+                            contentHtml += `<ul>${listItems}</ul>`;
+                        }
+                    });
+
+                    $('#content').html(contentHtml);
                 },
                 error: function(xhr) {
                     Swal.fire({
