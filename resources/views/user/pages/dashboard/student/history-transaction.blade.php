@@ -1,5 +1,50 @@
 @extends('user.layouts.app')
 
+@section('style')
+<style>
+    .outline-warning {
+        color: #ffc107;
+        background-color: transparent;
+        border: 1px solid #ffc107;
+        padding: 4px 6px;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .outline-warning:hover {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .outline-warning:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
+    }
+
+    .outline-purple-primary {
+        color: #9425FE;
+        background-color: transparent;
+        border: 1px solid #9425FE;
+        padding: 4px 6px;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .outline-purple-primary:hover {
+        background-color: #9425FE;
+        color: white;
+    }
+
+    .outline-purple-primary:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem #9425FE;
+    }
+</style>
+@endsection
 
 @section('content')
 <!-- breadcrumb-area -->
@@ -48,7 +93,7 @@
             <div class="col-lg-9">
                 <div class="card p-5 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                     <h5 class="mb-3">Riwayat Transaksi</h5>
-                    <div class="table-responsive">
+                    {{-- <div class="table-responsive">
                         <table id="demo-foo-addrow" class="table table-striped m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg" data-paging="true" data-paging-size="7" style="">
                             <thead>
                                 <tr class="footable-header">
@@ -59,9 +104,65 @@
                                 </tr>
                             </thead>
                             <tbody id="transaction-content">
+                                
                             </tbody>
                         </table>
+                    </div> --}}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="dashboard__nav-wrap">
+                                <ul class="nav nav-tabs" id="courseTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#tab-pending" type="button" role="tab" aria-controls="tab-pending" aria-selected="false" tabindex="-1">
+                                            Belum Bayar
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="paid-tab" data-bs-toggle="tab" data-bs-target="#tab-paid" type="button" role="tab" aria-controls="tab-paid" aria-selected="true">
+                                            Selesai
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content" id="courseTabContent">
+                                <div class="tab-pane fade active show" id="tab-pending" role="tabpanel" aria-labelledby="pending-tab" tabindex="0">
+                                    <div class="table-responsive">
+                                        <table id="demo-foo-addrow" class="table table-striped m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg" data-paging="true" data-paging-size="7" style="">
+                                            <thead>
+                                                <tr class="footable-header">
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Nama Kursus</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Bayar Sebelum</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Harga</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="pending-content">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab-paid" role="tabpanel" aria-labelledby="paid-tab" tabindex="0">
+                                    <div class="table-responsive">
+                                        <table id="demo-foo-addrow" class="table table-striped m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg" data-paging="true" data-paging-size="7" style="">
+                                            <thead>
+                                                <tr class="footable-header">
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Nama Kursus</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Tanggal Pembelian</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Harga</th>
+                                                    <th class="text-white text-start" style="display: table-cell;background-color:#9425FE;">Invoice</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="paid-content">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -74,20 +175,27 @@
 @section('script')
 <script>
     $(document).ready(function() {
-        var id = "{{ $id }}";
 
         $.ajax({
             type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/transactions-user" + id
+            , url: "{{ config('app.api_url') }}" + "/api/transactions-user"
             , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {
-                $('#transaction-content').empty();
-                $.each(response.data.data, function(index, value) {
-                    $('#transaction-content').append(cardTransaction(value));
+                $('#pending-content').empty();
+                $('#paid-content').empty();
+
+                $.each(response.data, function(index, value) {
+                    if (value.invoice_status === 'paid'){
+                        $('#pending-content').append(pendingContent(value));
+                    } else if(value.invoice_status === 'pending'){
+                        $('#paid-content').append(paidContent(value));
+
+                    }
                 });
+
             }
             , error: function(xhr) {
                 Swal.fire({
@@ -99,17 +207,36 @@
         });
     });
 
+    function pendingContent(value) {
+        console.log(value);
 
-    function cardTransaction(index, value) {
         return `
             <tr>
                 <td class="text-start" style="display: table-cell;">${value.course_id.title}</td>
                 <td class="text-start" style="display: table-cell;">${value.created_at}</td>
                 <td class="text-start" style="display: table-cell;">${value.amount}</td>
-                <td class="text-start" style="display: table-cell;">${value.payment_channel}</td>
+                <td class="text-start" style="display: table-cell;">
+                    <button class="outline-warning">
+                        Bayar Sekarang
+                    </button>
+                </td>
             </tr>
         `;
     }
 
+    function paidContent(value) {
+        return `
+            <tr>
+                <td class="text-start" style="display: table-cell;">${value.course_id.title}</td>
+                <td class="text-start" style="display: table-cell;">${value.created_at}</td>
+                <td class="text-start" style="display: table-cell;">${value.amount}</td>
+                <td class="text-start" style="display: table-cell;">
+                    <button class="outline-purple-primary">
+                        Download
+                    </button>
+                </td>
+            </tr>
+        `;
+    }
 </script>
 @endsection
