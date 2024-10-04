@@ -10,8 +10,8 @@
             $('#filter_price').click(function(e) {
                 e.preventDefault();
 
-                filter.maximum = parseInt($('#maksimum').val());
-                filter.minimum = parseInt($('#minimum').val());
+                filter.maximum = $('#maksimum').val();
+                filter.minimum = $('#minimum').val();
                 handleGetCourses(1, filter);
             });
             getCategories();
