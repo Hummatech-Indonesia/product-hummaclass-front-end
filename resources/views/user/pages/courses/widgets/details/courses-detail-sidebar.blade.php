@@ -20,7 +20,8 @@
 
         <div class="courses__details-enroll mb-5">
             <div class="tg-button-wrap">
-                <a href="{{ route('checkout.course', $id) }}" class="btn btn-two arrow-btn w-100 d-flex justify-content-center">
+                <a href="{{ route('checkout.course', $id) }}"
+                    class="btn btn-two arrow-btn w-100 d-flex justify-content-center">
                     Beli Sekarang
                     <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
                 </a>
@@ -71,9 +72,9 @@
             <h5 class="title"><b>Bagikan kursus ini:</b></h5>
             <hr>
             <ul class="list-wrap">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                <li><a href="{{ $shareLink['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="{{ $shareLink['twitter'] }}"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="{{ $shareLink['whatsapp'] }}"><i class="fab fa-whatsapp"></i></a></li>
                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
             </ul>
