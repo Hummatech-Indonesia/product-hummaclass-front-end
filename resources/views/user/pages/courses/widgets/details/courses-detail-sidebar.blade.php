@@ -3,6 +3,27 @@
         .add-to-cart:hover {
             color: var(--bs-primary);
         }
+
+        .payment-option span {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .payment-option img {
+            width: 100px !important;
+            height: auto;
+            aspect-ratio: 2 / 1;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 10px;
+            /* cursor: pointer; */
+            transition: border-color 0.3s;
+        }
     </style>
 @endsection
 
@@ -66,7 +87,10 @@
         </div>
         <div class="courses__payment">
             <h5 class="title"><b>Metode Pembayaran:</b></h5>
-            <img src="{{ asset('assets/img/others/payment.png') }}" alt="img">
+            {{-- <img src="{{ asset('assets/img/others/payment.png') }}" alt="img"> --}}
+            <div class="row payment-options row-gap-2" id="payment-methods" style="gap: 5px;">
+
+            </div>
         </div>
         <div class="courses__details-social border-bottom">
             <h5 class="title"><b>Bagikan kursus ini:</b></h5>
@@ -81,3 +105,32 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/payment-channels",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    const paymentMethod = $('#payment-methods');
+                    for (const key in response.data) {
+                        response.data[key].forEach(method => {
+                            paymentMethod.append(
+                                `
+                                <div class="col-2 payment-option">
+                                    <img src="${method.icon_url}"  class="d-block"/>
+                                </div>
+                                `
+                            );
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
