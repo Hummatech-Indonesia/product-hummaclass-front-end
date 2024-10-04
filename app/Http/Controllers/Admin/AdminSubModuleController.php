@@ -16,4 +16,9 @@ class AdminSubModuleController extends Controller
     {
         return view('admin.pages.sub-modul.create-materi', compact('id'));
     }
+
+    public function edit(string $id)
+    {
+        return view('admin.pages.sub-modul.edit-materi', compact('id'));
+    }
 }

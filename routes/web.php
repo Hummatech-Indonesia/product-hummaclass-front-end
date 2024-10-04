@@ -170,6 +170,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
     Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
+    Route::get('edit-materi/{id}', [AdminSubModuleController::class, 'edit'])->name('edit-materi.index');
 
 
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
