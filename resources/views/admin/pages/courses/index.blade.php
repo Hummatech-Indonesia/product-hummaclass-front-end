@@ -48,6 +48,11 @@
     </div>
     <div class="row row-cols-md-4 mt-4" id="list-card">
     </div>
+    <div class="d-flex justify-content-center">
+        <nav id="pagination">
+
+        </nav>
+    </div>
     @include('components.modernize-card-1')
     <x-delete-modal-component />
 @endsection
