@@ -61,4 +61,5 @@
         </div>
     </section>
     <!-- all-courses-end -->
+    @include('user.pages.courses.widgets.index.scripts.filter')
 @endsection
