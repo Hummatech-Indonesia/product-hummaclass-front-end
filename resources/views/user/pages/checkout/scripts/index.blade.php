@@ -244,7 +244,7 @@
                     success: function(response) {
                         console.log(response);
 
-                        let transactionId = response.data.transaction.data.reference;
+                        let transactionId = response.data.transaction.reference;
 
                         let url;
                         @if (request()->route()->getName() == 'checkout.course')
