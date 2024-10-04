@@ -101,9 +101,6 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
-                data: {
-                    name: $('#search-name').val(),
-                },
                 success: function(response) {
                     $.each(response.data.data, function(index, value) {
                         $('#tableBody').append(category(index, value));
@@ -127,6 +124,7 @@
 
             if (value.sub_category.length > 0) {
                 $.each(value.sub_category, function(subIndex, subValue) {
+                    
                     subCategoryRows += `
                         <tr class="sub_category">
                             <td></td>
@@ -146,7 +144,7 @@
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
                                         <li>
-                                            <button data-id="${subValue.id}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
+                                            <button data-id="${subValue.id}" data-name="${subValue.name}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
                                                 <i class="fs-4 ti ti-edit"></i>Edit
                                             </button>
                                         </li>
@@ -209,7 +207,7 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3" data-bs-toggle="modal" data-bs-target="#modal-edit">
+                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3">
                                             <i class="fs-4 ti ti-edit"></i>Edit
                                         </button>
                                     </li>
@@ -255,6 +253,9 @@
                 $.ajax({
                     type: "DELETE",
                     url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     dataType: "json",
                     contentType: false,
                     processData: false,
@@ -296,6 +297,9 @@
                 $.ajax({
                     type: "DELETE",
                     url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     dataType: "json",
                     contentType: false,
                     processData: false,
