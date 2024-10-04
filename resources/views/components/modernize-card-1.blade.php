@@ -4,64 +4,14 @@
         $('#search-name').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
-                getCourse()
+                getCourse(1)
             }, 500);
         });
 
-        $(document).on('click', '.btn-delete', function() {
-            var id = $(this).data('id');
-            var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
-
-            $('#modal-delete').modal('show');
-
-            funDelete(url);
-        });
-
-        function funDelete(url) {
-
-            $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    headers: {
-                        'Authorization': 'Bearer {{ session('
-                                                                    hummaclass - token ') }}'
-                    },
-                    success: function(response) {
-                        $('#modal-delete').modal('hide');
-                        Swal.fire({
-                            title: "Sukses",
-                            text: "Berhasil menghapus data.",
-                            icon: "success"
-                        });
-                        getCourse();
-                    },
-                    error: function(response) {
-                        $('#modal-delete').modal('hide');
-                        if (response.status == 400) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: response.responseJSON.meta.message,
-                                icon: "error"
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menghapus data.",
-                                icon: "error"
-                            });
-                        }
-                    }
-                });
-            });
-        }
-        getCourse()
-
-        function getCourse() {
+        function getCourse(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses",
+                url: "{{ config('app.api_url') }}" + "/api/courses?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
@@ -91,6 +41,56 @@
         }
 
 
+        $(document).on('click', '.btn-delete', function() {
+            var id = $(this).data('id');
+            var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
+
+            $('#modal-delete').modal('show');
+
+            funDelete(url);
+        });
+
+        function funDelete(url) {
+
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    success: function(response) {
+                        $('#modal-delete').modal('hide');
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menghapus data.",
+                            icon: "success"
+                        });
+                        getCourse(1);
+                    },
+                    error: function(response) {
+                        $('#modal-delete').modal('hide');
+                        if (response.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: response.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menghapus data.",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+        }
+        getCourse(1)
+
+        
         function cardCourse(data) {
             let card = `<div class="col">
                         <div class="card">
