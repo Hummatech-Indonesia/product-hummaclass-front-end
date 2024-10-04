@@ -61,10 +61,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">
-                        <i class="skillgro-logout"></i>
-                        Logout
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="bg-transparent border-0 d-flex align-items-center" type="submit">
+                            <i class="skillgro-logout me-2"></i>
+                            Logout
+                        </button>
+                    </form>
                 </li>
             </ul>
         </nav>

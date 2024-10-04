@@ -10,7 +10,6 @@
     <div class="card-body">
         <div class="card-title">
             <p id="content">
-
             </p>
         </div>
     </div>
@@ -29,17 +28,31 @@
                 dataType: "json",
                 success: function(response) {
                     $('#title').html(response.data.title);
-                    $('#content').html(response.data.content);
+
+                    // Parse konten dari Editor.js
+                    var contentData = JSON.parse(response.data.content);
+                    var contentHtml = '';
+
+                    // Render setiap blok
+                    contentData.blocks.forEach(function(block) {
+                        if (block.type === 'image') {
+                            contentHtml +=
+                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
+                        }
+                        // Tambahkan blok lainnya sesuai dengan tipe
+                        // Misalnya, untuk teks
+                        if (block.type === 'paragraph') {
+                            contentHtml += `<p>${block.data.text}</p>`;
+                        }
+                    });
+
+                    $('#content').html(contentHtml);
 
                     var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
                         .module_id);
-
                     $('#button-back').attr('href', url);
-                    if (response.data.url_youtube != null) {
-                        $('#url_youtube').attr('src', response.data.url_youtube);
-                    } else {
-                        $('#url_youtube').hide();
-                    }
+
+
                 },
                 error: function(xhr) {
                     Swal.fire({
