@@ -90,7 +90,6 @@
         });
 
     });
-
 </script>
 
 <script>
@@ -111,7 +110,6 @@
             height: 200
         });
     });
-
 </script>
 
 <script>
@@ -124,7 +122,6 @@
         document.getElementById('edit-task').style.display = 'none';
         document.getElementById('view-detail').style.display = 'block';
     });
-
 </script>
 
 <script>
@@ -152,7 +149,6 @@
             });
         });
     });
-
 </script>
 
 <script>

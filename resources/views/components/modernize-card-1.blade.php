@@ -1,102 +1,98 @@
 @section('script')
-<script>
-    let debounceTimer;
+    <script>
+        let debounceTimer;
         $('#search-name').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
-                getCourse()
+                getCourse(1)
             }, 500);
         });
 
-    $(document).on('click', '.btn-delete', function() {
-        var id = $(this).data('id');
-        var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
-
-        $('#modal-delete').modal('show');
-
-        funDelete(url);
-    });
-
-    function funDelete(url) {
-
-        $('.deleteConfirmation').click(function(e) {
-            e.preventDefault();
+        function getCourse(page) {
             $.ajax({
-                type: "DELETE"
-                , url: url
-                , headers: {
-                    'Authorization': 'Bearer {{ session('
-                    hummaclass - token ') }}'
-                }
-                , success: function(response) {
-                    $('#modal-delete').modal('hide');
-                    Swal.fire({
-                        title: "Sukses"
-                        , text: "Berhasil menghapus data."
-                        , icon: "success"
-                    });
-                    getCourse();
-                }
-                , error: function(response) {
-                    $('#modal-delete').modal('hide');
-                    if (response.status == 400) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: response.responseJSON.meta.message
-                            , icon: "error"
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                dataType: "json",
+                data: {
+                    name: $('#search-name').val(),
+                },
+                success: function(response) {
+                    $('#list-card').empty();
+                    if (response.data.data.length > 0) {
+                        response.data.data.forEach(data => {
+                            cardCourse(data);
                         });
+                        $('#pagination').html(handlePaginate(response.data.paginate));
                     } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: "Ada kesalahan saat menghapus data."
-                            , icon: "error"
-                        });
+                        $('#list-card').append(empty());
                     }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
                 }
             });
+        }
+
+
+        $(document).on('click', '.btn-delete', function() {
+            var id = $(this).data('id');
+            var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
+
+            $('#modal-delete').modal('show');
+
+            funDelete(url);
         });
-    }
-    getCourse()
 
-    function getCourse() {
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json",
-            data: {
-                name: $('#search-name').val(),
-            }
-            , success: function(response) {
-                $('#list-card').empty();
-                response.data.data.forEach(data => {
-                    cardCourse(data);
+        function funDelete(url) {
+
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    success: function(response) {
+                        $('#modal-delete').modal('hide');
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menghapus data.",
+                            icon: "success"
+                        });
+                        getCourse(1);
+                    },
+                    error: function(response) {
+                        $('#modal-delete').modal('hide');
+                        if (response.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: response.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menghapus data.",
+                                icon: "error"
+                            });
+                        }
+                    }
                 });
+            });
+        }
+        getCourse(1)
 
-                if (response.data.data.length > 0) {
-                    response.data.data.forEach(data => {
-                        cardCourse(data);
-                    });
-                    $('#pagination').html(handlePaginate(response.data.paginate))
-
-                } else {
-                    $('#list-card').append(empty());
-                }
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-    }
-
-    function cardCourse(data) {
-        let card = `<div class="col">
+        
+        function cardCourse(data) {
+            let card = `<div class="col">
                         <div class="card">
                             <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">${data.sub_category}</button>
                             <img src="${data.photo}" class="card-img-top" alt="...">
@@ -171,10 +167,9 @@
                             </div>
                         </div>
                     </div>`
-        $('#list-card').append(card);
-    }
-
-</script>
+            $('#list-card').append(card);
+        }
+    </script>
 @endsection
 
 <style scoped>
@@ -193,5 +188,4 @@
         /* Sesuaikan dengan jumlah baris yang diinginkan */
         line-height: 1.2em;
     }
-
 </style>

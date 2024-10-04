@@ -100,13 +100,17 @@
                             newsParent.append(card(index, value));
                         });
 
-                        renderPagination(response.data.paginate.last_page, response.data.paginate
-                            .current_page
-                            , function(page) {
+                        if (response.data.paginate.last_page > 0) {
+                            renderPagination(response.data.paginate.last_page, response.data.paginate.current_page, function(page) {
                                 handleGetBlogs(page);
                             });
+                            $('.pagination__wrap').show();
+                        } else {
+                            $('.pagination__wrap').hide();
+                        }
                     } else {
                         newsParent.append(empty());
+                        $('.pagination__wrap').hide();
                     }
 
                     retryCount = 0;

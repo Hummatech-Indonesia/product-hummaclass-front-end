@@ -211,7 +211,7 @@
                         $('#pagination').html(handlePaginate(response.data.paginate))
 
                     } else {
-                        eventParent.append('<p class="text-center">Data Event kosong.</p>');
+                        eventParent.append(empty());
                     }
 
                     retryCount = 0;

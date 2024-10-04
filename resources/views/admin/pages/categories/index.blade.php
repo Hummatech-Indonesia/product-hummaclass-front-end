@@ -101,6 +101,9 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
+                data: {
+                    name: $('#search-name').val(),
+                },
                 success: function(response) {
                     $.each(response.data.data, function(index, value) {
                         $('#tableBody').append(category(index, value));

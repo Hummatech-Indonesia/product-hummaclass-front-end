@@ -47,10 +47,18 @@
                     <input type="text" name="sub_title" class="form-control" placeholder="Masukan sub judul">
                     <div class="invalid-feedback"></div>
                 </div>
+                {{-- <div class="col col-12 mb-3">
+                    <label for="" class="fw-semibold form-label">Konten</label>
+                    <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
+                        class="mb-5"></div>
+                    <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div> --}}
                 <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
-                    {{-- <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;" class="mb-5"></div> --}}
-                    <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
+                    <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
+                        class="mb-5"></div>
+                    <input type="hidden" name="content" id="editorContent"> <!-- Hidden input for editor content -->
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
@@ -68,44 +76,48 @@
     <script>
         $('#create-sub-modul-form').submit(function(e) {
             e.preventDefault();
-            var id = "{{ $id }}";
-            var formData = new FormData(this);
-            $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/sub-modules/" + id,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    window.location.href = "/admin/modules/" + response.data.module_id;
-                },
-                error: function(response) {
-                    if (response.status === 422) {
-                        let errors = response.responseJSON.data;
-                        $('.is-invalid').removeClass('is-invalid');
-                        $('.invalid-feedback').text('');
 
-                        $.each(errors, function(field, messages) {
-                            $(`[name="${field}"]`).addClass(
-                                'is-invalid');
+            editor.save().then((outputData) => {
+                document.getElementById('editorContent').value = JSON.stringify(outputData);
 
-                            $(`[name="${field}"]`).closest('.col').find(
-                                    '.invalid-feedback')
-                                .text(messages[0]);
-                        });
+                var id = "{{ $id }}";
+                var formData = new FormData(this);
 
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/sub-modules/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        window.location.href = "/admin/modules/" + response.data.module_id;
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+                            $('.is-invalid').removeClass('is-invalid');
+                            $('.invalid-feedback').text('');
+
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.col').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
-                }
+                });
+            }).catch((error) => {
+                console.log('Error saving content:', error);
             });
         });
     </script>
