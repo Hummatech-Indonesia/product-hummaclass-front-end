@@ -120,5 +120,36 @@
                 console.log('Error saving content:', error);
             });
         });
+
+        function addImageToEditor(imageUrl) {
+            editor.blocks.insert('image', {
+                file: {
+                    url: imageUrl
+                }
+            });
+        }
+
+        function uploadImage(file) {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ config('app.api_url') }}/upload-image",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.success) {
+                        console.log(response);
+
+                        addImageToEditor(response.file.url);
+                    }
+                },
+                error: function() {
+                    // Tangani kesalahan unggah
+                }
+            });
+        }
     </script>
 @endsection
