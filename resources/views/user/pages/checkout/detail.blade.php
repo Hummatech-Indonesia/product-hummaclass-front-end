@@ -5,7 +5,7 @@
             width: 100px;
         }
 
-        .text-purlple {
+        .text-purple {
             color: #9425fe;
         }
 
@@ -90,20 +90,20 @@
                             <p class="m-0" id="title">Title</p>
                             <div class="d-flex gap-5">
                                 <p class="m-0"><del class="discount">0</del></p>
-                                <p class="m-0"><span class="text-purlple fw-bold" id="amount"></span></p>
+                                <p class="m-0"><span class="text-purple fw-bold" id="amount"></span></p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-3">
                             <p class="m-0" class="fw-semibold">Voucher Discount</p>
-                            <p class="m-0 fw-bold">- <span class="discount_amount text-purlple"></span></p>
+                            <p class="m-0 fw-bold">- <span class="discount_amount text-purple"></span></p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-3">
                             <p class="m-0">Total Pembayaran</p>
-                            <p class="m-0"><span class="text-purlple fw-bold" id="total_amount"></span></p>
+                            <p class="m-0"><span class="text-purple fw-bold" id="total_amount"></span></p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-3">
                             <p class="m-0" class="fw-semibold">Kode Transaksi</p>
-                            <p class="m-0"><span class="text-purlple fw-bold" id="transaction_code"></span><img
+                            <p class="m-0"><span class="text-purple fw-bold" id="transaction_code"></span><img
                                     src="" alt=""></p>
                         </div>
                         <div class="d-flex justify-content-between border-bottom py-3" id="expired-date-row">
@@ -194,7 +194,24 @@
                 </div>
             </div>
             <div class="col" style="position: -webkit-sticky; position: sticky;" id="payment-status">
-                <button class="btn btn-two w-100 m-auto rounded-3" id="checkout-btn">Kembali</button>
+                <div class="card mb-3" id="status">
+                    <div class="card-body">
+                        <h5>Status Pembayaran</h5>
+                        <img src="{{ asset('assets/img/checkout/unpaid.png') }}" alt="" class="d-block m-auto">
+                        <h5 class="text-center">Belum Terbayar</h5>
+                        <button onclick="window.location.reload();"
+                            class="w-100 rounded-2 fw-bolder px-3 py-2 bg-transparent" style="border: 1px solid #9425fe">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-refresh">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                            </svg>
+                            Cek Status</button>
+                    </div>
+                </div>
+                <button class="btn btn-two w-100 m-auto rounded-3" id="btn-back">Kembali</button>
             </div>
         </div>
     </div>
