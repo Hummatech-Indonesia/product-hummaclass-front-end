@@ -47,12 +47,6 @@
                     <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
                 </a>
             </div>
-            <div class="tg-button-wrap my-3">
-                <a href="courses.html" class="btn btn-two arrow-btn bg-white add-to-cart">
-                    Tambahkan Keranjang
-                    <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
-                </a>
-            </div>
         </div>
 
         <div class="courses__information-wrap">
@@ -94,13 +88,10 @@
         </div>
         <div class="courses__details-social border-bottom">
             <h5 class="title"><b>Bagikan kursus ini:</b></h5>
-            <hr>
-            <ul class="list-wrap">
-                <li><a href="{{ $shareLink['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="{{ $shareLink['twitter'] }}"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="{{ $shareLink['whatsapp'] }}"><i class="fab fa-whatsapp"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            <ul class="list-wrap justify-content-center">
+                <li><a href="{{ $shareLink['facebook'] }}" target="blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="{{ $shareLink['twitter'] }}" target="blank"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="{{ $shareLink['whatsapp'] }}" target="blank"><i class="fab fa-whatsapp"></i></a></li>
             </ul>
         </div>
     </div>

@@ -1,14 +1,43 @@
 <div>
-    <div class="text-end mb-3">
-        <a href="{{ route('admin.create-quiz.index', $id) }}" class="btn text-white d-none addQuiz"
-            style="background-color: var(--purple-primary)">
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-white mb-1 me-1" width="16" height="16"
-                viewBox="0 0 32 32">
-                <path fill="currentColor"
-                    d="M6.813 2.406L5.405 3.812L7.5 5.906L8.906 4.5zm18.375 0L23.093 4.5L24.5 5.906l2.094-2.093zM16 3.03q-.495.004-1 .064h-.03c-4.056.465-7.284 3.742-7.845 7.78c-.448 3.25.892 6.197 3.125 8.095a5.24 5.24 0 0 1 1.75 3.03v6h2.28c.348.597.983 1 1.72 1s1.372-.403 1.72-1H20v-4h.094v-1.188c0-1.466.762-2.944 2-4.093C23.75 17.06 25 14.705 25 12c0-4.94-4.066-9.016-9-8.97m0 2c3.865-.054 7 3.11 7 6.97c0 2.094-.97 3.938-2.313 5.28l.032.032A7.8 7.8 0 0 0 18.279 22h-4.374c-.22-1.714-.955-3.373-2.344-4.563c-1.767-1.5-2.82-3.76-2.468-6.312c.437-3.15 2.993-5.683 6.125-6.03a7 7 0 0 1 .78-.064zM2 12v2h3v-2zm25 0v2h3v-2zM7.5 20.094l-2.094 2.093l1.407 1.407L8.905 21.5zm17 0L23.094 21.5l2.093 2.094l1.407-1.407zM14 24h4v2h-4z" />
-            </svg>
-            Tambah
-        </a>
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body p-2 d-flex flex-row align-items-center gap-2">
+                    <span class="bg-light-warning rounded-2 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-clipboard-list text-warning">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                            <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
+                            <path d="M9 12l.01 0" />
+                            <path d="M13 12l2 0" />
+                            <path d="M9 16l.01 0" />
+                            <path d="M13 16l2 0" />
+                        </svg>
+                    </span>
+                    <h5>Jumlah Soal: 10</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body p-2 d-flex flex-row align-items-center gap-2">
+                    <span class="bg-light-warning rounded-2 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock text-warning">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                            <path d="M12 7v5l3 3" />
+                        </svg>
+                    </span>
+                    <h5>Jumlah Soal: 10</h5>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="quizContainer">
 

@@ -122,6 +122,10 @@ Route::get('quiz-question/{id}', function ($id) {
     return view('user.pages.question-quiz.index', compact('id'));
 })->name('quetion-quiz.index');
 
+Route::get('quiz-setting/{id}', function ($id) {
+    return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
+})->name('quetion-quiz.setting')->middleware('auth_custom');
+
 Route::get('finish-test', function () {
     return view('user.pages.question-quiz.test-finish');
 })->name('finish-test');
