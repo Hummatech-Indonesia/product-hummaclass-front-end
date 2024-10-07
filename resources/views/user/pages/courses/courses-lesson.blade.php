@@ -45,20 +45,15 @@
                                                 </form>
                                             </li>
                                             <li class="course-item">
-                                                <form action="{{ url()->current() }}" method="GET">
-                                                    {{-- <a href="{{ url()->current() }}?item=tugas-akhir" class="ps-2">
-                                                Tugas Akhir
-                                                </a> --}}
-                                                    <a href="#" class="course-item-link">
-                                                        <span class="item-name">Tugas Akhir</span>
-                                                        <div class="course-item-meta">
-                                                            <span class="item-meta course-item-status">
-                                                                <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                    alt="icon">
-                                                            </span>
-                                                        </div>
-                                                    </a>
-                                                </form>
+                                                <a href="#" class="course-item-link">
+                                                    <span class="item-name">Tugas Akhir</span>
+                                                    <div class="course-item-meta">
+                                                        <span class="item-meta course-item-status">
+                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
+                                                                alt="icon">
+                                                        </span>
+                                                    </div>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -280,29 +275,32 @@
 
 
             function contentCourse(index, value) {
+                var slug = "{{ $id }}";
 
                 const subModules = value.sub_modules.map(subModule => {
-                    return `<li class="course-item open-item">
-                               <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
-                                    <span class="ps-2">${subModule.title}</span>
-                                </a>
-                            </li>`;
+                    if (slug == subModule.slug) {
+                        return `<li class="course-item open-item">
+                                    <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between">
+                                        <span class="ps-2">${subModule.title}</span>
+                                    </a>
+                                </li>`;
+                    } else {
+                        return `<li class="course-item">
+                                    <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between" style="color: black">
+                                        <span class="ps-2">${subModule.title}</span>
+                                    </a>
+                                </li>`;
+                    }
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
-                    return `<li class="course-item open-item">
-                               <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
+                    return `<li class="course-item">
+                                <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between" style="color: black">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>
                                 </a>
                             </li>`;
                 }).join('');
-                // const moduleTasks = value.module_tasks.map(moduleTask => {
-                //     return `<li class="course-item open-item">
-            //                <a href="{{ route('courses.course-lesson.index', ['']) }}/${moduleTask.id}" class="">
-            //                     <span class="ps-2">${moduleTask.question}</span>
-            //                 </a>
-            //             </li>`;
-                // }).join('');
+
                 return `
                    <div class="accordion-item">
                         <h2 class="accordion-header" id="heading-${index}">

@@ -120,20 +120,37 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            const currentPage = localStorage.getItem('current_page') ||
-                1;
+            const currentPage = localStorage.getItem('current_page') || 1;
+
             get(currentPage);
+
+            restoreAnswers(currentPage);
         });
 
-        $('.text-white.border-0.py-2').on('click', function() {
-            localStorage.removeItem('current_page'); // Hapus halaman saat selesai ujian
-            // Logika lainnya untuk menyelesaikan ujian
+        function removeChecked(last_page) {
+
+            for (let j = 1; j <= last_page; j++) {
+                localStorage.removeItem(`answer_${j}`);
+            }
+        }
+
+        $(document).on('change', 'input[type="radio"]', function() {
+            const current_page = $(this).attr('name').split('_')[1];
+            const selectedValue = $(this).val();
+            localStorage.setItem(`answer_${current_page}`, selectedValue);
         });
+
+        function restoreAnswers(currentPage) {
+            const savedAnswer = localStorage.getItem(`answer_${currentPage}`);
+            if (savedAnswer) {
+                $(`input[name="answer_${currentPage}"][value="${savedAnswer}"]`).prop('checked', true);
+            }
+        }
 
 
         function get(page) {
             const id = "{{ $id }}";
-            localStorage.setItem('current_page', page); // Simpan halaman di localStorage
+            localStorage.setItem('current_page', page);
 
             $.ajax({
                 type: "GET",
@@ -143,6 +160,21 @@
                 url: `{{ config('app.api_url') }}/api/quizzes/working/${id}/?page=` + page,
                 dataType: "json",
                 success: function(response) {
+                    $('.text-white.border-0.py-2').off('click').on('click', function() {
+                        let answer = [];
+                        for (let index = 1; index <= response.data.paginate.last_page; index++) {
+                            const storedAnswer = localStorage.getItem(`answer_${index}`);
+                            if (storedAnswer) {
+                                answer.push(storedAnswer);
+                            } else {
+                                answer.push(null);
+                            }
+                        }
+                        submit_quiz(response.data.user_quiz.id, answer);
+                        localStorage.removeItem('current_page');
+                        removeChecked(response.data.paginate.last_page);
+                    });
+
                     $('#status_question').html(
                         `<h4 class="text-white">${response.data.paginate.current_page} dari ${response.data.paginate.last_page} soal</h4>`
                     );
@@ -151,21 +183,35 @@
                     $('#card_exam').empty();
 
                     for (var i = 1; i <= response.data.paginate.last_page; i++) {
-                        $('#list_number').append(
-                            `<div class="col-3">
-                        <div class="px-1 py-2">
-                            <a class="d-flex question-nav" onclick="get(${i})">
-                                ${i}
-                            </a>
-                        </div>
-                    </div>`
-                        );
+                        if (localStorage.getItem(`answer_${i}`) != null) {
+                            $('#list_number').append(
+                                `<div class="col-3">
+                                    <div class="px-1 py-2">
+                                        <a class="d-flex question-nav active" onclick="get(${i})">
+                                            ${i}
+                                        </a>
+                                    </div>
+                                </div>`
+                            );
+                        } else {
+                            $('#list_number').append(
+                                `<div class="col-3">
+                                    <div class="px-1 py-2">
+                                        <a class="d-flex question-nav" onclick="get(${i})">
+                                            ${i}
+                                        </a>
+                                    </div>
+                                </div>`
+                            );
+                        }
                     }
 
                     $.each(response.data.data, function(index, value) {
-                        $('#card_exam').append(cardExam(index, value, page, response.data.paginate
+                        $('#card_exam').append(cardExam(index, value, response.data.paginate
                             .current_page, response.data.paginate.last_page));
                     });
+
+                    restoreAnswers(response.data.paginate.current_page);
                 },
                 error: function(xhr, status, error) {
                     console.error('Terjadi kesalahan:', status, error);
@@ -173,13 +219,12 @@
             });
         }
 
+        function cardExam(index, value, current_page, last_page) {
 
-        function cardExam(index, value, page, current_page, last_page) {
-            
             let footer = '';
             if (current_page == 1) {
                 footer = ` <div></div>
-                            <a onclick="get(${page + 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
+                            <a onclick="get(${current_page + 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
                                 Selanjutnya
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 9">
                                     <path fill="currentColor" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
@@ -187,7 +232,7 @@
                                 </svg>
                             </a>`;
             } else if (current_page == last_page) {
-                footer = `<a onclick="get(${page - 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
+                footer = `<a onclick="get(${current_page - 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                     viewBox="0 0 16 9">
                                     <path fill="currentColor"
@@ -200,7 +245,7 @@
                             <div></div
                             `
             } else {
-                footer = `<a onclick="get(${page - 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
+                footer = `<a onclick="get(${current_page - 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                     viewBox="0 0 16 9">
                                     <path fill="currentColor"
@@ -210,7 +255,7 @@
                                 </svg>
                                 Kembali
                             </a>
-                            <a onclick="get(${page + 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
+                            <a onclick="get(${current_page + 1})" style="cursor:pointer;" class="text-dark fw-bolder fs-6">
                                 Selanjutnya
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 9">
                                     <path fill="currentColor" d="M12.5 5h-9c-.28 0-.5-.22-.5-.5s.22-.5.5-.5h9c.28 0 .5.22.5.5s-.22.5-.5.5" />
@@ -220,53 +265,90 @@
                             `
             }
             return `
-    <div class="p-4">
-        <label class="fs-5">${page}. ${value.question}</label>
-        <div class="ms-3 mt-3">
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="answer_${page}" id="answer${page}_${index}_a"
-                    value="option_a">
-                <label class="form-check-label" for="answer${page}_${index}_a">
-                    ${value.option_a}
-                </label>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="answer_${page}" id="answer${page}_${index}_b"
-                    value="option_b">
-                <label class="form-check-label" for="answer${page}_${index}_b">
-                    ${value.option_b}
-                </label>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="answer_${page}" id="answer${page}_${index}_c"
-                    value="option_c">
-                <label class="form-check-label" for="answer${page}_${index}_c">
-                    ${value.option_c}
-                </label>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="answer_${page}" id="answer${page}_${index}_d"
-                    value="option_d">
-                <label class="form-check-label" for="answer${page}_${index}_d">
-                    ${value.option_d}
-                </label>
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="answer_${page}" id="answer${page}_${index}_e"
-                    value="option_e">
-                <label class="form-check-label" for="answer${page}_${index}_e">
-                    ${value.option_e}
-                </label>
-            </div>
-        </div>
-    </div>
+                <div class="p-4">
+                    <label class="fs-5">${current_page}. ${value.question}</label>
+                    <div class="ms-3 mt-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer_${current_page}" id="answer${current_page}_${index}_a"
+                                value="option_a">
+                            <label class="form-check-label" for="answer${current_page}_${index}_a">
+                                ${value.option_a}
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer_${current_page}" id="answer${current_page}_${index}_b"
+                                value="option_b">
+                            <label class="form-check-label" for="answer${current_page}_${index}_b">
+                                ${value.option_b}
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer_${current_page}" id="answer${current_page}_${index}_c"
+                                value="option_c">
+                            <label class="form-check-label" for="answer${current_page}_${index}_c">
+                                ${value.option_c}
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer_${current_page}" id="answer${current_page}_${index}_d"
+                                value="option_d">
+                            <label class="form-check-label" for="answer${current_page}_${index}_d">
+                                ${value.option_d}
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer_${current_page}" id="answer${current_page}_${index}_e"
+                                value="option_e">
+                            <label class="form-check-label" for="answer${current_page}_${index}_e">
+                                ${value.option_e}
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="card-footer bg-transparent p-3">
-        <div class="d-flex justify-content-between">
-           ${footer}
-        </div>
-    </div>
-    `;
+                <div class="card-footer bg-transparent p-3">
+                    <div class="d-flex justify-content-between">
+                    ${footer}
+                    </div>
+                </div>
+                `;
+        }
+
+        function submit_quiz(user_quiz_id, answer) {
+            const filteredAnswers = answer.map(a => a === null ? 'null' : a);
+
+            console.log(filteredAnswers);
+
+            $.ajax({
+                type: "POST",
+                url: "{{ config('app.api_url') }}/api/quizzes-submit/" + user_quiz_id,
+                data: JSON.stringify({
+                    answer: filteredAnswers
+                }),
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    'Content-Type': 'application/json'
+                },
+                dataType: "json",
+                success: function(response) {
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil menambah data data.",
+                        icon: "success"
+                    });
+                    $('#modal-create-subcategory').modal('hide');
+                    $('#modal-create-subcategory').find('input').val('');
+                    get(1);
+                },
+                error: function(response) {
+                    console.error(response);
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Ada kesalahan saat menyimpan data: " + response.responseJSON.message,
+                        icon: "error"
+                    });
+                }
+            });
         }
     </script>
 @endsection
