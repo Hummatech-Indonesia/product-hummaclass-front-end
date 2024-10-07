@@ -155,13 +155,13 @@
                                 <div class="col-xl-4 col-lg-4 col-md-6">
                                     <div class="event__item shine__animate-item">
                                         <div class="event__item-thumb">
-                                            <a href="{{ route('events.detail.event') }}" class="shine__animate-link"><img
+                                            <a href="#" class="shine__animate-link"><img
                                                     src="{{ asset('assets/img/events/event_thumb01.jpg') }}"
                                                     alt="img"></a>
                                         </div>
                                         <div class="event__item-content">
                                             <span class="date">25 June, 2024</span>
-                                            <h2 class="title"><a href="{{ route('events.detail.event') }}">The
+                                            <h2 class="title"><a href="">The
                                                     Accessible Target Sizes Cheatsheet</a></h2>
                                             <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September
                                                 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
