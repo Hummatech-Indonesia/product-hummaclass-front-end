@@ -122,9 +122,9 @@ Route::get('quiz-question/{id}', function ($id) {
     return view('user.pages.question-quiz.index', compact('id'));
 })->name('quetion-quiz.index');
 
-Route::get('finish-test', function () {
+Route::get('finish-quiz', function () {
     return view('user.pages.question-quiz.test-finish');
-})->name('finish-test');
+})->name('finish-quiz');
 
 Route::resources([
     'blogs' => BlogController::class,
