@@ -32,7 +32,7 @@ class CheckCoursePayment
             if ($response->successful()) {
                 return $next($request);
             } else {
-                return redirect()->route('courses.courses.show', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
+                return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
             }
         } catch (\Exception $e) {
             // \Log::error('API request error: ' . $e->getMessage());
