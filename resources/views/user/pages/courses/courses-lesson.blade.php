@@ -213,9 +213,27 @@
 
 @section('script')
     <script>
+        // Definisikan fungsi di scope global
+        function updateLastStepUser(course, sub_module) {
+            $.ajax({
+                type: "PUT",
+                url: "{{ config('app.api_url') }}" + "/api/user-courses/" + course + "/" + sub_module,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    const urlPrev = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#prevButton').attr("href", urlPrev);
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+
         $(document).ready(function() {
             var id = "{{ $id }}";
-            let photo;
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/list-module/" + id,
@@ -229,14 +247,9 @@
                     });
                 },
                 error: function(xhr) {
-                    // Swal.fire({
-                    //     title: "Terjadi Kesalahan!",
-                    //     text: "Tidak dapat memuat data materi.",
-                    //     icon: "error"
-                    // });
+                    console.log(xhr);
                 }
             });
-
 
             let urlNext;
             $.ajax({
@@ -249,7 +262,6 @@
                 success: function(response) {
                     urlNext = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#nextButton').attr("href", urlNext);
-
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -273,53 +285,53 @@
                 }
             });
 
-
             function contentCourse(index, value) {
                 var slug = "{{ $id }}";
 
                 const subModules = value.sub_modules.map(subModule => {
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
-                                    <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between">
-                                        <span class="ps-2">${subModule.title}</span>
-                                    </a>
-                                </li>`;
+                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}')" class="d-flex justify-content-between">
+                            <span class="ps-2">${subModule.title}</span>
+                        </a>
+                    </li>`;
                     } else {
                         return `<li class="course-item">
-                                    <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between" style="color: black">
-                                        <span class="ps-2">${subModule.title}</span>
-                                    </a>
-                                </li>`;
+                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}')" class="d-flex justify-content-between" style="color: black">
+                            <span class="ps-2">${subModule.title}</span>
+                        </a>
+                    </li>`;
                     }
                 }).join('');
+
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item">
-                                <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between" style="color: black">
-                                    <span class="ps-2">Quiz</span>
-                                    <span class="ps-2"> ${quiz.total_question} Soal</span>
-                                </a>
-                            </li>`;
+                    <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between" style="color: black">
+                        <span class="ps-2">Quiz</span>
+                        <span class="ps-2">${quiz.total_question} Soal</span>
+                    </a>
+                </li>`;
                 }).join('');
 
                 return `
-                   <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
-                                ${value.title}
-                            </button>
-                        </h2>
-                        <div id="collapse-${index}" class="accordion-collapse collapse" aria-labelledby="heading-${index}"
-                            data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <ul class="list-wrap" id="list-wrap">
-                                    ${subModules}
-                                    ${quizzes}
-                                </ul>
-                            </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-${index}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-${index}" aria-expanded="false" aria-controls="collapse-${index}">
+                            ${value.title}
+                        </button>
+                    </h2>
+                    <div id="collapse-${index}" class="accordion-collapse collapse" aria-labelledby="heading-${index}"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-wrap" id="list-wrap">
+                                ${subModules}
+                                ${quizzes}
+                            </ul>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
             }
 
             $.ajax({
@@ -330,9 +342,8 @@
                 },
                 dataType: "json",
                 success: function(response) {
-
                     $('#course_sub_title').html(response.data.sub_title);
-                    $('#title_course').html(response.data.course_title)
+                    $('#title_course').html(response.data.course_title);
                     $('#course_title').html(response.data.title);
 
                     var contentData = JSON.parse(response.data.content);
