@@ -109,6 +109,16 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('error') }}',
+                    text: "{{ session('error') }}"
+                });
+            @endif
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/courses/" + id,

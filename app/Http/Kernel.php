@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'auth_custom' => \App\Http\Middleware\CustomAuthMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'guest' => \App\Http\Middleware\GuestMiddleware::class,
+        'coursePayment' => \App\Http\Middleware\CheckCoursePayment::class
     ];
 }

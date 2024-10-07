@@ -52,7 +52,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('courses')->name('courses.')->group(function () {
 
     Route::resource('courses', CourseController::class)->only(['index', 'show']);
-    Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index');
+    Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
     Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
 });
 
