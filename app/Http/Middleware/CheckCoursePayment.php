@@ -27,7 +27,7 @@ class CheckCoursePayment
 
             $response = Http::withToken($token)
                 ->maxRedirects(5)
-                ->post(config('app.api_url') . '/api/user-courses-check');
+                ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $courseSlug]);
 
             if ($response->successful()) {
                 return $next($request);

@@ -214,7 +214,7 @@
 @section('script')
     <script>
         // Definisikan fungsi di scope global
-        function updateLastStepUser(course, sub_module) {
+        function updateLastStepUser(course, sub_module, slug) {
             $.ajax({
                 type: "PUT",
                 url: "{{ config('app.api_url') }}" + "/api/user-courses/" + course + "/" + sub_module,
@@ -223,8 +223,9 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    const urlPrev = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
-                    $('#prevButton').attr("href", urlPrev);
+                    const url = `{{ route('courses.course-lesson.index', ['']) }}/` + slug;
+                    window.location.href = url;
+
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -291,13 +292,13 @@
                 const subModules = value.sub_modules.map(subModule => {
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
-                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}')" class="d-flex justify-content-between">
+                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
                     } else {
                         return `<li class="course-item">
-                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}')" class="d-flex justify-content-between" style="color: black">
+                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between" style="color: black">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;

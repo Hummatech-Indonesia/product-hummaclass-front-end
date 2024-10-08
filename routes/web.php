@@ -49,12 +49,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ================== USER ==================
 
-Route::prefix('courses')->name('courses.')->group(function () {
+Route::middleware(['auth_custom'])->group(function () {
+    Route::prefix('courses')->name('courses.')->group(function () {
 
-    Route::resource('courses', CourseController::class)->only(['index', 'show']);
-    Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
-    Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
+        Route::resource('courses', CourseController::class)->only(['index', 'show']);
+        Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
+        Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
+    });
 });
+
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
@@ -126,8 +129,8 @@ Route::get('quiz-setting/{id}', function ($id) {
     return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
 })->name('quetion-quiz.setting')->middleware('auth_custom');
 
-Route::get('finish-quiz', function () {
-    return view('user.pages.question-quiz.test-finish');
+Route::get('finish-quiz/{id?}', function ($id) {
+    return view('user.pages.question-quiz.test-finish', compact('id'));
 })->name('finish-quiz');
 
 Route::resources([
