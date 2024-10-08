@@ -62,6 +62,22 @@
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
+                    <div class="col col-lg-6 mb-3">
+                        <div class=" form-group">
+                            <label for="" class="form-label fw-semibold text-dark">Nilai Minimal</label>
+                            <input type="number" id="minimum_score" class="form-control"
+                                placeholder="Masukkan nilai minimal" name="minimum_score">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col col-lg-6 mb-3">
+                        <div class=" form-group">
+                            <label for="" class="form-label fw-semibold text-dark">Waktu tunggu remedial <small class="">(menit)</small></label>
+                            <input type="text" id="retry_delay" class="form-control required"
+                                placeholder="Masukan waktu tunggu remedial (menit)" name="retry_delay">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
                     <div class="col col-lg-12">
                         <h6>Pengumpulan Kuis</h6>
                         <div class=" form-check form-switch">
@@ -117,6 +133,8 @@
 
                 var formData = new FormData(this);
 
+                console.log(formData);
+                
                 $.ajax({
                     type: "POST",
                     url: "{{ config('app.api_url') }}/api/quizzes/" + id,
@@ -137,7 +155,8 @@
                             $('#create-quiz-form')[0].reset();
                             $('.is-invalid').removeClass('is-invalid');
                             $('.invalid-feedback').text('');
-                            window.location.href = "{{ route('admin.modules.show', $id) }}";
+                            window.location.href =
+                                "{{ route('admin.modules.show', $id) }}";
                         });
                     },
                     error: function(response) {
