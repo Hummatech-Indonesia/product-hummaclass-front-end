@@ -90,9 +90,9 @@
         }
         getCourse(1)
 
-        
+
         function cardCourse(data) {
-            let card = `<div class="col">
+            let card = `<div class="col-lg-4">
                         <div class="card">
                             <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">${data.sub_category}</button>
                             <img src="${data.photo}" class="card-img-top" alt="...">
