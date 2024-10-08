@@ -41,7 +41,6 @@
                 $('#pay_code').text(transactionData.tripay.pay_code);
             }
 
-            // Ambil status transaksi pertama kali
             $.ajax({
                 type: "get",
                 url: "{{ config('app.api_url') }}/api/check-status/{{ $reference }}",

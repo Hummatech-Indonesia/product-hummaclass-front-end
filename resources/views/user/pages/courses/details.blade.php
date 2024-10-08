@@ -109,6 +109,16 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
+
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('error') }}',
+                    text: "{{ session('error') }}"
+                });
+            @endif
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
@@ -125,6 +135,7 @@
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(response.data.created);
                     $('#detail-rating').append(response.data.rating);
+                    $('#price-course').html(formatRupiah(response.data.price));
 
                     // tab deskripsi
                     $('#description-title').append(response.data.title);
