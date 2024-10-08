@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 class UserCheckoutController extends Controller
 {
@@ -11,6 +13,14 @@ class UserCheckoutController extends Controller
      */
     public function index($slug)
     {
+        $token = session('hummaclass-token');
+        $response = Http::withToken($token)
+            ->maxRedirects(5)
+            ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
+
+            if($response->json()['data']['user_course']) {
+                return redirect()->route('courses.courses.show', $slug)->with('warning', 'Anda sudah pernah melakukan checkout pada kursus ini');
+            }
         return view('user.pages.checkout.index', compact('slug'));
     }
 

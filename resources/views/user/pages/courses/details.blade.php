@@ -110,12 +110,18 @@
             let photo;
             var id = "{{ $id }}";
 
+            @if (session('warning'))
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: '{{ session('warning') }}',
+                });
+            @endif
             @if (session('error'))
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: '{{ session('error') }}',
-                    text: "{{ session('error') }}"
                 });
             @endif
 
