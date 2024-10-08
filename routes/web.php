@@ -49,9 +49,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ================== USER ==================
 
-Route::resource('courses', CourseController::class)->only(['index', 'show']);
-Route::middleware(['auth_custom'])->group(function () {
-    Route::prefix('courses')->name('courses.')->group(function () {
+Route::prefix('courses')->name('courses.')->group(function () {
+    Route::resource('courses', CourseController::class)->only(['index', 'show']);
+    Route::middleware(['auth_custom'])->group(function () {
         Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
@@ -141,11 +141,11 @@ Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
 
-Route::get('discussion-forum', function(){
+Route::get('discussion-forum', function () {
     return view('user.pages.courses.discussion-forum.index');
 })->name('discussion-forum.index');
 
-Route::get('discussion-forum/modul', function(){
+Route::get('discussion-forum/modul', function () {
     return view('user.pages.courses.discussion-forum.discussion-forum');
 })->name('discussion-forum.modul');
 
