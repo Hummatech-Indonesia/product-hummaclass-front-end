@@ -368,7 +368,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <img src="{{ asset('admin/dist/images/profile/user-2.jpg') }}"
+                                    <img src="{{ session('user')['photo'] }}"
                                         class="rounded-circle" width="35" height="35" alt="" />
                                 </div>
                             </div>
