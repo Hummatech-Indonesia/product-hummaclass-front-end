@@ -114,6 +114,12 @@
 @section('content')
 <div class="container d-flex justify-content-center custom-container mt-3">
     <div class="col-lg-11 mb-4">
+        <div class="lesson__video-wrap-top mb-4">
+            <div class="lesson__video-wrap-top-left">
+                <a href="#"><i class="flaticon-arrow-right"></i></a>
+                <span>Kembali</span>
+            </div>
+        </div>
         <div class="card position-relative overflow-hidden border-0" style="background: linear-gradient(to right, #9C40F7, #7209DB);border-radius: 15px;">
             <div class="">
                 <div class="row align-items-center">
