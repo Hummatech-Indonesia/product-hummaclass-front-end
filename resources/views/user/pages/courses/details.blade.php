@@ -195,7 +195,7 @@
                         </div>
                         <p class="mt-2">${value.sub_title}</p>
                         <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse-${index}">
                                 <div class="d-flex gap-2">
                                     <span class="badge text-dark fw-semibold pe-5" style="background-color: #FEF5EE">
