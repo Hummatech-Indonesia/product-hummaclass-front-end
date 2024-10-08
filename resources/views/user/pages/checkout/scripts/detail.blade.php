@@ -35,10 +35,10 @@
                 $('#transaction_code').text(transactionData.tripay.pay_code ? transactionData.tripay.reference :
                     "-");
                 $('#payment_method').text(transactionData.tripay.payment_method);
-                $('#checkout_date').text(transactionData.transaction.created_at);
-                $('#paid_date').text(transactionData.tripay.paid_at);
-                $('#expired_date').text(transactionData.transaction.expiry_date);
+                $('#checkout_date').text(formatTanggal(transactionData.transaction.created_at));
+                $('#expired_date').text(formatTanggal(transactionData.transaction.expiry_date));
                 $('#pay_code').text(transactionData.tripay.pay_code);
+                $('#paid_date').text(formatTanggal(transactionData.tripay.paid_at));
             }
 
             $.ajax({
@@ -63,7 +63,7 @@
                             $('#checkout-card').removeClass('d-none');
                             $('#loading-card').remove();
                             transactionData.transaction = response.data;
-                            
+
                             displayData();
 
                             if (!transactionData.transaction.voucher) {

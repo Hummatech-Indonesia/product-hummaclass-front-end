@@ -78,7 +78,7 @@
 
 
     <!-- JS here -->
-    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
@@ -175,6 +175,33 @@
                             <h4 class="text-center">Data kosong</h4>
                     </div>`
         }
+
+        function formatTanggal(tanggalAsli) {
+            // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
+            const date = new Date(tanggalAsli);
+
+            // Opsi untuk format tanggal dalam bahasa Indonesia
+            const opsiTanggal = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            };
+
+            // Opsi untuk format waktu (jam dan menit)
+            const opsiWaktu = {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false // Format 24 jam
+            };
+
+            // Menggunakan toLocaleDateString dan toLocaleTimeString untuk format
+            const tanggalFormatted = date.toLocaleDateString('id-ID', opsiTanggal);
+            const waktuFormatted = date.toLocaleTimeString('id-ID', opsiWaktu);
+
+            // Menggabungkan hasil format tanggal dan waktu
+            return `${tanggalFormatted} ${waktuFormatted}`;
+        }
+
     </script>
 
     @yield('script')

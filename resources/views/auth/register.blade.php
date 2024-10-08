@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#google-login').click(function(e) {
