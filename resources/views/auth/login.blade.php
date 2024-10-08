@@ -33,7 +33,7 @@
             <div class="position-relative z-index-5">
                 <div class="row">
                     <div class="col-xl-6 col-xxl-6" style="background-image: url('assets/img/auth/login-bg.png'), linear-gradient(to bottom right, #C79DEF, #A853F8); background-size: cover, cover;">
-                        <div class="d-none d-xl-flex">
+                        <div class="d-none d-xl-flex h-100 align-items-center">
                             <div class="card position-relative m-5" style="background-color: #D6B7F5; height: 600px;width:100%; border-radius: 20px;">
                                 <div class="p-5">
                                     <div>
@@ -129,9 +129,6 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script>
         $(document).ready(function() {
