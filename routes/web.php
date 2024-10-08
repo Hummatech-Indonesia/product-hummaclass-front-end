@@ -129,8 +129,8 @@ Route::get('quiz-setting/{id}', function ($id) {
     return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
 })->name('quetion-quiz.setting')->middleware('auth_custom');
 
-Route::get('finish-quiz', function () {
-    return view('user.pages.question-quiz.test-finish');
+Route::get('finish-quiz/{id?}', function ($id) {
+    return view('user.pages.question-quiz.test-finish', compact('id'));
 })->name('finish-quiz');
 
 Route::resources([

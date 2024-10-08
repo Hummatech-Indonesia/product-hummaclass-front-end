@@ -317,8 +317,6 @@
         function submit_quiz(user_quiz_id, answer) {
             const filteredAnswers = answer.map(a => a === null ? 'null' : a);
 
-            console.log(filteredAnswers);
-
             $.ajax({
                 type: "POST",
                 url: "{{ config('app.api_url') }}/api/quizzes-submit/" + user_quiz_id,
@@ -333,13 +331,13 @@
                 success: function(response) {
                     Swal.fire({
                         title: "Sukses",
-                        text: "Berhasil menambah data data.",
+                        text: "Berhasil mengirim ujian.",
                         icon: "success"
+                    }).then(() => {
+                        window.location.href = "{{ route('finish-quiz') }}/" + user_quiz_id;
                     });
-                    $('#modal-create-subcategory').modal('hide');
-                    $('#modal-create-subcategory').find('input').val('');
-                    get(1);
                 },
+
                 error: function(response) {
                     console.error(response);
                     Swal.fire({
