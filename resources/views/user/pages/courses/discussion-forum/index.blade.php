@@ -6,11 +6,6 @@
         background-color: #F1F1F1;
     }
 
-    .btn {
-        border: 1px solid #000;
-        border-radius: 15px;
-    }
-
     .form-check-input:checked {
         background-color: #9C40F7;
         border-color: #9C40F7;
@@ -38,21 +33,8 @@
 
     .btn-close {
         --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-        --bs-btn-close-opacity: 0.5;
-        --bs-btn-close-hover-opacity: 0.75;
-        --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        --bs-btn-close-focus-opacity: 1;
-        --bs-btn-close-disabled-opacity: 0.25;
-        --bs-btn-close-white-filter: invert(1) grayscale(100%) brightness(200%);
-        box-sizing: content-box;
-        width: 5px;
-        height: 5px;
-        padding: .25em .25em;
         color: var(--bs-btn-close-color);
         background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;
-        border: 0;
-        border-radius: .375rem;
-        opacity: var(--bs-btn-close-opacity);
     }
 
     .blog-widget .tagcloud span {
@@ -67,6 +49,60 @@
         -ms-border-radius: 3px;
         border-radius: 5px;
         font-size: 12px;
+    }
+
+    /* modal bg full */
+    .modal-backdrop {
+        transform: scale(1.25);
+        transform-origin: top left;
+    }
+
+    .outline-purple-primary {
+        user-select: none;
+        -moz-user-select: none;
+        background: transparent;
+        /* Membuat background menjadi transparan */
+        border: 2px solid #9C40F7;
+        /* Border outline dengan warna primary */
+        color: #9C40F7;
+        /* Warna teks mengikuti warna primary */
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: var(--tg-fw-semi-bold);
+        font-family: var(--tg-heading-font-family);
+        letter-spacing: 0;
+        line-height: 1.12;
+        margin-bottom: 0;
+        padding: 16px 30px;
+        text-align: center;
+        text-transform: capitalize;
+        touch-action: manipulation;
+        -webkit-transition: all 0.3s ease-out 0s;
+        -moz-transition: all 0.3s ease-out 0s;
+        -ms-transition: all 0.3s ease-out 0s;
+        -o-transition: all 0.3s ease-out 0s;
+        transition: all 0.3s ease-out 0s;
+        vertical-align: middle;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -o-border-radius: 50px;
+        -ms-border-radius: 50px;
+        border-radius: 50px;
+        white-space: nowrap;
+        box-shadow: none;
+        /* Hilangkan shadow */
+        overflow: hidden;
+    }
+
+    /* Hover effect */
+    .outline-purple-primary:hover {
+        background-color: #9C40F7;
+        /* Warna background saat hover */
+        color: var(--tg-common-color-white);
+        /* Warna teks saat hover */
+        border-color: #9C40F7;
+        /* Warna border tetap */
     }
 
 </style>
@@ -100,7 +136,7 @@
 
         <div class="row mt-3">
             <div class="col-lg-3">
-                <button class="btn btn-primary w-100">Buat Diskusi Baru</button>
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-create-forum-discussion" style="border: 1px solid #000;border-radius: 15px;">Buat Diskusi Baru</button>
                 <div class="card card-body mt-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                     <h5>Filter Berdasarkan</h5>
                     <div class="form-check mb-1">
@@ -172,7 +208,7 @@
                             <div class="tagcloud">
                                 <span class="d-flex justify-content-between">
                                     Nama Modul Lorem, ipsum.
-                                    <button type="button" class="btn-close ms-2 close-btn" aria-label="Close"></button>
+                                    <button type="button" class="btn-close ms-2 close-btn" style="width: 5px;height: 5px;" aria-label="Close"></button>
                                 </span>
                             </div>
                         </div>
@@ -204,11 +240,16 @@
                             </div>
                             <div class="d-flex gap-3">
                                 <div class="d-flex align-items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-black" width="25" height="25" viewBox="0 0 1024 1024"><path fill="currentColor" d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40m-280 0c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40"/><path fill="currentColor" d="M894 345c-48.1-66-115.3-110.1-189-130v.1c-17.1-19-36.4-36.5-58-52.1c-163.7-119-393.5-82.7-513 81c-96.3 133-92.2 311.9 6 439l.8 132.6c0 3.2.5 6.4 1.5 9.4c5.3 16.9 23.3 26.2 40.1 20.9L309 806c33.5 11.9 68.1 18.7 102.5 20.6l-.5.4c89.1 64.9 205.9 84.4 313 49l127.1 41.4c3.2 1 6.5 1.6 9.9 1.6c17.7 0 32-14.3 32-32V753c88.1-119.6 90.4-284.9 1-408M323 735l-12-5l-99 31l-1-104l-8-9c-84.6-103.2-90.2-251.9-11-361c96.4-132.2 281.2-161.4 413-66c132.2 96.1 161.5 280.6 66 412c-80.1 109.9-223.5 150.5-348 102m505-17l-8 10l1 104l-98-33l-12 5c-56 20.8-115.7 22.5-171 7l-.2-.1C613.7 788.2 680.7 742.2 729 676c76.4-105.3 88.8-237.6 44.4-350.4l.6.4c23 16.5 44.1 37.1 62 62c72.6 99.6 68.5 235.2-8 330"/><path fill="currentColor" d="M433 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-black" width="25" height="25" viewBox="0 0 1024 1024">
+                                        <path fill="currentColor" d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40m-280 0c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40" />
+                                        <path fill="currentColor" d="M894 345c-48.1-66-115.3-110.1-189-130v.1c-17.1-19-36.4-36.5-58-52.1c-163.7-119-393.5-82.7-513 81c-96.3 133-92.2 311.9 6 439l.8 132.6c0 3.2.5 6.4 1.5 9.4c5.3 16.9 23.3 26.2 40.1 20.9L309 806c33.5 11.9 68.1 18.7 102.5 20.6l-.5.4c89.1 64.9 205.9 84.4 313 49l127.1 41.4c3.2 1 6.5 1.6 9.9 1.6c17.7 0 32-14.3 32-32V753c88.1-119.6 90.4-284.9 1-408M323 735l-12-5l-99 31l-1-104l-8-9c-84.6-103.2-90.2-251.9-11-361c96.4-132.2 281.2-161.4 413-66c132.2 96.1 161.5 280.6 66 412c-80.1 109.9-223.5 150.5-348 102m505-17l-8 10l1 104l-98-33l-12 5c-56 20.8-115.7 22.5-171 7l-.2-.1C613.7 788.2 680.7 742.2 729 676c76.4-105.3 88.8-237.6 44.4-350.4l.6.4c23 16.5 44.1 37.1 62 62c72.6 99.6 68.5 235.2-8 330" />
+                                        <path fill="currentColor" d="M433 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40" /></svg>
                                     10 Balasan
                                 </div>
                                 <div class="d-flex align-items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="black" d="M6 22h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3M5 8V5c0-.805.55-.988 1-1h13v12H5z"/><path fill="black" d="M8 6h9v2H8z"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                        <path fill="black" d="M6 22h15v-2H6.012C5.55 19.988 5 19.805 5 19s.55-.988 1.012-1H21V4c0-1.103-.897-2-2-2H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3M5 8V5c0-.805.55-.988 1-1h13v12H5z" />
+                                        <path fill="black" d="M8 6h9v2H8z" /></svg>
                                     Lorem ipsum dolor sit amet
                                 </div>
                             </div>
@@ -220,9 +261,9 @@
             </div>
         </div>
     </div>
-
-
 </div>
+
+@include('user.pages.courses.discussion-forum.modal-create-discussion-forum')
 @endsection
 
 @section('script')
@@ -239,4 +280,30 @@
     });
 
 </script>
+
+<script>
+    function adjustBackdropForZoom() {
+        const zoomFactor = parseFloat(getComputedStyle(document.body).zoom) || 1; // Mendapatkan nilai zoom
+
+        const backdrop = document.querySelector('.modal-backdrop');
+        if (backdrop) {
+            // Gunakan transform untuk memperbesar backdrop agar sesuai dengan zoom
+            backdrop.style.transform = `scale(${1 / zoomFactor})`;
+            backdrop.style.transformOrigin = 'top left'; // Set origin dari scale
+            backdrop.style.width = '200vw';
+            backdrop.style.height = '200vh';
+        }
+    }
+
+    // Event listener ketika modal ditampilkan
+    const modalElement = document.getElementById('exampleModal');
+    modalElement.addEventListener('shown.bs.modal', function() {
+        adjustBackdropForZoom(); // Panggil fungsi untuk menyesuaikan ukuran backdrop
+    });
+
+    // Menyesuaikan backdrop jika ada perubahan zoom atau resize
+    window.addEventListener('resize', adjustBackdropForZoom);
+
+</script>
+
 @endsection
