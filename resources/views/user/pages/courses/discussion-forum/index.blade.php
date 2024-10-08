@@ -110,7 +110,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center custom-container mt-3">
-    <div class="col-lg-10 mb-4">
+    <div class="col-lg-11 mb-4">
         <div class="card position-relative overflow-hidden border-0" style="background: linear-gradient(to right, #9C40F7, #7209DB);border-radius: 15px;">
             <div class="">
                 <div class="row align-items-center">
