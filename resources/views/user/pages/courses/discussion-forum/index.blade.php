@@ -263,7 +263,7 @@
     </div>
 </div>
 
-@include('user.pages.courses.discussion-forum.modal-create-discussion-forum')
+@include('user.pages.courses.discussion-forum.widgets.modal-create-discussion-forum')
 @endsection
 
 @section('script')
