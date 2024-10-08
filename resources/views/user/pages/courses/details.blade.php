@@ -135,6 +135,7 @@
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(response.data.created);
                     $('#detail-rating').append(response.data.rating);
+                    $('#price-course').html(formatRupiah(response.data.price));
 
                     // tab deskripsi
                     $('#description-title').append(response.data.title);
