@@ -124,6 +124,13 @@
                     text: '{{ session('error') }}',
                 });
             @endif
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Oops...',
+                    text: '{{ session('success') }}',
+                });
+            @endif
 
             $.ajax({
                 type: "GET",
