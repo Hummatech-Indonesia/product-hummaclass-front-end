@@ -146,6 +146,9 @@ Route::get('discussion-forum', function(){
     return view('user.pages.courses.discussion-forum.index');
 })->name('discussion-forum.index');
 
+Route::get('discussion-forum/modul', function(){
+    return view('user.pages.courses.discussion-forum.discussion-forum');
+})->name('discussion-forum.modul');
 
 // ================== ADMIN ==================
 

@@ -232,7 +232,7 @@
                             <div class="d-flex align-items-center ms-2">
                                 <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded-circle" width="40" height="40">
                                 <div class="ms-2 d-flex align-items-center">
-                                    <span class="fw-semibold text-darl">Web Designer</span>
+                                    <span class="fw-semibold text-dark">Web Designer</span>
                                     <ul class="pt-3">
                                         <li>1 tahun yang lalu</li>
                                     </ul>
