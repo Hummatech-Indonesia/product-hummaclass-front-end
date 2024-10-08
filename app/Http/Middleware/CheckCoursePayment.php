@@ -23,7 +23,9 @@ class CheckCoursePayment
             $response = Http::withToken($token)
                 ->maxRedirects(5)
                 ->get(config('app.api_url') . "/api/course-by-submodule/$request->id");
+
             $courseSlug = $response->json()['data']['slug'];
+            if ($response->json()['data']['is_premium']) return redirect()->route('checkout.course', $courseSlug);
 
             $response = Http::withToken($token)
                 ->maxRedirects(5)
@@ -35,8 +37,6 @@ class CheckCoursePayment
                 return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
             }
         } catch (\Exception $e) {
-            // \Log::error('API request error: ' . $e->getMessage());
-            // return redirect()->route('login');
             dd($e);
         }
         return $next($request);

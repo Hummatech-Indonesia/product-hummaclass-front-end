@@ -17,11 +17,28 @@ class UserCheckoutController extends Controller
         $response = Http::withToken($token)
             ->maxRedirects(5)
             ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
+        // dd($response->json()['data']['user_course']['sub_module']['slug']);
 
-            if($response->json()['data']['user_course']) {
-                return redirect()->route('courses.courses.show', $slug)->with('warning', 'Anda sudah pernah melakukan checkout pada kursus ini');
+        if ($response->json()['data']['user_course']) {
+            return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module']['slug']);
+            // return redirect()->route('courses.courses.show', $slug)->with('warning', 'Anda sudah pernah melakukan checkout pada kursus ini');
+        } else {
+            $response = Http::withToken($token)
+                ->maxRedirects(5)
+                ->get(config('app.api_url') . "/api/courses/$slug");
+            $course = $response->json()['data'];
+            $courseId = $response->json()['data']['id'];
+            if (!$course['is_premium']) {
+                $response = Http::withToken($token)
+                    ->maxRedirects(5)
+                    ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
+                if ($response->json()['data']) {
+                    return redirect()->route('courses.course-lesson.index', $slug);
+                }
+            } else {
+                return view('user.pages.checkout.index', compact('slug'));
             }
-        return view('user.pages.checkout.index', compact('slug'));
+        }
     }
 
     /**

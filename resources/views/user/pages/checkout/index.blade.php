@@ -102,16 +102,6 @@
                                 recusandae
                                 quasi alias nesciunt sint assumenda aliquam praesentium ipsa! Architecto, illo!</p>
                         </div>
-                        <div class="col-12 border-top">
-                            <h5>Deskripsi: </h5>
-                            <div class="author-two d-flex align-items-center gap-3">
-                                <img src="assets/img/courses/course_author001.png" alt="img">
-                                <div>
-                                    <p class="m-0">By <a href="#">David Millar</a></p>
-                                    <p class="m-0"><a href="#">David Millar</a></p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
