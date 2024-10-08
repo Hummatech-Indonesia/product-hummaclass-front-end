@@ -49,10 +49,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // ================== USER ==================
 
+Route::resource('courses', CourseController::class)->only(['index', 'show']);
 Route::middleware(['auth_custom'])->group(function () {
     Route::prefix('courses')->name('courses.')->group(function () {
-
-        Route::resource('courses', CourseController::class)->only(['index', 'show']);
         Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
