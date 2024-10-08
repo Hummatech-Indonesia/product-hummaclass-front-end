@@ -72,7 +72,8 @@
                     </div>
                     <div class="col col-lg-6 mb-3">
                         <div class=" form-group">
-                            <label for="" class="form-label fw-semibold text-dark">Waktu tunggu remedial <small class="">(menit)</small></label>
+                            <label for="" class="form-label fw-semibold text-dark">Waktu tunggu remedial <small
+                                    class="">(menit)</small></label>
                             <input type="text" id="retry_delay" class="form-control required"
                                 placeholder="Masukan waktu tunggu remedial (menit)" name="retry_delay">
                             <div class="invalid-feedback"></div>
@@ -124,9 +125,36 @@
                 maxHeight: null, // set maximum height of editor
                 focus: false, // set focus to editable area after initializing summernote
             });
-
-
             var id = "{{ $id }}";
+
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/modules/detail/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.ajax({
+                        type: "get",
+                        url: "{{ config('app.api_url') }}/api/quizzes/" + response.data.slug,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            for (const key in response.data) {
+                                if (key == 'rules') {
+                                    $('.summernote').val(response.data[key]).trigger('summernote.change');
+                                }
+                                $(`input[name='${key}']`).val(response.data[key]);
+                            }
+                        }
+                    });
+
+                }
+            });
+
             $('#create-quiz-form').submit(function(e) {
                 e.preventDefault();
                 console.log(id);
@@ -134,7 +162,7 @@
                 var formData = new FormData(this);
 
                 console.log(formData);
-                
+
                 $.ajax({
                     type: "POST",
                     url: "{{ config('app.api_url') }}/api/quizzes/" + id,
