@@ -3,6 +3,7 @@ import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Checklist from "@editorjs/checklist";
 import ImageTool from "@editorjs/image";
+import Embed from "@editorjs/embed";
 
 const apiBaseUrl = "http://127.0.0.1:9000/api"; // Ganti dengan URL API Anda
 
@@ -12,6 +13,15 @@ const editor = new EditorJS({
     header: {
       class: Header,
       inlineToolbar: ["link"],
+    },
+    embed: {
+      class: Embed,
+      config: {
+        services: {
+          youtube: true,
+          coub: true,
+        },
+      },
     },
     list: {
       class: List,
