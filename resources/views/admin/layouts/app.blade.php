@@ -747,6 +747,49 @@
                             <h4 class="text-center">Data kosong</h4>
                     </div>`
         }
+
+        function formatDateTime(tanggalAsli) {
+            // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
+            const date = new Date(tanggalAsli);
+
+            // Opsi untuk format tanggal dalam bahasa Indonesia
+            const opsiTanggal = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            };
+
+            // Opsi untuk format waktu (jam dan menit)
+            const opsiWaktu = {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false // Format 24 jam
+            };
+
+            // Menggunakan toLocaleDateString dan toLocaleTimeString untuk format
+            const tanggalFormatted = date.toLocaleDateString('id-ID', opsiTanggal);
+            const waktuFormatted = date.toLocaleTimeString('id-ID', opsiWaktu);
+
+            // Menggabungkan hasil format tanggal dan waktu
+            return `${tanggalFormatted} ${waktuFormatted}`;
+        }
+
+        function formatDate(tanggalAsli) {
+            // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
+            const date = new Date(tanggalAsli);
+
+            // Opsi untuk format tanggal dalam bahasa Indonesia
+            const opsiTanggal = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            };
+            // Menggunakan toLocaleDateString dan toLocaleTimeString untuk format
+            const tanggalFormatted = date.toLocaleDateString('id-ID', opsiTanggal);
+
+            // Menggabungkan hasil format tanggal dan waktu
+            return `${tanggalFormatted}`;
+        }
     </script>
 
     @yield('script')
