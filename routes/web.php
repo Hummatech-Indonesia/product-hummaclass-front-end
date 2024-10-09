@@ -35,7 +35,7 @@ Route::get('/', function () {
     return view('user.pages.welcome');
 });
 
-Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
+Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login')->middleware('login_middleware');
 
 Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
 
