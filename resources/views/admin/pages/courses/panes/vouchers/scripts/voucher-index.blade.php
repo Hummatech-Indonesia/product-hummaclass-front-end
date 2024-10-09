@@ -133,7 +133,7 @@
                         <div class="text-center mt-4">
                             <h6 class="fw-semibold">Masa Aktif</h6>
                             <div class="mt-2">
-                                <h6 style="color: var(--purple-primary)">12 Januari 2022 - 12 Desember 2022</h6>
+                                <h6 style="color: var(--purple-primary)">${formatDate(data.start)} - ${formatDate(data.end)}</h6>
                             </div>
                         </div>
                     </div>

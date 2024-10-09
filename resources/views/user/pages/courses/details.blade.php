@@ -103,7 +103,6 @@
     </section>
     <!-- courses-details-area-end -->
 @endsection
-
 @section('script')
     <script>
         $(document).ready(function() {
@@ -140,6 +139,24 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    $.ajax({
+                        type: "post",
+                        url: "{{ config('app.api_url') }}/api/user-courses-check",
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        data: {
+                            course_slug: id
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                        }
+                    });
+
                     photo = `${response.data.photo}`;
                     $('#photo').attr('src', photo);
                     $('#sub-title').append(response.data.sub_title);

@@ -14,7 +14,7 @@
                             <path d="M13 16l2 0" />
                         </svg>
                     </span>
-                    <h5>Jumlah Soal: 10</h5>
+                    <h5>Jumlah Soal: <span id="total_question"></span></h5>
                 </div>
             </div>
         </div>
@@ -22,13 +22,16 @@
             <div class="card">
                 <div class="card-body p-2 d-flex flex-row align-items-center gap-2">
                     <span class="bg-light-warning rounded-2 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock text-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-clock text-warning">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
                             <path d="M12 7v5l3 3" />
                         </svg>
                     </span>
-                    <h5>Jumlah Soal: 10</h5>
+                    <h5>Waktu Pengerjaan: <span id="duration"></span></h5>
                 </div>
             </div>
         </div>
@@ -40,20 +43,40 @@
 <x-delete-modal-component></x-delete-modal-component>
 
 @push('script')
-<script>
-    $(document).ready(function() {
-        var id = "{{ $id }}";
-        $.ajax({
-            type: "GET"
-            , url: "{{ env('API_URL') }}/api/module-questions/detail/" + id
-            , dataType: "json"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , success: function(response) {
+    <script>
+        $(document).ready(function() {
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/modules/detail/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.ajax({
+                        type: "get",
+                        url: "{{ config('app.api_url') }}/api/quizzes/" + response.data.slug,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            $('#duration').text(response.data.duration);
+                            $('#total_question').text(response.data.total_question);
+                        }
+                    });
 
-                $('.quizContainer').empty();
-                if (response.data.length > 0) {
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "{{ env('API_URL') }}/api/module-questions/detail/" + id,
+                dataType: "json",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                success: function(response) {
                     $.each(response.data, function(index, value) {
                         $('.quizContainer').append(
                             `

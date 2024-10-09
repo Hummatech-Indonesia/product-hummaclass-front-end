@@ -42,7 +42,7 @@
         <div class="courses__details-enroll mb-5">
             <div class="tg-button-wrap">
                 <a href="{{ route('checkout.course', $id) }}"
-                    class="btn btn-two arrow-btn w-100 d-flex justify-content-center">
+                    class="btn btn-two arrow-btn w-100 d-flex justify-content-center" id="btn-checkout">
                     Beli Sekarang
                     <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
                 </a>
