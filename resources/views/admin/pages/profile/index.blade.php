@@ -1,16 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="card overflow-hidden" style="border-radius: 15px;">
-        <div class="card-body p-0">
-            <div class="d-flex align-items-center p-4 rounded-2 border-4 border-white"
-                style="background-color: var(--purple-primary);border-radius: 15px;">
-                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
-                    class="rounded-circle border border-3 border-white" width="100px" height="100px">
-                <div class="ms-3">
-                    <h4 class="fs-6 text-white fw-semibold mb-2" id="userName">Mohammad Arif</h4>
-                    <span class="fw-normal text-white" id="userEmail">arif@gmail.com</span>
-                </div>
+<div class="card overflow-hidden" style="border-radius: 15px;">
+    <div class="card-body p-0">
+        <div class="d-flex align-items-center p-4 rounded-2 border-4 border-white" style="background-color: var(--purple-primary);border-radius: 15px;">
+            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded-circle border border-3 border-white" width="100px" height="100px">
+            <div class="ms-3">
+                <h4 class="fs-6 text-white fw-semibold mb-2" id="userName">{{ session('user')['name'] }}</h4>
+                <span class="fw-normal text-white" id="userEmail">{{ session('user')['email'] }}</span>
             </div>
 
             <ul class="nav nav-pills user-profile-tab mt-2 ms-3" id="pills-tab" role="tablist">
