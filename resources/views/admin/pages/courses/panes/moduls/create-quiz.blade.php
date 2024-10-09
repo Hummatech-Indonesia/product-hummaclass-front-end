@@ -45,35 +45,35 @@
     <form id="question-bank">
         <div class="card">
             <div class="card-body">
-                <label for="question" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Soal</label>
+                <label for="question" class="form-label" style="font-weight: bold;">Soal</label>
                 <textarea name="question" id="question" class="form-control summernote"></textarea>
                 <div class="row my-3">
                     <div class="col-12">
-                        <label for="option_a" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Pilihan
+                        <label for="option_a" class="form-label" style="font-weight: bold;">Pilihan
                             A</label>
                         <textarea name="option_a" id="option_a" class="form-control summernote"></textarea>
                     </div>
                 </div>
                 <div class="row my-3">
                     <div class="col-6">
-                        <label for="option_b" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Pilihan
+                        <label for="option_b" class="form-label" style="font-weight: bold;">Pilihan
                             B</label>
                         <textarea name="option_b" id="option_b" class="form-control summernote"></textarea>
                     </div>
                     <div class="col-6">
-                        <label for="option_c" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Pilihan
+                        <label for="option_c" class="form-label" style="font-weight: bold;">Pilihan
                             C</label>
                         <textarea name="option_c" id="option_c" class="form-control summernote"></textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <label for="option_d" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Pilihan
+                        <label for="option_d" class="form-label" style="font-weight: bold;">Pilihan
                             D</label>
                         <textarea name="option_d" id="option_d" class="form-control summernote"></textarea>
                     </div>
                     <div class="col-6">
-                        <label for="option_e" class="form-label" style="font-weight: bold; font-size: 1.3rem;">Pilihan
+                        <label for="option_e" class="form-label" style="font-weight: bold;">Pilihan
                             E</label>
                         <textarea name="option_e" id="option_e" class="form-control summernote"></textarea>
                     </div>
@@ -82,7 +82,7 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <h3 style="font-weight: bold;" class="mb-3">Pilih Kunci Jawaban</h3>
+                <h5 style="font-weight: bold;" class="mb-3">Pilih Kunci Jawaban</h5>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="answer" value="option_a" checked>
                     <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
