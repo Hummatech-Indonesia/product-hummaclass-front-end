@@ -82,37 +82,15 @@
                         <div class="p-4">
                             <div class="card p-5 border-0">
                                 <h4 class="fw-semibold">Aturan</h4>
-                                <p>
-                                    Anda akan menemui ujian (quiz, exam, atau ujian akhir) seperti ini untuk memastikan
-                                    Anda sudah mengerti dan memahami materi pembelajaran yang telah diberikan. Pada
-                                    ujian akan tersedia beberapa pertanyaan dengan opsi jawaban pilihan ganda.
-                                </p>
-                                <p>
-                                    Ujian memiliki standar minimum kelulusan. Jika tidak memenuhi standar nilai minimum,
-                                    maka Anda wajib mengulang kembali sampai memenuhi standar tersebut. Perhatikan bahwa
-                                    jika Anda mau mengulang ujian, akan ada waktu tunggu / jeda yang Anda harus lewati.
-                                    Setelahnya, Anda dapat mengambil kembali ujian yang baru. Waktu tunggu ini
-                                    berbeda-beda, mulai dari 1 menit hingga berhari-hari. Jadi agar waktu Anda lebih
-                                    efisien, pastikan Anda sudah siap secara materi, sebelum mengambil ujian.
-                                </p>
-                                <p>
-                                    Setiap ujian juga memiliki durasi waktu yang berbeda. Anda wajib menyelesaikan
-                                    seluruh pertanyaan pada durasi waktu yang telah diberikan. Jika waktu yang diberikan
-                                    habis, maka ujian akan otomatis selesai. Sistem hanya akan menilai pertanyaan yang
-                                    sudah terjawab. Jadi, usahakan Anda telah menjawab sebanyak mungkin pertanyaan
-                                    hingga tuntas, sebelum durasi waktu habis.
-                                </p>
-                                <p>
-                                    Mari kita coba fitur ujian pada Dicoding Academy. Jika sudah siap mencoba, klik
-                                    tombol Ambil di bawah. Anda hanya bisa lanjut ke modul pelajaran berikutnya jika
-                                    telah lulus dari ujian ini.
-                                </p>
+                                <div class="" id="rules">
+
+                                </div>
 
                                 <ul style="list-style: disc">
                                     <li>Jumlah Soal : <span id="total_question"></span></li>
-                                    <li>Syarat Nilai Kelulusan : 80</li>
+                                    <li>Syarat Nilai Kelulusan : <span id="minimum_score"></span></li>
                                     <li>Durasi Ujian : <span id="duration"></span> Menit</li>
-                                    <li>Waktu tunggu ujian ulang ; 1 menit</li>
+                                    <li>Waktu tunggu ujian ulang: <span id="retry_delay"></span> menit</li>
                                 </ul>
                                 <div class="text-end mt-3 mb-4">
                                     <a href="" id="start_quiz" class="btn">Mulai
@@ -230,7 +208,9 @@
                 success: function(response) {
                     $('#total_question').html(response.data.total_question);
                     $('#duration').html(response.data.duration);
-
+                    $('#rules').html(response.data.rules);
+                    $('#retry_delay').html(response.data.retry_delay);
+                    $('#minimum_score').html(response.data.minimum_score);
                     var url = `{{ route('quetion-quiz.index', ['']) }}/${response.data.id}`;
                     $('#start_quiz').attr('href', url);
                 },
