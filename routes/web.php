@@ -37,7 +37,7 @@ Route::get('/', function () {
 
 Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login')->middleware('login_middleware');
 
-Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
+Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register')->middleware('login_middleware');
 
 Route::get('landing-dashboard', [LandingController::class, 'getDashboard']);
 
