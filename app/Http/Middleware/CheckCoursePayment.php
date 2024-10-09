@@ -20,12 +20,14 @@ class CheckCoursePayment
         $token = session('hummaclass-token');
 
         try {
+            if (session('user')['roles'][0]['name'] == 'admin') {
+                return $next($request);
+            }
             $response = Http::withToken($token)
                 ->maxRedirects(5)
                 ->get(config('app.api_url') . "/api/course-by-submodule/$request->id");
 
             $courseSlug = $response->json()['data']['slug'];
-            if ($response->json()['data']['is_premium']) return redirect()->route('checkout.course', $courseSlug);
 
             $response = Http::withToken($token)
                 ->maxRedirects(5)
@@ -33,7 +35,8 @@ class CheckCoursePayment
 
             if ($response->successful()) {
                 return $next($request);
-            } else {
+            } else if ($response->json()['data']['is_premium']) return redirect()->route('checkout.course', $courseSlug);
+            else {
                 return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
             }
         } catch (\Exception $e) {
