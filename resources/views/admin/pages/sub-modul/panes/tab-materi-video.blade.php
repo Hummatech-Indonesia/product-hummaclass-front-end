@@ -25,30 +25,7 @@
                 success: function(response) {
                     $('#title').html(response.data.title);
 
-                    // Parse konten dari Editor.js
-                    var contentData = JSON.parse(response.data.content);
-                    var contentHtml = '';
-
-                    // Render setiap blok
-                    contentData.blocks.forEach(function(block) {
-                        if (block.type === 'image') {
-                            contentHtml +=
-                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
-                        } else if (block.type === 'paragraph') {
-                            contentHtml += `<p>${block.data.text}</p>`;
-                        } else if (block.type === 'header') {
-                            contentHtml +=
-                                `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
-                        } else if (block.type === 'list') {
-                            const listItems = block.data.items.map(item => `<li>${item}</li>`)
-                                .join('');
-                            contentHtml += `<ul>${listItems}</ul>`;
-                        }
-                        // Tambahkan tipe blok lain sesuai kebutuhan
-                    });
-
-
-                    $('#content').html(contentHtml);
+                    $('#content').html(convertToHTML(JSON.parse(response.data.content)));
 
                     var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
                         .module_id);
@@ -65,5 +42,38 @@
                 }
             });
         });
+
+        function convertToHTML(data) {
+
+            let html = '';
+
+            $.each(data.blocks, function(index, block) {
+                console.log(block);
+                switch (block.type) {
+                    case 'header':
+                        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\n`;
+                        break;
+                    case 'list':
+                        html += `<ul>\n`;
+                        block.data.items.forEach(item => {
+                            html += `    <li>${item}</li>\n`;
+                        });
+                        html += `</ul>\n`;
+                        break;
+                    case 'paragraph':
+                        html += block.data.text;
+                        break;
+                    case 'image':
+                        html +=
+                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
+                    default:
+                        break;
+                }
+            });
+            console.log(html);
+
+
+            return html;
+        }
     </script>
 @endpush

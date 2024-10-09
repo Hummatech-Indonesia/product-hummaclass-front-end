@@ -16,6 +16,13 @@
         .text-primary {
             color: #7209DB !important;
         }
+
+        ul {
+            list-style-type: disc;
+            /* Pastikan bullet muncul */
+            padding-left: 20px;
+            /* Jarak dari tepi */
+        }
     </style>
 @endsection
 @section('content')
@@ -53,8 +60,7 @@
                 </div>
                 <div class="">
                     <li class="">
-                        <a href="" id="button-back"
-                            class="btn btn-muted editDescription">
+                        <a href="" id="button-back" class="btn btn-muted editDescription">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
