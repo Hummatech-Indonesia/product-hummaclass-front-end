@@ -35,8 +35,11 @@ class CheckCoursePayment
 
             if ($response->successful()) {
                 return $next($request);
-            } else if ($response->json()['data']['is_premium']) return redirect()->route('checkout.course', $courseSlug);
-            else {
+            } else if ($response->json()['data'] == null) {
+                return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
+            } else if ($response->json()['data']['is_premium']) {
+                return redirect()->route('checkout.course', $courseSlug);
+            } else {
                 return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
             }
         } catch (\Exception $e) {
