@@ -18,8 +18,8 @@
 
         .question-nav {
             display: inline-block;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             margin: 5px;
             border-radius: 10px;
             background-color: #fff;
