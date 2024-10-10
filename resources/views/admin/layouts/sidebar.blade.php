@@ -36,9 +36,9 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.courses.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.courses.index', 'admin.courses.show', 'admin.modules.index', 'admin.modules.show', 'admin.sub-modules.show') ? 'active' : '' }}" href="{{ route('admin.courses.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i> <!-- Icon untuk Kursus -->
+                            <i class="ti ti-book"></i>
                         </span>
                         <span class="hide-menu">Kursus</span>
                     </a>

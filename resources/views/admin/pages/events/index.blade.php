@@ -260,7 +260,7 @@
                                 <div class="col-lg-12">
                                     <div class="d-flex gap-2">
                                         <!-- URL menggunakan JavaScript untuk menggabungkan slug -->
-                                        <a href="/admin/events/show/${value.slug}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
+                                        <a href="{{ route('admin.events.show', '') }}/${value.id}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
                                         
                                         <!-- URL edit event -->
                                         <a href="/admin/events/${value.slug}/edit" class="btn btn-warning btn-sm py-2" style="width: 15%">
