@@ -225,7 +225,6 @@
                 success: function(response) {
                     const url = `{{ route('courses.course-lesson.index', ['']) }}/` + slug;
                     window.location.href = url;
-
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -253,6 +252,7 @@
             });
 
             let urlNext;
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/sub-modules/next/" + id,
@@ -261,8 +261,16 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    urlNext = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    urlNext =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#nextButton').attr("href", urlNext);
+                    $('#nextButton').click(function(e) {
+                        e.preventDefault();
+
+                        updateLastStepUser(response.data.course_slug, response.data.id,
+                            response
+                            .data.slug);
+                    });
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -270,6 +278,7 @@
             });
 
             let urlPrev;
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/sub-modules/prev/" + id,
@@ -278,8 +287,15 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    urlPrev = `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    urlPrev =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#prevButton').attr("href", urlPrev);
+                    $('#prevButton').click(function(e) {
+                        e.preventDefault();
+                        updateLastStepUser(response.data.course_slug, response.data.id,
+                            response.data
+                            .slug);
+                    });
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -292,13 +308,13 @@
                 const subModules = value.sub_modules.map(subModule => {
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
-                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between">
+                        <a onClick="updateLastStepUser('${subModule.course_slug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
                     } else {
                         return `<li class="course-item">
-                        <a onClick="updateLastStepUser('${subModule.course_clug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between" style="color: black">
+                        <a onClick="updateLastStepUser('${subModule.course_slug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between" style="color: black">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
