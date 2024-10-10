@@ -28,6 +28,7 @@
                         $('#pagination').html(handlePaginate(response.data.paginate));
                     } else {
                         $('#list-card').append(empty());
+                        $('#pagination').hide();
                     }
                 },
                 error: function(xhr) {
