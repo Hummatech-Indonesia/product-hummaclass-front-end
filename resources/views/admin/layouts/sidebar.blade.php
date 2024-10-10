@@ -26,7 +26,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.home') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-aperture"></i>
+                            <i class="ti ti-home"></i> <!-- Icon untuk Dashboard -->
                         </span>
                         <span class="hide-menu">Dashboard</span>
                     </a>
@@ -38,7 +38,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.courses.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-cpu"></i>
+                            <i class="ti ti-book"></i> <!-- Icon untuk Kursus -->
                         </span>
                         <span class="hide-menu">Kursus</span>
                     </a>
@@ -53,22 +53,6 @@
                         <span class="hide-menu">Kategori</span>
                     </a>
                 </li>
-                {{-- <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.modules.index') }}" aria-expanded="false">
-                <span>
-                    <i class="ti ti-activity-heartbeat"></i>
-                </span>
-                <span class="hide-menu">Modul</span>
-                </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="index6.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-playlist"></i>
-                        </span>
-                        <span class="hide-menu">Sub Modul</span>
-                    </a>
-                </li> --}}
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">KONTEN</span>
@@ -76,7 +60,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.news.index', 'admin.news.show') ? 'active' : '' }}" href="{{ route('admin.news.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-calendar"></i>
+                            <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
                         </span>
                         <span class="hide-menu">Berita</span>
                     </a>
@@ -84,7 +68,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.events.index', 'admin.events.show') ? 'active' : '' }}" href="{{ route('admin.events.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-calendar"></i>
+                            <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
                         <span class="hide-menu">Event</span>
                     </a>
@@ -95,8 +79,8 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow {{ Route::is('admin.configuration.faq.index', 'admin.configuration.footer.index') ? 'active' : '' }}" href="#" aria-expanded="false">
-                        <span class="d-flex">
-                            <i class="ti ti-chart-donut-3"></i>
+                        <span>
+                            <i class="ti ti-settings"></i> <!-- Icon untuk Konfigurasi -->
                         </span>
                         <span class="hide-menu">Konfigurasi</span>
                     </a>
@@ -104,7 +88,7 @@
                         <li class="sidebar-item">
                             <a href="{{ route('admin.configuration.faq.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
+                                    <i class="ti ti-help-circle"></i> <!-- Icon untuk FAQ -->
                                 </div>
                                 <span class="hide-menu">Faq</span>
                             </a>
@@ -112,7 +96,7 @@
                         <li class="sidebar-item">
                             <a href="{{ route('admin.configuration.footer.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-circle"></i>
+                                    <i class="ti ti-layout-footer"></i> <!-- Icon untuk Footer -->
                                 </div>
                                 <span class="hide-menu">Footer</span>
                             </a>
@@ -126,7 +110,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-calendar"></i>
+                            <i class="ti ti-users"></i> <!-- Icon untuk User -->
                         </span>
                         <span class="hide-menu">User</span>
                     </a>
@@ -134,20 +118,13 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-calendar"></i>
+                            <i class="ti ti-user"></i> <!-- Icon untuk Profile -->
                         </span>
                         <span class="hide-menu">Profile</span>
                     </a>
                 </li>
-                {{-- <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.question-bank.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-calendar"></i>
-                        </span>
-                        <span class="hide-menu">Bank Soal</span>
-                    </a>
-                </li> --}}
             </ul>
+            
             {{-- <div class="unlimited-access hide-menu bg-light-primary position-relative my-7 rounded">
           <div class="d-flex">
             <div class="unlimited-access-title">
