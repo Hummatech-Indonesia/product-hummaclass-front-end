@@ -17,7 +17,7 @@
                 },
                 dataType: "json",
                 data: {
-                    name: $('#search-name').val(),
+                    title: $('#search-name').val(),
                 },
                 success: function(response) {
                     $('#list-card').empty();
