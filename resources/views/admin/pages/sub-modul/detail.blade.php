@@ -17,12 +17,6 @@
             color: #7209DB !important;
         }
 
-        ul {
-            list-style-type: disc;
-            /* Pastikan bullet muncul */
-            padding-left: 20px;
-            /* Jarak dari tepi */
-        }
     </style>
 @endsection
 @section('content')
@@ -50,7 +44,7 @@
 
     <div class="card p-3">
         <div>
-            <ul class="nav nav-tabs d-flex justify-content-between" role="tablist">
+            <ul class="nav nav-tabs d-flex justify-content-between" style="list-style-type: disc; padding-left: 20px;" role="tablist">
                 <div class="d-flex">
                     <li class="nav-item materi">
                         <a class="nav-link" data-bs-toggle="tab" href="#materi" role="tab">
