@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-6 mb-3">
             <label for="" class="form-label">Jenis Kelamin:</label>
-            <input type="text" class="form-control" id="gender" placeholder="Jenis Kelamin" {{ session('user')['gender'] }} disabled>
+            <input type="text" class="form-control" id="gender" placeholder="Jenis Kelamin" value="{{ session('user')['gender'] }}" disabled>
         </div>
         <div class="col-lg-12 mb-4">
             <label for="" class="form-label">Alamat:</label>
@@ -44,19 +44,19 @@
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Email:</label>
-                <input type="text" class="form-control" id="email" placeholder="Email">
+                <input type="text" class="form-control" value="{{ session('user')['email'] }}" id="email" placeholder="Email">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">No Telepon:</label>
-                <input type="text" class="form-control" id="phone_number" placeholder="No Telepon">
+                <input type="text" class="form-control" value="{{ session('user')['phone_number'] }}" id="phone_number" placeholder="No Telepon">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Jenis Kelamin:</label>
-                <input type="text" class="form-control" id="gender" placeholder="Jenis Kelamin">
+                <input type="text" class="form-control" value="{{ session('user')['gender'] }}" id="gender" placeholder="Jenis Kelamin">
             </div>
             <div class="col-lg-12 mb-4">
                 <label for="" class="form-label">Alamat:</label>
-                <textarea name="" class="form-control" id="address" cols="30" rows="10"></textarea>
+                <textarea name="" class="form-control" value="{{ session('user')['address'] }}" id="address" cols="30" rows="10"></textarea>
             </div>
         </div>
         <div class="text-end">
