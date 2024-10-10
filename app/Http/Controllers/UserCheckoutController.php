@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
@@ -72,5 +73,11 @@ class UserCheckoutController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function downloadInvoice(string $ref) {
+        // $pdf = new PDF();
+        $pdf = PDF::loadView('pdf.invoice', compact('ref'));
+        return $pdf->download($ref . '.pdf');
     }
 }

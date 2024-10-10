@@ -1,24 +1,25 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Console\Scheduling\Event;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Guest\BlogController;
+use App\Http\Controllers\Guest\EventController;
+use App\Http\Controllers\Admin\ModuleController;
+use App\Http\Controllers\UserCheckoutController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\AdminBlogController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminModuleController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ModuleController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminBlogController;
-use App\Http\Controllers\Admin\AdminEventController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\dashboard\StudentDashboardController;
-use App\Http\Controllers\Guest\EventController;
-use App\Http\Controllers\Guest\BlogController;
-use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
-use Illuminate\Console\Scheduling\Event;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dashboard\StudentDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.pages.welcome');
 });
+
+Route::get('invoice/{ref}', [UserCheckoutController::class, 'downloadInvoice']);
 
 Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login')->middleware('login_middleware');
 
