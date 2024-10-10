@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{{-- @dd($data) --}}
 
 <head>
     <meta charset="UTF-8">
@@ -21,161 +22,111 @@
             height: 100vh;
         }
 
-        .receipt-container {
-            background-color: #fff;
-            width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
         .logo img {
             width: 50px;
-            height: 50px;
         }
 
-        .transaction-code {
+        .text-end {
             text-align: right;
         }
 
-        .transaction-code .code {
-            color: #ff1493;
-            font-weight: bold;
-            font-size: 20px;
-        }
-
-        .payment-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .total-payment h1 {
-            color: #000;
-        }
-
-        .payment-method .note {
-            font-size: 10px;
-            color: #a9a9a9;
-        }
-
-        .order-time {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .order-details {
-            margin-bottom: 20px;
-        }
-
-        .order-details h2 {
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .item .price {
-            font-weight: bold;
-        }
-
-        .subtotal-section {
-            margin-bottom: 20px;
-        }
-
-        .subtotal-row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .voucher {
-            color: red;
-        }
-
-        .final-total {
-            text-align: right;
-        }
-
-        .final-total h2 {
-            font-size: 24px;
-            color: #000;
+        tr,
+        td {
+            padding-top: 30px;
         }
     </style>
 </head>
 
 <body>
     <div class="receipt-container">
-        <div class="header">
-            <div class="logo">
-                <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" alt="Logo">
-            </div>
-            <div class="transaction-code">
-                <p>Kode Transaksi</p>
-                <p class="code">02446</p>
-            </div>
-        </div>
 
-        <div class="payment-info">
-            <div class="total-payment">
-                <p>Total Pembayaran</p>
-                <h1>Rp1.530.000</h1>
-            </div>
-            <div class="payment-method">
-                <p>Metode Pembayaran</p>
-                <p>Gopay (**087)</p>
-                <p class="note">*3 digit belakang nomer/nama akun gopay</p>
-            </div>
-        </div>
+        <table style="width: 90%; margin: 30px auto;">
+            <tr class="header">
+                <td class="logo">
+                    <img src="{{ public_path('assets/img/logo/logo-class-industri.png') }}" alt="Logo">
+                </td>
+                <td class="transaction-code text-end">
+                    <p>Kode Transaksi</p>
+                    <p class="code">{{ $ref }}</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="total-payment">
+                    <p>Total Pembayaran</p>
+                    <h5>Rp {{ number_format($data->amount + $data->fee_amount, 0, ',', '.') }}</h5>
+                </td>
+                <td class="payment-method text-end">
+                    <p>Metode Pembayaran</p>
+                    <p>{{ $data->payment_method }}</p>
+                    {{-- <small style="font-size: 8px; color: red;">*3 digit belakang nomer/nama akun gopay</small> --}}
+                </td>
+            </tr>
+            <tr>
+                <td class="order-created">
+                    <p>Pesanan Dibuat</p>
+                    <p>{{ Carbon\Carbon::parse($data->created_at)->isoFormat('DD MMMM Y, HH:mm') }}</p>
+                </td>
+                <td class="order-paid text-end">
+                    <p>Pesanan Dibayar</p>
+                    <p></p>
+                </td>
 
-        <div class="order-time">
-            <div class="order-created">
-                <p>Pesanan Dibuat</p>
-                <p>26 Oktober 2023, 13:30</p>
-            </div>
-            <div class="order-paid">
-                <p>Pesanan Dibayar</p>
-                <p>26 Oktober 2023, 16:30</p>
-            </div>
-        </div>
+            </tr>
 
-        <div class="order-details">
-            <h2>Rincian Pesanan</h2>
-            <div class="item">
-                <p><strong>(Development)</strong> By David Millar</p>
-                <p class="price">Rp850.000</p>
-            </div>
-        </div>
+            <tr>
+                <td colspan="2" style="padding-top: 20px;">
+                    <h4>Rincian Pesanan</h4>
+                </td>
+            </tr>
+            <tr>
+                <td class="order-details">
+                    <p style="color: #4b4b4b; font-size: 12px;"><strong>({{ $data->course['subcategory']['name'] }})</strong> <small style="color: #727272;">By David Millar</small></p>
+                    <p>{{ $data->course['title'] }}</p>
+                </td>
+                <td class="text-end">
+                    <p class="price">Rp {{ number_format($data->course['price'], 0, ',', '.') }}</p>
+                </td>
+            </tr>
 
-        <div class="subtotal-section">
-            <div class="subtotal-row">
-                <p>Subtotal untuk Produk</p>
-                <p>Rp1.550.000</p>
-            </div>
-            <div class="subtotal-row">
-                <p>Biaya Layanan</p>
-                <p>Rp10.000</p>
-            </div>
-            <div class="subtotal-row voucher">
-                <p>Voucher <span>(opsional)</span></p>
-                <p>-Rp30.000</p>
-            </div>
-        </div>
+            {{-- <div class="subtotal-section"> --}}
+            <tr class="">
+                <td>
+                    <p>Subtotal untuk Produk</p>
+                </td>
+                <td class="text-end" style="text-align: end;">
+                    <p>Rp {{ number_format($data->fee_amount + $data->course['price'], 0, ',', '.') }}</p>
+                </td>
+            </tr>
+            <tr class="">
+                <td>
+                    <p>Biaya Layanan</p>
+                </td>
+                <td class="text-end" style="text-align: end;">
+                    <p>Rp {{ number_format($data->fee_amount, 0, '.', '.') }}</p>
+                </td>
+            </tr>
+            @if ($data->voucher)
+                <tr class="voucher">
+                    <td>
+                        <p>Voucher <span>(opsional)</span></p>
+                    </td>
+                    <td class="text-end" style="text-align: end;">
+                        <p>-Rp {{ $data->voucher['discount'] }}</p>
+                    </td>
+                </tr>
+            @endif
+            {{-- </div> --}}
 
-        <div class="final-total">
-            <p>Total Pembayaran</p>
-            <h2>Rp1.530.000</h2>
-        </div>
+            <tr class="final-total">
+                <td style="text-align: start;">
+                    <p>Total Pembayaran</p>
+                </td>
+                <td class="text-end">
+                    <h5>Rp {{ number_format($data->fee_amount + $data->amount, 0, ',', '.') }}</h5>
+                </td>
+            </tr>
+        </table>
+
     </div>
 </body>
 

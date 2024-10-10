@@ -123,7 +123,7 @@
                             <p class="m-0" class="fw-semibold">Pesanan Dibayar</p>
                             <p class="m-0"><span class="fw-bold" id="paid_date"></span></p>
                         </div>
-                        <button
+                        <a href="{{ route('invoice', $reference) }}"
                             class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2 m-auto mb-3 rounded-3"
                             id="save-invoice-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -136,7 +136,7 @@
                             <span>
                                 Simpan
                                 Pembayaran
-                            </span></button>
+                            </span></a>
                         <div class="d-flex justify-content-between py-3 pay-code-row">
                             <p class="m-0" class="fw-semibold">Kode Pembayaran (1 x 24 Jam)</p>
                         </div>

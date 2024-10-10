@@ -75,9 +75,14 @@ class UserCheckoutController extends Controller
         //
     }
 
-    public function downloadInvoice(string $ref) {
+    public function downloadInvoice(string $ref)
+    {
+        $response = Http::withToken(session('hummaclass-token'))
+            ->get(config('app.api_url') . "/api/transaction/" . $ref . "/detail");
+        $data = (object) $response->json()['data'];
         // $pdf = new PDF();
-        $pdf = PDF::loadView('pdf.invoice', compact('ref'));
+        $pdf = PDF::loadView('pdf.invoice', compact('data', 'ref'));
+        // return $pdf->stream($ref . '.pdf', ['Attachment' => false]);
         return $pdf->download($ref . '.pdf');
     }
 }

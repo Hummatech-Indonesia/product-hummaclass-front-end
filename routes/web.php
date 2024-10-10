@@ -36,7 +36,7 @@ Route::get('/', function () {
     return view('user.pages.welcome');
 });
 
-Route::get('invoice/{ref}', [UserCheckoutController::class, 'downloadInvoice']);
+Route::get('invoice/{ref}', [UserCheckoutController::class, 'downloadInvoice'])->name('invoice');
 
 Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login')->middleware('login_middleware');
 
