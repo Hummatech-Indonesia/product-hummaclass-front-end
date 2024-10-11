@@ -116,7 +116,7 @@
                 editor.save().then((outputData) => {
                     $('#editorContent').val(JSON.stringify(outputData));
     
-                    var formData = new FormData(this);
+                    var formDataUpdate = new FormData(this);
     
                     $.ajax({
                         url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
@@ -124,7 +124,7 @@
                             'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
                         },
                         type: 'PATCH',
-                        data: formData,
+                        data: formDataUpdate,
                         contentType: false,
                         processData: false,
                         success: function(response) {
