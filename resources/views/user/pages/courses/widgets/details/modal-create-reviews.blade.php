@@ -71,13 +71,13 @@
                             </div>
                             <input type="hidden" id="rating" value="0">
                         </div>
-                        <textarea name="description" placeholder="Tuliskan Review" class="form-control" id="" cols="30" rows="10"></textarea>
+                        <textarea name="description" placeholder="Tuliskan Review" class="form-control" id="review-textarea" cols="30" rows="10"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer mb-4">
+                <div class="px-4 mb-4">
                     <div class="d-flex justify-content-between">
-                        {{-- <p>1000 Karakter tersisa</p> --}}
-                        <div class="">
+                        <p id="char-count" class="text-start">1000 Karakter tersisa</p>
+                        <div class="d-flex gap-3">
                             <button type="button" class="outline-purple-primary" data-bs-dismiss="modal">Nanti saja</button>
                             <button type="submit" class="btn text-white updateConfirmation" style="background-color: #7209DB;">Kirim Review</button>
                         </div>

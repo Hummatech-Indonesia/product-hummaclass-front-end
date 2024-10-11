@@ -417,4 +417,16 @@
     });
 
 </script>
+
+
+<script>
+    const textarea = document.getElementById('review-textarea');
+    const charCount = document.getElementById('char-count');
+    const maxChars = 1000; // Batas maksimal karakter
+
+    textarea.addEventListener('input', () => {
+        const remainingChars = maxChars - textarea.value.length;
+        charCount.textContent = `${remainingChars} Karakter tersisa`;
+    });
+</script>
 @endsection
