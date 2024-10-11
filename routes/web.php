@@ -141,6 +141,10 @@ Route::get('discussion-forum/modul', function () {
     return view('user.pages.courses.discussion-forum.discussion-forum');
 })->name('discussion-forum.modul');
 
+Route::get('task-execution', function(){
+    return view('user.pages.courses.task-execution.index');
+})->name('task-execution.index');
+
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
