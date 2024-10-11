@@ -117,6 +117,8 @@
                     $('#editorContent').val(JSON.stringify(outputData));
     
                     var formDataUpdate = new FormData(this);
+                    console.log('Title:', formDataUpdate.get('title'));
+
     
                     $.ajax({
                         url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
