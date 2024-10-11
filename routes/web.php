@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
 use App\Http\Controllers\dashboard\StudentDashboardController;
+use App\Http\Controllers\SubmissionTask;
 
 /*
 |----------------------------------------------------------------------
@@ -34,6 +35,8 @@ use App\Http\Controllers\dashboard\StudentDashboardController;
 Route::get('/', function () {
     return view('user.pages.welcome');
 });
+
+Route::get('submission-tasks/download/{id}', [SubmissionTask::class, 'downloadSubmissionTask'])->name('submission-task.download');
 
 Route::get('invoice/{ref}', [UserCheckoutController::class, 'downloadInvoice'])->name('invoice');
 
