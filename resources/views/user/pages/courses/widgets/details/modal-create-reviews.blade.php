@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer mb-4">
                     <div class="d-flex justify-content-between">
-                        <p>1000 Karakter tersisa</p>
+                        {{-- <p>1000 Karakter tersisa</p> --}}
                         <div class="">
                             <button type="button" class="outline-purple-primary" data-bs-dismiss="modal">Nanti saja</button>
                             <button type="submit" class="btn text-white updateConfirmation" style="background-color: #7209DB;">Kirim Review</button>
