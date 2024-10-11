@@ -62,11 +62,25 @@
         cursor: not-allowed;
     }
 
-    /* modal bg full */
     .modal-backdrop {
         transform: scale(1.25);
         transform-origin: top left;
     }
+
+    .stars button svg {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .stars button svg:hover {
+        transform: scale(1.2);
+    }
+
+    .stars button.active svg path {
+        fill: #FFB649;
+        stroke: #FFB649;
+    }
+
 </style>
 @endsection
 
@@ -268,9 +282,9 @@
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;
-                }).join('');
-                const quizzes = value.quizzes.map(quiz => {
-                    return `<li class="course-item open-item">
+            }).join('');
+            const quizzes = value.quizzes.map(quiz => {
+                return `<li class="course-item open-item">
                                <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
@@ -316,23 +330,91 @@
                         </div>
                     </div>
                 `;
+        }
+    });
+
+    $('.last_step_update').click(function(e) {
+        e.preventDefault();
+        var sub_modul_id = $(this).data('sub-modul-id');
+        console.log(sub_modul_id);
+
+        $.ajax({
+            type: "PUT",
+            // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
+            data: "data"
+            , dataType: "dataType"
+            , success: function(response) {
+
             }
         });
+    });
 
-        $('.last_step_update').click(function(e) {
-            e.preventDefault();
-            var sub_modul_id = $(this).data('sub-modul-id');
-            console.log(sub_modul_id);
+</script>
 
-            $.ajax({
-                type: "PUT",
-                // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
-                data: "data",
-                dataType: "dataType",
-                success: function(response) {
+<script>
+    // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
+        tabButton.addEventListener('shown.bs.tab', function(event) {
+            var targetTab = event.target.getAttribute('data-bs-target');
 
-                }
-            });
+            if (targetTab === '#reviews-tab-pane') {
+                document.getElementById('courses-detail-sidebar').style.display = 'none';
+                document.getElementById('sidebar-tab-review').style.display = 'block';
+            } else {
+                document.getElementById('courses-detail-sidebar').style.display = 'block';
+                document.getElementById('sidebar-tab-review').style.display = 'none';
+            }
         });
-    </script>
+    });
+
+</script>
+
+<script>
+    // Simpan tab yang aktif ke localStorage
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
+        button.addEventListener('shown.bs.tab', function(event) {
+            let activeTab = event.target.id;
+            localStorage.setItem('activeTab', activeTab);
+        });
+    });
+
+    // Ambil tab yang aktif dari localStorage saat halaman dimuat
+    window.addEventListener('load', function() {
+        let activeTab = localStorage.getItem('activeTab');
+        if (activeTab) {
+            let tabTrigger = document.getElementById(activeTab);
+            let tab = new bootstrap.Tab(tabTrigger);
+            tab.show();
+        }
+    });
+
+</script>
+
+<script>
+    // Ambil semua tombol bintang
+    const stars = document.querySelectorAll('.stars .star');
+    const ratingInput = document.getElementById('rating');
+
+    // Function untuk update tampilan bintang
+    function updateStars(rating) {
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active'); // Beri style untuk bintang yang aktif
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+
+    // Tambahkan event listener pada setiap bintang
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value'); // Ambil nilai rating
+            ratingInput.value = rating; // Simpan nilai rating ke input hidden
+            updateStars(rating); // Update tampilan bintang
+            console.log(`Rating tersimpan: ${rating}`);
+        });
+    });
+
+</script>
 @endsection
