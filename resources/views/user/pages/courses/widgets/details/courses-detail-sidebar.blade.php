@@ -27,7 +27,7 @@
     </style>
 @endsection
 
-<div class="col-xl-3 col-lg-4">
+<div class="col-xl-3 col-lg-4" id="courses-detail-sidebar">
     <div class="courses__details-sidebar">
         {{-- <div class="courses__details-video">
             <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" alt="img">
