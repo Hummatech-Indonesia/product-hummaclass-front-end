@@ -202,14 +202,14 @@
 
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-                               <a class="last_step_update" href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
+                               <a style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
-                               <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
+                               <a d-flex justify-content-between" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
                                 </a>
@@ -225,7 +225,7 @@
                         </div>
                         <p class="mt-2">${value.sub_title}</p>
                         <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse-${index}">
                                 <div class="d-flex gap-2">
                                     <span class="badge text-dark fw-semibold pe-5" style="background-color: #FEF5EE">
@@ -255,22 +255,6 @@
                     </div>
                 `;
             }
-        });
-
-        $('.last_step_update').click(function(e) {
-            e.preventDefault();
-            var sub_modul_id = $(this).data('sub-modul-id');
-            console.log(sub_modul_id);
-
-            $.ajax({
-                type: "PUT",
-                // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
-                data: "data",
-                dataType: "dataType",
-                success: function(response) {
-
-                }
-            });
         });
     </script>
 @endsection

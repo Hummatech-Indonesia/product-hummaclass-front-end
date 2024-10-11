@@ -45,7 +45,8 @@
                 </div>
                 <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Sub Judul</label>
-                    <input type="text" name="sub_title" id="sub-title" class="form-control" placeholder="Masukan sub judul">
+                    <input type="text" name="sub_title" id="sub-title" class="form-control"
+                        placeholder="Masukan sub judul">
                     <div class="invalid-feedback"></div>
                 </div>
                 {{-- <div class="col col-12 mb-3">
@@ -75,92 +76,91 @@
 @section('script')
     {{-- @include('admin.pages.courses.scripts.index') --}}
 
-<script>
-    $(document).ready(function() {
-        var id = "{{ $id }}";
-        var modules;
+    <script>
+        $(document).ready(function() {
+            var id = "{{ $id }}";
+            var modules;
 
-        // Fungsi untuk set nilai ke form
-        function setValue(data) {
-            console.log(data);
-            $('#title').val(data.title);
-            $('#sub-title').val(data.sub_title);
-            modules = data;
-        }
-
-        // Mendapatkan data materi
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id + "/edit",
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-            },
-            dataType: "json",
-            success: function(response) {
-                setValue(response.data);
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data materi.",
-                    icon: "error"
-                });
+            // Fungsi untuk set nilai ke form
+            function setValue(data) {
+                console.log(data);
+                $('#title').val(data.title);
+                $('#sub-title').val(data.sub_title);
+                modules = data;
             }
-        });
 
-        // Edit form submit
-        $('#edit-sub-modul-form').submit(function(e) {
-            e.preventDefault();
-
-            var editorContent = $('#editorjs').html();
-            $('#editorContent').val(editorContent);
-
-            var formData = {};
-            
-            $(this).serializeArray().forEach(function(field) {
-                formData[field.title] = field.value;
-                formData[field.sub_title] = field.value;
-            });
-
+            // Mendapatkan data materi
             $.ajax({
-                url: "https://e-course.mijurnal.com" + "/api/sub-modules/" + id,
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id + "/edit",
                 headers: {
-                    'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
-                type: 'PATCH',
-                data: formData,
+                dataType: "json",
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: response.meta.title,
-                        icon: "success"
-                    }).then(function() {
-
-                    });
+                    setValue(response.data);
                 },
-                error: function(error) {
-                    let errors = error.responseJSON.data || {};
-                    let message = error.responseJSON.meta.message;
-                    if (errors) {
-                        for (let key in errors) {
-                            if (errors.hasOwnProperty(key)) {
-                                let feedback = $(`#${key}`).closest('.invalid-feedback');
-                                feedback.text(errors[key]);
-                                feedback.removeClass('d-none');
-                                $(`#${key}`).addClass('is-invalid');
-                            }
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: message,
-                            icon: "error"
-                        });
-                    }
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data materi.",
+                        icon: "error"
+                    });
                 }
             });
-        });
-    });
 
-</script>
+            // Edit form submit
+            $('#edit-sub-modul-form').submit(function(e) {
+                e.preventDefault();
+
+                var editorContent = $('#editorjs').html();
+                $('#editorContent').val(editorContent);
+
+                var formData = {};
+
+                $(this).serializeArray().forEach(function(field) {
+                    formData[field.title] = field.value;
+                    formData[field.sub_title] = field.value;
+                });
+
+                $.ajax({
+                    url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
+                    headers: {
+                        'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    type: 'PATCH',
+                    data: formData,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses",
+                            text: response.meta.title,
+                            icon: "success"
+                        }).then(function() {
+
+                        });
+                    },
+                    error: function(error) {
+                        let errors = error.responseJSON.data || {};
+                        let message = error.responseJSON.meta.message;
+                        if (errors) {
+                            for (let key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    let feedback = $(`#${key}`).closest('.invalid-feedback');
+                                    feedback.text(errors[key]);
+                                    feedback.removeClass('d-none');
+                                    $(`#${key}`).addClass('is-invalid');
+                                }
+                            }
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: message,
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
