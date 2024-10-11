@@ -118,6 +118,8 @@
     
                     var formDataUpdate = new FormData(this);
                     console.log('Title:', formDataUpdate.get('title'));
+                    console.log('Sub-title:', formData.get('sub_title'));
+                    console.log('content:', formData.get('content'));
 
     
                     $.ajax({
