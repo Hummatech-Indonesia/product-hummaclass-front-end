@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
     @yield('style')
+    <style>
+        :root{
+            --tg-theme-primary: #9425FE;
+        }
+    </style>
 </head>
 
 <body style="
