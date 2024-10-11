@@ -15,7 +15,6 @@ class CourseController extends Controller
 
     public function showQuiz($id)
     {
-        // dd($id);
         return view('user.pages.courses.quizz', compact('id'));
     }
 

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Console\Scheduling\Event;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\Admin\UserController;
@@ -23,9 +22,9 @@ use App\Http\Controllers\dashboard\StudentDashboardController;
 use App\Http\Controllers\SubmissionTask;
 
 /*
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|----------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
@@ -42,27 +41,24 @@ Route::get('submission-tasks/download/{id}', [SubmissionTask::class, 'downloadSu
 Route::get('invoice/{ref}', [UserCheckoutController::class, 'downloadInvoice'])->name('invoice');
 
 Route::get('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login')->middleware('login_middleware');
-
 Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])->name('register')->middleware('login_middleware');
 
 Route::get('landing-dashboard', [LandingController::class, 'getDashboard']);
-
 Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
 Route::get('save-token-google', [App\Http\Controllers\AuthController::class, 'saveTokenGoogle'])->name('save-token-google');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // ================== USER ==================
 
 Route::prefix('courses')->name('courses.')->group(function () {
     Route::resource('courses', CourseController::class)->only(['index', 'show']);
+
     Route::middleware(['auth_custom'])->group(function () {
         Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
 });
-
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
@@ -77,9 +73,11 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         Route::get('reviews', function () {
             return view('user.pages.dashboard.student.reviews');
         })->name('reviews');
+
         Route::get('history-transaction/{id}', function ($id) {
             return view('user.pages.dashboard.student.history-transaction');
         })->name('history-transaction');
+
         Route::get('settings', function () {
             return view('user.pages.dashboard.student.settings');
         })->name('settings.index');
@@ -91,20 +89,11 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
-// Route::prefix('events')->name('events.')->group(function () {
-//     Route::get('events', function () {
-//         return view('user.pages.events.index');
-//     })->name('index');
-
-//     Route::get('events-detail', function () {
-//         return view('user.pages.events.detail-events');
-//     })->name('detail.event');
-// });
-
 Route::prefix('news')->name('news.')->group(function () {
     Route::get('news', function () {
         return view('user.pages.news.index');
     })->name('index');
+
     Route::get('detail-news/{id}', function () {
         return view('user.pages.news.detail-news');
     })->name('detail.news');
@@ -157,9 +146,7 @@ Route::get('discussion-forum/modul', function () {
 
 // ================== ADMIN ==================
 
-
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-
     Route::get('home', function () {
         return view('admin.index');
     })->name('home');
@@ -171,6 +158,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::get('module-questions', function () {
         return view('admin.pages.courses.modules.module-questions.index');
     });
+
     Route::get('module-questions-create', function () {
         return view('admin.pages.courses.modules.module-questions.create');
     });
@@ -189,10 +177,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::get('sub-modules/{id}', [AdminSubModuleController::class, 'show'])->name('sub-modules.show');
     Route::get('create-materi/{id}', [AdminSubModuleController::class, 'create'])->name('create-materi.index');
-    Route::get('edit-materi/{id}', [AdminSubModuleController::class, 'edit'])->name('edit-materi.index');
-
-
-    Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('edit-materi/{id}/edit', [AdminSubModuleController::class, 'edit'])->name('edit-materi.index');
 
     Route::get('courses/detail', function () {
         return view('admin.pages.courses.detail');
@@ -211,7 +196,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     })->name('detail-users.index');
 
     Route::get('create-modul/{id}', [AdminModuleController::class, 'create'])->name('create.moduls.index');
-
 
     Route::get('create-task/{id}', function (string $id) {
         return view('admin.pages.courses.panes.moduls.create-task', compact('id'));
@@ -249,42 +233,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('footer', function () {
             return view('admin.pages.configuration.footer');
         })->name('footer.index');
+
         Route::get('faq', function () {
             return view('admin.pages.configuration.faq');
         })->name('faq.index');
     });
-
-    // Route::prefix('news')->group(function () {
-    //     // Route::get('news', function () {
-    //     //     return view('admin.pages.news.index');
-    //     // })->name('index');
-    //     // Route::get('create-news', function () {
-    //     //     return view('admin.pages.news.create-news');
-    //     // })->name('create');
-    //     // Route::get('update-news', function () {
-    //     //     return view('admin.pages.news.edit-news');
-    //     // })->name('update');
-    //     // Route::get('detail-news', function () {
-    //     //     return view('admin.pages.news.detail-news');
-    //     // })->name('detail');
-    //     Route::resource('news', BlogController::class);
-    // });
-
-    // Route::prefix('events')->name('events.')->group(function () {
-    //     Route::get('events', function () {
-    //         return view('admin.pages.events.index');
-    //     })->name('index');
-    //     Route::get('create-events', function () {
-    //         return view('admin.pages.events.create-events');
-    //     })->name('create');
-    //     Route::get('update-events', function () {
-    //         return view('admin.pages.events.edit-events');
-    //     })->name('update');
-    //     Route::get('detail-events', function () {
-    //         return view('admin.pages.events.detail-events');
-    //     })->name('detail');
-    // });
 });
 
-
+// Load additional routes
 require_once('features/user/checkout.php');

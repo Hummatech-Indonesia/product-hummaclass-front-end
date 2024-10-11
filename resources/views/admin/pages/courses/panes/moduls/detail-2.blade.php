@@ -152,7 +152,7 @@
                             </svg>
                             Tambah Tugas
                         </a>
-                        <a href="{{ route('quetion-quiz.setting', $id) }}" class="btn btn-warning d-none addQuiz" >
+                        <a href="{{ route('quetion-quiz.setting', $id) }}" class="btn btn-warning d-none addQuiz">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M19.9 12.66a1 1 0 0 1 0-1.32l1.28-1.44a1 1 0 0 0 .12-1.17l-2-3.46a1 1 0 0 0-1.07-.48l-1.88.38a1 1 0 0 1-1.15-.66l-.61-1.83a1 1 0 0 0-.95-.68h-4a1 1 0 0 0-1 .68l-.56 1.83a1 1 0 0 1-1.15.66L5 4.79a1 1 0 0 0-1 .48L2 8.73a1 1 0 0 0 .1 1.17l1.27 1.44a1 1 0 0 1 0 1.32L2.1 14.1a1 1 0 0 0-.1 1.17l2 3.46a1 1 0 0 0 1.07.48l1.88-.38a1 1 0 0 1 1.15.66l.61 1.83a1 1 0 0 0 1 .68h4a1 1 0 0 0 .95-.68l.61-1.83a1 1 0 0 1 1.15-.66l1.88.38a1 1 0 0 0 1.07-.48l2-3.46a1 1 0 0 0-.12-1.17ZM18.41 14l.8.9l-1.28 2.22l-1.18-.24a3 3 0 0 0-3.45 2L12.92 20h-2.56L10 18.86a3 3 0 0 0-3.45-2l-1.18.24l-1.3-2.21l.8-.9a3 3 0 0 0 0-4l-.8-.9l1.28-2.2l1.18.24a3 3 0 0 0 3.45-2L10.36 4h2.56l.38 1.14a3 3 0 0 0 3.45 2l1.18-.24l1.28 2.22l-.8.9a3 3 0 0 0 0 3.98m-6.77-6a4 4 0 1 0 4 4a4 4 0 0 0-4-4m0 6a2 2 0 1 1 2-2a2 2 0 0 1-2 2" />
@@ -303,9 +303,9 @@
                                                 d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
                                         </svg>
                                     </a>
-                                    <a style="color: #DB0909;">
+                                    <button data-id="${value.id}" class="border-0 btn-delete-task bg-transparent" style="color: #DB0909;">
                                         <i class="ti ti-trash fs-7"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
 
@@ -326,7 +326,7 @@
                                 <button class="btn btn-light" style="color: var(--purple-primary)">
                                 ${value.point}+ Points
                                 </button>
-                                <a href="{{ route('admin.detail-task.blade.php') }}" class="btn text-white d-flex align-items-center"
+                                <a  class="btn text-white d-flex align-items-center"
                                     style="background-color: var(--purple-primary)">
                                     Lihat Tugas
                                     <i class="ti ti-arrow-right fs-5 ms-1"></i>
@@ -391,5 +391,63 @@
                 });
             });
         }
+    </script>
+
+    <script>
+        $(document).on('click', '.btn-delete-task', function() {
+            const id = $(this).data('id');
+            const url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
+
+            $('#modal-delete').modal('show');
+            deleteCTask(url);
+        });
+
+        function deleteCTask(url) {
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        });
+                        get(1)
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+        }
+    </script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            var activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('.nav-tabs a[href="' + activeTab + '"]').tab('show');
+            }
+
+            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+                var href = $(e.target).attr('href');
+                localStorage.setItem('activeTab', href);
+            });
+        });
     </script>
 @endsection

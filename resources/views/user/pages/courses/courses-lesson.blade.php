@@ -214,7 +214,7 @@
 @section('script')
     <script>
         // Definisikan fungsi di scope global
-        function updateLastStepUser(course, sub_module, slug) {
+        function updateLastStepUser(course, sub_module) {
             $.ajax({
                 type: "PUT",
                 url: "{{ config('app.api_url') }}" + "/api/user-courses/" + course + "/" + sub_module,
@@ -223,8 +223,8 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    const url = `{{ route('courses.course-lesson.index', ['']) }}/` + slug;
-                    window.location.href = url;
+                    console.log(response);
+
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -264,13 +264,7 @@
                     urlNext =
                         `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#nextButton').attr("href", urlNext);
-                    $('#nextButton').click(function(e) {
-                        e.preventDefault();
 
-                        updateLastStepUser(response.data.course_slug, response.data.id,
-                            response
-                            .data.slug);
-                    });
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -290,12 +284,7 @@
                     urlPrev =
                         `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#prevButton').attr("href", urlPrev);
-                    $('#prevButton').click(function(e) {
-                        e.preventDefault();
-                        updateLastStepUser(response.data.course_slug, response.data.id,
-                            response.data
-                            .slug);
-                    });
+
                 },
                 error: function(xhr) {
                     console.log(xhr);
@@ -308,13 +297,13 @@
                 const subModules = value.sub_modules.map(subModule => {
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
-                        <a onClick="updateLastStepUser('${subModule.course_slug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between">
+                        <a  class="d-flex justify-content-between">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
                     } else {
                         return `<li class="course-item">
-                        <a onClick="updateLastStepUser('${subModule.course_slug}', '${subModule.id}', '${subModule.slug}')" class="d-flex justify-content-between" style="color: black">
+                        <a  class="d-flex justify-content-between" style="color: black">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
@@ -359,6 +348,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    updateLastStepUser(response.data.course_slug, response.data.id);
                     $('#course_sub_title').html(response.data.sub_title);
                     $('#title_course').html(response.data.course_title);
                     $('#course_title').html(response.data.title);
@@ -385,12 +375,25 @@
                     $('#content').html(contentHtml);
                 },
                 error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data materi.",
-                        icon: "error"
-                    });
+                    if (xhr.status == 403) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
+                        }).then(() => {
+                            window.history.back();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data materi.",
+                            icon: "error"
+                        }).then(() => {
+                            window.history.back();
+                        });
+                    }
                 }
+
             });
         });
     </script>

@@ -1,221 +1,297 @@
 @extends('user.layouts.app')
 
+@section('style')
+<style>
+    .add-to-cart:hover {
+        color: var(--bs-primary);
+    }
+
+    .payment-option span {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .payment-option img {
+        width: 100px !important;
+        height: auto;
+        aspect-ratio: 2 / 1;
+    }
+
+    .payment-option {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 10px;
+        /* cursor: pointer; */
+        transition: border-color 0.3s;
+    }
+
+    .outline-purple-primary {
+        display: inline-block;
+        border: 2px solid #9425FE;
+        color: #9425FE;
+        background-color: transparent;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .outline-purple-primary:hover {
+        background-color: #9425FE;
+        color: white;
+    }
+
+    .outline-purple-primary:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
+    }
+
+    .outline-purple-primary:active {
+        background-color: #5a34a9;
+        border-color: #5a34a9;
+    }
+
+    .outline-purple-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .modal-backdrop {
+        transform: scale(1.25);
+        transform-origin: top left;
+    }
+
+    .stars button svg {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .stars button svg:hover {
+        transform: scale(1.2);
+    }
+
+    .stars button.active svg path {
+        fill: #FFB649;
+        stroke: #FFB649;
+    }
+
+</style>
+@endsection
+
 @section('content')
-    <!-- breadcrumb-area -->
-    <div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two"
-        data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumb__content">
-                        <nav class="breadcrumb">
-                            <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Home</a>
-                            </span>
-                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Courses</a>
-                            </span>
-                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
-                                Engineers</span>
-                        </nav>
-                    </div>
+<!-- breadcrumb-area -->
+<div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb__content">
+                    <nav class="breadcrumb">
+                        <span property="itemListElement" typeof="ListItem">
+                            <a href="/">Home</a>
+                        </span>
+                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                        <span property="itemListElement" typeof="ListItem">
+                            <a href="/">Courses</a>
+                        </span>
+                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                        <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
+                            Engineers</span>
+                    </nav>
                 </div>
             </div>
-        </div>
-        <div class="breadcrumb__shape-wrap">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right"
-                data-aos-delay="300">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up"
-                data-aos-delay="400">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left"
-                data-aos-delay="400">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left"
-                data-aos-delay="400">
         </div>
     </div>
-    <!-- breadcrumb-area-end -->
+    <div class="breadcrumb__shape-wrap">
+        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
+        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
+        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
+        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
+    </div>
+</div>
+<!-- breadcrumb-area-end -->
 
-    <!-- courses-details-area -->
-    <section class="courses__details-area section-py-120">
-        <div class="container">
-            <div class="row" id="detail-course">
-                <div class="col-xl-9 col-lg-8">
-                    <div class="courses__details-thumb">
-                        <img src="" id="photo" alt="img" width="100%">
+<!-- courses-details-area -->
+<section class="courses__details-area section-py-120">
+    <div class="container">
+        <div class="row" id="detail-course">
+            <div class="col-xl-9 col-lg-8">
+                <div class="courses__details-thumb">
+                    <img src="" id="photo" alt="img" width="100%">
+                </div>
+                <div class="courses__details-content">
+                    <ul class="courses__item-meta list-wrap">
+                        <li class="courses__item-tag">
+                            <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
+                        </li>
+                        <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
+                        </li>
+                    </ul>
+                    <h2 class="title mb-0" id="detail-title"></h2>
+                    <p id="sub-title"></p>
+                    <div class="courses__details-meta">
+                        <ul class="list-wrap">
+                            <li class="author-two">
+                                <img src="{{ asset('assets/img/courses/course_author001.png') }}" alt="img">
+                                By
+                                <a href="#">HummaClass</a>
+                            </li>
+                            <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
+                            <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
+                        </ul>
                     </div>
-                    <div class="courses__details-content">
-                        <ul class="courses__item-meta list-wrap">
-                            <li class="courses__item-tag">
-                                <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
-                            </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
-                            </li>
-                        </ul>
-                        <h2 class="title mb-0" id="detail-title"></h2>
-                        <p id="sub-title"></p>
-                        <div class="courses__details-meta">
-                            <ul class="list-wrap">
-                                <li class="author-two">
-                                    <img src="{{ asset('assets/img/courses/course_author001.png') }}" alt="img">
-                                    By
-                                    <a href="#">HummaClass</a>
-                                </li>
-                                <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
-                                <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
-                            </ul>
-                        </div>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
-                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
-                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
-                                    data-bs-target="#curriculum-tab-pane" type="button" role="tab"
-                                    aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
-                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
-                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
-                                    data-bs-target="#reviews-tab-pane" type="button" role="tab"
-                                    aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            @include('user.pages.courses.widgets.details.overview')
-                            @include('user.pages.courses.widgets.details.curriculumn')
-                            @include('user.pages.courses.widgets.details.instructors')
-                            @include('user.pages.courses.widgets.details.reviews')
-                        </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum-tab-pane" type="button" role="tab" aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="instructors-tab" data-bs-toggle="tab" data-bs-target="#instructors-tab-pane" type="button" role="tab" aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        @include('user.pages.courses.widgets.details.overview')
+                        @include('user.pages.courses.widgets.details.curriculumn')
+                        @include('user.pages.courses.widgets.details.instructors')
+                        @include('user.pages.courses.widgets.details.reviews')
                     </div>
                 </div>
-                @include('user.pages.courses.widgets.details.courses-detail-sidebar')
             </div>
+            @include('user.pages.courses.widgets.details.courses-detail-sidebar')
+            @include('user.pages.courses.widgets.details.sidebar-tab-review')
         </div>
-    </section>
-    <!-- courses-details-area-end -->
+    </div>
+</section>
+@include('user.pages.courses.widgets.details.modal-create-reviews')
+<!-- courses-details-area-end -->
 @endsection
 @section('script')
-    <script>
-        $(document).ready(function() {
-            let photo;
-            var id = "{{ $id }}";
+<script>
+    $(document).ready(function() {
+        let photo;
+        var id = "{{ $id }}";
 
-            @if (session('warning'))
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops...',
-                    text: '{{ session('warning') }}',
+        @if(session('warning'))
+        Swal.fire({
+            icon: 'warning'
+            , title: 'Oops...'
+            , text: '{{ session('
+            warning ') }}'
+        , });
+        @endif
+        @if(session('error'))
+        Swal.fire({
+            icon: 'error'
+            , title: 'Oops...'
+            , text: '{{ session('
+            error ') }}'
+        , });
+        @endif
+        @if(session('success'))
+        Swal.fire({
+            icon: 'success'
+            , title: 'Oops...'
+            , text: '{{ session('
+            success ') }}'
+        , });
+        @endif
+
+        $.ajax({
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/courses/" + id
+            , headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            }
+            , dataType: "json"
+            , success: function(response) {
+                $.ajax({
+                    type: "post"
+                    , url: "{{ config('app.api_url') }}/api/user-courses-check"
+                    , headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    }
+                    , data: {
+                        course_slug: id
+                    }
+                    , dataType: "json"
+                    , success: function(response) {
+                        $('#btn-checkout').text('Lanjutkan');
+                        $('#btn-checkout').attr('href'
+                            , "{{ route('courses.course-lesson.index', '') }}/" +
+                            response.data.user_course.sub_module.slug);
+                    }
                 });
-            @endif
-            @if (session('error'))
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: '{{ session('error') }}',
+
+                photo = `${response.data.photo}`;
+                $('#photo').attr('src', photo);
+                $('#sub-title').append(response.data.sub_title);
+                $('#detail-title').append(response.data.title);
+                $('#detail-category').append(response.data.sub_category.name);
+                $('#detail-count-user').append(response.data.user_courses_count);
+                $('#detail-date').append(response.data.created);
+                $('#detail-rating').append(response.data.rating);
+                $('#price-course').html(formatRupiah(response.data.price));
+
+                // tab deskripsi
+                $('#description-title').append(response.data.title);
+                $('#description-description').append(response.data.description);
+                $.each(response.data.modules, function(index, value) {
+                    $('#module-content').append(moduleContent(index, value));
                 });
-            @endif
-            @if (session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Oops...',
-                    text: '{{ session('success') }}',
+
+                // tab konten kursus
+
+                // tab ulasan
+                $('#review-rating').append(response.data.rating);
+                $('#review-rating-count').append(response.data.course_review_count);
+                // $('#review-users').append(response.data.course_reviews.user.name);
+                // console.log(response.data.course_reviews);
+
+
+                response.data.course_reviews.forEach(review => {
+                    console.log(review.user.name);
+
                 });
-            @endif
 
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    $.ajax({
-                        type: "post",
-                        url: "{{ config('app.api_url') }}/api/user-courses-check",
-                        headers: {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                        },
-                        data: {
-                            course_slug: id
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            $('#btn-checkout').text('Lanjutkan');
-                            $('#btn-checkout').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                        }
-                    });
+            }
+            , error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
+                });
+            }
+        });
 
-                    photo = `${response.data.photo}`;
-                    $('#photo').attr('src', photo);
-                    $('#sub-title').append(response.data.sub_title);
-                    $('#detail-title').append(response.data.title);
-                    $('#detail-category').append(response.data.sub_category.name);
-                    $('#detail-count-user').append(response.data.user_courses_count);
-                    $('#detail-date').append(response.data.created);
-                    $('#detail-rating').append(response.data.rating);
-                    $('#price-course').html(formatRupiah(response.data.price));
+        function moduleContent(index, value) {
 
-                    // tab deskripsi
-                    $('#description-title').append(response.data.title);
-                    $('#description-description').append(response.data.description);
-                    $.each(response.data.modules, function(index, value) {
-                        $('#module-content').append(moduleContent(index, value));
-                    });
-
-                    // tab konten kursus
-
-                    // tab ulasan
-                    $('#review-rating').append(response.data.rating);
-                    $('#review-rating-count').append(response.data.course_review_count);
-                    // $('#review-users').append(response.data.course_reviews.user.name);
-                    // console.log(response.data.course_reviews);
-
-
-                    response.data.course_reviews.forEach(review => {
-                        console.log(review.user.name);
-
-                    });
-
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
-
-            function moduleContent(index, value) {
-
-                const subModules = value.sub_modules.map(subModule => {
-                    return `<li class="course-item open-item">
+            const subModules = value.sub_modules.map(subModule => {
+                return `<li class="course-item open-item">
                                <a class="last_step_update" href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
                                 </a>
                             </li>`;
-                }).join('');
-                const quizzes = value.quizzes.map(quiz => {
-                    return `<li class="course-item open-item">
+            }).join('');
+            const quizzes = value.quizzes.map(quiz => {
+                return `<li class="course-item open-item">
                                <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
                                 </a>
                             </li>`;
-                }).join('');
-                return `
+            }).join('');
+            return `
                     <div class="accordion-item mt-3">
                          <div class="d-flex">
                             <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2" href="javascript:void(0)" width="30" height="30">
@@ -225,7 +301,7 @@
                         </div>
                         <p class="mt-2">${value.sub_title}</p>
                         <h2 class="accordion-header" id="heading-${index}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#collapse-${index}" aria-expanded="${index === 0 ? 'true' : 'false'}" aria-controls="collapse-${index}">
                                 <div class="d-flex gap-2">
                                     <span class="badge text-dark fw-semibold pe-5" style="background-color: #FEF5EE">
@@ -254,23 +330,103 @@
                         </div>
                     </div>
                 `;
+        }
+    });
+
+    $('.last_step_update').click(function(e) {
+        e.preventDefault();
+        var sub_modul_id = $(this).data('sub-modul-id');
+        console.log(sub_modul_id);
+
+        $.ajax({
+            type: "PUT",
+            // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
+            data: "data"
+            , dataType: "dataType"
+            , success: function(response) {
+
             }
         });
+    });
 
-        $('.last_step_update').click(function(e) {
-            e.preventDefault();
-            var sub_modul_id = $(this).data('sub-modul-id');
-            console.log(sub_modul_id);
+</script>
 
-            $.ajax({
-                type: "PUT",
-                // url = "{{ config('app.api_url') }}/api/user-course-step/" + sub_modul_id + "/" 
-                data: "data",
-                dataType: "dataType",
-                success: function(response) {
+<script>
+    // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
+        tabButton.addEventListener('shown.bs.tab', function(event) {
+            var targetTab = event.target.getAttribute('data-bs-target');
 
-                }
-            });
+            if (targetTab === '#reviews-tab-pane') {
+                document.getElementById('courses-detail-sidebar').style.display = 'none';
+                document.getElementById('sidebar-tab-review').style.display = 'block';
+            } else {
+                document.getElementById('courses-detail-sidebar').style.display = 'block';
+                document.getElementById('sidebar-tab-review').style.display = 'none';
+            }
         });
-    </script>
+    });
+
+</script>
+
+<script>
+    // Simpan tab yang aktif ke localStorage
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
+        button.addEventListener('shown.bs.tab', function(event) {
+            let activeTab = event.target.id;
+            localStorage.setItem('activeTab', activeTab);
+        });
+    });
+
+    // Ambil tab yang aktif dari localStorage saat halaman dimuat
+    window.addEventListener('load', function() {
+        let activeTab = localStorage.getItem('activeTab');
+        if (activeTab) {
+            let tabTrigger = document.getElementById(activeTab);
+            let tab = new bootstrap.Tab(tabTrigger);
+            tab.show();
+        }
+    });
+
+</script>
+
+<script>
+    // Ambil semua tombol bintang
+    const stars = document.querySelectorAll('.stars .star');
+    const ratingInput = document.getElementById('rating');
+
+    // Function untuk update tampilan bintang
+    function updateStars(rating) {
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.add('active'); // Beri style untuk bintang yang aktif
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+
+    // Tambahkan event listener pada setiap bintang
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-value'); // Ambil nilai rating
+            ratingInput.value = rating; // Simpan nilai rating ke input hidden
+            updateStars(rating); // Update tampilan bintang
+            console.log(`Rating tersimpan: ${rating}`);
+        });
+    });
+
+</script>
+
+
+<script>
+    const textarea = document.getElementById('review-textarea');
+    const charCount = document.getElementById('char-count');
+    const maxChars = 1000; // Batas maksimal karakter
+
+    textarea.addEventListener('input', () => {
+        const remainingChars = maxChars - textarea.value.length;
+        charCount.textContent = `${remainingChars} Karakter tersisa`;
+    });
+</script>
 @endsection
