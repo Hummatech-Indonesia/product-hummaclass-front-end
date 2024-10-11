@@ -80,7 +80,7 @@
         $(document).ready(function() {
             var id = "{{ $id }}";
             var modules;
-
+    
             // Fungsi untuk set nilai ke form
             function setValue(data) {
                 console.log(data);
@@ -88,7 +88,7 @@
                 $('#sub-title').val(data.sub_title);
                 modules = data;
             }
-
+    
             // Mendapatkan data materi
             $.ajax({
                 type: "GET",
@@ -108,59 +108,63 @@
                     });
                 }
             });
-
+    
             // Edit form submit
             $('#edit-sub-modul-form').submit(function(e) {
                 e.preventDefault();
-
-                var editorContent = $('#editorjs').html();
-                $('#editorContent').val(editorContent);
-
-                var formData = {};
-
-                $(this).serializeArray().forEach(function(field) {
-                    formData[field.title] = field.value;
-                    formData[field.sub_title] = field.value;
-                });
-
-                $.ajax({
-                    url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
-                    headers: {
-                        'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
-                    },
-                    type: 'PATCH',
-                    data: formData,
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Sukses",
-                            text: response.meta.title,
-                            icon: "success"
-                        }).then(function() {
-
-                        });
-                    },
-                    error: function(error) {
-                        let errors = error.responseJSON.data || {};
-                        let message = error.responseJSON.meta.message;
-                        if (errors) {
-                            for (let key in errors) {
-                                if (errors.hasOwnProperty(key)) {
-                                    let feedback = $(`#${key}`).closest('.invalid-feedback');
-                                    feedback.text(errors[key]);
-                                    feedback.removeClass('d-none');
-                                    $(`#${key}`).addClass('is-invalid');
-                                }
-                            }
-                        } else {
+    
+                editor.save().then((outputData) => {
+                    $('#editorContent').val(JSON.stringify(outputData));
+    
+                    var formData = new FormData(this);
+    
+                    $.ajax({
+                        url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
+                        headers: {
+                            'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
+                        },
+                        type: 'PATCH',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
                             Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: message,
-                                icon: "error"
+                                title: "Sukses",
+                                text: response.meta.title,
+                                icon: "success"
+                            }).then(function() {
+                                window.location.href = "/admin/modules/" + response.data.module_id;
                             });
+                        },
+                        error: function(error) {
+                            let errors = error.responseJSON.data || {};
+                            let message = error.responseJSON.meta.message;
+                            $('.is-invalid').removeClass('is-invalid');
+                            $('.invalid-feedback').addClass('d-none');
+    
+                            if (errors) {
+                                for (let key in errors) {
+                                    if (errors.hasOwnProperty(key)) {
+                                        let feedback = $(`#${key}`).closest('.col').find('.invalid-feedback');
+                                        feedback.text(errors[key]);
+                                        feedback.removeClass('d-none');
+                                        $(`#${key}`).addClass('is-invalid');
+                                    }
+                                }
+                            } else {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: message,
+                                    icon: "error"
+                                });
+                            }
                         }
-                    }
+                    });
+                }).catch((error) => {
+                    console.log('Error saving content:', error);
                 });
             });
         });
     </script>
+    
 @endsection
