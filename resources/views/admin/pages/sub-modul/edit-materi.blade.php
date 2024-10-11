@@ -118,8 +118,8 @@
     
                     var formDataUpdate = new FormData(this);
                     console.log('Title:', formDataUpdate.get('title'));
-                    console.log('Sub-title:', formData.get('sub_title'));
-                    console.log('content:', formData.get('content'));
+                    console.log('Sub-title:', formDataUpdate.get('sub_title'));
+                    console.log('content:', formDataUpdate.get('content'));
 
     
                     $.ajax({
@@ -127,7 +127,7 @@
                         headers: {
                             'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
                         },
-                        type: 'PATCH',
+                        type: 'PUT',
                         data: formDataUpdate,
                         contentType: false,
                         processData: false,
