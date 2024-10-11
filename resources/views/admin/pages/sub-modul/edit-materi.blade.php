@@ -89,7 +89,7 @@
                 modules = data;
             }
     
-            // Mendapatkan data materi
+            // Mendapatkan data sub-modul untuk di-edit
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id + "/edit",
@@ -103,32 +103,47 @@
                 error: function(xhr) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data materi.",
+                        text: "Tidak dapat memuat data sub-modul.",
                         icon: "error"
                     });
                 }
             });
     
-            // Edit form submit
+            // Fungsi untuk validasi dan submit form
             $('#edit-sub-modul-form').submit(function(e) {
                 e.preventDefault();
     
+                // Mengambil data dari editor
                 editor.save().then((outputData) => {
+                    // Validasi: cek apakah konten editor kosong
+                    if (outputData.blocks.length === 0) {
+                        Swal.fire({
+                            title: "Konten wajib diisi!",
+                            text: "Harap tambahkan konten sebelum menyimpan.",
+                            icon: "error"
+                        });
+                        return; // Jika konten kosong, form tidak dikirim
+                    }
+    
+                    // Memasukkan konten editor ke field hidden untuk dikirimkan
                     $('#editorContent').val(JSON.stringify(outputData));
     
-                    var formDataUpdate = new FormData(this);
-                    console.log('Title:', formDataUpdate.get('title'));
-                    console.log('Sub-title:', formDataUpdate.get('sub_title'));
-                    console.log('content:', formDataUpdate.get('content'));
-
+                    // Buat formData dari form
+                    var formData = new FormData(this);
     
+                    // Debug untuk melihat apakah title dan sub_title sudah masuk ke formData
+                    console.log('Title:', formData.get('title'));
+                    console.log('Sub-title:', formData.get('sub_title'));
+                    console.log('Content:', formData.get('content'));
+    
+                    // AJAX request untuk mengirim form data
                     $.ajax({
                         url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
                         headers: {
                             'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
                         },
-                        type: 'PUT',
-                        data: formDataUpdate,
+                        type: 'PATCH',
+                        data: formData,
                         contentType: false,
                         processData: false,
                         success: function(response) {
@@ -170,5 +185,6 @@
             });
         });
     </script>
+    
     
 @endsection
