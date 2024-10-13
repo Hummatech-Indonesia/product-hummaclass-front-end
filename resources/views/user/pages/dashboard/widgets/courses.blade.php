@@ -38,7 +38,7 @@
         -moz-user-select: none;
         background: #E6E9EF;
         border: medium none;
-        color: black;
+        color: var(--tg-body-color);
         cursor: pointer;
         display: inline-block;
         font-size: 16px;
