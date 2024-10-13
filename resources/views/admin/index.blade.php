@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -74,7 +74,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -93,7 +93,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -101,7 +101,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <p class="fw-semibold fs-2 mb-1">Jumlah Eveny</p>
+                        <p class="fw-semibold fs-2 mb-1">Jumlah Event</p>
                         <h5 class="fw-semibold mb-0">15</h5>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -131,7 +131,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                     <circle cx="17" cy="7" r="3" />
                                     <circle cx="7" cy="17" r="3" />
@@ -139,32 +139,14 @@
                                 </g>
                             </svg>
                         </div>
-                        <p class="fw-semibold fs-2 mb-1">User</p>
-                        <h5 class="fw-semibold mb-0">45k</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="card border-0 zoom-in shadow-none">
-                <div class="card-body">
-                    <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
-                            </svg>
-                        </div>
-                        <p class="fw-semibold fs-2 mb-1">Penghargaan</p>
-                        <h5 class="fw-semibold mb-0">25k</h5>
+                        <p class="fw-semibold fs-2 mb-1">Jumlah Sertifikat</p>
+                        <h5 class="fw-semibold mb-0">50</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-lg-8 d-flex align-items-strech">
             <div class="card w-100">
