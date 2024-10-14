@@ -236,4 +236,34 @@
             locationContainer.style.display = this.value == '1' ? 'none' : 'block';
         });
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let repeaterContainer = document.querySelector('[data-repeater-list]');
+        let addButton = document.querySelector('[data-repeater-create]');
+        let template = document.querySelector('[data-repeater-item]').cloneNode(true);
+        template.querySelectorAll('input').forEach(input => input.value = ''); // Kosongkan input di template
+        
+        addButton.addEventListener('click', function() {
+            let newItem = template.cloneNode(true);
+            let deleteButton = newItem.querySelector('[data-repeater-delete]');
+            
+            deleteButton.addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
+                    newItem.remove();
+                }
+            });
+            
+            repeaterContainer.appendChild(newItem);
+        });
+        
+        document.querySelectorAll('[data-repeater-delete]').forEach(function(deleteButton) {
+            deleteButton.addEventListener('click', function() {
+                if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
+                    deleteButton.closest('[data-repeater-item]').remove();
+                }
+            });
+        });
+    });
+</script>
 @endsection
