@@ -790,6 +790,23 @@
             // Menggabungkan hasil format tanggal dan waktu
             return `${tanggalFormatted}`;
         }
+
+        function formatTime(tanggalAsli) {
+            // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
+            const date = new Date(tanggalAsli);
+
+            // Opsi untuk format tanggal dalam bahasa Indonesia
+            const opsiWaktu = {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false // Format 24 jam
+            };
+            // Menggunakan toLocaleDateString dan toLocaleTimeString untuk format
+            const waktuFormatted = date.toLocaleTimeString('id-ID', opsiWaktu);
+
+            // Menggabungkan hasil format tanggal dan waktu
+            return `${waktuFormatted}`;
+        }
     </script>
 
     @yield('script')

@@ -49,7 +49,8 @@
                 </div>
                 <div class="col col-md-12 mb-3" id="price-container" style="display: none">
                     <label for="price" class="form-label">Harga</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga"
+                        value="0">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-6 mb-3">
@@ -89,7 +90,6 @@
                     <div data-repeater-list="repeater-group">
                         <div data-repeater-item="" class="mb-3">
                             <h5 class="fw-semibold mt-3">Runtunan Acara</h5>
-                            <hr>
                             <div class="row">
                                 <div class="col-11">
                                     <div class="row">
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" data-repeater-create="" class="btn text-white"
+                    <button type="button" data-repeater-create="" class="btn text-white" id="roundown-btn"
                         style="background-color: var(--purple-primary)">
                         <div class="d-flex align-items-center">
                             <i class="ti ti-plus ms-1 fs-5 me-1"></i> Tambah Acara
@@ -196,13 +196,17 @@
 
         document.getElementById('is_premium').addEventListener('change', function() {
             var priceContainer = document.getElementById('price-container');
-            priceContainer.style.display = this.value == '1' ? 'none' : 'block';
+            priceContainer.style.display = this.value == '0' ? 'none' : 'block';
         });
 
         document.getElementById('is_online').addEventListener('change', function() {
             var locationContainer = document.getElementById('location-container');
             locationContainer.style.display = this.value == '1' ? 'none' : 'block';
         });
+
+        document.getElementById('roundown-btn').addEventListener('click', function() {
+            console.log($('.repeater-group.row').first());
+        })
     </script>
 
     <script>
