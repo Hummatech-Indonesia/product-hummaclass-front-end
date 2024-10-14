@@ -148,6 +148,10 @@ Route::get('task-execution', function(){
     return view('user.pages.courses.task-execution.index');
 })->name('task-execution.index');
 
+Route::get('upload-task', function(){
+    return view('user.pages.courses.task-execution.upload-task');
+})->name('upload-task.index');
+
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {

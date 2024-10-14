@@ -5,7 +5,6 @@
 
     </div>
 </div>
-<x-delete-modal-component></x-delete-modal-component>
 
 @push('script')
     <script>

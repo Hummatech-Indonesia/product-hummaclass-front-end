@@ -193,14 +193,12 @@
         </div>
     </div>
 
-    {{-- modal pengaturan kuis --}}
+    <x-delete-modal-component></x-delete-modal-component>
 @endsection
 
 @section('script')
     @include('admin.pages.courses.panes.moduls.widgets.modal-settings-quiz')
     @include('admin.pages.courses.panes.moduls.scripts.index')
-    <x-delete-modal-component></x-delete-modal-component>
-
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
