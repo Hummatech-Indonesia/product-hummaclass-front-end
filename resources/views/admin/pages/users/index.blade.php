@@ -130,7 +130,7 @@
                             <td>
                                 <div class="d-flex gap-3">
                                     <a href="{{ route('admin.users.show', '') }}/${value.id}" class="btn px-2 text-white"
-                                        style="background-color: #7209DB">
+                                        style="background-color: #9425FE">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
                                             <g fill="none" stroke="currentColor" stroke-linecap="round"

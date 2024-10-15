@@ -48,7 +48,7 @@
             <input type="text" class="form-control product-search px-4 ps-5" name="name" value="" id="" placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" style="color: #8B8B8B"></i>
         </div>
-        <button class="btn text-white addFaq" style="background-color: #7209DB">
+        <button class="btn text-white addFaq" style="background-color: #9425FE">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
             </svg>
@@ -132,7 +132,7 @@
                     <td>${value.answer.length > 35 ? value.answer.substring(0, 35) + '...' : value.answer}</td>
                     <td>
                         <div class="d-flex gap-3">
-                            <button data-id="${value.id}" data-question="${value.question}" data-answer=${value.answer} class="btn px-2 text-white btn-detail-faq" style="background-color: #7209DB">
+                            <button data-id="${value.id}" data-question="${value.question}" data-answer=${value.answer} class="btn px-2 text-white btn-detail-faq" style="background-color: #9425FE">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                         <path d="M3 13c3.6-8 14.4-8 18 0" />

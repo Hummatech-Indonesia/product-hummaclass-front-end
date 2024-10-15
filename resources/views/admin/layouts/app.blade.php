@@ -72,6 +72,12 @@
 
             }
         }
+
+        :root, [data-bs-theme=light] {
+            --purple-primary: #9425FE;
+            --bs-blue: #9425FE;
+            --bs-primary: #9425FE;
+        }
     </style>
     @yield('style')
 </head>

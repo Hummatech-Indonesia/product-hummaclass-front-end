@@ -426,7 +426,7 @@
                                         <p class="text-muted ">20 Terjual</p>
                                     </div>
                                     <div class=" pe-0">
-                                        <a href="{{ route('courses.courses.show', '') }}/${course.slug}" class="btn text-white fs-2" style="background: #815FB4; width: 100%;">Lihat
+                                        <a href="{{ route('courses.courses.show', '') }}/${course.slug}" class="btn text-white fs-2" style="background: #9425FE; width: 100%;">Lihat
                                             Detail</a>
                                     </div>
                                 </div>
