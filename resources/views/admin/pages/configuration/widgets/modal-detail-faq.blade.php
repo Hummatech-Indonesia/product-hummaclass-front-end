@@ -1,7 +1,7 @@
 <div class="modal fade" id="modal-detail-faq" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-md">
-            <div class="modal-header" style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
+            <div class="modal-header" style="background-color: #9425FE;border-radius: 10px 10px 0 0;">
                 <h5 class="modal-title text-white" id="importPegawai">Detail FAQ</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn text-white" style="background-color: #7209DB;"
+                    <button type="button" class="btn text-white" style="background-color: #9425FE;"
                         data-bs-dismiss="modal">Tutup</button>
                 </div>
             </form>

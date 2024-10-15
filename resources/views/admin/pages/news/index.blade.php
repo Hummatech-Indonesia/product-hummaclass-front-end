@@ -5,7 +5,7 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h5 class="fw-semibold mb-8">Daftar Kursus</h5>
+                    <h5 class="fw-semibold mb-8">Daftar Berita</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">

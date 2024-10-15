@@ -105,7 +105,7 @@
             </div>
 
             <div class="text-end">
-                <button type="button" class="btn text-white me-2" style="background-color: #DB0909">Batal</button>
+                <a href="{{ route('admin.events.index') }}" class="btn text-white me-2" style="background-color: #DB0909">Batal</a>
                 <button type="submit" class="btn text-white"
                     style="background-color: var(--purple-primary)">Ubah</button>
             </div>

@@ -58,7 +58,7 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('admin.news.index', 'admin.news.show') ? 'active' : '' }}" href="{{ route('admin.news.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.news.index', 'admin.news.show', 'admin.news.create', 'admin.news.edit') ? 'active' : '' }}" href="{{ route('admin.news.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
                         </span>
@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('admin.events.index', 'admin.events.show') ? 'active' : '' }}" href="{{ route('admin.events.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.events.index', 'admin.events.show', 'admin.events.create', 'admin.events.edit') ? 'active' : '' }}" href="{{ route('admin.events.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>

@@ -1,5 +1,15 @@
 @extends('admin.layouts.app')
 
+@section('style')
+<style>
+    .user-profile-tab .nav-item .nav-link.active {
+        color: #9425FE;
+        border-bottom: 2px solid #9425FE;
+    }
+
+</style>
+@endsection
+
 @section('content')
 <div class="card overflow-hidden" style="border-radius: 15px;">
     <div class="card-body p-0">
@@ -69,7 +79,7 @@
 
 {{-- update profile --}}
 <script>
-  
+
 
 </script>
 @endsection
