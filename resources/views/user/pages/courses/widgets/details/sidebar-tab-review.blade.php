@@ -1,6 +1,6 @@
 
 
-<div class="col-xl-3 col-lg-4" id="sidebar-tab-review">
+<div class="col-xl-3 col-lg-4" id="sidebar-tab-review" style="display: none">
     <div class="courses__details-sidebar">
         <h6 class="title">Statistik Siswa: </h6>
         <div class="text-center">
