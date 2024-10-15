@@ -1,10 +1,12 @@
 @extends('user.layouts.app')
 
 @section('style')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
-    :root{
+    :root {
         --tg-theme-primary: #9C40F7;
     }
+
     main {
         background-color: #F1F1F1;
     }
@@ -40,7 +42,7 @@
         background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;
     }
 
-    .blog-widget .tagcloud span {
+    /* .blog-widget .tagcloud span {
         color: var(--tg-common-color-white);
         display: block;
         background: #9C40F7;
@@ -52,7 +54,7 @@
         -ms-border-radius: 3px;
         border-radius: 5px;
         font-size: 12px;
-    }
+    } */
 
     /* modal bg full */
     .modal-backdrop {
@@ -108,6 +110,13 @@
         /* Warna border tetap */
     }
 
+    .bg-primary {
+        background-color: #9C40F7 !important;
+    }
+
+    .btn-close {
+        --bs-btn-close-color: #fff;
+    }
 </style>
 @endsection
 
@@ -216,11 +225,14 @@
                         <div class="blog-widget tag-item">
                             <div class="tagcloud">
                                 <span class="d-flex justify-content-between">
-                                    Nama Modul Lorem, ipsum.
-                                    <button type="button" class="btn-close ms-2 close-btn" style="width: 5px;height: 5px;" aria-label="Close"></button>
+                                    <div id="discussionResult" class="d-flex flex-wrap me-2" style="width: 100%;">
+                                    </div>
+                                    {{-- <button type="button" class="btn-close ms-2 clear-all" style="width: 5px;height: 5px;" aria-label="Close"></button> --}}
                                 </span>
                             </div>
                         </div>
+
+
                     </div>
 
                     @foreach (range(1,4) as $data)
@@ -312,6 +324,63 @@
 
     // Menyesuaikan backdrop jika ada perubahan zoom atau resize
     window.addEventListener('resize', adjustBackdropForZoom);
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Fungsi untuk memperbarui tampilan hasil berdasarkan checkbox yang dipilih
+        function updateDiscussionResult() {
+            $('#discussionResult').empty(); // Kosongkan hasil sebelumnya
+
+            // Iterasi setiap checkbox yang dicentang
+            $('.form-check-input').each(function() {
+                if ($(this).is(':checked')) {
+                    let checkboxId = $(this).attr('id');
+                    let label = $(this).next('label').text();
+
+                    // Buat elemen span untuk setiap pilihan dengan tombol close
+                    let tag = $('<span>')
+                        .addClass('badge bg-primary text-white me-2 mb-2 d-flex align-items-center')
+                        .text(label);
+
+                    // Tambahkan tombol close di dalam tag
+                    let closeBtn = $('<button>')
+                        .attr('type', 'button')
+                        .addClass('btn-close text-white btn-close-white ms-2')
+                        .css({
+                            width: '5px'
+                            , height: '5px'
+                        })
+                        .attr('aria-label', 'Close')
+                        .on('click', function() {
+                            // Uncheck checkbox yang sesuai dan perbarui hasil
+                            $('#' + checkboxId).prop('checked', false);
+                            updateDiscussionResult();
+                        });
+
+                    // Tambahkan tombol close ke dalam tag
+                    tag.append(closeBtn);
+
+                    // Tambahkan tag ke dalam div result
+                    $('#discussionResult').append(tag);
+                }
+            });
+        }
+
+        // Event listener untuk checkbox
+        $('.form-check-input').on('change', function() {
+            updateDiscussionResult();
+        });
+
+        // Event untuk tombol clear-all (close semua)
+        $('.clear-all').on('click', function() {
+            $('.form-check-input').prop('checked', false); // Uncheck semua checkbox
+            updateDiscussionResult(); // Perbarui tampilan setelah di-clear
+        });
+    });
 
 </script>
 
