@@ -90,44 +90,8 @@
                         <div data-repeater-item="" class="mb-3">
                             <h5 class="fw-semibold mt-3">Runtunan Acara</h5>
                             <hr>
-                            <div class="row">
-                                <div class="col-11">
-                                    <div class="row">
-                                        <div class="col-6 mb-3">
-                                            <label for="start" class="fw-semibold form-label">Jam Mulai</label>
-                                            <input type="time" class="form-control" name="start[]"
-                                                placeholder="Masukan jam mulai">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <label for="end" class="fw-semibold form-label">Jam Akhir</label>
-                                            <input type="time" class="form-control" name="end[]"
-                                                placeholder="Masukan jam akhir">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <label for="user" class="fw-semibold form-label">Pengisi Acara</label>
-                                            <input type="text" class="form-control" name="user[]"
-                                                placeholder="Masukan pengisi acara">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <label for="session" class="fw-semibold form-label">Kegiatan Acara</label>
-                                            <input type="text" class="form-control" name="session[]"
-                                                placeholder="Masukan kegiatan acara">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-1 mb-3 d-flex flex-column justify-content-end">
-                                    <div>
-                                        <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light"
-                                            style="margin-top: 30px;" type="button">
-                                            <i class="ti ti-circle-x fs-5"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="row" id="roundown-list">
+                                <!-- Tempat repeater items akan ditambahkan -->
                             </div>
                         </div>
                     </div>
@@ -155,10 +119,50 @@
             $('#summernote-description').summernote({
                 height: 200
             });
-        });
 
-        var id = "{{ $id }}"
-        $(document).ready(function() {
+            // Submit form using AJAX
+            $('#update-events-form').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+                var id = "{{ $id }}";
+
+                $.ajax({
+                    type: "PATCH",
+                    url: "{{ config('app.api_url') }}/api/events/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Event berhasil diperbarui.",
+                            icon: "success"
+                        }).then(function() {
+                            window.location.href =
+                                "/admin/events"; // Redirect setelah sukses
+                        });
+                    },
+                    error: function(response) {
+                        var errors = response.responseJSON.errors;
+                        for (var key in errors) {
+                            $('#' + key).addClass('is-invalid');
+                            $('#' + key).next('.invalid-feedback').html(errors[key][0]);
+                        }
+
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Gagal memperbarui event, silakan cek kembali data yang Anda masukkan.",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+            var id = "{{ $id }}";
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/events/" + id,
@@ -169,11 +173,15 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response.data);
                     $('#title').val(response.data.title);
                     $('#start_date').val(response.data.start_date);
                     $('#capacity').val(response.data.capacity);
                     $('#summernote-description').summernote('code', response.data.description);
+
+                    // Tambahkan event_details
+                    response.data.event_details.forEach(event_detail => {
+                        createNewItem(event_detail);
+                    });
                 },
                 error: function(response) {
                     Swal.fire({
@@ -183,87 +191,62 @@
                     });
                 }
             });
-        });
 
-        $('#update-events-form').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
+            function createNewItem(data = null) {
+                let startValue = data ? data.start : ''; // Ambil nilai start jika data tersedia
+                let endValue = data ? data.end : ''; // Ambil nilai end jika data tersedia
+                let userValue = data ? data.user : ''; // Ambil nilai user jika data tersedia
+                let sessionValue = data ? data.session : ''; // Ambil nilai session jika data tersedia
 
-            console.log(formData);
-            
+                let newItem = document.createElement('div');
+                newItem.classList.add('row', 'mb-3');
 
-            // $.ajax({
-            //     type: "PUT",
-            //     url: "{{ config('app.api_url') }}/api/events/" + id,
-            //     data: formData,
-            //     headers: {
-            //         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            //     },
-            //     dataType: "json",
-            //     contentType: false,
-            //     processData: false,
-            //     success: function(response) {
-            //         Swal.fire({
-            //             title: "Sukses",
-            //             text: "Berhasil mengubah data.",
-            //             icon: "success"
-            //         });
-            //     },
-            //     error: function(response) {
-            //         if (response.responseJSON && response.responseJSON.errors) {
-            //             $.each(response.responseJSON.errors, function(key, value) {
-            //                 $('#' + key).addClass('is-invalid');
-            //                 $('#' + key).next('.invalid-feedback').text(value[0]);
-            //             });
-            //         } else {
-            //             Swal.fire({
-            //                 title: "Terjadi Kesalahan!",
-            //                 text: "Ada kesalahan saat menyimpan data.",
-            //                 icon: "error"
-            //             });
-            //         }
-            //     }
-            // });
-        });
+                newItem.innerHTML = `
+                    <div class="row col-11">
+                        <div class="col-6 mb-3">
+                            <label for="start" class="fw-semibold form-label">Jam Mulai</label>
+                            <input type="time" class="form-control" name="start[]" value="${startValue}" placeholder="Masukan jam mulai">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="end" class="fw-semibold form-label">Jam Akhir</label>
+                            <input type="time" class="form-control" name="end[]" value="${endValue}" placeholder="Masukan jam akhir">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="user" class="fw-semibold form-label">Pengisi Acara</label>
+                            <input type="text" class="form-control" name="user[]" value="${userValue}" placeholder="Masukan pengisi acara">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="session" class="fw-semibold form-label">Kegiatan Acara</label>
+                            <input type="text" class="form-control" name="session[]" value="${sessionValue}" placeholder="Masukan kegiatan acara">
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-1 mb-3 d-flex flex-column justify-content-end">
+                        <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light" type="button">
+                            <i class="ti ti-circle-x fs-5"></i>
+                        </button>
+                    </div>
+                `;
 
-        document.getElementById('is_premium').addEventListener('change', function() {
-            var priceContainer = document.getElementById('price-container');
-            priceContainer.style.display = this.value == '1' ? 'none' : 'block';
-        });
+                // Tambahkan event listener untuk hapus item
+                let deleteButton = newItem.querySelector('[data-repeater-delete]');
+                deleteButton.addEventListener('click', function() {
+                    if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
+                        newItem.remove();
+                    }
+                });
 
-        document.getElementById('is_online').addEventListener('change', function() {
-            var locationContainer = document.getElementById('location-container');
-            locationContainer.style.display = this.value == '1' ? 'none' : 'block';
+                // Tambahkan item baru ke dalam container
+                document.getElementById('roundown-list').appendChild(newItem);
+            }
+
+            // Event listener untuk tombol tambah
+            document.querySelector('[data-repeater-create]').addEventListener('click', function() {
+                createNewItem(); // Tambahkan item kosong
+            });
         });
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let repeaterContainer = document.querySelector('[data-repeater-list]');
-        let addButton = document.querySelector('[data-repeater-create]');
-        let template = document.querySelector('[data-repeater-item]').cloneNode(true);
-        template.querySelectorAll('input').forEach(input => input.value = ''); // Kosongkan input di template
-        
-        addButton.addEventListener('click', function() {
-            let newItem = template.cloneNode(true);
-            let deleteButton = newItem.querySelector('[data-repeater-delete]');
-            
-            deleteButton.addEventListener('click', function() {
-                if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
-                    newItem.remove();
-                }
-            });
-            
-            repeaterContainer.appendChild(newItem);
-        });
-        
-        document.querySelectorAll('[data-repeater-delete]').forEach(function(deleteButton) {
-            deleteButton.addEventListener('click', function() {
-                if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
-                    deleteButton.closest('[data-repeater-item]').remove();
-                }
-            });
-        });
-    });
-</script>
 @endsection
