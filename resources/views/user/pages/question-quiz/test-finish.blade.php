@@ -30,14 +30,12 @@
             /* Change label color to indicate disabled */
         }
 
-
-
         .fs-5 p {
             display: inline;
             margin: 0;
         }
 
-        .btn {
+        .btn-warning {
             user-select: none;
             -moz-user-select: none;
             background: #ffc107 none repeat scroll 0 0;
@@ -71,7 +69,11 @@
             overflow: hidden;
         }
 
-        body {
+        .btn-warning:hover{
+            color: #fff;
+            background-color: #9425FE;
+        }
+        main {
             background-color: #F1F1F1;
         }
     </style>
@@ -89,7 +91,7 @@
     </div>
     <div class="container d-flex justify-content-center custom-container mt-3">
         {{-- <div class="row"> --}}
-        <div class="col-lg-10 mb-4">
+        <div class="col-lg-11 mb-4">
             <div class="card position-relative overflow-hidden border-0"
                 style="background: linear-gradient(to right, #9C40F7, #7209DB);border-radius: 15px;">
                 <div class="">
@@ -121,29 +123,64 @@
                         <div class="p-4">
                             <h5>Hasil Test</h5>
                             <h6 class="mt-3">Tanggal Ujian</h6>
-                            <p class="text-dark">Senin 12 September 2023, <br>
+                            <p style="color: #9425FE;">Senin 12 September 2023, <br>
                                 12:28:30
                             </p>
-                            <div class="row justify-content-center text-center mt-3">
-                                <div class="col-6">
-                                    <h6>Total Soal</h6>
-                                    <span class="fs-1 text-dark fw-semibold" id="total_question"></span>
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Jumlah Soal</h6>
+                                        <h6>:</h6>
+                                    </div>
                                 </div>
-                                <div class="col-6">
-                                    <h6>Nilai Ujian</h6>
-                                    <span class="fs-1 text-dark fw-semibold" id="score"></span>
+                                <div class="col-lg-6">
+                                    <div class="text-end">
+                                        <p>20 Soal</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Soal Benar</h6>
+                                        <h6>:</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="text-end">
+                                        <p>10 Soal</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="d-flex justify-content-between">
+                                        <h6>Soal Salah</h6>
+                                        <h6>:</h6>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="text-end">
+                                        <p>7 Soal</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center justify-content-center mt-2">
+                                <h6>Nilai Ujian</h6>
+                                <span class="fw-semibold fs-1" style="color: #9C40F7;">80</span>
+                                <div class="col-lg-10 my-4">
+                                    <div style="border-bottom: 1px solid #CCCCCC"></div>
+                                </div>
+                                <h6>Hasil</h6>
+                                <div>
+                                    <span class="badge text-success w-100 p-3 fs-6" style="background-color: #EEFEF0;">Selamat Anda Lulus</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button class="btn w-100 btn-warning">Lanjutkan</button>
+                        <button class="w-100 btn-warning">Lanjutkan</button>
                     </div>
                 </div>
                 <div class="col-lg-9" id="question_quiz">
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
