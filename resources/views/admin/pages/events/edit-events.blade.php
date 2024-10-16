@@ -49,7 +49,7 @@
                 </div>
                 <div class="col col-md-12 mb-3" id="price-container" style="display: none">
                     <label for="price" class="form-label">Harga</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga" value="0">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-6 mb-3">
@@ -105,7 +105,8 @@
             </div>
 
             <div class="text-end">
-                <a href="{{ route('admin.events.index') }}" class="btn text-white me-2" style="background-color: #DB0909">Batal</a>
+                <a href="{{ route('admin.events.index') }}" class="btn text-white me-2"
+                    style="background-color: #DB0909">Batal</a>
                 <button type="submit" class="btn text-white"
                     style="background-color: var(--purple-primary)">Ubah</button>
             </div>
@@ -124,7 +125,22 @@
             $('#update-events-form').submit(function(e) {
                 e.preventDefault();
 
-                var formData = new FormData(this);
+                // var formData = new FormData(this);
+                var formData = {};
+                $(this).serializeArray().forEach(function(field) {
+                    // Jika field.name adalah salah satu dari 'user[]', 'start[]', 'end[]', atau 'session[]'
+                    if (['user[]', 'start[]', 'end[]', 'session[]'].includes(field.name)) {
+                        // Jika array belum ada, buat array baru di dalam formData
+                        if (!formData[field.name]) {
+                            formData[field.name] = [];
+                        }
+                        // Tambahkan value ke dalam array yang sesuai
+                        formData[field.name].push(field.value);
+                    } else {
+                        // Untuk field lainnya, simpan sebagai nilai tunggal
+                        formData[field.name] = field.value;
+                    }
+                });
                 var id = "{{ $id }}";
 
                 $.ajax({
@@ -134,8 +150,6 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     data: formData,
-                    contentType: false,
-                    processData: false,
                     success: function(response) {
                         Swal.fire({
                             title: "Berhasil!",
@@ -147,7 +161,7 @@
                         });
                     },
                     error: function(response) {
-                        var errors = response.responseJSON.errors;
+                        var errors = response.responseJSON.data;
                         for (var key in errors) {
                             $('#' + key).addClass('is-invalid');
                             $('#' + key).next('.invalid-feedback').html(errors[key][0]);
