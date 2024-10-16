@@ -58,7 +58,12 @@ Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
+
+    Route::get('task-detail', function(){
+        return view('user.pages.courses.widgets.details.detail-task');
+    })->name('detail-task.index');
 });
+
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
@@ -75,7 +80,7 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         })->name('reviews');
 
         Route::get('history-transaction/{id}', function ($id) {
-            return view('user.pages.dashboard.student.history-transaction');
+            return view('user.pages.dashboard.student.history-transaction.index');
         })->name('history-transaction');
 
         Route::get('settings', function () {
@@ -136,8 +141,8 @@ Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
 
-Route::get('discussion-forum', function () {
-    return view('user.pages.courses.discussion-forum.index');
+Route::get('discussion-forum/{id?}', function ($id) {
+    return view('user.pages.courses.discussion-forum.index', compact('id'));
 })->name('discussion-forum.index');
 
 Route::get('discussion-forum/modul', function () {

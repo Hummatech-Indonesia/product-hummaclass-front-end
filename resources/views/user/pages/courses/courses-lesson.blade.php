@@ -187,6 +187,15 @@
                                                 </svg>
                                                 Kembali
                                             </a>
+                                            <a href="#" id="forum_discussion" class="text-dark fw-bolder fs-6">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                                                </svg>
+                                                Forum Diskusi
+                                            </a>
+
                                             <a href="" id="nextButton" class="text-dark fw-bolder fs-6">
                                                 Selanjutnya
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
@@ -297,13 +306,13 @@
                 const subModules = value.sub_modules.map(subModule => {
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
-                        <a  class="d-flex justify-content-between">
+                        <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
                     } else {
                         return `<li class="course-item">
-                        <a  class="d-flex justify-content-between" style="color: black">
+                        <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between" style="color: black">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
@@ -351,6 +360,10 @@
                     updateLastStepUser(response.data.course_slug, response.data.id);
                     $('#course_sub_title').html(response.data.sub_title);
                     $('#title_course').html(response.data.course_title);
+                    var url =
+                        `{{ route('discussion-forum.index', ['']) }}/${response.data.course_slug}`;
+                    $('#forum_discussion').attr('href', url);
+
                     $('#course_title').html(response.data.title);
 
                     var contentData = JSON.parse(response.data.content);

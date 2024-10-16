@@ -43,6 +43,27 @@
         outline: none;
         box-shadow: 0 0 0 0.25rem #9425FE;
     }
+
+    .outline-danger {
+        color: #DB0909;
+        background-color: transparent;
+        border: 1px solid #DB0909;
+        padding: 4px 6px;
+        font-size: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .outline-danger:hover {
+        background-color: #DB0909;
+        color: white;
+    }
+
+    .outline-danger:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem #DB0909;
+    }
 </style>
 @endsection
 

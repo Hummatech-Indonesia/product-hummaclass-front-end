@@ -33,7 +33,7 @@
 
     @yield('style')
     <style>
-        :root{
+        :root {
             --tg-theme-primary: #9425FE;
         }
     </style>
@@ -91,6 +91,9 @@
     <script src="{{ asset('assets/js/jquery.appear.js') }}"></script>
     <script src="{{ asset('assets/js/tween-max.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/forms/select2.init.js') }}"></script>
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.marquee.min.js') }}"></script>
     <script src="{{ asset('assets/js/tg-cursor.min.js') }}"></script>
@@ -206,7 +209,6 @@
             // Menggabungkan hasil format tanggal dan waktu
             return `${tanggalFormatted} ${waktuFormatted}`;
         }
-
     </script>
 
     @yield('script')

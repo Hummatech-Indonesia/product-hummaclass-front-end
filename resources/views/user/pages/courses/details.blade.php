@@ -29,12 +29,12 @@
 
     .outline-purple-primary {
         display: inline-block;
-        border: 2px solid #9425FE;
+        border: 1px solid #9425FE;
         color: #9425FE;
         background-color: transparent;
-        padding: 10px 20px;
-        border-radius: 50px;
-        font-size: 16px;
+        padding: 4px 6px;
+        border-radius: 10px;
+        font-size: 12px;
         font-weight: 500;
         cursor: pointer;
         transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -154,6 +154,9 @@
                             <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum-tab-pane" type="button" role="tab" aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
                         </li>
                         <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task-tab-pane" type="button" role="tab" aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
                             <button class="nav-link" id="instructors-tab" data-bs-toggle="tab" data-bs-target="#instructors-tab-pane" type="button" role="tab" aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -163,6 +166,7 @@
                     <div class="tab-content" id="myTabContent">
                         @include('user.pages.courses.widgets.details.overview')
                         @include('user.pages.courses.widgets.details.curriculumn')
+                        @include('user.pages.courses.widgets.details.task')
                         @include('user.pages.courses.widgets.details.instructors')
                         @include('user.pages.courses.widgets.details.reviews')
                     </div>
