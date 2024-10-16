@@ -7,7 +7,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                     style="position: absolute; right: 20px; top: 25px;"></button>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data" class="editForm">
+            <form action="" id="form-create-discussion-forum" method="POST" enctype="multipart/form-data"
+                class="editForm">
                 @csrf
                 <div class="modal-body">
                     <div class="mb-3">
@@ -45,14 +46,9 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
-                            <select class="form-control" multiple="" id="select2-with-tokenizer"
+                            <select class="form-control" name="tag_id" multiple="" id="select2-with-tokenizer"
                                 style="width: 100%; height: 36px">
                                 <option>orange</option>
-                                <option selected>white</option>
-                                <option>purple</option>
-                                <option value="red">red</option>
-                                <option value="blue" selected>blue</option>
-                                <option value="green">green</option>
                             </select>
                             @error('name')
                                 <span class="text-danger error-edit">{{ $message }}</span>
@@ -72,3 +68,66 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#select2-with-tokenizer').select2({
+                dropdownParent: $('#modal-create-forum-discussion'),
+                tags: true,
+            });
+        });
+        $('#form-create-discussion-forum').submit(function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            var id = "{{ $id }}";
+
+            $.ajax({
+                url: "{{ config('app.api_url') }}" + "/api/discussions/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                type: 'POST',
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    Swal.fire({
+                        title: "Sukses",
+                        text: response.meta.title,
+                        icon: "success"
+                    })
+                },
+                error: function(error) {
+                    let errors = error.responseJSON.data || {};
+                    let message = error.responseJSON.meta.message;
+                    $('.is-invalid').removeClass('is-invalid');
+                    $('.invalid-feedback').addClass('d-none');
+
+                    if (errors) {
+                        for (let key in errors) {
+                            if (errors.hasOwnProperty(key)) {
+                                let feedback = $(`#${key}`).closest('.col').find(
+                                    '.invalid-feedback');
+                                feedback.text(errors[key][
+                                    0
+                                ]); // Mengambil pesan error pertama
+                                feedback.removeClass('d-none');
+                                $(`#${key}`).addClass('is-invalid');
+                            }
+                        }
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: message,
+                            icon: "error"
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
