@@ -175,7 +175,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button class="w-100 btn-warning">Lanjutkan</button>
+                        <a href="{{ route('test-result.index') }}" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
                 <div class="col-lg-9" id="question_quiz">

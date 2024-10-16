@@ -144,6 +144,10 @@ Route::get('finish-quiz/{id?}', function ($id) {
     return view('user.pages.question-quiz.test-finish', compact('id'));
 })->name('finish-quiz');
 
+Route::get('test-result', function(){
+    return view('user.pages.question-quiz.test-results');
+})->name('test-result.index');
+
 Route::resources([
     'blogs' => BlogController::class,
     'events' => EventController::class,
