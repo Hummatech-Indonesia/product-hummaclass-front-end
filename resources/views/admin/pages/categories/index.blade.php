@@ -93,33 +93,33 @@
         });
 
         function get(page) {
-            $('#tableBody').empty();
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                data: {
-                    name: $('#search-name').val(),
-                },
-                success: function(response) {
-                    $.each(response.data.data, function(index, value) {
-                        $('#tableBody').append(category(index, value));
-                    });
+            $('#tableBody').);
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            data: {
+                name: $('#search-name').val(),
+            },
+            success: function(response) {
+                $.each(response.data.data, function(index, value) {
+                    $('#tableBody').append(category(index, value));
+                });
 
-                    $('#pagination').html(handlePaginate(response.data.paginate))
+                $('#pagination').html(handlePaginate(response.data.paginate))
 
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
+                });
+            }
+        });
         }
 
         function category(index, value) {
@@ -127,7 +127,7 @@
 
             if (value.sub_category.length > 0) {
                 $.each(value.sub_category, function(subIndex, subValue) {
-                    
+
                     subCategoryRows += `
                         <tr class="sub_category">
                             <td></td>

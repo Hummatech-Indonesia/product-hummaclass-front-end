@@ -136,8 +136,8 @@ Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
 
-Route::get('discussion-forum', function () {
-    return view('user.pages.courses.discussion-forum.index');
+Route::get('discussion-forum/{id?}', function ($id) {
+    return view('user.pages.courses.discussion-forum.index', compact('id'));
 })->name('discussion-forum.index');
 
 Route::get('discussion-forum/modul', function () {
