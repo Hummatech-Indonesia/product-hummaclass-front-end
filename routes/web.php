@@ -58,7 +58,12 @@ Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('courses-lesson/{id}', [CourseController::class, 'courseLesson'])->name('course-lesson.index')->middleware('coursePayment');
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
+
+    Route::get('task-detail', function(){
+        return view('user.pages.courses.widgets.details.detail-task');
+    })->name('detail-task.index');
 });
+
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
