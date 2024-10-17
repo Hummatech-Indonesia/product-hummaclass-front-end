@@ -27,7 +27,7 @@ class CheckCoursePayment
                 ->maxRedirects(5)
                 ->get(config('app.api_url') . "/api/course-by-submodule/$request->id");
 
-            $courseSlug = $response->json()['data']['slug'];
+                $courseSlug = $response->json()['data']['slug'];
 
             $response = Http::withToken($token)
                 ->maxRedirects(5)
