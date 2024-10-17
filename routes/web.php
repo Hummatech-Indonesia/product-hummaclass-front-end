@@ -234,6 +234,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.courses.panes.moduls.create-task', compact('id'));
     })->name('create-task.index');
 
+    Route::get('edit-task/{id}', function (string $id) {
+        return view('admin.pages.courses.panes.moduls.edit-task', compact('id'));
+    })->name('edit-task.index');
+
     Route::get('detail-task', function () {
         return view('admin.pages.courses.panes.moduls.detail-task');
     })->name('detail-task.blade.php');

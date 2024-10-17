@@ -226,6 +226,8 @@
                             $('#cardSubModul').append(subModul(index, value));
                         });
                     }
+
+                    $('#module-task-show').empty();
                     if (response.data.module_tasks.length === 0) {
                         $('#module-task-show').append(empty());
                     } else {
@@ -290,12 +292,14 @@
             }
 
             function moduleTasks(index, value) {
+                console.log(value);
+                
                 return `<div class="col-lg-4">
                         <div class="card card-body">
                             <div class="d-flex justify-content-between mb-3">
                                 <div></div>
                                 <div class="d-flex gap-2 align-items-center">
-                                    <a class="text-warning" href="">
+                                    <a data-id="${value.id}" data-question="${value.question}" data-point="${value.point}" data-description="${value.description}" class="text-warning" href="${"{{ route('admin.edit-task.index', ':id') }}".replace(':id', value.id)}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
                                             <path fill="currentColor"
                                                 d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
@@ -348,6 +352,8 @@
         });
 
         function funDelete(url) {
+            console.log(funDelete);
+            
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -357,7 +363,6 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     success: function(response) {
-                        console.log(response);
 
                         $('#modal-delete').modal('hide');
                         Swal.fire({
@@ -394,7 +399,7 @@
     <script>
         $(document).on('click', '.btn-delete-task', function() {
             const id = $(this).data('id');
-            const url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
+            const url = "{{ config('app.api_url') }}" + "/api/module-tasks/" + id;
 
             $('#modal-delete').modal('show');
             deleteCTask(url);
