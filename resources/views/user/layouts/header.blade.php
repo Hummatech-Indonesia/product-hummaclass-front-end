@@ -56,7 +56,7 @@
                                 </ul>
                             </div>
                             <div class="tgmenu__search d-none d-md-block">
-                                <form action="#" class="tgmenu__search-form">
+                                <form action="{{ route('courses.courses.index') }}" class="tgmenu__search-form">
                                     <div class="select-grp">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +75,7 @@
 
                                     </div>
                                     <div class="input-grp">
-                                        <input type="text" placeholder="Pencarian kursus . . .">
+                                        <input type="text" id="search-name" name="title" value="{{ old('title', request('title')) }}" placeholder="Pencarian kursus . . .">
                                         <button type="submit"><i class="flaticon-search"></i></button>
                                     </div>
                                 </form>
