@@ -62,6 +62,18 @@ Route::prefix('courses')->name('courses.')->group(function () {
     Route::get('task-detail', function(){
         return view('user.pages.courses.widgets.details.detail-task');
     })->name('detail-task.index');
+
+    Route::get('print-certificate', function(){
+        return view('user.pages.courses.widgets.certificate.print-certificate');
+    })->name('print-certificate.index');
+
+    Route::get('pre-download-certificate', function(){
+        return view('user.pages.courses.widgets.certificate.pre-download-certificate');
+    })->name('pre-download-certificate.index');
+
+    Route::get('download-certificate', function(){
+        return view('user.pages.courses.widgets.certificate.download-certificate');
+    })->name('download-certificate.index');
 });
 
 
@@ -124,6 +136,10 @@ Route::get('quiz-question/{id}', function ($id) {
     return view('user.pages.question-quiz.index', compact('id'));
 })->name('quetion-quiz.index');
 
+Route::get('pre-test/{id}', function ($id) {
+    return view('user.pages.pre-post-test.index', compact('id'));
+})->name('pre.test.index');
+
 Route::get('quiz-setting/{id}', function ($id) {
     return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
 })->name('quetion-quiz.setting')->middleware('auth_custom');
@@ -131,6 +147,10 @@ Route::get('quiz-setting/{id}', function ($id) {
 Route::get('finish-quiz/{id?}', function ($id) {
     return view('user.pages.question-quiz.test-finish', compact('id'));
 })->name('finish-quiz');
+
+Route::get('test-result', function(){
+    return view('user.pages.question-quiz.test-results');
+})->name('test-result.index');
 
 Route::resources([
     'blogs' => BlogController::class,

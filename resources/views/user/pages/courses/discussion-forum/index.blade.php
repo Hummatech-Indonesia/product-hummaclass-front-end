@@ -6,6 +6,7 @@
         :root {
             --tg-theme-primary: #9C40F7;
         }
+        
 
         main {
             background-color: #F1F1F1;
