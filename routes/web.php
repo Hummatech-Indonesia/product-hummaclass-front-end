@@ -136,6 +136,10 @@ Route::get('quiz-question/{id}', function ($id) {
     return view('user.pages.question-quiz.index', compact('id'));
 })->name('quetion-quiz.index');
 
+Route::get('pre-test/{id}', function ($id) {
+    return view('user.pages.pre-post-test.index', compact('id'));
+})->name('pre.test.index');
+
 Route::get('quiz-setting/{id}', function ($id) {
     return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
 })->name('quetion-quiz.setting')->middleware('auth_custom');

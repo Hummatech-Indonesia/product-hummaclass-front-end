@@ -46,9 +46,8 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
-                            <select class="form-control" name="tag_id" multiple="" id="select2-with-tokenizer"
+                            <select class="form-control" name="tag_id[]" multiple="" id="select2-with-tokenizer"
                                 style="width: 100%; height: 36px">
-                                <option>orange</option>
                             </select>
                             @error('name')
                                 <span class="text-danger error-edit">{{ $message }}</span>
@@ -99,7 +98,9 @@
                         title: "Sukses",
                         text: response.meta.title,
                         icon: "success"
-                    })
+                    }).then(
+                        $('#modal-create-forum-discussion').modal('hide');
+                    )
                 },
                 error: function(error) {
                     let errors = error.responseJSON.data || {};
