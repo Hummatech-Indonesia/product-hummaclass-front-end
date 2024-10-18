@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-3">
-                    <a href="{{ route('admin.modules.show', $id) }}" class="btn btn-danger">Kembali</a>
+                    <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-danger">Kembali</a>
                     <button type="submit" class="btn btn-primary shadow-none">Tambah</button>
                 </div>
             </div>
