@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="{{ route('admin.modules.index', ['id' => $id]) }}" class="btn btn-warning me-2">Kembali</a>
+            <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-warning me-2">Kembali</a>
             <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
     </form>
