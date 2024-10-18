@@ -89,7 +89,7 @@
                         <button type="submit" class="btn btn-light-primary text-primary font-medium">
                             Tambah
                         </button>
-                        <button type="reset" class="btn btn-light-danger text-danger font-medium">
+                        <button type="reset" class="btn btn-light-danger text-danger font-medium back">
                             Kembali
                         </button>
                     </div>
@@ -101,6 +101,11 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            $('.back').click(function(e) {
+                e.preventDefault();
+                window.location.href = '/admin/courses';
+            });
+
             var id = "{{ $id }}";
             var course;
 

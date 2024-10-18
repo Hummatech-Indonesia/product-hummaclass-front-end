@@ -59,19 +59,19 @@ Route::prefix('courses')->name('courses.')->group(function () {
         Route::get('quizz/{id}', [CourseController::class, 'showQuiz'])->name('quizz.index');
     });
 
-    Route::get('task-detail', function(){
+    Route::get('task-detail', function () {
         return view('user.pages.courses.widgets.details.detail-task');
     })->name('detail-task.index');
 
-    Route::get('print-certificate', function(){
+    Route::get('print-certificate', function () {
         return view('user.pages.courses.widgets.certificate.print-certificate');
     })->name('print-certificate.index');
 
-    Route::get('pre-download-certificate', function(){
+    Route::get('pre-download-certificate', function () {
         return view('user.pages.courses.widgets.certificate.pre-download-certificate');
     })->name('pre-download-certificate.index');
 
-    Route::get('download-certificate', function(){
+    Route::get('download-certificate', function () {
         return view('user.pages.courses.widgets.certificate.download-certificate');
     })->name('download-certificate.index');
 });
@@ -148,7 +148,7 @@ Route::get('finish-quiz/{id?}', function ($id) {
     return view('user.pages.question-quiz.test-finish', compact('id'));
 })->name('finish-quiz');
 
-Route::get('test-result', function(){
+Route::get('test-result', function () {
     return view('user.pages.question-quiz.test-results');
 })->name('test-result.index');
 
@@ -169,11 +169,11 @@ Route::get('discussion-forum/modul', function () {
     return view('user.pages.courses.discussion-forum.discussion-forum');
 })->name('discussion-forum.modul');
 
-Route::get('task-execution', function(){
+Route::get('task-execution', function () {
     return view('user.pages.courses.task-execution.index');
 })->name('task-execution.index');
 
-Route::get('upload-task', function(){
+Route::get('upload-task', function () {
     return view('user.pages.courses.task-execution.upload-task');
 })->name('upload-task.index');
 

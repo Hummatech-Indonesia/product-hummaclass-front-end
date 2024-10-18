@@ -40,6 +40,7 @@
     let course;
     $(document).ready(function() {
 
+        
         function handleTabDisplay(hash) {
             if (hash === "#home") {
                 $('.addModul').addClass('d-none');

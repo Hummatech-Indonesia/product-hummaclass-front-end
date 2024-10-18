@@ -127,6 +127,11 @@
             });
             var id = "{{ $id }}";
 
+            $('.back').click(function(e) {
+                e.preventDefault();
+                window.location.href = "/admin/modules/" + id;
+            });
+
             $.ajax({
                 type: "get",
                 url: "{{ config('app.api_url') }}/api/modules/detail/" + id,
@@ -145,7 +150,8 @@
                         success: function(response) {
                             for (const key in response.data) {
                                 if (key == 'rules') {
-                                    $('.summernote').val(response.data[key]).trigger('summernote.change');
+                                    $('.summernote').val(response.data[key]).trigger(
+                                        'summernote.change');
                                 }
                                 $(`input[name='${key}']`).val(response.data[key]);
                             }

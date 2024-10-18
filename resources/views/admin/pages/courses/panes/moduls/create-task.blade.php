@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-warning me-2">Kembali</button>
+                <button class="btn btn-warning me-2 back">Kembali</button>
                 <button class="btn btn-primary">Simpan</button>
             </div>
         </form>
@@ -61,8 +61,12 @@
 @section('script')
     @include('admin.pages.courses.scripts.index')
     <script>
+        var id = "{{ $id }}";
+        $('.back').click(function(e) {
+            e.preventDefault();
+            window.location.href = "/admin/modules/" + id;
+        });
         $('#form-create-task').submit(function(e) {
-            var id = "{{ $id }}";
             e.preventDefault();
 
             var formData = new FormData(this);

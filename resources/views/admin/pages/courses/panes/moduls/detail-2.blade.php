@@ -212,6 +212,11 @@
                 dataType: "json",
                 success: function(response) {
 
+                    $('.back').click(function(e) {
+                        e.preventDefault();
+                        window.location.href = "/admin/courses/" + response.data.course.slug;
+                    });
+
                     $('#title').html(response.data.title);
                     $('#module_task_count').html(response.data.module_task_count);
                     $('#sub_title').html(response.data.sub_title);

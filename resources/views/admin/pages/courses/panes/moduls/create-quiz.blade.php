@@ -114,7 +114,7 @@
                     </label>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-warning me-2">Kembali</a>
+                    <a class="btn btn-warning me-2 back">Kembali</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
@@ -124,6 +124,12 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            var id = "{{ $id }}";
+
+            $('.back').click(function(e) {
+                e.preventDefault();
+                window.location.href = "/admin/modules/" + id;
+            });
             $(".summernote").summernote({
                 height: 350, // set editor height
                 minHeight: null, // set minimum height of editor
@@ -135,8 +141,8 @@
     <script>
         $('#question-bank').submit(function(e) {
             e.preventDefault();
-
             var id = "{{ $id }}";
+
             var formData = new FormData(this);
 
             $.ajax({
