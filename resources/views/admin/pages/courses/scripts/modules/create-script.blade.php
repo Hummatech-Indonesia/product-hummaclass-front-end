@@ -1,5 +1,10 @@
 <script>
     $(document).ready(function() {
+        let slug = "{{ $id }}";
+        $('.back').click(function(e) {
+            e.preventDefault();
+            window.location.href = "/admin/courses/" + slug;
+        });
         $('#create-module-form').submit(function(e) {
             e.preventDefault();
             var id = "{{ $id }}"; // Mendapatkan id dari Blade

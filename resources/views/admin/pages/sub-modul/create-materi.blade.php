@@ -62,7 +62,7 @@
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="d-flex justify-content-end gap-2">
-                    <button type="submit" class="btn btn-danger px-4">Batal</button>
+                    <button type="submit" class="btn btn-danger px-4 back">Batal</button>
                     <button type="submit" class="btn text-white px-4"
                         style="background-color: var(--purple-primary)">Tambah</button>
                 </div>
@@ -74,6 +74,11 @@
 @section('script')
     @include('admin.pages.courses.scripts.index')
     <script>
+        var moduleId = "{{ $id }}";
+        $('.back').click(function(e) {
+            e.preventDefault();
+            window.location.href = "/admin/modules/" + moduleId;
+        });
         $('#create-sub-modul-form').submit(function(e) {
             e.preventDefault();
 
