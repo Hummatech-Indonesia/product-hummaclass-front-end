@@ -86,11 +86,11 @@
                 </div>
                 <div class="form-actions mt-3">
                     <div class="text-end">
-                        <button type="submit" class="btn btn-light-primary text-primary font-medium">
-                            Tambah
-                        </button>
-                        <button type="reset" class="btn btn-light-danger text-danger font-medium back">
+                        <button type="reset" class="btn btn-danger text-white font-medium back">
                             Kembali
+                        </button>
+                        <button type="submit" style="background-color: #9425FE;" class="btn text-white font-medium">
+                            Tambah
                         </button>
                     </div>
                 </div>
