@@ -147,7 +147,6 @@
             }
         }
 
-
         function get(page) {
             const id = "{{ $id }}";
             localStorage.setItem('current_page', page);
@@ -157,7 +156,7 @@
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
-                url: `{{ config('app.api_url') }}/api/quizzes/working/${id}/?page=` + page,
+                url: `{{ config('app.api_url') }}/api/course-pre-test/${id}/?page=` + page,
                 dataType: "json",
                 success: function(response) {
                     $('.text-white.border-0.py-2').off('click').on('click', function() {
@@ -319,7 +318,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "{{ config('app.api_url') }}/api/quizzes-submit/" + user_quiz_id,
+                url: "{{ config('app.api_url') }}/api/course-submit-test/" + user_quiz_id,
                 data: JSON.stringify({
                     answer: filteredAnswers
                 }),
