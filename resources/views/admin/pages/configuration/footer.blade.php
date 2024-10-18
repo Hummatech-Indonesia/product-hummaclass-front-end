@@ -96,7 +96,8 @@
             </div>
             <div class="form-actions mt-4">
                 <div class="text-end">
-                    <button type="reset" class="btn btn-danger text-white font-medium me-2">
+                    <button type="reset" class="btn btn-danger text-white font-medium me-2"
+                        onclick="window.history.back();">
                         Kembali
                     </button>
                     <button type="submit" class="btn text-white font-medium" style="background-color: #9425FE">
