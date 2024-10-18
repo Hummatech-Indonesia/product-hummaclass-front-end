@@ -328,7 +328,7 @@
                                 <button class="btn btn-light" style="color: var(--purple-primary)">
                                 ${value.point}+ Points
                                 </button>
-                                <a  class="btn text-white d-flex align-items-center"
+                                <a href="${"{{ route('admin.detail-task.blade.php', ':id') }}".replace(':id', value.id)}" class="btn text-white d-flex align-items-center"
                                     style="background-color: var(--purple-primary)">
                                     Lihat Tugas
                                     <i class="ti ti-arrow-right fs-5 ms-1"></i>
