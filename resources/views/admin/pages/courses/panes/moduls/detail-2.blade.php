@@ -197,7 +197,7 @@
 @endsection
 
 @section('script')
-    @include('admin.pages.courses.panes.moduls.widgets.modal-settings-quiz')
+    {{-- @include('admin.pages.courses.panes.moduls.widgets.modal-settings-quiz') --}}
     @include('admin.pages.courses.panes.moduls.scripts.index')
     <script>
         $(document).ready(function() {

@@ -19,7 +19,7 @@ class CheckCoursePayment
     {
         $token = session('hummaclass-token');
 
-        try {
+        // try {
             if (session('user')['roles'][0]['name'] == 'admin') {
                 return $next($request);
             }
@@ -33,18 +33,19 @@ class CheckCoursePayment
                 ->maxRedirects(5)
                 ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $courseSlug]);
 
+                // dd($response);
             if ($response->successful()) {
                 return $next($request);
             } else if ($response->json()['data'] == null) {
                 return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
-            } else if ($response->json()['data']['is_premium']) {
+            } else if ($response->json()['data']['course']['is_premium']) {
                 return redirect()->route('checkout.course', $courseSlug);
             } else {
                 return redirect()->route('checkout.course', $courseSlug)->with('error', 'Silahkan daftar kursus terlebih dahulu');
             }
-        } catch (\Exception $e) {
-            dd($e);
-        }
-        return $next($request);
+        // } catch (\Exception $e) {
+        //     dd($e);
+        // }
+        // return $next($request);
     }
 }

@@ -75,41 +75,15 @@
             </div>
         </div>
 
-        
+
     </div>
 </div>
 
 @push('script')
-<script>
+    <script>
         $(document).ready(function() {
-        var id = "{{ $id }}";
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {                
-                response.data.course_reviews.forEach((review) => {
-                    $('#review-content').append(reviewContent(review));
-                });
-
-            }
-            , error: function(xhr) {
-                console.log(xhr);
-
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-
-        function reviewContent(value) {            
-            
-            return `
+            function reviewContent(value) {
+                return `
                     <div class="course-review-head">
                         <div class="review-author-thumb">
                             <img src="${value.user.photo}" alt="img">
@@ -129,10 +103,7 @@
                         </div>
                     </div>
                 `;
-        }
-
-
-    });
-</script>
-    
+            }
+        });
+    </script>
 @endpush

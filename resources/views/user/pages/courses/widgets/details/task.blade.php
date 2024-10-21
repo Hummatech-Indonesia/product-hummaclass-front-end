@@ -11,46 +11,7 @@
                             <th class="text-white" style="display: table-cell;background-color:#9425FE;">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody id="pending-content">
-                        <tr>
-                            <td>Lorem ipsum dolor sit amet, consectetur..</td>
-                            <td>10 Januari 2024</td>
-                            <td>
-                                <span class="badge text-success" style="background-color: #EEFEF0;">Selesai</span>
-                            </td>
-                            <td>
-                                <button class="outline-purple-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
-                                    Detail
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Lorem ipsum dolor sit amet, consectetur..</td>
-                            <td>10 Januari 2024</td>
-                            <td>
-                                <span class="badge text-danger" style="background-color: #FEEEEE;">Revisi</span>
-                            </td>
-                            <td>
-                                <button class="outline-purple-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
-                                    Detail
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Lorem ipsum dolor sit amet, consectetur..</td>
-                            <td>10 Januari 2024</td>
-                            <td>
-                                <span class="badge" style="background-color: #F6EEFE;color:#9425FE;">Proses</span>
-                            </td>
-                            <td>
-                                <a href="{{ route('courses.detail-task.index') }}" class="outline-purple-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
-                                    Detail
-                                </a>
-                            </td>
-                        </tr>
+                    <tbody id="task-list">
                     </tbody>
                 </table>
             </div>

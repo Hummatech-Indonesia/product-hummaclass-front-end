@@ -108,7 +108,7 @@
                             <i>Klik Lanjut untuk mengirimkan submission yang sudah Anda kerjakan</i>
                         </div>
                         <div>
-                            <button class="btn btn-primary">Lanjut</button>
+                            <a href="{{ route('upload-task.index') }}" class="btn btn-primary">Lanjut</a>
                         </div>
                     </div>
                 </div>
