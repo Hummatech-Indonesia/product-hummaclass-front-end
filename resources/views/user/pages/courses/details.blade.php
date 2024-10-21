@@ -257,12 +257,16 @@
                 dataType: "json",
                 success: function(response) {
                     console.log(response);
-                    
+
                     // console.log(response.data.user_course.is_pre_test);
                     if (response.data.user_course) {
                         if (response.data.user_course.has_pre_test == 0) {
                             $('#btn-checkout').text('Mulai Pre Test');
+                            $('#btn-lesson').text('Mulai Pre Test');
                             $('#btn-checkout').attr('href',
+                                "{{ route('pre.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.btn-lesson').attr('href',
                                 "{{ route('pre.test.index', '') }}/" +
                                 response.data.course_test_id);
                         } else {
