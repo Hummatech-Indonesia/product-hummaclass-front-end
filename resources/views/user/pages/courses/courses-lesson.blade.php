@@ -357,6 +357,7 @@
                 var slug = "{{ $id }}";
 
                 const subModules = value.sub_modules.map(subModule => {
+                    
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
                         <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between">
