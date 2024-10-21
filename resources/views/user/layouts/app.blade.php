@@ -99,7 +99,7 @@
     <script src="{{ asset('assets/js/tg-cursor.min.js') }}"></script>
     <script src="{{ asset('assets/js/vivus.min.js') }}"></script>
     <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
-    <script src="{{ asset('assets/js/svg-inject.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/svg-inject.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/jquery.circleType.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.lettering.min.js') }}"></script>
     <script src="{{ asset('assets/js/plyr.min.js') }}"></script>
@@ -108,7 +108,7 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        SVGInject(document.querySelectorAll("img.injectable"));
+        // SVGInject(document.querySelectorAll("img.injectable"));
 
         function formatRupiah(price) {
             return new Intl.NumberFormat('id-ID', {
@@ -131,6 +131,23 @@
                 success: success,
                 error: error
             });
+        }
+
+        function formatDate(tanggalAsli) {
+            // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
+            const date = new Date(tanggalAsli);
+
+            // Opsi untuk format tanggal dalam bahasa Indonesia
+            const opsiTanggal = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            };
+            // Menggunakan toLocaleDateString dan toLocaleTimeString untuk format
+            const tanggalFormatted = date.toLocaleDateString('id-ID', opsiTanggal);
+
+            // Menggabungkan hasil format tanggal dan waktu
+            return `${tanggalFormatted}`;
         }
     </script>
     <script>

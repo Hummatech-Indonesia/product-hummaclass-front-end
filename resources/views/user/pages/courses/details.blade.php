@@ -256,6 +256,8 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    console.log(response);
+                    
                     // console.log(response.data.user_course.is_pre_test);
                     if (response.data.user_course) {
                         if (response.data.user_course.is_pre_test == 0) {
@@ -265,9 +267,14 @@
                                 response.data.course_test_id);
                         } else {
                             $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
                             $('#btn-checkout').attr('href',
                                 "{{ route('courses.course-lesson.index', '') }}/" +
                                 response.data.user_course.sub_module_slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module_slug);
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
                         }
                         document.getElementById('courses-detail-sidebar').style.display = 'none';
                         document.getElementById('sidebar-tab-review').style.display = 'block';
@@ -332,10 +339,10 @@
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
-                               <p class="last_step_update d-flex justify-content-between">
+                               <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
-                                </p>
+                                </a>
                             </li>`;
                 }).join('');
                 return `
@@ -395,19 +402,19 @@
 
     <script>
         // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
-        document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
-            tabButton.addEventListener('shown.bs.tab', function(event) {
-                var targetTab = event.target.getAttribute('data-bs-target');
+        // document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
+        //     tabButton.addEventListener('shown.bs.tab', function(event) {
+        //         var targetTab = event.target.getAttribute('data-bs-target');
 
-                if (targetTab === '#reviews-tab-pane') {
-                    document.getElementById('courses-detail-sidebar').style.display = 'none';
-                    document.getElementById('sidebar-tab-review').style.display = 'block';
-                } else {
-                    document.getElementById('courses-detail-sidebar').style.display = 'block';
-                    document.getElementById('sidebar-tab-review').style.display = 'none';
-                }
-            });
-        });
+        //         if (targetTab === '#reviews-tab-pane') {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'none';
+        //             document.getElementById('sidebar-tab-review').style.display = 'block';
+        //         } else {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'block';
+        //             document.getElementById('sidebar-tab-review').style.display = 'none';
+        //         }
+        //     });
+        // });
     </script>
 
     <script>
