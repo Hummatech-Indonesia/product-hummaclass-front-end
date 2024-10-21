@@ -49,13 +49,6 @@
                         placeholder="Masukan sub judul">
                     <div class="invalid-feedback"></div>
                 </div>
-                {{-- <div class="col col-12 mb-3">
-                    <label for="" class="fw-semibold form-label">Konten</label>
-                    <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
-                        class="mb-5"></div>
-                    <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
-                    <div class="invalid-feedback"></div>
-                </div> --}}
                 <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
                     <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
@@ -74,7 +67,7 @@
 @endsection
 
 @section('script')
-    {{-- @include('admin.pages.courses.scripts.index') --}}
+    @include('admin.pages.courses.scripts.index')
 
     <script>
         $(document).ready(function() {
@@ -91,12 +84,12 @@
                     });
                 }
             });
+
             // Fungsi untuk set nilai ke form
             function setValue(data) {
-                console.log(data);
                 $('#title').val(data.title);
                 $('#sub-title').val(data.sub_title);
-                modules = data;
+                editor.render(JSON.parse(data.content));
             }
 
             $.ajax({
@@ -122,71 +115,41 @@
                 e.preventDefault();
 
                 editor.save().then((outputData) => {
-                    if (outputData.blocks.length === 0) {
-                        Swal.fire({
-                            title: "Konten wajib diisi!",
-                            text: "Harap tambahkan konten sebelum menyimpan.",
-                            icon: "error"
-                        });
-                        return;
-                    }
-
-                    // Memasukkan konten editor ke field hidden untuk dikirimkan
-                    $('#editorContent').val(JSON.stringify(outputData));
+                    document.getElementById('editorContent').value = JSON.stringify(outputData);
 
                     var formData = new FormData(this);
 
-                    // Debugging untuk memastikan title, sub_title, dan content ada di FormData
-                    console.log('Title:', formData.get(
-                        'title')); // Pastikan field name adalah "title"
-                    console.log('Sub-title:', formData.get(
-                        'sub_title')); // Pastikan field name adalah "sub_title"
-                    console.log('Content:', formData.get(
-                        'content')); // Pastikan field name adalah "content"
-
                     $.ajax({
-                        url: "{{ config('app.api_url') }}" + "/api/sub-modules/" + id,
                         headers: {
-                            'Authorization': 'Bearer ' +
-                                "{{ session('hummaclass-token') }}",
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                         },
-                        type: 'PATCH',
+                        url: `{{ config('app.api_url') }}/api/sub-modules-update/${id}`,
+                        type: "POST",
                         data: formData,
                         dataType: "json",
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            Swal.fire({
-                                title: "Sukses",
-                                text: response.meta.title,
-                                icon: "success"
-                            }).then(function() {
-                                window.location.href = "/admin/modules/" +
-                                    response.data.module_id;
-                            });
+                            window.location.href = "/admin/modules/" + response.data
+                                .module_id;
                         },
-                        error: function(error) {
-                            let errors = error.responseJSON.data || {};
-                            let message = error.responseJSON.meta.message;
-                            $('.is-invalid').removeClass('is-invalid');
-                            $('.invalid-feedback').addClass('d-none');
+                        error: function(response) {
+                            if (response.status === 422) {
+                                let errors = response.responseJSON.data;
+                                $('.is-invalid').removeClass('is-invalid');
+                                $('.invalid-feedback').text('');
 
-                            if (errors) {
-                                for (let key in errors) {
-                                    if (errors.hasOwnProperty(key)) {
-                                        let feedback = $(`#${key}`).closest('.col')
-                                            .find('.invalid-feedback');
-                                        feedback.text(errors[key][
-                                            0
-                                        ]); // Mengambil pesan error pertama
-                                        feedback.removeClass('d-none');
-                                        $(`#${key}`).addClass('is-invalid');
-                                    }
-                                }
+                                $.each(errors, function(field, messages) {
+                                    $(`[name="${field}"]`).addClass(
+                                        'is-invalid');
+                                    $(`[name="${field}"]`).closest('.col').find(
+                                        '.invalid-feedback').text(messages[
+                                        0]);
+                                });
                             } else {
                                 Swal.fire({
                                     title: "Terjadi Kesalahan!",
-                                    text: message,
+                                    text: "Ada kesalahan saat menyimpan data.",
                                     icon: "error"
                                 });
                             }
@@ -196,6 +159,37 @@
                     console.log('Error saving content:', error);
                 });
             });
+
+            function addImageToEditor(imageUrl) {
+                editor.blocks.insert('image', {
+                    file: {
+                        url: imageUrl
+                    }
+                });
+            }
+
+            function uploadImage(file) {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ config('app.api_url') }}/upload-image",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        if (response.success) {
+                            console.log(response);
+
+                            addImageToEditor(response.file.url);
+                        }
+                    },
+                    error: function() {
+                        // Tangani kesalahan unggah
+                    }
+                });
+            }
 
         });
     </script>
