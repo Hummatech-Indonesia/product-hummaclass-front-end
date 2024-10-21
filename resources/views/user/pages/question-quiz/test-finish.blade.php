@@ -69,10 +69,11 @@
             overflow: hidden;
         }
 
-        .btn-warning:hover{
+        .btn-warning:hover {
             color: #fff;
             background-color: #9425FE;
         }
+
         main {
             background-color: #F1F1F1;
         }
@@ -135,7 +136,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="text-end">
-                                        <p>20 Soal</p>
+                                        <p><span id="total_question"></span> Soal</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -146,7 +147,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="text-end">
-                                        <p>10 Soal</p>
+                                        <p><span id="total_correct"></span> Soal</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -157,19 +158,19 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="text-end">
-                                        <p>7 Soal</p>
+                                        <p><span id="total_fault"></span> Soal</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row text-center justify-content-center mt-2">
                                 <h6>Nilai Ujian</h6>
-                                <span class="fw-semibold fs-1" style="color: #9C40F7;">80</span>
+                                <span class="fw-semibold fs-1" id="score" style="color: #9C40F7;">80</span>
                                 <div class="col-lg-10 my-4">
                                     <div style="border-bottom: 1px solid #CCCCCC"></div>
                                 </div>
                                 <h6>Hasil</h6>
-                                <div>
-                                    <span class="badge text-success w-100 p-3 fs-6" style="background-color: #EEFEF0;">Selamat Anda Lulus</span>
+                                <div id="status">
+
                                 </div>
                             </div>
                         </div>
@@ -199,6 +200,17 @@
                     console.log(response.data);
                     $('#total_question').html(response.data.total_question);
                     $('#score').html(response.data.score);
+                    $('#total_correct').html(response.data.total_correct);
+                    $('#total_fault').html(response.data.total_fault);
+                    if (response.data.status == "Tidak lulus") {
+                        $('#status').append(
+                            `<span class="badge text-white w-100 p-3 fs-6 bg-danger">Maaf Anda Tidak Lulus</span>`
+                        );
+                    } else {
+                        $('#status').append(
+                            `<span class="badge text-white w-100 p-3 fs-6 bg-success">Selamat Anda Lulus</span>`
+                        );
+                    }
                     $.each(response.data.questions, function(index, value) {
                         $('#question_quiz').append(
                             questionQuiz(index, value)

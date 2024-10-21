@@ -160,21 +160,33 @@
             });
 
             function contentCourse(index, value) {
+                var slug = "{{ $id }}";
                 const subModules = value.sub_modules.map(subModule => {
-                    return `<li class="course-item open-item">
-                        <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="">
+                    return `<li class="course-item">
+                        <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between" style="color: black">
                             <span class="ps-2">${subModule.title}</span>
                         </a>
                     </li>`;
                 }).join('');
+                // console.log(slug);
+
 
                 const quizzes = value.quizzes.map(quiz => {
-                    return `<li class="course-item open-item">
-                        <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
-                            <span class="ps-2">Quiz</span>
-                            <span class="ps-2"> ${quiz.total_question} Soal</span>
-                        </a>
-                    </li>`;
+                    if (quiz.module_slug == slug) {
+                        return `<li class="course-item open-item">
+                                   <a href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" class="d-flex justify-content-between">
+                                        <span class="ps-2">Quiz</span>
+                                        <span class="ps-2">${quiz.total_question} Soal</span>
+                                    </a>
+                                </li>`;
+                    } else {
+                        return `<li class="course-item">
+                                    <a class="d-flex justify-content-between" style="color: black">
+                                        <span class="ps-2">Quiz</span>
+                                        <span class="ps-2">${quiz.total_question} Soalk</span>
+                                    </a>
+                                </li>`;
+                    }
                 }).join('');
 
                 return `

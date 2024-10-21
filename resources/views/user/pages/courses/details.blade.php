@@ -204,24 +204,21 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                        warning ') }}',
+                    text: '{{ session('warning ') }}',
                 });
             @endif
             @if (session('error'))
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                        error ') }}',
+                    text: '{{ session('error ') }}',
                 });
             @endif
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                        success ') }}',
+                    text: '{{ session('success') }}',
                 });
             @endif
 
@@ -305,17 +302,17 @@
 
                 const subModules = value.sub_modules.map(subModule => {
                     return `<li class="course-item open-item">
-                               <a class="last_step_update" href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" style="cursor: pointer;" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
+                               <p class="last_step_update" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
-                                </a>
+                                </p>
                             </li>`;
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
-                               <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
+                               <p class="last_step_update d-flex justify-content-between">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
-                                </a>
+                                </p>
                             </li>`;
                 }).join('');
                 return `
