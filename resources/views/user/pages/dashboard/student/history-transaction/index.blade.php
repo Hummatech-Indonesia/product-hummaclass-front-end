@@ -217,7 +217,7 @@
 @endsection
 
 @section('script')
-@include('user.pages.dashboard.student.history-transaction.scripts.all-history')
+@include('user.pages.dashboard.student.history-transaction.scripts.history-transaction')
 <script>
     $(document).ready(function() {
 
