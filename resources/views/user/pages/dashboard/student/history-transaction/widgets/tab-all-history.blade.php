@@ -1,8 +1,6 @@
-@foreach (range(1,1) as $data)
 <div class="" id="tab-all-history">
 
 </div>
-@endforeach
 
 {{-- @foreach (range(1,2) as $item)
 <div class="card mb-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">

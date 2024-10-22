@@ -1,4 +1,7 @@
-@foreach (range(1,5) as $data)
+<div class="" id="tab-finish">
+
+</div>
+{{-- @foreach (range(1,5) as $data)
 <div class="card mb-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
     <div class="courses__item-three shine__animate-item border-0">
         <div class="courses__item-thumb">
@@ -48,4 +51,4 @@
 
     </div>
 </div>
-@endforeach
+@endforeach --}}
