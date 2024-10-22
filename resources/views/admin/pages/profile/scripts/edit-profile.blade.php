@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        // create
+        // edit profile
         $('#edit-profile-form').submit(function(e) {
             e.preventDefault();
 
