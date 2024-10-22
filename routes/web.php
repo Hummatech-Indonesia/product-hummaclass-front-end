@@ -173,8 +173,8 @@ Route::get('task-execution', function () {
     return view('user.pages.courses.task-execution.index');
 })->name('task-execution.index');
 
-Route::get('upload-task', function () {
-    return view('user.pages.courses.task-execution.upload-task');
+Route::get('upload-task/{id}', function ($id) {
+    return view('user.pages.courses.task-execution.upload-task', compact('id'));
 })->name('upload-task.index');
 
 // ================== ADMIN ==================

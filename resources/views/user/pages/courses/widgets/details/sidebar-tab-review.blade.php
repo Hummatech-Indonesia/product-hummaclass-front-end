@@ -7,7 +7,7 @@
             <div class="author-two">
                 <img src="{{ asset('assets/img/courses/course_author001.png') }}" style="width: 100px;object-fit:cover;" alt="img">
             </div>
-            <h5 class="px-3 mt-2">Alfian Fahrul Ban Dalam</h5>
+            <h5 class="px-3 mt-2 user-name"></h5>
         </div>
         {{-- <div class="courses__details-video">
             <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" alt="img">

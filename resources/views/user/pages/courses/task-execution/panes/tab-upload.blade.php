@@ -51,6 +51,6 @@
 
     <div class="d-flex justify-content-end gap-3">
         <button type="button" class="outline-purple-primary" data-bs-dismiss="modal">Batal</button>
-        <button type="submit" class="btn text-white updateConfirmation" style="background-color: #7209DB;">Lanjut</button>
+        <button class="btn text-white updateConfirmation" id="submit-task-btn" style="background-color: #7209DB;">Lanjut</button>
     </div>
 </div>

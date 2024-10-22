@@ -236,10 +236,10 @@
                                 <span class="badge text-success" style="background-color: #EEFEF0;">Selesai</span>
                             </td>
                             <td>
-                                <button class="outline-purple-primary">
+                                <a href="{{ route('upload-task.index', '') }}/${task.id}" class="outline-purple-primary">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
                                     Detail
-                                </button>
+                                </a>
                             </td>
                         </tr>`
                     });
@@ -269,6 +269,8 @@
                             $('.btn-lesson').attr('href',
                                 "{{ route('pre.test.index', '') }}/" +
                                 response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
                         } else {
                             $('#btn-checkout').text('Lanjutkan');
                             $('#btn-lesson').text('Lanjutkan');
@@ -278,7 +280,7 @@
                             $('#btn-lesson').attr('href',
                                 "{{ route('courses.course-lesson.index', '') }}/" +
                                 response.data.user_course.sub_module_slug);
-                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+
                         }
                         document.getElementById('courses-detail-sidebar').style.display = 'none';
                         document.getElementById('sidebar-tab-review').style.display = 'block';
