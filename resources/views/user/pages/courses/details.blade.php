@@ -266,7 +266,7 @@
                             $('#btn-checkout').attr('href',
                                 "{{ route('pre.test.index', '') }}/" +
                                 response.data.course_test_id);
-                            $('.btn-lesson').attr('href',
+                            $('#btn-lesson').attr('href',
                                 "{{ route('pre.test.index', '') }}/" +
                                 response.data.course_test_id);
                             $('.user-name').text("{{ session('user')['name'] }}");

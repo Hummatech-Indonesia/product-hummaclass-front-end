@@ -313,12 +313,12 @@
                 `;
         }
 
-        function submit_quiz(user_quiz_id, answer) {
+        function submit_quiz(user_course_test_id, answer) {
             const filteredAnswers = answer.map(a => a === null ? 'null' : a);
 
             $.ajax({
                 type: "POST",
-                url: "{{ config('app.api_url') }}/api/course-submit-test/" + user_quiz_id,
+                url: "{{ config('app.api_url') }}/api/course-submit-test/" + user_course_test_id,
                 data: JSON.stringify({
                     answer: filteredAnswers
                 }),
@@ -333,7 +333,7 @@
                         text: "Berhasil mengirim ujian.",
                         icon: "success"
                     }).then(() => {
-                        window.location.href = "{{ route('finish-quiz') }}/" + user_quiz_id;
+                        window.location.href = "{{ route('pre.test.finish') }}/" + user_course_test_id;
                     });
                 },
 
