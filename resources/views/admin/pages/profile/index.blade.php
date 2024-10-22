@@ -50,6 +50,7 @@
 @endsection
 
 @section('script')
+@include('admin.pages.profile.scripts.edit-profile')
 
 <script>
     document.getElementById('edit-profile-btn').addEventListener('click', function() {
