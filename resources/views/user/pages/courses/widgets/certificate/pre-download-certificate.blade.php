@@ -47,8 +47,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-    @media (max-width: 600px){
-        
     .certificate-container {
         position: relative;
         width: 100%;
@@ -131,7 +129,6 @@
         color: #333;
     }
     
-    }
 
 </style>
 
