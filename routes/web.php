@@ -63,12 +63,12 @@ Route::prefix('courses')->name('courses.')->group(function () {
         return view('user.pages.courses.widgets.details.detail-task');
     })->name('detail-task.index');
 
-    Route::get('print-certificate', function () {
-        return view('user.pages.courses.widgets.certificate.print-certificate');
+    Route::get('print-certificate/{course}', function ($course) {
+        return view('user.pages.courses.widgets.certificate.print-certificate', compact('course'));
     })->name('print-certificate.index');
 
-    Route::get('pre-download-certificate', function () {
-        return view('user.pages.courses.widgets.certificate.pre-download-certificate');
+    Route::get('pre-download-certificate/{course?}', function ($course) {
+        return view('user.pages.courses.widgets.certificate.pre-download-certificate', compact('course'));
     })->name('pre-download-certificate.index');
 
     Route::get('download-certificate', function () {
