@@ -211,24 +211,38 @@
         , });
         @endif
 
-        $.ajax({
-            type: "get"
-            , url: "{{ config('app.api_url') }}/api/module-tasks/course/" + id
-            , dataType: "json"
-            , success: function(response) {
-                let taskEl = '';
-                response.data.forEach(task => {
-                    taskEl += `<tr>
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/module-tasks/course/" + id,
+                dataType: "json",
+                headers: {
+                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                },
+                success: function(response) {
+                    let taskEl = '';
+                    response.data.forEach(task => {
+                        taskEl += `<tr>
                             <td>${task.question}</td>
                             <td>10 Januari 2024</td>
                             <td>
-                                <span class="badge text-success" style="background-color: #EEFEF0;">Selesai</span>
+                                @session('user')
+                                    <span class="badge text-${task.is_finish? "success" : "danger"}" style="background-color: #EEFEF0;">${task.is_finish? "Selesai" : "Belum Selesai"}</span>
+                                @else
+                                    <span class="badge" style="background-color: #EEFEF0;">-</span>
+                                @endsession
                             </td>
                             <td>
-                                <a href="{{ route('upload-task.index', '') }}/${task.id}" class="outline-purple-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
-                                    Detail
-                                </a>
+                                @session('user')
+                                    <a href="{{ route('upload-task.index', '') }}/${task.id}" class="outline-purple-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
+                                        Detail
+                                    </a>
+                                @else
+                                    <a href="{{ route('upload-task.index', '') }}/${task.id}" class="outline-purple-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 13c3.6-8 14.4-8 18 0"/><path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"/></g></svg>
+                                        -
+                                    </a>
+                                @endsession
                             </td>
                         </tr>`
                 });
@@ -252,6 +266,8 @@
 
                 // console.log(response.data.user_course.is_pre_test);
                 if (response.data.user_course) {
+                    console.log(response.data);
+                    
                     if (response.data.user_course.has_pre_test == 0) {
                         $('#btn-checkout').text('Mulai Pre Test');
                         $('#btn-lesson').text('Mulai Pre Test');
@@ -268,10 +284,10 @@
                         $('#btn-lesson').text('Lanjutkan');
                         $('#btn-checkout').attr('href'
                             , "{{ route('courses.course-lesson.index', '') }}/" +
-                            response.data.user_course.sub_module_slug);
+                            response.data.user_course.sub_module.slug);
                         $('#btn-lesson').attr('href'
                             , "{{ route('courses.course-lesson.index', '') }}/" +
-                            response.data.user_course.sub_module_slug);
+                            response.data.user_course.sub_module.slug);
 
                     }
                     document.getElementById('courses-detail-sidebar').style.display = 'none';
