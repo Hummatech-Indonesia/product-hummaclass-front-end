@@ -140,6 +140,10 @@ Route::get('pre-test/{id}', function ($id) {
     return view('user.pages.pre-post-test.index', compact('id'));
 })->name('pre.test.index');
 
+Route::get('finished-test/{id?}', function ($id) {
+    return view('user.pages.pre-post-test.test-finish', compact('id'));
+})->name('pre.test.finish');
+
 Route::get('quiz-setting/{id}', function ($id) {
     return view('admin.pages.courses.panes.moduls.setting-quiz', compact('id'));
 })->name('quetion-quiz.setting')->middleware('auth_custom');
