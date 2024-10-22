@@ -64,7 +64,7 @@
                                 </svg>
                             <input type="hidden" name="rating" id="rating" value="0">
                         </div>
-                        <textarea name="review" placeholder="Tuliskan Review" class="form-control" id="review-textarea" cols="30" rows="10"></textarea>
+                        <textarea name="review" placeholder="Tuliskan Review" class="form-control mt-3" id="review-textarea" cols="30" rows="10"></textarea>
                     </div>
                 </div>
                 <div class="px-4 mb-4">

@@ -33,16 +33,15 @@
     </div>
 
     <div>
-        <button class="outline-purple-primary w-100 mt-4 addReviews" style="border-radius: 50px; padding: 10px 10px; font-size: 14px;" data-bs-toggle="modal" data-bs-target="#modal-create-review">
-            Review Kursus
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18m0 0l-8.5-8.5M21 12l-8.5 8.5" /></svg>
-        </button>
+        <a class="outline-purple-primary w-100" id="btn-lesson" style="border-radius: 50px; padding: 10px 10px; font-size: 14px;"></a>
         <a href="{{ route('courses.print-certificate.index') }}" style="border-radius: 50px; padding: 10px 10px; font-size: 14px;" class="outline-purple-primary w-100 mt-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 256 256"><path fill="currentColor" d="M128 136a8 8 0 0 1-8 8H72a8 8 0 0 1 0-16h48a8 8 0 0 1 8 8m-8-40H72a8 8 0 0 0 0 16h48a8 8 0 0 0 0-16m112 65.47V224a8 8 0 0 1-12 7l-24-13.74L172 231a8 8 0 0 1-12-7v-24H40a16 16 0 0 1-16-16V56a16 16 0 0 1 16-16h176a16 16 0 0 1 16 16v30.53a51.88 51.88 0 0 1 0 74.94M160 184v-22.53A52 52 0 0 1 216 76V56H40v128Zm56-12a51.88 51.88 0 0 1-40 0v38.22l16-9.16a8 8 0 0 1 7.94 0l16 9.16Zm16-48a36 36 0 1 0-36 36a36 36 0 0 0 36-36"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16.004V17a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1M12 4.5v11m3.5-3.5L12 15.5L8.5 12"/></svg>
             Unduh Sertifikat
         </a>
-        <a class="btn btn-primary mt-3 w-100" id="btn-lesson">Lanjutkan</a>
+        <button class="btn btn-primary w-100 mt-3 addReviews" data-bs-toggle="modal" data-bs-target="#modal-create-review">
+            Review Kursus
+        </button>
+        {{-- <a class="btn btn-primary mt-3 w-100" id="btn-lesson">Lanjutkan</a> --}}
     </div>
     
 
