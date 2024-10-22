@@ -88,7 +88,7 @@ Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboar
         })->name('events');
 
         Route::get('reviews', function () {
-            return view('user.pages.dashboard.student.reviews');
+            return view('user.pages.dashboard.student.reviews.index');
         })->name('reviews');
 
         Route::get('history-transaction/{id}', function ($id) {

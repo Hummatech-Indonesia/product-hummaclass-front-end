@@ -40,27 +40,27 @@
         <div class="row mt-4">
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Nama:</label>
-                <input type="text" class="form-control" value="{{ session('user')['name'] }}" id="name" placeholder="Name">
+                <input type="text" class="form-control" value="{{ session('user')['name'] }}" name="name" id="name" placeholder="Name">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Email:</label>
-                <input type="text" class="form-control" value="{{ session('user')['email'] }}" id="email" placeholder="Email">
+                <input type="text" class="form-control" value="{{ session('user')['email'] }}" name="email" id="email" placeholder="Email">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">No Telepon:</label>
-                <input type="text" class="form-control" value="{{ session('user')['phone_number'] }}" id="phone_number" placeholder="No Telepon">
+                <input type="text" class="form-control" value="{{ session('user')['phone_number'] }}" name="phone_number" id="phone_number" placeholder="No Telepon">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Jenis Kelamin:</label>
-                <input type="text" class="form-control" value="{{ session('user')['gender'] }}" id="gender" placeholder="Jenis Kelamin">
+                <input type="text" class="form-control" value="{{ session('user')['gender'] }}" id="gender" name="gender" placeholder="Jenis Kelamin">
             </div>
             <div class="col-lg-12 mb-4">
                 <label for="" class="form-label">Alamat:</label>
-                <textarea name="" class="form-control" value="{{ session('user')['address'] }}" placeholder="{{ session('user')['address'] }}" id="address" cols="30" rows="10"></textarea>
+                <textarea name="address" class="form-control" value="{{ session('user')['address'] }}" placeholder="Masukan alamat" id="address" cols="30" rows="10">{{ session('user')['address'] }}</textarea>
             </div>
         </div>
         <div class="text-end">
-            <button id="cancel-edit-btn" class="btn text-white" style="background-color: #DB0909;">Batal</button>
+            <button type="reset" id="cancel-edit-btn" class="btn text-white" style="background-color: #DB0909;">Batal</button>
             <button type="submit" id="save-profile-btn" class="btn text-white ms-2" style="background-color: #9425FE;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="15" height="18" viewBox="0 0 28 28">
                     <path fill="currentColor"

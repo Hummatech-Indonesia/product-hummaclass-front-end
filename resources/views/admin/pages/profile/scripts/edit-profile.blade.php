@@ -11,7 +11,7 @@
 
 
             $.ajax({
-                url: "{{ config('app.api_url') }}" + "/api/profile-update/{{ session('user')['id'] }}",
+                url: "{{ config('app.api_url') }}" + "/api/profile-update",
                 headers: {
                     'Authorization': 'Bearer {{ session('hummaclass-token') }}'
                 },
