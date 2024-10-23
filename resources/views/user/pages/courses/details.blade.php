@@ -1,215 +1,229 @@
 @extends('user.layouts.app')
 
 @section('style')
-<style>
-    .add-to-cart:hover {
-        color: var(--bs-primary);
-    }
+    <style>
+        .add-to-cart:hover {
+            color: var(--bs-primary);
+        }
 
-    .payment-option span {
-        font-size: 16px;
-        font-weight: bold;
-    }
+        .payment-option span {
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-    .payment-option img {
-        width: 100px !important;
-        height: auto;
-        aspect-ratio: 2 / 1;
-    }
+        .payment-option img {
+            width: 100px !important;
+            height: auto;
+            aspect-ratio: 2 / 1;
+        }
 
-    .payment-option {
-        display: flex;
-        align-items: center;
-        border: 1px solid #ccc;
-        padding: 5px;
-        border-radius: 10px;
-        /* cursor: pointer; */
-        transition: border-color 0.3s;
-    }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 10px;
+            /* cursor: pointer; */
+            transition: border-color 0.3s;
+        }
 
-    .outline-purple-primary {
-        display: inline-block;
-        border: 1px solid #9425FE;
-        color: #9425FE;
-        background-color: transparent;
-        padding: 4px 6px;
-        border-radius: 10px;
-        font-size: 12px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-        text-align: center;
-        text-decoration: none;
-    }
+        .outline-purple-primary {
+            display: inline-block;
+            border: 1px solid #9425FE;
+            color: #9425FE;
+            background-color: transparent;
+            padding: 4px 6px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
 
-    .outline-purple-primary:hover {
-        background-color: #9425FE;
-        color: white;
-    }
+        .outline-purple-primary:hover {
+            background-color: #9425FE;
+            color: white;
+        }
 
-    .outline-purple-primary:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
-    }
+        .outline-purple-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
+        }
 
-    .outline-purple-primary:active {
-        background-color: #5a34a9;
-        border-color: #5a34a9;
-    }
+        .outline-purple-primary:active {
+            background-color: #5a34a9;
+            border-color: #5a34a9;
+        }
 
-    .outline-purple-primary:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+        .outline-purple-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
-    .modal-backdrop {
-        transform: scale(1.25);
-        transform-origin: top left;
-    }
+        .modal-backdrop {
+            transform: scale(1.25);
+            transform-origin: top left;
+        }
 
-    .stars button svg {
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
+        .stars button svg {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
 
-    .stars button svg:hover {
-        transform: scale(1.2);
-    }
+        .stars button svg:hover {
+            transform: scale(1.2);
+        }
 
-    .stars button.active svg path {
-        fill: #FFB649;
-        stroke: #FFB649;
-    }
-
-</style>
+        .stars button.active svg path {
+            fill: #FFB649;
+            stroke: #FFB649;
+        }
+    </style>
 @endsection
 
 @section('content')
-<!-- breadcrumb-area -->
-<div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb__content">
-                    <nav class="breadcrumb">
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="/">Home</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="/">Courses</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
-                            Engineers</span>
-                    </nav>
+    <!-- breadcrumb-area -->
+    <div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two"
+        data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <nav class="breadcrumb">
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/">Home</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/">Courses</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
+                                Engineers</span>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="breadcrumb__shape-wrap">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right"
+                data-aos-delay="300">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left"
+                data-aos-delay="400">
+        </div>
     </div>
-    <div class="breadcrumb__shape-wrap">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
-    </div>
-</div>
-<!-- breadcrumb-area-end -->
+    <!-- breadcrumb-area-end -->
 
-<!-- courses-details-area -->
-<section class="courses__details-area section-py-120">
-    <div class="container">
-        <div class="row" id="detail-course">
-            <div class="col-xl-9 col-lg-8">
-                <div class="courses__details-thumb">
-                    <img src="" id="photo" alt="img" width="100%">
-                </div>
-                <div class="courses__details-content">
-                    <ul class="courses__item-meta list-wrap">
-                        <li class="courses__item-tag">
-                            <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
-                        </li>
-                        <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
-                        </li>
-                    </ul>
-                    <h2 class="title mb-0" id="detail-title"></h2>
-                    <p id="sub-title"></p>
-                    <div class="courses__details-meta">
-                        <ul class="list-wrap">
-                            <li class="author-two">
-                                <img src="{{ asset('assets/img/courses/course_author001.png') }}" alt="img">
-                                By
-                                <a href="#">HummaClass</a>
+    <!-- courses-details-area -->
+    <section class="courses__details-area section-py-120">
+        <div class="container">
+            <div class="row" id="detail-course">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="courses__details-thumb">
+                        <img src="" id="photo" alt="img" width="100%">
+                    </div>
+                    <div class="courses__details-content">
+                        <ul class="courses__item-meta list-wrap">
+                            <li class="courses__item-tag">
+                                <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
-                            <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
+                            </li>
                         </ul>
-                    </div>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum-tab-pane" type="button" role="tab" aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task-tab-pane" type="button" role="tab" aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="instructors-tab" data-bs-toggle="tab" data-bs-target="#instructors-tab-pane" type="button" role="tab" aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        @include('user.pages.courses.widgets.details.overview')
-                        @include('user.pages.courses.widgets.details.curriculumn')
-                        @include('user.pages.courses.widgets.details.task')
-                        @include('user.pages.courses.widgets.details.instructors')
-                        @include('user.pages.courses.widgets.details.reviews')
+                        <h2 class="title mb-0" id="detail-title"></h2>
+                        <p id="sub-title"></p>
+                        <div class="courses__details-meta">
+                            <ul class="list-wrap">
+                                <li class="author-two">
+                                    <img src="{{ asset('assets/img/courses/course_author001.png') }}" alt="img">
+                                    By
+                                    <a href="#">HummaClass</a>
+                                </li>
+                                <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
+                                <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
+                            </ul>
+                        </div>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                    data-bs-target="#overview-tab-pane" type="button" role="tab"
+                                    aria-controls="overview-tab-pane" aria-selected="true">Deskripsi</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
+                                    data-bs-target="#curriculum-tab-pane" type="button" role="tab"
+                                    aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task-tab-pane"
+                                    type="button" role="tab" aria-controls="task-tab-pane"
+                                    aria-selected="false">Tugas</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
+                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+                                    data-bs-target="#reviews-tab-pane" type="button" role="tab"
+                                    aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            @include('user.pages.courses.widgets.details.overview')
+                            @include('user.pages.courses.widgets.details.curriculumn')
+                            @include('user.pages.courses.widgets.details.task')
+                            @include('user.pages.courses.widgets.details.instructors')
+                            @include('user.pages.courses.widgets.details.reviews')
+                        </div>
                     </div>
                 </div>
+                @include('user.pages.courses.widgets.details.courses-detail-sidebar')
+                @include('user.pages.courses.widgets.details.sidebar-tab-review')
             </div>
-            @include('user.pages.courses.widgets.details.courses-detail-sidebar')
-            @include('user.pages.courses.widgets.details.sidebar-tab-review')
         </div>
-    </div>
-</section>
-@include('user.pages.courses.widgets.details.modal-create-reviews')
-<!-- courses-details-area-end -->
+    </section>
+    @include('user.pages.courses.widgets.details.modal-create-reviews')
+    <!-- courses-details-area-end -->
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
-        let photo;
-        var id = "{{ $id }}";
+    <script>
+        $(document).ready(function() {
+            let photo;
+            var id = "{{ $id }}";
 
-        @if(session('warning'))
-        Swal.fire({
-            icon: 'warning'
-            , title: 'Oops...'
-            , text: '{{ session('
-            warning ') }}'
-        , });
-        @endif
-        @if(session('error'))
-        Swal.fire({
-            icon: 'error'
-            , title: 'Oops...'
-            , text: '{{ session('
-            error ') }}'
-        , });
-        @endif
-        @if(session('success'))
-        Swal.fire({
-            icon: 'success'
-            , title: 'Oops...'
-            , text: '{{ session('
-            success ') }}'
-        , });
-        @endif
+            @if (session('warning'))
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: '{{ session('
+                                warning ') }}',
+                });
+            @endif
+            @if (session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('
+                                error ') }}',
+                });
+            @endif
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Oops...',
+                    text: '{{ session('
+                                success ') }}',
+                });
+            @endif
 
             $.ajax({
                 type: "get",
@@ -245,171 +259,199 @@
                                 @endsession
                             </td>
                         </tr>`
-                });
+                    });
 
-                $('#task-list').append(taskEl);
-            }
-        });
-
-        var course;
-
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/courses/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                console.log(response);
-                course = response.data;
-
-                // console.log(response.data.user_course.is_pre_test);
-                if (response.data.user_course) {
-                    console.log(response.data);
-                    
-                    if (response.data.user_course.has_pre_test == 0) {
-                        $('#btn-checkout').text('Mulai Pre Test');
-                        $('#btn-lesson').text('Mulai Pre Test');
-                        $('#btn-checkout').attr('href'
-                            , "{{ route('pre.test.index', '') }}/" +
-                            response.data.course_test_id);
-                        $('#btn-lesson').attr('href'
-                            , "{{ route('pre.test.index', '') }}/" +
-                            response.data.course_test_id);
-                        $('.user-name').text("{{ session('user')['name'] }}");
-                        $('.paid-at').text(formatDate(response.data.user_course.created_at));
-                    } else {
-                        $('#btn-checkout').text('Lanjutkan');
-                        $('#btn-lesson').text('Lanjutkan');
-                        $('#btn-checkout').attr('href'
-                            , "{{ route('courses.course-lesson.index', '') }}/" +
-                            response.data.user_course.sub_module.slug);
-                        $('#btn-lesson').attr('href'
-                            , "{{ route('courses.course-lesson.index', '') }}/" +
-                            response.data.user_course.sub_module.slug);
-
-                    }
-                    document.getElementById('courses-detail-sidebar').style.display = 'none';
-                    document.getElementById('sidebar-tab-review').style.display = 'block';
-                } else {
-                    document.getElementById('courses-detail-sidebar').style.display = 'block';
-                    document.getElementById('sidebar-tab-review').style.display = 'none';
+                    $('#task-list').append(taskEl);
                 }
+            });
 
-                response.data.course_reviews.forEach((review) => {
-                    $('#review-content').append(reviewContent(review));
-                });
+            var course;
 
-                photo = `${response.data.photo}`;
-                $('#photo').attr('src', photo);
-                $('#sub-title').append(response.data.sub_title);
-                $('#detail-title').append(response.data.title);
-                $('#detail-category').append(response.data.sub_category.name);
-                $('#detail-count-user').append(response.data.user_courses_count);
-                $('#detail-date').append(response.data.created);
-                $('#detail-rating').append(response.data.rating);
-                $('#price-course').html(formatRupiah(response.data.price));
+            function reviewContent(value) {
+                return `
+                    <div class="course-review-head">
+                        <div class="review-author-thumb">
+                            <img src="${value.user.photo}" alt="img">
+                        </div>
+                        <div class="review-author-content">
+                            <div class="author-name">
+                                <h5 class="name text-dark">${value.user.name} <span>${value.created}</span></h5>
+                                <div class="author-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <p>${value.review}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    course = response.data;
 
-                // tab deskripsi
-                $('#description-title').append(response.data.title);
-                $('#description-description').append(response.data.description);
-                $.each(response.data.modules, function(index, value) {
-                    $('#module-content').append(moduleContent(index, value));
-                });
+                    // console.log(response.data.user_course.is_pre_test);
+                    if (response.data.user_course) {
+                        console.log(response.data);
 
-                // tab konten kursus
+                        if (response.data.user_course.has_pre_test == 0) {
+                            $('#btn-checkout').text('Mulai Pre Test');
+                            $('#btn-lesson').text('Mulai Pre Test');
+                            $('#btn-checkout').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                        } else {
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
 
-                // tab ulasan
-                $('#review-rating').append(response.data.rating);
-                $('#review-rating-count').append(response.data.course_review_count);
-                // $('#review-users').append(response.data.course_reviews.user.name);
-                // console.log(response.data.course_reviews);
-
-
-                response.data.course_reviews.forEach(review => {
-                    console.log(review.user.name);
-
-                });
-
-
-                $(document).on('click', '.addReviews', function() {
-                    $('#modal-create-review').modal('show');
-                });
-
-                $('#course_id').val(response.data.id);
-
-                $('.storeConfirmation').click(function(e) {
-                    e.preventDefault();
-
-                    let formData = new FormData($('#form-create-review')[0]);
-
-                    $.ajax({
-                        type: "POST"
-                        , url: "{{ config('app.api_url') }}/api/course-reviews/" + response.data.id
-                        , headers: {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                        , }
-                        , data: formData
-                        , dataType: "json"
-                        , processData: false
-                        , contentType: false
-                        , success: function(response) {
-                            $('#modal-create-review').modal('hide');
-                            Swal.fire({
-                                title: "Berhasil!"
-                                , text: response.meta.message
-                                , icon: "success"
-                            });
-                            get(1);
                         }
-                        , error: function(response) {
-                            let errorMessages = [];
+                        document.getElementById('courses-detail-sidebar').style.display = 'none';
+                        document.getElementById('sidebar-tab-review').style.display = 'block';
+                    } else {
+                        document.getElementById('courses-detail-sidebar').style.display = 'block';
+                        document.getElementById('sidebar-tab-review').style.display = 'none';
+                    }
+                    
+                    // console.log(response.data.course_reviews);
 
-                            if (response.responseJSON && response.responseJSON.errors) {
-                                $.each(response.responseJSON.errors, function(field, messages) {
-                                    $.each(messages, function(index, message) {
-                                        errorMessages.push(message);
+                    response.data.course_reviews.forEach((review) => {
+                        $('#review-content').append(reviewContent(review));
+                    });
+
+                    photo = `${response.data.photo}`;
+                    $('#photo').attr('src', photo);
+                    $('#sub-title').append(response.data.sub_title);
+                    $('#detail-title').append(response.data.title);
+                    $('#detail-category').append(response.data.sub_category.name);
+                    $('#detail-count-user').append(response.data.user_courses_count);
+                    $('#detail-date').append(response.data.created);
+                    $('#detail-rating').append(response.data.rating);
+                    $('#price-course').html(formatRupiah(response.data.price));
+
+                    // tab deskripsi
+                    $('#description-title').append(response.data.title);
+                    $('#description-description').append(response.data.description);
+                    $.each(response.data.modules, function(index, value) {
+                        $('#module-content').append(moduleContent(index, value));
+                    });
+
+                    // tab konten kursus
+
+                    // tab ulasan
+                    $('#review-rating').append(response.data.rating);
+                    $('#review-rating-count').append(response.data.course_review_count);
+                    // $('#review-users').append(response.data.course_reviews.user.name);
+                    // console.log(response.data.course_reviews);
+
+
+                    response.data.course_reviews.forEach(review => {
+                        console.log(review.user.name);
+
+                    });
+
+
+                    $(document).on('click', '.addReviews', function() {
+                        $('#modal-create-review').modal('show');
+                    });
+
+                    $('#course_id').val(response.data.id);
+
+                    $('.storeConfirmation').click(function(e) {
+                        e.preventDefault();
+
+                        let formData = new FormData($('#form-create-review')[0]);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ config('app.api_url') }}/api/course-reviews/" +
+                                response.data.id,
+                            headers: {
+                                Authorization: 'Bearer ' +
+                                    "{{ session('hummaclass-token') }}",
+                            },
+                            data: formData,
+                            dataType: "json",
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                $('#modal-create-review').modal('hide');
+                                Swal.fire({
+                                    title: "Berhasil!",
+                                    text: response.meta.message,
+                                    icon: "success"
+                                });
+                                get(1);
+                            },
+                            error: function(response) {
+                                let errorMessages = [];
+
+                                if (response.responseJSON && response.responseJSON
+                                    .errors) {
+                                    $.each(response.responseJSON.errors, function(
+                                        field, messages) {
+                                        $.each(messages, function(index,
+                                            message) {
+                                            errorMessages.push(
+                                                message);
+                                        });
                                     });
+                                }
+
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    html: errorMessages.join('<br>'),
+                                    icon: "error"
                                 });
                             }
-
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!"
-                                , html: errorMessages.join('<br>')
-                                , icon: "error"
-                            });
-                        }
+                        });
                     });
-                });
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
 
-        function moduleContent(index, value) {
+            function moduleContent(index, value) {
 
-            const subModules = value.sub_modules.map(subModule => {
-                return `<li class="course-item open-item">
+                const subModules = value.sub_modules.map(subModule => {
+                    return `<li class="course-item open-item">
                                <p class="last_step_update" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
                                     <span>${subModule.title}</span>
                                 </p>
                             </li>`;
-            }).join('');
-            const quizzes = value.quizzes.map(quiz => {
-                return `<li class="course-item open-item">
+                }).join('');
+                const quizzes = value.quizzes.map(quiz => {
+                    return `<li class="course-item open-item">
                                <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
                                 </a>
                             </li>`;
-            }).join('');
-            return `
+                }).join('');
+                return `
             <div class="accordion-item mt-3">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2"
@@ -454,101 +496,101 @@
                 </div>
             </div>
             `;
-        }
+            }
 
 
-    });
-
-    $('.last_step_update').click(function(e) {
-        e.preventDefault();
-        var sub_modul_id = $(this).data('sub-modul-id');
-        console.log(sub_modul_id);
-    });
-
-</script>
-
-<script>
-    // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
-    // document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
-    //     tabButton.addEventListener('shown.bs.tab', function(event) {
-    //         var targetTab = event.target.getAttribute('data-bs-target');
-
-    //         if (targetTab === '#reviews-tab-pane') {
-    //             document.getElementById('courses-detail-sidebar').style.display = 'none';
-    //             document.getElementById('sidebar-tab-review').style.display = 'block';
-    //         } else {
-    //             document.getElementById('courses-detail-sidebar').style.display = 'block';
-    //             document.getElementById('sidebar-tab-review').style.display = 'none';
-    //         }
-    //     });
-    // });
-
-</script>
-
-<script>
-    // Simpan tab yang aktif ke localStorage
-    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
-        button.addEventListener('shown.bs.tab', function(event) {
-            let activeTab = event.target.id;
-            localStorage.setItem('activeTab', activeTab);
-        });
-    });
-
-    // Ambil tab yang aktif dari localStorage saat halaman dimuat
-    window.addEventListener('load', function() {
-        let activeTab = localStorage.getItem('activeTab');
-        if (activeTab) {
-            let tabTrigger = document.getElementById(activeTab);
-            let tab = new bootstrap.Tab(tabTrigger);
-            tab.show();
-        }
-    });
-
-</script>
-
-<script>
-    document.querySelectorAll('.star').forEach((star) => {
-        star.addEventListener('click', function() {
-            const ratingValue = this.getAttribute('data-value');
-            document.getElementById('rating').value = ratingValue; // Menyimpan nilai rating ke input hidden
-            updateStarRating(ratingValue); // Memperbarui tampilan bintang
         });
 
-        star.addEventListener('mouseover', function() {
-            const hoverValue = this.getAttribute('data-value');
-            updateStarRating(hoverValue); // Memperbarui tampilan saat hover
+        $('.last_step_update').click(function(e) {
+            e.preventDefault();
+            var sub_modul_id = $(this).data('sub-modul-id');
+            console.log(sub_modul_id);
+        });
+    </script>
+
+    <script>
+        // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
+        // document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
+        //     tabButton.addEventListener('shown.bs.tab', function(event) {
+        //         var targetTab = event.target.getAttribute('data-bs-target');
+
+        //         if (targetTab === '#reviews-tab-pane') {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'none';
+        //             document.getElementById('sidebar-tab-review').style.display = 'block';
+        //         } else {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'block';
+        //             document.getElementById('sidebar-tab-review').style.display = 'none';
+        //         }
+        //     });
+        // });
+    </script>
+
+    <script>
+        // Simpan tab yang aktif ke localStorage
+        document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
+            button.addEventListener('shown.bs.tab', function(event) {
+                let activeTab = event.target.id;
+                localStorage.setItem('activeTab', activeTab);
+            });
         });
 
-        star.addEventListener('mouseout', function() {
-            const currentRating = document.getElementById('rating').value;
-            updateStarRating(currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
-        });
-    });
-
-    function updateStarRating(rating) {
-        document.querySelectorAll('.star').forEach((star) => {
-            if (star.getAttribute('data-value') <= rating) {
-                star.querySelector('path').setAttribute('fill', '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
-            } else {
-                star.querySelector('path').setAttribute('fill', '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
+        // Ambil tab yang aktif dari localStorage saat halaman dimuat
+        window.addEventListener('load', function() {
+            let activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                let tabTrigger = document.getElementById(activeTab);
+                let tab = new bootstrap.Tab(tabTrigger);
+                tab.show();
             }
         });
-    }
+    </script>
 
-</script>
+    <script>
+        document.querySelectorAll('.star').forEach((star) => {
+            star.addEventListener('click', function() {
+                const ratingValue = this.getAttribute('data-value');
+                document.getElementById('rating').value =
+                ratingValue; // Menyimpan nilai rating ke input hidden
+                updateStarRating(ratingValue); // Memperbarui tampilan bintang
+            });
 
-<script>
-    const textarea = document.getElementById('review-textarea');
-    const charCount = document.getElementById('char-count');
-    const maxChars = 500;
+            star.addEventListener('mouseover', function() {
+                const hoverValue = this.getAttribute('data-value');
+                updateStarRating(hoverValue); // Memperbarui tampilan saat hover
+            });
 
-    textarea.addEventListener('input', () => {
-        if (textarea.value.length > maxChars) {
-            textarea.value = textarea.value.slice(0, maxChars); // Memotong ke maxChars jika melebihi
+            star.addEventListener('mouseout', function() {
+                const currentRating = document.getElementById('rating').value;
+                updateStarRating(
+                currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
+            });
+        });
+
+        function updateStarRating(rating) {
+            document.querySelectorAll('.star').forEach((star) => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.querySelector('path').setAttribute('fill',
+                    '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
+                } else {
+                    star.querySelector('path').setAttribute('fill',
+                    '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
+                }
+            });
         }
-        const remainingChars = maxChars - textarea.value.length;
-        charCount.textContent = `${remainingChars} Karakter tersisa`;
-    });
-</script>
-{{-- create reviews --}}
+    </script>
+
+    <script>
+        const textarea = document.getElementById('review-textarea');
+        const charCount = document.getElementById('char-count');
+        const maxChars = 500;
+
+        textarea.addEventListener('input', () => {
+            if (textarea.value.length > maxChars) {
+                textarea.value = textarea.value.slice(0, maxChars); // Memotong ke maxChars jika melebihi
+            }
+            const remainingChars = maxChars - textarea.value.length;
+            charCount.textContent = `${remainingChars} Karakter tersisa`;
+        });
+    </script>
+    {{-- create reviews --}}
 @endsection
