@@ -15,6 +15,7 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 success: function(response) {
+                    $('.quizContainer').empty();
                     $.each(response.data, function(index, value) {
                         $('.quizContainer').append(
                             `

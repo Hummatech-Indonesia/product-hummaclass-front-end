@@ -231,8 +231,8 @@
                             $('#cardSubModul').append(subModul(index, value));
                         });
                     }
-
                     $('#module-task-show').empty();
+
                     if (response.data.module_tasks.length === 0) {
                         $('#module-task-show').append(empty());
                     } else {
@@ -252,7 +252,6 @@
             });
 
             function subModul(index, value) {
-                console.log(value);
 
                 return `<div class="col-lg-4">
                             <div class="card card-body">
@@ -298,7 +297,7 @@
 
             function moduleTasks(index, value) {
                 console.log(value);
-                
+
                 return `<div class="col-lg-4">
                         <div class="card card-body">
                             <div class="d-flex justify-content-between mb-3">
@@ -358,7 +357,7 @@
 
         function funDelete(url) {
             console.log(funDelete);
-            
+
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
                 $.ajax({
