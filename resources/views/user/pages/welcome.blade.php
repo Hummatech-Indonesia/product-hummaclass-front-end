@@ -211,7 +211,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-3">
                         <div class="card shadow-none border-0" style="background-color: #F6EEFE;border-radius:20px;">
                             <div class="card-body p-4 px-5">
                               <div class="d-flex align-items-center">
@@ -226,7 +226,7 @@
                             </div>
                           </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-3">
                         <div class="card shadow-none border-0" style="background-color: #EEF0FE;border-radius:20px;">
                             <div class="card-body p-4 px-5">
                               <div class="d-flex align-items-center">
@@ -241,7 +241,7 @@
                             </div>
                           </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 mb-3">
                         <div class="card shadow-none border-0" style="background-color: #FEF5EE;border-radius:20px;">
                             <div class="card-body p-4 px-5">
                               <div class="d-flex align-items-center">
