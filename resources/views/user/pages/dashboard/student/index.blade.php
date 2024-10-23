@@ -87,7 +87,7 @@
                     </div>
                     <h3 class="my-3">Aktifitas Belajar</h3>
                     <div class="swiper dashboard-courses-active">
-                        <div class="row">
+                        <div class="row" id="list-course">
                             
                         </div>
                     </div>

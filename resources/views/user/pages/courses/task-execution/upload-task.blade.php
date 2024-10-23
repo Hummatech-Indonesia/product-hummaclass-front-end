@@ -310,7 +310,7 @@
             previewsContainer: "#previews",
             timeout: 0,
             headers: {
-                "Authorization": 'Bearer {{ session("hummaclass-token") }}'
+                "Authorization": 'Bearer {{ session('hummaclass-token') }}'
             },
             init: function() {
                 var dzInstance = this;
@@ -330,6 +330,10 @@
                 setTimeout(function() {
                     $('#successMessage').removeClass('d-none');
                 }, 600);
+                Swal.fire({
+                    title: "Berhasil!",
+                    icon: "success"
+                });
             }
         });
 

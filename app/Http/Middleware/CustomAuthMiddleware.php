@@ -23,12 +23,12 @@ class CustomAuthMiddleware
         if (!$token) {
             return redirect()->route('login');
         }
-
+        
         try {
             $response = Http::withToken($token)
-                ->maxRedirects(5)
-                ->get(config('app.api_url') . '/api/user');
-
+            ->maxRedirects(5)
+            ->get(config('app.api_url') . '/api/user');
+            
             if ($response->successful()) {
                 return $next($request);
             } else {

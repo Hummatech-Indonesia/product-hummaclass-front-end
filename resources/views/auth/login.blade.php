@@ -166,7 +166,7 @@
                             },
                             success: function() {
                                 // Setelah berhasil disimpan di session, redirect pengguna
-                                window.location.href = "{{ session('next-request') ?? route('dashboard.users.profile') }}";
+                                window.location.href = "{{ session('next-request') ?? route('dashboard.users.dashboard') }}";
                             }
                         });
                     },
