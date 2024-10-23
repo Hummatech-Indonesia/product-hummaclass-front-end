@@ -26,16 +26,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="index-2.html">Daftar kategori</a>
+                                <a class="text-muted" href="index-2.html">Daftar kategori</a>
                             </li>
                         </ol>
                     </nav>
                 </div>
-                <div class="col-3">
-                    <div class="text-center mb-n1">
-                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
-                            class="img-fluid mb-n3" />
-                    </div>
+                <div class="col-3 text-center mb-n1">
+                    <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                        class="img-fluid mb-n3" />
                 </div>
             </div>
         </div>
@@ -45,9 +43,8 @@
         <h5 class="fw-semibold">Kategori</h5>
 
         <div class="d-flex justify-content-between mt-2">
-            <div action="" class="position-relative">
-                <input type="text" class="form-control product-search px-4 ps-5" name="name" value=""
-                    id="search-name" placeholder="Search">
+            <div class="position-relative">
+                <input type="text" class="form-control product-search px-4 ps-5" id="search-name" placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
                     style="color: #8B8B8B"></i>
             </div>
@@ -62,12 +59,11 @@
         <div class="table-responsive rounded-2 mb-4 mt-4">
             <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
                 <thead class="text-dark fs-4">
-                    <tr class="">
+                    <tr>
                         <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE"></th>
                         <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">No</th>
                         <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Kategori</th>
                         <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Sub Kategori</th>
-                        {{-- <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Tambah</th> --}}
                         <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Aksi</th>
                     </tr>
                 </thead>
@@ -76,146 +72,74 @@
             </table>
         </div>
         <div class="d-flex justify-content-end">
-            <nav id="pagination">
-
-            </nav>
+            <nav id="pagination"></nav>
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
         let debounceTimer;
+
         $('#search-name').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
-                get(1)
+                get(1);
             }, 500);
         });
 
         function get(page) {
-            $('#tableBody').);
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/categories?page=" + page,
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            data: {
-                name: $('#search-name').val(),
-            },
-            success: function(response) {
-                $.each(response.data.data, function(index, value) {
-                    $('#tableBody').append(category(index, value));
-                });
-
-                $('#pagination').html(handlePaginate(response.data.paginate))
-
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
-                });
-            }
-        });
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/categories?page=" + page,
+                headers: {
+                    Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                },
+                dataType: "json",
+                data: {
+                    name: $('#search-name').val(),
+                },
+                success: function(response) {
+                    $('#tableBody').empty();
+                    $.each(response.data.data, function(index, value) {
+                        $('#tableBody').append(category(index, value));
+                    });
+                    $('#pagination').html(handlePaginate(response.data.paginate));
+                },
+                error: function() {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
         }
 
         function category(index, value) {
-            let subCategoryRows = '';
-
-            if (value.sub_category.length > 0) {
-                $.each(value.sub_category, function(subIndex, subValue) {
-
-                    subCategoryRows += `
-                        <tr class="sub_category">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td style="padding-left: 30px !important;"></td>
-                            <td style="background-color: #F1F1F1;">${subValue.name}</td>
-                            <td style="background-color: #F1F1F1;">
-                                <div class="dropdown dropstart" style="padding-right: 7px;">
-                                    <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <div class="category">
-                                            <span class="more-options text-dark">
-                                                <i class="ti ti-dots-vertical fs-5"></i>
-                                            </span>
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                                        <li>
-                                            <button data-id="${subValue.id}" data-name="${subValue.name}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
-                                                <i class="fs-4 ti ti-edit"></i>Edit
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <button data-id="${subValue.id}" class="btn-delete-sub-category dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
-                                                <i class="fs-4 ti ti-trash"></i>Hapus
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    `;
-                });
-            } else {
-                subCategoryRows = `
-                        <tr class="sub_category">
-                            <td colspan="5">Tidak ada sub kategori</td>
-                        </tr>
-                    `;
-            }
-
-            return `
-                    <tr class="fw-semibold">
-                        <td class="px-0">
-                            <p>
-                                <button class="btn btn-sm text-white px-1 py-1 ms-2 toggle-btn" type="button" style="background-color: #9425FE;" data-bs-toggle="collapse" data-bs-target="#collapseExample${index + 1}" aria-expanded="false" aria-controls="collapseExample${index + 1}">
-                                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="m17 14l-5-5l-5 5"/>
-                                    </svg>
-                                </button>
-                            </p>
-                        </td>
-                        <td class="px-0">
-                            <div class="">
-                                ${index + 1}
-                            </div>
-                        </td>
-                        <td>${value.name}</td>
-                        <td>
-                            <div class="d-flex justify-content-center">
-                                ${value.sub_category.length} Sub Kategori
-                                
-                            </div>
-                        </td>
-
-                        <td>
-                            <div class="dropdown dropstart">
-                                <a href="#" class="text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="category">
-                                        <span class="more-options text-dark">
-                                            <i class="ti ti-dots-vertical fs-5"></i>
-                                        </span>
-                                    </div>
+            let subCategoryRows = value.sub_category.length ?
+                value.sub_category.map(subValue => `
+                    <tr class="sub_category">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="padding-left: 30px !important;"></td>
+                        <td style="background-color: #F1F1F1;">${subValue.name}</td>
+                        <td style="background-color: #F1F1F1;">
+                            <div class="dropdown dropstart" style="padding-right: 7px;">
+                                <a href="#" class="text-muted" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="more-options text-dark">
+                                        <i class="ti ti-dots-vertical fs-5"></i>
+                                    </span>
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <ul class="dropdown-menu">
                                     <li>
-                                        <button data-id="${value.id}" class="add-sub-category dropdown-item d-flex align-items-center gap-3">
-                                            <i class="fs-4 ti ti-plus"></i>Tambah Sub Kategori
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3">
+                                        <button data-id="${subValue.id}" data-name="${subValue.name}" class="btn-edit-sub-category dropdown-item d-flex align-items-center gap-3">
                                             <i class="fs-4 ti ti-edit"></i>Edit
                                         </button>
                                     </li>
                                     <li>
-                                        <button data-id="${value.id}" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
+                                        <button data-id="${subValue.id}" class="btn-delete-sub-category dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
                                             <i class="fs-4 ti ti-trash"></i>Hapus
                                         </button>
                                     </li>
@@ -223,25 +147,66 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="5" class="p-0">
-                            <div class="collapse" id="collapseExample${index + 1}">
-                                <table class="table border text-center customize-table mb-0 align-middle">
-                                    <tbody>
-                                        ${subCategoryRows}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                       
-                    </tr>
-                `;
+                `).join('') : `
+                <tr class="sub_category">
+                    <td colspan="5">Tidak ada sub kategori</td>
+                </tr>`;
+
+            return `
+                <tr class="fw-semibold">
+                    <td class="px-0">
+                        <button class="btn btn-sm text-white px-1 py-1 ms-2 toggle-btn" type="button" style="background-color: #9425FE;" data-bs-toggle="collapse" data-bs-target="#collapseExample${index + 1}" aria-expanded="false">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="m17 14l-5-5l-5 5"/>
+                            </svg>
+                        </button>
+                    </td>
+                    <td class="px-0">${index + 1}</td>
+                    <td>${value.name}</td>
+                    <td>
+                        <div class="d-flex justify-content-center">${value.sub_category.length} Sub Kategori</div>
+                    </td>
+                    <td>
+                        <div class="dropdown dropstart">
+                            <a href="#" class="text-muted" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="more-options text-dark">
+                                    <i class="ti ti-dots-vertical fs-5"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button data-id="${value.id}" class="add-sub-category dropdown-item d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-plus"></i>Tambah Sub Kategori
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-id="${value.id}" data-name="${value.name}" class="btn-update dropdown-item d-flex align-items-center gap-3">
+                                        <i class="fs-4 ti ti-edit"></i>Edit
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-id="${value.id}" class="btn-delete dropdown-item d-flex align-items-center text-danger gap-3" data-bs-toggle="modal" data-bs-target="#modal-delete">
+                                        <i class="fs-4 ti ti-trash"></i>Hapus
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="p-0">
+                        <div class="collapse" id="collapseExample${index + 1}">
+                            <table class="table border text-center customize-table mb-0 align-middle">
+                                <tbody>${subCategoryRows}</tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>`;
         }
 
         get(1);
 
-
-        //delete catagory
+        // Delete category
         $(document).on('click', '.btn-delete', function() {
             const id = $(this).data('id');
             const url = "{{ config('app.api_url') }}/api/categories/" + id;
@@ -251,26 +216,23 @@
         });
 
         function deleteCategory(url) {
-            $('.deleteConfirmation').click(function(e) {
+            $('.deleteConfirmation').off('click').on('click', function(e) {
                 e.preventDefault();
                 $.ajax({
                     type: "DELETE",
                     url: url,
                     headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
                     },
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
                     success: function(response) {
                         Swal.fire({
                             title: "Berhasil!",
                             text: response.meta.message,
                             icon: "success"
                         });
-                        get(1)
+                        get(1);
                     },
-                    error: function(response) {
+                    error: function() {
                         Swal.fire({
                             title: "Terjadi Kesalahan!",
                             text: "Ada kesalahan saat menyimpan data.",
@@ -279,11 +241,9 @@
                     }
                 });
             });
-
         }
-        //end delete category
 
-        //delete sub category
+        // Delete sub category
         $(document).on('click', '.btn-delete-sub-category', function() {
             const id = $(this).data('id');
             const url = "{{ config('app.api_url') }}/api/sub-categories/" + id;
@@ -292,29 +252,24 @@
             deleteSubCategory(url);
         });
 
-
         function deleteSubCategory(url) {
-
-            $('.deleteConfirmation').click(function(e) {
+            $('.deleteConfirmation').off('click').on('click', function(e) {
                 e.preventDefault();
                 $.ajax({
                     type: "DELETE",
                     url: url,
                     headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
                     },
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
                     success: function(response) {
                         Swal.fire({
                             title: "Berhasil!",
                             text: response.meta.message,
                             icon: "success"
                         });
-                        get(1)
+                        get(1);
                     },
-                    error: function(response) {
+                    error: function() {
                         Swal.fire({
                             title: "Terjadi Kesalahan!",
                             text: "Ada kesalahan saat menyimpan data.",
@@ -326,11 +281,9 @@
         }
     </script>
 
-    {{-- modal kategori --}}
+    {{-- Include modals --}}
     @include('admin.pages.categories.widgets.modal-edit')
     @include('admin.pages.categories.widgets.modal-create')
-
-    {{-- modal sub kategori --}}
     @include('admin.pages.categories.widgets.modal-create-subcategory')
     @include('admin.pages.categories.widgets.modal-edit-subcategory')
     <x-delete-modal-component></x-delete-modal-component>

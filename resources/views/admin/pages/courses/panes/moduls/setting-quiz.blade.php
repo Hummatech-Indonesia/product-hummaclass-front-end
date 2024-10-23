@@ -56,7 +56,8 @@
                     </div>
                     <div class="col col-lg-6 mb-3">
                         <div class=" form-group">
-                            <label for="" class="form-label fw-semibold text-dark">Durasi Pengerjaan</label>
+                            <label for="" class="form-label fw-semibold text-dark">Durasi Pengerjaan <small
+                                    class="">(menit)</small></label>
                             <input type="text" id="duration" class="form-control"
                                 placeholder="Masukan durasi pengerjaan" name="duration">
                             <div class="invalid-feedback"></div>
