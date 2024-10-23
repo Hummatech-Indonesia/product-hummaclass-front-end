@@ -164,11 +164,7 @@
                             </div>
                             <div class="row text-center justify-content-center mt-2">
                                 <h6>Nilai Ujian</h6>
-                                <span class="fw-semibold fs-1" id="score" style="color: #9C40F7;">80</span>
-                                <div class="col-lg-10 my-4">
-                                    <div style="border-bottom: 1px solid #CCCCCC"></div>
-                                </div>
-                                <h6>Hasil</h6>
+                                <span class="fw-semibold fs-1" id="score" style="color: #9C40F7;"></span>
                                 <div id="status">
 
                                 </div>
@@ -176,7 +172,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('test-result.index') }}" class="w-100 btn-warning">Selesai</a>
+                        <a href="" id="finish" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
                 <div class="col-lg-9" id="question_quiz">
@@ -199,18 +195,10 @@
                 success: function(response) {
                     console.log(response.data);
                     $('#total_question').html(response.data.total_question);
+                    $('#finish').attr('href', `{{ route('courses.courses.show', '') }}/${response.data.course_slug}`);
                     $('#score').html(response.data.score);
                     $('#total_correct').html(response.data.total_correct);
                     $('#total_fault').html(response.data.total_fault);
-                    if (response.data.status == "Tidak lulus") {
-                        $('#status').append(
-                            `<span class="badge text-white w-100 p-3 fs-6 bg-danger">Maaf Anda Tidak Lulus</span>`
-                        );
-                    } else {
-                        $('#status').append(
-                            `<span class="badge text-white w-100 p-3 fs-6 bg-success">Selamat Anda Lulus</span>`
-                        );
-                    }
                     $.each(response.data.questions, function(index, value) {
                         $('#question_quiz').append(
                             questionQuiz(index, value)
