@@ -13,8 +13,10 @@
                 $.each(response.data.data, function(index, value) {
                     $('#tags-news-list').append(tagsList(index, value));
                 });
+
+                $('#currentBreadcrumb').attr('href', '/blogs/' + id).html(response.data.title);
                 $('#detail-thumbnail').attr('src', response.data.thumbnail);
-                $('.detail-title').html(response.data.title);
+                // $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
                 $('#detail-created').html(response.data.created);
                 $('#detail-description').html(response.data.description);

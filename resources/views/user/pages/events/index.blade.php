@@ -10,10 +10,12 @@
                         <h3 class="title">Event</h3>
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Home</a>
+                                <a href="/">Beranda</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Event</span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="events">Event</a>
+                            </span>
                         </nav>
                     </div>
                 </div>
@@ -21,10 +23,14 @@
         </div>
         <div class="breadcrumb__shape-wrap">
             <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape02.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape03.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape04.svg') }}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
-            <img src="{{ asset('assets/img/others/breadcrumb_shape05.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape02.svg') }}" alt="img" data-aos="fade-right"
+                data-aos-delay="300">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape03.svg') }}" alt="img" data-aos="fade-up"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape04.svg') }}" alt="img" data-aos="fade-down-left"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape05.svg') }}" alt="img" data-aos="fade-left"
+                data-aos-delay="400">
         </div>
     </section>
     <!-- breadcrumb-area-end -->
@@ -67,7 +73,6 @@
         </div>
     </section>
     <!-- event-area-end -->
-
 @endsection
 
 @section('script')
