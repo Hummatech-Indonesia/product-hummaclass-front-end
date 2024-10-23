@@ -139,16 +139,18 @@
             bottom: 21%;
         }
 
-        @media (max-width: 448px) {
+        @media (max-width: 428px) {
             .certificate-container {
-                max-width: ;
+                max-width: 448;
             }
-        }
 
+            
         }
 
         @media (max-width: 768px) {
-            .certificate-container {}
+            .certificate-container {
+                max-width: 768;
+            }
 
             .qr-code img {
                 width: 30px !important;
@@ -156,8 +158,19 @@
                 bottom: 18%;
             }
 
+            .name-people {
+                font-family: "Great Vibes";
+                top: 48%;
+                font-size: 28px;
+            }
+
+            .course-title {
+                top: 60%;
+                font-size: 10px;
+            }
+
             .certificate-number {
-                font-size: 14px;
+                font-size: 9px;
                 top: 28.1%;
                 left: 53%;
             }
@@ -165,7 +178,27 @@
             .date {
                 bottom: 28.6%;
                 left: -31%;
-                font-size: 9px;
+                font-size: 5px;
+            }
+
+            .qr-code .verifikasi {
+                right: 15.5%;
+                bottom: 19%;
+                font-size: 4px;
+                color: #333;
+            }
+
+            .qr-code img {
+                width: 19px !important;
+                right: 15%;
+                bottom: 22%
+            }
+
+            .qr-code .link {
+                right: 15%;
+                bottom: 17.5%;
+                font-size: 4px;
+                color: #333;
             }
         }
 
