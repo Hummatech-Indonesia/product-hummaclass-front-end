@@ -46,8 +46,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
         .certificate-container {
             position: relative;
@@ -66,7 +64,7 @@
             left: 53%;
             top: 27.1%;
             transform: translate(-50%, -50%);
-            font-size: 14px;
+            font-size: 22px;
             font-weight: 400;
             letter-spacing: 4px;
             color: #333;
@@ -113,17 +111,19 @@
             color: #333;
         }
 
+
         .qr-code .valid {
+
             position: absolute;
             right: 12%;
-            bottom: 15%;
-            font-size: 6px;
+            bottom: 24%;
+            font-size: 56px;
             color: #333;
         }
 
         .date {
             position: absolute;
-            left: -31%;
+            left: -33%;
             bottom: 29%;
             font-family: 'poppins', sans-serif;
             font-weight: 700;
@@ -144,7 +144,7 @@
                 max-width: 448;
             }
 
-            
+
         }
 
         @media (max-width: 768px) {
