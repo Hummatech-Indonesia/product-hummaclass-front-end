@@ -46,6 +46,9 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
     .certificate-container {
         position: relative;
@@ -54,26 +57,30 @@
         text-align: center;
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        margin: 0 auto;
+        padding-left: 0.5rem padding-right: 0.5rem
     }
 
     .certificate-number {
         position: absolute;
-        left: 50%;
-        top: 27%;
-        transform: translate(-40%, -50%);
-        font-size: 18px;
-        font-weight: 900;
-        letter-spacing: 6px;
+        font-family: 'poppins', sans-serif;
+        left: 53%;
+        top: 27.1%;
+        transform: translate(-50%, -50%);
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 4px;
         color: #333;
+        width: 100%;
     }
 
     .name-people {
         font-family: "Great Vibes";
         position: absolute;
         left: 50%;
-        top: 45%;
+        top: 48%;
         transform: translate(-50%, -50%);
-        font-size: 55px;
+        font-size: 42px;
         font-weight: 500;
         letter-spacing: 3px;
         color: #3b3a3a;
@@ -85,51 +92,198 @@
         left: 50%;
         top: 60%;
         transform: translate(-50%, -50%);
-        font-size: 20px;
+        font-size: 15px;
+        font-family: 'poppins', sans-serif;
         font-weight: 700;
         color: #555;
     }
 
     .qr-code .verifikasi {
         position: absolute;
-        right: 90px;
-        bottom: 105px;
-        font-size: 12px;
+        right: 12%;
+        bottom: 17.6%;
+        font-size: 8px;
         color: #000000;
     }
 
     .qr-code .link {
         position: absolute;
-        right: 90px;
-        bottom: 90px;
-        font-size: 12px;
+        right: 12%;
+        bottom: 15.5%;
+        font-size: 8px;
         color: #333;
     }
 
     .qr-code .valid {
         position: absolute;
-        right: 90px;
-        bottom: 80px;
-        font-size: 9px;
+        right: 12%;
+        bottom: 16%;
+        font-size: 6px;
         color: #333;
-    }
-
-    .qr-code img {
-        width: 50px !important;
-        position: absolute;
-        right: 90px;
-        bottom: 125px;
     }
 
     .date {
         position: absolute;
-        right: 613px;
-        bottom: 172px;
-        font-size: 13px;
+        left: -31%;
+        bottom: 29%;
+        font-family: 'poppins', sans-serif;
+        font-weight: 700;
+        font-size: 9px;
         color: #333;
+        width: 100%;
     }
-    
 
+    .qr-code img {
+        width: 36px !important;
+        position: absolute;
+        right: 13%;
+        bottom: 21%;
+    }
+
+    @media (max-width: 448px) {
+        .certificate-container {
+            max-width: ;
+        }
+    }
+
+    }
+
+    @media (max-width: 768px) {
+        .certificate-container {}
+
+        .qr-code img {
+            width: 30px !important;
+            right: 10%;
+            bottom: 18%;
+        }
+
+        .certificate-number {
+            font-size: 14px;
+            top: 28.1%;
+            left: 53%;
+        }
+
+        .date {
+            bottom: 28.6%;
+            left: -31%;
+            font-size: 9px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .qr-code img {
+            width: 25px !important;
+            right: 10%;
+            bottom: 18%;
+        }
+
+        .date {
+            bottom: 30%;
+            left: -29%;
+            font-size: 4px;
+        }
+
+        .name-people {
+            font-family: "Great Vibes";
+            top: 48%;
+            font-size: 18px;
+        }
+
+        .course-title {
+            top: 60%;
+            font-size: 7px;
+        }
+
+        .certificate-number {
+            letter-spacing: 2px;
+            left: 52%;
+            top: 29.9%;
+            transform: translate(-50%, -50%);
+            font-size: 7px;
+        }
+
+        .qr-code .verifikasi {
+            right: 16.5%;
+            bottom: 13%;
+            font-size: 5px;
+            color: #333;
+        }
+
+        .qr-code .link {
+            right: 17%;
+            bottom: 14.5%;
+            font-size: 4px;
+            color: #333;
+        }
+
+        .qr-code .valid {
+            right: 16.8%;
+            bottom: 15.5%;
+            font-size: 4px;
+            color: #333;
+        }
+    }
+
+    @media (max-width: 390px) {
+        .qr-code img {
+            width: 25px !important;
+            right: 16%;
+            bottom: 22%;
+        }
+
+
+        .date {
+            bottom: 30%;
+            left: -29%;
+            font-size: 4px;
+        }
+
+        .certificate-number {
+            letter-spacing: 2px;
+            left: 53%;
+            top: 28.9%;
+            transform: translate(-50%, -50%);
+            font-size: 11px;
+        }
+
+        .certificate-container {
+            max-width: 390px;
+        }
+
+        .name-people {
+            font-family: "Great Vibes";
+            top: 48%;
+            font-size: 18px;
+        }
+
+        .course-title {
+            top: 60%;
+            font-size: 7px;
+        }
+
+        .qr-code .verifikasi {
+            right: 16%;
+            bottom: 20%;
+            font-size: 5px;
+            color: #333;
+        }
+
+        .qr-code .link {
+            position: absolute;
+            right: 15%;
+            bottom: 18.5%;
+            font-size: 5px;
+            color: #333;
+        }
+
+        .qr-code .valid {
+            position: absolute;
+            right: 15%;
+            bottom: 17%;
+            font-size: 5px;
+            color: #333;
+        }
+    }
 </style>
 
 @endsection
