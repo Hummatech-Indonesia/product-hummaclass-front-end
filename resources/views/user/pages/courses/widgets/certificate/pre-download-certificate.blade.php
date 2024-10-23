@@ -175,7 +175,7 @@
                     <div class="certificate-container">
                         <img src="{{ asset('assets/img/certificate/serti-bg.png') }}" style="">
                         <div class="certificate-number">12202401080001</div>
-                        <div class="name-people">Sabdo ilahi dodik</div>
+                        <div class="name-people">Sabdo chandra</div>
                         <div class="course-title">Belajar Membuat Aplikasi Kognitif</div>
                         <div class="date"><b>13 Oktober 2024</b></div>
                         <div class="qr-code">
