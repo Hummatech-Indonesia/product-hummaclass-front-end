@@ -114,7 +114,7 @@
                     </label>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a class="btn btn-warning me-2 back">Kembali</a>
+                    <button type="reset" class="btn btn-warning me-2 back">Kembali</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>

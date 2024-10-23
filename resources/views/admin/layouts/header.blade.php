@@ -368,7 +368,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <img src="{{ session('user')['photo'] }}"
+                                    <img src="{{ session('user')['photo']??'-' }}"
                                         class="rounded-circle" width="35" height="35" alt="" />
                                 </div>
                             </div>
@@ -380,18 +380,18 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ session('user')['photo'] }}"
+                                    <img src="{{ session('user')['photo']??'-' }}"
                                         class="rounded-circle" width="80" height="80" alt="" />
                                     <div class="ms-3">
-                                        <h5 class="mb-1 fs-3">{{ session('user')['name'] }}</h5>
+                                        <h5 class="mb-1 fs-3">{{ session('user')['name']??'-' }}</h5>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                            <i class="ti ti-mail fs-4"></i> {{ session('user')['email'] }}
+                                            <i class="ti ti-mail fs-4"></i> {{ session('user')['email']??'-' }}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="d-grid py-4 px-7 pt-8">
                                     <div class="mb-2">
-                                        <a href="{{ route('dashboard.users.profile', session('user')['id']) }}" style="background-color: var(--purple-primary)" class="btn w-100 text-white">Profile Saya</a>
+                                        <a href="{{ route('dashboard.users.profile', session('user')['id']??'') }}" style="background-color: var(--purple-primary)" class="btn w-100 text-white">Profile Saya</a>
                                     </div>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf

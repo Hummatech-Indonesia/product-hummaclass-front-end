@@ -93,15 +93,16 @@
                     <div class="breadcrumb__content">
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Home</a>
+                                <a href="/">Beranda</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Courses</a>
+                                <a href="/courses/courses">Kursus</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
-                                Engineers</span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/" id="currentBreadcrumb"></a>
+                            </span>
                         </nav>
                     </div>
                 </div>
@@ -162,9 +163,9 @@
                                     aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task-tab-pane"
-                                    type="button" role="tab" aria-controls="task-tab-pane"
-                                    aria-selected="false">Tugas</button>
+                                <button class="nav-link" id="task-tab" data-bs-toggle="tab"
+                                    data-bs-target="#task-tab-pane" type="button" role="tab"
+                                    aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
@@ -205,7 +206,15 @@
                     icon: 'warning',
                     title: 'Oops...',
                     text: '{{ session('
-                                warning ') }}',
+                                        <<<<<<< Updated upstream
+                                                                        warning ') }}',
+                    ===
+                    ===
+                    =
+                    warning ') }}',
+                    >>>
+                    >>>
+                    > Stashed changes
                 });
             @endif
             @if (session('error'))
@@ -213,15 +222,22 @@
                     icon: 'error',
                     title: 'Oops...',
                     text: '{{ session('
-                                error ') }}',
+                                        <<<<<<< Updated upstream
+                                                                        error ') }}',
+                    ===
+                    ===
+                    =
+                    error ') }}',
+                    >>>
+                    >>>
+                    > Stashed changes
                 });
             @endif
             @if (session('success'))
                 Swal.fire({
                     icon: 'success',
                     title: 'Oops...',
-                    text: '{{ session('
-                                success ') }}',
+                    text: '{{ session('success ') }}',
                 });
             @endif
 
@@ -302,8 +318,6 @@
 
                     // console.log(response.data.user_course.is_pre_test);
                     if (response.data.user_course) {
-                        console.log(response.data);
-
                         if (response.data.user_course.has_pre_test == 0) {
                             $('#btn-checkout').text('Mulai Pre Test');
                             $('#btn-lesson').text('Mulai Pre Test');
@@ -322,7 +336,6 @@
                             $('#btn-lesson').attr('href',
                                 "{{ route('courses.course-lesson.index', '') }}/" +
                                 response.data.user_course.sub_module.slug);
-
                         }
                         document.getElementById('courses-detail-sidebar').style.display = 'none';
                         document.getElementById('sidebar-tab-review').style.display = 'block';
@@ -330,7 +343,8 @@
                         document.getElementById('courses-detail-sidebar').style.display = 'block';
                         document.getElementById('sidebar-tab-review').style.display = 'none';
                     }
-                    
+
+
                     // console.log(response.data.course_reviews);
 
                     response.data.course_reviews.forEach((review) => {
@@ -341,6 +355,8 @@
                     $('#photo').attr('src', photo);
                     $('#sub-title').append(response.data.sub_title);
                     $('#detail-title').append(response.data.title);
+                    $('#currentBreadcrumb').html(response.data.title).attr('href', '/courses/courses/' +
+                        response.data.slug);
                     $('#detail-category').append(response.data.sub_category.name);
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(response.data.created);
@@ -550,6 +566,7 @@
             star.addEventListener('click', function() {
                 const ratingValue = this.getAttribute('data-value');
                 document.getElementById('rating').value =
+                    ratingValue; // Menyimpan nilai rating ke input hidden
                 ratingValue; // Menyimpan nilai rating ke input hidden
                 updateStarRating(ratingValue); // Memperbarui tampilan bintang
             });
@@ -560,22 +577,25 @@
             });
 
             star.addEventListener('mouseout', function() {
-                const currentRating = document.getElementById('rating').value;
-                updateStarRating(
-                currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
+                    const currentRating = document.getElementById('rating').value;
+                    updateStarRating(
+                        currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
+                    currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
             });
         });
 
         function updateStarRating(rating) {
             document.querySelectorAll('.star').forEach((star) => {
-                if (star.getAttribute('data-value') <= rating) {
-                    star.querySelector('path').setAttribute('fill',
-                    '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
+                    if (star.getAttribute('data-value') <= rating) {
+                        star.querySelector('path').setAttribute('fill',
+                            '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
+                        '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
                 } else {
                     star.querySelector('path').setAttribute('fill',
+                        '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
                     '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
-                }
-            });
+            }
+        });
         }
     </script>
 

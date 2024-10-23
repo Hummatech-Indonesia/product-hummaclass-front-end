@@ -33,14 +33,16 @@
                         <h3 class="title">Resolving Conflicts Between Designers</h3>
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Home</a>
+                                <a href="/">Beranda</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="events.html">Events</a>
+                                <a href="/events">Events</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem" class="detail-title"></span>
+                            <span property="itemListElement" typeof="ListItem" class="detail-title">
+                                <a href="" id="currentBreadcrumb"></a>
+                            </span>
                         </nav>
                     </div>
                 </div>
