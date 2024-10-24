@@ -282,6 +282,14 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     });
 });
 
+Route::resources([
+    'courses' => AdminCourseController::class,
+    'users' => AdminUserController::class,
+    'modules' => AdminModuleController::class,
+    'news' => AdminBlogController::class,
+    'events' => AdminEventController::class,
+]);
+
 Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');
 });
