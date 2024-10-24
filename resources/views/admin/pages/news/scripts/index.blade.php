@@ -77,11 +77,6 @@
                     });
                     $('#pagination').html(handlePaginate(response.data.paginate))
 
-                    // renderPagination(response.data.paginate.last_page, response.data.paginate
-                    //     .current_page
-                    //     , function(page) {
-                    //         handleGetBlogs(page);
-                    //     });
                 } else {
                     $('#contentNews').append(empty());
                 }
