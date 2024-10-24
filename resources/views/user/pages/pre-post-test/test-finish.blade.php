@@ -128,35 +128,35 @@
                                 12:28:30
                             </p>
                             <div class="row align-items-center">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Jumlah Soal</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_question"></span> Soal</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Soal Benar</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_correct"></span> Soal</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Soal Salah</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_fault"></span> Soal</p>
                                     </div>
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 mb-4">
                         <a href="" id="finish" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
@@ -240,7 +240,7 @@
                 return `<div class="card border-0 mb-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                             <div class="p-4">
                                 ${check}
-                                <label class="fs-5" style="white-space: nowrap;">
+                                <label class="fs-5">
                                     <span style="display: inline;">${index + 1}. ${value.question}</span>
                                 </label>
                                 <div class="ms-3 mt-3">
