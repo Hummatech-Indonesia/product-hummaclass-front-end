@@ -188,9 +188,9 @@
         <div class="tab-pane" id="quiz" role="tabpanel">
             @include('admin.pages.courses.panes.moduls.panes.tab-quiz')
         </div>
-        <div class="tab-pane" id="question-bank" role="tabpanel">
+        {{-- <div class="tab-pane" id="question-bank" role="tabpanel">
             @include('admin.pages.courses.panes.moduls.panes.tab-question-bank')
-        </div>
+        </div> --}}
     </div>
 
     <x-delete-modal-component></x-delete-modal-component>
