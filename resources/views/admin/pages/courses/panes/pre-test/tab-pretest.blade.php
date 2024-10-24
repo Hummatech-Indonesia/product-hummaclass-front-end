@@ -1,4 +1,5 @@
 <div>
+    @dd('sdfasfasdf')
     <div class="row">
         <div class="col-lg-6">
             <div class="card border border-1 shadow-none p-3">

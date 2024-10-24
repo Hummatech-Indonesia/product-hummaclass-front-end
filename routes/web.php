@@ -270,6 +270,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
 
+    
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::get('footer', function () {
             return view('admin.pages.configuration.footer');
@@ -279,6 +280,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('admin.pages.configuration.faq');
         })->name('faq.index');
     });
+});
+
+Route::get('detail/test', function () {
+    return view('admin.pages.courses.test.index');
 });
 
 // Load additional routes
