@@ -128,35 +128,35 @@
                                 12:28:30
                             </p>
                             <div class="row align-items-center">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Jumlah Soal</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_question"></span> Soal</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Soal Benar</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_correct"></span> Soal</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="d-flex justify-content-between">
                                         <h6>Soal Salah</h6>
                                         <h6>:</h6>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="text-end">
                                         <p><span id="total_fault"></span> Soal</p>
                                     </div>
