@@ -206,15 +206,16 @@
                     icon: 'warning',
                     title: 'Oops...',
                     text: '{{ session('
-                                        <<<<<<< Updated upstream
-                                                                        warning ') }}',
+                                                                                <<<<<<< Updated upstream
+                                                                                                                warning ') }}',
                     ===
                     ===
                     =
                     warning ') }}',
                     >>>
                     >>>
-                    > Stashed changes
+                    >
+                    Stashed changes
                 });
             @endif
             @if (session('error'))
@@ -222,15 +223,16 @@
                     icon: 'error',
                     title: 'Oops...',
                     text: '{{ session('
-                                        <<<<<<< Updated upstream
-                                                                        error ') }}',
+                                                                                <<<<<<< Updated upstream
+                                                                                                                error ') }}',
                     ===
                     ===
                     =
                     error ') }}',
                     >>>
                     >>>
-                    > Stashed changes
+                    >
+                    Stashed changes
                 });
             @endif
             @if (session('success'))
@@ -577,25 +579,21 @@
             });
 
             star.addEventListener('mouseout', function() {
-                    const currentRating = document.getElementById('rating').value;
-                    updateStarRating(
-                        currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
+                const currentRating = document.getElementById('rating').value;
+                updateStarRating(
                     currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
             });
         });
 
         function updateStarRating(rating) {
             document.querySelectorAll('.star').forEach((star) => {
-                    if (star.getAttribute('data-value') <= rating) {
-                        star.querySelector('path').setAttribute('fill',
-                            '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
-                        '#FFD700'); // Mengubah warna bintang terpilih menjadi emas
-                } else {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.querySelector('path').setAttribute('fill',
+                        '#FFD700'); // Mengubah warna bintang terpilih menjadi emas                } else {
                     star.querySelector('path').setAttribute('fill',
                         '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
-                    '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
-            }
-        });
+                }
+            });
         }
     </script>
 
