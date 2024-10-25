@@ -35,7 +35,16 @@
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">KONTEN</span>
+                    <span class="hide-menu">UTAMA</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('admin.courses.index', 'admin.courses.show', 'admin.modules.index', 'admin.modules.show', 'admin.sub-modules.show') ? 'active' : '' }}"
+                        href="{{ route('admin.courses.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Kursus</span>
+                    </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.categories.index') }}" aria-expanded="false">
@@ -55,7 +64,17 @@
                         <span>
                             <i class="ti ti-book"></i>
                         </span>
-                        <span class="hide-menu">Kursus</span>
+                        <span class="hide-menu">Riwayat Transaksi</span>
+                    </a>
+                </li>
+                
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('admin.point-exchange.index') ? 'active' : '' }}"
+                        href="{{ route('admin.point-exchange.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Penukaran Poin</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
