@@ -236,7 +236,12 @@
                 success: function(response) {
                     console.log(response.data);
                     if (response.data.status === "not_finished") {
-                        $("#finished").attr("src", "{{ route('courses.quizz.index', '') }}/" + response.data.parameter);
+
+                        $("#finished").attr("href", "{{ route('courses.quizz.index', '') }}/" + response
+                            .data.parameter);
+                    } else {
+                        $("#finished").attr("href", "{{ route('post.test.index', '') }}/" + response
+                            .data.parameter);
                     }
 
                 },

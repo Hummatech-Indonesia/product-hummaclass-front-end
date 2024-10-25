@@ -137,8 +137,12 @@ Route::get('quiz-question/{id}', function ($id) {
 })->name('quetion-quiz.index');
 
 Route::get('pre-test/{id}', function ($id) {
-    return view('user.pages.pre-post-test.index', compact('id'));
+    return view('user.pages.pre-test.index', compact('id'));
 })->name('pre.test.index');
+
+Route::get('post-test/{id}', function ($id) {
+    return view('user.pages.post-test.index', compact('id'));
+})->name('post.test.index');
 
 Route::get('finished-test/{id?}', function ($id) {
     return view('user.pages.pre-post-test.test-finish', compact('id'));
@@ -181,7 +185,7 @@ Route::get('upload-task/{id}', function ($id) {
     return view('user.pages.courses.task-execution.upload-task', compact('id'));
 })->name('upload-task.index');
 
-Route::get('point-exchange', function(){
+Route::get('point-exchange', function () {
     return view('user.pages.points-exchange.index');
 })->name('point-exchange.index');
 
@@ -275,7 +279,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
 
-    
+
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::get('footer', function () {
             return view('admin.pages.configuration.footer');
