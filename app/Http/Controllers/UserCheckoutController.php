@@ -37,27 +37,34 @@ class UserCheckoutController extends Controller
                 return view('user.pages.checkout.index', compact('slug'));
             }
         }
+    }
 
-        // if ($response->json()['data']['user_course']) {
-        //     return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
-        // } else {
-        //     $response = Http::withToken($token)
-        //     ->maxRedirects(5)
-        //         ->get(config('app.api_url') . "/api/courses/$slug");
-        //     $course = $response->json()['data'];
-        //     $courseId = $response->json()['data']['id'];
-        //     $subModuleSlug = $response->json()['data']['modules'][0]['sub_modules'][0]['slug'];
-        //     if (!$course['is_premium']) {
-        //         $response = Http::withToken($token)
-        //             ->maxRedirects(5)
-        //             ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
-        //         if ($response->json()['data']) {
-        //             return redirect()->route('courses.course-lesson.index', $subModuleSlug);
-        //         }
-        //     } else {
-        //         return view('user.pages.checkout.index', compact('slug'));
-        //     }
-        // }
+    public function event($slug)
+    {
+        $token = session('hummaclass-token');
+        $response = Http::withToken($token)
+            ->maxRedirects(5)
+            ->post(config('app.api_url') . '/api/user-events-check', ['event_slug' => $slug]);
+
+        // dd($response->json());
+        if ($response->json()['data']['user_event']) {
+            return redirect()->route('events.show', $slug);
+        } else {
+            $event = $response->json()['data']['event'];
+            $eventId = $response->json()['data']['event']['id'];
+            $subModuleSlug = $response->json()['data']['event']['slug'];
+            // dd($event, $eventId, $subModuleSlug);
+            if ($event['price'] == 0) {
+                $response = Http::withToken($token)
+                    ->maxRedirects(5)
+                    ->get(config('app.api_url') . "/api/transaction-create/event/$eventId");
+                if ($response->json()['data']) {
+                    return redirect()->route('events.show', $slug);
+                }
+            } else {
+                return view('user.pages.checkout.index', compact('slug'));
+            }
+        }
     }
 
     /**
