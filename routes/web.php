@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminModuleController;
+use App\Http\Controllers\Admin\AdminPointExchangeController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
@@ -211,6 +212,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'modules' => AdminModuleController::class,
         'news' => AdminBlogController::class,
         'events' => AdminEventController::class,
+        'point-exchange' => AdminPointExchangeController::class,
     ]);
 
     Route::get('create-quiz/{id}', function (string $id) {
@@ -286,14 +288,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         })->name('faq.index');
     });
 });
-
-Route::resources([
-    'courses' => AdminCourseController::class,
-    'users' => AdminUserController::class,
-    'modules' => AdminModuleController::class,
-    'news' => AdminBlogController::class,
-    'events' => AdminEventController::class,
-]);
 
 Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');
