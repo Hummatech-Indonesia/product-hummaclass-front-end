@@ -83,6 +83,11 @@
                             <span>Voucher</span>
                         </a>
                     </li>
+                     <li class="nav-item voucher">
+                        <a class="nav-link" data-bs-toggle="tab" href="#voucher" role="tab">
+                            <span>Statistik</span>
+                        </a>
+                    </li>
                 </div>
                 <div class="">
                     <li class="">
@@ -159,6 +164,9 @@
             @include('admin.pages.courses.panes.post-test.tab-posttest')
         </div> --}}
 
+        <div class="tab-pane" id="voucher" role="tabpanel">
+            @include('admin.pages.courses.panes.statistics.tab-statistics')
+        </div>
 
         <div class="tab-pane" id="voucher" role="tabpanel">
             @include('admin.pages.courses.panes.vouchers.tab-vouchers')
