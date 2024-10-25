@@ -187,9 +187,7 @@
                             const formattedMinutes = String(remainingMinutes).padStart(2, '0');
                             const formattedSeconds = String(remainingSeconds).padStart(2, '0');
 
-                            // console.log(
-                            //     `Waktu tersisa: ${formattedHours}:${formattedMinutes}:${formattedSeconds}`
-                            // );
+                          
                             $('#time_count').html(
                                 `<span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">${formattedHours}.${formattedMinutes}.${formattedSeconds} Sisa waktu</span>`
                             );
