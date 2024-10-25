@@ -181,6 +181,11 @@ Route::get('upload-task/{id}', function ($id) {
     return view('user.pages.courses.task-execution.upload-task', compact('id'));
 })->name('upload-task.index');
 
+Route::get('point-exchange', function(){
+    return view('user.pages.points-exchange.index');
+})->name('point-exchange.index');
+
+
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
