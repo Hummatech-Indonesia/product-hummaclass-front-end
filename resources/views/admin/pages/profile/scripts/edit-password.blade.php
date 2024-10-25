@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
-        // edit profile
-        $('#edit-profile-form').submit(function(e) {
+        // edit password
+        $('#edit-password-form').submit(function(e) {
             e.preventDefault();
 
             var formData = {};
@@ -11,23 +11,22 @@
 
 
             $.ajax({
-                url: "{{ config('app.api_url') }}" + "/api/profile-update"
-                , headers: {
-                    'Authorization': 'Bearer {{ session('
-                    hummaclass - token ') }}'
-                }
-                , type: 'PATCH'
-                , data: formData
-                , success: function(response) {
+                url: "{{ config('app.api_url') }}" + "/api/password/update",
+                headers: {
+                    'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                },
+                type: 'PATCH',
+                data: formData,
+                success: function(response) {
                     Swal.fire({
-                        title: "Success"
-                        , text: response.meta.title
-                        , icon: "success"
+                        title: "Success",
+                        text: response.meta.title,
+                        icon: "success"
                     }).then(function(param) {
                         window.location.href = "/admin/profile";
                     });
-                }
-                , error: function(error) {
+                },
+                error: function(error) {
                     let errors = error.responseJSON.data || {};
                     let message = error.responseJSON.meta.message;
                     if (errors) {
@@ -48,7 +47,5 @@
                 }
             });
         });
-        
     });
-
 </script>

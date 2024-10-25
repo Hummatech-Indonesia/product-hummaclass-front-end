@@ -176,7 +176,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('test-result.index') }}" class="w-100 btn-warning">Selesai</a>
+                        <a href="" id="finished" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
                 <div class="col-lg-9" id="question_quiz">
@@ -226,6 +226,29 @@
                 }
             });
 
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/check-finished-course/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response.data);
+                    if (response.data.status === "not_finished") {
+                        $("#finished").attr("src", "{{ route('courses.quizz.index', '') }}/" + response.data.parameter);
+                    }
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data events.",
+                        icon: "error"
+                    });
+                }
+            });
+
             function questionQuiz(index, value) {
                 let check;
 
@@ -252,7 +275,7 @@
                 return `<div class="card border-0 mb-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                             <div class="p-4">
                                 ${check}
-                                <label class="fs-5" style="white-space: nowrap;">
+                                <label class="fs-5">
                                     <span style="display: inline;">${index + 1}. ${value.question}</span>
                                 </label>
                                 <div class="ms-3 mt-3">
