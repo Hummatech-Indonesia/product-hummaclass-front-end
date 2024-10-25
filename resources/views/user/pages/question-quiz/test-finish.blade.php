@@ -176,7 +176,7 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <a href="{{ route('test-result.index') }}" class="w-100 btn-warning">Selesai</a>
+                        <a href="" id="finished" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
                 <div class="col-lg-9" id="question_quiz">
@@ -216,6 +216,29 @@
                             questionQuiz(index, value)
                         );
                     });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data events.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/check-finished-course/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response.data);
+                    if (response.data.status === "not_finished") {
+                        $("#finished").attr("src", "{{ route('courses.quizz.index', '') }}/" + response.data.parameter);
+                    }
+
                 },
                 error: function(xhr) {
                     Swal.fire({
