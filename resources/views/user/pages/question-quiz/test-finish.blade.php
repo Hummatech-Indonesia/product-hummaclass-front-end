@@ -252,7 +252,7 @@
                 return `<div class="card border-0 mb-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                             <div class="p-4">
                                 ${check}
-                                <label class="fs-5" style="white-space: nowrap;">
+                                <label class="fs-5">
                                     <span style="display: inline;">${index + 1}. ${value.question}</span>
                                 </label>
                                 <div class="ms-3 mt-3">

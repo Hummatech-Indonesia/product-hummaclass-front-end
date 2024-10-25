@@ -44,13 +44,14 @@
         @include('admin.pages.profile.panes.tab-profile')
     </div>
     <div class="tab-pane fade" id="pills-reset" role="tabpanel" aria-labelledby="pills-reset-tab" tabindex="0">
-        @include('admin.pages.profile.panes.tab-reset')
+        @include('admin.pages.profile.panes.tab-password')
     </div>
 </div>
 @endsection
 
 @section('script')
 @include('admin.pages.profile.scripts.edit-profile')
+@include('admin.pages.profile.scripts.edit-password')
 
 <script>
     document.getElementById('edit-profile-btn').addEventListener('click', function() {
@@ -78,9 +79,39 @@
 
 </script>
 
-{{-- update profile --}}
 <script>
+    $(document).ready(function() {
 
+        // get profile
+        $.ajax({
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/user-detail"
+            , headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            }
+            , dataType: "json"
+            , success: function(response) {
+                console.log(response.data.id);
+                console.log(response.data.name);
+
+                $('.name').val(response.data.name);
+                $('.email').val(response.data.email);
+                $('.phone_number').val(response.data.phone_number);
+                $('.gender').val(response.data.gender);
+                $('.address').val(response.data.address);
+
+            }
+            , error: function(xhr) {
+                console.log(xhr);
+
+                Swal.fire({
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data user."
+                    , icon: "error"
+                });
+            }
+        });
+    })
 
 </script>
 @endsection

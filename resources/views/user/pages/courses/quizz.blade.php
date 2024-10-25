@@ -227,11 +227,23 @@
                     $('#start_quiz').attr('href', url);
                 },
                 error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data materi.",
-                        icon: "error"
-                    });
+                    if (xhr.status == 403) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
+                        }).then(() => {
+                            window.history.back();
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data materi.",
+                            icon: "error"
+                        }).then(() => {
+                            window.history.back();
+                        });
+                    }
                 }
             });
         });

@@ -59,7 +59,7 @@
                                         alt="img">${data.course.user?.name}</a>
                             </div>
                             <div class="avg-rating">
-                                <i class="fas fa-star"></i> (${parseFloat(data.course.course_reviews_avg_rating).toFixed(1)} Reviews)
+                                <i class="fas fa-star"></i> (${parseFloat(data.course.course_reviews_avg_rating??0).toFixed(1)} Reviews)
                             </div>
                         </div>
                         <div class="progress-item progress-item-two">
