@@ -85,8 +85,8 @@
                             <h2 class="title"><a href="{{ route('events.show', '') }}/${value.slug}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h2>
                             <p>${value.description}</p> 
                             
-                            <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                <div class="d-flex">
+                            <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
+                                <div class="d-flex" style="font-size: 14px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
                                     Sisa Kuota: ${value.capacity}
                                 </div>
