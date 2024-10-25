@@ -10,9 +10,9 @@
                 dataType: "json",
                 success: function(response) {
                     $('#list-course').empty();
-                    
+
                     if (response.data.length > 0) {
-                        response.data.forEach(data => {                            
+                        response.data.forEach(data => {
                             cardCourse(data);
                         });
                         // $('#pagination').html(handlePaginate(response.data.paginate));
@@ -33,13 +33,13 @@
 
 
         function cardCourse(data) {
-            console.log(data.course.sub_category.name);
-            
+            console.log(data.course.slug);
+
             let card = `
             <div class="col-lg-4 col-md-6">
                 <div class="courses__item courses__item-two shine__animate-item">
                     <div class="courses__item-thumb courses__item-thumb-two">
-                        <a href="{{ route('courses.courses.show', 1) }}"
+                        <a href="{{ route('courses.courses.show', '') }}/${data.course.slug}"
                             class="shine__animate-link">
                             <img src="{{ config('app.api_url') }}/storage/${data.course.photo}"
                                 alt="img">
@@ -51,7 +51,7 @@
                                 <a href="course.html">${data.course.sub_category.name}</a>
                             </li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.courses.show', 1) }}">${data.course.title}</a></h5>
+                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${data.course.slug}">${data.course.title}</a></h5>
                         <div class="courses__item-content-bottom">
                             <div class="author-two">
                                 <a href="instructor-details.html"><img
@@ -80,10 +80,83 @@
                 </div>
             </div>
                     `
-                    
+
             $('#list-course').append(card);
         }
 
+        function getEvent(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/user-events",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#list-event').empty();
+                    console.log(response.data.data);
+
+                    if (response.data.data.length > 0) {
+                        response.data.data.forEach(data => {
+                            cardEvent(data.event);
+                        });
+                        // $('#pagination').html(handlePaginate(response.data.paginate));
+                    } else {
+                        $('#list-event').append(empty());
+                        $('#pagination').hide();
+                    }
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+
+        function cardEvent(data) {
+            // console.log(data);
+            
+            let card = `
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="event__item shine__animate-item">
+                    <div class="event__item-thumb">
+                        <a href="#" class="shine__animate-link"><img
+                                src="{{ asset('assets/img/events/event_thumb01.jpg') }}"
+                                alt="img"></a>
+                    </div>
+                    <div class="event__item-content">
+                        <span class="date">25 June, 2024</span>
+                        <h2 class="title"><a href="">${data.title}</a></h2>
+
+                        <div class="d-flex justify-content-between pt-3"
+                            style="border-top: 1px solid #CCCCCC">
+                            <div class="d-flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
+                                    <g fill="none" stroke="#6D6C80" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2.0">
+                                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                        <circle cx="12" cy="7" r="4" />
+                                    </g>
+                                </svg>
+                                Sisa Kuota: ${data.slot}
+                            </div>
+                            <div>${data.start_in}</div>
+                        </div>
+                        {{-- <a href="https://maps.google.com/maps" class="location" target="_blank"><i class="flaticon-map"></i>United Kingdom</a> --}}
+                    </div>
+                </div>
+            </div>
+                    `
+
+            $('#list-event').append(card);
+        }
+
+        getEvent();
         getCourse();
     </script>
 @endsection
