@@ -72,8 +72,8 @@
                 <div class="col-lg-6">
                     <h4 class="section-title">Daftar Penukaran</h4>
                     <div class="scrollable-content">
-                        <div class="row">
-                            @foreach (range(1,8) as $data)
+                        <div class="row" id="list-point-exchange">
+                            {{-- @foreach (range(1,8) as $data)
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <div class="event__item shine__animate-item">
                                     <div class="event__item-thumb">
@@ -105,9 +105,16 @@
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+                            @endforeach --}}
                         </div>
-                        
+                        <nav class="pagination__wrap mt-30">
+                            <ul class="list-wrap">
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="/point-exchange">2</a></li>
+                                <li><a href="/point-exchange">3</a></li>
+                                <li><a href="/point-exchange">4</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -117,4 +124,8 @@
 </section>
 <!-- contact-area-end -->
 
+@endsection
+
+@section('script')
+    @include('user.pages.points-exchange.scripts.index')
 @endsection
