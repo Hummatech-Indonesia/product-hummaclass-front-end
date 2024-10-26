@@ -163,7 +163,7 @@
                                             <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September
                                                 2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
 
-                                            <div class="d-flex justify-content-between pt-3"
+                                            <div class="d-flex justify-content-between align-items-center pt-3"
                                                 style="border-top: 1px solid #CCCCCC">
                                                 <div class="d-flex">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

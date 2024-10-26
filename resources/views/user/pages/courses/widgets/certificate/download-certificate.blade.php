@@ -83,7 +83,7 @@
         <div class="row justify-content-center">
             <img src="{{ asset('assets/img/certificate/certificate.png') }}" style="max-width: 900px;" alt="">
             <div class="d-flex justify-content-center gap-3 mt-4">
-                <button class="btn btn-primary">Perbarui</button>
+                {{-- <button class="btn btn-primary">Perbarui</button> --}}
                 <a href="{{ route('courses.download-certificate.index') }}" class="btn-warning ">Download Sertifikat</a>
             </div>
         </div>

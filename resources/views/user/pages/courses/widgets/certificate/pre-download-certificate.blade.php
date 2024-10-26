@@ -364,10 +364,10 @@
                     <div class="col-lg-8">
                         <div class="certificate-container">
                             <img src="{{ asset('assets/img/certificate/serti-bg.png') }}" style="">
-                            <div class="certificate-number">12202401080001</div>
-                            <div class="name-people">Sabdo chandra</div>
-                            <div class="course-title">Belajar Membuat Aplikasi Kognitif</div>
-                            <div class="date"><b>13 Oktober 2024</b></div>
+                            <div class="certificate-number" id="code"></div>
+                            <div class="name-people" id="username"></div>
+                            <div class="course-title" id="course_title">Belajar Membuat Aplikasi Kognitif</div>
+                            <div class="date" id="date"><b></b></div>
                             <div class="qr-code">
                                 <img src="{{ asset('assets/img/certificate/qr.png') }}" alt="QR Code">
                                 <div class="verifikasi"><b>Verifikasi Sertifikat</b></div>
@@ -378,17 +378,18 @@
                     </div>
 
                     <div class="col-lg-4">
-                        <h5>Download Sertifikat</h5>
-                        <p>sertifikat akan menjadi pdf jika didownload</p>
-                        <div class="col-6 mt-5">
-                            <div>
-                                <button class="btn btn-primary w-100">Perbarui</button>
+                        <h5>Downlohd Sertifikat</a>
+                            <p>sertifikat akan menjadi pdf jika didownload</p>
+                            <div class="col-6 mt-5">
+                                <div id="updated">
+                                    <a href="{{ route('courses.print-certificate.index', $course) }}"
+                                        class="btn btn-primary w-100">Perbarui</a>
+                                </div>
+                                <div>
+                                    <a href="{{ config('app.api_url') . '/certificate-download/' . $course . '/' . session('user.id') }}"
+                                        class="btn-warning w-100 mt-4">Download Sertifikat</a>
+                                </div>
                             </div>
-                            <div>
-                                <a href="{{ route('courses.download-certificate.index') }}"
-                                    class="btn-warning w-100 mt-4">Download Sertifikat</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -409,11 +410,14 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil mengambil data.",
-                        icon: "success"
-                    });
+
+                    if (response.data.user_course.has_downloaded == 1) {
+                        $('#updated').hide();
+                    }
+                    $('#code').html(response.data.code);
+                    $('#course_title').html(response.data.course.title);
+                    $('#username').html(response.data.username);
+                    $('#date').html(formatDate(response.data.created_at));
                 },
                 error: function(response) {
                     Swal.fire({

@@ -87,8 +87,8 @@
 
                             <div class="col-lg-8 mt-5">
                                 <label for="" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" placeholder="Nama Lengkap Anda" name="username"
-                                    id="">
+                                <input type="text" class="form-control" placeholder="Nama Lengkap Anda" id="username"
+                                    name="username" id="">
                             </div>
                             <p class="mt-4">
                                 Pastikan nama diatas sesuai dengan identitas anda. Nama pada sertifikat tidak dapat diganti
@@ -114,11 +114,24 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            var course = "{{ $course }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/certificates/" + course,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $('#username').val(response.data.username);
+                },
+            });
+
             $('#verification-name-certificate').submit(function(e) {
                 e.preventDefault();
-                var course = "{{ $course }}"; // Pastikan $course terisi dengan benar
                 var formData = new FormData(this);
-
                 $.ajax({
                     type: "POST",
                     url: "{{ config('app.api_url') }}/api/certificates/" + course,
@@ -147,6 +160,7 @@
                         });
                     }
                 });
+
             });
 
         });

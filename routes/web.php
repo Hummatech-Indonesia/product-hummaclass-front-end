@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminModuleController;
+use App\Http\Controllers\Admin\AdminPointExchangeController;
 use App\Http\Controllers\Admin\AdminSubModuleController;
 use App\Http\Controllers\Password\ResetPasswordController;
 use App\Http\Controllers\Student\Profile\ProfileController;
@@ -137,8 +138,12 @@ Route::get('quiz-question/{id}', function ($id) {
 })->name('quetion-quiz.index');
 
 Route::get('pre-test/{id}', function ($id) {
-    return view('user.pages.pre-post-test.index', compact('id'));
+    return view('user.pages.pre-test.index', compact('id'));
 })->name('pre.test.index');
+
+Route::get('post-test/{id}', function ($id) {
+    return view('user.pages.post-test.index', compact('id'));
+})->name('post.test.index');
 
 Route::get('finished-test/{id?}', function ($id) {
     return view('user.pages.pre-post-test.test-finish', compact('id'));
@@ -181,6 +186,11 @@ Route::get('upload-task/{id}', function ($id) {
     return view('user.pages.courses.task-execution.upload-task', compact('id'));
 })->name('upload-task.index');
 
+Route::get('point-exchange', function () {
+    return view('user.pages.points-exchange.index');
+})->name('point-exchange.index');
+
+
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -206,6 +216,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'modules' => AdminModuleController::class,
         'news' => AdminBlogController::class,
         'events' => AdminEventController::class,
+        'point-exchange' => AdminPointExchangeController::class,
     ]);
 
     Route::get('create-quiz/{id}', function (string $id) {
@@ -270,7 +281,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.profile.panes.tab-update-profile');
     })->name('profile-update.php');
 
-    
+
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::get('footer', function () {
             return view('admin.pages.configuration.footer');
@@ -281,14 +292,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         })->name('faq.index');
     });
 });
-
-Route::resources([
-    'courses' => AdminCourseController::class,
-    'users' => AdminUserController::class,
-    'modules' => AdminModuleController::class,
-    'news' => AdminBlogController::class,
-    'events' => AdminEventController::class,
-]);
 
 Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');

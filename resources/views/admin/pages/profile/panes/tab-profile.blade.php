@@ -3,23 +3,23 @@
     <div class="row mt-4">
         <div class="col-lg-6 mb-3">
             <label for="" class="form-label">Nama:</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" value="{{ session('user')['name'] }}" disabled>
+            <input type="text" class="form-control name" id="name" placeholder="Name" disabled>
         </div>
         <div class="col-lg-6 mb-3">
             <label for="" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Email" value="{{ session('user')['email'] }}" disabled>
+            <input type="email" class="form-control email" id="email" placeholder="Email" disabled>
         </div>
         <div class="col-lg-6 mb-3">
             <label for="" class="form-label">No Telepon:</label>
-            <input type="text" class="form-control" id="phone" placeholder="No Telepon" value="{{ session('user')['phone_number'] }}" disabled>
+            <input type="text" class="form-control phone_number" id="phone" placeholder="No Telepon" disabled>
         </div>
         <div class="col-lg-6 mb-3">
             <label for="" class="form-label">Jenis Kelamin:</label>
-            <input type="text" class="form-control" id="gender" placeholder="Jenis Kelamin" value="{{ session('user')['gender'] }}" disabled>
+            <input type="text" class="form-control gender" id="gender" placeholder="Jenis Kelamin" disabled>
         </div>
         <div class="col-lg-12 mb-4">
             <label for="" class="form-label">Alamat:</label>
-            <input type="text" class="form-control" id="address" placeholder="Alamat" value="{{ session('user')['address'] }}" disabled>
+            <input type="text" class="form-control address" id="address" placeholder="Alamat" disabled>
         </div>
     </div>
     <div class="text-end">
@@ -40,23 +40,23 @@
         <div class="row mt-4">
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Nama:</label>
-                <input type="text" class="form-control" value="{{ session('user')['name'] }}" name="name" id="name" placeholder="Name">
+                <input type="text" class="form-control name" name="name" id="name" placeholder="Name">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Email:</label>
-                <input type="text" class="form-control" value="{{ session('user')['email'] }}" name="email" id="email" placeholder="Email">
+                <input type="text" class="form-control email" name="email" id="email" placeholder="Email">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">No Telepon:</label>
-                <input type="text" class="form-control" value="{{ session('user')['phone_number'] }}" name="phone_number" id="phone_number" placeholder="No Telepon">
+                <input type="text" class="form-control phone_number" name="phone_number" id="phone_number" placeholder="No Telepon">
             </div>
             <div class="col-lg-6 mb-3">
                 <label for="" class="form-label">Jenis Kelamin:</label>
-                <input type="text" class="form-control" value="{{ session('user')['gender'] }}" id="gender" name="gender" placeholder="Jenis Kelamin">
+                <input type="text" class="form-control gender" id="gender" name="gender" placeholder="Jenis Kelamin">
             </div>
             <div class="col-lg-12 mb-4">
                 <label for="" class="form-label">Alamat:</label>
-                <textarea name="address" class="form-control" value="{{ session('user')['address'] }}" placeholder="Masukan alamat" id="address" cols="30" rows="10">{{ session('user')['address'] }}</textarea>
+                <textarea name="address" class="form-control address" placeholder="Masukan alamat" id="address" cols="30" rows="10"></textarea>
             </div>
         </div>
         <div class="text-end">
@@ -71,4 +71,3 @@
         </div>
     </form>
 </div>
-

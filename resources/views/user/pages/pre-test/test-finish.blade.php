@@ -195,14 +195,7 @@
                 success: function(response) {
                     console.log(response.data);
                     $('#total_question').html(response.data.total_question);
-                    if (response.data.test_type == "post-test") {
-                        $('#finish').attr('href',
-                            `{{ route('courses.print-certificate.index', '') }}/${response.data.course_slug}`
-                            );
-                    } else {
-                        $('#finish').attr('href',
-                            `{{ route('courses.courses.show', '') }}/${response.data.course_slug}`);
-                    }
+                    $('#finish').attr('href', `{{ route('courses.courses.show', '') }}/${response.data.course_slug}`);
                     $('#score').html(response.data.score);
                     $('#total_correct').html(response.data.total_correct);
                     $('#total_fault').html(response.data.total_fault);
