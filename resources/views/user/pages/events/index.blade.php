@@ -63,6 +63,7 @@
                                     <h2 style="color: #9425FE;">Daftar Acara</h2>
                                 </div>
                                 <div class="event-sidebar">
+
                                     <ul class="list-group list-group-flush" id="eventList"></ul>
                                 </div>
                             </div>
@@ -209,30 +210,31 @@
                         const eventItem = document.createElement('li');
                         eventItem.classList.add('list-group-item');
                         eventItem.innerHTML = `
+                   <span class="event-indicator ${event.category}-indicator"></span>
                     <h6 style="color: #9425FE;">${event.title}</h6>
                     <small>${event.desc}</small><br>
                     <small>${dayKey} at ${event.time}</small>
                 `;
 
                         // Apply inline styles based on the category
-                        switch (event.category) {
-                            case 'danger':
-                                eventItem.style.backgroundColor = '#dc3545';
-                                eventItem.style.color = '#ffffff';
-                                break;
-                            case 'success':
-                                eventItem.style.backgroundColor = '#28a745';
-                                eventItem.style.color = '#ffffff';
-                                break;
-                            case 'primary':
-                                eventItem.style.backgroundColor = '#007bff';
-                                eventItem.style.color = '#ffffff';
-                                break;
-                            case 'warning':
-                                eventItem.style.backgroundColor = '#ffc107';
-                                eventItem.style.color = '#000000';
-                                break;
-                        }
+                        // switch (event.category) {
+                        //     case 'danger':
+                        //         eventItem.style.backgroundColor = '#dc3545';
+                        //         eventItem.style.color = '#ffffff';
+                        //         break;
+                        //     case 'success':
+                        //         eventItem.style.backgroundColor = '#28a745';
+                        //         eventItem.style.color = '#ffffff';
+                        //         break;
+                        //     case 'primary':
+                        //         eventItem.style.backgroundColor = '#007bff';
+                        //         eventItem.style.color = '#ffffff';
+                        //         break;
+                        //     case 'warning':
+                        //         eventItem.style.backgroundColor = '#ffc107';
+                        //         eventItem.style.color = '#000000';
+                        //         break;
+                        // }
 
                         eventList.appendChild(eventItem);
                     });
@@ -380,16 +382,29 @@
         color: #ffffff !important;
     }
 
-    .event-success {
-        color: #ffffff !important;
+    .event-indicator {
+        width: 8px;
+        height: 100%;
+        border-radius: 4px;
+        display: inline-block;
     }
 
-    .event-primary {
-        color: #ffffff !important;
+    .success-indicator {
+        background-color: #28a745;
     }
 
-    .event-warning {
+    .primary-indicator {
+        background-color: #007bff;
     }
+
+    .warning-indicator {
+        background-color: #ffc107;
+    }
+
+    .danger-indicator {
+        background-color: #dc3545;
+    }
+
 
     #eventList .list-group-item {
         margin-bottom: 15px;
