@@ -3,7 +3,7 @@
         function getCourse(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-courses",
+                url: "{{ config('app.api_url') }}" + "/api/user-courses?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
@@ -11,8 +11,13 @@
                 success: function(response) {
                     $('#list-course').empty();
 
-                    if (response.data.length > 0) {
-                        response.data.forEach(data => {
+                    if (response.data.data.length > 0) {
+                        response.data.data.forEach(data => {
+                            renderPagination(response.data.paginate.last_page, response.data.paginate
+                                .current_page,
+                                function(page) {
+                                    getCourse(page);
+                                });
                             cardCourse(data);
                         });
                         // $('#pagination').html(handlePaginate(response.data.paginate));
@@ -87,7 +92,7 @@
         function getEvent(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-events",
+                url: "{{ config('app.api_url') }}" + "/api/user-events?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
@@ -98,6 +103,12 @@
 
                     if (response.data.data.length > 0) {
                         response.data.data.forEach(data => {
+                            renderPagination(response.data.paginate.last_page, response.data
+                                .paginate
+                                .current_page,
+                                function(page) {
+                                    getEvent(page);
+                                });
                             cardEvent(data.event);
                         });
                         // $('#pagination').html(handlePaginate(response.data.paginate));
@@ -119,7 +130,7 @@
 
         function cardEvent(data) {
             // console.log(data);
-            
+
             let card = `
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <div class="event__item shine__animate-item">
@@ -156,7 +167,7 @@
             $('#list-event').append(card);
         }
 
-        getEvent();
-        getCourse();
+        getEvent(1);
+        getCourse(1);
     </script>
 @endsection
