@@ -173,7 +173,8 @@
                                         {{-- <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
                                         name="name" value="{{ old('name', request('name')) }}" id="input-filter"
                                     placeholder="Terbaru"> --}}
-                                        <select class="list-modul form-select select" name="module" style="width: 200px;">
+                                        <select class="list-modul form-select select filter" name="module"
+                                            style="width: 200px;">
                                             <option value="">-- Pilih --</option>
                                         </select>
                                     </div>
@@ -283,12 +284,14 @@
                 console.log($(this).attr('name') + ": " + $(this).val());
 
 
-                if ($.inArray($(this).attr('name'), ['search', 'module']) === -1 && $(this).is(
-                        ':checked')) {
+                if ($(this).is(':checked')) {
                     filter[$(this).attr('name')] = true;
+                } else if ($(this).attr('name') == 'module') {
+                    filter[$(this).attr('name')] = $(this).val();
                 } else {
-                    delete filter[$(this).attr('name')];
+                    delete[$(this).attr('name')];
                 }
+
                 getDiscussion(filter);
 
             });

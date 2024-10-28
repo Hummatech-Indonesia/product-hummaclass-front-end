@@ -31,8 +31,9 @@
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" id="post-test-btn" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="accordion-button collapsed" id="post-test-btn" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
                                         Post Test
                                     </button>
                                 </h2>
@@ -263,22 +264,23 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     // $('#modal-information').modal('show');
                     if (response.data.percentace == 0) {
-                        Swal.fire({
-                            title: 'Selamat!',
-                            text: 'Anda sudah menuntaskan kursus ini.',
-                            icon: 'success',
-                            confirmButtonText: 'Oke'
-                        });
                         if (!response.data.has_post_test) {
-                            $('#post-test-btn').click(function (e) { 
-                                e.preventDefault();
-                                console.log(this);
-                                
-                                window.location.href = "{{ route('post.test.index', '') }}/" + response.data.course.test_id
+                            Swal.fire({
+                                title: 'Selamat!',
+                                text: 'Anda sudah menuntaskan kursus ini.',
+                                icon: 'success',
+                                confirmButtonText: 'Oke'
                             });
+                            $('#post-test-btn').click(function(e) {
+                                e.preventDefault();
+
+                                window.location.href = "{{ route('post.test.index', '') }}/" + response
+                                    .data.course.test_id
+                            });
+                        } else {
+                            $('#post-test-btn').remove();
                         }
                     }
                 },
