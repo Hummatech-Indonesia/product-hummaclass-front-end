@@ -273,28 +273,25 @@
             var course;
 
             function reviewContent(value) {
-                return ` <
-            div class = "course-review-head" >
-            <div class="review-author-thumb">
-                            <img src="${value.user.photo}" alt="img">
-                        </div> <
-            div class = "review-author-content" >
-            <div class="author-name">
-                                <h5 class="name text-dark">${value.user.name} <span>${value.created}</span></h5>
-                                <div class="author-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div> <
-            p > $ {
-                value.review
-            }
-            </p> <
-            /div> <
-            /div>
+                return `
+                <div class="course-review-head">
+                <div class="review-author-thumb">
+                    <img src="${value.user.photo}" alt="img">
+                </div>
+                <div class = "review-author-content" >
+                <div class="author-name">
+                    <h5 class="name text-dark">${value.user.name} <span>${value.created}</span></h5>
+                    <div class="author-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p> ${value.review}</p>
+                </div>
+                </div>
             `;
             }
             $.ajax({
@@ -338,10 +335,15 @@
 
 
                     // console.log(response.data.course_reviews);
+                    $('#review-content').empty();
+                    if (response.data.course_reviews.length > 0) {
+                        response.data.course_reviews.forEach((review) => {
+                            $('#review-content').append(reviewContent(review));
+                        });
 
-                    response.data.course_reviews.forEach((review) => {
-                        $('#review-content').append(reviewContent(review));
-                    });
+                    } else {
+                        $('#review-content').append(empty());
+                    }
 
                     photo = `
             $ {
