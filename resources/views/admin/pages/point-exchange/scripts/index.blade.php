@@ -1,13 +1,13 @@
 <script>
     $(document).ready(function(page) {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 console.log(response);
 
 
@@ -26,13 +26,13 @@
                 }
 
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data penukaran poin."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data penukaran poin.",
+                    icon: "error"
                 });
             }
         });
@@ -81,7 +81,6 @@
             </tr>
     `;
     }
-
 </script>
 
 {{-- hapus penukaran poin --}}
@@ -102,38 +101,37 @@
             e.preventDefault();
 
             $.ajax({
-                type: "DELETE"
-                , url: url
-                , headers: {
+                type: "DELETE",
+                url: url,
+                headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , success: function(response) {
+                },
+                success: function(response) {
                     $('#modal-delete').modal('hide');
                     Swal.fire({
-                        title: "Sukses"
-                        , text: "Berhasil menghapus data."
-                        , icon: "success"
+                        title: "Sukses",
+                        text: "Berhasil menghapus data.",
+                        icon: "success"
                     });
                     get();
-                }
-                , error: function(response) {
+                },
+                error: function(response) {
                     $('#modal-delete').modal('hide');
                     if (response.status == 400) {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: response.responseJSON.meta.message
-                            , icon: "error"
+                            title: "Terjadi Kesalahan!",
+                            text: response.responseJSON.meta.message,
+                            icon: "error"
                         });
                     } else {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: "Ada kesalahan saat menghapus data."
-                            , icon: "error"
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menghapus data.",
+                            icon: "error"
                         });
                     }
                 }
             });
         });
     }
-
 </script>
