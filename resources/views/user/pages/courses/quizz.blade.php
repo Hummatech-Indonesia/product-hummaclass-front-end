@@ -92,9 +92,40 @@
                                     <li>Durasi Ujian : <span id="duration"></span> Menit</li>
                                     <li>Waktu tunggu ujian ulang: <span id="retry_delay"></span> menit</li>
                                 </ul>
+
                                 <div class="text-end mt-3 mb-4">
                                     <a href="" id="start_quiz" class="btn">Mulai
                                         Ujian</a>
+                                </div>
+                                <div class="table-responsive mt-3">
+                                    <table id="demo-foo-addrow"
+                                        class="table table-striped table-bordered m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg"
+                                        data-paging="true" data-paging-size="7" style="">
+                                        <thead>
+                                            <tr class="footable-header">
+                                                <th class="text-white"
+                                                    style="display: table-cell;background-color:#9425FE;">
+                                                    Tanggal</th>
+                                                <th class="text-white"
+                                                    style="display: table-cell;background-color:#9425FE;">
+                                                    Nilai</th>
+                                                <th class="text-white"
+                                                    style="display: table-cell;background-color:#9425FE;">
+                                                    Status</th>
+                                                <th class="text-white"
+                                                    style="display: table-cell;background-color:#9425FE;">
+                                                    Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="user-quizzes">
+                                            {{-- <tr>
+                                                <td>8 Des 2024 07:30</td>
+                                                <td>100</td>
+                                                <td><span class="bg-success p-2 text-white rounded text-center">Lulus</span></td>
+                                                <td><button class="btn btn-primary">Lihat Detail</button></td>
+                                            </tr> --}}
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -139,6 +170,30 @@
 @section('script')
     <script>
         $(document).ready(function() {
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/user-quizzes",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.each(response.data, function(index, value) {
+                        $('#user-quizzes').append(
+                            `
+                            <tr>
+                                <td>${value.created}</td>
+                                <td>${value.score}</td>
+                                <td><span class="bg-success p-2 text-white rounded text-center">${value.status}</span></td>
+                                <td><a class="btn btn-primary" href="">Lihat Detail</a></td>
+                            </tr> 
+                            `
+                        );
+                    });
+                }
+            });
+
             let photo;
             var id = "{{ $id }}";
 

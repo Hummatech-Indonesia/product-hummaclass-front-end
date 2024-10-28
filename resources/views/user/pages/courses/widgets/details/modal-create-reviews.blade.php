@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="px-4 mb-4">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center mt-3">
                         <p id="char-count" class="text-start">1000 Karakter tersisa</p>
                         <div class="d-flex gap-3">
                             <button type="button" class="outline-purple-primary px-4" style="border-radius: 50px" data-bs-dismiss="modal">Nanti saja</button>
