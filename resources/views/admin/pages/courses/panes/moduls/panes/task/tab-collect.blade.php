@@ -45,7 +45,7 @@
                             <span class="badge bg-light-danger text-danger fs-2 fw-semibold py-2">Belum Dinilai</span>
                         </td>
                         <td class="d-flex gap-2">
-                            <a href="{{ route('admin.courses.test.index', 1) }}" class="btn text-white" style="background-color: #9425FE">Detail</a>
+                            <a href="{{ route('admin.courses.detail-tab-collect.index', 1) }}" class="btn text-white" style="background-color: #9425FE">Detail</a>
                             <div>
                                 <button class="btn btn-warning px-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16.004V17a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-1M12 4.5v11m3.5-3.5L12 15.5L8.5 12"/></svg>
