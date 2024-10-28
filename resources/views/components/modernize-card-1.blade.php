@@ -41,7 +41,6 @@
             });
         }
 
-
         $(document).on('click', '.btn-delete', function() {
             var id = $(this).data('id');
             var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
@@ -53,12 +52,52 @@
 
         $(document).on('click', '.btn-confirmation', function() {
             var id = $(this).data('id');
-            var url = "{{ config('app.api_url') }}" + "/api/courses/" + id;
+            var url = "{{ config('app.api_url') }}" + "/api/courses-ready/" + id;
 
             $('#modal-confirmation').modal('show');
 
-            funDelete(url);
+            funConfirmation(url);
         });
+
+
+        function funConfirmation(url) {
+
+            $('.deleteConfirmation').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "PATCH",
+                    url: url,
+                    headers: {
+                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    success: function(response) {
+                        $('#modal-confirmation').modal('hide');
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menghapus data.",
+                            icon: "success"
+                        });
+                        getCourse(1);
+                    },
+                    error: function(response) {
+                        $('#modal-confirmation').modal('hide');
+                        if (response.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: response.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menghapus data.",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+        }
 
         function funDelete(url) {
 

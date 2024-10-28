@@ -142,11 +142,11 @@
                         <p id="sub-title"></p>
                         <div class="courses__details-meta">
                             <ul class="list-wrap">
-                                <li class="author-two">
+                                {{-- <li class="author-two">
                                     <img src="{{ asset('assets/img/courses/course_author001.png') }}" alt="img">
                                     By
                                     <a href="#">HummaClass</a>
-                                </li>
+                                </li> --}}
                                 <li class="date" id="detail-date"><i class="flaticon-calendar"></i></li>
                                 <li><i class="flaticon-mortarboard"></i><span id="detail-count-user"></span>Siswa</li>
                             </ul>
@@ -163,9 +163,9 @@
                                     aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="task-tab" data-bs-toggle="tab"
-                                    data-bs-target="#task-tab-pane" type="button" role="tab"
-                                    aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
+                                <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task-tab-pane"
+                                    type="button" role="tab" aria-controls="task-tab-pane"
+                                    aria-selected="false">Tugas</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
@@ -205,34 +205,14 @@
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                                <<<<<<< Updated upstream
-                                                                                                                warning ') }}',
-                    ===
-                    ===
-                    =
-                    warning ') }}',
-                    >>>
-                    >>>
-                    >
-                    Stashed changes
+                    text: '{{ session('warning ') }}',
                 });
             @endif
             @if (session('error'))
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                                <<<<<<< Updated upstream
-                                                                                                                error ') }}',
-                    ===
-                    ===
-                    =
-                    error ') }}',
-                    >>>
-                    >>>
-                    >
-                    Stashed changes
+                    text: '{{ session('error ') }}',
                 });
             @endif
             @if (session('success'))
@@ -329,6 +309,16 @@
                                 response.data.course_test_id);
                             $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
                             $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                        } else if (response.data.user_course.has_pre_test == 1 && response.data
+                            .user_course.has_post_test == 0) {
+                            $('#btn-checkout').text('Mulai Post Test');
+                            $('#btn-lesson').text('Mulai Post Test');
+                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
                         } else {
                             $('#btn-checkout').text('Lanjutkan');
                             $('#btn-lesson').text('Lanjutkan');
@@ -347,8 +337,6 @@
                     }
 
 
-                    // console.log(response.data.course_reviews);
-
                     response.data.course_reviews.forEach((review) => {
                         $('#review-content').append(reviewContent(review));
                     });
@@ -361,7 +349,7 @@
                         response.data.slug);
                     $('#detail-category').append(response.data.sub_category.name);
                     $('#detail-count-user').append(response.data.user_courses_count);
-                    $('#detail-date').append(response.data.created);
+                    $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
                     $('#price-course').html(formatRupiah(response.data.price));
 
