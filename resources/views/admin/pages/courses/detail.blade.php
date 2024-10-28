@@ -157,7 +157,7 @@
         </div>
 
         <div class="tab-pane" id="test" role="tabpanel">
-            @include('admin.pages.courses.panes.test.test')
+            @include('admin.pages.courses.panes.test.index')
         </div>
 
         <div class="tab-pane" id="voucher" role="tabpanel">

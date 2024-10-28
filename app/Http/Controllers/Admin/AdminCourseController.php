@@ -48,4 +48,9 @@ class AdminCourseController extends Controller
     {
         return view('admin.pages.courses.edit-fix', compact('id'));
     }
+
+    public function DetailTest($id)
+    {
+        return view('admin.pages.courses.panes.test.detail-test', compact('id'));
+    }
 }

@@ -76,7 +76,7 @@
                                 <span class="badge bg-light-danger text-danger fs-2 fw-semibold px-4 py-2">-</span>
                             </td>
                             <td>
-                                <button class="btn text-white" style="background-color: #9425FE">Detail</button>
+                                <a href="{{ route('admin.courses.test.index', 1) }}" class="btn text-white" style="background-color: #9425FE">Detail</a>
                             </td>
                         </tr>
                         @endforeach
