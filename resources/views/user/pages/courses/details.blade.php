@@ -273,28 +273,24 @@
             var course;
 
             function reviewContent(value) {
-                return ` <
-            div class = "course-review-head" >
-            <div class="review-author-thumb">
-                            <img src="${value.user.photo}" alt="img">
-                        </div> <
-            div class = "review-author-content" >
-            <div class="author-name">
-                                <h5 class="name text-dark">${value.user.name} <span>${value.created}</span></h5>
-                                <div class="author-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
+                return ` <div class = "course-review-head" >
+                            <div class="review-author-thumb">
+                                <img src="${value.user.photo}" alt="img">
+                            </div> 
+                            <div class="review-author-content">
+                                <div class="author-name">
+                                    <h5 class="name text-dark">${value.user.name} <span>${value.created}</span></h5>
+                                    <div class="author-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
                                 </div>
-                            </div> <
-            p > $ {
-                value.review
-            }
-            </p> <
-            /div> <
-            /div>
+                                <p>${value.review}</p> 
+                            </div>
+                        </div>
             `;
             }
             $.ajax({
