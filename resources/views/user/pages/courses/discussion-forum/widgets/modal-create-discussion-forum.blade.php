@@ -75,59 +75,59 @@
                 dropdownParent: $('#modal-create-forum-discussion'),
                 tags: true,
             });
-        });
-        $('#form-create-discussion-forum').submit(function(e) {
-            e.preventDefault();
+            $('#form-create-discussion-forum').submit(function(e) {
+                e.preventDefault();
 
-            var formData = new FormData(this);
+                var formData = new FormData(this);
 
-            var id = "{{ $id }}";
+                var id = "{{ $id }}";
 
-            $.ajax({
-                url: "{{ config('app.api_url') }}" + "/api/discussions/" + id,
-                headers: {
-                    'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
-                },
-                type: 'POST',
-                data: formData,
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: response.meta.title,
-                        icon: "success"
-                    }).then(
-                        $('#modal-create-forum-discussion').modal('hide');
-                    )
-                },
-                error: function(error) {
-                    let errors = error.responseJSON.data || {};
-                    let message = error.responseJSON.meta.message;
-                    $('.is-invalid').removeClass('is-invalid');
-                    $('.invalid-feedback').addClass('d-none');
-
-                    if (errors) {
-                        for (let key in errors) {
-                            if (errors.hasOwnProperty(key)) {
-                                let feedback = $(`#${key}`).closest('.col').find(
-                                    '.invalid-feedback');
-                                feedback.text(errors[key][
-                                    0
-                                ]); // Mengambil pesan error pertama
-                                feedback.removeClass('d-none');
-                                $(`#${key}`).addClass('is-invalid');
-                            }
-                        }
-                    } else {
+                $.ajax({
+                    url: "{{ config('app.api_url') }}" + "/api/discussions/" + id,
+                    headers: {
+                        'Authorization': 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    type: 'POST',
+                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: message,
-                            icon: "error"
-                        });
+                            title: "Sukses",
+                            text: response.meta.title,
+                            icon: "success"
+                        }).then(function() {
+                            $('#modal-create-forum-discussion').modal('hide');
+                        })
+                    },
+                    error: function(error) {
+                        let errors = error.responseJSON.data || {};
+                        let message = error.responseJSON.meta.message;
+                        $('.is-invalid').removeClass('is-invalid');
+                        $('.invalid-feedback').addClass('d-none');
+
+                        if (errors) {
+                            for (let key in errors) {
+                                if (errors.hasOwnProperty(key)) {
+                                    let feedback = $(`#${key}`).closest('.col').find(
+                                        '.invalid-feedback');
+                                    feedback.text(errors[key][
+                                        0
+                                    ]); // Mengambil pesan error pertama
+                                    feedback.removeClass('d-none');
+                                    $(`#${key}`).addClass('is-invalid');
+                                }
+                            }
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: message,
+                                icon: "error"
+                            });
+                        }
                     }
-                }
+                });
             });
         });
     </script>

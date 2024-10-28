@@ -344,9 +344,9 @@
                         $('#review-content').append(reviewContent(review));
                     });
 
-                    } else {
-                        $('#review-content').append(empty());
-                    }
+                    // } else {
+                    //     $('#review-content').append(empty());
+                    // }
 
                     photo = `
             $ {

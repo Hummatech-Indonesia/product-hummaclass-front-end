@@ -1,325 +1,375 @@
 @extends('user.layouts.app')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('admin/dist/libs/select2/dist/css/select2.min.css') }}">
-<style>
-    :root {
-        --tg-theme-primary: #9C40F7;
-    }
+    <link rel="stylesheet" href="{{ asset('admin/dist/libs/select2/dist/css/select2.min.css') }}">
+    <style>
+        :root {
+            --tg-theme-primary: #9C40F7;
+        }
 
 
-    main {
-        background-color: #F1F1F1;
-    }
+        main {
+            background-color: #F1F1F1;
+        }
 
-    .form-check-input:checked {
-        background-color: #9C40F7;
-        border-color: #9C40F7;
-    }
+        .form-check-input:checked {
+            background-color: #9C40F7;
+            border-color: #9C40F7;
+        }
 
-    .blog-widget {
-        background: none;
-        padding: 0;
-        margin-bottom: 5px;
-    }
+        .blog-widget {
+            background: none;
+            padding: 0;
+            margin-bottom: 5px;
+        }
 
-    .blog-widget .tagcloud a {
-        font-size: 16px;
-        color: var(--tg-common-color-white);
-        display: block;
-        background: #9C40F7;
-        padding: 8px 15px;
-        line-height: 1;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        -o-border-radius: 3px;
-        -ms-border-radius: 3px;
-        border-radius: 10px;
-    }
+        .blog-widget .tagcloud a {
+            font-size: 16px;
+            color: var(--tg-common-color-white);
+            display: block;
+            background: #9C40F7;
+            padding: 8px 15px;
+            line-height: 1;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -o-border-radius: 3px;
+            -ms-border-radius: 3px;
+            border-radius: 10px;
+        }
 
-    .btn-close {
-        --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-        color: var(--bs-btn-close-color);
-        background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;
-    }
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            color: var(--bs-btn-close-color);
+            background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;
+        }
 
-    .blog-widget .tagcloud span {
-        color: var(--tg-common-color-white);
-        display: block;
-        background: #9C40F7;
-        padding: 6px 15px;
-        line-height: 1;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        -o-border-radius: 3px;
-        -ms-border-radius: 3px;
-        border-radius: 5px;
-        font-size: 12px;
-    }
+        .blog-widget .tagcloud span {
+            color: var(--tg-common-color-white);
+            display: block;
+            background: #9C40F7;
+            padding: 6px 15px;
+            line-height: 1;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -o-border-radius: 3px;
+            -ms-border-radius: 3px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
 
-    /* modal bg full */
-    .modal-backdrop {
-        transform: scale(1.25);
-        transform-origin: top left;
-    }
+        /* modal bg full */
+        .modal-backdrop {
+            transform: scale(1.25);
+            transform-origin: top left;
+        }
 
-    .outline-purple-primary {
-        user-select: none;
-        -moz-user-select: none;
-        background: transparent;
-        /* Membuat background menjadi transparan */
-        border: 2px solid #9C40F7;
-        /* Border outline dengan warna primary */
-        color: #9C40F7;
-        /* Warna teks mengikuti warna primary */
-        cursor: pointer;
-        display: inline-block;
-        font-size: 16px;
-        font-weight: var(--tg-fw-semi-bold);
-        font-family: var(--tg-heading-font-family);
-        letter-spacing: 0;
-        line-height: 1.12;
-        margin-bottom: 0;
-        padding: 16px 30px;
-        text-align: center;
-        text-transform: capitalize;
-        touch-action: manipulation;
-        -webkit-transition: all 0.3s ease-out 0s;
-        -moz-transition: all 0.3s ease-out 0s;
-        -ms-transition: all 0.3s ease-out 0s;
-        -o-transition: all 0.3s ease-out 0s;
-        transition: all 0.3s ease-out 0s;
-        vertical-align: middle;
-        -webkit-border-radius: 50px;
-        -moz-border-radius: 50px;
-        -o-border-radius: 50px;
-        -ms-border-radius: 50px;
-        border-radius: 50px;
-        white-space: nowrap;
-        box-shadow: none;
-        /* Hilangkan shadow */
-        overflow: hidden;
-    }
+        .outline-purple-primary {
+            user-select: none;
+            -moz-user-select: none;
+            background: transparent;
+            /* Membuat background menjadi transparan */
+            border: 2px solid #9C40F7;
+            /* Border outline dengan warna primary */
+            color: #9C40F7;
+            /* Warna teks mengikuti warna primary */
+            cursor: pointer;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: var(--tg-fw-semi-bold);
+            font-family: var(--tg-heading-font-family);
+            letter-spacing: 0;
+            line-height: 1.12;
+            margin-bottom: 0;
+            padding: 16px 30px;
+            text-align: center;
+            text-transform: capitalize;
+            touch-action: manipulation;
+            -webkit-transition: all 0.3s ease-out 0s;
+            -moz-transition: all 0.3s ease-out 0s;
+            -ms-transition: all 0.3s ease-out 0s;
+            -o-transition: all 0.3s ease-out 0s;
+            transition: all 0.3s ease-out 0s;
+            vertical-align: middle;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -o-border-radius: 50px;
+            -ms-border-radius: 50px;
+            border-radius: 50px;
+            white-space: nowrap;
+            box-shadow: none;
+            /* Hilangkan shadow */
+            overflow: hidden;
+        }
 
-    /* Hover effect */
-    .outline-purple-primary:hover {
-        background-color: #9C40F7;
-        /* Warna background saat hover */
-        color: var(--tg-common-color-white);
-        /* Warna teks saat hover */
-        border-color: #9C40F7;
-        /* Warna border tetap */
-    }
-
-</style>
+        /* Hover effect */
+        .outline-purple-primary:hover {
+            background-color: #9C40F7;
+            /* Warna background saat hover */
+            color: var(--tg-common-color-white);
+            /* Warna teks saat hover */
+            border-color: #9C40F7;
+            /* Warna border tetap */
+        }
+    </style>
 @endsection
 
 @section('content')
-<div class="container d-flex justify-content-center custom-container mt-3">
-    <div class="col-lg-11 mb-4">
-        <div class="lesson__video-wrap-top mb-4">
-            <div class="lesson__video-wrap-top-left">
-                <a href="#"><i class="flaticon-arrow-right"></i></a>
-                <span>Kembali</span>
+    <div class="container d-flex justify-content-center custom-container mt-3">
+        <div class="col-lg-11 mb-4">
+            <div class="lesson__video-wrap-top mb-4">
+                <div class="lesson__video-wrap-top-left">
+                    <a href="#"><i class="flaticon-arrow-right"></i></a>
+                    <span>Kembali</span>
+                </div>
             </div>
-        </div>
-        <div class="card position-relative overflow-hidden border-0" style="background: linear-gradient(to right, #9C40F7, #7209DB);border-radius: 15px;">
-            <div class="">
-                <div class="row align-items-center">
-                    <div class="col-9 text-white ps-5 p-4">
-                        <h6 class="text-white">Forum Diskusi</h6>
-                        <h4 class="fw-semibold mb-8 text-white">Selamat Datang, Alfian Di Forum Diskusi</h4>
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a class="text-white" href="javascript:void(0)">Konsultasi seputar materi belajar
-                                        Anda</a>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="col-3">
-                        <div class="text-center mb-n1">
-                            <img src="{{ asset('assets/img/book.png') }}" width="500px" alt="" class="img-fluid mb-n3" />
+            <div class="card position-relative overflow-hidden border-0"
+                style="background: linear-gradient(to right, #9C40F7, #7209DB);border-radius: 15px;">
+                <div class="">
+                    <div class="row align-items-center">
+                        <div class="col-9 text-white ps-5 p-4">
+                            <h6 class="text-white">Forum Diskusi</h6>
+                            <h4 class="fw-semibold mb-8 text-white">Selamat Datang, Alfian Di Forum Diskusi</h4>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a class="text-white" href="javascript:void(0)">Konsultasi seputar materi belajar
+                                            Anda</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-3">
+                            <div class="text-center mb-n1">
+                                <img src="{{ asset('assets/img/book.png') }}" width="500px" alt=""
+                                    class="img-fluid mb-n3" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mt-3">
-            <div class="col-lg-9">
-                <div class="card card-body border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
-                    <div class="">
-                        <form action="" class="d-flex justify-content-between">
-                            <div class="">
-                                <div class="position-relative">
-                                    <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff" name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
-                                    <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                        <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314" />
-                                    </svg>
+            <div class="row mt-3">
+                <div class="col-lg-9">
+                    <div class="card card-body border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                        <div class="">
+                            <form action="" class="d-flex justify-content-between">
+                                <div class="">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control product-search px-4 ps-5 filter"
+                                            style="background-color: #fff" name="search"
+                                            value="{{ old('name', request('name')) }}" id="input-search"
+                                            placeholder="Search">
+                                        <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <path fill="none" stroke="#8B8B8B" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="m21 21l-4.343-4.343m0 0A8 8 0 1 0 5.343 5.343a8 8 0 0 0 11.314 11.314" />
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="position-relative">
-                                    {{-- <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
+                                <div>
+                                    <div class="position-relative">
+                                        {{-- <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
                                         name="name" value="{{ old('name', request('name')) }}" id="input-filter"
                                     placeholder="Terbaru"> --}}
-                                    <select class="list-modul form-select" style="width: 200px;">
-                                        <option value="">-- Pilih --</option>
-                                    </select>
+                                        <select class="list-modul form-select select" name="module" style="width: 200px;">
+                                            <option value="">-- Pilih --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="d-flex mt-3 mb-3">
+
+                            <h6 class="me-3">Diskusi Berdasarkan:</h6>
+                            <div class="blog-widget tag-item">
+                                <div class="tagcloud">
+                                    <span class="d-flex justify-content-between">
+                                        Nama Modul Lorem, ipsum.
+                                        <button type="button" class="btn-close ms-2 close-btn"
+                                            style="width: 5px;height: 5px;" aria-label="Close"></button>
+                                    </span>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="d-flex mt-3 mb-3">
-
-                        <h6 class="me-3">Diskusi Berdasarkan:</h6>
-                        <div class="blog-widget tag-item">
-                            <div class="tagcloud">
-                                <span class="d-flex justify-content-between">
-                                    Nama Modul Lorem, ipsum.
-                                    <button type="button" class="btn-close ms-2 close-btn" style="width: 5px;height: 5px;" aria-label="Close"></button>
-                                </span>
-                            </div>
                         </div>
+
+                        <div class="list-forum-discussion">
+
+                        </div>
+
                     </div>
-
-                    <div class="list-forum-discussion">
-
-                    </div>
-
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-create-forum-discussion" style="border: 1px solid #000;border-radius: 15px;">Buat Diskusi Baru</button>
-                <div class="card card-body mt-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
-                    <h5>Filter Berdasarkan</h5>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Diskusi sudah selesai
-                        </label>
-                    </div>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="checkbox" value="" id="diskusibelumselesai">
-                        <label class="form-check-label" for="diskusibelumselesai">
-                            Diskusi belum selesai
-                        </label>
-                    </div>
-
-                    <h5 class="mt-3">Urutkan Berdasarkan</h5>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="checkbox" value="" id="diskusiterbaru">
-                        <label class="form-check-label" for="diskusiterbaru">
-                            Diskusi terbaru
-                        </label>
-                    </div>
-                    <div class="form-check mb-1">
-                        <input class="form-check-input" type="checkbox" value="" id="diskusiterlama">
-                        <label class="form-check-label" for="diskusiterlama">
-                            Diskusi terlama
-                    </div>
-
-                    <h5 class="mt-3">
-                        <div class="blog-widget">
-                            <h4 class="widget-title">Tags</h4>
-                            <div class="tagcloud">
-                                <a href="#">#loremipsum</a>
-                                <a href="#">#loremipsum</a>
-                                <a href="#">#lorem</a>
-                                <a href="#">#loremipsum</a>
-                                <a href="#">#loremipsumasda</a>
-                                <a href="#">#loremipsumasda</a>
-                                <a href="#">#lorem</a>
-                                <a href="#">#lorem</a>
-                            </div>
+                <div class="col-lg-3">
+                    <button class="btn btn-primary w-100" data-bs-toggle="modal"
+                        data-bs-target="#modal-create-forum-discussion"
+                        style="border: 1px solid #000;border-radius: 15px;">Buat Diskusi Baru</button>
+                    <div class="card card-body mt-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                        <h5>Filter Berdasarkan</h5>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input  filter" name="answered" type="checkbox" value=""
+                                id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Diskusi sudah selesai
+                            </label>
                         </div>
-                    </h5>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input filter" name="unanswered" type="checkbox" value=""
+                                id="diskusibelumselesai">
+                            <label class="form-check-label" for="diskusibelumselesai">
+                                Diskusi belum selesai
+                            </label>
+                        </div>
+
+                        <h5 class="mt-3">Urutkan Berdasarkan</h5>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input filter" name="latest" type="checkbox" id="diskusiterbaru">
+                            <label class="form-check-label" for="diskusiterbaru">
+                                Diskusi terbaru
+                            </label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input filter" name="oldest" type="checkbox" id="diskusiterlama">
+                            <label class="form-check-label" for="diskusiterlama">
+                                Diskusi terlama
+                        </div>
+
+                        <h5 class="mt-3">
+                            <div class="blog-widget">
+                                <h4 class="widget-title">Tags</h4>
+                                <div class="tagcloud">
+                                    <a href="#">#loremipsum</a>
+                                    <a href="#">#loremipsum</a>
+                                    <a href="#">#lorem</a>
+                                    <a href="#">#loremipsum</a>
+                                    <a href="#">#loremipsumasda</a>
+                                    <a href="#">#loremipsumasda</a>
+                                    <a href="#">#lorem</a>
+                                    <a href="#">#lorem</a>
+                                </div>
+                            </div>
+                        </h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@include('user.pages.courses.discussion-forum.widgets.modal-create-discussion-forum')
+    @include('user.pages.courses.discussion-forum.widgets.modal-create-discussion-forum')
 @endsection
 
 @section('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const closeButtons = document.querySelectorAll('.close-btn');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButtons = document.querySelectorAll('.close-btn');
 
-        closeButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const tagItem = this.closest('.tag-item');
-                tagItem.style.display = 'none';
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tagItem = this.closest('.tag-item');
+                    tagItem.style.display = 'none';
+                });
             });
         });
-    });
+    </script>
+    <script>
+        $(document).ready(function() {
+            var id = "{{ $id }}"
+            var filter = {};
 
-</script>
-<script>
-    $(document).ready(function() {
-        var id = "{{ $id }}"
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/modules/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            $('.filter').change(function(e) {
+                e.preventDefault();
 
-                $.each(response.data, function(index, value) {
-
-                    $('.list-modul').append(
-                        `<option value="${value.id}">${value.title}</option>`
-                    );
-                });
+                // console.log($.inArray($(this).attr('name'), ['search', 'module']));
+                console.log($(this).attr('name') + ": " + $(this).val());
 
 
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/discussions/course/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                if (response.data && response.data.length > 0) {
-                    $.each(response.data, function(index, value) {
-                        $('.list-forum-discussion').append(forumDiscussion(index, value));
-                    });
+                if ($.inArray($(this).attr('name'), ['search', 'module']) === -1 && $(this).is(
+                        ':checked')) {
+                    filter[$(this).attr('name')] = true;
                 } else {
-                    $('.list-forum-discussion').append(empty());
+                    delete filter[$(this).attr('name')];
                 }
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                getDiscussion(filter);
+
+            });
+
+            let typingTimer;
+            const typingDelay = 800;
+
+            $('#input-search').on('input', function() {
+                clearTimeout(typingTimer);
+                filter.search = $(this).val();
+
+                typingTimer = setTimeout(function() {
+                    getDiscussion(filter);
+                }, typingDelay);
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    $.each(response.data, function(index, value) {
+
+                        $('.list-modul').append(
+                            `<option value="${value.id}">${value.title}</option>`
+                        );
+                    });
+
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            function getDiscussion(filter = null) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/discussions/course/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: filter,
+                    dataType: "json",
+                    success: function(response) {
+                        $('.list-forum-discussion').empty();
+                        if (response.data && response.data.length > 0) {
+                            $.each(response.data, function(index, value) {
+                                $('.list-forum-discussion').append(forumDiscussion(index,
+                                    value));
+                            });
+                        } else {
+                            $('.list-forum-discussion').append(empty());
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
                 });
             }
-        });
-    });
+            getDiscussion();
 
-    function forumDiscussion(index, value) {
-        const tag = value.discussion_tags.map(discussion_tag => {
-            return `<a href="#">#${discussion_tag.tag.name}</a>`;
-        }).join('');
-        return `
+        });
+
+        function forumDiscussion(index, value) {
+            const tag = value.discussion_tags.map(discussion_tag => {
+                return `<a href="#">#${discussion_tag.tag.name}</a>`;
+            }).join('');
+            return `
                  <div class="card border-0 mb-3" style="background-color: #F8F8F8;">
                     <div class="card-header" style="background-color: #9425FE;">
                         <div class="d-flex align-items-center justify-content-between mt-1">
@@ -386,31 +436,29 @@
 
                 </div>
             `;
-    }
-
-</script>
-<script>
-    function adjustBackdropForZoom() {
-        const zoomFactor = parseFloat(getComputedStyle(document.body).zoom) || 1; // Mendapatkan nilai zoom
-
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) {
-            // Gunakan transform untuk memperbesar backdrop agar sesuai dengan zoom
-            backdrop.style.transform = `scale(${1 / zoomFactor})`;
-            backdrop.style.transformOrigin = 'top left'; // Set origin dari scale
-            backdrop.style.width = '200vw';
-            backdrop.style.height = '200vh';
         }
-    }
+    </script>
+    <script>
+        function adjustBackdropForZoom() {
+            const zoomFactor = parseFloat(getComputedStyle(document.body).zoom) || 1; // Mendapatkan nilai zoom
 
-    // Event listener ketika modal ditampilkan
-    const modalElement = document.getElementById('exampleModal');
-    modalElement.addEventListener('shown.bs.modal', function() {
-        adjustBackdropForZoom(); // Panggil fungsi untuk menyesuaikan ukuran backdrop
-    });
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                // Gunakan transform untuk memperbesar backdrop agar sesuai dengan zoom
+                backdrop.style.transform = `scale(${1 / zoomFactor})`;
+                backdrop.style.transformOrigin = 'top left'; // Set origin dari scale
+                backdrop.style.width = '200vw';
+                backdrop.style.height = '200vh';
+            }
+        }
 
-    // Menyesuaikan backdrop jika ada perubahan zoom atau resize
-    window.addEventListener('resize', adjustBackdropForZoom);
+        // Event listener ketika modal ditampilkan
+        const modalElement = document.getElementById('exampleModal');
+        modalElement?.addEventListener('shown.bs.modal', function() {
+            adjustBackdropForZoom(); // Panggil fungsi untuk menyesuaikan ukuran backdrop
+        });
 
-</script>
+        // Menyesuaikan backdrop jika ada perubahan zoom atau resize
+        window.addEventListener('resize', adjustBackdropForZoom);
+    </script>
 @endsection
