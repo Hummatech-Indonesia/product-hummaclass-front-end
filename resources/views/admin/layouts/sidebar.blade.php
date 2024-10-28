@@ -67,7 +67,7 @@
                         <span class="hide-menu">Riwayat Transaksi</span>
                     </a>
                 </li>
-                
+
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.point-exchange.index') ? 'active' : '' }}"
                         href="{{ route('admin.point-exchange.index') }}" aria-expanded="false">

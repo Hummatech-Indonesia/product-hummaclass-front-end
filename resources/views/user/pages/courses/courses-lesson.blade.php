@@ -10,6 +10,10 @@
             background-image: none;
             width: 0;
         }
+
+        #post-test-btn::after {
+            display: none !important;
+        }
     </style>
 @endsection
 
@@ -27,37 +31,11 @@
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    <button class="accordion-button collapsed" id="post-test-btn" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Final Audit
-                                        <span>1/2</span>
+                                        Post Test
                                     </button>
                                 </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExample" style="">
-                                    <div class="accordion-body">
-                                        <ul class="list-wrap">
-                                            <li class="course-item open-item">
-                                                <form action="{{ url()->current() }}" method="GET">
-                                                    <a href="{{ url()->current() }}?item=quiz" class="ps-2">
-                                                        Quiz
-                                                    </a>
-                                                </form>
-                                            </li>
-                                            <li class="course-item">
-                                                <a href="#" class="course-item-link">
-                                                    <span class="item-name">Tugas Akhir</span>
-                                                    <div class="course-item-meta">
-                                                        <span class="item-meta course-item-status">
-                                                            <img src="{{ asset('assets/img/icons/lock.svg') }}"
-                                                                alt="icon">
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -286,7 +264,23 @@
                 dataType: "json",
                 success: function(response) {
                     console.log(response);
-
+                    // $('#modal-information').modal('show');
+                    if (response.data.percentace == 0) {
+                        Swal.fire({
+                            title: 'Selamat!',
+                            text: 'Anda sudah menuntaskan kursus ini.',
+                            icon: 'success',
+                            confirmButtonText: 'Oke'
+                        });
+                        if (!response.data.has_post_test) {
+                            $('#post-test-btn').click(function (e) { 
+                                e.preventDefault();
+                                console.log(this);
+                                
+                                window.location.href = "{{ route('post.test.index', '') }}/" + response.data.course.test_id
+                            });
+                        }
+                    }
                 },
                 error: function(xhr) {
                     console.log(xhr);
