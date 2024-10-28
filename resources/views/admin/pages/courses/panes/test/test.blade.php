@@ -42,56 +42,49 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mb-4 mt-3">
-        <form action="" class="position-relative">
-            <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff;"
-                name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
-            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-        </form>
-        <div class="d-flex gap-2">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-create-fill-manual">
-                Isi Soal Otomatis
-            </button>
-            <a href="{{ route('admin.fill-manual.index') }}" class="btn text-white"
-                style="background-color: var(--purple-primary)">
-                Isi Soal Manual
-            </a>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="fw-semibold">Siswa Mengerjakan</h5>
+            <div class="d-flex my-3">
+                <form action="" class="position-relative">
+                    <input type="text" class="form-control product-search px-4 ps-5" name="name"
+                        value="{{ old('name', request('name')) }}" id="search-name" placeholder="Search">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                        style="color: #8B8B8B"></i>
+                </form>
+            </div>
+            <div class="table-responsive rounded-2 mb-4 mt-4">
+                <table class="table border text-nowrap customize-table mb-0 align-middle text-center">
+                    <thead class="text-dark fs-4">
+                        <tr>
+                            <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">No</th>
+                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Nama Siswa</th>
+                            <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">Pre Test</th>
+                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Post Test</th>
+                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="test-content">
+                        @foreach (range(1,5) as $data)
+                        <tr>
+                            <td>1</td>
+                            <td>Alfian Ban Dalam</td>
+                            <td>
+                                <span class="badge text-primary fs-2 fw-semibold px-4 py-2" style="background-color: #F6EEFE">80</span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-danger text-danger fs-2 fw-semibold px-4 py-2">-</span>
+                            </td>
+                            <td>
+                                <button class="btn text-white" style="background-color: #9425FE">Detail</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-    @foreach (range(1, 4) as $item)
-        <div class="card position-relative">
-            <div class="p-3">
-                <div class="d-flex justify-content-between">
-                    <b>10. Fungsi yang dapat digunakan untuk menampilkan luaran program di java adalah</b>
-                    <button class="btn btn-light-danger text-danger p-1">
-                        <i class="ti ti-trash fs-6 fw-semibold"></i>
-                    </button>
-                </div>
-                <div class="mt-2">
-                    <h6 class="mb-3 ms-1">A. "hello wold!"</h6>
-                    <h6 class="mb-3 ms-1">B. Public static void main(String[] args)</h6>
-                    <div class="d-flex gap-2 mb-3">
-                        <span class="badge bg-light-success rounded-2 py-1 ps-1 pe-5">
-                            <h6>C. System.out.print()</h6>
-                        </span>
-                        <div class="text-success mt-1">
-                            <i class="ti ti-check fs-3"></i>
-                            Jawaban
-                        </div>
-                    </div>
-                    <h6 class="mb-3 ms-1">D. Import java.io.File;</h6>
-                    <h6 class="mb-3 ms-1">E. Int Umur = 16;</h6>
-                </div>
-            </div>
-            <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-                <img src="{{ asset('admin/assets/images/background/bubble-purple.png') }}" alt="Description"
-                    class="img-fluid" style="max-width: 100px; height: auto;">
-            </div>
-        </div>
-
-        @include('admin.pages.courses.widgets.modal-create-fill-manual')
-    @endforeach
 </div>
 @push('script')
     <script>

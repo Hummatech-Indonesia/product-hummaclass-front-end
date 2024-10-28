@@ -290,7 +290,7 @@
     {{-- modal tambah voucher --}}
     {{-- @include('admin.pages.courses.panes.vouchers.widgets.modal-create-vouchers') --}}
     {{-- modal pengaturan test --}}
-    {{-- @include('admin.pages.courses.panes.pre-test.widgets.modal-settings-test') --}}
+    {{-- @include('admin.pages.courses.panes.test.widgets.modal-settings-test') --}}
 @endsection
 @section('script')
     {{-- @include('admin.pages.courses.scripts.index')
