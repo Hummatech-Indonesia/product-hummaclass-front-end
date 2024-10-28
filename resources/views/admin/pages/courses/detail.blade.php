@@ -164,9 +164,9 @@
             @include('admin.pages.courses.panes.post-test.tab-posttest')
         </div> --}}
 
-        <div class="tab-pane" id="voucher" role="tabpanel">
+        {{-- <div class="tab-pane" id="voucher" role="tabpanel">
             @include('admin.pages.courses.panes.statistics.tab-statistics')
-        </div>
+        </div> --}}
 
         <div class="tab-pane" id="voucher" role="tabpanel">
             @include('admin.pages.courses.panes.vouchers.tab-vouchers')

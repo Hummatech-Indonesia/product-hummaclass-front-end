@@ -14,11 +14,13 @@
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Courses</a>
+                                <a href="/courses/courses">Courses</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
-                                Engineers</span>
+                            <span property="itemListElement" typeof="ListItem"> <a href="/" id="breadCrumbCourse"></a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">Verifikasi Nama</span>
                         </nav>
                     </div>
                 </div>
@@ -125,6 +127,9 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $('#breadCrumbCourse').html(response.data.course.title);
+                    $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
+                        .slug);
                     $('#username').val(response.data.username);
                 },
             });

@@ -55,6 +55,7 @@
         </nav>
     </div>
     @include('components.modernize-card-1')
+    <x-confirmation-modal-component />
     <x-delete-modal-component />
 @endsection
 

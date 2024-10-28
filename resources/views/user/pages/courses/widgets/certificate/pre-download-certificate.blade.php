@@ -333,11 +333,15 @@
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem">
-                                <a href="/">Courses</a>
+                                <a href="/courses/courses">Courses</a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem">Resolving Conflicts Between Designers And
-                                Engineers</span>
+                            <span property="itemListElement" typeof="ListItem"> <a href="/" id="breadCrumbCourse"></a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem"> <a href="/" id="breadCrumbPrint">Verifikasi Nama</a>
+                            </span>
+
                         </nav>
                     </div>
                 </div>
@@ -386,7 +390,8 @@
                                         class="btn btn-primary w-100">Perbarui</a>
                                 </div>
                                 <div>
-                                    <a href="{{ config('app.api_url') . '/certificate-download/' . $course . '/' . session('user.id') }}"
+                                    <a target="__blank"
+                                        href="{{ config('app.api_url') . '/certificate-download/' . $course . '/' . session('user.id') }}"
                                         class="btn-warning w-100 mt-4">Download Sertifikat</a>
                                 </div>
                             </div>
@@ -410,7 +415,11 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-
+                    $('#breadCrumbCourse').html(response.data.course.title);
+                    $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
+                        .slug);
+                    $('#breadCrumbPrint').attr('href', '/courses/print-certificate/' + response.data.course
+                        .slug);
                     if (response.data.user_course.has_downloaded == 1) {
                         $('#updated').hide();
                     }
