@@ -1,5 +1,22 @@
 @extends('admin.layouts.app')
 
+@section('style')
+    <style>
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+        }
+
+        .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
         <div class="card-body px-4 py-3">
@@ -25,8 +42,8 @@
         </div>
     </div>
 
-    <div>
-        <form action="" class="d-flex gap-3 mb-3">
+    <div class="mb-3 d-flex justify-content-between">
+        <form action="" class="d-flex gap-3">
             <div class="position-relative">
                 <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
                     name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
@@ -43,12 +60,14 @@
                 </svg>
             </div>
         </form>
+        <div>
+            <button class="btn text-white createReward" style="background-color: #9425FE;">Tambahkan Barang</button>
+        </div>
     </div>
 
     <div class="card p-3">
         <div class="d-flex justify-content-between">
             <h5 class="fw-semibold">Daftar Barang</h5>
-            <button class="btn btn-primary createReward">Tambahkan reward</button>
         </div>
 
         <div class="table-responsive rounded-2 mb-4 mt-4">
@@ -73,9 +92,8 @@
             </nav>
         </div>
     </div>
-    <x-detail-reward-modal></x-detail-reward-modal>
-    <x-create-reward-modal></x-create-reward-modal>
-    <x-edit-reward-modal></x-edit-reward-modal>
+
+    @include('admin.pages.point-exchange.widgets.modal-create-rewards')
     <x-delete-modal-component />
 @endsection
 

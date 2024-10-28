@@ -1,40 +1,44 @@
 <script>
     $(document).ready(function() {
         $(document).on('click', '.createReward', function() {
-            $('.createRewardModal').modal('show');
-        });
-
-        $('#createRewardForm').submit(function(e) {
+            $('#modal-create-rewards').modal('show');
+        })
+        $('.storeConfirmation').click(function(e) {
             e.preventDefault();
-
-            var formData = new FormData(this);
-
+            let formData = new FormData($('.createFormRewards')[0]);
             $.ajax({
                 type: "POST",
+                url: "{{ config('app.api_url') }}/api/rewards",
+                data: formData,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
-                url: "{{ config('app.api_url') }}/api/rewards",
-                data: formData,
                 dataType: "json",
-                contentType: false,
                 processData: false,
+                contentType: false,
                 success: function(response) {
+                    $('#modal-create-rewards').modal('hide');
                     Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data.",
+                        title: "Berhasil!",
+                        text: response.meta.message,
                         icon: "success"
                     }).then(() => {
                         $('.createRewardModal').modal('hide');
                         window.location.reload();
                     });
                 },
-                error: function(xhr) {
+                error: function(response) {
+                    let errorMessages = [];
+                    $.each(response.data, function(field, messages) {
+                        $.each(messages, function(index, message) {
+                            errorMessages.push(message);
+                        });
+                    });
                     Swal.fire({
-                        title: "Gagal",
-                        text: "Gagal menambah data.",
+                        title: "Terjadi Kesalahan!",
+                        html: errorMessages.join('<br>'),
                         icon: "error"
-                    })
+                    });
                 }
             });
         });
