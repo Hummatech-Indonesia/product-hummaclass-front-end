@@ -1,122 +1,126 @@
 @extends('user.layouts.app')
 
 @section('style')
-<style>
-    .add-to-cart:hover {
-        color: var(--bs-primary);
-    }
+    <style>
+        .add-to-cart:hover {
+            color: var(--bs-primary);
+        }
 
-    .payment-option span {
-        font-size: 16px;
-        font-weight: bold;
-    }
+        .payment-option span {
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-    .payment-option img {
-        width: 100px !important;
-        height: auto;
-        aspect-ratio: 2 / 1;
-    }
+        .payment-option img {
+            width: 100px !important;
+            height: auto;
+            aspect-ratio: 2 / 1;
+        }
 
-    .payment-option {
-        display: flex;
-        align-items: center;
-        border: 1px solid #ccc;
-        padding: 5px;
-        border-radius: 10px;
-        /* cursor: pointer; */
-        transition: border-color 0.3s;
-    }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 10px;
+            /* cursor: pointer; */
+            transition: border-color 0.3s;
+        }
 
-    .outline-purple-primary {
-        display: inline-block;
-        border: 1px solid #9425FE;
-        color: #9425FE;
-        background-color: transparent;
-        padding: 4px 6px;
-        border-radius: 10px;
-        font-size: 15px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-        text-align: center;
-        text-decoration: none;
-    }
+        .outline-purple-primary {
+            display: inline-block;
+            border: 1px solid #9425FE;
+            color: #9425FE;
+            background-color: transparent;
+            padding: 4px 6px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
 
-    .outline-purple-primary:hover {
-        background-color: #9425FE;
-        color: white;
-    }
+        .outline-purple-primary:hover {
+            background-color: #9425FE;
+            color: white;
+        }
 
-    .outline-purple-primary:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
-    }
+        .outline-purple-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.5);
+        }
 
-    .outline-purple-primary:active {
-        background-color: #5a34a9;
-        border-color: #5a34a9;
-    }
+        .outline-purple-primary:active {
+            background-color: #5a34a9;
+            border-color: #5a34a9;
+        }
 
-    .outline-purple-primary:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
+        .outline-purple-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
-    .modal-backdrop {
-        transform: scale(1.25);
-        transform-origin: top left;
-    }
+        .modal-backdrop {
+            transform: scale(1.25);
+            transform-origin: top left;
+        }
 
-    .stars button svg {
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
+        .stars button svg {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
 
-    .stars button svg:hover {
-        transform: scale(1.2);
-    }
+        .stars button svg:hover {
+            transform: scale(1.2);
+        }
 
-    .stars button.active svg path {
-        fill: #FFB649;
-        stroke: #FFB649;
-    }
-
-</style>
+        .stars button.active svg path {
+            fill: #FFB649;
+            stroke: #FFB649;
+        }
+    </style>
 @endsection
 
 @section('content')
-<!-- breadcrumb-area -->
-<div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two" data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb__content">
-                    <nav class="breadcrumb">
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="/">Beranda</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="/courses/courses">Kursus</a>
-                        </span>
-                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                        <span property="itemListElement" typeof="ListItem">
-                            <a href="/" id="currentBreadcrumb"></a>
-                        </span>
-                    </nav>
+    <!-- breadcrumb-area -->
+    <div class="breadcrumb__area breadcrumb__bg py-5 breadcrumb__bg-two"
+        data-background="{{ asset('assets/img/bg/breadcrumb_bg.jpg') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <nav class="breadcrumb">
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/">Beranda</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/courses/courses">Kursus</a>
+                            </span>
+                            <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="/" id="currentBreadcrumb"></a>
+                            </span>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="breadcrumb__shape-wrap">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right"
+                data-aos-delay="300">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left"
+                data-aos-delay="400">
+            <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left"
+                data-aos-delay="400">
+        </div>
     </div>
-    <div class="breadcrumb__shape-wrap">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" class="alltuchtopdown">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-right" data-aos-delay="300">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-up" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
-        <img src="{{ asset('assets/img/others/breadcrumb_shape01.svg') }}" alt="img" data-aos="fade-left" data-aos-delay="400">
-    </div>
-</div>
-<!-- breadcrumb-area-end -->
+    <!-- breadcrumb-area-end -->
 
     <!-- courses-details-area -->
     <section class="courses__details-area section-py-120">
@@ -192,26 +196,16 @@
     <!-- courses-details-area-end -->
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
-        let photo;
-        var id = "{{ $id }}";
+    <script>
+        $(document).ready(function() {
+            let photo;
+            var id = "{{ $id }}";
 
             @if (session('warning'))
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops...',
-                    text: '{{ session('
-                                                                                <<<<<<< Updated upstream
-                                                                                                                warning ') }}',
-                    ===
-                    ===
-                    =
-                    warning ') }}',
-                    >>>
-                    >>>
-                    >
-                    Stashed changes
+                    text: '{{ session('warning ') }}',
                 });
             @endif
             @if (session('error'))
@@ -465,16 +459,16 @@
                                     <span>${subModule.title}</span>
                                 </p> <
             /li>`;
-        }).join('');
-        const quizzes = value.quizzes.map(quiz => {
-            return `<li class="course-item open-item">
+                }).join('');
+                const quizzes = value.quizzes.map(quiz => {
+                    return `<li class="course-item open-item">
                                <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
                                 </a>
                             </li>`;
-        }).join('');
-        return `
+                }).join('');
+                return `
             <div class="accordion-item mt-3">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2"
@@ -519,107 +513,102 @@
                 </div>
             </div>
             `;
-    }
+            }
 
 
-    });
-
-    $('.last_step_update').click(function(e) {
-        e.preventDefault();
-        var sub_modul_id = $(this).data('sub-modul-id');
-        console.log(sub_modul_id);
-    });
-
-</script>
-
-<script>
-    // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
-    // document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
-    //     tabButton.addEventListener('shown.bs.tab', function(event) {
-    //         var targetTab = event.target.getAttribute('data-bs-target');
-
-    //         if (targetTab === '#reviews-tab-pane') {
-    //             document.getElementById('courses-detail-sidebar').style.display = 'none';
-    //             document.getElementById('sidebar-tab-review').style.display = 'block';
-    //         } else {
-    //             document.getElementById('courses-detail-sidebar').style.display = 'block';
-    //             document.getElementById('sidebar-tab-review').style.display = 'none';
-    //         }
-    //     });
-    // });
-
-</script>
-
-<script>
-    // Simpan tab yang aktif ke localStorage
-    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
-        button.addEventListener('shown.bs.tab', function(event) {
-            let activeTab = event.target.id;
-            localStorage.setItem('activeTab', activeTab);
-        });
-    });
-
-    // Ambil tab yang aktif dari localStorage saat halaman dimuat
-    window.addEventListener('load', function() {
-        let activeTab = localStorage.getItem('activeTab');
-        if (activeTab) {
-            let tabTrigger = document.getElementById(activeTab);
-            let tab = new bootstrap.Tab(tabTrigger);
-            tab.show();
-        }
-    });
-
-</script>
-
-<script>
-    document.querySelectorAll('.star').forEach((star) => {
-        star.addEventListener('click', function() {
-            const ratingValue = this.getAttribute('data-value');
-            document.getElementById('rating').value =
-                ratingValue; // Menyimpan nilai rating ke input hidden
-            ratingValue; // Menyimpan nilai rating ke input hidden
-            updateStarRating(ratingValue); // Memperbarui tampilan bintang
         });
 
-        star.addEventListener('mouseover', function() {
-            const hoverValue = this.getAttribute('data-value');
-            updateStarRating(hoverValue); // Memperbarui tampilan saat hover
+        $('.last_step_update').click(function(e) {
+            e.preventDefault();
+            var sub_modul_id = $(this).data('sub-modul-id');
+            console.log(sub_modul_id);
+        });
+    </script>
+
+    <script>
+        // Fungsi untuk menampilkan sidebar sesuai tab yang aktif
+        // document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(function(tabButton) {
+        //     tabButton.addEventListener('shown.bs.tab', function(event) {
+        //         var targetTab = event.target.getAttribute('data-bs-target');
+
+        //         if (targetTab === '#reviews-tab-pane') {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'none';
+        //             document.getElementById('sidebar-tab-review').style.display = 'block';
+        //         } else {
+        //             document.getElementById('courses-detail-sidebar').style.display = 'block';
+        //             document.getElementById('sidebar-tab-review').style.display = 'none';
+        //         }
+        //     });
+        // });
+    </script>
+
+    <script>
+        // Simpan tab yang aktif ke localStorage
+        document.querySelectorAll('button[data-bs-toggle="tab"]').forEach(button => {
+            button.addEventListener('shown.bs.tab', function(event) {
+                let activeTab = event.target.id;
+                localStorage.setItem('activeTab', activeTab);
+            });
         });
 
-        star.addEventListener('mouseout', function() {
-            const currentRating = document.getElementById('rating').value;
-            updateStarRating(
-                currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
-        });
-    });
-
-    function updateStarRating(rating) {
-        document.querySelectorAll('.star').forEach((star) => {
-            if (star.getAttribute('data-value') <= rating) {
-                star.querySelector('path').setAttribute('fill'
-                    , '#FFD700'); // Mengubah warna bintang terpilih menjadi emas                
-            } else {
-                star.querySelector('path').setAttribute('fill'
-                    , '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
+        // Ambil tab yang aktif dari localStorage saat halaman dimuat
+        window.addEventListener('load', function() {
+            let activeTab = localStorage.getItem('activeTab');
+            if (activeTab) {
+                let tabTrigger = document.getElementById(activeTab);
+                let tab = new bootstrap.Tab(tabTrigger);
+                tab.show();
             }
         });
-    }
+    </script>
 
-</script>
+    <script>
+        document.querySelectorAll('.star').forEach((star) => {
+            star.addEventListener('click', function() {
+                const ratingValue = this.getAttribute('data-value');
+                document.getElementById('rating').value =
+                    ratingValue; // Menyimpan nilai rating ke input hidden
+                ratingValue; // Menyimpan nilai rating ke input hidden
+                updateStarRating(ratingValue); // Memperbarui tampilan bintang
+            });
 
-<script>
-    const textarea = document.getElementById('review-textarea');
-    const charCount = document.getElementById('char-count');
-    const maxChars = 500;
+            star.addEventListener('mouseover', function() {
+                const hoverValue = this.getAttribute('data-value');
+                updateStarRating(hoverValue); // Memperbarui tampilan saat hover
+            });
 
-    textarea.addEventListener('input', () => {
-        if (textarea.value.length > maxChars) {
-            textarea.value = textarea.value.slice(0, maxChars); // Memotong ke maxChars jika melebihi
+            star.addEventListener('mouseout', function() {
+                const currentRating = document.getElementById('rating').value;
+                updateStarRating(
+                    currentRating); // Mengembalikan tampilan ke nilai yang dipilih setelah hover
+            });
+        });
+
+        function updateStarRating(rating) {
+            document.querySelectorAll('.star').forEach((star) => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.querySelector('path').setAttribute('fill',
+                        '#FFD700'); // Mengubah warna bintang terpilih menjadi emas                
+                } else {
+                    star.querySelector('path').setAttribute('fill',
+                        '#D9D9D9'); // Mengubah warna bintang yang tidak terpilih menjadi abu-abu
+                }
+            });
         }
-        const remainingChars = maxChars - textarea.value.length;
-        charCount.textContent = `${remainingChars} Karakter tersisa`;
-    });
+    </script>
 
-</script>
-{{-- create reviews --}}
+    <script>
+        const textarea = document.getElementById('review-textarea');
+        const charCount = document.getElementById('char-count');
+        const maxChars = 500;
+
+        textarea.addEventListener('input', () => {
+            if (textarea.value.length > maxChars) {
+                textarea.value = textarea.value.slice(0, maxChars); // Memotong ke maxChars jika melebihi
+            }
+            const remainingChars = maxChars - textarea.value.length;
+            charCount.textContent = `${remainingChars} Karakter tersisa`;
+        });
+    </script>
+    {{-- create reviews --}}
 @endsection
