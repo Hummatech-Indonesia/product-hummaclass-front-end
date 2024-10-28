@@ -34,11 +34,25 @@
     </div>
 
     <div class="d-flex justify-content-between mt-2">
-        <form action="" class="position-relative">
+        <form action="" class="position-relative d-flex">
             <input type="text" class="form-control product-search px-4 ps-5" name="title"
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+            <a class="ms-3">
+                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
+                    class="form-control px-4">
+                    <option value="">Kategori</option>
+                </select>
+            </a>
+            <a class="ms-3">
+                <select name="" id="status" style="background-color: #fff; width:10rem"
+                    class="form-control px-4">
+                    <option value="">Status</option>
+                    <option value="1">Siap Ditampilkan</option>
+                    <option value="0">Belum Siap Ditampilkan</option>
+                </select>
+            </a>
         </form>
         <a href="{{ route('admin.courses.create') }}" class="btn text-white" style="background-color: #7209DB">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
