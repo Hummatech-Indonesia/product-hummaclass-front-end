@@ -59,8 +59,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('admin.courses.index', 'admin.courses.show', 'admin.modules.index', 'admin.modules.show', 'admin.sub-modules.show') ? 'active' : '' }}"
-                        href="{{ route('admin.courses.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.history.transaction') ? 'active' : '' }}"
+                        href="{{ route('admin.history.transaction') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
                         </span>

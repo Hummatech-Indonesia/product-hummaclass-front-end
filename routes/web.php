@@ -198,6 +198,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.index');
     })->name('home');
 
+    Route::get('history-transactions', function () {
+        return view('admin.pages.history-transactions.index');
+    })->name('history.transaction');
+
     Route::get('categories', function () {
         return view('admin.pages.categories.index');
     })->name('categories.index');
