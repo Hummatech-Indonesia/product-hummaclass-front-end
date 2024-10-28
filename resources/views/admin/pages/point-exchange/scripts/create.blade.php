@@ -24,7 +24,10 @@
                         title: "Sukses",
                         text: "Berhasil menambah data.",
                         icon: "success"
-                    })
+                    }).then(() => {
+                        $('.createRewardModal').modal('hide');
+                        window.location.reload();
+                    });
                 },
                 error: function(xhr) {
                     Swal.fire({

@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdminPointExchangeController extends Controller
 {
     /**
-     * index
+     * Method index
      *
-     * @return void
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.pages.point-exchange.index');
     }
