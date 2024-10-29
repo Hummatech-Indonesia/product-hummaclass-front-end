@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_question"></span> Soal</p>
+                            <p><span id="detail-total-question"></span> Soal</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_correct"></span> Soal</p>
+                            <p><span id="detail-total-correct"></span> Soal</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_fault"></span> Soal</p>
+                            <p><span id="detail-total-fault"></span> Soal</p>
                         </div>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
-        @forelse (range(1,3) as $data)
+    <div class="col-lg-9" id="question-list" class="question-list">
+        {{-- @forelse (range(1,3) as $data)
         <div class="card position-relative">
             <div class="p-3">
                 <div class="d-flex justify-content-between">
@@ -153,7 +153,7 @@
         </div>
         @empty
             
-        @endforelse
+        @endforelse --}}
 
     </div>
 </div>
