@@ -214,7 +214,9 @@ h5 {
             <div class="row" id="events-list-content11">
                 <div class="container mt-5">
                     <div class="text-center mb-5">
-                        <h2 class="event__sub-title">Event Hummaclass</h2>
+                        <div>
+                            <h2 class="event__sub-title">Event Hummaclass</h2>
+                        </div>
                         <h1>Kembangkan Kemampuanmu Di Event Hummaclass</h1>
                     </div>
 
