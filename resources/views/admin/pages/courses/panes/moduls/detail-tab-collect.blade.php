@@ -33,12 +33,12 @@
     </div>
     <div class="card-body">
         <div>
-            <label for="" class="form-label">Judul Tugas</label>
-            <p>Membuat CRUD tapi sambil kayang</p>
+            <label for="" class="form-label">Tugas</label>
+            <p class="question"></p>
         </div>
         <div>
-            <label for="" class="form-label">Judul Tugas</label>
-            <p>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the list.</p>
+            <label for="" class="form-label">Deskripsi</label>
+            <p class="description"></p>
         </div>
     </div>
     <div class="card-footer bg-white border-top">
@@ -54,13 +54,13 @@
                         </div>
                         <div>
                           <h6 class="fw-semibold mb-1">Tugas Membuat Crud</h6>
-                          <p class="fs-2 mb-0 text-muted">Dikumpulkan Pada : 10 Januari 2024</p>
+                          <p class="fs-2 mb-0 text-muted">Dikumpulkan Pada : <span class="date"></span></p>
                         </div>
                       </div>
                 </div>
             </div>
             <div class="col-lg-1">
-                <button class="btn text-white w-100 px-2" style="background-color: #9425FE">
+                <button class="btn text-white w-100 px-2 btn-download" style="background-color: #9425FE">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M18.22 20.75H5.78A2.64 2.64 0 0 1 3.25 18v-3a.75.75 0 0 1 1.5 0v3a1.16 1.16 0 0 0 1 1.25h12.47a1.16 1.16 0 0 0 1-1.25v-3a.75.75 0 0 1 1.5 0v3a2.64 2.64 0 0 1-2.5 2.75"/><path fill="currentColor" d="M12 15.75a.74.74 0 0 1-.53-.22l-4-4a.75.75 0 0 1 1.06-1.06L12 13.94l3.47-3.47a.75.75 0 0 1 1.06 1.06l-4 4a.74.74 0 0 1-.53.22"/><path fill="currentColor" d="M12 15.75a.76.76 0 0 1-.75-.75V4a.75.75 0 0 1 1.5 0v11a.76.76 0 0 1-.75.75"/></svg>
                     <span style="font-size: 11px;">
                         Simpan
@@ -70,4 +70,42 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            const id = "{{ $id }}";
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/submission-tasks/detail/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    const data = response.data;
+                    
+                    $('.question').text(data.module_task.question);
+                    $('.description').text(data.module_task.description);
+                    $('.date').text(data.created_at);
+                    $('.btn-download').click(function (e) { 
+                        e.preventDefault();
+
+                        window.open(`{{ config('app.api_url') }}/api/submission-tasks/download/${id}`);
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data tugas.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
