@@ -163,9 +163,9 @@ Route::get('test-result', function () {
 
 Route::resources([
     'blogs' => BlogController::class,
-    'events' => EventController::class,
 ]);
-
+Route::resource('events', EventController::class)->except('show');
+Route::get('events/{id?}', [EventController::class, 'show'])->name('events.show');
 Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
