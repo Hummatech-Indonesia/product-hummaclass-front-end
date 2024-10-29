@@ -2,7 +2,7 @@
 
 @section('style')
 <style>
-    .accordion-body {
+    /* .accordion-body {
         padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
         border: 1px solid #9425FE;
     }
@@ -25,6 +25,25 @@
         box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
         border: 1px solid #9425FE;
 
+    } */
+    .accordion-button:not(.collapsed) {
+        background-color: #fff;
+        color: #9425FE;
+        box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+    }
+
+    .accordion-item {
+        /* color: var(--bs-accordion-color); */
+        background-color: #F6EEFE !important;
+        border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+    }
+    .accordion-button.active {
+        /* background-color: #9425FE; Warna ungu */
+        color: #9425FE;
+    }
+
+    section {
+        background-color: #fff;
     }
 
 </style>
@@ -70,31 +89,6 @@
         </div>
         <div class="features__item-wrap">
             <div class="accordion" id="accordionFaq">
-                
-                {{-- <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Beginner - Understanding Data Types and How to Manipulate Strings
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the list.</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Beginner - Understanding Data Types and How to Manipulate Strings
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the list.</strong>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -116,7 +110,7 @@
                 $('#accordionFaq').empty();
 
                 if (response.data.length > 0) {
-                    $.each(response.data, function(index, value) {                        
+                    $.each(response.data, function(index, value) {
                         $('#accordionFaq').append(card(index, value));
                     });
 

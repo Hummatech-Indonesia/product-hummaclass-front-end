@@ -11,7 +11,7 @@
             dataType: "json",
             success: function(response) {
                 $('#detail-image').attr('src', response.data.image);
-                $('#currentBreadcrumb').html(response.data.title).attr('src', 'events/'.response.data.slug);
+                // $('#currentBreadcrumb').html(response.data.title).attr('src', 'events/'.response.data.slug);
                 $('.detail-title').html(response.data.title);
 
                 $('.detail-capacity').html(response.data.capacity);
@@ -48,7 +48,6 @@
                 <td class="text-start" style="display: table-cell;">
                     <div class="ms-3">
                         <h6 class=" fw-semibold mb-0">${value.user}</h6>
-                        <span>Curriculum Developer</span>
                     </div>
                 </td>
             </tr>

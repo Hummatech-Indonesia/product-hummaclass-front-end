@@ -68,7 +68,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="event__details-thumb">
-                        <img id="detail-image" src="{{ asset('assets/img/events/event_details_img.jpg') }}" alt="img">
+                        <img id="detail-image" src="{{ asset('assets/img/events/event_details_img.jpg') }}" style="width: 100%; height:455px;object-fit:cover;" alt="img">
                     </div>
                     <h2 class="title detail-title"></h2>
                     <div class="event__details-content-wrap">
