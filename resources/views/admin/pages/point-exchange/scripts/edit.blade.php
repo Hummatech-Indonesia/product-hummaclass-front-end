@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
         var id
-        $(document).on('click', '.editReward', function() {
+        $(document).on('click', '.editReward', function() {z
             $('.editRewardModal').modal('show');
             id = $(this).data('id')
             const image = $(this).data('image')
