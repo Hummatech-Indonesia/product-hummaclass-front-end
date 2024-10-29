@@ -83,14 +83,6 @@ h5 {
     padding: 5px 10px;
 }
 
-.event__sub-title {
-    color: #9425FE;
-    background-color: #9525fe29;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 18px;
-}
-
 .event-indicator {
     width: 8px;
     height: 100%;
@@ -213,11 +205,9 @@ h5 {
         <div class="event__inner-wrap">
             <div class="row" id="events-list-content11">
                 <div class="container mt-5">
-                    <div class="text-center mb-5">
-                        <div>
-                            <h2 class="event__sub-title">Event Hummaclass</h2>
-                        </div>
-                        <h1>Kembangkan Kemampuanmu Di Event Hummaclass</h1>
+                    <div class="section__title text-center mb-40">
+                        <span class="sub-title">Event Hummaclass</span>
+                        <h2 class="title">Kembangkan Kemampuanmu Di Event Hummaclass</h2>
                     </div>
 
                     <div class="row mb-5">
@@ -230,7 +220,7 @@ h5 {
                                         <select class="form-select-ym me-2" id="yearSelect"></select>
                                     </div>
                                 </div>
-                                <div class="row text-center py-3">
+                                {{-- <div class="row text-center py-3">
                                     <div class="calendar-days d-flex justify-content-around" style="width: 100%;color: #6D6C80">
                                         <div>Minggu</div>
                                         <div>Senin</div>
@@ -240,7 +230,7 @@ h5 {
                                         <div>Jumat</div>
                                         <div>Sabtu</div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row text-center" id="calendarGrid"></div>
                             </div>
                         </div>
