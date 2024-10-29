@@ -2,7 +2,7 @@
     <div class="col-lg-3">
         <div class="card border-0 " style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
             <div class="p-4">
-                <h5 class="fw-semibold">Hasil Post Test</h5>
+                <h5 class="fw-semibold">Hasil Pre Test</h5>
                 <h6 class="mt-3 fw-semibold">Tanggal Ujian</h6>
                 <p style="color: #9425FE;">Senin 12 September 2023, <br>
                     12:28:30
@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_question"></span> Soal</p>
+                            <p><span id="detail-total-question"></span> Soal</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_correct"></span> Soal</p>
+                            <p><span id="detail-total-correct"></span> Soal</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="text-end">
-                            <p><span id="total_fault"></span> Soal</p>
+                            <p><span id="detail-total-fault"></span> Soal</p>
                         </div>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
-        @forelse (range(1,3) as $data)
+    <div class="col-lg-9" class="question-list">
+        {{-- @forelse (range(1,3) as $data)
         <div class="card position-relative">
             <div class="p-3">
                 <div class="d-flex justify-content-between">
@@ -153,7 +153,7 @@
         </div>
         @empty
             
-        @endforelse
+        @endforelse --}}
 
     </div>
 </div>
