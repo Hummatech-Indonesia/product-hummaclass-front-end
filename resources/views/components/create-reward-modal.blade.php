@@ -1,36 +1,70 @@
-<div class="modal fade createRewardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <form id="createRewardForm" enctype="multipart/form-data">
+<div class="modal fade" id="modal-create-rewards" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-md">
+            <div class="modal-header" style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
+                <h5 class="modal-title text-white" id="importPegawai">Tambah Barang</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="POST" class="createFormRewards" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambahkan Reward</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    <label for="image" class="form-label">Gambar</label>
-                    <input type="file" name="image" id="image" class="form-control">
-                    <label for="name" class="form-label mt-2">Nama</label>
-                    <input type="text" name="name" id="name" class="form-control">
                     <div class="row">
-                        <div class="col-6">
-                            <label for="points_required" class="form-label mt-2">Point Diperlukan</label>
-                            <input type="number" name="points_required" id="points_required" class="form-control">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2 fw-semibold text-dark">Nama Barang</label>
+                                <input type="text" class="form-control" placeholder="Masukan nama kategori"
+                                    name="name" value="{{ old('name') }}">
+                                @error('name')
+                                    <span class="text-danger error-create">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <label for="stock" class="form-label mt-2">Stok</label>
-                            <input type="number" name="stock" id="stock" class="form-control">
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2 fw-semibold text-dark">Foto Barang</label>
+                                <input type="file" class="form-control" placeholder="Masukan nama kategori"
+                                    name="image" value="{{ old('image') }}">
+                                @error('image')
+                                    <span class="text-danger error-create">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2 fw-semibold text-dark">Stok</label>
+                                <input type="number" class="form-control" placeholder="Masukan nama kategori"
+                                    name="stock" value="{{ old('stock') }}">
+                                @error('stock')
+                                    <span class="text-danger error-create">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2 fw-semibold text-dark">Jumlah Point</label>
+                                <input type="number" class="form-control" placeholder="Masukan nama kategori"
+                                    name="points_required" value="{{ old('points_required') }}">
+                                @error('points_required')
+                                    <span class="text-danger error-create">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="form-group">
+                                <label for="" class="mb-2 fw-semibold text-dark">Deskripsi</label>
+                                <textarea name="description" class="form-control" id="" rows="7"></textarea>
+                                @error('description')
+                                    <span class="text-danger error-create">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
                     </div>
-                    <label for="description" class="form-label mt-2">Deskripsi</label>
-                    <textarea name="description" id="description" cols="15" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn text-white" style="background-color: #DB0909;"
+                        data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn text-white storeConfirmation"
+                        style="background-color: #7209DB;">Tambah</button>
                 </div>
             </form>
         </div>
