@@ -301,5 +301,9 @@ Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');
 });
 
+Route::get('courses/detail/test', function () {
+    return view('admin.pages.point-exchange.detail');
+});
+
 // Load additional routes
 require_once('features/user/checkout.php');
