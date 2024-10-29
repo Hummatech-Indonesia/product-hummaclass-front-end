@@ -79,8 +79,13 @@
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-12 mb-3">
-                    <label for="summernote-description" class="fw-semibold form-label">Deskripsi</label>
+                    <label for="summernote-email-content" class="fw-semibold form-label">Deskripsi</label>
                     <textarea name="description" id="summernote-description" cols="30" rows="10"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="summernote-description" class="fw-semibold form-label">Konten Email</label>
+                    <textarea name="email_content" id="summernote-email-content" cols="30" rows="10"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
@@ -153,6 +158,9 @@
     <script>
         $(document).ready(function() {
             $('#summernote-description').summernote({
+                height: 200
+            });
+            $('#summernote-email-content').summernote({
                 height: 200
             });
         });
