@@ -87,7 +87,8 @@
     </div>
 </div>
 @push('script')
-    <script>
+    @include('admin.pages.courses.panes.test.scripts.index')
+    {{-- <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
 
@@ -114,5 +115,5 @@
             });
 
         });
-    </script>
+    </script> --}}
 @endpush

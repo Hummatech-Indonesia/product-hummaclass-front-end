@@ -8,12 +8,7 @@ use Illuminate\View\View;
 
 class AdminPointExchangeController extends Controller
 {
-    /**
-     * Method index
-     *
-     * @return View
-     */
-    public function index(): View
+    public function index()
     {
         return view('admin.pages.point-exchange.index');
     }

@@ -93,8 +93,11 @@
         </div>
     </div>
 
-    @include('admin.pages.point-exchange.widgets.modal-create-rewards')
+    {{-- @include('admin.pages.point-exchange.widgets.modal-create-rewards') --}}
     <x-delete-modal-component />
+    <x-edit-reward-modal></x-edit-reward-modal>
+    <x-create-reward-modal />
+    <x-detail-reward-modal></x-detail-reward-modal>
 @endsection
 
 @section('script')
