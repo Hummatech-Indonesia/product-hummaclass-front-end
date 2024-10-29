@@ -70,7 +70,7 @@
                         exercitationem suscipit aliquam nulla facilis!</p>
                 </div>
 
-                <div class="col-lg-3 col-md-5 position-absolute" style="right: 20%;right: 0; bottom: 0;">
+                <div class="col-lg-3 col-md-5 position-absolute" style="right: 20%;right: 0; bottom: -30%;">
                     <div class="card col-lg-9 p-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); border-radius: 8px;">
                         <div class="card text-start" style="background-color: #9425FE; border-radius: 8px;box-shadow: 0 4px 8px #9525fe5b;">
                             <div class="card-body">
