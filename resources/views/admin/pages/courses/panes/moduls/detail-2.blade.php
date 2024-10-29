@@ -188,9 +188,6 @@
         <div class="tab-pane" id="quiz" role="tabpanel">
             @include('admin.pages.courses.panes.moduls.panes.tab-quiz')
         </div>
-        {{-- <div class="tab-pane" id="question-bank" role="tabpanel">
-            @include('admin.pages.courses.panes.moduls.panes.tab-question-bank')
-        </div> --}}
     </div>
 
     <x-delete-modal-component></x-delete-modal-component>
@@ -442,19 +439,21 @@
         }
     </script>
 
-
-
     <script>
-        $(document).ready(function() {
-            var activeTab = localStorage.getItem('activeTab');
+        function setActiveTab(tabId) {
+            localStorage.setItem('activeTab', tabId);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            const activeTab = localStorage.getItem('activeTab');
             if (activeTab) {
-                $('.nav-tabs a[href="' + activeTab + '"]').tab('show');
+                document.querySelector('.nav-link.active').classList.remove('active');
+                document.querySelector('.tab-pane.active').classList.remove('active');
+        
+                document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
+                document.querySelector(`#${activeTab}`).classList.add('active');
             }
-
-            $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
-                var href = $(e.target).attr('href');
-                localStorage.setItem('activeTab', href);
-            });
         });
     </script>
+    
 @endsection
