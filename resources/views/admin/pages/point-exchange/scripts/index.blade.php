@@ -7,9 +7,9 @@
 
         funDelete(url);
     });
-    get()
+    get(1)
 
-    function get() {
+    function get(page) {
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
@@ -63,7 +63,7 @@
                         text: "Berhasil menghapus data.",
                         icon: "success"
                     });
-                    get();
+                    get(1);
                 },
                 error: function(response) {
                     $('#modal-delete').modal('hide');
