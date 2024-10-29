@@ -184,6 +184,7 @@
                 , contentType: false
                 , success: function(response) {
                     $('#modal-create-faq').modal('hide');
+                    $('.createFormFaq')[0].reset();
                     Swal.fire({
                         title: "Berhasil!"
                         , text: response.meta.message

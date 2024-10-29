@@ -38,21 +38,28 @@
             }
         }
 
-        // Saat halaman dimuat ulang, cek hash di URL untuk menentukan tab yang aktif
-        let hash = window.location.hash;
-        if (hash) {
-            handleTabDisplay(hash);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Mendapatkan tab yang disimpan di localStorage, atau gunakan tab default jika tidak ada
+        const activeTab = localStorage.getItem("activeTab") || "#home";
+
+        // Aktifkan tab yang disimpan
+        const tabElement = document.querySelector(`a[href="${activeTab}"]`);
+        if (tabElement) {
+            new bootstrap.Tab(tabElement).show();
         }
 
-        // Tambahkan event listener untuk setiap tab agar mengubah hash di URL
-        $(document).on('click', '.nav-link', function(e) {
-            let targetTab = $(this).attr('href');
-            handleTabDisplay(targetTab);
-
-            // Ubah hash URL tanpa reload halaman
-            history.pushState(null, null, targetTab);
+        // Simpan tab yang diklik ke localStorage
+        const tabs = document.querySelectorAll('.nav-link[data-bs-toggle="tab"]');
+        tabs.forEach(tab => {
+            tab.addEventListener("shown.bs.tab", function (event) {
+                const selectedTab = event.target.getAttribute("href");
+                localStorage.setItem("activeTab", selectedTab);
+            });
         });
-
     });
 </script>
 

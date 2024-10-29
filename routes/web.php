@@ -163,9 +163,9 @@ Route::get('test-result', function () {
 
 Route::resources([
     'blogs' => BlogController::class,
-    'events' => EventController::class,
 ]);
-
+Route::resource('events', EventController::class)->except('show');
+Route::get('events/{id?}', [EventController::class, 'show'])->name('events.show');
 Route::get('faqs', function () {
     return view('user.pages.faqs.index');
 })->name('faqs.index');
@@ -222,6 +222,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'events' => AdminEventController::class,
         'point-exchange' => AdminPointExchangeController::class,
     ]);
+
+    Route::get('courses/detail-test/{id}', [AdminCourseController::class, 'DetailTest'])->name('courses.test.index');
+
+    Route::get('courses/detail-collect-task/{id}', function ($id) {
+        return view('admin.pages.courses.panes.moduls.detail-tab-collect', compact('id'));
+    })->name('courses.detail-tab-collect.index');
 
     Route::get('create-quiz/{id}', function (string $id) {
         return view('admin.pages.courses.panes.moduls.create-quiz', compact('id'));
@@ -295,6 +301,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('admin.pages.configuration.faq');
         })->name('faq.index');
     });
+
 });
 
 Route::get('detail/test', function () {

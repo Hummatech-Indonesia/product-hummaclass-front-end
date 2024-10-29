@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-create-rewards" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+{{-- <div class="modal fade" id="modal-create-rewards" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-md">
             <div class="modal-header" style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
@@ -69,4 +69,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}

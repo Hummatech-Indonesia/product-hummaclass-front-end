@@ -1,139 +1,184 @@
 <script>
-    $(document).ready(function(page) {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+        "October", "November", "December"
+    ];
 
-        let loading = true;
-        const eventParent = $('#events-list-content');
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
 
-        if (loading) {
-            eventParent.append(loadingCard(6));
-        }
+    let events = {}; // Awalnya kosong, akan diisi dengan data dari API
 
-        let retryCount = 0;
-        const maxRetries = 3;
+    get(); // Panggil fungsi get untuk mengambil data
 
-        function handleGetEvents(page) {
-            $.ajax({
-                type: "GET"
-                , url: "{{ config('app.api_url') }}" + "/api/events?page=" + page
-                , headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , dataType: "json"
-                , success: function(response) {
-                    eventParent.empty();
+    function get() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}/api/events-user",
+            headers: {
+                'Authorization': `Bearer {{ session('hummaclass-token') }}`
+            },
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                console.log(response.data);
+                response.data.forEach(event => {
+                    const dateKey = new Date(event.start_date).toLocaleDateString(
+                        'en-CA'); // Format YYYY-MM-DD dari start_date
+                    const formattedDateKey = dateKey.split('-').reverse().join(
+                        '-'); // Ubah ke DD-MM-YYYY
 
-                    if (response.data.data.length > 0) {
-                        $.each(response.data.data, function(index, value) {
-                            eventParent.append(card(index, value));
-                        });
-
-                        if (response.data.paginate.last_page > 0) {
-                            renderPagination(response.data.paginate.last_page, response.data.paginate.current_page, function(page) {
-                                handleGetEvent(page);
-                            });
-                            $('.pagination__wrap').show();
-                        } else {
-                            $('.pagination__wrap').hide();
-                        }
-                    } else {
-                        eventParent.append(empty());
-                        $('.pagination__wrap').hide();
+                    if (!events[formattedDateKey]) {
+                        events[formattedDateKey] = [];
                     }
 
-                    retryCount = 0;
-                    loading = false;
-                }
-                , error: function(xhr) {
-                    let errorMessage = '';
-                    if (xhr.status === 0) {
-                        errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
-                    } else if (xhr.status >= 500) {
-                        errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
-                    } else if (xhr.status >= 400 && xhr.status < 500) {
-                        errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
-                    } else {
-                        errorMessage = 'Gagal memuat data. Coba lagi nanti.';
-                    }
+                    events[formattedDateKey].push({
+                        slug: event.slug,
+                        title: event.title,
+                        desc: event.description, // Deskripsi dari respons
+                        time: event.start_date, // Waktu mulai dari respons
+                        price: event.price // Harga dari respons
+                    });
+                });
 
-                    if (retryCount < maxRetries) {
-                        retryCount++;
-                        setTimeout(() => {
-                            handleGetEvents(1);
-                        }, 1000);
-                    } else {
-                        eventParent.append(empty());
-                        eventParent.append(
-                            `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                        console.log('Gagal memuat data setelah beberapa kali percobaan.');
-                        loading = false;
-                    }
-                }
-            });
-        }
-
-        handleGetEvents(1);
-
-        function card(index, value) {
-            return `
-                 <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="event__item shine__animate-item">
-                        <div class="event__item-thumb">
-                            <a href="{{ route('events.show', '') }}/${value.slug}" class="shine__animate-link"><img src="${value.image}" alt="img"></a>
-                        </div>
-                        <div class="event__item-content">
-                            <span class="date">${value.start_date}</span>
-                            <h2 class="title"><a href="{{ route('events.show', '') }}/${value.slug}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h2>
-                            <p>${value.description}</p> 
-                            
-                            <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
-                                <div class="d-flex" style="font-size: 14px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="#6D6C80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
-                                    Sisa Kuota: ${value.capacity}
-                                </div>
-                                <div>${value.start_date}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `;
-        }
-
-        function loadingCard(amount) {
-            let card = '';
-
-            for (let i = 0; i < amount; i++) {
-                card += `
-                <div class="col col-lg-4">
-                    <div class="card" aria-hidden="true">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#868e96"></rect>
-                        </svg>
-                        <div class="card-body">
-                            <h5 class="card-title placeholder-glow">
-                                <span class="placeholder col-6"></span>
-                            </h5>
-                            <p class="card-text placeholder-glow">
-                                <span class="placeholder col-7"></span>
-                                <span class="placeholder col-4"></span>
-                                <span class="placeholder col-4"></span>
-                                <span class="placeholder col-6"></span>
-                                <span class="placeholder col-8"></span>
-                            </p>
-                            <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-                        </div>
-                    </div>
-                </div>
-                `;
+                updateCalendar(); // Refresh kalender setelah mengisi data acara
+            },
+            error: function(response) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Ada kesalahan saat menyimpan data.",
+                    icon: "error"
+                });
             }
-            return card;    
-        }
+        });
+    }
+
+    const calendarGrid = document.getElementById('calendarGrid');
+    const eventList = document.getElementById('eventList');
+    const monthSelect = document.getElementById('monthSelect');
+    const yearSelect = document.getElementById('yearSelect');
+    let selectedDate = null;
+
+    monthNames.forEach((month, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = month;
+        if (index === currentMonth) option.selected = true;
+        monthSelect.appendChild(option);
     });
 
+    for (let year = 2020; year <= 2030; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        if (year === currentYear) option.selected = true;
+        yearSelect.appendChild(option);
+    }
 
-    // jangan dihapus
-    // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
+    function updateCalendar() {
+        calendarGrid.innerHTML = '';
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
+        for (let i = 0; i < firstDay; i++) {
+            const emptyCell = document.createElement('div');
+            calendarGrid.appendChild(emptyCell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayKey = `${day}-${currentMonth + 1}-${currentYear}`;
+            const dayCell = document.createElement('div');
+            dayCell.classList.add('calendar-day');
+            dayCell.innerHTML = `<h4>${day}</h4>`;
+
+            const formattedDateKey = `${day}-${currentMonth + 1}-${currentYear}`; // Format sesuai dengan key events
+
+            if (events[formattedDateKey]) {
+                dayCell.innerHTML +=
+                    `<span class="text-start selectable" style="font-size: 13px;font-weight: bold;margin-top: 20px;color: #9425FE;">| ${events[formattedDateKey].length} Acara</span>`;
+            }
+
+            dayCell.addEventListener('click', () => handleDateClick(dayCell, formattedDateKey));
+            calendarGrid.appendChild(dayCell);
+        }
+    }
+
+    function handleDateClick(dayCell, dayKey) {
+        const allDays = document.querySelectorAll('.calendar-day');
+        allDays.forEach(day => day.classList.remove('selected'));
+
+        dayCell.classList.add('selected');
+        selectedDate = dayKey;
+
+        showEventList(dayKey);
+    }
+
+    function showEventList(dayKey) {
+        eventList.innerHTML = '';
+        if (events[dayKey]) {
+            const dayEvents = events[dayKey];
+            const eventsPerPage = 4;
+            const totalPages = Math.ceil(dayEvents.length / eventsPerPage);
+            let currentPage = 1;
+
+            const renderEvents = () => {
+                eventList.innerHTML = '';
+                const start = (currentPage - 1) * eventsPerPage;
+                const end = start + eventsPerPage;
+
+                dayEvents.slice(start, end).forEach(event => {
+                    const eventItem = document.createElement('li');
+                    eventItem.classList.add('list-group-item');
+
+                    // Batasi deskripsi
+                    const truncatedDesc = event.desc.length > 20 ? event.desc.substring(0, 20) + '...' :
+                        event.desc;
+                    console.log(event.slug);
+
+                    eventItem.innerHTML = `
+                            <a href="/events/${event.slug}">
+                                <span class="event-indicator ${event.price}-indicator"></span>
+                                <h6 style="color: #9425FE;">${event.title}</h6>
+                                <small>${truncatedDesc}</small>
+                                <small>${formatRupiah(event.price)}</small><br>
+                                <small>${dayKey}</small>
+                            </a>
+                        `;
+                    eventList.appendChild(eventItem);
+                });
+
+                const pagination = document.createElement('nav');
+                pagination.classList.add('pagination');
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.classList.add('btn', 'btn-sm', 'btn-outline-primary', 'mx-1', 'btn-circle');
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        renderEvents();
+                    });
+                    pagination.appendChild(pageButton);
+                }
+                eventList.appendChild(pagination);
+            };
+
+
+            renderEvents();
+        } else {
+            eventList.innerHTML = '<li class="list-group-item">Tidak Ada Event Pad Tanggal Ini.</li>';
+        }
+    }
+
+    monthSelect.addEventListener('change', () => {
+        currentMonth = parseInt(monthSelect.value);
+        updateCalendar();
+    });
+
+    yearSelect.addEventListener('change', () => {
+        currentYear = parseInt(yearSelect.value);
+        updateCalendar();
+    });
+
+    updateCalendar(); // Panggil fungsi untuk pertama kali
 </script>
