@@ -1,5 +1,15 @@
 <script>
-    $(document).ready(function(page) {
+    $(document).on('click', '.btn-delete-rewards', function() {
+        var id = $(this).data('id');
+        var url = "{{ config('app.api_url') }}" + "/api/rewards/" + id;
+
+        $('#modal-delete').modal('show');
+
+        funDelete(url);
+    });
+    get(1)
+
+    function get(page) {
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
@@ -8,9 +18,6 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response);
-
-
                 $('#list-point-exchange').empty();
 
                 if (response.data.data.length > 0) {
@@ -36,11 +43,49 @@
                 });
             }
         });
-    });
+    }
+
+    function funDelete(url) {
+
+        $('.deleteConfirmation').click(function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                success: function(response) {
+                    $('#modal-delete').modal('hide');
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil menghapus data.",
+                        icon: "success"
+                    });
+                    get(1);
+                },
+                error: function(response) {
+                    $('#modal-delete').modal('hide');
+                    if (response.status == 400) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: response.responseJSON.meta.message,
+                            icon: "error"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menghapus data.",
+                            icon: "error"
+                        });
+                    }
+                }
+            });
+        });
+    }
 
     function ListExchange(index, value) {
-        console.log(value);
-
         return `
             <tr>
                 <td>${index + 1}</td>
@@ -78,60 +123,6 @@
                         </button>
                     </div>
                 </td>
-            </tr>
-    `;
-    }
-</script>
-
-{{-- hapus penukaran poin --}}
-
-<script>
-    $(document).on('click', '.btn-delete-rewards', function() {
-        var id = $(this).data('id');
-        var url = "{{ config('app.api_url') }}" + "/api/rewards/" + id;
-
-        $('#modal-delete').modal('show');
-
-        funDelete(url);
-    });
-
-    function funDelete(url) {
-
-        $('.deleteConfirmation').click(function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                type: "DELETE",
-                url: url,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                success: function(response) {
-                    $('#modal-delete').modal('hide');
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menghapus data.",
-                        icon: "success"
-                    });
-                    get();
-                },
-                error: function(response) {
-                    $('#modal-delete').modal('hide');
-                    if (response.status == 400) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: response.responseJSON.meta.message,
-                            icon: "error"
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menghapus data.",
-                            icon: "error"
-                        });
-                    }
-                }
-            });
-        });
+            </tr>`;
     }
 </script>
