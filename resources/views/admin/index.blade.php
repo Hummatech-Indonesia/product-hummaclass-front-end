@@ -16,13 +16,10 @@
             <div class="card border-0 zoom-in">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Voucher -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M2 7.5C2 6.12 3.12 5 4.5 5h15c1.38 0 2.5 1.12 2.5 2.5v9c0 1.38-1.12 2.5-2.5 2.5h-15C3.12 19 2 17.88 2 16.5v-9zm9 2a2 2 0 1 0 0 4 2 2 0 1 0 0-4z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Voucher</p>
@@ -35,13 +32,10 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Jumlah Kursus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20zm-1 14h2v-2h-2v2zm0-4h2V7h-2v5z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Jumlah Kursus</p>
@@ -54,13 +48,10 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Kategori Kursus -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M5 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2zm8 4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h2zm8 4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h2z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Kategori Kursus</p>
@@ -73,13 +64,10 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Berita -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M3 3h18v4h-8v2h8v10H3V3zm2 4h5v2H5V7zm0 4h10v2H5v-2zm0 4h10v2H5v-2z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Berita</p>
@@ -92,13 +80,10 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Jumlah Event -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V10h14v9zm-7-8h-2v2H8v2h2v2h2v-2h2v-2h-2v-2z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Jumlah Event</p>
@@ -111,13 +96,10 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Jumlah Mentor -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M12 2a5 5 0 0 1 5 5a5 5 0 0 1-10 0a5 5 0 0 1 5-5zm-6.5 10h1.158A8.015 8.015 0 0 0 4 18v1h16v-1a8.015 8.015 0 0 0-2.658-6H18.5a3.5 3.5 0 0 1 3.5 3.5v3.5H2v-3.5A3.5 3.5 0 0 1 5.5 12z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Jumlah Mentor</p>
@@ -130,22 +112,20 @@
             <div class="card border-0 zoom-in shadow-none">
                 <div class="card-body">
                     <div class="text-center">
-                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px;background-color: #F6EEFE; color:#9425FE;">
+                        <div class="rounded-2 d-flex align-items-center justify-content-center m-auto" style="height: 50px; width: 50px; background-color: #F6EEFE; color:#9425FE;">
+                            <!-- Icon Jumlah Sertifikat -->
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                    <circle cx="17" cy="7" r="3" />
-                                    <circle cx="7" cy="17" r="3" />
-                                    <path d="M14 14h6v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zM4 4h6v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z" />
-                                </g>
+                                <path fill="currentColor" d="M5 4v16h14V4H5zm7 8h2v6h-2v-6zm0-2h2V8h-2v2zm-5 0h2V8H7v2zm10 0h2V8h-2v2z"/>
                             </svg>
                         </div>
                         <p class="fw-semibold fs-2 mb-1">Jumlah Sertifikat</p>
-                        <h5 class="fw-semibold mb-0">50</h5>
+                        <h5 class="fw-semibold mb-0">22</h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
     
     <div class="row">
         <div class="col-lg-8 d-flex align-items-strech">
