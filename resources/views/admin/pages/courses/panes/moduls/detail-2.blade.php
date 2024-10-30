@@ -293,7 +293,6 @@
             }
 
             function moduleTasks(index, value) {
-                console.log(value);
 
                 return `<div class="col-lg-4">
                         <div class="card card-body">
@@ -353,7 +352,6 @@
         });
 
         function funDelete(url) {
-            console.log(funDelete);
 
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
@@ -375,7 +373,6 @@
                         location.reload();
                     },
                     error: function(response) {
-                        console.log(response);
 
                         $('#modal-delete').modal('hide');
                         if (response.status == 400) {

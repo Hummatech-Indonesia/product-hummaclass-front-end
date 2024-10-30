@@ -48,7 +48,6 @@
             let html = '';
 
             $.each(data.blocks, function(index, block) {
-                console.log(block);
                 switch (block.type) {
                     case 'header':
                         html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\n`;
@@ -70,7 +69,6 @@
                         break;
                 }
             });
-            console.log(html);
 
 
             return html;

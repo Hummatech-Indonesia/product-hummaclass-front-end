@@ -39,7 +39,6 @@
                                     Authorization: "Bearer " + "{{ session('hummaclass-token') }}"
                                 },
                                 success: function(response) {
-                                    console.log(response);
                                     // btn.closest('.card').remove();
                                     window.location.reload();
                                 }

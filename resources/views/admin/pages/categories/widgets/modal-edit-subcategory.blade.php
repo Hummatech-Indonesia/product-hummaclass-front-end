@@ -113,7 +113,6 @@
                     get(1);
                 },
                 error: function(response) {
-                    console.log(response);
                     
                     let errorMessages = [];
                     $.each(response.responseJSON.errors, function(field, messages) {

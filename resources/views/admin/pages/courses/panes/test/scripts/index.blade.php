@@ -46,7 +46,6 @@
     }
 
     function testContent(index, value) {
-        console.log(value);
         let testType = value.test_type;
         let score = value.score;
 

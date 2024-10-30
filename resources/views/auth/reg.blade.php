@@ -198,7 +198,6 @@
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        console.log(response);
                         window.location.href = "{{ route('dashboard.users.profile') }}";
                         // localStorage.setItem('hummaclass-token', response.data.token);
 
@@ -213,7 +212,6 @@
                         let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;
 
-                        console.log(error);
 
                         // Reset status is-invalid
                         $('#email, #password').removeClass('is-invalid');

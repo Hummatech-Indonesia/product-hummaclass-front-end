@@ -66,7 +66,6 @@
         var moduleTasks;
 
         function setValue(data) {
-            console.log(data);
 
             $('#question').val(data.question);
             $('#point').val(data.point);
@@ -83,7 +82,6 @@
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response);
 
                 $.ajax({
                     type: "get"
@@ -93,7 +91,6 @@
                     }
                     , dataType: "json"
                     , success: function(response) {
-                        console.log(response);
                         
                         setValue(response.data);
                     }
@@ -117,7 +114,6 @@
                 , type: 'PUT'
                 , data: formData
                 , success: function(response) {
-                    console.log(response);
                     
                     Swal.fire({
                         title: "Success"

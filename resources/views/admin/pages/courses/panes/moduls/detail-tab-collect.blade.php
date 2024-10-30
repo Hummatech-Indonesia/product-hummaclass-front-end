@@ -86,7 +86,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     const data = response.data;
                     
                     $('.question').text(data.module_task.question);

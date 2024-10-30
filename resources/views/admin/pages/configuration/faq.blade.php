@@ -338,7 +338,6 @@
                     $('.answer').html(response.data.answer);
                 },
                 error: function(xhr) {
-                    console.log(xhr);
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         text: "Tidak dapat memuat data FAQ.",

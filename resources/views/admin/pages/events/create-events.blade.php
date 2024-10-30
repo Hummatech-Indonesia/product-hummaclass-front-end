@@ -213,7 +213,6 @@
         });
 
         document.getElementById('roundown-btn').addEventListener('click', function() {
-            console.log($('.repeater-group.row').first());
         })
     </script>
 

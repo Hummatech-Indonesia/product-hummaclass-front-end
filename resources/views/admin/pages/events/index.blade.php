@@ -178,7 +178,6 @@
                             eventParent.append(empty());
                             eventParent.append(
                                 `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                            console.log('Gagal memuat data setelah beberapa kali percobaan.');
                             loading = false;
                         }
                     }

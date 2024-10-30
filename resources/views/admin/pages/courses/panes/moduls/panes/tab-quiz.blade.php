@@ -20,7 +20,6 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response.data.slug);
 
                 // Fetch quizzes
                 $.ajax({

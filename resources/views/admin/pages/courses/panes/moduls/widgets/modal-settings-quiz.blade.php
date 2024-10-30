@@ -65,7 +65,6 @@
     var id = "{{ $id }}";
     $('#create-quiz-form').submit(function(e) {
         e.preventDefault();
-        console.log(id);
 
         var formData = new FormData(this);
 
@@ -126,7 +125,6 @@
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response.data);
 
                 $('#total_question').val(response.data.total_question);
                 $('#duration').val(response.data.duration);

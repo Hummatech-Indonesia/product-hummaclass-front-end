@@ -184,7 +184,6 @@
                     $('#event-detail-tables').append(roundownString);
                 },
                 error: function(xhr) {
-                    console.log(xhr);
 
                     Swal.fire({
                         title: "Terjadi Kesalahan!",

@@ -164,11 +164,9 @@
 
             $('#create-quiz-form').submit(function(e) {
                 e.preventDefault();
-                console.log(id);
 
                 var formData = new FormData(this);
 
-                console.log(formData);
 
                 $.ajax({
                     type: "POST",

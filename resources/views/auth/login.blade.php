@@ -154,7 +154,6 @@
                     type: 'POST',
                     data: formData,
                     success: function(response) {
-                        console.log(response);
                         
                         $.ajax({
                             url: "{{ route('save-token') }}", // URL untuk menyimpan token ke session
@@ -171,7 +170,6 @@
                         });
                     },
                     error: function(error) {
-                        console.log(error);
                         
                         let errors = error.responseJSON.data || {};
                         let message = error.responseJSON.meta.message;

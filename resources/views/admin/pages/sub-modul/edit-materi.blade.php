@@ -180,7 +180,6 @@
                     processData: false,
                     success: function(response) {
                         if (response.success) {
-                            console.log(response);
 
                             addImageToEditor(response.file.url);
                         }

@@ -91,8 +91,6 @@
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response.data.id);
-                console.log(response.data.name);
 
                 $('.name').val(response.data.name);
                 $('.email').val(response.data.email);
@@ -102,7 +100,6 @@
 
             }
             , error: function(xhr) {
-                console.log(xhr);
 
                 Swal.fire({
                     title: "Terjadi Kesalahan!"

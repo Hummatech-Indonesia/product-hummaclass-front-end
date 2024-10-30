@@ -78,7 +78,6 @@
                     url: `{{ config('app.api_url') }}/api/users/${id}`,
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
                         $('#detail-name').html(response.data.name);
                         $('#detail-email').html(response.data.email);
                         $('#detail-phone-number').html(response.data.phone_number);

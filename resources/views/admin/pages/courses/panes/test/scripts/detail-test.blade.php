@@ -10,7 +10,6 @@
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response);
 
                 $('#detail-total-question').html(response.data.total_question);
                 $('#detail-total-correct').html(response.data.total_correct);

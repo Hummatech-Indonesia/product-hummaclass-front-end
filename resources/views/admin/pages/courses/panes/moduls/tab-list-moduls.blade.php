@@ -188,10 +188,8 @@
                     dataType: "json",
                     success: function(response) {
                         get();
-                        console.log('Berhasil menghapus data');
                     },
                     error: function(xhr) {
-                        console.log('Gagal menghapus data');
                     }
                 });
             });

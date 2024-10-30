@@ -106,7 +106,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
 
                     $.ajax({
                         type: "get",
@@ -117,7 +116,6 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            console.log(response);
                             $('#title').html(response.data.question);
                             $('#description').html(response.data.description);
                             // $('#sub_modul_count').html(response.data.sub_module_count);
@@ -141,7 +139,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     const table = $('#collect-content');
                     table.empty();
                     let submissionTasks = '';
@@ -167,7 +164,6 @@
                         `
                     });
 
-                    console.log(submissionTasks);
 
                     table.append(submissionTasks);
 
