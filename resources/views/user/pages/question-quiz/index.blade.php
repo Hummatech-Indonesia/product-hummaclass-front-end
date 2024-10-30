@@ -187,7 +187,7 @@
                             const formattedMinutes = String(remainingMinutes).padStart(2, '0');
                             const formattedSeconds = String(remainingSeconds).padStart(2, '0');
 
-                          
+
                             $('#time_count').html(
                                 `<span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">${formattedHours}.${formattedMinutes}.${formattedSeconds} Sisa waktu</span>`
                             );
@@ -250,8 +250,17 @@
                     restoreAnswers(response.data.paginate.current_page);
                 },
                 error: function(xhr, status, error) {
-                    console.error('Terjadi kesalahan:', status, error);
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: xhr.responseJSON.meta.message,
+                        icon: "error"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.history.back();
+                        }
+                    });
                 }
+
             });
         }
 
@@ -377,7 +386,6 @@
                 },
 
                 error: function(response) {
-                    console.error(response);
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         text: "Ada kesalahan saat menyimpan data: " + response.responseJSON.message,

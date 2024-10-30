@@ -180,18 +180,27 @@
                 dataType: "json",
                 success: function(response) {
                     $.each(response.data, function(index, value) {
+                        let status;
+
+                        if (value.status == "Lulus") {
+                            status =
+                                `<td><span class="bg-success p-2 text-white rounded text-center">${value.status}</span></td>`;
+                        } else {
+                            status =
+                                `<td><span class="bg-danger p-2 text-white rounded text-center">${value.status}</span></td>`;
+                        }
+
                         $('#user-quizzes').append(
-                            `
-                            <tr>
+                            `<tr>
                                 <td>${value.created}</td>
                                 <td>${value.score}</td>
-                                <td><span class="bg-success p-2 text-white rounded text-center">${value.status}</span></td>
+                                ${status}
                                 <td><a class="btn btn-primary" href="">Lihat Detail</a></td>
-                            </tr> 
-                            `
+                            </tr>` 
                         );
                     });
                 }
+
             });
 
             let photo;

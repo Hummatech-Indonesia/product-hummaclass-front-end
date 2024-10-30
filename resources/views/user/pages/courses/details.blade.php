@@ -168,11 +168,6 @@
                                     aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
-                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
-                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktur</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
                                     data-bs-target="#reviews-tab-pane" type="button" role="tab"
                                     aria-controls="reviews-tab-pane" aria-selected="false">Ulasan</button>
