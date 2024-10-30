@@ -112,8 +112,7 @@
                                     <path d="M9 8h6" />
                                 </svg> Tambah Modul</span>
                         </a>
-                        <button class="btn btn-warning d-none editWeinght" data-bs-toggle="modal"
-                            data-bs-target="#settings-task">
+                        <a href="{{ route('admin.course.setting-test.index', 1) }}" class="btn btn-warning d-none editWeinght">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -121,7 +120,7 @@
                                 </svg>
                                 Pengaturan Test
                             </span>
-                        </button>
+                        </a>
                         <button class="btn btn-warning d-none edittask" id="edit-task-btn">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-2 -2 24 24">
