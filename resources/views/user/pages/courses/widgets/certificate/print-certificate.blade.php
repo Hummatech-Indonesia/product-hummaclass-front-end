@@ -116,10 +116,10 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            var course = "{{ $course }}";
+            var id = "{{ $id }}";
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/certificates/" + course,
+                url: "{{ config('app.api_url') }}/api/{{ $type }}/certificates/" + id,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -127,10 +127,17 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $('#breadCrumbCourse').html(response.data.course.title);
-                    $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
-                        .slug);
-                    $('#username').val(response.data.username);
+                    @if($type == 'course')
+                        $('#breadCrumbCourse').html(response.data.course.title);
+                        $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
+                            .slug);
+                        $('#username').val(response.data.username);
+                    @else
+                        $('#breadCrumbCourse').html(response.data.event.title);
+                        $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.event
+                            .slug);
+                        $('#username').val(response.data.username);
+                    @endif
                 },
             });
 
@@ -139,7 +146,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/certificates/" + course,
+                    url: "{{ config('app.api_url') }}/api/{{ $type }}/certificates/" + id,
                     data: formData,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
@@ -154,7 +161,7 @@
                             icon: "success"
                         }).then(() => {
                             window.location.href =
-                                "{{ route('courses.pre-download-certificate.index', ['course' => $course]) }}"; // Perbaiki penulisan rute
+                                "{{ route('pre-download-certificate.index', ['type' => $type, 'course' => $id]) }}"; // Perbaiki penulisan rute
                         });
                     },
                     error: function(response) {

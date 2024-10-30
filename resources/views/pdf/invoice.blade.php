@@ -80,11 +80,11 @@
             </tr>
             <tr>
                 <td class="order-details">
-                    <p style="color: #4b4b4b; font-size: 12px;"><strong>({{ $data->course['subcategory']['name'] }})</strong> <small style="color: #727272;">By David Millar</small></p>
-                    <p>{{ $data->course['title'] }}</p>
+                    <p style="color: #4b4b4b; font-size: 12px;"><strong>({{ $data->product['subcategory']['name']??'' }})</strong> <small style="color: #727272;">By David Millar</small></p>
+                    <p>{{ $data->product['title'] }}</p>
                 </td>
                 <td class="text-end">
-                    <p class="price">Rp {{ number_format($data->course['price'], 0, ',', '.') }}</p>
+                    <p class="price">Rp {{ number_format($data->product['price'], 0, ',', '.') }}</p>
                 </td>
             </tr>
 
@@ -94,7 +94,7 @@
                     <p>Subtotal untuk Produk</p>
                 </td>
                 <td class="text-end" style="text-align: end;">
-                    <p>Rp {{ number_format($data->fee_amount + $data->course['price'], 0, ',', '.') }}</p>
+                    <p>Rp {{ number_format($data->fee_amount + $data->product['price'], 0, ',', '.') }}</p>
                 </td>
             </tr>
             <tr class="">
@@ -105,13 +105,13 @@
                     <p>Rp {{ number_format($data->fee_amount, 0, '.', '.') }}</p>
                 </td>
             </tr>
-            @if ($data->voucher)
+            @if ($data->course_voucher)
                 <tr class="voucher">
                     <td>
                         <p>Voucher <span>(opsional)</span></p>
                     </td>
                     <td class="text-end" style="text-align: end;">
-                        <p>-Rp {{ $data->voucher['discount'] }}</p>
+                        <p>-Rp {{ $data->course_voucher['discount'] }}</p>
                     </td>
                 </tr>
             @endif

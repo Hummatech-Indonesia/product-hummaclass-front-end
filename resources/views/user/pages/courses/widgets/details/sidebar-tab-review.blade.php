@@ -28,7 +28,7 @@
         <div>
             <a class="outline-purple-primary w-100 mt-4" id="btn-lesson"
                 style="border-radius: 50px; padding: 10px 10px; font-size: 14px;"></a>
-            <a href="{{ route('courses.print-certificate.index', $id) }}"
+            <a href="{{ route('print-certificate.index', ['type' => 'course','id' => $id]) }}"
                 style="border-radius: 50px; padding: 10px 10px; font-size: 14px;"
                 class="outline-purple-primary w-100 mt-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
