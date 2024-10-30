@@ -72,11 +72,23 @@
                     <input type="text" name="location" id="location" class="form-control" placeholder="Masukan lokasi">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-6 mb-3">
                     <label for="start_date" class="fw-semibold form-label">Tanggal Mulai</label>
                     <input type="date" class="form-control" id="start_date" name="start_date"
                         placeholder="Masukan jumlah kapasitas">
                     <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="end_date" class="fw-semibold form-label">Tanggal Selesai</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date"
+                        placeholder="Masukan jumlah kapasitas">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Absensi Lengkap</label>
+                    </div>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="summernote-email-content" class="fw-semibold form-label">Deskripsi</label>
@@ -98,6 +110,12 @@
                             <div class="row">
                                 <div class="col-11">
                                     <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="detail_start" class="fw-semibold form-label">Tanggal Mulai</label>
+                                            <input type="date" class="form-control" id="detail_start"
+                                                name="detail_start[]" placeholder="Masukan jumlah kapasitas">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                         <div class="col-6 mb-3">
                                             <label for="start" class="fw-semibold form-label">Jam Mulai</label>
                                             <input type="time" class="form-control" name="start[]"
@@ -146,7 +164,8 @@
             </div>
 
             <div class="text-end">
-                <a href="{{ route('admin.events.index') }}" class="btn text-white me-2" style="background-color: #DB0909">Batal</a>
+                <a href="{{ route('admin.events.index') }}" class="btn text-white me-2"
+                    style="background-color: #DB0909">Batal</a>
                 <button type="submit" class="btn text-white"
                     style="background-color: var(--purple-primary)">Tambah</button>
             </div>
@@ -222,20 +241,20 @@
             let addButton = document.querySelector('[data-repeater-create]');
             let template = document.querySelector('[data-repeater-item]').cloneNode(true);
             template.querySelectorAll('input').forEach(input => input.value = ''); // Kosongkan input di template
-            
+
             addButton.addEventListener('click', function() {
                 let newItem = template.cloneNode(true);
                 let deleteButton = newItem.querySelector('[data-repeater-delete]');
-                
+
                 deleteButton.addEventListener('click', function() {
                     if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
                         newItem.remove();
                     }
                 });
-                
+
                 repeaterContainer.appendChild(newItem);
             });
-            
+
             document.querySelectorAll('[data-repeater-delete]').forEach(function(deleteButton) {
                 deleteButton.addEventListener('click', function() {
                     if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
