@@ -348,11 +348,7 @@
                     //     $('#review-content').append(empty());
                     // }
 
-                    photo = `
-            $ {
-                response.data.photo
-            }
-            `;
+                    photo = `${response.data.photo}`;
                     $('#photo').attr('src', photo);
                     $('#sub-title').append(response.data.sub_title);
                     $('#detail-title').append(response.data.title);
