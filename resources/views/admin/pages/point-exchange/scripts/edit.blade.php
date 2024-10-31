@@ -1,55 +1,50 @@
 <script>
     $(document).ready(function() {
-        var id
-        $(document).on('click', '.editReward', function() {z
-            $('.editRewardModal').modal('show');
-            id = $(this).data('id')
-            const image = $(this).data('image')
-            const name = $(this).data('name')
-            const stock = $(this).data('stock')
-            const points_required = $(this).data('points_required')
-            const description = $(this).data('description')
+        let id; // Define id globally to access it in the submit event
 
-            $('#edit-image').attr('src', "{{ config('app.api_url') }}/storage/" + image);
+        $(document).on('click', '.editReward', function() {
+            $('#modal-edit-rewards').modal('show');
+            id = $(this).data('id'); // Set the id value here
+            const name = $(this).data('name');
+            const description = $(this).data('description');
+            const stock = $(this).data('stock');
+            const points_required = $(this).data('points_required'); // Corrected
+
             $('#edit-name').val(name);
-            $('#edit-stock').val(stock);
             $('#edit-points_required').val(points_required);
             $('#edit-description').val(description);
+            $('#edit-stock').val(stock);
         });
 
-        $('#editRewardForm').submit(function(e) {
+        $(document).on('submit', '.editRewardForm', function(e) {
+            const abc = new FormData($('.editRewardForm')[0])
+            const abcd = {
+
+                name: $('.editRewardForm [name=name]').val(),
+                description: $('.editRewardForm [name=description]').val(),
+                points_required: $('.editRewardForm [name=required]').val(),
+                stock: $('.editRewardForm [name=stock]').val(),
+
+            }
+
+            const abcde = new FormData()
             e.preventDefault();
-
-            var formData = new FormData(this);
-
             $.ajax({
                 type: "PATCH",
+                url: "{{ config('app.api_url') }}/api/rewards/" + id +
+                    `?name=${abcd.name}`,
+                data: abcd,
+                dataType: "json",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
-                url: "{{ config('app.api_url') }}/api/rewards/" + id ",
-                data: formData,
-                dataType: "json",
-                contentType: false,
                 processData: false,
+                contentType: false,
                 success: function(response) {
-
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil mengubah data.",
-                        icon: "success"
-                    }).then(() => {
-                        $('.editRewardModal').modal('hide');
-                        window.location.reload();
-                    });
+                    $('#modal-edit-rewards').modal('hide');
+                    window.location.reload()
                 },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Gagal",
-                        text: "Gagal mengubah data.",
-                        icon: "error"
-                    })
-                }
+                error: function(error) {}
             });
         });
     });
