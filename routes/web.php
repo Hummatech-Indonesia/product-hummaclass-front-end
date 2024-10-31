@@ -229,6 +229,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'point-exchange' => AdminPointExchangeController::class,
     ]);
 
+    Route::get('confirmation-point-exchange', function(){
+        return view('admin.pages.point-exchange.confirmation-point-exchange');
+    })->name('confirmation-point-exchange.index');
+
     Route::get('events-participant-detail/{participantId}', function (string $participantId) {
         return view('admin.pages.events.widgets.detail-participant', compact('participantId'));
     })->name('event-participant');
