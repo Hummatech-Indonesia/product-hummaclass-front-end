@@ -225,8 +225,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::get('courses/detail-test/{id}', [AdminCourseController::class, 'DetailTest'])->name('courses.test.index');
 
-    Route::get('courses/setting-test/{id}', function($id){
-        return view('admin.pages.courses.panes.test.setting-test');
+    Route::get('courses/setting-test/{id}', function ($id) {
+        return view('admin.pages.courses.panes.test.setting-test', compact('id'));
     })->name('course.setting-test.index');
 
     Route::get('courses/detail-collect-task/{id}', function ($id) {
@@ -305,7 +305,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('admin.pages.configuration.faq');
         })->name('faq.index');
     });
-
 });
 
 Route::get('detail/test', function () {

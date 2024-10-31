@@ -83,7 +83,7 @@
                             <span>Voucher</span>
                         </a>
                     </li>
-                     <li class="nav-item statistic">
+                    <li class="nav-item statistic">
                         <a class="nav-link" data-bs-toggle="tab" href="#statistic" role="tab">
                             <span>Statistik</span>
                         </a>
@@ -112,7 +112,8 @@
                                     <path d="M9 8h6" />
                                 </svg> Tambah Modul</span>
                         </a>
-                        <a href="{{ route('admin.course.setting-test.index', 1) }}" class="btn btn-warning d-none editWeinght">
+                        <a href="{{ route('admin.course.setting-test.index', $id) }}"
+                            class="btn btn-warning d-none editWeinght">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -133,7 +134,8 @@
                         <button class="btn d-none addVoucher text-white" data-bs-toggle="modal"
                             data-bs-target="#modal-create-vouchers" style="background-color: var(--purple-primary)">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M14.8 8L16 9.2L9.2 16L8 14.8zM4 4h16c1.11 0 2 .89 2 2v4a2 2 0 1 0 0 4v4c0 1.11-.89 2-2 2H4a2 2 0 0 1-2-2v-4c1.11 0 2-.89 2-2a2 2 0 0 0-2-2V6a2 2 0 0 1 2-2m0 2v2.54a3.994 3.994 0 0 1 0 6.92V18h16v-2.54a3.994 3.994 0 0 1 0-6.92V6zm5.5 2c.83 0 1.5.67 1.5 1.5S10.33 11 9.5 11S8 10.33 8 9.5S8.67 8 9.5 8m5 5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5" />
                                 </svg>
@@ -170,8 +172,7 @@
 
     {{-- modal tambah voucher --}}
     @include('admin.pages.courses.panes.vouchers.widgets.modal-create-vouchers')
-    {{-- modal pengaturan test --}}
-    @include('admin.pages.courses.panes.test.widgets.modal-settings-test')
+  
 @endsection
 @section('script')
     @include('admin.pages.courses.scripts.index')
