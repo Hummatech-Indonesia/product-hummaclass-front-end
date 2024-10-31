@@ -8,10 +8,10 @@
             const stock = $(this).data('stock')
             const points_required = $(this).data('points_required')
             $('#detailImage').attr('src', "{{ config('app.api_url') }}/storage/" + image);
-            $('#detailName').html(name);
-            $('#detailStock').html(stock);
-            $('#detailPointsRequired').html(points_required);
-            $('#detailDescription').html(description);
+            $('#detailName').val(name);
+            $('#detailStock').val(stock);
+            $('#detailPointsRequired').val(points_required);
+            $('#detailDescription').val(description);
         })
     });
 </script>
