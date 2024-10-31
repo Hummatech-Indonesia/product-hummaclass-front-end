@@ -760,15 +760,6 @@
                     `
         }
 
-        function emptyCard() {
-            return `
-                    <div class="d-flex justify-content-center flex-column align-items-center">    
-                        <img src="{{ asset('assets/8961448_3973477.svg') }}" width="35%" alt="" srcset="">
-                        <h4 class="text-center">Data kosong</h4>
-                    </div>
-                    `
-        }
-
         function formatDateTime(tanggalAsli) {
             // Membuat objek Date dari string tanggal, format apapun (baik yang dengan T atau dengan spasi)
             const date = new Date(tanggalAsli);
@@ -827,6 +818,15 @@
 
             // Menggabungkan hasil format tanggal dan waktu
             return `${waktuFormatted}`;
+        }
+
+        function emptyCard() {
+            return `
+                    <div class="d-flex justify-content-center flex-column align-items-center">    
+                        <img src="{{ asset('assets/8961448_3973477.svg') }}" width="35%" alt="" srcset="">
+                        <h4 class="text-center">Data kosong</h4>
+                    </div>
+                    `
         }
     </script>
 
