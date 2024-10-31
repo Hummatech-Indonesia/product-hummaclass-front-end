@@ -198,11 +198,11 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data data.",
-                        icon: "success"
-                    });
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menambah data data.",
+                            icon: "success"
+                        });
                 },
                 error: function(response) {
                     if (response.responseJSON && response.responseJSON.errors) {

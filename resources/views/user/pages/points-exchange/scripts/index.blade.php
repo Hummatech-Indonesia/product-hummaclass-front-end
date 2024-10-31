@@ -10,7 +10,7 @@
             , dataType: "json"
             , success: function(response) {
                 console.log(response);
-                
+
 
                 $('#list-point-exchange').empty();
 
@@ -33,7 +33,48 @@
                     $('.pagination__wrap').hide();
                 }
 
+                $('#rewards_id').val(response.data.data.id);
+                console.log(response.data.data.id);
 
+                $('.storeConfirm').click(function(e) {
+                    // e.preventDefault();
+
+                    console.log('fghfhgfhg');
+
+                    var id = $(this).data('id');
+
+                    Swal.fire({
+                        title: 'Tukar Poin?'
+                        , text: "Apakah Anda yakin ingin menukar poin?"
+                        , icon: 'info'
+                        , showCancelButton: true
+                        , confirmButtonColor: '#3085d6'
+                        , cancelButtonColor: '#d33'
+                        , confirmButtonText: 'Ya, tukar!'
+                        , cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: "POST"
+                                , url: "{{config('app.api_url')}}/api/rewards-claim/" + id
+                                , headers: {
+                                    'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                                }
+                                , dataType: "json"
+                                , contentType: false
+                                , processData: false
+                                , success: function(response) {
+                                    Swal.fire({
+                                        title: "Sukses"
+                                        , text: "Berhasil menambah data data."
+                                        , icon: "success"
+                                    });
+                                }
+                            });
+                        }
+                    });
+
+                });
             }
             , error: function(xhr) {
 
@@ -46,9 +87,11 @@
         });
     });
 
+
+
     function ListExchange(index, value) {
         console.log(value);
-        
+
         return `
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="event__item shine__animate-item">
@@ -69,13 +112,13 @@
                             </svg>
                             100 Poin
                         </span>
-                        <h2 class="title"><a href="javascript:void(0)">${value.name}</a></h2>
+                        <h2 class="title"><a href="{{ route('detail-point-exchange.index') }}">${value.name}</a></h2>
                         <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
                             <div class="d-flex" style="font-size: 14px;">
                                 Sisa Kuota: ${value.points_required}
                             </div>
                             <div>
-                                <button data-id="${value.id}" class="btn-purple-primary px-4">
+                                <button data-id="${value.id}" class="btn-purple-primary storeConfirm px-4">
                                     Tukarkan
                                 </button>
                             </div>

@@ -73,39 +73,7 @@
                     <h4 class="section-title">Daftar Penukaran</h4>
                     <div class="scrollable-content">
                         <div class="row" id="list-point-exchange">
-                            {{-- @foreach (range(1,8) as $data)
-                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                <div class="event__item shine__animate-item">
-                                    <div class="event__item-thumb">
-                                        <a href="events-details.html" class="shine__animate-link">
-                                            <div style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                                                <img src="{{ asset('assets/img/point-exchange/motor.png') }}" alt="img" style="width: 100%; height:150px;">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="event__item-content">
-                                        <span class="date">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                                <g fill="none" stroke="currentColor" stroke-width="2.0">
-                                                    <ellipse cx="9.5" cy="10" stroke-linecap="round" stroke-linejoin="round" rx="9.5" ry="10" transform="matrix(-1 0 0 1 20 2)" />
-                                                    <text x="11" y="15" text-anchor="middle" font-size="9" fill="currentColor" font-family="Arial" font-weight="lighter">H</text>
-                                                </g>
-                                            </svg>
-                                            100 Poin
-                                        </span>
-                                        <h2 class="title"><a href="javascript:void(0)">Yamaha Aerox Kakak Starboy Anjay Slebew</a></h2>
-                                        <div class="d-flex justify-content-between pt-3" style="border-top: 1px solid #CCCCCC">
-                                            <div class="d-flex">Sisa Kuota: 100</div>
-                                            <div>
-                                                <button class="btn-purple-primary px-4">
-                                                    Tukarkan
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach --}}
+
                         </div>
                         <nav class="pagination__wrap mt-30">
                             <ul class="list-wrap">
