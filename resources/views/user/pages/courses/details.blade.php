@@ -315,6 +315,17 @@
                                 response.data.course_test_id);
                             $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
                             $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                        } else if (response.data.user_course.has_pre_test == 1 && response.data
+                            .user_course.has_post_test == 1) {
+                            document.getElementById('certificate-download').style.display = 'block';
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
                         } else {
                             $('#btn-checkout').text('Lanjutkan');
                             $('#btn-lesson').text('Lanjutkan');
