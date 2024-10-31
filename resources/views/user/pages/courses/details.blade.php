@@ -456,11 +456,11 @@
             function moduleContent(index, value) {
 
                 const subModules = value.sub_modules.map(subModule => {
-                    return ` < li class = "course-item open-item" >
-            <p class="last_step_update" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
-                                    <span>${subModule.title}</span>
-                                </p> <
-            /li>`;
+                    return `<li class="course-item open-item">
+                                <p class="last_step_update" data-sub-modul-id="${subModule.id}" data-course-id="${value.course.id}">
+                                        <span>${subModule.title}</span>
+                                </p>
+                            </li>`;
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
