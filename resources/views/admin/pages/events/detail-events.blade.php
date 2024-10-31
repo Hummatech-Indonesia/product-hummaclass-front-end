@@ -148,7 +148,7 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
-
+            let event;
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/events/" + id,
@@ -157,7 +157,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
-
+                    event = response.data;
                     $('#detail-title').html(response.data.title);
                     // $('#detail-start-date').html(response.data.start_date);
                     $('#detail-start-date').html(response.data.start_date);
@@ -187,6 +187,21 @@
                     // <span>Curriculum Developer</span>
 
                     $('#event-detail-tables').append(roundownString);
+                    $.ajax({
+                        type: "get",
+                        url: "{{ config('app.api_url') }}/api/event-attendances/" + event.id,
+                        data: {
+                            date: "{{ Carbon\Carbon::now()->toDateString() }}",
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            // console.log(response.data.data[0].user_event_attendance);
+
+                            $('#attendance-list tbody').append(generateListAttendance(
+                                response
+                                .data.data[0].user_event_attendance))
+                        }
+                    });
                 },
                 error: function(xhr) {
 
@@ -232,40 +247,10 @@
                 return listEl;
             }
 
-            $('#attendance-list tbody').empty().append(generateListAttendance([{
-                    day: 'Senin',
-                    date: '12/01/2022',
-                    time: '08:00',
-                    status: 'Hadir'
-                },
-                {
-                    day: 'Selasa',
-                    date: '13/01/2022',
-                    time: '09:00',
-                    status: 'Hadir'
-                },
-                {
-                    day: 'Rabu',
-                    date: '14/01/2022',
-                    time: '10:00',
-                    status: 'Sakit'
-                },
-                {
-                    day: 'Kamis',
-                    date: '15/01/2022',
-                    time: '11:00',
-                    status: 'Hadir'
-                },
-                {
-                    day: 'Jumat',
-                    date: '16/01/2022',
-                    time: '12:00',
-                    status: 'Hadir'
-                }
-            ]));
-
             function generateListAttendance(list) {
                 let listEl = '';
+
+                console.log(list);
 
                 list.forEach(attendance => {
                     listEl += `
@@ -279,9 +264,11 @@
                           </div>
                         </div>
                       </td>
-                            <td>${attendance.date}</td>
-                            <td>${attendance.time}</td>
-                            <td>${attendance.status}</td>
+                            <td>${attendance.created_at}</td>
+                            <td>${attendance.created_at}</td>
+                            <td>
+                                <span class="badge bg-${attendance.is_attendance?'success':'danger'}">${attendance.is_attendance?'Hadir':'Tidak Hadir'}</span>
+                                </td>
                         </tr>
                     `;
                 });

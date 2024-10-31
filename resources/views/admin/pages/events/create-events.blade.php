@@ -111,9 +111,9 @@
                                 <div class="col-11">
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            <label for="detail_start" class="fw-semibold form-label">Tanggal Mulai</label>
-                                            <input type="date" class="form-control" id="detail_start"
-                                                name="detail_start[]" placeholder="Masukan jumlah kapasitas">
+                                            <label for="event_date" class="fw-semibold form-label">Tanggal Mulai</label>
+                                            <input type="date" class="form-control" id="event_date"
+                                                name="event_date[]" placeholder="Masukan jumlah kapasitas">
                                             <div class="invalid-feedback"></div>
                                         </div>
                                         <div class="col-6 mb-3">
