@@ -10,16 +10,16 @@
     function get(page) {
         $('#test-content').empty();
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/user-course-tests"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/user-course-tests",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , data: {
-                name: $('#search-name').val()
-            , }
-            , success: function(response) {
+            },
+            dataType: "json",
+            data: {
+                name: $('#search-name').val(),
+            },
+            success: function(response) {
 
                 $('#test-content').empty();
 
@@ -34,12 +34,12 @@
                 }
 
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -86,5 +86,4 @@
     }
 
     get(1);
-
 </script>
