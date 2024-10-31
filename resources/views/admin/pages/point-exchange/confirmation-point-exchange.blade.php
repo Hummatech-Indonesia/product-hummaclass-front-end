@@ -88,9 +88,12 @@
 </div>
 
 @include('admin.pages.point-exchange.widgets.modal-detail-confirmation-point-exchange')
+@include('admin.pages.point-exchange.widgets.modal-reject-confirmation')
 @endsection
 
 @section('script')
     @include('admin.pages.point-exchange.scripts.confirmation-exchange')
     @include('admin.pages.point-exchange.scripts.detail-confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.approve-confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.reject-confirmation-exchange')
 @endsection
