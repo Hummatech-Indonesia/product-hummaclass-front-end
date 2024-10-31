@@ -1,5 +1,22 @@
 @extends('admin.layouts.app')
 
+@section('style')
+    <style>
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+        }
+
+        .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+    </style>
+@endsection
+
 @section('content')
 <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
     <div class="card-body px-4 py-3">
@@ -74,7 +91,8 @@
                     <td>1.000 Point</td>
                     <td class="d-flex justify-content-center">
                         <div class="d-flex gap-3">
-                            <button data-id="${value.id}" data-name="${value.name}" data-stock="${value.stock}" data-points_required="${value.points_required}" data-image="${value.image}" data-description="${value.description}" class="btn px-2 text-white detailReward" style="background-color: #9425FE">
+                            <button data-id="${value.id}" data-name="${value.name}" data-stock="${value.stock}" data-points_required="${value.points_required}" data-image="${value.image}" data-description="${value.description}" data-bs-toggle="modal"
+                            data-bs-target="#modal-detail-confirmation-point" class="btn px-2 text-white detailReward" style="background-color: #9425FE">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                         <path d="M3 13c3.6-8 14.4-8 18 0" />
@@ -92,5 +110,9 @@
     </div>
 </div>
 
+@include('admin.pages.point-exchange.widgets.modal-detail-confirmation-point-exchange')
+@endsection
 
+@section('script')
+    @include('admin.pages.point-exchange.scripts.confirmation-exchange')
 @endsection

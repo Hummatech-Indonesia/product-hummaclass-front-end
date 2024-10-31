@@ -96,5 +96,4 @@
 
 @section('script')
     @include('user.pages.points-exchange.scripts.index')
-    @include('user.pages.points-exchange.scripts.create-point-exchange')
 @endsection
