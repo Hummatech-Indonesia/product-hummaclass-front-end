@@ -339,7 +339,8 @@
                             <span property="itemListElement" typeof="ListItem"> <a href="/" id="breadCrumbCourse"></a>
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
-                            <span property="itemListElement" typeof="ListItem"> <a href="/" id="breadCrumbPrint">Verifikasi Nama</a>
+                            <span property="itemListElement" typeof="ListItem"> <a href="/"
+                                    id="breadCrumbPrint">Verifikasi Nama</a>
                             </span>
 
                         </nav>
@@ -386,12 +387,12 @@
                             <p>sertifikat akan menjadi pdf jika didownload</p>
                             <div class="col-6 mt-5">
                                 <div id="updated">
-                                    <a href="{{ route('courses.print-certificate.index', $course) }}"
+                                    <a href="{{ route('print-certificate.index', ['type' => $type, 'id' => $course]) }}"
                                         class="btn btn-primary w-100">Perbarui</a>
                                 </div>
                                 <div>
                                     <a target="__blank"
-                                        href="{{ config('app.api_url') . '/certificate-download/' . $course . '/' . session('user.id') }}"
+                                        href="{{ config('app.api_url') . "/$type/certificate-download/" . $course . '/' . session('user.id') }}"
                                         class="btn-warning w-100 mt-4">Download Sertifikat</a>
                                 </div>
                             </div>
@@ -407,7 +408,7 @@
             var course = "{{ $course }}"
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/certificates/" + course,
+                url: "{{ config('app.api_url') }}/api/{{ $type }}/certificates/" + course,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -415,18 +416,35 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $('#breadCrumbCourse').html(response.data.course.title);
-                    $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
-                        .slug);
-                    $('#breadCrumbPrint').attr('href', '/courses/print-certificate/' + response.data.course
-                        .slug);
-                    if (response.data.user_course.has_downloaded == 1) {
-                        $('#updated').hide();
-                    }
-                    $('#code').html(response.data.code);
-                    $('#course_title').html(response.data.course.title);
-                    $('#username').html(response.data.username);
-                    $('#date').html(formatDate(response.data.created_at));
+                    @if ($type == 'course')
+                        $('#breadCrumbCourse').html(response.data.course.title);
+                        $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
+                            .slug);
+                        $('#breadCrumbPrint').attr('href', '/courses/print-certificate/' + response.data
+                            .course
+                            .slug);
+                        if (response.data.user_course.has_downloaded == 1) {
+                            $('#updated').hide();
+                        }
+                        $('#code').html(response.data.code);
+                        $('#course_title').html(response.data.course.title);
+                        $('#username').html(response.data.username);
+                        $('#date').html(formatDate(response.data.created_at));
+                    @else
+                        $('#breadCrumbCourse').html(response.data.event.title);
+                        $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.event
+                            .slug);
+                        $('#breadCrumbPrint').attr('href', '/courses/print-certificate/' + response.data
+                            .event
+                            .slug);
+                        if (response.data.user_event.has_downloaded == 1) {
+                            $('#updated').hide();
+                        }
+                        $('#code').html(response.data.code);
+                        $('#course_title').html(response.data.event.title);
+                        $('#username').html(response.data.username);
+                        $('#date').html(formatDate(response.data.created_at));
+                    @endif
                 },
                 error: function(response) {
                     Swal.fire({

@@ -49,6 +49,9 @@ Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::get('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
 Route::get('save-token-google', [App\Http\Controllers\AuthController::class, 'saveTokenGoogle'])->name('save-token-google');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('{type}/pre-download-certificate/{course?}', function ($type, $course) {
+    return view('user.pages.courses.widgets.certificate.pre-download-certificate', compact('type', 'course'));
+})->name('pre-download-certificate.index')->middleware('auth_custom');
 
 // ================== USER ==================
 
@@ -64,19 +67,22 @@ Route::prefix('courses')->name('courses.')->group(function () {
         return view('user.pages.courses.widgets.details.detail-task');
     })->name('detail-task.index');
 
-    Route::get('print-certificate/{course}', function ($course) {
-        return view('user.pages.courses.widgets.certificate.print-certificate', compact('course'));
-    })->name('print-certificate.index');
+    // Route::get('print-certificate/{id}', function ($id) {
+    //     return view('user.pages.courses.widgets.certificate.print-certificate', compact('id'));
+    // })->name('print-certificate.index');
 
-    Route::get('pre-download-certificate/{course?}', function ($course) {
-        return view('user.pages.courses.widgets.certificate.pre-download-certificate', compact('course'));
-    })->name('pre-download-certificate.index');
 
     Route::get('download-certificate', function () {
         return view('user.pages.courses.widgets.certificate.download-certificate');
     })->name('download-certificate.index');
 });
 
+
+Route::middleware(['auth_custom', 'guest'])->group(function () {
+    Route::get('{type}/print-certificate/{id}', function ($type, $id) {
+        return view('user.pages.courses.widgets.certificate.print-certificate', compact('type', 'id'));
+    })->name('print-certificate.index');
+});
 
 Route::middleware(['auth_custom', 'guest'])->prefix('dashboard')->name('dashboard.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
@@ -223,6 +229,13 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'point-exchange' => AdminPointExchangeController::class,
     ]);
 
+    Route::get('confirmation-point-exchange', function(){
+        return view('admin.pages.point-exchange.confirmation-point-exchange');
+    })->name('confirmation-point-exchange.index');
+
+    Route::get('events-participant-detail/{participantId}', function (string $participantId) {
+        return view('admin.pages.events.widgets.detail-participant', compact('participantId'));
+    })->name('event-participant');
     Route::get('courses/detail-test/{id}', [AdminCourseController::class, 'DetailTest'])->name('courses.test.index');
 
     Route::get('courses/setting-test/{id}', function ($id) {
