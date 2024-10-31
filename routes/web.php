@@ -324,9 +324,9 @@ Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');
 });
 
-Route::get('courses/detail/test', function () {
-    return view('admin.pages.point-exchange.detail');
-});
+Route::get('point-exchange-detail', function () {
+    return view('user.pages.points-exchange.detail-point-exchange');
+})->name('detail-point-exchange.index');
 
 // Load additional routes
 require_once('features/user/checkout.php');
