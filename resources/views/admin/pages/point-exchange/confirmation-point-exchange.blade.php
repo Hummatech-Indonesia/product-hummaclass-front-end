@@ -92,4 +92,5 @@
 
 @section('script')
     @include('admin.pages.point-exchange.scripts.confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.detail-confirmation-exchange')
 @endsection
