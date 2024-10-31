@@ -12,7 +12,7 @@
             success: function(response) {
                 let cardList = '';
                 if(response.data.length == 0) {
-                    voucherListParent.append(empty());
+                    voucherListParent.append(emptyCard());
                 }
                 response.data.forEach(function(data) {
                     cardList += appendCard(data);
