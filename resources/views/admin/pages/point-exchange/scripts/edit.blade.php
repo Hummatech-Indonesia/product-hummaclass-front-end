@@ -22,7 +22,7 @@
 
                 name: $('.editRewardForm [name=name]').val(),
                 description: $('.editRewardForm [name=description]').val(),
-                points_required: $('.editRewardForm [name=required]').val(),
+                points_required: $('.editRewardForm [name=points_required]').val(),
                 stock: $('.editRewardForm [name=stock]').val(),
 
             }
