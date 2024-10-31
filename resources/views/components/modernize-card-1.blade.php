@@ -57,8 +57,9 @@
                     status: $('#status').val()
                 },
                 success: function(response) {
-                    $('#list-card').emptyCard();
+                    
                     if (response.data.data.length > 0) {
+                        $('#list-card').empty();
                         response.data.data.forEach(data => {
                             cardCourse(data);
                         });
