@@ -1,5 +1,5 @@
 <div class="modal fade detailRewardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex align-items-center justify-content-center position-relative" style="background-color: #7209DB; border-radius: 10px 10px 0 0;">
                 <h5 class="modal-title text-white text-center w-100" id="importPegawai">Detail Barang</h5>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn text-white" style="background-color: #7209DB;" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
