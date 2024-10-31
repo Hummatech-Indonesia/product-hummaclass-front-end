@@ -94,8 +94,7 @@
             <div class="card border-0 px-4" style="background-color: #9425FE; border-radius: 9px;">
                 <div class="row align-items-center p-3">
                     <div class="col-md-10" id="status_question"></div>
-                    <div class="col-md-2">
-                        <span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">02.30.00 Sisa waktu</span>
+                    <div class="col-md-2" id="time_count">
                     </div>
                 </div>
             </div>
@@ -159,6 +158,57 @@
                 url: `{{ config('app.api_url') }}/api/course-post-test/${id}/?page=` + page,
                 dataType: "json",
                 success: function(response) {
+
+                    const createdAtStr = response.data.user_quiz.created_at;
+
+                    const createdAt = new Date(createdAtStr);
+                    createdAt.setMinutes(createdAt.getMinutes() + response.data.course_test.duration);
+                    const targetTime = createdAt;
+
+                    clearInterval(window.countdown);
+
+                    window.countdown = setInterval(() => {
+                        const currentTime = new Date();
+                        const timeDiff = targetTime - currentTime;
+
+                        if (timeDiff <= 0) {
+                            console.log("Waktu tercapai!");
+                            clearInterval(window.countdown);
+                        } else {
+                            const remainingHours = Math.floor(timeDiff / (1000 * 60 * 60)); // Jam
+                            const remainingMinutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 *
+                                60)); // Menit
+                            const remainingSeconds = Math.floor((timeDiff % (1000 * 60)) /
+                                1000); // Detik
+
+
+                            const formattedHours = String(remainingHours).padStart(2, '0');
+                            const formattedMinutes = String(remainingMinutes).padStart(2, '0');
+                            const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+
+                            $('#time_count').html(
+                                `<span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">${formattedHours}.${formattedMinutes}.${formattedSeconds} Sisa waktu</span>`
+                            );
+                            if (formattedHours == 00 && formattedMinutes == 00 && formattedSeconds ==
+                                00) {
+                                console.log('done');
+                                let answer = [];
+                                for (let index = 1; index <= response.data.paginate
+                                    .last_page; index++) {
+                                    const storedAnswer = localStorage.getItem(`answer_${index}`);
+                                    if (storedAnswer) {
+                                        answer.push(storedAnswer);
+                                    } else {
+                                        answer.push(null);
+                                    }
+                                }
+
+                                submit_quiz(response.data.user_quiz.id, answer);
+                            }
+                        }
+                    }, 1000);
+
                     $('.text-white.border-0.py-2').off('click').on('click', function() {
                         let answer = [];
                         for (let index = 1; index <= response.data.paginate.last_page; index++) {

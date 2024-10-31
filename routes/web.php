@@ -79,7 +79,7 @@ Route::prefix('courses')->name('courses.')->group(function () {
 
 
 Route::middleware(['auth_custom', 'guest'])->group(function () {
-    Route::get('{type}/print-certificate/{id}', function ($type, $id) {
+    Route::get('print-certificate/{id?}/{type}', function ($type, $id) {
         return view('user.pages.courses.widgets.certificate.print-certificate', compact('type', 'id'));
     })->name('print-certificate.index');
 });
@@ -229,7 +229,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         'point-exchange' => AdminPointExchangeController::class,
     ]);
 
-    Route::get('confirmation-point-exchange', function(){
+    Route::get('confirmation-point-exchange', function () {
         return view('admin.pages.point-exchange.confirmation-point-exchange');
     })->name('confirmation-point-exchange.index');
 
