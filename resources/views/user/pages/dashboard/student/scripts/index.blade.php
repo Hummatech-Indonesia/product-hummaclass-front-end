@@ -141,7 +141,7 @@
                     </div>
                     <div class="event__item-content">
                         <span class="date">25 June, 2024</span>
-                        <h2 class="title"><a href="">${data.title}</a></h2>
+                        <h2 class="title"><a href="{{ route('events.show', '') }}/${data.slug}">${data.title}</a></h2>
 
                         <div class="d-flex justify-content-between pt-3"
                             style="border-top: 1px solid #CCCCCC">
