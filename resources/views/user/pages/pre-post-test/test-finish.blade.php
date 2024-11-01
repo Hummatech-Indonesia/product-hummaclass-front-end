@@ -197,8 +197,8 @@
                     $('#total_question').html(response.data.total_question);
                     if (response.data.test_type == "post-test") {
                         $('#finish').attr('href',
-                            `{{ route('print-certificate.index', '') }}/${response.data.course_slug}`
-                            );
+                            `{{ url('print-certificate') }}/${response.data.course_slug}/courses`
+                        );
                     } else {
                         $('#finish').attr('href',
                             `{{ route('courses.courses.show', '') }}/${response.data.course_slug}`);

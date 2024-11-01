@@ -142,7 +142,7 @@
                         <li class="sidebar-item">
                             <a href="{{ route('admin.configuration.faq.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-help-circle"></i> <!-- Icon untuk FAQ -->
+                                    <i class="ti ti-circle"></i>
                                 </div>
                                 <span class="hide-menu">Faq</span>
                             </a>
@@ -150,7 +150,7 @@
                         <li class="sidebar-item">
                             <a href="{{ route('admin.configuration.footer.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-layout-footer"></i> <!-- Icon untuk Footer -->
+                                    <i class="ti ti-circle"></i>
                                 </div>
                                 <span class="hide-menu">Footer</span>
                             </a>

@@ -82,7 +82,7 @@
                     </tr>
                 </thead>
                 <tbody id="list-point-exchange">
-
+                    
                 </tbody>
             </table>
         </div>

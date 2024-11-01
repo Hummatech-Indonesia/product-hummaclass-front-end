@@ -51,7 +51,6 @@
             <div class="row">
                 @include('user.pages.courses.widgets.index.filter')
                 <div class="col-xl-9 col-lg-8">
-                    @include('user.pages.courses.widgets.index.sort')
                     <div class="tab-content" id="myTabContent">
                         @include('user.pages.courses.widgets.index.grid')
                         {{-- @include('user.pages.courses.widgets.index.list') --}}

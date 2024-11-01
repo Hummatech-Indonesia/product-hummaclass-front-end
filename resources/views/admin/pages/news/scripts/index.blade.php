@@ -78,7 +78,7 @@
                     $('#pagination').html(handlePaginate(response.data.paginate))
 
                 } else {
-                    $('#contentNews').append(empty());
+                    $('#contentNews').append(emptyCard());
                 }
 
 

@@ -163,7 +163,7 @@
                     const createdAtStr = response.data.user_quiz.created_at;
 
                     const createdAt = new Date(createdAtStr);
-                    createdAt.setMinutes(createdAt.getMinutes() + 5);
+                    createdAt.setMinutes(createdAt.getMinutes() + response.data.quiz.duration);
                     const targetTime = createdAt;
 
                     clearInterval(window.countdown);
@@ -182,7 +182,7 @@
                             const remainingSeconds = Math.floor((timeDiff % (1000 * 60)) /
                                 1000); // Detik
 
-                            // Format agar memiliki 2 digit angka dengan padding 0
+
                             const formattedHours = String(remainingHours).padStart(2, '0');
                             const formattedMinutes = String(remainingMinutes).padStart(2, '0');
                             const formattedSeconds = String(remainingSeconds).padStart(2, '0');
@@ -191,8 +191,24 @@
                             $('#time_count').html(
                                 `<span class="badge w-100 h-100 bg-white fs-6 fw-bolder text-warning">${formattedHours}.${formattedMinutes}.${formattedSeconds} Sisa waktu</span>`
                             );
+                            if (formattedHours == 00 && formattedMinutes == 00 && formattedSeconds ==
+                                00) {
+                                console.log('done');
+                                let answer = [];
+                                for (let index = 1; index <= response.data.paginate
+                                    .last_page; index++) {
+                                    const storedAnswer = localStorage.getItem(`answer_${index}`);
+                                    if (storedAnswer) {
+                                        answer.push(storedAnswer);
+                                    } else {
+                                        answer.push(null);
+                                    }
+                                }
+
+                                submit_quiz(response.data.user_quiz.id, answer);
+                            }
                         }
-                    }, 1000); // Update setiap detik
+                    }, 1000);
 
                     // Kode lainnya
                     $('#title').html(response.data.quiz.course_title);

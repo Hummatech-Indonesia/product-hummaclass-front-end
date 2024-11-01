@@ -76,43 +76,24 @@
                 </tr>
             </thead>
             <tbody id="confirmation-point-content">
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="http://127.0.0.1:9000/admin/dist/images/profile/user-1.jpg" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="">
-                            <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0">guest</h6>
-                                <span class="fw-normal">guest@gmail.com</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>Kenapa ayam menyebrang?</td>
-                    <td>1x</td>
-                    <td>1.000 Point</td>
-                    <td class="d-flex justify-content-center">
-                        <div class="d-flex gap-3">
-                            <button data-id="${value.id}" data-name="${value.name}" data-stock="${value.stock}" data-points_required="${value.points_required}" data-image="${value.image}" data-description="${value.description}" data-bs-toggle="modal"
-                            data-bs-target="#modal-detail-confirmation-point" class="btn px-2 text-white detailReward" style="background-color: #9425FE">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                        <path d="M3 13c3.6-8 14.4-8 18 0" />
-                                        <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
-                                    </g>
-                                </svg>
-                            </button>
-                            <button class="btn btn-success">terima</button>
-                            <button class="btn btn-danger">terima</button>
-                        </div>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
+    </div>
+    <div class="d-flex justify-content-end">
+        <nav id="pagination">
+
+        </nav>
     </div>
 </div>
 
 @include('admin.pages.point-exchange.widgets.modal-detail-confirmation-point-exchange')
+@include('admin.pages.point-exchange.widgets.modal-reject-confirmation')
 @endsection
 
 @section('script')
     @include('admin.pages.point-exchange.scripts.confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.detail-confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.approve-confirmation-exchange')
+    @include('admin.pages.point-exchange.scripts.reject-confirmation-exchange')
 @endsection

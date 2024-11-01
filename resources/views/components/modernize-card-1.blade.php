@@ -57,14 +57,15 @@
                     status: $('#status').val()
                 },
                 success: function(response) {
-                    $('#list-card').empty();
+                    
                     if (response.data.data.length > 0) {
+                        $('#list-card').empty();
                         response.data.data.forEach(data => {
                             cardCourse(data);
                         });
                         $('#pagination').html(handlePaginate(response.data.paginate));
                     } else {
-                        $('#list-card').append(empty());
+                        $('#list-card').append(emptyCard());
                         $('#pagination').hide();
                     }
                 },
