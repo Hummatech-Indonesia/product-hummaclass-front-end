@@ -47,13 +47,6 @@
                     <input type="text" name="sub_title" class="form-control" placeholder="Masukan sub judul">
                     <div class="invalid-feedback"></div>
                 </div>
-                {{-- <div class="col col-12 mb-3">
-                    <label for="" class="fw-semibold form-label">Konten</label>
-                    <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
-                        class="mb-5"></div>
-                    <textarea name="content" id="summernote-materi" cols="30" rows="10" class="form-control"></textarea>
-                    <div class="invalid-feedback"></div>
-                </div> --}}
                 <div class="col col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Konten</label>
                     <div id="editorjs" style="background-color: rgba(236, 236, 236, 0.735); border-radius:5px;"
@@ -99,7 +92,14 @@
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        window.location.href = "/admin/modules/" + response.data.module_id;
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = "/admin/modules/" + response.data
+                                .module_id;
+                        });
                     },
                     error: function(response) {
                         if (response.status === 422) {

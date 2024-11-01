@@ -17,7 +17,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/" + id,
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/admin/" + id,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
