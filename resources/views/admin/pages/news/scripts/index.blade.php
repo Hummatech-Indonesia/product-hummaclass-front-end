@@ -104,11 +104,11 @@
                     <div class="card-body p-3">
                         <h6 style="color: var(--purple-primary);">${value.created}</h6>
                         <h4 class="fw-bolder mt-2">
-                            ${value.title.length > 30 ? value.title.substring(0, 30) + '...' : value.title}
+                            ${value.title.length > 25 ? value.title.substring(0, 25) + '...' : value.title}
                         </h4>
                        <p>
-                            ${$("<div>").html(value.description).text().length > 50
-                                ? $("<div>").html(value.description).text().substring(0, 50) + '...' 
+                            ${$("<div>").html(value.description).text().length > 70
+                                ? $("<div>").html(value.description).text().substring(0, 70) + '...' 
                                 : $("<div>").html(value.description).text()}
                         </p>
 
