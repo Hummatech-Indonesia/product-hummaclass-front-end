@@ -10,12 +10,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="form-group">
-                            <label for="" class="mb-2 fw-semibold text-dark">Pertanyaan</label>
-                            <textarea name="question" id="" class="form-control" placeholder="Masukan pertanyaan"></textarea>
+                            <label for="question" class="mb-2 fw-semibold text-dark">Pertanyaan</label>
+                            <textarea name="question" id="question" class="form-control" placeholder="Masukan pertanyaan"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group mt-2">
-                            <label for="" class="mb-2 fw-semibold text-dark">Jawaban</label>
-                            <textarea name="answer" id="" class="form-control" placeholder="Masukan jawaban"></textarea>
+                            <label for="answer" class="mb-2 fw-semibold text-dark">Jawaban</label>
+                            <textarea name="answer" id="answer" class="form-control" placeholder="Masukan jawaban"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                 </div>
@@ -29,3 +31,67 @@
         </div>
     </div>
 </div>
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            // Show the modal when the "Tambah FAQ" button is clicked
+            $(document).on('click', '.addFaq', function() {
+                $('#modal-create-faq').modal('show');
+            });
+
+            // Submit the form
+            $('.storeConfirmation').click(function(e) {
+                e.preventDefault();
+
+                // Gather the form data
+                let formData = new FormData($('.createFormFaq')[0]);
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/faqs",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    data: formData,
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#modal-create-faq').modal('hide');
+                        $('.createFormFaq')[0].reset();
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        });
+                        get(1);
+                    },
+                    error: function(response) {
+
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            // Clear previous error messages
+                            $('.createFormFaq .is-invalid').removeClass('is-invalid');
+                            $('.createFormFaq .invalid-feedback').text('');
+
+                            // Display new error messages
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.form-group').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
