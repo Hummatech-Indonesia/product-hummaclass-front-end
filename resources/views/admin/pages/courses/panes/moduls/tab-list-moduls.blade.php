@@ -32,10 +32,10 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        $('#cardBody').empty();
                         if (response.data.length === 0) {
                             $('#cardBody').append(emptyCard());
                         } else {
-                            $('#cardBody').emptyCard();
                             $.each(response.data, function(index, value) {
                                 $('#cardBody').append(card(index, value));
                             });
