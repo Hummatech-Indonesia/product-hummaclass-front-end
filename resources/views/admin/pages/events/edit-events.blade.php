@@ -49,7 +49,8 @@
                 </div>
                 <div class="col col-md-12 mb-3" id="price-container" style="display: none">
                     <label for="price" class="form-label">Harga</label>
-                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga" value="0">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Masukan harga"
+                        value="0">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-6 mb-3">
