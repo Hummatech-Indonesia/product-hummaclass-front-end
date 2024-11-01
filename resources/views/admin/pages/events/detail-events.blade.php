@@ -112,8 +112,15 @@
         </div>
         <div class="tab-pane" id="attendance" role="tabpanel">
             <div class="card w-100 position-relative overflow-hidden">
-                <div class="px-4 py-3 border-bottom">
-                    <h5 class="card-title fw-semibold mb-0 lh-sm">Basic Table</h5>
+                <div class="px-4 py-3 border-bottom row justify-content-between">
+                    <div class="col-3">
+                        <h5 class="card-title fw-semibold mb-0 lh-sm">Daftar Kehadiran</h5>
+                    </div>
+                    <div class="col-6 d-flex gap-2">
+                        <input type="text" class="form-control" value="Name" id="name-filter">
+                        <input type="date" id="attendance-date-filter" class="form-control" style="max-width: 10em;"
+                            value="2018-05-13">
+                    </div>
                 </div>
                 <div class="card-body p-4">
                     <div class="table-responsive rounded-2 mb-4">
@@ -146,6 +153,29 @@
         $(document).ready(function() {
             var id = "{{ $id }}";
             let event;
+            let data = {
+                date: "{{ Carbon\Carbon::now()->toDateString() }}"
+            };
+
+            $('#attendance-date-filter').change(function(e) {
+                e.preventDefault();
+
+                data.date = $(this).val();
+                getAttendance(data);
+            });
+
+            let myTimeout = null;
+            $('#name-filter').change(function(e) {
+                e.preventDefault();
+                data.name = $(this).val();
+
+                clearTimeout(myTimeout);
+
+                myTimeout = setTimeout(() => {
+                    getAttendance(data)
+                }, 1000);
+            });
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/events/" + id,
@@ -183,22 +213,9 @@
                     });
                     // <span>Curriculum Developer</span>
 
-                    $('#event-detail-tables').append(roundownString);
-                    $.ajax({
-                        type: "get",
-                        url: "{{ config('app.api_url') }}/api/event-attendances/" + event.id,
-                        data: {
-                            date: "{{ Carbon\Carbon::now()->toDateString() }}",
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            // console.log(response.data.data[0].user_event_attendance);
+                    getAttendance(data);
 
-                            $('#attendance-list tbody').append(generateListAttendance(
-                                response
-                                .data.data[0].user_event_attendance))
-                        }
-                    });
+                    $('#event-detail-tables').append(roundownString);
                 },
                 error: function(xhr) {
 
@@ -209,6 +226,20 @@
                     });
                 }
             });
+
+            function getAttendance(data) {
+                $.ajax({
+                    type: "get",
+                    url: "{{ config('app.api_url') }}/api/event-attendances/" + event.id,
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#attendance-list tbody').append(generateListAttendance(
+                            response
+                            .data.data[0].user_event_attendance))
+                    }
+                });
+            }
 
 
             $('#list-participant').append(generateListParticipant([1, 2, 3, 4, 5, 6, 6]))
