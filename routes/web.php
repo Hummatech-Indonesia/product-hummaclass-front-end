@@ -233,6 +233,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.point-exchange.confirmation-point-exchange');
     })->name('confirmation-point-exchange.index');
 
+    Route::get('create-rewards', function () {
+        return view('admin.pages.point-exchange.create-rewards');
+    })->name('create-rewards.index');
+
+
     Route::get('events-participant-detail/{participantId}', function (string $participantId) {
         return view('admin.pages.events.widgets.detail-participant', compact('participantId'));
     })->name('event-participant');
