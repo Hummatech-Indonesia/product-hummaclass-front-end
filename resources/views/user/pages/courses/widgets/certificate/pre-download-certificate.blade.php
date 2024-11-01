@@ -416,6 +416,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    // console.log(response.data);
                     @if ($type == 'course')
                         $('#breadCrumbCourse').html(response.data.course.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course

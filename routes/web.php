@@ -79,7 +79,7 @@ Route::prefix('courses')->name('courses.')->group(function () {
 
 
 Route::middleware(['auth_custom', 'guest'])->group(function () {
-    Route::get('print-certificate/{id?}/{type}', function ($type, $id) {
+    Route::get('print-certificate/{id?}/{type}', function ($id, $type) {
         return view('user.pages.courses.widgets.certificate.print-certificate', compact('type', 'id'));
     })->name('print-certificate.index');
 });
