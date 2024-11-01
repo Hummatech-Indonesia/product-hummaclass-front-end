@@ -155,6 +155,7 @@
                             text: "Berhasil memperbarui data data.",
                             icon: "success"
                         });
+                        window.location.href = '/admin/courses';
                     },
                     error: function(response) {
                         Swal.fire({
