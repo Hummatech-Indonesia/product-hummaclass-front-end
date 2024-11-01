@@ -30,7 +30,7 @@
             <span>Kembali</span>
         </a>
 
-        <a class="btn text-white" style="background-color: var(--purple-primary)" href="">
+        <a href="{{ route('news.show', $id) }}" target="_blank" class="btn text-white" style="background-color: var(--purple-primary)">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                     <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0" />

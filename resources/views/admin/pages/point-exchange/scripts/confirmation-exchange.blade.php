@@ -24,11 +24,9 @@
 
 
                     $('#confirmation-point-content').empty();
-                    const filteredData = response.data.data.filter(item => item.status === 'pending');
-                    console.log("Filtered Data:", filteredData); // Cek data setelah difilter
 
-                    if (filteredData.length > 0) {
-                        $.each(filteredData, function(index, value) {
+                    if (response.data.data.length > 0) {
+                        $.each(response.data.data, function(index, value) {
                             $('#confirmation-point-content').append(getConfirmationPoint(index, value));
                         });
 
@@ -49,6 +47,10 @@
         }
 
         function getConfirmationPoint(index, value) {
+            const badgeClass =
+                value.status === "success" ? "bg-light-success text-success" :
+                value.status === "pending" ? "bg-light-warning text-warning" :
+                value.status === "rejected" ? "bg-light-danger text-danger" : "";
             return `
                     <tr>
                         <td>
@@ -65,7 +67,18 @@
                         <td>${value.reward.points_required} Point</td>
                         <td class="d-flex justify-content-center">
                             <div class="d-flex gap-3">
-                                <button data-id="${value.id}" data-user="${value.user.name}" data-email="${value.user.email}" data-name="${value.reward.name}" data-points_required="${value.reward.points_required}" data-stock="${value.reward.stock}" data-image="${value.image}"
+                                ${value.status !== 'pending' ? `<span class="badge ${badgeClass} fs-2 fw-semibold px-4 py-2">${value.status}</span>` : ''}
+                                
+                                <button data-id="${value.id}" class="btn btn-success editConfirm btn-sm" ${value.status === 'success' || value.status === 'rejected' ? 'style="display: none;"' : ''}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="white" d="M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41z"/></svg>    
+                                </button>
+                                <button data-id="${value.id}" class="btn btn-danger rejectConfirm btn-sm" ${value.status === 'rejected' || value.status === 'success' ? 'style="display: none;"' : ''}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="white" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4"/></svg>    
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <button data-id="${value.id}" data-user="${value.user.name}" data-email="${value.user.email}" data-name="${value.reward.name}" data-points_required="${value.reward.points_required}" data-stock="${value.reward.stock}" data-image="${value.image}"
                                 class="btn px-2 text-white detailConfirmationExchange" style="background-color: #9425FE">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                         <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -74,9 +87,6 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <button data-id="${value.reward.id}" class="btn btn-success editConfirm">terima</button>
-                                <button data-id="${value.reward.id}" class="btn btn-danger rejectConfirm">tolak</button>
-                            </div>
                         </td>
                     </tr>
                     `;

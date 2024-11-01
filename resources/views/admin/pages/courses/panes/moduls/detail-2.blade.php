@@ -200,53 +200,58 @@
         $(document).ready(function() {
             var id = "{{ $id }}";
 
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/modules/detail/" + id,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
+            function getDetail() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/modules/detail/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
 
-                    $('.back').click(function(e) {
-                        e.preventDefault();
-                        window.location.href = "/admin/courses/" + response.data.course.slug;
-                    });
+                        $('.back').click(function(e) {
+                            e.preventDefault();
+                            window.location.href = "/admin/courses/" + response.data.course
+                                .slug;
+                        });
 
-                    $('#title').html(response.data.title);
-                    $('#module_task_count').html(response.data.module_task_count);
-                    $('#sub_title').html(response.data.sub_title);
-                    $('#step').html(response.data.step);
-                    $('#quiz_count').html(response.data.quizz_count);
-                    $('#sub_modul_count').html(response.data.sub_module_count);
+                        $('#title').html(response.data.title);
+                        $('#module_task_count').html(response.data.module_task_count);
+                        $('#sub_title').html(response.data.sub_title);
+                        $('#step').html(response.data.step);
+                        $('#quiz_count').html(response.data.quizz_count);
+                        $('#sub_modul_count').html(response.data.sub_module_count);
 
-                    if (response.data.sub_modules.length === 0) {
-                        $('#cardSubModul').append(empty());
-                    } else {
-                        $.each(response.data.sub_modules, function(index, value) {
-                            $('#cardSubModul').append(subModul(index, value));
+                        if (response.data.sub_modules.length === 0) {
+                            $('#cardSubModul').append(empty());
+                        } else {
+                            $.each(response.data.sub_modules, function(index, value) {
+                                $('#cardSubModul').append(subModul(index, value));
+                            });
+                        }
+                        $('#module-task-show').empty();
+
+                        if (response.data.module_tasks.length === 0) {
+                            $('#module-task-show').append(empty());
+                        } else {
+                            $.each(response.data.module_tasks, function(index, value) {
+                                $('#module-task-show').append(moduleTasks(index, value));
+                            });
+                        }
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data modul.",
+                            icon: "error"
                         });
                     }
-                    $('#module-task-show').empty();
+                });
+            }
 
-                    if (response.data.module_tasks.length === 0) {
-                        $('#module-task-show').append(empty());
-                    } else {
-                        $.each(response.data.module_tasks, function(index, value) {
-                            $('#module-task-show').append(moduleTasks(index, value));
-                        });
-                    }
-
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data modul.",
-                        icon: "error"
-                    });
-                }
-            });
+            getDetail();
 
             function subModul(index, value) {
 
@@ -293,164 +298,158 @@
             }
 
             function moduleTasks(index, value) {
+                // Truncate description if it's longer than 150 characters
+                const truncatedDescription = value.description.length > 150 ?
+                    value.description.substring(0, 150) + '...' :
+                    value.description;
 
                 return `<div class="col-lg-4">
-                        <div class="card card-body">
-                            <div class="d-flex justify-content-between mb-3">
-                                <div></div>
-                                <div class="d-flex gap-2 align-items-center">
-                                    <a data-id="${value.id}" data-question="${value.question}" data-point="${value.point}" data-description="${value.description}" class="text-warning" href="${"{{ route('admin.edit-task.index', ':id') }}".replace(':id', value.id)}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
-                                            <path fill="currentColor"
-                                                d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
-                                        </svg>
-                                    </a>
-                                    <button data-id="${value.id}" class="border-0 btn-delete-task bg-transparent" style="color: #DB0909;">
-                                        <i class="ti ti-trash fs-7"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <h5 class="text-dark me-1 fw-semibold"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="24"
-                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-                                    <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-                                    <path d="M9 8h6" />
+                <div class="card card-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div></div>
+                        <div class="d-flex gap-2 align-items-center">
+                            <a data-id="${value.id}" data-question="${value.question}" data-point="${value.point}" data-description="${value.description}" class="text-warning" href="${"{{ route('admin.edit-task.index', ':id') }}".replace(':id', value.id)}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28">
+                                    <path fill="currentColor"
+                                        d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
                                 </svg>
-                               ${value.question}
-                            </h5>
-                            <p>${value.description}</p>
-
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-light" style="color: var(--purple-primary)">
-                                ${value.point}+ Points
-                                </button>
-                                <a href="${"{{ route('admin.detail-task.blade.php', ':id') }}".replace(':id', value.id)}" class="btn text-white d-flex align-items-center"
-                                    style="background-color: var(--purple-primary)">
-                                    Lihat Tugas
-                                    <i class="ti ti-arrow-right fs-5 ms-1"></i>
-                                </a>
-                            </div>
+                            </a>
+                            <button data-id="${value.id}" class="border-0 btn-delete-task bg-transparent" style="color: #DB0909;">
+                                <i class="ti ti-trash fs-7"></i>
+                            </button>
                         </div>
-                    </div>`;
+                    </div>
+
+                    <h5 class="text-dark me-1 fw-semibold">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
+                            <path d="M19 16h-12a2 2 0 0 0 -2 2" />
+                            <path d="M9 8h6" />
+                        </svg>
+                       ${value.question}
+                    </h5>
+                    <p>${truncatedDescription}</p>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-light" style="color: var(--purple-primary)">
+                            ${value.point}+ Points
+                        </button>
+                        <a href="${"{{ route('admin.detail-task.blade.php', ':id') }}".replace(':id', value.id)}" class="btn text-white d-flex align-items-center" style="background-color: var(--purple-primary)">
+                            Lihat Tugas
+                            <i class="ti ti-arrow-right fs-5 ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>`;
             }
 
-        });
-    </script>
 
-    <script>
-        $(document).on('click', '.btn-delete-sub-module', function() {
-            var id = $(this).data('id');
-            var url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
 
-            $('#modal-delete').modal('show');
+            $(document).on('click', '.btn-delete-sub-module', function() {
+                var id = $(this).data('id');
+                var url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
 
-            funDelete(url);
-        });
+                $('#modal-delete').modal('show');
 
-        function funDelete(url) {
+                funDelete(url);
+            });
 
-            $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    success: function(response) {
+            function funDelete(url) {
 
-                        $('#modal-delete').modal('hide');
-                        Swal.fire({
-                            title: "Sukses",
-                            text: "Berhasil menghapus data.",
-                            icon: "success"
-                        });
+                $('.deleteConfirmation').click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        success: function(response) {
 
-                        location.reload();
-                    },
-                    error: function(response) {
-
-                        $('#modal-delete').modal('hide');
-                        if (response.status == 400) {
+                            $('#modal-delete').modal('hide');
                             Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: response.responseJSON.meta.message,
-                                icon: "error"
+                                title: "Sukses",
+                                text: "Berhasil menghapus data.",
+                                icon: "success"
                             });
-                        } else {
+
+                            location.reload();
+                        },
+                        error: function(response) {
+
+                            $('#modal-delete').modal('hide');
+                            if (response.status == 400) {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: response.responseJSON.meta.message,
+                                    icon: "error"
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: "Ada kesalahan saat menghapus data.",
+                                    icon: "error"
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+            $(document).on('click', '.btn-delete-task', function() {
+                const id = $(this).data('id');
+                const url = "{{ config('app.api_url') }}" + "/api/module-tasks/" + id;
+
+                $('#modal-delete').modal('show');
+                deleteCTask(url);
+            });
+
+            function deleteCTask(url) {
+                $('.deleteConfirmation').click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        dataType: "json",
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: response.meta.message,
+                                icon: "success"
+                            });
+                            getDetail();
+                        },
+                        error: function(response) {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menghapus data.",
+                                text: "Ada kesalahan saat menyimpan data.",
                                 icon: "error"
                             });
                         }
-                    }
+                    });
                 });
-            });
-        }
-    </script>
 
-    <script>
-        $(document).on('click', '.btn-delete-task', function() {
-            const id = $(this).data('id');
-            const url = "{{ config('app.api_url') }}" + "/api/module-tasks/" + id;
-
-            $('#modal-delete').modal('show');
-            deleteCTask(url);
-        });
-
-        function deleteCTask(url) {
-            $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: response.meta.message,
-                            icon: "success"
-                        });
-                        get(1)
-                    },
-                    error: function(response) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
-                    }
-                });
-            });
-
-        }
-    </script>
-
-    <script>
-        function setActiveTab(tabId) {
-            localStorage.setItem('activeTab', tabId);
-        }
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            const activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                document.querySelector('.nav-link.active').classList.remove('active');
-                document.querySelector('.tab-pane.active').classList.remove('active');
-        
-                document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
-                document.querySelector(`#${activeTab}`).classList.add('active');
             }
+
+            function setActiveTab(tabId) {
+                localStorage.setItem('activeTab', tabId);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                    document.querySelector('.nav-link.active').classList.remove('active');
+                    document.querySelector('.tab-pane.active').classList.remove('active');
+
+                    document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
+                    document.querySelector(`#${activeTab}`).classList.add('active');
+                }
+            });
         });
     </script>
-    
 @endsection

@@ -107,8 +107,8 @@
                                     <li class="menu-item {{ Route::currentRouteName() == 'events.index' ? 'active' : '' }}">
                                         <a href="{{ route('events.index') }}">Event</a>
                                     </li>
-                                    <li class="menu-item {{ Route::currentRouteName() == 'blogs.index' ? 'active' : '' }}">
-                                        <a href="{{ route('blogs.index') }}">Berita</a>
+                                    <li class="menu-item {{ Route::currentRouteName() == 'news.index' ? 'active' : '' }}">
+                                        <a href="{{ route('news.index') }}">Berita</a>
                                     </li>
                                     <li class="menu-item {{ Route::currentRouteName() == 'faqs.index' ? 'active' : '' }}">
                                         <a href="{{ route('faqs.index') }}">FAQ</a>

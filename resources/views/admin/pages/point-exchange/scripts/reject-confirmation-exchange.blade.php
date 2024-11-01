@@ -1,76 +1,51 @@
 <script>
     $(document).ready(function() {
-        let page = 1;
+        $(document).on('click', '.rejectConfirm', function() {
+            var id = $(this).data('id');
+            $('#modal-reject-confirmation').modal('show');
 
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
+            $('#modal-reject-confirmation .storeConfirmation').off('click').on('click', function(e) {
+                e.preventDefault();
 
-                // Menggunakan event delegation untuk tombol "Tolak"
-                $(document).on('click', '.rejectConfirm', function(e) {
-                    var id = $(this).data('id'); // Mendapatkan id dari tombol yang diklik
-                    $('#modal-reject-confirmation').modal('show'); // Menampilkan modal
+                const data = {
+                    message: $('#reject-reason').val()
+                , }
 
-                    // Saat tombol "Tambah" di modal ditekan
-                    $('.storeConfirmation').off('click').on('click', function(e) {
-                        e.preventDefault();
 
-                        // Ambil alasan dari textarea
-                        var reason = $('#modal-reject-confirmation').find('textarea[name="message"]').val();
+                console.log(data);
 
-                        // Validasi alasan tidak kosong
-                        if (reason.trim() === "") {
-                            Swal.fire({
-                                title: "Alasan diperlukan!",
-                                text: "Harap masukkan alasan penolakan.",
-                                icon: "warning"
-                            });
-                            return;
-                        }
 
-                        // Proses AJAX untuk mengirimkan alasan penolakan
-                        $.ajax({
-                            type: "PUT",
-                            url: "{{ config('app.api_url') }}/api/rewards/" + id,
-                            headers: {
-                                'Authorization': `Bearer {{ session('hummaclass-token') }}`
-                            },
-                            data: JSON.stringify({ reason: reason }),
-                            contentType: "application/json",
-                            dataType: "json",
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Berhasil",
-                                    text: "Penukaran poin telah ditolak.",
-                                    icon: "success"
-                                });
-
-                                $('#modal-reject-confirmation').modal('hide'); // Menutup modal
-                            },
-                            error: function(xhr) {
-                                Swal.fire({
-                                    title: "Terjadi Kesalahan!",
-                                    text: "Gagal menolak penukaran poin.",
-                                    icon: "error"
-                                });
-                            }
+                $.ajax({
+                    type: "PATCH"
+                    , url: "{{ config('app.api_url') }}/api/rewards-change/" + id + `?message=${data.message}&status=rejected`
+                    , headers: {
+                        'Authorization': 'Bearer {{ session("hummaclass-token") }}'
+                        , 'Content-Type': 'application/json'
+                    }
+                    , processData: false
+                    , contentType: false
+                    , data: data
+                    , dataType: "json"
+                    , success: function(response) {
+                        Swal.fire({
+                            title: "Berhasil"
+                            , text: "Penukaran poin telah ditolak."
+                            , icon: "success"
+                        }).then(() => {
+                            $('#modal-reject-confirmation').modal('hide');
+                            $('#status-' + id).html('<span class="badge bg-light-danger text-danger">Rejected</span>'); // Ganti dengan status yang sesuai
                         });
-                    });
+                    }
+                    , error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!"
+                            , text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : "Gagal menolak penukaran poin."
+                            , icon: "error"
+                        });
+                    }
                 });
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data penukaran poin.",
-                    icon: "error"
-                });
-            }
+            });
         });
     });
+
 </script>

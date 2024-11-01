@@ -391,7 +391,7 @@
                                 </div>
                                 <div class="d-grid py-4 px-7 pt-8">
                                     <div class="mb-2">
-                                        <a href="{{ route('dashboard.users.profile', session('user')['id']??'') }}" style="background-color: var(--purple-primary)" class="btn w-100 text-white">Profile Saya</a>
+                                        <a href="{{ route('admin.profile.index') }}" style="background-color: var(--purple-primary)" class="btn w-100 text-white">Profile Saya</a>
                                     </div>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf

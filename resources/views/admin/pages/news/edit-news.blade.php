@@ -27,7 +27,7 @@
     <div class="card p-3">
         <h5 class="fw-semibold">Edit Berita</h5>
         <hr>
-        <form action="" id="create-module-form">
+        <form action="" id="update-module-form" enctype="multipart/form-data">
             <div class="row">
                 <img src="" id="thumbnail" style="width: 30%; border-radius:15%" srcset="">
                 <div class="col-12 mb-3">
@@ -49,19 +49,20 @@
                 </div>
                 <div class="col-6 mb-3">
                     <label for="" class="fw-semibold form-label">Sub Kategori</label>
-                    <select name="" id="sub_category_id" class="form-select">
+                    <select name="sub_category_id" id="sub_category_id" class="form-select">
                         <option value="">Pilih Sub Kategori</option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="" class="fw-semibold form-label">Deskripsi</label>
-                    <textarea name="" id="summernote-description" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="summernote-description" cols="30" rows="10"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
             <div class="text-end">
-                <a href="{{ route('admin.news.index') }}" class="btn text-white me-2" style="background-color: #DB0909">Batal</a>
+                <a href="{{ route('admin.news.index') }}" class="btn text-white me-2"
+                    style="background-color: #DB0909">Batal</a>
                 <button type="submit" class="btn text-white"
                     style="background-color: var(--purple-primary)">Tambah</button>
             </div>

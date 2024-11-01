@@ -113,16 +113,6 @@ Route::prefix('password')->name('password.')->group(function () {
     Route::get('reset', [ResetPasswordController::class, 'reset'])->name('reset-password');
 });
 
-Route::prefix('news')->name('news.')->group(function () {
-    Route::get('news', function () {
-        return view('user.pages.news.index');
-    })->name('index');
-
-    Route::get('detail-news/{id}', function () {
-        return view('user.pages.news.detail-news');
-    })->name('detail.news');
-});
-
 Route::get('contacts', function () {
     return view('user.pages.contacts.index');
 })->name('contacts.index');
@@ -168,7 +158,7 @@ Route::get('test-result', function () {
 })->name('test-result.index');
 
 Route::resources([
-    'blogs' => BlogController::class,
+    'news' => BlogController::class,
 ]);
 Route::resource('events', EventController::class)->except('show');
 Route::get('events/{id?}', [EventController::class, 'show'])->name('events.show');

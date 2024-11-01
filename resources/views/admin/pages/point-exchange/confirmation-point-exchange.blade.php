@@ -51,13 +51,12 @@
                 style="color: #8B8B8B"></i>
         </div>
         <div class="position-relative">
-            <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
-                name="name" value="{{ old('name', request('name')) }}" id="input-filter" placeholder="Terbaru">
-            <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
-                xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                    d="M32 144h448M112 256h288M208 368h96" />
-            </svg>
+            <select name="status" class="form-select" id="" style="background-color: #fff">
+                <option value="">Pilih Status</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Ditolak</option>
+                <option value="success">Diterima</option>
+            </select>
         </div>
     </form>
 </div>
@@ -72,7 +71,8 @@
                     <th class="fs-4 fw-semibold mb-0">Barang Ditukar</th>
                     <th class="fs-4 fw-semibold mb-0">Jumlah</th>
                     <th class="fs-4 fw-semibold mb-0">Harga Poin</th>
-                    <th class="fs-4 fw-semibold mb-0 text-center">Aksi</th>
+                    <th class="fs-4 fw-semibold mb-0 text-center">Status</th>
+                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
             <tbody id="confirmation-point-content">

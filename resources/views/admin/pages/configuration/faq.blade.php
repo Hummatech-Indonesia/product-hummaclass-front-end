@@ -1,132 +1,133 @@
 @extends('admin.layouts.app')
 
 @section('style')
-<style>
-    .btn-close {
-        --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-        background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
-    }
+    <style>
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+        }
 
-    .icon {
-        transition: transform 0.3s ease;
-    }
+        .icon {
+            transition: transform 0.3s ease;
+        }
 
-    .toggle-btn[aria-expanded="true"] .icon {
-        transform: rotate(180deg);
-    }
-
-</style>
+        .toggle-btn[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+    </style>
 @endsection
 
 @section('content')
-<div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
-    <div class="card-body px-4 py-3">
-        <div class="row align-items-center">
-            <div class="col-9">
-                <h5 class="fw-semibold mb-8">Frequently Asked Questions</h5>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a class="text-muted " href="index-2.html">Daftar - daftar faq di hummaclass</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-3">
-                <div class="text-center mb-n1">
-                    <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt="" class="img-fluid mb-n3" />
+    <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h5 class="fw-semibold mb-8">Frequently Asked Questions</h5>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a class="text-muted " href="index-2.html">Daftar - daftar faq di hummaclass</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <div class="text-center mb-n1">
+                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                            class="img-fluid mb-n3" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="card p-3">
-    <h5 class="fw-semibold">FAQ</h5>
-    <div class="d-flex justify-content-between mt-2">
-        <div action="" class="position-relative">
-            <input type="text" class="form-control product-search px-4 ps-5" name="name" value="" id="" placeholder="Search">
-            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3" style="color: #8B8B8B"></i>
+    <div class="card p-3">
+        <h5 class="fw-semibold">FAQ</h5>
+        <div class="d-flex justify-content-between mt-2">
+            <div action="" class="position-relative">
+                <input type="text" class="form-control product-search px-4 ps-5" name="search" value=""
+                    id="search" placeholder="Search">
+                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                    style="color: #8B8B8B"></i>
+            </div>
+            <button class="btn text-white addFaq" style="background-color: #9425FE">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                </svg>
+                Tambah FAQ
+            </button>
         </div>
-        <button class="btn text-white addFaq" style="background-color: #9425FE">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
-            </svg>
-            Tambah FAQ
-        </button>
+        <div class="table-responsive rounded-2 mb-4 mt-4">
+            <table class="table border text-nowrap customize-table mb-0 align-middle">
+                <thead class="text-dark fs-4">
+                    <tr class="">
+                        <th class="fs-4 fw-semibold mb-0">Pertanyaan</th>
+                        <th class="fs-4 fw-semibold mb-0">Jawaban</th>
+                        <th class="fs-4 fw-semibold mb-0">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="faq-content">
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="table-responsive rounded-2 mb-4 mt-4">
-        <table class="table border text-nowrap customize-table mb-0 align-middle">
-            <thead class="text-dark fs-4">
-                <tr class="">
-                    <th class="fs-4 fw-semibold mb-0">Pertanyaan</th>
-                    <th class="fs-4 fw-semibold mb-0">Jawaban</th>
-                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
-                </tr>
-            </thead>
-            <tbody id="faq-content">
-            </tbody>
-        </table>
-    </div>
-</div>
-@include('admin.pages.configuration.widgets.modal-create-faq')
-@include('admin.pages.configuration.widgets.modal-edit-faq')
-@include('admin.pages.configuration.widgets.modal-detail-faq')
-<x-delete-modal-component></x-delete-modal-component>
-
+    @include('admin.pages.configuration.widgets.modal-create-faq')
+    @include('admin.pages.configuration.widgets.modal-edit-faq')
+    @include('admin.pages.configuration.widgets.modal-detail-faq')
+    <x-delete-modal-component></x-delete-modal-component>
 @endsection
 
 @section('script')
-{{-- get faq --}}
-<script>
-    let debounceTimer;
-    $('#search-name').keyup(function() {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(function() {
-            get(1)
-        }, 500);
-    });
-
-    function get(page) {
-        $('#tableBody').empty();
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/faqs?page=" + page
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , data: {
-                name: $('#search-name').val()
-            , }
-            , success: function(response) {
-
-                $('#faq-content').empty();
-
-                if (response.data.length > 0) {
-                    $.each(response.data, function(index, value) {
-                        $('#faq-content').append(getFaqs(index, value));
-                    });
-
-                    $('#pagination').html(handlePaginate(response.data.paginate))
-
-                } else {
-                    $('#faq-content').append(empty());
-                }
-
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
+    {{-- get faq --}}
+    <script>
+        let debounceTimer;
+        $('#search').keyup(function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                get(1)
+            }, 500);
         });
-    }
 
-    function getFaqs(index, value) {
-        return `
+        function get(page) {
+            $('#tableBody').empty();
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/faqs?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                data: {
+                    search: $('#search').val(),
+                },
+                success: function(response) {
+
+                    $('#faq-content').empty();
+
+                    if (response.data.data.length > 0) {
+                        $.each(response.data.data, function(index, value) {
+                            $('#faq-content').append(getFaqs(index, value));
+                        });
+
+                        $('#pagination').html(handlePaginate(response.data.paginate))
+
+                    } else {
+                        $('#faq-content').append(empty());
+                    }
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        function getFaqs(index, value) {
+            return `
                 <tr>
                     <td>${value.question}</td>
                     <td>${value.answer.length > 35 ? value.answer.substring(0, 35) + '...' : value.answer}</td>
@@ -154,199 +155,142 @@
                     </td>
                 </tr>
                 `;
-    }
+        }
 
-    get(1);
+        get(1);
+    </script>
 
-</script>
+ 
 
-{{-- create faq --}}
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.addFaq', function() {
-            $('#modal-create-faq').modal('show');
-        });
+    {{-- edit faq --}}
+    <script>
+        $(document).ready(function() {
+            let id;
+            $(document).on('click', '.btn-update-faq', function() {
+                $('#modal-edit-faq').modal('show');
+                id = $(this).data('id');
 
-        $('.storeConfirmation').click(function(e) {
-            e.preventDefault();
+                const question = $(this).data('question');
+                const answer = $(this).data('answer');
+                $('#question').val(question);
+                $('#answer').val(answer);
+            });
 
-            let formData = new FormData($('.createFormFaq')[0]);
+            $('.updateConfirmation').click(function(e) {
+                e.preventDefault();
 
-            $.ajax({
-                type: "POST"
-                , url: "{{ config('app.api_url') }}/api/faqs"
-                , headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                , }
-                , data: formData
-                , dataType: "json"
-                , processData: false
-                , contentType: false
-                , success: function(response) {
-                    $('#modal-create-faq').modal('hide');
-                    $('.createFormFaq')[0].reset();
-                    Swal.fire({
-                        title: "Berhasil!"
-                        , text: response.meta.message
-                        , icon: "success"
-                    });
-                    get(1);
-                }
-                , error: function(response) {
-                    let errorMessages = [];
+                var url = "{{ config('app.api_url') }}" + "/api/faqs/" + id + "?_method=PUT";
+                var formDataUpdate = new FormData($('.editFormFaq')[0]);
 
-                    if (response.responseJSON && response.responseJSON.errors) {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: formDataUpdate,
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#modal-edit-faq').modal('hide');
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
+                        });
+                        get(1);
+                    },
+                    error: function(response) {
+                        let errorMessages = [];
                         $.each(response.responseJSON.errors, function(field, messages) {
                             $.each(messages, function(index, message) {
                                 errorMessages.push(message);
                             });
                         });
-                    }
-
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!"
-                        , html: errorMessages.join('<br>')
-                        , icon: "error"
-                    });
-                }
-            });
-        });
-    });
-
-</script>
-
-{{-- edit faq --}}
-<script>
-    $(document).ready(function() {
-        let id;
-        $(document).on('click', '.btn-update-faq', function() {
-            $('#modal-edit-faq').modal('show');
-            id = $(this).data('id');
-
-            const question = $(this).data('question');
-            const answer = $(this).data('answer');
-            $('#question').val(question);
-            $('#answer').val(answer);
-        });
-
-        $('.updateConfirmation').click(function(e) {
-            e.preventDefault();
-
-            var url = "{{ config('app.api_url') }}" + "/api/faqs/" + id + "?_method=PUT";
-            var formDataUpdate = new FormData($('.editFormFaq')[0]);
-
-            $.ajax({
-                type: "POST"
-                , url: url
-                , headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , data: formDataUpdate
-                , dataType: "json"
-                , processData: false
-                , contentType: false
-                , success: function(response) {
-                    $('#modal-edit-faq').modal('hide');
-                    Swal.fire({
-                        title: "Berhasil!"
-                        , text: response.meta.message
-                        , icon: "success"
-                    });
-                    get(1);
-                }
-                , error: function(response) {
-                    let errorMessages = [];
-                    $.each(response.responseJSON.errors, function(field, messages) {
-                        $.each(messages, function(index, message) {
-                            errorMessages.push(message);
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            html: errorMessages.join('<br>'),
+                            icon: "error"
                         });
-                    });
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!"
-                        , html: errorMessages.join('<br>')
-                        , icon: "error"
-                    });
-                }
+                    }
+                });
             });
         });
-    });
+    </script>
 
-</script>
+    {{-- delete faqs --}}
+    <script>
+        $(document).on('click', '.btn-delete-faq', function() {
+            const id = $(this).data('id');
+            const url = "{{ config('app.api_url') }}/api/faqs/" + id;
 
-{{-- delete faqs --}}
-<script>
-    $(document).on('click', '.btn-delete-faq', function() {
-        const id = $(this).data('id');
-        const url = "{{ config('app.api_url') }}/api/faqs/" + id;
+            $('#modal-delete').modal('show');
 
-        $('#modal-delete').modal('show');
-
-        // Pastikan event listener hanya dipasang satu kali
-        $('.deleteConfirmation').off('click').on('click', function(e) {
-            e.preventDefault();
-            deleteFaq(url);
+            // Pastikan event listener hanya dipasang satu kali
+            $('.deleteConfirmation').off('click').on('click', function(e) {
+                e.preventDefault();
+                deleteFaq(url);
+            });
         });
-    });
 
-    function deleteFaq(url) {
-        $.ajax({
-            type: "DELETE"
-            , url: url
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , contentType: false
-            , processData: false
-            , success: function(response) {
-                Swal.fire({
-                    title: "Berhasil!"
-                    , text: response.meta.message
-                    , icon: "success"
-                });
-                $('#modal-delete').modal('hide'); // Tutup modal setelah berhasil
-                get(1); // Refresh data FAQ
-            }
-            , error: function(response) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Ada kesalahan saat menghapus data."
-                    , icon: "error"
-                });
-            }
-        });
-    }
-
-</script>
-
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.btn-detail-faq', function() {
-            var id = $(this).data('id');
-            
-            $('#modal-detail-faq').modal('show');
-            
+        function deleteFaq(url) {
             $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/faqs/" + id,
+                type: "DELETE",
+                url: url,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
+                contentType: false,
+                processData: false,
                 success: function(response) {
-                    $('.question').html(response.data.question);
-                    $('.answer').html(response.data.answer);
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: response.meta.message,
+                        icon: "success"
+                    });
+                    $('#modal-delete').modal('hide'); // Tutup modal setelah berhasil
+                    get(1); // Refresh data FAQ
                 },
-                error: function(xhr) {
+                error: function(response) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data FAQ.",
+                        text: "Ada kesalahan saat menghapus data.",
                         icon: "error"
                     });
                 }
             });
-        });
-    });
-</script>
+        }
+    </script>
 
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.btn-detail-faq', function() {
+                var id = $(this).data('id');
+
+                $('#modal-detail-faq').modal('show');
+
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/faqs/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('.question').html(response.data.question);
+                        $('.answer').html(response.data.answer);
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data FAQ.",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

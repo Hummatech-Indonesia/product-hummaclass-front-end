@@ -14,7 +14,7 @@
                     $('#tags-news-list').append(tagsList(index, value));
                 });
 
-                $('#currentBreadcrumb').attr('href', '/blogs/' + id).html(response.data.title);
+                $('#currentBreadcrumb').attr('href', '/news/' + id).html(response.data.title);
                 $('#detail-thumbnail').attr('src', response.data.thumbnail);
                 // $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
@@ -111,7 +111,7 @@
                     </a>
                 </div>
                 <div class="rc-post-content">
-                    <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
+                    <h4 class="title"><a href="{{ route('news.show '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
                 </div>
             </div>
         `;

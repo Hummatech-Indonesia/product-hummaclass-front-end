@@ -92,7 +92,9 @@
                                     <li>Durasi Ujian : <span id="duration"></span> Menit</li>
                                     <li>Waktu tunggu ujian ulang: <span id="retry_delay"></span> menit</li>
                                 </ul>
+                                <div id="alert">
 
+                                </div>
                                 <div class="text-end mt-3 mb-4">
                                     <a href="" id="start_quiz" class="btn">Mulai
                                         Ujian</a>
@@ -196,7 +198,7 @@
                                 <td>${value.score}</td>
                                 ${status}
                                 <td><a class="btn btn-primary" href="">Lihat Detail</a></td>
-                            </tr>` 
+                            </tr>`
                         );
                     });
                 }
@@ -232,7 +234,6 @@
                         </a>
                     </li>`;
                 }).join('');
-                // console.log(slug);
 
 
                 const quizzes = value.quizzes.map(quiz => {
@@ -282,6 +283,37 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    const createdAtStr = response.data.user_quizzes.created_at;
+                    const createdAt = new Date(createdAtStr);
+                    createdAt.setMinutes(createdAt.getMinutes() + response.data
+                        .duration);
+                    const targetTime = createdAt;
+
+
+                    const options = {
+                        day: '2-digit',
+                        month: 'long', // Nama bulan lengkap dalam bahasa Indonesia
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false // Format 24 jam
+                    };
+
+                    const formattedTargetTime = new Intl.DateTimeFormat('id-ID', options).format(
+                        targetTime);
+
+                    const now = new Date();
+
+                    if (now < targetTime) {
+                        $('#start_quiz').hide();
+                        $('#alert').append(
+                            `<div class="alert alert-warning" role="alert">
+                                Anda dapat mengerjakan ujian kembali pada ${formattedTargetTime}
+                            </div>`);
+                    }
+
+
                     $('#total_question').html(response.data.total_question);
                     $('#duration').html(response.data.duration);
                     $('#rules').html(response.data.rules);
