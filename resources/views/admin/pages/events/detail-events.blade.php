@@ -91,7 +91,7 @@
                     </li>
                 </div>
                 <div class="d-flex justify-content-end mb-3 gap-2">
-                    <a href="" class="btn" style="background: #E8E8E8;">
+                    <a href="{{ route('admin.events.index') }}" class="btn" style="background: #E8E8E8;">
                         <i class="ti ti-arrow-left"></i>
                         <span>Kembali</span>
                     </a>
