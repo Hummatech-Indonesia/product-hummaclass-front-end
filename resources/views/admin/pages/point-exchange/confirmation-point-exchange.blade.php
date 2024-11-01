@@ -72,7 +72,8 @@
                     <th class="fs-4 fw-semibold mb-0">Barang Ditukar</th>
                     <th class="fs-4 fw-semibold mb-0">Jumlah</th>
                     <th class="fs-4 fw-semibold mb-0">Harga Poin</th>
-                    <th class="fs-4 fw-semibold mb-0 text-center">Aksi</th>
+                    <th class="fs-4 fw-semibold mb-0 text-center">Status</th>
+                    <th class="fs-4 fw-semibold mb-0">Aksi</th>
                 </tr>
             </thead>
             <tbody id="confirmation-point-content">
