@@ -22,40 +22,37 @@
     <x-delete-modal-component></x-delete-modal-component>
     <script>
         function get() {
-            $(document).ready(function() {
-                var id = "{{ $id }}";
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#cardBody').empty();
-                        if (response.data.length === 0) {
-                            $('#cardBody').append(emptyCard());
-                        } else {
-                            $.each(response.data, function(index, value) {
-                                $('#cardBody').append(card(index, value));
-                            });
-                        }
-
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Tidak dapat memuat data kategori.",
-                            icon: "error"
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#cardBody').empty();
+                    if (response.data.length === 0) {
+                        $('#cardBody').append(emptyCard());
+                    } else {
+                        $.each(response.data, function(index, value) {
+                            $('#cardBody').append(card(index, value));
                         });
                     }
-                });
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
             });
         }
         get();
 
         function card(index, value) {
-
             return `
             <div class="col-md-12">
                 <div class="card position-relative">
@@ -156,6 +153,8 @@
                 url: "{{ env('API_URL') }}/api/modules-backward/" + id,
                 dataType: "json",
                 success: function(response) {
+                    console.log("response" + response);
+
                     get();
                 },
                 error: function(xhr) {}
@@ -171,6 +170,8 @@
                 url: "{{ env('API_URL') }}/api/modules-forward/" + id,
                 dataType: "json",
                 success: function(response) {
+                    console.log("response" + response);
+
                     get();
                 },
                 error: function(xhr) {}
@@ -189,8 +190,7 @@
                     success: function(response) {
                         get();
                     },
-                    error: function(xhr) {
-                    }
+                    error: function(xhr) {}
                 });
             });
         })
