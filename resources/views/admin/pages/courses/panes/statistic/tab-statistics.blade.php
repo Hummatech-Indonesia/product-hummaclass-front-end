@@ -79,7 +79,6 @@
                         <div id="chart-line-zoomable-pt-test"></div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="col-lg-4">
@@ -388,4 +387,3 @@
     );
     chart_radial_basic.render();
 </script>
-

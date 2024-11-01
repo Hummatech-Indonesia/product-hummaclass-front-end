@@ -233,6 +233,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.point-exchange.confirmation-point-exchange');
     })->name('confirmation-point-exchange.index');
 
+    Route::get('create-rewards', function () {
+        return view('admin.pages.point-exchange.create-rewards');
+    })->name('create-rewards.index');
+
+
     Route::get('events-participant-detail/{participantId}', function (string $participantId) {
         return view('admin.pages.events.widgets.detail-participant', compact('participantId'));
     })->name('event-participant');
@@ -324,8 +329,8 @@ Route::get('detail/test', function () {
     return view('admin.pages.courses.test.index');
 });
 
-Route::get('point-exchange-detail', function () {
-    return view('user.pages.points-exchange.detail-point-exchange');
+Route::get('point-exchange-detail/{id}', function ($id) {
+    return view('user.pages.points-exchange.detail-point-exchange', compact('id'));
 })->name('detail-point-exchange.index');
 
 // Load additional routes

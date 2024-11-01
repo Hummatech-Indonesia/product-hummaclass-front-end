@@ -22,40 +22,37 @@
     <x-delete-modal-component></x-delete-modal-component>
     <script>
         function get() {
-            $(document).ready(function() {
-                var id = "{{ $id }}";
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#cardBody').empty();
-                        if (response.data.length === 0) {
-                            $('#cardBody').append(emptyCard());
-                        } else {
-                            $.each(response.data, function(index, value) {
-                                $('#cardBody').append(card(index, value));
-                            });
-                        }
-
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Tidak dapat memuat data kategori.",
-                            icon: "error"
+            var id = "{{ $id }}";
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/modules/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#cardBody').empty();
+                    if (response.data.length === 0) {
+                        $('#cardBody').append(emptyCard());
+                    } else {
+                        $.each(response.data, function(index, value) {
+                            $('#cardBody').append(card(index, value));
                         });
                     }
-                });
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
             });
         }
         get();
 
         function card(index, value) {
-
             return `
             <div class="col-md-12">
                 <div class="card position-relative">
@@ -156,7 +153,13 @@
                 url: "{{ env('API_URL') }}/api/modules-backward/" + id,
                 dataType: "json",
                 success: function(response) {
-                    get();
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil mengubah posisi module.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 },
                 error: function(xhr) {}
             });
@@ -171,7 +174,13 @@
                 url: "{{ env('API_URL') }}/api/modules-forward/" + id,
                 dataType: "json",
                 success: function(response) {
-                    get();
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil mengubah posisi module.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 },
                 error: function(xhr) {}
             });
@@ -187,9 +196,28 @@
                     url: "{{ env('API_URL') }}/api/modules/" + id,
                     dataType: "json",
                     success: function(response) {
-                        get();
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menghapus module.",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.reload();
+                        });
                     },
                     error: function(xhr) {
+                        if (xhr.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: xhr.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Terjadi Kesalahan Saat Menghapus Data",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
             });

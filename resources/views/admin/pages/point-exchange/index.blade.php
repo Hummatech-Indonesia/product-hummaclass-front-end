@@ -61,7 +61,7 @@
             </div>
         </form>
         <div>
-            <button class="btn text-white createReward" style="background-color: #9425FE;">Tambahkan Barang</button>
+            <a href="{{ route('admin.create-rewards.index') }}" class="btn text-white" style="background-color: #9425FE;">Tambahkan Barang</a>
         </div>
     </div>
 

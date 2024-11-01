@@ -20,7 +20,8 @@
                 name: $('#search-name').val(),
             },
             success: function(response) {
-
+                console.log(response);
+                
                 $('#test-content').empty();
 
                 if (response.data.length > 0) {
