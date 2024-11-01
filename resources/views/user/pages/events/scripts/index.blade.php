@@ -166,7 +166,7 @@
 
             renderEvents();
         } else {
-            eventList.innerHTML = '<li class="list-group-item">Tidak Ada Event Pad Tanggal Ini.</li>';
+            eventList.innerHTML = '<li class="list-group-item">Tidak Ada Event Pada Tanggal Ini.</li>';
         }
     }
 

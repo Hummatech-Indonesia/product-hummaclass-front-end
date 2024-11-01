@@ -88,7 +88,7 @@
                                 <i class="flaticon-arrow-right"></i>
                             </a>
                         </div>
-                        <h5 class="price">${formatRupiah(value.price)}</h5>
+                        <h5 class="price">${value.is_premium === 0 ? 'Gratis' : formatRupiah(value.price)}</h5>
                     </div>
                 </div>
             </div>

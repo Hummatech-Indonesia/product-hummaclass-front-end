@@ -770,7 +770,7 @@
             <div class="row gutter-20" id="news-content">
             </div>
             <div class="text-center">
-                <a href="{{ route('blogs.index') }}" class="outline-purple-primary">
+                <a href="{{ route('newws.index') }}" class="outline-purple-primary">
                     Lihat Lainnya
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <g fill="none">
