@@ -197,7 +197,7 @@
                                             <div class="courses__details-enroll">
                                                 <div class="tg-button-wrap">
                                                     <a href="{{ route('checkout.event', $id) }}"
-                                                        class="btn arrow-btn w-100 d-flex justify-content-center">Masuk
+                                                        class="btn arrow-btn w-100 d-flex justify-content-center" id="enter-btn">Masuk
                                                         <img src="{{ asset('assets/img/icons/right_arrow.svg') }}"
                                                             alt="img" class="injectable"></a>
                                                 </div>
