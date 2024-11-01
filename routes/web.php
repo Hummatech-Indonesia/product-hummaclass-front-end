@@ -114,6 +114,9 @@ Route::prefix('password')->name('password.')->group(function () {
 });
 
 Route::prefix('news')->name('news.')->group(function () {
+    Route::get('news', function () {
+        return view('user.pages.blogs.index');
+    })->name('index');
 
     Route::get('detail-news/{id}', function () {
         return view('user.pages.news.detail-news');
