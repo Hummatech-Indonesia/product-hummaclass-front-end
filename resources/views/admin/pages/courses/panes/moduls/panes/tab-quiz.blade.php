@@ -10,7 +10,6 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
-
             // Fetch module detail
             $.ajax({
                 type: "get",
@@ -20,8 +19,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-
-                    // Fetch quizzes
                     $.ajax({
                         type: "get",
                         url: "{{ config('app.api_url') }}/api/quizzes/" + response.data.slug,
@@ -88,7 +85,7 @@
             // Fetch module questions
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/module-questions/detail/" + id,
+                url: "{{ config('app.api_url') }}/api/module-questions/detail/admin/" + id,
                 dataType: "json",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
