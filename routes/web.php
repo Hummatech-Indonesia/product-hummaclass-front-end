@@ -158,7 +158,7 @@ Route::get('test-result', function () {
 })->name('test-result.index');
 
 Route::resources([
-    'blogs' => BlogController::class,
+    'news' => BlogController::class,
 ]);
 Route::resource('events', EventController::class)->except('show');
 Route::get('events/{id?}', [EventController::class, 'show'])->name('events.show');

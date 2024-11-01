@@ -40,9 +40,9 @@
                 <nav class="pagination__wrap mt-25">
                     <ul class="list-wrap">
                         <li class="active"><a href="#">1</a></li>
-                        <li><a href="/blogs">2</a></li>
-                        <li><a href="/blogs">3</a></li>
-                        <li><a href="/blogs">4</a></li>
+                        <li><a href="/news">2</a></li>
+                        <li><a href="/news">3</a></li>
+                        <li><a href="/news">4</a></li>
                     </ul>
                 </nav>
             </div>

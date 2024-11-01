@@ -151,7 +151,7 @@
                  <div class="col-xl-4 col-md-6">
                     <div class="blog__post-item shine__animate-item">
                         <div class="blog__post-thumb">
-                            <a href="{{ route('blogs.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail}" alt="img"></a>
+                            <a href="{{ route('news.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail}" alt="img"></a>
                             <a href="javascript:void(0)" class="post-tag">${value.sub_category}</a>
                         </div>
                         <div class="blog__post-content">
@@ -160,7 +160,7 @@
                                     <li><i class="flaticon-calendar"></i>${value.created}</li>
                                 </ul>
                             </div>
-                            <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title.length > 40 ? value.title.substring(0, 40) + '...' : value.title}</a></h4>
+                            <h4 class="title"><a href="{{ route('news.show', '') }}/${value.id}">${value.title.length > 40 ? value.title.substring(0, 40) + '...' : value.title}</a></h4>
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                     </a>
                 </div>
                 <div class="rc-post-content">
-                    <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
+                    <h4 class="title"><a href="{{ route('news.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
                 </div>
             </div>
         `;
