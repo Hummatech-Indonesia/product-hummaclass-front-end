@@ -104,7 +104,6 @@
                     <div class="card-body p-3">
                         <h6 style="color: var(--purple-primary)">${value.created}</h6>
                         <h4 class="fw-bolder mt-2">${value.title.length > 50 ? value.title.substring(0, 50) + '...' : value.title}</h4>
-                        <p>${value.description.length > 200 ? value.description.substring(0, 200) + '...' : value.description}</p>
                     </div>
 
                     <div class="card-footer">
