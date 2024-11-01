@@ -35,6 +35,16 @@
             background-color: #9425FE;
             border-color: #9425FE;
         }
+
+        .ellipsis {
+            /* width: 200px;
+                                                                            white-space: nowrap;
+                                                                            overflow: hidden;
+                                                                            text-overflow: ellipsis;
+                                                                            border: 1px solid #ddd; */
+
+            cursor: pointer;
+        }
     </style>
 @endsection
 @section('content')
@@ -115,11 +125,24 @@
                 <div class="px-4 py-3 border-bottom row justify-content-between">
                     <div class="col-3">
                         <h5 class="card-title fw-semibold mb-0 lh-sm">Daftar Kehadiran</h5>
+                        <span id="attendance-link" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-custom-class="custom-tooltip" data-bs-title="Salin Link"
+                            class="ellipsis text-primary">Link
+                            Absensi <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-copy">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+                                <path
+                                    d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+                            </svg></span>
                     </div>
                     <div class="col-6 d-flex gap-2">
                         <input type="text" class="form-control" value="Name" id="name-filter">
                         <input type="date" id="attendance-date-filter" class="form-control" style="max-width: 10em;"
-                            value="2018-05-13">
+                            value="{{ Carbon\Carbon::now()->isoFormat('YYYY-MM-DD') }}">
                     </div>
                 </div>
                 <div class="card-body p-4">
@@ -234,6 +257,17 @@
                     data: data,
                     dataType: "json",
                     success: function(response) {
+                        // $('#attendance-link').text(response.data.data[0].attendance_link)
+                        $('#attendance-link').click(function(e) {
+                            e.preventDefault();
+
+                            navigator.clipboard.writeText(response.data.data[0]
+                                .attendance_link);
+
+                            $('#attendance-link').attr('data-bs-title', 'Link telah disalin');
+                            $('#attendance-link').tooltip('dispose').tooltip();
+
+                        });
                         $('#attendance-list tbody').append(generateListAttendance(
                             response
                             .data.data[0].user_event_attendance))
