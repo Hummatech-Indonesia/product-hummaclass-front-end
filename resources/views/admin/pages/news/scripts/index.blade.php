@@ -96,7 +96,7 @@
     function news(index, value) {
         return `
            <div class="col-lg-4">
-                <div class="card" style="border-radius: 15px; height: 400px;">
+                <div class="card" style="border-radius: 15px; height: 490px;">
                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
                     
                     <img src="${value.thumbnail}" class="card-img-top" alt="Thumbnail" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;">
@@ -104,9 +104,14 @@
                     <div class="card-body p-3">
                         <h6 style="color: var(--purple-primary);">${value.created}</h6>
                         <h4 class="fw-bolder mt-2">
-                            ${value.title.length > 50 ? value.title.substring(0, 50) + '...' : value.title}
+                            ${value.title.length > 30 ? value.title.substring(0, 30) + '...' : value.title}
                         </h4>
-                        
+                       <p>
+                            ${$("<div>").html(value.description).text().length > 50
+                                ? $("<div>").html(value.description).text().substring(0, 50) + '...' 
+                                : $("<div>").html(value.description).text()}
+                        </p>
+
                     </div>
 
                     <div class="card-footer">
