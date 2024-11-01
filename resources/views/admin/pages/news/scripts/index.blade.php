@@ -96,7 +96,7 @@
     function news(index, value) {
         return `
            <div class="col-lg-4">
-                <div class="card" style="border-radius: 15px; height: 490px;">
+                <div class="card" style="border-radius: 15px; height: 400px;">
                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
                     
                     <img src="${value.thumbnail}" class="card-img-top" alt="Thumbnail" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;">
