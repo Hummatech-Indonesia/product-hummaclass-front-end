@@ -91,6 +91,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumb__content">
+                        <h3 class="title">Kursus</h3>
                         <nav class="breadcrumb">
                             <span property="itemListElement" typeof="ListItem">
                                 <a href="/">Beranda</a>
