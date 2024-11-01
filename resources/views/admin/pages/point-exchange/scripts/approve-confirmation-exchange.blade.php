@@ -1,66 +1,52 @@
 <script>
-    $(document).ready(function() {
-        // Tentukan variabel 'page' dengan nilai awal jika belum didefinisikan
-        let page = 1;
+    $(document).on('click', '.editConfirm', function(e) {
+        e.preventDefault();
 
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
+        var id = $(this).data('id');
 
-                // Menggunakan event delegation untuk menghindari masalah binding pada elemen dinamis
-                $(document).on('click', '.editConfirm', function(e) {
-                    var id = $(this).data('id');
-
-                    Swal.fire({
-                        title: 'Terima?',
-                        text: "Apakah Anda yakin menerima penukaran poin?",
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, tukar!',
-                        cancelButtonText: 'Batal'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                type: "PUT",
-                                url: "{{config('app.api_url')}}/api/rewards/" + id,
-                                headers: {
-                                    'Authorization': `Bearer {{ session('hummaclass-token') }}`
-                                },
-                                dataType: "json",
-                                success: function(response) {
-                                    Swal.fire({
-                                        title: "Sukses",
-                                        text: "Berhasil menambah data.",
-                                        icon: "success"
-                                    });
-                                },
-                                error: function(xhr) {
-                                    Swal.fire({
-                                        title: "Terjadi Kesalahan!",
-                                        text: "Gagal menambah data.",
-                                        icon: "error"
-                                    });
-                                }
-                            });
-                        }
-                    });
-                });
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data penukaran poin.",
-                    icon: "error"
+        Swal.fire({
+            title: 'Terima?'
+            , text: "Apakah Anda yakin menerima penukaran poin?"
+            , icon: 'info'
+            , showCancelButton: true
+            , confirmButtonColor: '#3085d6'
+            , cancelButtonColor: '#d33'
+            , confirmButtonText: 'Terima!'
+            , cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "PATCH"
+                    , url: "{{ config('app.api_url') }}/api/rewards-change/" + id
+                    , headers: {
+                        'Authorization': 'Bearer {{ session("hummaclass-token") }}'
+                    }
+                    , dataType: "json"
+                    , contentType: "application/json"
+                    , data: JSON.stringify({
+                        status: "success"
+                    }),
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses"
+                            , text: "Status berhasil diperbarui menjadi 'success'."
+                            , icon: "success"
+                        }).then(() => {
+                            $('.editConfirm[data-id="' + id + '"]').hide();
+                            
+                            $('#status-' + id).html("Success");
+                        });
+                    }
+                    , error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!"
+                            , text: xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : "Gagal mengubah status."
+                            , icon: "error"
+                        });
+                    }
                 });
             }
         });
     });
+
 </script>
