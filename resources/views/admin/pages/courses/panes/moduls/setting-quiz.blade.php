@@ -49,7 +49,7 @@
                     <div class="col col-lg-6 mb-3">
                         <div class="form-group">
                             <label for="" class="form-label fw-semibold text-dark">Jumlah Soal</label>
-                            <input id="total_question" type="text" class="form-control" placeholder="Masukan jumlah soal"
+                            <input id="total_question" type="number" class="form-control" placeholder="Masukan jumlah soal"
                                 name="total_question">
                             <div class="invalid-feedback"></div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class=" form-group">
                             <label for="" class="form-label fw-semibold text-dark">Durasi Pengerjaan <small
                                     class="">(menit)</small></label>
-                            <input type="text" id="duration" class="form-control"
+                            <input type="number" id="duration" class="form-control"
                                 placeholder="Masukan durasi pengerjaan" name="duration">
                             <div class="invalid-feedback"></div>
                         </div>
@@ -75,7 +75,7 @@
                         <div class=" form-group">
                             <label for="" class="form-label fw-semibold text-dark">Waktu tunggu remedial <small
                                     class="">(menit)</small></label>
-                            <input type="text" id="retry_delay" class="form-control required"
+                            <input type="number" id="retry_delay" class="form-control required"
                                 placeholder="Masukan waktu tunggu remedial (menit)" name="retry_delay">
                             <div class="invalid-feedback"></div>
                         </div>
