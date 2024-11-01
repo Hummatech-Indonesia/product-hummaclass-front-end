@@ -271,6 +271,10 @@
                         $('#attendance-list tbody').append(generateListAttendance(
                             response
                             .data.data[0].user_event_attendance))
+
+                            if(response.data.data.length == 0) {
+                                $('#attendance-list tbody').append(empty());
+                            }
                     }
                 });
             }
