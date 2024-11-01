@@ -153,9 +153,13 @@
                 url: "{{ env('API_URL') }}/api/modules-backward/" + id,
                 dataType: "json",
                 success: function(response) {
-                    console.log("response" + response);
-
-                    get();
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil mengubah posisi module.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 },
                 error: function(xhr) {}
             });
@@ -170,9 +174,13 @@
                 url: "{{ env('API_URL') }}/api/modules-forward/" + id,
                 dataType: "json",
                 success: function(response) {
-                    console.log("response" + response);
-
-                    get();
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil mengubah posisi module.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 },
                 error: function(xhr) {}
             });
@@ -188,7 +196,13 @@
                     url: "{{ env('API_URL') }}/api/modules/" + id,
                     dataType: "json",
                     success: function(response) {
-                        get();
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menghapus module.",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.reload();
+                        });
                     },
                     error: function(xhr) {}
                 });
