@@ -392,7 +392,7 @@
                                 </div>
                                 <div>
                                     <a target="__blank"
-                                        href="{{ config('app.api_url') . "/$type/certificate-download/" . $course . '/' . session('user.id') }}"
+                                        href="{{ config('app.api_url') . "/$course/certificate-download/" . $type . '/' . session('user.id') }}"
                                         class="btn-warning w-100 mt-4">Download Sertifikat</a>
                                 </div>
                             </div>
@@ -416,6 +416,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    // console.log(response.data);
                     @if ($type == 'course')
                         $('#breadCrumbCourse').html(response.data.course.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course

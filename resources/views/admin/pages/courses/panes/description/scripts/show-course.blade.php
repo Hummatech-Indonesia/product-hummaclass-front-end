@@ -8,7 +8,9 @@
             },
             data: "data",
             dataType: "json",
-            success: function(response) {                
+            success: function(response) {
+                console.log(response);
+                $('#detailCourseRating').html(response.data.rating);
                 for (const key in response.data) {
                     if (response.data.hasOwnProperty(key)) {
 

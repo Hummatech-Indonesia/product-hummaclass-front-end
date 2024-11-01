@@ -28,6 +28,37 @@
                 $.each(response.data.event_details, function(index, value) {
                     $('#roundown-content').append(cardRoundown(value));
                 });
+
+
+                @if (session('hummaclass-token'))
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/user-events-check",
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        data: {
+                            event_slug: response.data.slug
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            if (response.data.user_event) {
+                                $('#enter-btn').text('Cetak Sertifikat');
+                                $('#enter-btn').attr('href',
+                                    "{{ route('print-certificate.index', ['type' => 'event', 'id' => ':slug']) }}"
+                                    .replace(':slug', response.data.event.slug)
+                                );
+                            }
+                        },
+                        error: function(xhr) {
+                            // Swal.fire({
+                            //     title: "Terjadi Kesalahan!",
+                            //     text: "Tidak dapat memuat data events.",
+                            //     icon: "error"
+                            // });
+                        }
+                    })
+                @endif
             },
             error: function(xhr) {
                 Swal.fire({

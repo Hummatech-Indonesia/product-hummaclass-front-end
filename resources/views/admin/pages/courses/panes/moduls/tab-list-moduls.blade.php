@@ -204,7 +204,21 @@
                             window.location.reload();
                         });
                     },
-                    error: function(xhr) {}
+                    error: function(xhr) {
+                        if (xhr.status == 400) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: xhr.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Terjadi Kesalahan Saat Menghapus Data",
+                                icon: "error"
+                            });
+                        }
+                    }
                 });
             });
         })

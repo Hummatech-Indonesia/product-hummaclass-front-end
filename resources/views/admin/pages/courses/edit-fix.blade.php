@@ -33,7 +33,8 @@
             <form action="#" enctype="multipart/form-data" id="create-course-form">
                 <div class="row">
                     <div class="col col-md-12">
-                        <label for="" class="form-label">Thumbnail</label>
+                        <label for="" class="form-label">Thumbnail</label><br>
+                        <img id="thumbnail" width="250" alt="thumbnail" srcset=""><br>
                         <input type="file" name="photo" id="photo" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
@@ -109,14 +110,16 @@
             var id = "{{ $id }}";
             var course;
 
+
             $('#description').summernote();
 
             function setValue(data) {
+                console.log(data.photo);
                 $('#title').val(data.title);
                 $('#sub_title').val(data.sub_title);
                 $('#price').val(data.price);
                 $('#description').summernote('code', data.description);
-
+                $('#thumbnail').attr('src', data.photo);
                 $('#is_premium').append(status(data.is_premium));
                 course = data;
             }
@@ -155,6 +158,7 @@
                             text: "Berhasil memperbarui data data.",
                             icon: "success"
                         });
+                        window.location.href = '/admin/courses';
                     },
                     error: function(response) {
                         Swal.fire({
