@@ -21,7 +21,7 @@
                             <ul class="list-wrap">
                                 <li><a href="{{ route('courses.courses.index') }}">Kursus</a></li>
                                 <li><a href="{{ route('events.index') }}">Events</a></li>
-                                <li><a href="{{ route('news.index') }}">Berita</a></li>
+                                <li><a href="{{ route('blogs.index') }}">Berita</a></li>
                                 <li><a href="{{ route('contacts.index') }}">Hubungi Kami</a></li>
                                 <li><a href="{{ route('faqs.index') }}">FAQ</a></li>
                             </ul>
