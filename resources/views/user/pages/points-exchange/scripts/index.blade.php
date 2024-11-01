@@ -40,11 +40,7 @@
 
                     $('.storeConfirm').click(function(e) {
                         // e.preventDefault();
-
-                        console.log('fghfhgfhg');
-
-                        var id = $(this).data('id');
-
+                        
                         Swal.fire({
                             title: 'Tukar Poin?',
                             text: "Apakah Anda yakin ingin menukar poin?",
@@ -116,7 +112,7 @@
                             </svg>
                             100 Poin
                         </span>
-                        <h2 class="title"><a href="{{ route('detail-point-exchange.index') }}">${value.name}</a></h2>
+                        <h2 class="title"><a href="{{ route('detail-point-exchange.index', '') }}/${value.slug}">${value.name}</a></h2>
                         <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
                             <div class="d-flex" style="font-size: 14px;">
                                 Sisa Kuota: ${value.points_required}

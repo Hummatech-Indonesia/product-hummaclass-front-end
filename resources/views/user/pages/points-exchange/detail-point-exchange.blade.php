@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="event__item-thumb" style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                    <img id="detail-image" src="{{ asset('assets/img/detail-course/apple.jpeg') }}" style="width: 100%; height:455px;object-fit:cover;" alt="img">
+                    <img src="{{ asset('assets/img/detail-course/apple.jpeg') }}" class="detail-image" style="width: 100%; height:455px;object-fit:cover;" alt="img">
                 </div>
                 <h2 class="title detail-title"></h2>
                 <div class="event__details-content-wrap">
@@ -98,17 +98,17 @@
                         <div class="col-70">
                             <div class="event__details-content">
                                 <div class="event__details-content-top">
-                                    <a href="javascript:void(0)" id="detail-is-online" class="tag detail-is-online px-4" style="background-color: #EFEFF2; color: black;">Stok : 20</a>
+                                    <a href="javascript:void(0)" id="detail-stock" class="tag px-4" style="background-color: #EFEFF2; color: black;">Stok : 20</a>
                                 </div>
-                                <h3 class="title">Macbook Kayak Si Bang Fahrul Hehe</h3>
-                                <div class="event__details-overview">
+                                <h3 class="title" id="detail-name">Macbook Kayak Si Bang Fahrul Hehe</h3>
+                                {{-- <div class="event__details-overview">
                                     <h4>Ringkasan</h4>
                                     <p>Prosessor : Apple M2 Chip CPU 8-Core, RAM : 8 GB , ROM : 256 GB</p>
-                                </div>
+                                </div> --}}
 
                                 <div class="event__details-overview">
                                     <h4 class="mt-3">Deskripsi</h4>
-                                    <p>Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.dolor sit amet, consectetur adipiscing elited do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p id="detail-description">Dorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.dolor sit amet, consectetur adipiscing elited do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
                             </div>
                         </div>
@@ -118,19 +118,19 @@
                                     <div class="courses__details-sidebar">
                                         <div class="courses__cost-wrap">
                                             <span>Reedem Point:</span>
-                                            <h2 class="title" id="detail-price">1000 Pts</h2>
+                                            <h2 class="title" id="detail-point-required">1000 Pts</h2>
                                         </div>
                                         <div class="courses__information-wrap">
                                             <h5 class="title">Reward Hummaclass:</h5>
                                             <div class="event__item-thumb">
                                                 <a href="javascript:void(0)" class="shine__animate-link">
                                                     <div style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                                                        <img src="{{ asset('assets/img/detail-course/apple.jpeg') }}" alt="img" style="width: 100%; height:150px;">
+                                                        <img src="{{ asset('assets/img/detail-course/apple.jpeg') }}" class="detail-image" alt="img" style="width: 100%; height:150px;">
                                                     </div>
                                                 </a>
                                             </div>
                                             <div class="tg-button-wrap mt-3">
-                                                <button href="" class="btn-warning w-100">Tukarkan <img src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></button>
+                                                <button class="btn-warning w-100 storeConfirm">Tukarkan <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -144,4 +144,8 @@
     </div>
 </section>
 <!-- event-details-area-end -->
+@endsection
+
+@section('script')
+    @include('user.pages.points-exchange.scripts.detail-point-exchange')
 @endsection
