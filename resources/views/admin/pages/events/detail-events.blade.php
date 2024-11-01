@@ -127,9 +127,6 @@
                                         <h6 class="fs-4 fw-semibold mb-0">Tanggal</h6>
                                     </th>
                                     <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Waktu</h6>
-                                    </th>
-                                    <th>
                                         <h6 class="fs-4 fw-semibold mb-0">Status</h6>
                                     </th>
                                 </tr>
@@ -264,8 +261,7 @@
                           </div>
                         </div>
                       </td>
-                            <td>${attendance.created_at}</td>
-                            <td>${attendance.created_at}</td>
+                            <td>${formatDate(attendance.created_at)}</td>
                             <td>
                                 <span class="badge bg-${attendance.is_attendance?'success':'danger'}">${attendance.is_attendance?'Hadir':'Tidak Hadir'}</span>
                                 </td>
