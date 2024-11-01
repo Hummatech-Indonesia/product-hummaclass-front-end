@@ -107,7 +107,7 @@
             <div class="rc-post-item">
                 <div class="rc-post-thumb">
                     <a href="javascript:void(0)">
-                        <img src="${value.thumbnail}" style="width: 60px;height:60pc; object-fit:cover;" alt="img">
+                        <img src="${value.thumbnail}" style="width: 60px;height:60px; object-fit:cover;" alt="img">
                     </a>
                 </div>
                 <div class="rc-post-content">
