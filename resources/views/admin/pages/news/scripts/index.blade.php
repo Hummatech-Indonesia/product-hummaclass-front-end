@@ -96,19 +96,19 @@
     function news(index, value) {
     return `
         <div class="col-lg-4">
-            <div class="card d-flex flex-column justify-content-between" style="border-radius: 15px; height: 450px;">
+            <div class="card justify-content-between" style="border-radius: 15px; height: 450px;">
                 <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
                 
                 <img src="${value.thumbnail}" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;" class="card-img-top" alt="...">
                 
-                <div class="card-body d-flex flex-column p-3">
+                <div class="card-body p-3">
                     <h6 style="color: var(--purple-primary)">${value.created}</h6>
                     <h4 class="fw-bolder mt-2">${value.title.length > 50 ? value.title.substring(0, 50) + '...' : value.title}</h4>
                     <p>${value.description.length > 90 ? value.description.substring(0, 90) + '...' : value.description}</p>
                 </div>
                 <div class="card-footer">
                     <!-- Section Buttons di bagian bawah -->
-                    <div class="mt-auto">
+                    <div class="">
                         <div class="d-flex gap-2">
                             <a href="{{ route('admin.news.show', '') }}/${value.id}" class="btn text-white" style="background: var(--purple-primary); width: 70%;">Lihat Detail</a>
                             <a href="${"{{ route('admin.news.edit', ':id') }}".replace(':id', value.id)}" class="btn btn-warning btn-sm py-2" style="width: 15%;">
