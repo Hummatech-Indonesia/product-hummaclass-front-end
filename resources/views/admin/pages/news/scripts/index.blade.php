@@ -114,7 +114,7 @@
 
                     </div>
 
-                    <div class="card-footer">
+                    <div class="card-footer" style="background-color: #fff;">
                         <div class="d-flex gap-2">
                             <a href="{{ route('admin.news.show', '') }}/${value.id}" class="btn text-white" style="background: var(--purple-primary); width: 70%;">
                                 Lihat Detail
