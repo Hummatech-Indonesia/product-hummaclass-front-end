@@ -14,33 +14,33 @@
             e.preventDefault();
 
             $.ajax({
-                type: "DELETE",
-                url: url,
-                headers: {
+                type: "DELETE"
+                , url: url
+                , headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                success: function(response) {
+                }
+                , success: function(response) {
                     $('#modal-delete').modal('hide');
                     Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menghapus data.",
-                        icon: "success"
+                        title: "Sukses"
+                        , text: "Berhasil menghapus data."
+                        , icon: "success"
                     });
                     get();
-                },
-                error: function(response) {
+                }
+                , error: function(response) {
                     $('#modal-delete').modal('hide');
                     if (response.status == 400) {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: response.responseJSON.meta.message,
-                            icon: "error"
+                            title: "Terjadi Kesalahan!"
+                            , text: response.responseJSON.meta.message
+                            , icon: "error"
                         });
                     } else {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menghapus data.",
-                            icon: "error"
+                            title: "Terjadi Kesalahan!"
+                            , text: "Ada kesalahan saat menghapus data."
+                            , icon: "error"
                         });
                     }
                 }
@@ -59,16 +59,16 @@
     function get(page) {
         $('#contentNews').empty();
         $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/blogs",
-            headers: {
+            type: "GET"
+            , url: "{{ config('app.api_url') }}" + "/api/blogs"
+            , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            data: {
-                name: $('#search-name').val(),
-            },
-            success: function(response) {
+            }
+            , dataType: "json"
+            , data: {
+                name: $('#search-name').val()
+            , }
+            , success: function(response) {
                 $('#contentNews').empty();
 
                 if (response.data.data.length > 0) {
@@ -82,33 +82,31 @@
                 }
 
 
-            },
-            error: function(xhr) {
+            }
+            , error: function(xhr) {
                 Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
+                    title: "Terjadi Kesalahan!"
+                    , text: "Tidak dapat memuat data kategori."
+                    , icon: "error"
                 });
             }
         });
     }
 
     function news(index, value) {
-    return `
-        <div class="col-lg-4">
-            <div class="card justify-content-between" style="border-radius: 15px; height: 450px;">
-                <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
-                
-                <img src="${value.thumbnail}" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;" class="card-img-top" alt="...">
-                
-                <div class="card-body p-3">
-                    <h6 style="color: var(--purple-primary)">${value.created}</h6>
-                    <h4 class="fw-bolder mt-2">${value.title.length > 50 ? value.title.substring(0, 50) + '...' : value.title}</h4>
-                    <p>${value.description.length > 90 ? value.description.substring(0, 90) + '...' : value.description}</p>
-                </div>
-                <div class="card-footer">
-                    <!-- Section Buttons di bagian bawah -->
-                    <div class="">
+        return `
+            <div class="col-lg-4">
+                <div class="card" style="border-radius: 15px; height: 490px;">
+                    <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
+                    
+                    <img src="${value.thumbnail}" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;" class="card-img-top" alt="...">
+                    
+                    <div class="card-body p-3">
+                        <h6 style="color: var(--purple-primary)">${value.created}</h6>
+                        <h4 class="fw-bolder mt-2">${value.title.length > 50 ? value.title.substring(0, 50) + '...' : value.title}</h4>
+                    </div>
+
+                    <div class="card-footer">
                         <div class="d-flex gap-2">
                             <a href="{{ route('admin.news.show', '') }}/${value.id}" class="btn text-white" style="background: var(--purple-primary); width: 70%;">Lihat Detail</a>
                             <a href="${"{{ route('admin.news.edit', ':id') }}".replace(':id', value.id)}" class="btn btn-warning btn-sm py-2" style="width: 15%;">
@@ -125,10 +123,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    `;
-}
+        `;
+    }
 
     get(1);
 
-    </script>
+</script>
