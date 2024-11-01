@@ -200,53 +200,58 @@
         $(document).ready(function() {
             var id = "{{ $id }}";
 
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/modules/detail/" + id,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
+            function getDetail() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/modules/detail/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
 
-                    $('.back').click(function(e) {
-                        e.preventDefault();
-                        window.location.href = "/admin/courses/" + response.data.course.slug;
-                    });
+                        $('.back').click(function(e) {
+                            e.preventDefault();
+                            window.location.href = "/admin/courses/" + response.data.course
+                                .slug;
+                        });
 
-                    $('#title').html(response.data.title);
-                    $('#module_task_count').html(response.data.module_task_count);
-                    $('#sub_title').html(response.data.sub_title);
-                    $('#step').html(response.data.step);
-                    $('#quiz_count').html(response.data.quizz_count);
-                    $('#sub_modul_count').html(response.data.sub_module_count);
+                        $('#title').html(response.data.title);
+                        $('#module_task_count').html(response.data.module_task_count);
+                        $('#sub_title').html(response.data.sub_title);
+                        $('#step').html(response.data.step);
+                        $('#quiz_count').html(response.data.quizz_count);
+                        $('#sub_modul_count').html(response.data.sub_module_count);
 
-                    if (response.data.sub_modules.length === 0) {
-                        $('#cardSubModul').append(empty());
-                    } else {
-                        $.each(response.data.sub_modules, function(index, value) {
-                            $('#cardSubModul').append(subModul(index, value));
+                        if (response.data.sub_modules.length === 0) {
+                            $('#cardSubModul').append(empty());
+                        } else {
+                            $.each(response.data.sub_modules, function(index, value) {
+                                $('#cardSubModul').append(subModul(index, value));
+                            });
+                        }
+                        $('#module-task-show').empty();
+
+                        if (response.data.module_tasks.length === 0) {
+                            $('#module-task-show').append(empty());
+                        } else {
+                            $.each(response.data.module_tasks, function(index, value) {
+                                $('#module-task-show').append(moduleTasks(index, value));
+                            });
+                        }
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data modul.",
+                            icon: "error"
                         });
                     }
-                    $('#module-task-show').empty();
+                });
+            }
 
-                    if (response.data.module_tasks.length === 0) {
-                        $('#module-task-show').append(empty());
-                    } else {
-                        $.each(response.data.module_tasks, function(index, value) {
-                            $('#module-task-show').append(moduleTasks(index, value));
-                        });
-                    }
-
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data modul.",
-                        icon: "error"
-                    });
-                }
-            });
+            getDetail();
 
             function subModul(index, value) {
 
@@ -340,118 +345,111 @@
             }
 
 
-        });
-    </script>
 
-    <script>
-        $(document).on('click', '.btn-delete-sub-module', function() {
-            var id = $(this).data('id');
-            var url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
+            $(document).on('click', '.btn-delete-sub-module', function() {
+                var id = $(this).data('id');
+                var url = "{{ config('app.api_url') }}" + "/api/sub-modules/" + id;
 
-            $('#modal-delete').modal('show');
+                $('#modal-delete').modal('show');
 
-            funDelete(url);
-        });
+                funDelete(url);
+            });
 
-        function funDelete(url) {
+            function funDelete(url) {
 
-            $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    success: function(response) {
+                $('.deleteConfirmation').click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        success: function(response) {
 
-                        $('#modal-delete').modal('hide');
-                        Swal.fire({
-                            title: "Sukses",
-                            text: "Berhasil menghapus data.",
-                            icon: "success"
-                        });
-
-                        location.reload();
-                    },
-                    error: function(response) {
-
-                        $('#modal-delete').modal('hide');
-                        if (response.status == 400) {
+                            $('#modal-delete').modal('hide');
                             Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: response.responseJSON.meta.message,
-                                icon: "error"
+                                title: "Sukses",
+                                text: "Berhasil menghapus data.",
+                                icon: "success"
                             });
-                        } else {
+
+                            location.reload();
+                        },
+                        error: function(response) {
+
+                            $('#modal-delete').modal('hide');
+                            if (response.status == 400) {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: response.responseJSON.meta.message,
+                                    icon: "error"
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: "Ada kesalahan saat menghapus data.",
+                                    icon: "error"
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+            $(document).on('click', '.btn-delete-task', function() {
+                const id = $(this).data('id');
+                const url = "{{ config('app.api_url') }}" + "/api/module-tasks/" + id;
+
+                $('#modal-delete').modal('show');
+                deleteCTask(url);
+            });
+
+            function deleteCTask(url) {
+                $('.deleteConfirmation').click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: url,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        dataType: "json",
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: response.meta.message,
+                                icon: "success"
+                            });
+                            getDetail();
+                        },
+                        error: function(response) {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menghapus data.",
+                                text: "Ada kesalahan saat menyimpan data.",
                                 icon: "error"
                             });
                         }
-                    }
+                    });
                 });
-            });
-        }
-    </script>
 
-    <script>
-        $(document).on('click', '.btn-delete-task', function() {
-            const id = $(this).data('id');
-            const url = "{{ config('app.api_url') }}" + "/api/module-tasks/" + id;
-
-            $('#modal-delete').modal('show');
-            deleteCTask(url);
-        });
-
-        function deleteCTask(url) {
-            $('.deleteConfirmation').click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "DELETE",
-                    url: url,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: response.meta.message,
-                            icon: "success"
-                        });
-                        get(1)
-                    },
-                    error: function(response) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
-                    }
-                });
-            });
-
-        }
-    </script>
-
-    <script>
-        function setActiveTab(tabId) {
-            localStorage.setItem('activeTab', tabId);
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const activeTab = localStorage.getItem('activeTab');
-            if (activeTab) {
-                document.querySelector('.nav-link.active').classList.remove('active');
-                document.querySelector('.tab-pane.active').classList.remove('active');
-
-                document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
-                document.querySelector(`#${activeTab}`).classList.add('active');
             }
+
+            function setActiveTab(tabId) {
+                localStorage.setItem('activeTab', tabId);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                const activeTab = localStorage.getItem('activeTab');
+                if (activeTab) {
+                    document.querySelector('.nav-link.active').classList.remove('active');
+                    document.querySelector('.tab-pane.active').classList.remove('active');
+
+                    document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
+                    document.querySelector(`#${activeTab}`).classList.add('active');
+                }
+            });
         });
     </script>
 @endsection
