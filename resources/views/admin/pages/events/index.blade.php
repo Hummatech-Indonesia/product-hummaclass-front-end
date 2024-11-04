@@ -188,39 +188,39 @@
 
             function card(index, value) {
                 return `
-                 <div class="col-lg-4">
-                    <div class="card" style="border-radius: 15px;">
-                        <img src="${value.image}" style="border-radius: 15px 15px 0 0;height:200px;object-fit: cover;" class="card-img-top" alt="...">
-                        <div class="card-body p-3">
-                            <h6 style="color: var(--purple-primary)">${value.start_date}</h6>
-                            <h4 class="fw-bolder mt-2">${value.title}</h4>
-                            <p class="">${value.description}</p>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="d-flex gap-2">
-                                        <!-- URL menggunakan JavaScript untuk menggabungkan slug -->
-                                        <a href="{{ route('admin.events.show', '') }}/${value.slug}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
-                                        
-                                        <!-- URL edit event -->
-                                        <a href="/admin/events/${value.slug}/edit" class="btn btn-warning btn-sm py-2" style="width: 15%">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 28 28">
-                                                <path fill="currentColor" d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
-                                            </svg>
-                                        </a>
-                                        
-                                        <!-- Button untuk delete event -->
-                                        <button data-id="${value.id}" class="btn btn-delete text-white btn-sm py-2" style="width: 15%; background-color: #DB0909;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24">
-                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                        </button>
+                    <div class="col-lg-4">
+                        <div class="card" style="border-radius: 15px;">
+                            <img src="${value.image}" style="border-radius: 15px 15px 0 0;height:200px;object-fit: cover;" class="card-img-top" alt="...">
+                            <div class="card-body p-3">
+                                <h6 style="color: var(--purple-primary)">${value.start_date}</h6>
+                                <h4 class="fw-bolder mt-2">${value.title}</h4>
+                                <p class="">${value.description}</p>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="d-flex gap-2">
+                                            <!-- URL menggunakan JavaScript untuk menggabungkan slug -->
+                                            <a href="{{ route('admin.events.show', '') }}/${value.slug}" class="btn text-white" style="background: var(--purple-primary);width: 70%;">Lihat Detail</a>
+                                            
+                                            <!-- URL edit event -->
+                                            <a href="/admin/events/${value.slug}/edit" class="btn btn-warning btn-sm py-2" style="width: 15%">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 28 28">
+                                                    <path fill="currentColor" d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
+                                                </svg>
+                                            </a>
+                                            
+                                            <!-- Button untuk delete event -->
+                                            <button data-id="${value.id}" class="btn btn-delete text-white btn-sm py-2" style="width: 15%; background-color: #DB0909;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.0" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-        `;
+                `;
             }
 
         });
