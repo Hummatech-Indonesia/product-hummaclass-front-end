@@ -8,10 +8,13 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response.data.course_reviews);
-                $.each(response.data.course_reviews, function(index, value) {
-                    $('#reviews-user').append(reviewUser(index, value));
-                });
+                if (response.data.course_reviews.length > 0) {
+                    $.each(response.data.course_reviews, function(index, value) {
+                        $('#reviews-user').append(reviewUser(index, value));
+                    });
+                } else {
+                    $('#reviews-user').append(emptyTable());
+                }
             },
             error: function(xhr) {
                 Swal.fire({
