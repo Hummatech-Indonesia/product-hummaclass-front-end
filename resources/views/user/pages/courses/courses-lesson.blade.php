@@ -124,8 +124,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="footer__bottom" style="background-color: #FFFFFF;">
                                 <div class="container">
                                     <div class="row align-items-center">
@@ -177,7 +175,6 @@
                                     <p id="course_sub_title"></p>
                                     <div style="border-bottom: 1px solid #CCCCCC;"></div>
                                     <div class="" id="content">
-
                                     </div>
 
                                 </div>
@@ -353,7 +350,6 @@
                 var slug = "{{ $id }}";
 
                 const subModules = value.sub_modules.map(subModule => {
-
                     if (slug == subModule.slug) {
                         return `<li class="course-item open-item">
                         <a href="{{ route('courses.course-lesson.index', ['']) }}/${subModule.slug}" class="d-flex justify-content-between">
@@ -420,7 +416,9 @@
                     var contentHtml = '';
 
                     contentData.blocks.forEach(function(block) {
-                        if (block.type === 'image') {
+                        if (block.type === 'raw') {
+                            contentHtml += block.data.html; // Menambahkan HTML secara langsung
+                        } else if (block.type === 'image') {
                             contentHtml +=
                                 `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
                         } else if (block.type === 'paragraph') {
@@ -436,6 +434,7 @@
                     });
 
                     $('#content').html(contentHtml);
+
                 },
                 error: function(xhr) {
                     if (xhr.status == 403) {

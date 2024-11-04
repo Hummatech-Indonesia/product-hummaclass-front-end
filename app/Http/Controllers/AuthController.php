@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $nextUrl = session('next-request');
         Session::forget('next-request');
-        
+
         // return [session('hummaclass-token'), session('user')];
         return response()->json(['success' => true, 'next-url' => $nextUrl]);
     }
@@ -38,7 +38,8 @@ class AuthController extends Controller
     }
 
 
-    public function receiveToken() {
+    public function receiveToken()
+    {
         return view('auth.get-token-google');
     }
     public function logout()
