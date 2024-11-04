@@ -152,7 +152,7 @@
                             $('#pagination').html(handlePaginate(response.data.paginate))
 
                         } else {
-                            eventParent.append(empty());
+                            eventParent.append(emptyCard());
                         }
                         retryCount = 0;
                         loading = false;

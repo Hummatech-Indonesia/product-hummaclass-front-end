@@ -164,7 +164,7 @@
                             <div class="lesson__video-wrap mb-0">
                                 <div class="lesson__video-wrap-top">
                                     <div class="lesson__video-wrap-top-left">
-                                        <a href="#"><i class="flaticon-arrow-right"></i></a>
+                                        <a href="{{ route('course-lesson.index') }}"><i class="flaticon-arrow-right"></i></a>
                                         <span id="title_course"></span>
                                     </div>
                                 </div>
