@@ -4,8 +4,9 @@ import List from "@editorjs/list";
 import Checklist from "@editorjs/checklist";
 import ImageTool from "@editorjs/image";
 import Embed from "@editorjs/embed";
+import RawTool from "@editorjs/raw";
 
-const apiBaseUrl = "http://127.0.0.1:9000/api"; // Ganti dengan URL API Anda
+const apiBaseUrl = "{{ config('app.api_url') }}"; // Ganti dengan URL API Anda
 
 const editor = new EditorJS({
   holder: "editorjs",
@@ -27,6 +28,7 @@ const editor = new EditorJS({
       class: List,
       inlineToolbar: true,
     },
+    raw: RawTool,
     checklist: {
       class: Checklist,
       inlineToolbar: true,
