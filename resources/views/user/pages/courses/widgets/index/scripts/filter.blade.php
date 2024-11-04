@@ -6,6 +6,7 @@
                 'categories': [],
                 'minimum': null,
                 'maximum': null,
+                'title': null
             }
             $('#filter_price').click(function(e) {
                 e.preventDefault();
@@ -102,7 +103,7 @@
         $('#search-name').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
-                getCourse(1)
+                handleGetCourses(1, {title: $('#search-name').val()})
             }, 500);
         });
 
@@ -123,9 +124,7 @@
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
-                data: {
-                    title: $('#search-name').val(),
-                },
+                data: data,
                 dataType: "json",
                 success: function(response) {
                     gridParent.empty();
