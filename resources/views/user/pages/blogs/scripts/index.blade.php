@@ -1,13 +1,13 @@
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/categories"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 $.each(response.data.data, function(index, value) {
                     $('#category_count').append(
                         `<div class="swiper-slide">
@@ -24,13 +24,13 @@
                     );
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -86,13 +86,13 @@
 
         function handleGetBlogs(page) {
             $.ajax({
-                type: "GET"
-                , url: "{{ config('app.api_url') }}" + "/api/blogs?page=" + page
-                , headers: {
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/blogs?page=" + page,
+                headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , dataType: "json"
-                , success: function(response) {
+                },
+                dataType: "json",
+                success: function(response) {
                     newsParent.empty();
 
                     if (response.data.data.length > 0) {
@@ -101,9 +101,11 @@
                         });
 
                         if (response.data.paginate.last_page > 0) {
-                            renderPagination(response.data.paginate.last_page, response.data.paginate.current_page, function(page) {
-                                handleGetBlogs(page);
-                            });
+                            renderPagination(response.data.paginate.last_page, response.data
+                                .paginate.current_page,
+                                function(page) {
+                                    handleGetBlogs(page);
+                                });
                             $('.pagination__wrap').show();
                         } else {
                             $('.pagination__wrap').hide();
@@ -115,8 +117,8 @@
 
                     retryCount = 0;
                     loading = false;
-                }
-                , error: function(xhr) {
+                },
+                error: function(xhr) {
                     let errorMessage = '';
                     if (xhr.status === 0) {
                         errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
@@ -201,55 +203,34 @@
         }
     });
 
-    // function card(index, value) {
-    //     return `
-    //         <div class="col-xl-4 col-md-6">
-    //             <div class="blog__post-item shine__animate-item">
-    //                 <div class="blog__post-thumb">
-    //                     <a href="{{ route('blogs.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail}" alt="img"></a>
-    //                     <a href="javascript:void(0)" class="post-tag">${value.sub_category}</a>
-    //                 </div>
-    //                 <div class="blog__post-content">
-    //                     <div class="blog__post-meta">
-    //                         <ul class="list-wrap">
-    //                             <li><i class="flaticon-calendar"></i>${value.created}</li>
-    //                         </ul>
-    //                     </div>
-    //                     <h4 class="title"><a href="{{ route('blogs.show', '') }}/${value.id}">${value.title}</a></h4>
-    //                 </div>
-    //             </div>
-    //         </div>
-    // `;
-    // }
 
 
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
-
 </script>
 
 <script>
     $(document).ready(function() {
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/blogs"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/blogs",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
 
                 $.each(response.data.data, function(index, value) {
                     $('#news-latest-content').append(latestNews(index, value));
                 });
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -273,5 +254,4 @@
 
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
-
 </script>
