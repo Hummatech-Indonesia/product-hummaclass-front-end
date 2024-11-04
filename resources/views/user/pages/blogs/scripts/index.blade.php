@@ -211,45 +211,62 @@
 
 <script>
     $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/blogs",
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-
-                $.each(response.data.data, function(index, value) {
-                    $('#news-latest-content').append(latestNews(index, value));
-                });
-
-            },
-            error: function(xhr) {
-
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
-                });
-            }
+        let debounceTimer;
+        $('#search').keyup(function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                get(1);
+            }, 500);
         });
+
+
+        function get(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/blogs?page=" + page,
+                data: {
+                    search: $('#search').val(),
+                },
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#news-latest-content').empty();
+                    $.each(response.data.data, function(index, value) {
+                        $('#news-latest-content').append(latestNews(index, value));
+                    });
+
+                },
+                error: function(xhr) {
+
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+        get(1)
+
+
+        function latestNews(index, value) {
+            return `
+                <div class="rc-post-item">
+                    <div class="rc-post-thumb">
+                        <a href="javascript:void(0)">
+                            <img src="${value.thumbnail}" alt="img">
+                        </a>
+                    </div>
+                    <div class="rc-post-content">
+                        <h4 class="title"><a href="{{ route('news.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
+                    </div>
+                </div>
+            `;
+        }
     });
 
-    function latestNews(index, value) {
-        return `
-            <div class="rc-post-item">
-                <div class="rc-post-thumb">
-                    <a href="javascript:void(0)">
-                        <img src="${value.thumbnail}" alt="img">
-                    </a>
-                </div>
-                <div class="rc-post-content">
-                    <h4 class="title"><a href="{{ route('news.show', '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
-                </div>
-            </div>
-        `;
-    }
 
 
     // jangan dihapus
