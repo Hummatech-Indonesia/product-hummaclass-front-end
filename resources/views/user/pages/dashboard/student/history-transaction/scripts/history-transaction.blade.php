@@ -32,9 +32,10 @@
                         }
                     });
 
-
                 } else {
                     $('#tab-all-history').append(empty());
+                    $('#tab-waiting-payment').append(empty());
+                    $('#tab-finish').append(empty());
                 }
 
 
