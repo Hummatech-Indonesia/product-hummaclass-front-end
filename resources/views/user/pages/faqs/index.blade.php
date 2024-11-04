@@ -3,29 +3,29 @@
 @section('style')
     <style>
         /* .accordion-body {
-            padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
-            border: 1px solid #9425FE;
-        }
+                                padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
+                                border: 1px solid #9425FE;
+                            }
 
-        .accordion-button:not(.collapsed) {
-            color: #9425FE;
-            background-color: #fff;
-            box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
-        }
+                            .accordion-button:not(.collapsed) {
+                                color: #9425FE;
+                                background-color: #fff;
+                                box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+                            }
 
-        .accordion-body {
-            padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
-            border: 1px solid #9425FE;
-            color: #9425FE;
-        }
+                            .accordion-body {
+                                padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
+                                border: 1px solid #9425FE;
+                                color: #9425FE;
+                            }
 
-        .accordion-button:not(.collapsed) {
-            color: #9425FE;
-            background-color: #fff;
-            box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
-            border: 1px solid #9425FE;
+                            .accordion-button:not(.collapsed) {
+                                color: #9425FE;
+                                background-color: #fff;
+                                box-shadow: inset 0 calc(-1* var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+                                border: 1px solid #9425FE;
 
-        } */
+                            } */
         .accordion-button:not(.collapsed) {
             background-color: #fff;
             color: #9425FE;
@@ -104,7 +104,7 @@
         $(document).ready(function() {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/faqs",
+                url: "{{ config('app.api_url') }}" + "/api/faq-user",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -117,7 +117,6 @@
                         $.each(response.data, function(index, value) {
                             $('#accordionFaq').append(card(index, value));
                         });
-
                     } else {
                         $('#accordionFaq').append(empty());
                     }

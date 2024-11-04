@@ -76,7 +76,6 @@
         });
     });
 
-
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -104,18 +103,23 @@
 
     function latestNews(index, value) {
         return `
-            <div class="rc-post-item">
-                <div class="rc-post-thumb">
-                    <a href="javascript:void(0)">
-                        <img src="${value.thumbnail}" style="width: 60px;height:60px; object-fit:cover;" alt="img">
-                    </a>
-                </div>
-                <div class="rc-post-content">
-                    <h4 class="title"><a href="{{ route('news.show '') }}/${value.id}">${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}</a></h4>
-                </div>
+        <div class="rc-post-item">
+            <div class="rc-post-thumb">
+                <a href="javascript:void(0)">
+                    <img src="${value.thumbnail}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
+                </a>
             </div>
-        `;
+            <div class="rc-post-content">
+                <h4 class="title">
+                    <a href="${route('news.show', value.id)}">
+                        ${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}
+                    </a>
+                </h4>
+            </div>
+        </div>
+    `;
     }
+
 
 
     // jangan dihapus
