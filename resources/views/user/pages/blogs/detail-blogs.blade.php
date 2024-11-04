@@ -18,7 +18,7 @@
                             </span>
                             <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
                             <span property="itemListElement" typeof="ListItem" class="detail-title">
-                                <a href="" id="currentBreadcrumb"></a>
+                                <a href="" id="currentBreadcrumb">Detail Berita</a>
                             </span>
                         </nav>
                     </div>
