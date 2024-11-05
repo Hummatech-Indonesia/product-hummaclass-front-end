@@ -184,12 +184,8 @@
 
                             <h6 class="me-3">Diskusi Berdasarkan:</h6>
                             <div class="blog-widget tag-item">
-                                <div class="tagcloud">
-                                    <span class="d-flex justify-content-between">
-                                        Nama Modul Lorem, ipsum.
-                                        <button type="button" class="btn-close ms-2 close-btn"
-                                            style="width: 5px;height: 5px;" aria-label="Close"></button>
-                                    </span>
+                                <div class="tagcloud" id="filter-module">
+
                                 </div>
                             </div>
                         </div>
@@ -268,6 +264,19 @@
         $(document).ready(function() {
             var id = "{{ $id }}"
             var filter = {};
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramCourses = urlParams.get('module');
+
+            if (paramCourses != null) {
+                $('#filter-module').html(`<span class="d-flex justify-content-between">
+                                        ${paramCourses}
+                                        <button type="button" class="btn-close ms-2 close-btn"
+                                            style="width: 5px;height: 5px;" aria-label="Close"></button>
+                                    </span>`);
+                filter.search = paramCourses;
+                getDiscussion(filter)
+            }
 
             $('.filter').change(function(e) {
                 e.preventDefault();
