@@ -185,6 +185,10 @@
         handleGetCourses(1);
 
         function card(index, value) {
+            let price;
+            if (value.promotional_price) {
+                price = ` <h6 class="price" style="font-size:12px"><del style="font-size:12px">${formatRupiah(value.price)}</del>${formatRupiah(value.price)}</h6>`
+            }
             return `<div class="col-lg-4">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
@@ -207,7 +211,7 @@
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
                             </div>
-                            <h5 class="price"><del>${formatRupiah(value.price)}</del>${formatRupiah(value.price)}</h5>
+                           
                         </div>
                     </div>
                 </div>
