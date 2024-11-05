@@ -92,22 +92,7 @@
                 window.location.href = "/admin/news";
             },
             error: function(response) {
-                if (response.status === 422) {
-                    let errors = response.responseJSON.data;
-
-                    $.each(errors, function(field, messages) {
-                        $(`[name="${field}"]`).addClass('is-invalid');
-
-                        $(`[name="${field}"]`).closest('.col').find('.invalid-feedback')
-                            .text(messages[0]);
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
-                        icon: "error"
-                    });
-                }
+               -----
             }
         });
     });

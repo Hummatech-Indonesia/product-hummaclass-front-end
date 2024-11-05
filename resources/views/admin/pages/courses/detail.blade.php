@@ -152,7 +152,6 @@
         <div class="tab-pane active" id="home" role="tabpanel">
             @include('admin.pages.courses.panes.description.tab-description')
         </div>
-
         <div class="tab-pane" id="list" role="tabpanel">
             @include('admin.pages.courses.panes.moduls.tab-list-moduls')
         </div>

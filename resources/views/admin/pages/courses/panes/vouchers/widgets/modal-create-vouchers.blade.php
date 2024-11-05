@@ -12,7 +12,7 @@
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label for="" class="form-label fw-semibold text-dark">Kode Voucher</label>
-                                <input type="text" class="form-control is-invalid" placeholder="Masukan kode voucher"
+                                <input type="text" class="form-control" placeholder="Masukan kode voucher"
                                     name="code">
                                 <div class="invalid-feedback code"></div>
                             </div>
@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label for="" class="form-label fw-semibold text-dark">Potongan Harga(%
                                     persen)</label>
-                                <input type="text" class="form-control" placeholder="Masukan potongan harga"
+                                <input type="number" class="form-control" placeholder="Masukan potongan harga"
                                     name="discount">
                                 <div class="invalid-feedback discount"></div>
                             </div>

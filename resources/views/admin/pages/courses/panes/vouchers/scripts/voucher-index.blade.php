@@ -11,7 +11,7 @@
             dataType: "json",
             success: function(response) {
                 let cardList = '';
-                if(response.data.length == 0) {
+                if (response.data.length == 0) {
                     voucherListParent.append(emptyCard());
                 }
                 response.data.forEach(function(data) {
@@ -36,10 +36,10 @@
                                 type: "delete",
                                 url: `{{ config('app.api_url') }}/api/course-vouchers/${btn.data('id')}`,
                                 headers: {
-                                    Authorization: "Bearer " + "{{ session('hummaclass-token') }}"
+                                    Authorization: "Bearer " +
+                                        "{{ session('hummaclass-token') }}"
                                 },
                                 success: function(response) {
-                                    // btn.closest('.card').remove();
                                     window.location.reload();
                                 }
                             });
@@ -48,7 +48,6 @@
 
                 });
             }
-
         });
 
         function appendCard(data) {
