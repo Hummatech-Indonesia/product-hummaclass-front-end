@@ -211,105 +211,10 @@
     </div>
 </header>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    const categoryDropdown = document.getElementById('category-dropdown');
-    const categoryOptions = document.getElementById('category-options');
-    const subcategoryDropdown = document.getElementById('subcategory-dropdown');
-
-    const categories = {};
-
-    // Ambil pilihan subkategori dari localStorage saat halaman dimuat
-    const selectedSubCategory = localStorage.getItem('selectedSubCategory');
-    if (selectedSubCategory) {
-        $('#subcategory-dropdown').data("selected", selectedSubCategory);
-        $('#subcategory-dropdown').text(selectedSubCategory); // Tampilkan subkategori yang dipilih
-    }
-
-    categoryOptions.innerHTML = '';
-
-    function loadSubcategories(categoryName) {
-        const subcategories = categories[categoryName] || [];
-        subcategoryDropdown.innerHTML = '';
-
-        if (subcategories.length > 0) {
-            subcategories.forEach(sub => {
-                // Menambahkan subkategori ke dropdown
-                $('#subcategory-dropdown').append(
-                    `<div class="subcategory-item" data-value="${sub}">${sub}</div>`
-                );
-            });
-
-            // Event listener untuk setiap item subkategori
-            $('.subcategory-item').on('click', function() {
-                const selectedSubcategory = $(this).data("value");
-                $('#subcategory-dropdown').data("selected",
-                selectedSubcategory); // Simpan nilai subkategori yang dipilih
-                $('#subcategory-dropdown').text(selectedSubcategory); // Tampilkan nama subkategori yang dipilih
-
-                // Simpan pilihan subkategori di localStorage
-                localStorage.setItem('selectedSubCategory', selectedSubcategory);
-            });
-        } else {
-            $('#subcategory-dropdown').append('<div class="no-subcategory">Tidak ada subkategori</div>');
-        }
-    }
-
-    // Event listener untuk kategori dropdown
-    categoryDropdown.addEventListener('click', function() {
-        // Toggle pilihan kategori
-        categoryOptions.classList.toggle('show');
-    });
-
-    categoryOptions.addEventListener('mouseover', function(event) {
-        const category = event.target.getAttribute('data-category');
-        if (category && categories[category]) {
-            // Clear previous subcategories
-            subcategoryDropdown.innerHTML = '';
-
-            // Populate subcategories
-            categories[category].forEach(function(subcategory) {
-                const subItem = document.createElement('div');
-                subItem.classList.add('subcategory-item');
-                subItem.textContent = subcategory;
-                subItem.addEventListener('click', function() {
-                    // Update the text of the category dropdown with subcategory
-                    categoryDropdown.textContent = subcategory;
-
-                    // Hide the dropdowns
-                    subcategoryDropdown.style.display = 'none';
-                });
-                subcategoryDropdown.appendChild(subItem);
-            });
-
-            showSubcategoryDropdown(); // Show the subcategory dropdown
-        }
-    });
-
-    categoryOptions.addEventListener('click', function(event) {
-        const category = event.target.getAttribute('data-category');
-        if (category) {
-            // Update the text of the category dropdown
-            categoryDropdown.textContent = event.target.textContent;
-
-            // Hide the category options and show the subcategory options
-            categoryOptions.style.display = 'none';
-            showSubcategoryDropdown();
-        }
-    });
-
-    categoryDropdown.addEventListener('click', function() {
-        // Toggle the display of the category options
-        categoryOptions.style.display = categoryOptions.style.display === 'block' ? 'none' : 'block';
-    });
-
-    function showSubcategoryDropdown() {
-        subcategoryDropdown.style.display = 'block';
-        subcategoryDropdown.style.top = categoryOptions.offsetHeight + 'px';
-        subcategoryDropdown.style.left = '100%'; // Posisi di sebelah kanan kategori options
-    }
+    @include('user.layouts.scripts.header')
 
     $(document).ready(function() {
         getCategories();
@@ -344,10 +249,9 @@
         $('#category-list').on('change', function() {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
-                // Panggil fungsi untuk memuat subkategori berdasarkan kategori yang dipilih
                 getSubCategory(selectedCategory);
             } else {
-                $('#sub-category-list').hide(); // Sembunyikan jika tidak ada kategori yang dipilih
+                $('#sub-category-list').hide();
             }
         });
 
@@ -355,12 +259,12 @@
             function() {
                 var selectedCategory = $(this).val();
                 if (selectedCategory) {
-                    getSubCategory(selectedCategory); // Memuat subkategori saat hover
+                    getSubCategory(selectedCategory);
                 }
-                $('#sub-category-list').show(); // Tampilkan dropdown subkategori
+                $('#sub-category-list').show();
             },
             function() {
-                $('#sub-category-list').hide(); // Sembunyikan dropdown subkategori saat mouse keluar
+                $('#sub-category-list').hide();
             }
         );
 
@@ -370,7 +274,7 @@
                 url: "{{ config('app.api_url') }}/api/sub-categories",
                 data: {
                     category: selectedCategory
-                }, // Kirim kategori yang dipilih
+                },
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -395,13 +299,10 @@
             });
         }
 
-        // Event untuk memilih subkategori
         $('#sub-category-list').on('change', function() {
             var selectedSubCategory = $(this).val();
             if (selectedSubCategory) {
-                // Lakukan pencarian berdasarkan subkategori yang dipilih
                 console.log("Subkategori yang dipilih:", selectedSubCategory);
-                // Tambahkan logika pencarian di sini
             }
         });
     });
