@@ -94,13 +94,13 @@
     }
 
     function news(index, value) {
-        
+        var url = "{{ config('app.api_url') }}";
         return `
            <div class="col-lg-4">
                 <div class="card" style="border-radius: 15px; height: 420px;">
                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2">${value.sub_category}</button>
                     
-                    <img src="${value.thumbnail && value.thumbnail !== 'http://127.0.0.1:8000/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" class="card-img-top" alt="Thumbnail" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;">
+                    <img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" class="card-img-top" alt="Thumbnail" style="border-radius: 15px 15px 0 0; height: 200px; object-fit: cover;">
                     
                     <div class="card-body p-3">
                         <h6 style="color: var(--purple-primary);">${value.created}</h6>

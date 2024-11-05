@@ -55,7 +55,7 @@
                 </div>
                 <div class="col-6 mb-3">
                     <label for="capacity" class="fw-semibold form-label">Kapasitas</label>
-                    <input type="text" class="form-control" id="capacity" name="capacity"
+                    <input type="number" class="form-control" id="capacity" name="capacity"
                         placeholder="Masukan jumlah kapasitas">
                     <div class="invalid-feedback"></div>
                 </div>
