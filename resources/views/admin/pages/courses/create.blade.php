@@ -66,9 +66,14 @@
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-12 mt-3" id="price-container">
+                    <div class="col col-md-6 mt-3" id="price-container">
                         <label for="" class="form-label">Harga</label>
-                        <input type="number" class="form-control" id="price" name="price">
+                        <input type="number" class="form-control" id="promo" name="promo">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col col-md-6 mt-3" id="promotional-price-container" style="display: none">
+                        <label for="" class="form-label">Harga Promo (opsional)</label>
+                        <input type="number" class="form-control" id="promotional_price" name="promotional_price">
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -231,11 +236,14 @@
     <script>
         document.getElementById('is_premium').addEventListener('change', function() {
             var priceContainer = document.getElementById('price-container');
+            var pricePriceContainer = document.getElementById('promotional-price-container');
 
             if (this.value == '1') {
                 priceContainer.style.display = 'block';
+                pricePriceContainer.style.display = 'block';
             } else {
                 priceContainer.style.display = 'none';
+                pricePriceContainer.style.display = 'none';
             }
         });
     </script>
