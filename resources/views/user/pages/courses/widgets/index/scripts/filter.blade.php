@@ -207,7 +207,7 @@
                                     <i class="flaticon-arrow-right"></i>
                                 </a>
                             </div>
-                            <h5 class="price">${formatRupiah(value.price)}</h5>
+                            <h5 class="price"><del>${formatRupiah(value.price)}</del>${formatRupiah(value.price)}</h5>
                         </div>
                     </div>
                 </div>
