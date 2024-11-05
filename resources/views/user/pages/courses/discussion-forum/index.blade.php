@@ -7,7 +7,6 @@
             --tg-theme-primary: #9C40F7;
         }
 
-
         main {
             background-color: #F1F1F1;
         }
@@ -238,15 +237,8 @@
                         <h5 class="mt-3">
                             <div class="blog-widget">
                                 <h4 class="widget-title">Tags</h4>
-                                <div class="tagcloud">
-                                    <a href="#">#loremipsum</a>
-                                    <a href="#">#loremipsum</a>
-                                    <a href="#">#lorem</a>
-                                    <a href="#">#loremipsum</a>
-                                    <a href="#">#loremipsumasda</a>
-                                    <a href="#">#loremipsumasda</a>
-                                    <a href="#">#lorem</a>
-                                    <a href="#">#lorem</a>
+                                <div class="tagcloud" id="tags">
+
                                 </div>
                             </div>
                         </h5>
@@ -297,7 +289,7 @@
 
             $('#module').change(function(e) {
                 e.preventDefault();
-                
+
                 filter.module = $(this).val();
                 getDiscussion(filter);
             });
@@ -328,6 +320,29 @@
                         $('.list-modul').append(
                             `<option value="${value.id}">${value.title}</option>`
                         );
+                    });
+
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/tags",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    $.each(response.data, function(index, value) {
+                        $('#tags').html(`<a href="#">#${value.name}</a>`);
                     });
 
 
