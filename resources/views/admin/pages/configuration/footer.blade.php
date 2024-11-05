@@ -32,19 +32,14 @@
                 <div class="row mt-3">
                     <div class="col col-md-6">
                         <label for="" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control">
+                        <input type="text" id="email" name="email" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6">
                         <label for="" class="form-label">Nomor Telepon</label>
-                        <input type="text" name="phone" class="form-control">
+                        <input type="text" id="phone_number" name="phone_number" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                </div>
-                <div class="mt-3">
-                    <label for="" class="form-label">Deskripsi</label>
-                    <textarea name="description" id="description"></textarea>
-                    <div class="invalid-feedback"></div>
                 </div>
             </div>
             <div class="card-header bg-white border-bottom">
@@ -64,24 +59,19 @@
                 <div class="row mt-3">
                     <div class="col col-md-6">
                         <label for="" class="form-label">Facebook</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="facebook" name="facebook" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6">
                         <label for="" class="form-label">Twitter</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="twitter" name="twitter" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Instagram</label>
-                        <input type="text" class="form-control">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Linkedin</label>
-                        <input type="text" class="form-control">
+                    <div class="col col-md-12">
+                        <label for="" class="form-label">Whatsapp</label>
+                        <input type="text" id="whatsapp" name="whatsapp" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -115,7 +105,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/sub-categories/" + id,
+                    url: "{{ config('app.api_url') }}/api/contact",
                     data: formData,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
@@ -129,10 +119,6 @@
                             text: "Berhasil menambah data data.",
                             icon: "success"
                         });
-                        $('#modal-create-subcategory').modal('hide');
-                        $('#modal-create-subcategory').find('input').val('');
-
-                        get(1);
                     },
                     error: function(response) {
                         Swal.fire({
@@ -142,6 +128,32 @@
                         });
                     }
                 });
+
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/contact-detail",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    $("#email").val(response.data.email);
+                    $("#phone_number").val(response.data.phone_number);
+                    $("#facebook").val(response.data.facebook);
+                    $("#twitter").val(response.data.twitter);
+                    $("#whatsapp").val(response.data.whatsapp);
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Ada kesalahan saat menyimpan data.",
+                        icon: "error"
+                    });
+                }
             });
         });
     </script>

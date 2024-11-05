@@ -66,7 +66,6 @@
         box-shadow: none;
         overflow: hidden;
     }
-
 </style>
 
 <div class=" mb-30">
@@ -78,19 +77,24 @@
             <div class="dashboard__nav-wrap">
                 <ul class="nav nav-tabs" id="courseTab" style="border-bottom: none !important;" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="btn active-tab active" id="process-tab" data-bs-toggle="tab" data-bs-target="#process-tab-pane" type="button" role="tab" aria-controls="process-tab-pane" aria-selected="true">
+                        <button class="btn active-tab active" id="process-tab" data-bs-toggle="tab"
+                            data-bs-target="#process-tab-pane" type="button" role="tab"
+                            aria-controls="process-tab-pane" aria-selected="true">
                             Dalam Pengerjaan
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="btn active-tab" id="finished-tab" data-bs-toggle="tab" data-bs-target="#finished-tab-pane" type="button" role="tab" aria-controls="finished-tab-pane" aria-selected="false">
+                        <button class="btn active-tab" id="finished-tab" data-bs-toggle="tab"
+                            data-bs-target="#finished-tab-pane" type="button" role="tab"
+                            aria-controls="finished-tab-pane" aria-selected="false">
                             Selesai Dikerjakan
                         </button>
                     </li>
                 </ul>
             </div>
             <div class="tab-content" id="courseTabContent">
-                <div class="tab-pane fade show active" id="process-tab-pane" role="tabpanel" aria-labelledby="process-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="process-tab-pane" role="tabpanel"
+                    aria-labelledby="process-tab" tabindex="0">
                     <div class="swiper dashboard-courses-active">
                         <div class="row" id="process_courses">
 
@@ -107,7 +111,8 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="tab-pane fade" id="finished-tab-pane" role="tabpanel" aria-labelledby="finished-tab" tabindex="0">
+                <div class="tab-pane fade" id="finished-tab-pane" role="tabpanel" aria-labelledby="finished-tab"
+                    tabindex="0">
                     <div class="swiper dashboard-courses-active">
                         <div class="row" id="finished_courses">
                         </div>
@@ -119,69 +124,69 @@
 </div>
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        get(1)
+    <script>
+        $(document).ready(function() {
+            get(1)
 
-        function get(page) {
-            $.ajax({
-                type: "GET"
-                , url: "{{ config('app.api_url') }}" + "/api/user-course-activities?page=" + page
-                , headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , dataType: "json"
-                , data: {
-                    name: $('#search-name').val()
-                , }
-                , success: function(response) {
-                    console.log(response);
+            function get(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/user-course-activities?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    data: {
+                        name: $('#search-name').val(),
+                    },
+                    success: function(response) {
+                        console.log(response);
 
-                    if (response.data.length > 0) {
-                        let hasProcessCourses = false;
-                        let hasFinishedCourses = false;
+                        if (response.data.length > 0) {
+                            let hasProcessCourses = false;
+                            let hasFinishedCourses = false;
 
-                        $.each(response.data, function(index, value) {
-                            if (value.study_percentage < 100) {
-                                $('#process_courses').append(process(index, value));
-                                hasProcessCourses = true;
-                            } else if (value.study_percentage === 100) {
-                                $('#finished_courses').append(finished(index, value));
-                                hasFinishedCourses = true;
+                            $.each(response.data, function(index, value) {
+                                if (value.study_percentage < 100) {
+                                    $('#process_courses').append(process(index, value));
+                                    hasProcessCourses = true;
+                                } else if (value.study_percentage === 100) {
+                                    $('#finished_courses').append(finished(index, value));
+                                    hasFinishedCourses = true;
+                                }
+                            });
+
+                            if (!hasProcessCourses) {
+                                $('#process_courses').append(empty());
                             }
-                        });
 
-                        if (!hasProcessCourses) {
+                            if (!hasFinishedCourses) {
+                                $('#finished_courses').append(empty());
+                            }
+
+                        } else {
                             $('#process_courses').append(empty());
-                        }
-
-                        if (!hasFinishedCourses) {
                             $('#finished_courses').append(empty());
                         }
 
-                    } else {
-                        $('#process_courses').append(empty());
-                        $('#finished_courses').append(empty());
+
+                        // $('#pagination').html(handlePaginate(response.data.paginate))
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
                     }
+                });
+            }
+        });
 
-
-                    // $('#pagination').html(handlePaginate(response.data.paginate))
-
-                }
-                , error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!"
-                        , text: "Tidak dapat memuat data kategori."
-                        , icon: "error"
-                    });
-                }
-            });
-        }
-    });
-
-    function process(index, value) {
-        const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
-        return `
+        function process(index, value) {
+            const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
+            return `
             <div class="col-lg-4 col-md-6">
                 <div class="courses__item courses__item-two shine__animate-item">
                     <div class="courses__item-thumb courses__item-thumb-two">
@@ -226,11 +231,11 @@
                 </div>
             </div>
             `
-    }
+        }
 
-    function finished(index, value) {
-        const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
-        return `
+        function finished(index, value) {
+            const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
+            return `
             <div class="col-lg-4 col-md-6">
                 <div class="courses__item courses__item-two shine__animate-item">
                     <div class="courses__item-thumb courses__item-thumb-two">
@@ -275,7 +280,6 @@
                 </div>
             </div>
             `
-    }
-
-</script>
+        }
+    </script>
 @endsection

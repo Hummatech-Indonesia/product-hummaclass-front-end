@@ -14,33 +14,33 @@
             e.preventDefault();
 
             $.ajax({
-                type: "DELETE"
-                , url: url
-                , headers: {
+                type: "DELETE",
+                url: url,
+                headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                }
-                , success: function(response) {
+                },
+                success: function(response) {
                     $('#modal-delete').modal('hide');
                     Swal.fire({
-                        title: "Sukses"
-                        , text: "Berhasil menghapus data."
-                        , icon: "success"
+                        title: "Sukses",
+                        text: "Berhasil menghapus data.",
+                        icon: "success"
                     });
                     get();
-                }
-                , error: function(response) {
+                },
+                error: function(response) {
                     $('#modal-delete').modal('hide');
                     if (response.status == 400) {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: response.responseJSON.meta.message
-                            , icon: "error"
+                            title: "Terjadi Kesalahan!",
+                            text: response.responseJSON.meta.message,
+                            icon: "error"
                         });
                     } else {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!"
-                            , text: "Ada kesalahan saat menghapus data."
-                            , icon: "error"
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menghapus data.",
+                            icon: "error"
                         });
                     }
                 }
@@ -59,16 +59,16 @@
     function get(page) {
         $('#contentNews').empty();
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/blogs"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/blogs",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , data: {
-                name: $('#search-name').val()
-            , }
-            , success: function(response) {
+            },
+            dataType: "json",
+            data: {
+                search: $('#search-name').val(),
+            },
+            success: function(response) {
                 $('#contentNews').empty();
 
                 if (response.data.data.length > 0) {
@@ -82,12 +82,12 @@
                 }
 
 
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -137,5 +137,4 @@
     }
 
     get(1);
-
 </script>

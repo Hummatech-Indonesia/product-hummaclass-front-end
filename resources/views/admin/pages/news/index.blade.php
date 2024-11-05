@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
 
 @section('style')
-<style>
-    .btn-close {
-        --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-        background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
-    }
+    <style>
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+        }
 
-    .icon {
-        transition: transform 0.3s ease;
-    }
+        .icon {
+            transition: transform 0.3s ease;
+        }
 
-    .toggle-btn[aria-expanded="true"] .icon {
-        transform: rotate(180deg);
-    }
-</style>
+        .toggle-btn[aria-expanded="true"] .icon {
+            transform: rotate(180deg);
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -46,18 +46,9 @@
             <form action="" class="d-flex gap-3">
                 <div class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
-                        name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
+                        name="name" value="{{ old('name', request('name')) }}" id="search-name" placeholder="Search">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
                         style="color: #8B8B8B"></i>
-                </div>
-                <div class="position-relative">
-                    <input type="text" class="form-control product-search px-1 ps-5" style="background-color: #fff"
-                        name="name" value="{{ old('name', request('name')) }}" id="input-filter" placeholder="Terbaru">
-                    <svg class="position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
-                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
-                        <path fill="none" stroke="#8B8B8B" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="32" d="M32 144h448M112 256h288M208 368h96" />
-                    </svg>
                 </div>
             </form>
             <div>

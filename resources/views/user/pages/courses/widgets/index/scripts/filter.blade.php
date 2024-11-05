@@ -1,6 +1,14 @@
 @push('script')
     <script>
         $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramCourses = urlParams.get('courses');
+
+            if (paramCourses != null) {
+                handleGetCourses(1, {
+                    'categories': paramCourses,
+                });
+            }
 
             let filter = {
                 'categories': [],
@@ -28,8 +36,6 @@
                         $.each(response.data.data, function(index, value) {
                             $('#accordionFlushExample').append(filterCategories(index, value));
                         });
-
-                        // Delegasikan event ke container untuk elemen checkbox yang baru di-render
                         $('#accordionFlushExample').on('change', '.checkbox_sub_category', function(e) {
                             e.preventDefault();
                             if ($(this).is(':checked')) {
@@ -103,7 +109,9 @@
         $('#search-name').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
-                handleGetCourses(1, {title: $('#search-name').val()})
+                handleGetCourses(1, {
+                    title: $('#search-name').val()
+                })
             }, 500);
         });
 
