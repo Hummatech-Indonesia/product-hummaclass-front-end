@@ -198,11 +198,13 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                        Swal.fire({
-                            title: "Sukses",
-                            text: "Berhasil menambah data data.",
-                            icon: "success"
-                        });
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil menambah data data.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href="/admin/events"
+                    });
                 },
                 error: function(response) {
                     if (response.responseJSON && response.responseJSON.errors) {
@@ -231,8 +233,7 @@
             locationContainer.style.display = this.value == '1' ? 'none' : 'block';
         });
 
-        document.getElementById('roundown-btn').addEventListener('click', function() {
-        })
+        document.getElementById('roundown-btn').addEventListener('click', function() {})
     </script>
 
     <script>
