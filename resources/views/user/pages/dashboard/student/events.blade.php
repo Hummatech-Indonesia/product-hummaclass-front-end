@@ -64,17 +64,17 @@
 
         $.ajax({
             type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/users"
+            , url: "{{ config('app.api_url') }}" + "/api/user-event-activities"
             , headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response.data.event_activities);
+                console.log(response.data);
                 
                 $('#eventContent').empty();
 
-                $.each(response.data.event_activities, function(index, value) {
+                $.each(response.data, function(index, value) {
                     $('#eventContent').append(event(value));
                 });
 
