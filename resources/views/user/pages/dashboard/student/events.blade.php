@@ -101,7 +101,6 @@
                     <div class="event__item-thumb">
                         <a href="#" class="shine__animate-link">
                             <img src="${value.event.photo ? value.event.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
-
                         </a>
                     </div>
                     <div class="event__item-content">
