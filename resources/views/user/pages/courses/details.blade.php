@@ -365,7 +365,9 @@
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
-                    $('#price-course').html(formatRupiah(response.data.price));
+                    $('#price-course').html(formatRupiah(response.data.promotional_price ?? response.data
+                        .price));
+                        
 
                     // tab deskripsi
                     $('#description-title').append(response.data.title);

@@ -33,7 +33,7 @@ class AuthController extends Controller
     {
         Session::put('hummaclass-token', $request->token);
         Session::put('user', (array) json_decode($request->user, true));
-
+        
         return redirect()->route('dashboard.users.dashboard');
     }
 

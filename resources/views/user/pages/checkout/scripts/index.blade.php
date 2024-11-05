@@ -78,11 +78,11 @@
 
                         course = response.data;
 
-                        pricingData.course_price = course.price;
-                        checkoutData.course_price = course.id;
+                        pricingData.course_price = course.promotional_price ?? course.price;
+                        checkoutData.course_price = course.promotional_price ?? course.price;
                         updatePricing();
 
-                        $('.price').text(formatRupiah(course.price));
+                        $('.price').text(formatRupiah(course.promotional_price ?? course.price));
                         $('.title').text(course.title);
                         $('.course_photo').attr('src', course.photo);
                         $('.category').text(course.category.name);

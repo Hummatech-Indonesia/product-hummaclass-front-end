@@ -25,12 +25,12 @@ class UserCheckoutController extends Controller
             // dd($response->json());
             $course = $response->json()['data']['course'];
             $courseId = $response->json()['data']['course']['id'];
-            $subModuleSlug = $response->json()['data']['course']['modules'][0]['sub_modules'][0]['slug'];
             if (!$course['is_premium']) {
                 $response = Http::withToken($token)
                     ->maxRedirects(5)
                     ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
                 if ($response->json()['data']) {
+                    $subModuleSlug = $response->json()['data']['course']['modules'][0]['sub_modules'][0]['slug'];
                     return redirect()->route('courses.course-lesson.index', $subModuleSlug);
                 }
             } else {
