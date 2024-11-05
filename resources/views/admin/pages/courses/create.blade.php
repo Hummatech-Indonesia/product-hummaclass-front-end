@@ -68,7 +68,7 @@
                     </div>
                     <div class="col col-md-6 mt-3" id="price-container">
                         <label for="" class="form-label">Harga</label>
-                        <input type="number" class="form-control" id="promo" name="promo">
+                        <input type="number" class="form-control" id="price" name="price">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6 mt-3" id="promotional-price-container" style="display: none">
