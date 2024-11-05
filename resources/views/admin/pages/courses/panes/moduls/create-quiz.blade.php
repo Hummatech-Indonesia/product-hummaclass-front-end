@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+
 @section('style')
     <style>
         .card.bg-light-info {
@@ -16,8 +17,13 @@
         .text-primary {
             color: #7209DB !important;
         }
+
+        .invalid-feedback {
+            display: block;
+        }
     </style>
 @endsection
+
 @section('content')
     <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
         <div class="card-body px-4 py-3">
@@ -27,7 +33,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="javascript:void(0)">Modul - Belajar Dasar Pemograman Web</a>
+                                <a class="text-muted" href="javascript:void(0)">Modul - Belajar Dasar Pemograman Web</a>
                             </li>
                         </ol>
                     </nav>
@@ -45,73 +51,70 @@
     <form id="question-bank">
         <div class="card">
             <div class="card-body">
-                <label for="question" class="form-label" style="font-weight: bold;">Soal</label>
-                <textarea name="question" id="question" class="form-control summernote"></textarea>
+                <div class="col">
+                    <label for="question" class="form-label" style="font-weight: bold;">Soal</label>
+                    <textarea name="question" id="question" class="form-control summernote @error('question') is-invalid @enderror"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+
                 <div class="row my-3">
-                    <div class="col-12">
-                        <label for="option_a" class="form-label" style="font-weight: bold;">Pilihan
-                            A</label>
-                        <textarea name="option_a" id="option_a" class="form-control summernote"></textarea>
+                    <div class="col col-12">
+                        <label for="option_a" class="form-label" style="font-weight: bold;">Pilihan A</label>
+                        <textarea name="option_a" id="option_a" class="form-control summernote @error('option_a') is-invalid @enderror"></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
+
                 <div class="row my-3">
-                    <div class="col-6">
-                        <label for="option_b" class="form-label" style="font-weight: bold;">Pilihan
-                            B</label>
-                        <textarea name="option_b" id="option_b" class="form-control summernote"></textarea>
+                    <div class="col col-6">
+                        <label for="option_b" class="form-label" style="font-weight: bold;">Pilihan B</label>
+                        <textarea name="option_b" id="option_b" class="form-control summernote @error('option_b') is-invalid @enderror"></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col-6">
-                        <label for="option_c" class="form-label" style="font-weight: bold;">Pilihan
-                            C</label>
-                        <textarea name="option_c" id="option_c" class="form-control summernote"></textarea>
+                    <div class="col col-6">
+                        <label for="option_c" class="form-label" style="font-weight: bold;">Pilihan C</label>
+                        <textarea name="option_c" id="option_c" class="form-control summernote @error('option_c') is-invalid @enderror"></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-6">
-                        <label for="option_d" class="form-label" style="font-weight: bold;">Pilihan
-                            D</label>
-                        <textarea name="option_d" id="option_d" class="form-control summernote"></textarea>
+                    <div class="col col-6">
+                        <label for="option_d" class="form-label" style="font-weight: bold;">Pilihan D</label>
+                        <textarea name="option_d" id="option_d" class="form-control summernote @error('option_d') is-invalid @enderror"></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col-6">
-                        <label for="option_e" class="form-label" style="font-weight: bold;">Pilihan
-                            E</label>
-                        <textarea name="option_e" id="option_e" class="form-control summernote"></textarea>
+                    <div class="col col-6">
+                        <label for="option_e" class="form-label" style="font-weight: bold;">Pilihan E</label>
+                        <textarea name="option_e" id="option_e" class="form-control summernote @error('option_e') is-invalid @enderror"></textarea>
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="card">
             <div class="card-body">
                 <h5 style="font-weight: bold;" class="mb-3">Pilih Kunci Jawaban</h5>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="answer" value="option_a" checked>
-                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
-                        Jawaban A
-                    </label>
+                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">Jawaban A</label>
                 </div>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="answer" value="option_b">
-                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
-                        Jawaban B
-                    </label>
+                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">Jawaban B</label>
                 </div>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="answer" value="option_c">
-                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
-                        Jawaban C
-                    </label>
+                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">Jawaban C</label>
                 </div>
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="radio" name="answer" value="option_d">
-                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
-                        Jawaban D
-                    </label>
+                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">Jawaban D</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="answer" value="option_e">
-                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">
-                        Jawaban E
-                    </label>
+                    <label class="form-check-label text-dark" style="font-weight: bold;" for="answer">Jawaban E</label>
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="reset" class="btn btn-warning me-2 back">Kembali</button>
@@ -121,6 +124,7 @@
         </div>
     </form>
 @endsection
+
 @section('script')
     <script>
         $(document).ready(function() {
@@ -130,6 +134,7 @@
                 e.preventDefault();
                 window.location.href = "/admin/modules/" + id;
             });
+
             $(".summernote").summernote({
                 height: 350, // set editor height
                 minHeight: null, // set minimum height of editor
@@ -137,8 +142,7 @@
                 focus: false, // set focus to editable area after initializing summernote
             });
         });
-    </script>
-    <script>
+
         $('#question-bank').submit(function(e) {
             e.preventDefault();
             var id = "{{ $id }}";
@@ -176,11 +180,25 @@
                     });
                 },
                 error: function(response) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
-                        icon: "error"
-                    });
+                    if (response.status === 422) {
+                        let errors = response.responseJSON.data;
+
+                        // Reset invalid state before adding new errors
+                        $('#question-bank').find('.is-invalid').removeClass('is-invalid');
+                        $('#question-bank').find('.invalid-feedback').text('');
+
+                        $.each(errors, function(field, messages) {
+                            $(`[name="${field}"]`).addClass('is-invalid');
+                            $(`[name="${field}"]`).closest('.col').find('.invalid-feedback')
+                                .text(messages[0]);
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
                 }
             });
         });

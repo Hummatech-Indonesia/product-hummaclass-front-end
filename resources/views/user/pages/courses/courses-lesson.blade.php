@@ -164,7 +164,7 @@
                             <div class="lesson__video-wrap mb-0">
                                 <div class="lesson__video-wrap-top">
                                     <div class="lesson__video-wrap-top-left">
-                                        <a href="{{ route('course-lesson.index') }}"><i class="flaticon-arrow-right"></i></a>
+                                        <a><i class="flaticon-arrow-right"></i></a>
                                         <span id="title_course"></span>
                                     </div>
                                 </div>
@@ -407,7 +407,7 @@
                     $('#course_sub_title').html(response.data.sub_title);
                     $('#title_course').html(response.data.course_title);
                     var url =
-                        `{{ route('discussion-forum.index', ['']) }}/${response.data.course_slug}`;
+                        `{{ route('discussion-forum.index', ['']) }}/${response.data.course_slug}?module=${response.data.module}`;
                     $('#forum_discussion').attr('href', url);
 
                     $('#course_title').html(response.data.title);
