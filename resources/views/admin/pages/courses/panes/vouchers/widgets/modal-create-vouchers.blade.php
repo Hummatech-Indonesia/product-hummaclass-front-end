@@ -3,7 +3,7 @@
         <div class="modal-content shadow-md">
             <div class="modal-header" style="background-color: #7209DB;border-radius: 10px 10px 0 0;">
                 <h5 class="modal-title text-white" id="importPegawai">Tambah Vouchers</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="POST" id="create-course-form" enctype="multipart/form-data">
                 @csrf

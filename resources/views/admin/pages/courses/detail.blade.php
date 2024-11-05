@@ -171,7 +171,6 @@
 
     {{-- modal tambah voucher --}}
     @include('admin.pages.courses.panes.vouchers.widgets.modal-create-vouchers')
-  
 @endsection
 @section('script')
     @include('admin.pages.courses.scripts.index')

@@ -20,12 +20,11 @@
                 name: $('#search-name').val(),
             },
             success: function(response) {
-                console.log(response);
-                
+
                 $('#test-content').empty();
 
-                if (response.data.length > 0) {
-                    $.each(response.data, function(index, value) {
+                if (response.data.data.length > 0) {
+                    $.each(response.data.data, function(index, value) {
                         $('#test-content').append(testContent(index, value));
                     });
                     $('#pagination').html(handlePaginate(response.data.paginate))
