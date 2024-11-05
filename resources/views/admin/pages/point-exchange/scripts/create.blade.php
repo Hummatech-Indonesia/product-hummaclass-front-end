@@ -1,46 +1,46 @@
 <script>
-    $(document).ready(function() {
-        $(document).on('click', '.createReward', function() {
-            $('#modal-create-rewards').modal('show');
-        })
-        $('.storeConfirmation').click(function(e) {
-            e.preventDefault();
-            let formData = new FormData($('.createFormRewards')[0]);
-            $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/rewards",
-                data: formData,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    $('#modal-create-rewards').modal('hide');
-                    Swal.fire({
-                        title: "Berhasil!",
-                        text: response.meta.message,
-                        icon: "success"
-                    }).then(() => {
-                        $('.createRewardModal').modal('hide');
-                        window.location.reload();
+    $('#createFormRewards').submit(function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: "POST",
+            url: "{{ config('app.api_url') }}/api/rewards",
+            headers: {
+                'Authorization': `Bearer {{ session('hummaclass-token') }}`
+            },
+            data: formData,
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                Swal.fire({
+                    title: "Sukses",
+                    text: "Berhasil menambah data data.",
+                    icon: "success"
+                });
+                window.location.href = "/admin/point-exchange";
+            },
+            error: function(response) {
+                if (response.status === 422) {
+                    let errors = response.responseJSON.data;
+
+                    $.each(errors, function(field, messages) {
+
+                        $(`[name="${field}"]`).addClass('is-invalid');
+
+                        $(`[name="${field}"]`).closest('.col').find(
+                            '.invalid-feedback').text(messages[0]);
                     });
-                },
-                error: function(response) {
-                    let errorMessages = [];
-                    $.each(response.data, function(field, messages) {
-                        $.each(messages, function(index, message) {
-                            errorMessages.push(message);
-                        });
-                    });
+                } else {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        html: errorMessages.join('<br>'),
+                        text: "Ada kesalahan saat menyimpan data.",
                         icon: "error"
                     });
                 }
-            });
+            }
         });
     });
 </script>

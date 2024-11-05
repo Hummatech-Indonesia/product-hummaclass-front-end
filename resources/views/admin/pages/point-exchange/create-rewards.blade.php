@@ -28,7 +28,7 @@
     <div class="card p-4">
         <h4 class="fw-semibold mt-3">Tambah Barang</h4>
         <hr class="border border-1 border-secondary mb-4">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form id="createFormRewards" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-12 mb-4">
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end gap-2">
-                <a href="" class="btn" style="background-color:   #FA896B; color : white">Kembali</a>
+                <a href="" class="btn" style="background-color:#FA896B; color : white">Kembali</a>
                 <button type="submit" class="btn" style="background-color:   #9425FE; color : white">Simpan</button>
             </div>
         </form>
@@ -89,5 +89,5 @@
 @endsection
 
 @section('script')
-    @include('admin.pages.news.scripts.create-news')
+@include('admin.pages.point-exchange.scripts.create')
 @endsection
