@@ -83,12 +83,13 @@
                     </tbody>
                 </table>
             </div>
+            <div id="pagination"></div>
         </div>
     </div>
 </div>
 @push('script')
     @include('admin.pages.courses.panes.test.scripts.index')
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
 
@@ -115,5 +116,5 @@
             });
 
         });
-    </script> --}}
+    </script>
 @endpush
