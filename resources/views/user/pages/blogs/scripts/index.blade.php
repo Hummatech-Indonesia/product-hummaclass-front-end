@@ -149,11 +149,12 @@
         handleGetBlogs(1);
 
         function card(index, value) {
+            var url = "{{ config('app.api_url') }}";
             return `
                  <div class="col-xl-4 col-md-6">
                     <div class="blog__post-item shine__animate-item">
                         <div class="blog__post-thumb">
-                            <a href="{{ route('news.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail}" alt="img"></a>
+                            <a href="{{ route('news.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img"></a>
                             <a href="javascript:void(0)" class="post-tag">${value.sub_category}</a>
                         </div>
                         <div class="blog__post-content">
@@ -252,11 +253,12 @@
 
 
         function latestNews(index, value) {
+            var url = "{{ config('app.api_url') }}";
             return `
                 <div class="rc-post-item">
                     <div class="rc-post-thumb">
                         <a href="javascript:void(0)">
-                            <img src="${value.thumbnail ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
+                            <img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
                         </a>
                     </div>
                     <div class="rc-post-content">
