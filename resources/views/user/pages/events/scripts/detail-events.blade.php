@@ -25,9 +25,15 @@
 
                 // event details
                 $('#roundown-content').empty();
-                $.each(response.data.event_details, function(index, value) {
-                    $('#roundown-content').append(cardRoundown(value));
-                });
+
+                if (response.data.event_details.length > 0) {
+                    $.each(response.data.event_details, function(index, value) {
+                        $('#roundown-content').append(cardRoundown(value));
+                    });
+                } else {
+                    $('#roundown-content').append(emptyTable());
+                }
+               
 
 
                 @if (session('hummaclass-token'))
