@@ -5,7 +5,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 body {
-    background-color: #F8F8F8;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-style: normal;

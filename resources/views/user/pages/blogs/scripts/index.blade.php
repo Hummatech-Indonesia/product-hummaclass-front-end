@@ -256,7 +256,7 @@
                 <div class="rc-post-item">
                     <div class="rc-post-thumb">
                         <a href="javascript:void(0)">
-                            <img src="${value.thumbnail}" alt="img">
+                            <img src="${value.thumbnail ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
                         </a>
                     </div>
                     <div class="rc-post-content">
