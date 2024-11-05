@@ -14,40 +14,6 @@
         font-weight: 200;
     }
 
-    .category-options .category-item:hover {
-        background-color: #8121FB;
-        color: #fff;
-    }
-
-    .dropdown-container:hover .category-options {
-        display: block;
-    }
-
-    .category-options {
-        display: none;
-        position: absolute;
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 100;
-        max-height: 200px;
-        overflow-y: auto;
-        top: 100%;
-        /* Menampilkan di bawah dropdown kategori */
-    }
-
-    .category-options div {
-        padding: 8px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .category-options div:hover {
-        background-color: #f0f0f0;
-    }
-
     .subcategory-dropdown {
         display: none;
         position: absolute;
@@ -71,6 +37,18 @@
     .subcategory-dropdown .subcategory-item:hover {
         background-color: #8121FB;
         color: #fff;
+    }
+
+    .courses-top-right-select select {
+        border: 1px solid #fff;
+    }
+
+    .tgmenu__search-form input {
+        padding: 22px 50px 10px 20px;
+    }
+
+    .courses-top-right-select {
+        position: relative;
     }
 </style>
 
@@ -143,9 +121,19 @@
                                         </div> --}}
 
                                         {{-- <div class="courses-top-right-select">
-                                            <select name="sub_category" class="orderby" id="sub-category-list">
+                                            <select name="category" class="orderby" id="category-list">
                                             </select>
                                         </div> --}}
+                                        <div class="courses-top-right-select">
+                                            <select name="category" class="orderby" id="category-list">
+                                                <option value="">Pilih Kategori</option>
+                                            </select>
+                                            <select name="sub_category" class="orderby" id="sub-category-list"
+                                                style="display: none;">
+                                                <option value="">Pilih Sub Kategori</option>
+                                            </select>
+                                        </div>
+
 
                                     </div>
                                     <div class="input-grp">
@@ -225,32 +213,196 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    getSubCategory();
 
-    function getSubCategory() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}/api/sub-categories",
-            headers: {
-                Authorization: 'Bearer {{ session('hummaclass-token ') }}'
-            },
-            dataType: "json",
-            success: function(response) {
-                $('#sub-category-list').empty().append('<option value="">Pilih Sub Kategori</option>');
-                $.each(response.data, function(index, value) {
-                    $('#sub-category-list').append(
-                        `<option value="${value.name}">${value.name}</option>`
-                    );
+<script>
+    const categoryDropdown = document.getElementById('category-dropdown');
+    const categoryOptions = document.getElementById('category-options');
+    const subcategoryDropdown = document.getElementById('subcategory-dropdown');
+
+    const categories = {};
+
+    // Ambil pilihan subkategori dari localStorage saat halaman dimuat
+    const selectedSubCategory = localStorage.getItem('selectedSubCategory');
+    if (selectedSubCategory) {
+        $('#subcategory-dropdown').data("selected", selectedSubCategory);
+        $('#subcategory-dropdown').text(selectedSubCategory); // Tampilkan subkategori yang dipilih
+    }
+
+    categoryOptions.innerHTML = '';
+
+    function loadSubcategories(categoryName) {
+        const subcategories = categories[categoryName] || [];
+        subcategoryDropdown.innerHTML = '';
+
+        if (subcategories.length > 0) {
+            subcategories.forEach(sub => {
+                // Menambahkan subkategori ke dropdown
+                $('#subcategory-dropdown').append(
+                    `<div class="subcategory-item" data-value="${sub}">${sub}</div>`
+                );
+            });
+
+            // Event listener untuk setiap item subkategori
+            $('.subcategory-item').on('click', function() {
+                const selectedSubcategory = $(this).data("value");
+                $('#subcategory-dropdown').data("selected",
+                selectedSubcategory); // Simpan nilai subkategori yang dipilih
+                $('#subcategory-dropdown').text(selectedSubcategory); // Tampilkan nama subkategori yang dipilih
+
+                // Simpan pilihan subkategori di localStorage
+                localStorage.setItem('selectedSubCategory', selectedSubcategory);
+            });
+        } else {
+            $('#subcategory-dropdown').append('<div class="no-subcategory">Tidak ada subkategori</div>');
+        }
+    }
+
+    // Event listener untuk kategori dropdown
+    categoryDropdown.addEventListener('click', function() {
+        // Toggle pilihan kategori
+        categoryOptions.classList.toggle('show');
+    });
+
+    categoryOptions.addEventListener('mouseover', function(event) {
+        const category = event.target.getAttribute('data-category');
+        if (category && categories[category]) {
+            // Clear previous subcategories
+            subcategoryDropdown.innerHTML = '';
+
+            // Populate subcategories
+            categories[category].forEach(function(subcategory) {
+                const subItem = document.createElement('div');
+                subItem.classList.add('subcategory-item');
+                subItem.textContent = subcategory;
+                subItem.addEventListener('click', function() {
+                    // Update the text of the category dropdown with subcategory
+                    categoryDropdown.textContent = subcategory;
+
+                    // Hide the dropdowns
+                    subcategoryDropdown.style.display = 'none';
                 });
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data sub kategori.",
-                    icon: "error"
-                });
+                subcategoryDropdown.appendChild(subItem);
+            });
+
+            showSubcategoryDropdown(); // Show the subcategory dropdown
+        }
+    });
+
+    categoryOptions.addEventListener('click', function(event) {
+        const category = event.target.getAttribute('data-category');
+        if (category) {
+            // Update the text of the category dropdown
+            categoryDropdown.textContent = event.target.textContent;
+
+            // Hide the category options and show the subcategory options
+            categoryOptions.style.display = 'none';
+            showSubcategoryDropdown();
+        }
+    });
+
+    categoryDropdown.addEventListener('click', function() {
+        // Toggle the display of the category options
+        categoryOptions.style.display = categoryOptions.style.display === 'block' ? 'none' : 'block';
+    });
+
+    function showSubcategoryDropdown() {
+        subcategoryDropdown.style.display = 'block';
+        subcategoryDropdown.style.top = categoryOptions.offsetHeight + 'px';
+        subcategoryDropdown.style.left = '100%'; // Posisi di sebelah kanan kategori options
+    }
+
+    $(document).ready(function() {
+        getCategories();
+
+        function getCategories() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/categories",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response.data.data);
+
+                    $.each(response.data.data, function(index, value) {
+                        $('#category-list').append(
+                            `<option value="${value.name}">${value.name}</option>`
+                        );
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        $('#category-list').on('change', function() {
+            var selectedCategory = $(this).val();
+            if (selectedCategory) {
+                // Panggil fungsi untuk memuat subkategori berdasarkan kategori yang dipilih
+                getSubCategory(selectedCategory);
+            } else {
+                $('#sub-category-list').hide(); // Sembunyikan jika tidak ada kategori yang dipilih
             }
         });
-    }
+
+        $('#category-list').hover(
+            function() {
+                var selectedCategory = $(this).val();
+                if (selectedCategory) {
+                    getSubCategory(selectedCategory); // Memuat subkategori saat hover
+                }
+                $('#sub-category-list').show(); // Tampilkan dropdown subkategori
+            },
+            function() {
+                $('#sub-category-list').hide(); // Sembunyikan dropdown subkategori saat mouse keluar
+            }
+        );
+
+        function getSubCategory(selectedCategory) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/sub-categories",
+                data: {
+                    category: selectedCategory
+                }, // Kirim kategori yang dipilih
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#sub-category-list').empty().append(
+                        '<option value="">Pilih Sub Kategori</option>');
+                    $.each(response.data, function(index, value) {
+                        $('#sub-category-list').append(
+                            `<option value="${value.name}">${value.name}</option>`
+                        );
+                    });
+                    console.log("Dropdown berhasil diisi:", response.data);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data sub kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        // Event untuk memilih subkategori
+        $('#sub-category-list').on('change', function() {
+            var selectedSubCategory = $(this).val();
+            if (selectedSubCategory) {
+                // Lakukan pencarian berdasarkan subkategori yang dipilih
+                console.log("Subkategori yang dipilih:", selectedSubCategory);
+                // Tambahkan logika pencarian di sini
+            }
+        });
+    });
 </script>
