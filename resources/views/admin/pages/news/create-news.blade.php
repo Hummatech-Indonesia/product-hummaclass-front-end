@@ -28,12 +28,12 @@
     <hr>
     <form action="" id="create-news-form" method="POST">
         <div class="row">
-            <div class="col-12 mb-3">
+            <div class="col col-12 mb-3">
                 <label for="thumbnail" class="fw-semibold form-label">Thumbnail</label>
                 <input type="file" class="form-control" id="thumbnail" name="thumbnail">
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="col-12 mb-3">
+            <div class="col col-12 mb-3">
                 <label for="title" class="fw-semibold form-label">Judul Berita</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Masukan judul">
                 <div class="invalid-feedback"></div>
@@ -52,7 +52,7 @@
                 </select>
                 <div class="invalid-feedback"></div>
             </div>
-            <div class="col-12 mb-3">
+            <div class="col col-12 mb-3">
                 <label for="summernote-description" class="fw-semibold form-label">Deskripsi</label>
                 <textarea name="description" id="summernote-description" cols="30" rows="10"></textarea>
                 <div class="invalid-feedback"></div>
