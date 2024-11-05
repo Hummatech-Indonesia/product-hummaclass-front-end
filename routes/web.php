@@ -227,7 +227,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.point-exchange.create-rewards');
     })->name('create-rewards.index');
 
-    Route::get('edit-rewards', function ($id) {
+    Route::get('edit-rewards/{id}', function ($id) {
         return view('admin.pages.point-exchange.edit-rewards', compact('id'));
     })->name('edit-rewards.index');
 

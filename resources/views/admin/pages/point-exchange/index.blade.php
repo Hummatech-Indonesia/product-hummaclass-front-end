@@ -101,6 +101,5 @@
 
 @section('script')
     @include('admin.pages.point-exchange.scripts.index')
-    @include('admin.pages.point-exchange.scripts.edit')
     @include('admin.pages.point-exchange.scripts.detail')
 @endsection
