@@ -74,9 +74,13 @@
                 
                 $('#eventContent').empty();
 
-                $.each(response.data, function(index, value) {
-                    $('#eventContent').append(event(value));
-                });
+                if (response.data.length > 0) {
+                    $.each(response.data, function(index, value) {
+                        $('#eventContent').append(event(value));
+                    });
+                } else {
+                    $('#eventContent').append(empty());
+                }
 
             }
             , error: function(xhr) {
@@ -90,20 +94,20 @@
     });
 
     function event(value) {
-        console.log(value);
 
         return `
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <div class="event__item shine__animate-item">
                     <div class="event__item-thumb">
-                        <a href="#" class="shine__animate-link"><img src="{{ asset('assets/img/events/event_thumb01.jpg') }}" alt="img"></a>
+                        <a href="#" class="shine__animate-link">
+                            <img src="${value.event.photo ? value.event.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
+
+                        </a>
                     </div>
                     <div class="event__item-content">
-                        <span class="date">25 June, 2024</span>
-                        <h2 class="title"><a href="#">The
-                                Accessible Target Sizes Cheatsheet</a></h2>
-                        <p>Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 6 September
-                            2024 pukul 16.00 - 17.00 WIB Live di YouTube</p>
+                        <span class="date">${value.event.start_in}</span>
+                        <h2 class="title"><a href="{{ route('events.show', '') }}/${value.event.slug}">${value.event.title}</a></h2>
+                        <p>${value.event.description}</p>
 
                         <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
                             <div class="d-flex" style="font-size: 14px;">
@@ -113,7 +117,7 @@
                                         <circle cx="12" cy="7" r="4" />
                                     </g>
                                 </svg>
-                                Sisa Kuota: 150
+                                Sisa Kuota: ${value.event.capacity_left}
                             </div>
                             <div>4 Hari lagi</div>
                         </div>
