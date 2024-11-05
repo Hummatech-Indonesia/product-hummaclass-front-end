@@ -40,7 +40,7 @@
 
                     $('.storeConfirm').click(function(e) {
                         // e.preventDefault();
-                        
+                        var id = $(this).data('id');
                         Swal.fire({
                             title: 'Tukar Poin?',
                             text: "Apakah Anda yakin ingin menukar poin?",
