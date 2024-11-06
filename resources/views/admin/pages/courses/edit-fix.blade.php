@@ -30,7 +30,7 @@
             <h5 class="mb-0">Edit Kursus</h5>
         </div>
         <div class="card-body">
-            <form action="#" enctype="multipart/form-data" id="create-course-form">
+            <form action="#" enctype="multipart/form-data" id="update-course-form">
                 <div class="row">
                     <div class="col col-md-12">
                         <label for="" class="form-label">Thumbnail</label><br>
@@ -136,36 +136,48 @@
                 return option
             }
 
-            $('#create-course-form').submit(function(e) {
+            $('#update-course-form').submit(function(e) {
                 e.preventDefault();
+                var formData = new FormData(this);
+                console.log(formData);
 
-                let formData = {};
-                $(this).serializeArray().forEach(function(field) {
-                    formData[field.name] = field.value;
-                });
+                formData.append('_method', 'PATCH');
 
                 $.ajax({
-                    type: "PUT",
+                    type: "POST",
                     url: "{{ config('app.api_url') }}/api/courses/" + course.id,
-                    headers: {
-                        'Authorization': 'Bearer {{ session('hummaclass-token') }}'
-                    },
                     data: formData,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     dataType: "json",
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil memperbarui data data.",
+                            text: "Berhasil menambah data.",
                             icon: "success"
+                        }).then(() => {
+                            window.location.href = "/admin/courses";
                         });
-                        window.location.href = '/admin/courses';
                     },
                     error: function(response) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.col').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
             });
