@@ -105,8 +105,8 @@
                 </div>
 
                 <div class="text-end">
-                    <button type="button" class="btn text-white me-2" style="background-color: #DB0909;"
-                        data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn text-white me-2 backBtn"
+                        style="background-color: #DB0909;">Batal</button>
                     <button type="submit" class="btn text-white" style="background-color: #7209DB;">Tambah</button>
                 </div>
             </div>
@@ -156,6 +156,10 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    $('.backBtn').click(function(e) {
+                        e.preventDefault();
+                        window.location.href = "/admin/courses/" + response.data[0].course.slug;
+                    });
                     $.each(response.data, function(index, value) {
                         $('#module_id').append(`<option value="${value.id}">${value.title}</option>`);
                     });
