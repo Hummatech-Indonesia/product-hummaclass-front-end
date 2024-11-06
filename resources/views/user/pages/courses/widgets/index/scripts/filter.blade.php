@@ -188,7 +188,7 @@
             let price;
             if (value.promotional_price != 0) {
                 price =
-                    ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.promotional_price)}</del>${formatRupiah(value.price)}</h6>`
+                    ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
             } else {
                 price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
             }
