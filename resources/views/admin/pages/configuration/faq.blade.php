@@ -133,7 +133,7 @@
                     <td>${value.answer.length > 35 ? value.answer.substring(0, 35) + '...' : value.answer}</td>
                     <td>
                         <div class="d-flex gap-3">
-                            <button data-id="${value.id}" data-question="${value.question}" data-answer=${value.answer} class="btn px-2 text-white btn-detail-faq" style="background-color: #9425FE">
+                            <button data-id="${value.id}" data-question="${value.question}" data-answer="${value.answer}" class="btn px-2 text-white btn-detail-faq" style="background-color: #9425FE">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                         <path d="M3 13c3.6-8 14.4-8 18 0" />
@@ -141,7 +141,7 @@
                                     </g>
                                 </svg>
                             </button>
-                            <button data-id="${value.id}" data-question="${value.question}" data-answer=${value.answer} class="btn px-2 text-white btn-warning btn-update-faq">
+                            <button data-id="${value.id}" data-question="${value.question}" data-answer="${value.answer}" class="btn px-2 text-white btn-warning btn-update-faq">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M5 19h1.425L16.2 9.225L14.775 7.8L5 17.575zm-2 2v-4.25L16.2 3.575q.3-.275.663-.425t.762-.15t.775.15t.65.45L20.425 5q.3.275.438.65T21 6.4q0 .4-.137.763t-.438.662L7.25 21zM19 6.4L17.6 5zm-3.525 2.125l-.7-.725L16.2 9.225z" />
                                 </svg>
@@ -160,7 +160,7 @@
         get(1);
     </script>
 
- 
+
 
     {{-- edit faq --}}
     <script>
@@ -172,8 +172,10 @@
 
                 const question = $(this).data('question');
                 const answer = $(this).data('answer');
-                $('#question').val(question);
-                $('#answer').val(answer);
+                console.log(question, answer);
+
+                $('#edit-question').val(question);
+                $('#edit-answer').val(answer);
             });
 
             $('.updateConfirmation').click(function(e) {
@@ -202,17 +204,24 @@
                         get(1);
                     },
                     error: function(response) {
-                        let errorMessages = [];
-                        $.each(response.responseJSON.errors, function(field, messages) {
-                            $.each(messages, function(index, message) {
-                                errorMessages.push(message);
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $('.createFormFaq .is-invalid').removeClass('is-invalid');
+                            $('.createFormFaq .invalid-feedback').text('');
+
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.form-group').find(
+                                    '.invalid-feedback').text(messages[0]);
                             });
-                        });
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            html: errorMessages.join('<br>'),
-                            icon: "error"
-                        });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
             });
