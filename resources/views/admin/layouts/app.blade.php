@@ -73,7 +73,8 @@
             }
         }
 
-        :root, [data-bs-theme=light] {
+        :root,
+        [data-bs-theme=light] {
             --purple-primary: #9425FE;
             --bs-blue: #9425FE;
             --bs-primary: #9425FE;
@@ -821,14 +822,29 @@
         }
 
         const emptyImageUrl = "{{ asset('assets/8961448_3973477.svg') }}";
+
         function emptyCard() {
-        return `
+            return `
             <div class="d-flex justify-content-center flex-column align-items-center">    
                 <img src="${emptyImageUrl}" width="35%" alt="">
                 <h4 class="text-center">Data kosong</h4>
             </div>
         `;
-    }
+        }
+
+        function commonAlert(setting = {
+            title: 'Terjadi Kesalahan!',
+            status: 'success',
+            message: 'Ada kesalahan saat memproses data.'
+        }) {
+            setting.title = setting.status == 'success' ? "Berhasil" : "Gagal";
+            Swal.fire({
+                title: setting.title,
+                text: setting.message,
+                icon: setting.status == 'success' ? 'info' : 'error',
+                confirmButtonText: 'Oke'
+            });
+        }
     </script>
 
     @yield('script')

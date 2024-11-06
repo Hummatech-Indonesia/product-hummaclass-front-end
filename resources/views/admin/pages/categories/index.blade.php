@@ -232,11 +232,10 @@
                         });
                         get(1);
                     },
-                    error: function() {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
+                    error: function(xhr, status) {
+                        commonAlert({
+                            message: xhr.responseJSON.meta.message,
+                            status: status,
                         });
                     }
                 });
@@ -269,11 +268,10 @@
                         });
                         get(1);
                     },
-                    error: function() {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
+                    error: function(xhr, status) {
+                        commonAlert(xhr, {
+                            message: xhr.responseJSON.meta.message,
+                            status: status
                         });
                     }
                 });
