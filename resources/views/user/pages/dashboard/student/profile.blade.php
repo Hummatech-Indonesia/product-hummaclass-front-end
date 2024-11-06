@@ -305,6 +305,7 @@
             $('#phone_number').val(data.phone_number);
             $('#address').val(data.address);
             $('.detail-name').text(data.name);
+            $('#gender').val(data.gender);
 
             var profileImage = data.photo ? data.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
             $('.detail-photo').attr('src', profileImage);
