@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end gap-2">
-                <a href="" class="btn" style="background-color:#FA896B; color : white">Kembali</a>
+                <a href="{{ route('admin.point-exchange.index') }}" class="btn" style="background-color:#FA896B; color : white">Kembali</a>
                 <button type="submit" class="btn" style="background-color:   #9425FE; color : white">Simpan</button>
             </div>
         </form>
