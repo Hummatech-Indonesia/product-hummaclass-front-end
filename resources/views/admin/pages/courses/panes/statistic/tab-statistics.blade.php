@@ -4,7 +4,7 @@
             <div class="card border border-1 shadow-none p-4 rounded-6">
                 <h5 style="color: #000; font-weight: bold;">Statistik Pembelian Pada Kursus</h5>
                 <p>Statistik Tahun ini</p>
-                <h1 class="mb-5" style="font-weight: bold; color: #000;">Rp 400.000</h1>
+                <h3 class="mb-5" style="font-weight: bold; color: #000;">Rp 400.000</h3>
                 <div id="chart-line-zoomable"></div>
             </div>
         </div>
@@ -48,39 +48,40 @@
                 <div class="card border border-1 shadow-none p-3 position-relative">
                     <div class="mt-2 position-relative">
                         <h6 class="mb-3" style="color: #2A3547;">Selesai Pengerjaan</h6>
-                        <h3 style="font-weight: bold; color: #2A3547;">80 Soal</h1>
-                            <div class="position-absolute top-0 end-0 d-flex align-items-center justify-content-center me-3 mb-10"
-                                style="color: #9425fe; background-color: rgba(148, 37, 254, 0.2); border-radius: 25%; padding: 8px; width: 40px; height: 40px;">
-                                <i class="ti ti-box-multiple fs-6"></i>
-                            </div>
+                        <h3 style="font-weight: bold; color: #2A3547;">80 Soal</h3>
+                        <div class="position-absolute top-0 end-0 d-flex align-items-center justify-content-center me-3 mb-10"
+                            style="color: #9425fe; background-color: rgba(148, 37, 254, 0.2); border-radius: 25%; padding: 8px; width: 40px; height: 40px;">
+                            <i class="ti ti-box-multiple fs-6"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="card border border-1 shadow-none p-3 position-relative">
-                            <div class="p-3 position-relative">
-                                <h style="color: #2A3547;font-weight: bold">Pre-Test</h>
+                        <div class="card border border-1 shadow-none position-relative">
+                            <div class="p-4 position-relative">
+                                <h5 style="color: #2A3547; font-weight: bold">Pre-Test</h5>
                                 <p>Rata-rata Nilai</p>
-                                <h2 style="font-weight: bold; color: #2A3547;">80.5</h1>
+                                <h2 style="font-weight: bold; color: #2A3547;">80.5</h2>
                             </div>
+                            <div id="chart-line-zoomable-pre-test"></div>
                         </div>
-                        <div id="chart-line-zoomable-pt-test"></div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="card border border-1 shadow-none p-3 position-relative">
-                            <div class="p-3 position-relative">
-                                <h style="color: #2A3547;font-weight: bold">Pre-Test</h>
+                        <div class="card border border-1 shadow-none position-relative">
+                            <div class="p-4 position-relative">
+                                <h5 style="color: #2A3547; font-weight: bold">Pre-Test</h5>
                                 <p>Rata-rata Nilai</p>
-                                <h2 style="font-weight: bold; color: #2A3547;">80.5</h1>
+                                <h2 style="font-weight: bold; color: #2A3547;">80.5</h2>
                             </div>
+                            <div id="chart-line-zoomable-post-test"></div>
                         </div>
-                        <div id="chart-line-zoomable-pt-test"></div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-lg-4">
             <div class="card border border-1 shadow-none p-4 position-relative">
                 <div class="mt-2">
@@ -106,14 +107,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="col-lg-4">
-            <div class="card border border-1 shadow-none p-4">
+            <div class="card border border-1 shadow-none">
                 <div class="card-body">
-                    <h5 class="card-title mb-1">Riview Kursus</h5>
+                    <h5 class="card-title mb-1">Review Kursus</h5>
                     <p class="card-text text-muted mb-3">Rating kursus yang diberikan pembeli</p>
                     <div class="d-flex align-items-baseline mb-2">
                         <h1 class="display-4 mb-0 me-2">4.5</h1>
@@ -174,216 +174,212 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    @include('admin.pages.courses.widgets.modal-create-fill-manual')
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    var options_zoomable = {
-        series: [{
-            name: "XYZ MOTORS",
-            data: [{
-                    x: "02-10-2017 GMT",
-                    y: 34
-                },
-                {
-                    x: "02-11-2017 GMT",
-                    y: 43
-                },
-                {
-                    x: "02-12-2017 GMT",
-                    y: 31
-                },
-                {
-                    x: "02-13-2017 GMT",
-                    y: 43
-                },
-                {
-                    x: "02-14-2017 GMT",
-                    y: 33
-                },
-                {
-                    x: "02-15-2017 GMT",
-                    y: 52
-                },
-            ],
-        }],
-        chart: {
-            fontFamily: '"Nunito Sans", sans-serif',
-            type: "area",
-            height: 210,
-            zoom: {
-                type: "x",
-                enabled: true,
-                autoScaleYaxis: true,
+    document.addEventListener("DOMContentLoaded", function() {
+        // Data untuk grafik pembelian
+        var optionsZoomable = {
+            series: [{
+                name: "XYZ MOTORS",
+                data: [
+                    {x: "02-10-2017 GMT", y: 34},
+                    {x: "02-11-2017 GMT", y: 43},
+                    {x: "02-12-2017 GMT", y: 31},
+                    {x: "02-13-2017 GMT", y: 43},
+                    {x: "02-14-2017 GMT", y: 33},
+                    {x: "02-15-2017 GMT", y: 52},
+                ],
+            }],
+            chart: {
+                fontFamily: '"Nunito Sans", sans-serif',
+                type: "area",
+                height: 250,
+                zoom: {enabled: true, autoScaleYaxis: true},
+                toolbar: {show: false},
             },
-            toolbar: {
-                autoSelected: "zoom",
-                show: false,
-            },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        grid: {
-            borderColor: "transparent"
-        },
-        colors: ["#9425fe"],
-        markers: {
-            size: 0
-        },
-        fill: {
-            type: "gradient",
-            gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.12,
-                opacityTo: 0,
-                stops: [0, 90, 100],
-            },
-        },
-        yaxis: {
-            labels: {
-                formatter: function(val) {
-                    return (val / 1000000).toFixed(0);
-                },
-                style: {
-                    colors: ["#000"]
+            dataLabels: {enabled: false},
+            grid: {borderColor: "transparent"},
+            colors: ["#9425fe"],
+            markers: {size: 0},
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.12,
+                    opacityTo: 0,
+                    stops: [0, 90, 100],
                 },
             },
-        },
-        xaxis: {
-            type: "datetime",
-            labels: {
-                style: {
-                    colors: ["#a1aab2"]
-                }
+            yaxis: {
+                labels: {
+                    formatter: val => val,
+                    style: {colors: ["#000"]},
+                },
             },
-        },
-        tooltip: {
-            theme: "dark",
-            shared: false,
-            y: {
-                formatter: function(val) {
-                    return (val / 1000000).toFixed(0);
-                }
+            xaxis: {
+                type: "datetime",
+                labels: {style: {colors: ["#a1aab2"]}},
+            },
+            tooltip: {
+                theme: "dark",
+                shared: false,
+                y: {formatter: val => val},
             }
-        }
-    };
+        };
+        new ApexCharts(document.querySelector("#chart-line-zoomable"), optionsZoomable).render();
 
-    new ApexCharts(document.querySelector("#chart-line-zoomable"), options_zoomable).render();
+        // Data untuk grafik selesai pengerjaan
+        var optionsZoomableCourse = {
+            series: [{
+                name: "Pengerjaan",
+                data: [
+                    {x: "2024-01-01", y: 20},
+                    {x: "2024-02-01", y: 40},
+                    {x: "2024-03-01", y: 30},
+                    {x: "2024-04-01", y: 50},
+                    {x: "2024-05-01", y: 35},
+                    {x: "2024-06-01", y: 45},
+                ],
+            }],
+            chart: {
+                type: 'area',
+                height: 110,
+                zoom: {enabled: false},
+                toolbar: {show: false},
+            },
+            dataLabels: {enabled: false},
+            stroke: {curve: 'smooth', width: 2, colors: ['#9425fe']},
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    gradientToColors: ['#f0e1ff'],
+                    opacityFrom: 0.4,
+                    opacityTo: 0,
+                    stops: [0, 100],
+                },
+            },
+            grid: {show: false},
+            xaxis: {
+                type: 'datetime',
+                labels: {show: false},
+                axisBorder: {show: false},
+                axisTicks: {show: false},
+            },
+            yaxis: {show: false},
+            tooltip: {enabled: false}
+        };
+        new ApexCharts(document.querySelector("#chart-line-zoomable-course"), optionsZoomableCourse).render();
 
-    var options_zoomable_course = {
-        series: [{
-            name: "Pengerjaan",
-            data: [{
-                    x: "2024-01-01",
-                    y: 20
-                },
-                {
-                    x: "2024-02-01",
-                    y: 40
-                },
-                {
-                    x: "2024-03-01",
-                    y: 30
-                },
-                {
-                    x: "2024-04-01",
-                    y: 50
-                },
-                {
-                    x: "2024-05-01",
-                    y: 35
-                },
-                {
-                    x: "2024-06-01",
-                    y: 45
-                },
-            ],
-        }],
-        chart: {
-            type: 'area',
-            height: 50,
-            zoom: {
-                enabled: false
+        // Data untuk grafik pretest
+        var optionsZoomablePreTest = {
+            series: [{
+                name: "Pretest",
+                data: [
+                    {x: "2024-01-01", y: 20},
+                    {x: "2024-02-01", y: 40},
+                    {x: "2024-03-01", y: 30},
+                    {x: "2024-04-01", y: 50},
+                    {x: "2024-05-01", y: 35},
+                    {x: "2024-06-01", y: 45},
+                ],
+            }],
+            chart: {
+                type: 'area',
+                height: 80,
+                zoom: {enabled: false},
+                toolbar: {show: false},
             },
-            toolbar: {
-                show: false
+            dataLabels: {enabled: false},
+            stroke: {curve: 'smooth', width: 2, colors: ['#9425fe']},
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    gradientToColors: ['#f0e1ff'],
+                    opacityFrom: 0.4,
+                    opacityTo: 0,
+                    stops: [0, 100],
+                },
             },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth',
-            width: 2,
-            colors: ['#9425fe']
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shade: 'light',
-                gradientToColors: ['#f0e1ff'],
-                opacityFrom: 0.4,
-                opacityTo: 0,
-                stops: [0, 100],
+            grid: {show: false},
+            xaxis: {
+                type: 'datetime',
+                labels: {show: false},
+                axisBorder: {show: false},
+                axisTicks: {show: false},
             },
-        },
-        grid: {
-            show: false
-        },
-        xaxis: {
-            type: 'datetime',
-            labels: {
-                show: false
-            },
-            axisBorder: {
-                show: false
-            },
-            axisTicks: {
-                show: false
-            },
-        },
-        yaxis: {
-            show: false
-        },
-        tooltip: {
-            enabled: false
-        }
-    };
+            yaxis: {show: false},
+            tooltip: {enabled: false}
+        };
+        new ApexCharts(document.querySelector("#chart-line-zoomable-pre-test"), optionsZoomablePreTest).render();
 
-    new ApexCharts(document.querySelector("#chart-line-zoomable-course"), options_zoomable_course).render();
-
-    var options_basic = {
-        series: [74],
-        chart: {
-            fontFamily: '"Nunito Sans", sans-serif',
-            height: 250,
-            type: "radialBar",
-        },
-        colors: ["#9425fe"],
-        plotOptions: {
-            radialBar: {
-                hollow: {
-                    size: "60%",
+        // Data unruk grafik posttest
+        var optionsZoomablePostTest = {
+            series: [{
+                name: "Pretest",
+                data: [
+                    {x: "2024-01-01", y: 20},
+                    {x: "2024-02-01", y: 40},
+                    {x: "2024-03-01", y: 30},
+                    {x: "2024-04-01", y: 50},
+                    {x: "2024-05-01", y: 35},
+                    {x: "2024-06-01", y: 45},
+                ],
+            }],
+            chart: {
+                type: 'area',
+                height: 80,
+                zoom: {enabled: false},
+                toolbar: {show: false},
+            },
+            dataLabels: {enabled: false},
+            stroke: {curve: 'smooth', width: 2, colors: ['#9425fe']},
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    gradientToColors: ['#f0e1ff'],
+                    opacityFrom: 0.4,
+                    opacityTo: 0,
+                    stops: [0, 100],
                 },
-                dataLabels: {
-                    value: {
-                        color: "#a1aab2",
-                        show: true,
+            },
+            grid: {show: false},
+            xaxis: {
+                type: 'datetime',
+                labels: {show: false},
+                axisBorder: {show: false},
+                axisTicks: {show: false},
+            },
+            yaxis: {show: false},
+            tooltip: {enabled: false}
+        };
+        new ApexCharts(document.querySelector("#chart-line-zoomable-post-test"), optionsZoomablePostTest).render();
+
+        // Data untuk grafik radial
+        var optionsBasic = {
+            series: [74],
+            chart: {
+                fontFamily: '"Nunito Sans", sans-serif',
+                height: 230,
+                type: "radialBar",
+            },
+            colors: ["#9425fe"],
+            plotOptions: {
+                radialBar: {
+                    hollow: {size: "60%"},
+                    dataLabels: {
+                        value: {color: "#a1aab2", show: true},
                     },
                 },
             },
-        },
-        labels: ["Rata-Rata Nilai"],
-    };
-
-    var chart_radial_basic = new ApexCharts(
-        document.querySelector("#chart-radial-basic"),
-        options_basic
-    );
-    chart_radial_basic.render();
+            labels: ["Rata-Rata Nilai"],
+        };
+        new ApexCharts(document.querySelector("#chart-radial-basic"), optionsBasic).render();
+    });
 </script>
