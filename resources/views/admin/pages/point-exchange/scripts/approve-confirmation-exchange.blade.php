@@ -34,7 +34,7 @@
                         }).then(() => {
                             $('.editConfirm[data-id="' + id + '"]').hide();
                             
-                            $('#status-' + id).html("Success");
+                            location.reload(); 
                         });
                     }
                     , error: function(xhr) {

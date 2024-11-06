@@ -33,7 +33,7 @@
                             , icon: "success"
                         }).then(() => {
                             $('#modal-reject-confirmation').modal('hide');
-                            $('#status-' + id).html('<span class="badge bg-light-danger text-danger">Rejected</span>'); // Ganti dengan status yang sesuai
+                            location.reload();
                         });
                     }
                     , error: function(xhr) {
