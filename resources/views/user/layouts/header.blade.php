@@ -17,24 +17,22 @@
     .subcategory-dropdown {
         display: none;
         position: absolute;
-        left: 100%;
-        /* Posisi di sebelah kanan dropdown utama */
-        top: 40px !important;
+        left: 100%; /* Posisi di sebelah kanan dropdown utama */
+        top: 0; /* Sesuaikan posisi vertikal jika diperlukan */
         background-color: #fff;
         border: 1px solid #ccc;
         width: 150px;
         z-index: 100;
-        padding: 5px 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         font-size: 12px;
     }
 
-    .subcategory-dropdown .subcategory-item {
+    .subcategory-item {
         padding: 8px 12px;
         cursor: pointer;
     }
 
-    .subcategory-dropdown .subcategory-item:hover {
+    .subcategory-item:hover {
         background-color: #8121FB;
         color: #fff;
     }
@@ -42,16 +40,7 @@
     .courses-top-right-select select {
         border: 1px solid #fff;
     }
-
-    .tgmenu__search-form input {
-        padding: 22px 50px 10px 20px;
-    }
-
-    .courses-top-right-select {
-        position: relative;
-    }
 </style>
-
 <header>
     <div id="header-fixed-height"></div>
     <div id="sticky-header" class="tg-header__area">
@@ -73,17 +62,6 @@
                                         class="menu-item {{ Route::currentRouteName() == 'courses.courses.index' ? 'active' : '' }}">
                                         <a href="{{ route('courses.courses.index') }}">Kursus</a>
                                     </li>
-                                    {{-- <li class="menu-item-has-children {{ Route::is('courses.courses.index', 'dashboard.users.settings.index') ? 'active' : '' }}"><a href="#">Kursus</a>
-                                    <ul class="sub-menu">
-                                        <li class="{{ Route::currentRouteName() == 'courses.courses.index' ? 'active' : '' }}">
-                                            <a href="{{ route('courses.courses.index') }}">Semua Kursus</a>
-                                        </li>
-                                        <li class="{{ Route::currentRouteName() == 'courses.course-lesson.index' ? 'active' : '' }}">
-                                            <a href="{{ route('courses.course-lesson.index') }}">Kursus
-                                                Pelajaran</a>
-                                        </li>
-                                    </ul>
-                                    </li> --}}
                                     <li
                                         class="menu-item {{ Route::currentRouteName() == 'events.index' ? 'active' : '' }}">
                                         <a href="{{ route('events.index') }}">Event</a>
@@ -124,16 +102,24 @@
                                             <select name="category" class="orderby" id="category-list">
                                             </select>
                                         </div> --}}
-                                        <div class="courses-top-right-select">
-                                            <select name="category" class="orderby" id="category-list">
+                                        {{-- <div class="courses-top-right-select">
+                                            <select name="category" class="orderby list-category" id="category-list">
                                                 <option value="">Pilih Kategori</option>
                                             </select>
                                             <select name="sub_category" class="orderby" id="sub-category-list"
                                                 style="display: none;">
                                                 <option value="">Pilih Sub Kategori</option>
                                             </select>
+                                        </div> --}}
+                                        <div class="courses-top-right-select dropdown-container">
+                                            <select name="category" class="orderby list-category" id="category-list">
+                                                <option value="">Pilih Kategori</option>
+                                            </select>
+                                            <div class="subcategory-dropdown" id="subcategory-dropdown">
+                                                <!-- Subkategori akan dimuat di sini -->
+                                            </div>
                                         </div>
-
+                                        
 
                                     </div>
                                     <div class="input-grp">
@@ -154,8 +140,8 @@
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
                                                         <img src="{{ session('user')['photo'] ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
-                                                            class="rounded rounded-circle" width="48px"
-                                                            alt="" class="profile-image">
+                                                            class="rounded rounded-circle" width="48px" alt=""
+                                                            class="profile-image">
                                                     </a>
                                                     <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
                                                 </div>
@@ -214,96 +200,91 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    @include('user.layouts.scripts.header')
+$(document).ready(function() {
+    getCategories();
 
-    $(document).ready(function() {
-        getCategories();
+    function getCategories() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/categories",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log(response.data.data);
+                $.each(response.data.data, function(index, value) {
+                    $('#category-list').append(
+                        `<option value="${value.name}" data-category="${value.name}">${value.name}</option>`
+                    );
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
+                });
+            }
+        });
+    }
 
-        function getCategories() {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/categories",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    console.log(response.data.data);
-
-                    $.each(response.data.data, function(index, value) {
-                        $('#category-list').append(
-                            `<option value="${value.name}">${value.name}</option>`
-                        );
-                    });
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
-        }
-
-        $('#category-list').on('change', function() {
+    $('#category-list').hover(
+        function() {
             var selectedCategory = $(this).val();
             if (selectedCategory) {
                 getSubCategory(selectedCategory);
-            } else {
-                $('#sub-category-list').hide();
             }
-        });
-
-        $('#category-list').hover(
-            function() {
-                var selectedCategory = $(this).val();
-                if (selectedCategory) {
-                    getSubCategory(selectedCategory);
-                }
-                $('#sub-category-list').show();
-            },
-            function() {
-                $('#sub-category-list').hide();
-            }
-        );
-
-        function getSubCategory(selectedCategory) {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/sub-categories",
-                data: {
-                    category: selectedCategory
-                },
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    $('#sub-category-list').empty().append(
-                        '<option value="">Pilih Sub Kategori</option>');
-                    $.each(response.data, function(index, value) {
-                        $('#sub-category-list').append(
-                            `<option value="${value.name}">${value.name}</option>`
-                        );
-                    });
-                    console.log("Dropdown berhasil diisi:", response.data);
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data sub kategori.",
-                        icon: "error"
-                    });
-                }
-            });
+        },
+        function() {
+            $('#subcategory-dropdown').hide();
         }
+    );
 
-        $('#sub-category-list').on('change', function() {
-            var selectedSubCategory = $(this).val();
-            if (selectedSubCategory) {
-                console.log("Subkategori yang dipilih:", selectedSubCategory);
+    $('#category-list').on('change', function() {
+        var selectedCategory = $(this).val();
+        if (selectedCategory) {
+            getSubCategory(selectedCategory);
+        } else {
+            $('#subcategory-dropdown').hide();
+        }
+    });
+
+    function getSubCategory(selectedCategory) {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}/api/sub-categories",
+            data: {
+                category: selectedCategory
+            },
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                $('#subcategory-dropdown').empty().show();
+                $.each(response.data, function(index, value) {
+                    $('#subcategory-dropdown').append(
+                        `<div class="subcategory-item" data-value="${value.name}">${value.name}</div>`
+                    );
+                });
+                console.log("Dropdown berhasil diisi:", response.data);
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data sub kategori.",
+                    icon: "error"
+                });
             }
         });
+    }
+
+    $(document).on('click', '.subcategory-item', function() {
+        var selectedSubCategory = $(this).data('value');
+        $('#sub-category-list').val(selectedSubCategory);
+        console.log("Subkategori yang dipilih:", selectedSubCategory);
+        $('#subcategory-dropdown').hide();
     });
+});
 </script>
