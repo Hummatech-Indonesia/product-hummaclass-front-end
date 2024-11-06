@@ -5,91 +5,90 @@
     <hr>
     <div class="card-body">
         <div class="card-title">
-            <p id="content">
-            </p>
+            <span id="content">
+            </span>
         </div>
     </div>
 </div>
 @push('script')
-<script>
-    $(document).ready(function() {
-        var id = "{{ $id }}";
+    <script>
+        $(document).ready(function() {
+            var id = "{{ $id }}";
 
-        $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/admin/" + id
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
-                $('#title').html(response.data.title);
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/detail/admin/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#title').html(response.data.title);
 
-                const contentHTML = renderContent(JSON.parse(response.data.content));
-                $('#content').html(contentHTML);
+                    // const contentHTML = renderContent(JSON.parse(response.data.content));
+                    $('#content').html(response.data.content);
 
-                var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
-                    .module_id);
-                $('#button-back').attr('href', url);
+                    var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
+                        .module_id);
+                    $('#button-back').attr('href', url);
 
 
-            }
-            , error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
-                });
-            }
-        });
-    });
-
-    function renderContent(data) {
-        let html = '';
-        data.blocks.forEach(block => {
-            switch (block.type) {
-                case 'header':
-                    html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
-                    break;
-                case 'paragraph':
-                    html += `<p>${block.data.text}</p>`;
-                    break;
-                    // Jika ada tipe lain (misalnya 'list', 'image', dsb.), tambahkan sesuai kebutuhan
-            }
-        });
-        return html;
-    }
-
-    function convertToHTML(data) {
-
-        let html = '';
-
-        $.each(data.blocks, function(index, block) {
-            switch (block.type) {
-                case 'header':
-                    html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\n`;
-                    break;
-                case 'list':
-                    html += `<ul>\n`;
-                    block.data.items.forEach(item => {
-                        html += `    <li>${item}</li>\n`;
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
                     });
-                    html += `</ul>\n`;
-                    break;
-                case 'paragraph':
-                    html += block.data.text;
-                    break;
-                case 'image':
-                    html +=
-                        `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
-                default:
-                    break;
-            }
+                }
+            });
         });
 
+        function renderContent(data) {
+            let html = '';
+            data.blocks.forEach(block => {
+                switch (block.type) {
+                    case 'header':
+                        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
+                        break;
+                    case 'paragraph':
+                        html += `<p>${block.data.text}</p>`;
+                        break;
+                        // Jika ada tipe lain (misalnya 'list', 'image', dsb.), tambahkan sesuai kebutuhan
+                }
+            });
+            return html;
+        }
 
-        return html;
-    }
+        function convertToHTML(data) {
 
-</script>
+            let html = '';
+
+            $.each(data.blocks, function(index, block) {
+                switch (block.type) {
+                    case 'header':
+                        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\n`;
+                        break;
+                    case 'list':
+                        html += `<ul>\n`;
+                        block.data.items.forEach(item => {
+                            html += `    <li>${item}</li>\n`;
+                        });
+                        html += `</ul>\n`;
+                        break;
+                    case 'paragraph':
+                        html += block.data.text;
+                        break;
+                    case 'image':
+                        html +=
+                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
+                    default:
+                        break;
+                }
+            });
+
+
+            return html;
+        }
+    </script>
 @endpush
