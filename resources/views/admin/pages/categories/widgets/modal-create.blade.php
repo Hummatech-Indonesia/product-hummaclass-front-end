@@ -12,10 +12,8 @@
                         <div class="form-group">
                             <label for="" class="mb-2 fw-semibold text-dark">Nama Kategori</label>
                             <input type="text" class="form-control" placeholder="Masukan nama kategori"
-                                name="name" value="{{ old('name') }}">
-                            @error('name')
-                                <span class="text-danger error-create">{{ $message }}</span>
-                            @enderror
+                                name="name" id="category-name">
+                            <span class="text-danger error-create invalid-feedback"></span>
                         </div>
                     </div>
                 </div>
@@ -37,6 +35,8 @@
         $('.storeConfirmation').click(function(e) {
             e.preventDefault();
             let formData = new FormData($('.createForm')[0]);
+            console.log(formData);
+
             $.ajax({
                 type: "POST",
                 url: "{{ config('app.api_url') }}/api/categories",
@@ -56,16 +56,14 @@
                 },
                 error: function(response) {
                     let errorMessages = [];
-                    $.each(response.data, function(field, messages) {
-                        $.each(messages, function(index, message) {
-                            errorMessages.push(message);
+                    $.each(response.responseJSON.data,
+                        function(field, messages) {
+                            $.each(messages, function(index, message) {
+                                errorMessages.push(message);
+                            });
                         });
-                    });
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        html: errorMessages.join('<br>'),
-                        icon: "error"
-                    });
+                    $('#category-name').addClass('is-invalid');
+                    $('.error-create').text(errorMessages.join('<br>'));
                 }
             });
         });
