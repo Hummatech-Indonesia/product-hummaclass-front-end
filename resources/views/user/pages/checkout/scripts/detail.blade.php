@@ -11,23 +11,23 @@
             function displayData() {
                 @if (request()->route()->getName() == 'checkout.course.show')
                     let discount = transactionData.transaction.voucher == null ?
-                        transactionData.transaction.product.price :
-                        transactionData.transaction.product.price -
-                        (transactionData.transaction.product.price *
+                        transactionData.tripay.amount :
+                        transactionData.tripay.amount -
+                        (transactionData.tripay.amount *
                             (transactionData.transaction.voucher.discount / 100));
 
                     $('#title').text(transactionData.course.title);
-                    $('.discount').text(formatRupiah(transactionData.transaction.product.price));
+                    $('.discount').text(formatRupiah(transactionData.tripay.amount));
                     $('.discount_amount').text(formatRupiah(
                         transactionData.transaction.voucher == null ? 0 :
-                        transactionData.transaction.product.price *
+                        transactionData.tripay.amount *
                         (transactionData.transaction.voucher.discount / 100)
                     ));
                     $('#amount').text(formatRupiah(discount));
                     $('.course_photo').attr('src', transactionData.transaction.product.photo);
                 @else
                     $('.course_photo').attr('src', transactionData.transaction.product.photo);
-                    $('#amount').text(formatRupiah(transactionData.transaction.product.price));
+                    $('#amount').text(formatRupiah(transactionData.tripay.amount));
                     $('#title').text(transactionData.transaction.product.title);
                 @endif
                 $('#total_amount').text(formatRupiah(transactionData.tripay.amount + transactionData.tripay
