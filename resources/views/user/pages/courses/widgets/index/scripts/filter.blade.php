@@ -1,3 +1,10 @@
+@push('style')
+    <style>
+        .sub_category:hover {
+            color: white;
+        }
+    </style>
+@endpush
 @push('script')
     <script>
         $(document).ready(function() {
@@ -202,7 +209,7 @@
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="{{ route('courses.courses.index') }}}">${value.sub_category}</a>
+                                <a class="sub_category">${value.sub_category}</a>
                             </li>
                             <li class="avg-rating"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
                         </ul>

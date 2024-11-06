@@ -33,8 +33,13 @@
                     <h4 style="font-weight: bold;">Detail Modul</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Banner</li>
+                            <li class="breadcrumb-item"><a class="text-muted " href="/admin/home">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a class="text-muted "
+                                    href="/admin/courses">Kursus</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a id="detail-courses" class="text-muted "
+                                    href="">Detail Kursus</a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a class="text-muted " href="">Modul</a>
+                            </li>
                         </ol>
                     </nav>
                 </div>
@@ -216,6 +221,8 @@
                                 .slug;
                         });
 
+                        $('#detail-courses').attr('href', "/admin/courses/" + response.data.course
+                            .slug);
                         $('#title').html(response.data.title);
                         $('#module_task_count').html(response.data.module_task_count);
                         $('#sub_title').html(response.data.sub_title);

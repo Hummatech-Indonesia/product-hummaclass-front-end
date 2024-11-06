@@ -93,7 +93,7 @@
                 <td>${index + 1}</td>
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="${url}/storage/${value.image}"
+                        <img src="${url}${value.image}"
                             class="me-2" style="object-fit: cover" width="40"
                             height="40" alt="">
                         <div class="ms-3">
