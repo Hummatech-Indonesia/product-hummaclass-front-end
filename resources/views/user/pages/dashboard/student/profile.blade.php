@@ -235,9 +235,11 @@
             var formData = new FormData(this);
             
 
+            formData.append('_method', 'PATCH');
+
             $.ajax({
                 type: "POST",
-                url: "{{ config('app.api_url') }}/api/  ",
+                url: "{{ config('app.api_url') }}/api/profile-update",
                 data: formData,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
