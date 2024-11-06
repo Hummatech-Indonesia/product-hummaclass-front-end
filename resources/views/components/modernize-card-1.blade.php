@@ -332,7 +332,6 @@
         transform: translateY(-2px);
     }
 
-    /* Menyesuaikan jarak ikon */
     .btn svg {
         margin-right: 0;
     }
