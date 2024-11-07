@@ -178,7 +178,7 @@
 
         function cardCourse(data) {
             let card = `
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+    <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card box-shadow position-relative" style="border-radius: 15px;">
             <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">
                 ${data.sub_category}
