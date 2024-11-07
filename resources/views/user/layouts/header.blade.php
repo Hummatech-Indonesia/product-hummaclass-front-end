@@ -268,10 +268,9 @@
                                                 <div class="user-profile d-flex align-items-center">
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
-                                                        <img src="{{ session('user')['photo'] && file_exists(public_path(session('user')['photo'])) ? asset(session('user')['photo']) : asset('assets/img/icons/user.svg') }}"
-                                                            class="rounded rounded-circle photo-user"
-                                                            style="width: 48px; height: 48px; object-fit: cover;"
-                                                            alt="User Photo">
+                                                        <img src="{{ isset(session('user')['photo']) ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
+                                                            class="rounded rounded-circle" width="48px" alt=""
+                                                            class="profile-image">
                                                     </a>
 
                                                     <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
