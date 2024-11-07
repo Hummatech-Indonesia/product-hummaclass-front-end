@@ -154,8 +154,10 @@
                             function(page) {
                                 handleGetCourses(page);
                             });
+                            $('.pagination__wrap').show();
                     } else {
                         gridParent.append(empty());
+                        $('.pagination__wrap').hide();
                     }
 
                     retryCount = 0;
