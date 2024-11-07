@@ -190,8 +190,8 @@
                     <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-success text-success' : 'bg-light-warning text-warning'} fw-semibold">
                         ${data.is_premium === 0 ? 'Gratis' : 'Premium'}
                     </span>
-                    <span class="badge rounded-pill bg-light-secondary text-secondary fw-semibold">
-                        ${data.level}
+                    <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-secondary text-secondary' : 'bg-light-success text-success'} fw-semibold">
+                        ${data.is_ready === 0 ? 'Draft' : 'Published'}
                     </span>
                 </div>
                 <div class="mt-2">
