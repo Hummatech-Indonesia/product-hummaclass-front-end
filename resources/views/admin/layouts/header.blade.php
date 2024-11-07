@@ -368,7 +368,7 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <img src="{{ session('user')['photo']??'-' }}"
+                                    <img src="{{ session('user')['photo'] ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
                                         class="rounded-circle" width="35" height="35" alt="" />
                                 </div>
                             </div>
@@ -380,7 +380,7 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ session('user')['photo']??'-' }}"
+                                    <img src="{{ session('user')['photo'] ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
                                         class="rounded-circle" width="80" height="80" alt="" />
                                     <div class="ms-3">
                                         <h5 class="mb-1 fs-3">{{ session('user')['name']??'-' }}</h5>
