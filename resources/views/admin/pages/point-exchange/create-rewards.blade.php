@@ -31,57 +31,53 @@
         <form id="createFormRewards" enctype="multipart/form-data">
             @csrf
             <div class="row">
-                <div class="col-12 mb-4">
+                <div class="col col-12 mb-4">
                     <div class="form-group">
                         <label for="name" class="mb-2 fw-semibold text-dark">Nama Barang</label>
                         <input type="text" class="form-control" placeholder="Masukkan nama barang" name="name"
                             value="{{ old('name') }}">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <div class="invalid-feedback"></div>
+
                     </div>
                 </div>
-                <div class="col-12 mb-4">
+                <div class="col col-12 mb-4">
                     <div class="form-group">
                         <label for="image" class="mb-2 fw-semibold text-dark">Foto Barang</label>
                         <input type="file" class="form-control" name="image" value="{{ old('image') }}">
-                        @error('image')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <div class="invalid-feedback"></div>
+
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col col-md-6 mb-4">
                     <div class="form-group">
                         <label for="stock" class="mb-2 fw-semibold text-dark">Stok</label>
                         <input type="number" class="form-control" placeholder="Masukkan jumlah stok" name="stock"
-                            value="{{ old('stock') }}">
-                        @error('stock')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                            value="{{ old('stock') }}" min="0" step="1">
+                        <div class="invalid-feedback"></div>
+
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
+                <div class="col col-md-6 mb-4">
                     <div class="form-group">
                         <label for="points_required" class="mb-2 fw-semibold text-dark">Jumlah Point</label>
-                        <input type="number" class="form-control" placeholder="Masukkan jumlah point"
-                            name="points_required" value="{{ old('points_required') }}">
-                        @error('points_required')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <input type="number" min="0" step="1" class="form-control"
+                            placeholder="Masukkan jumlah point" name="points_required" value="{{ old('points_required') }}">
+                        <div class="invalid-feedback"></div>
+
                     </div>
                 </div>
-                <div class="col-12 mb-4">
+                <div class="col col-12 mb-4">
                     <div class="form-group">
                         <label for="description" class="mb-2 fw-semibold text-dark">Deskripsi</label>
                         <textarea name="description" class="form-control" id="summernote-description" cols="30" rows="10">{{ old('description') }}</textarea>
-                        @error('description')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <div class="invalid-feedback"></div>
+
                     </div>
                 </div>
             </div>
             <div class="d-flex justify-content-end gap-2">
-                <a href="{{ route('admin.point-exchange.index') }}" class="btn" style="background-color:#FA896B; color : white">Kembali</a>
+                <a href="{{ route('admin.point-exchange.index') }}" class="btn"
+                    style="background-color:#FA896B; color : white">Kembali</a>
                 <button type="submit" class="btn" style="background-color:   #9425FE; color : white">Simpan</button>
             </div>
         </form>
@@ -89,5 +85,5 @@
 @endsection
 
 @section('script')
-@include('admin.pages.point-exchange.scripts.create')
+    @include('admin.pages.point-exchange.scripts.create')
 @endsection
