@@ -54,12 +54,12 @@
         </div>
         <nav class="dashboard__sidebar-menu">
             <ul class="list-wrap">
-                <li class="{{ request()->routeIs('dashboard.users.settings.index') ? 'active' : '' }}">
+                {{-- <li class="{{ request()->routeIs('dashboard.users.settings.index') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.users.settings.index') }}">
                         <i class="skillgro-settings"></i>
                         Pengaturan
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
