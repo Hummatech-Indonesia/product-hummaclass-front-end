@@ -177,14 +177,15 @@
         getCourse(1)
 
         function cardCourse(data) {
+            var url = "{{ config('app.api_url') }}";
             let card = `
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card box-shadow position-relative" style="border-radius: 15px;">
                         <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">
                             ${data.sub_category}
                         </button>
-                        <img src="${data.photo}" class="card-img-top img-fluid" alt="Course Image" 
-                            style="height: 150px; object-fit: cover; border-radius: 15px 15px 0 0;">
+                        <img src="${data.photo && data.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) ? data.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" class="card-img-top img-fluid" alt="Course Image" 
+                            style="height: 220px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         <div class="card-body p-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-success text-success' : 'bg-light-warning text-warning'} fw-semibold">
