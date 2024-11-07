@@ -9,13 +9,16 @@
             const pointsRequired = $(this).data('points_required');
             const stock = $(this).data('stock');
             const image = $(this).data('image');
+            const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
+                ? "{{ config('app.api_url') }}/storage/" + image
+                : "{{ asset('assets/img/no-image/no-image.jpg') }}";
 
             $('#user-name').val(user);
             $('#user-email').val(email);
             $('#reward-name').val(rewardName);
             $('#reward-points-required').val(pointsRequired);
             $('#reward-stock').val(stock);
-            $('#reward-image').attr('src', "{{ config('app.api_url') }}/storage/" + image);
+            $('#reward-image').attr('src', imageUrl);
         });
     });
 </script>

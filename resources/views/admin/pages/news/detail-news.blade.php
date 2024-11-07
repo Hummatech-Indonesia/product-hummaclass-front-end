@@ -43,7 +43,7 @@
 
     <div class="card" style="border-radius: 15px">
         <div class="card-header p-0">
-            <img src="" id="thumbnail" style="border-radius: 15px 15px 0 0;object-fit: cover" class="w-100"
+            <img src="" id="thumbnail" style="border-radius: 15px 15px 0 0;object-fit: cover;height: 250px;" class="w-100"
                 alt="">
         </div>
 
@@ -73,37 +73,6 @@
             </div>
             <hr>
             <p id="detail-description"></p>
-            {{-- <h4>Title of the paragraph</h4>
-        <p>But you cannot figure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link
-            directory on MTA displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is
-            something specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top
-            of the list.
-        </p>
-        <p>
-            Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a link, or a few links if they wish to do so. The link directory on MTA
-            displays all of the links it currently has, and does so in alphabetical order, which makes it much easier for someone to find what they are looking for if it is something
-            specific and they do not want to go through all the other sites and links as well. It allows you to start your bid at the bottom and slowly work your way to the top of the
-        </p> --}}
-            {{-- <hr>
-        <h4>Unorder list.</h4>
-        <ul style="list-style-type: disc;" class="ms-4 text-black">
-            <li>Gigure out what it is or</li>
-            <li>The links it currently</li>
-            <li>It allows you to start your bid</li>
-            <li>Gigure out what it is or</li>
-            <li>The links it currently</li>
-            <li>It allows you to start your bid</li>
-        </ul>
-        <hr>
-        <h4>Order list.</h4>
-        <ul style="list-style-type: none;" class="ms-4 text-black">
-            <li>Gigure out what it is or</li>
-            <li>The links it currently</li>
-            <li>It allows you to start your bid</li>
-            <li>Gigure out what it is or</li>
-            <li>The links it currently</li>
-            <li>It allows you to start your bid</li>
-        </ul> --}}
         </div>
     </div>
 @endsection

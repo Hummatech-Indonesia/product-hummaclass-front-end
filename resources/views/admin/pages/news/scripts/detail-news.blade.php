@@ -10,7 +10,11 @@
             },
             dataType: "json",
             success: function(response) {
-                $('#thumbnail').attr('src', response.data.thumbnail);
+                const thumbnail = response.data.thumbnail;
+                const thumbnailUrl = thumbnail && /\.(jpeg|jpg|gif|png)$/i.test(thumbnail) 
+                    ? thumbnail 
+                    : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                $('#thumbnail').attr('src', thumbnailUrl);
                 $('#detail-category').html(response.data.sub_category);
                 $('#detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
