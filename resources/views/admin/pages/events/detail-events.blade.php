@@ -38,10 +38,10 @@
 
         .ellipsis {
             /* width: 200px;
-                                                                                                                                                            white-space: nowrap;
-                                                                                                                                                            overflow: hidden;
-                                                                                                                                                            text-overflow: ellipsis;
-                                                                                                                                                            border: 1px solid #ddd; */
+                                                                                                                                                                white-space: nowrap;
+                                                                                                                                                                overflow: hidden;
+                                                                                                                                                                text-overflow: ellipsis;
+                                                                                                                                                                border: 1px solid #ddd; */
 
             cursor: pointer;
         }
@@ -227,10 +227,8 @@
                         $('#price').hide();
                         $('#detail-price').html('Gratis');
                     }
-                    $('#detail-description').html(response.data.description); <<
-                    << << < HEAD
-                    $('#detail-photo').attr('src', response.data.image); ===
-                    === =
+                    $('#detail-description').html(response.data.description);
+                    $('#detail-photo').attr('src', response.data.image);
 
                     const image = response.data.image;
                     const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) ?
@@ -238,11 +236,8 @@
                         "{{ asset('assets/img/no-image/no-image.jpg') }}";
                     $('#detail-photo').attr('src', imageUrl);
 
-                    >>>
-                    >>> > 419 c0987de7a31a3063ede9f7d05c7577b81ed13
                     let roundownString = '';
                     response.data.event_details.forEach(detail => {
-                        // console.log(detail.start);
 
                         roundownString += `
                     <tr>
