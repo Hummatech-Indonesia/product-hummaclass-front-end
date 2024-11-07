@@ -178,7 +178,7 @@
 
         function cardCourse(data) {
             let card = `
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+    <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card box-shadow position-relative" style="border-radius: 15px;">
             <button class="btn btn-sm btn-warning text-black fw-semibold position-absolute ms-2 mt-2">
                 ${data.sub_category}
@@ -190,8 +190,8 @@
                     <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-success text-success' : 'bg-light-warning text-warning'} fw-semibold">
                         ${data.is_premium === 0 ? 'Gratis' : 'Premium'}
                     </span>
-                    <span class="badge rounded-pill bg-light-secondary text-secondary fw-semibold">
-                        ${data.level}
+                    <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-secondary text-secondary' : 'bg-light-success text-success'} fw-semibold">
+                        ${data.is_ready === 0 ? 'Draft' : 'Published'}
                     </span>
                 </div>
                 <div class="mt-2">
