@@ -41,6 +41,13 @@
         border: 1px solid #fff;
     }
 </style>
+
+<style>
+
+    .tgmenu__search-form .select-grp {
+        padding: 7px 7px 7px 15px;
+    }
+</style>
 <header>
     <div id="header-fixed-height"></div>
     <div id="sticky-header" class="tg-header__area">
