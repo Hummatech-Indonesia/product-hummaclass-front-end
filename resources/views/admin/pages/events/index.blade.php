@@ -189,10 +189,11 @@
             handleGetEvents(1);
 
             function card(index, value) {
+                var url = "{{ config('app.api_url') }}";
                 return `
                     <div class="col-lg-4">
                         <div class="card" style="border-radius: 15px;">
-                            <img src="${value.image}" style="border-radius: 15px 15px 0 0;height:200px;object-fit: cover;" class="card-img-top" alt="...">
+                            <img src="${value.image && value.image !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.image) ? value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="border-radius: 15px 15px 0 0;height:200px;object-fit: cover;" class="card-img-top" alt="...">
                             <div class="card-body p-3">
                                 <h6 style="color: var(--purple-primary)">${value.start_date}</h6>
                                 <h4 class="fw-bolder mt-2">${value.title}</h4>

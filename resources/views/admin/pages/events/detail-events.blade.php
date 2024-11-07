@@ -209,7 +209,6 @@
                 success: function(response) {
                     event = response.data;
                     $('#detail-title').html(response.data.title);
-                    // $('#detail-start-date').html(response.data.start_date);
                     $('#detail-start-date').html(response.data.start_date);
                     $('#detail-start-date').html(response.data.start_date);
                     $('#detail-location').html(response.data.location);
@@ -217,7 +216,12 @@
                     $('#detail-has-certificate').html(response.data.has_certificate);
                     $('#detail-price').html(formatRupiah(response.data.price));
                     $('#detail-description').html(response.data.description);
-                    $('#detail-photo').html(response.data.image);
+
+                    const image = response.data.image;
+                    const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
+                        ? image 
+                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                    $('#detail-photo').attr('src', imageUrl);
 
                     let roundownString = '';
                     response.data.event_details.forEach(detail => {
