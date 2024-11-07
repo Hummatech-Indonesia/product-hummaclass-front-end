@@ -231,8 +231,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         return view('admin.pages.point-exchange.edit-rewards', compact('id'));
     })->name('edit-rewards.index');
 
-    Route::get('events-participant-detail/{participantId}', function (string $participantId) {
-        return view('admin.pages.events.widgets.detail-participant', compact('participantId'));
+    Route::get('events-participant-detail/{id}', function (string $id) {
+        return view('admin.pages.events.widgets.detail-participant', compact('id'));
     })->name('event-participant');
     Route::get('courses/detail-test/{id}', [AdminCourseController::class, 'DetailTest'])->name('courses.test.index');
 

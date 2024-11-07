@@ -49,32 +49,50 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
+            var id = "{{ $id }}"
+            get()
 
-            $('#attendance-list tbody').empty().append(generateListAttendance([
-                { day: 'Senin', date: '12/01/2022', time: '08:00', status: 'Hadir' },
-                { day: 'Selasa', date: '13/01/2022', time: '09:00', status: 'Hadir' },
-                { day: 'Rabu', date: '14/01/2022', time: '10:00', status: 'Sakit' },
-                { day: 'Kamis', date: '15/01/2022', time: '11:00', status: 'Hadir' },
-                { day: 'Jumat', date: '16/01/2022', time: '12:00', status: 'Hadir' }
-            ]));
+            function get() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/user-event-attendances/" + id,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
 
-            function generateListAttendance(list) { 
-                let listEl = '';
+                    success: function(response) {
+                        $('#attendance-list tbody').empty();
+                        if (response.data.length) {
+                            $.each(response.data, function(index, value) {
+                                $('#attendance-list tbody').append(generateListAttendance(
+                                    value))
+                            });
+                        } else {
+                            $('#attendance-list tbody').append(emptyCard())
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
 
-                list.forEach(attendance => {
-                    listEl += `
-                        <tr>
-                            <td>${attendance.day}</td>
-                            <td>${attendance.date}</td>
-                            <td>${attendance.time}</td>
-                            <td>${attendance.status}</td>
+            function generateListAttendance(value) {
+                return `<tr>
+                            <td>${value.attendance_day}</td>
+                            <td>${value.attendance_date}</td>
+                            <td>${value.created}</td>
+                            <td>${value.status}</td>
                         </tr>
                     `;
-                });
 
-                return listEl;
-             }
+            }
         });
     </script>
 @endsection

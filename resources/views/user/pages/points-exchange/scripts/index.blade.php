@@ -68,6 +68,14 @@
                                             text: "Berhasil menambah data data.",
                                             icon: "success"
                                         });
+                                    },
+                                    error: function(xhr, status) {
+                                        commonAlert({
+                                            message: xhr
+                                                .responseJSON.meta
+                                                .message,
+                                            status: status,
+                                        });
                                     }
                                 });
                             }

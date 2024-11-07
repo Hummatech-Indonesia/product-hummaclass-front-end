@@ -38,10 +38,10 @@
 
         .ellipsis {
             /* width: 200px;
-                                                                            white-space: nowrap;
-                                                                            overflow: hidden;
-                                                                            text-overflow: ellipsis;
-                                                                            border: 1px solid #ddd; */
+                                                                                                                                                                                                                                white-space: nowrap;
+                                                                                                                                                                                                                                overflow: hidden;
+                                                                                                                                                                                                                                text-overflow: ellipsis;
+                                                                                                                                                                                                                                border: 1px solid #ddd; */
 
             cursor: pointer;
         }
@@ -119,6 +119,7 @@
         <div class="tab-pane" id="participant" role="tabpanel">
             <div class="row" id="list-participant">
             </div>
+            <nav id="pagination"></nav>
         </div>
         <div class="tab-pane" id="attendance" role="tabpanel">
             <div class="card w-100 position-relative overflow-hidden">
@@ -210,22 +211,34 @@
                     event = response.data;
                     $('#detail-title').html(response.data.title);
                     $('#detail-start-date').html(response.data.start_date);
-                    $('#detail-start-date').html(response.data.start_date);
-                    $('#detail-location').html(response.data.location);
+                    if (response.data.location != null) {
+
+                        $('#detail-location').html(response.data.location);
+                    } else {
+                        console.log("tet");
+
+                        $('#location').removeClass('d-flex');
+                        $('#location').addClass('d-none');
+                    }
                     $('#detail-capacity').html(response.data.capacity);
                     $('#detail-has-certificate').html(response.data.has_certificate);
-                    $('#detail-price').html(formatRupiah(response.data.price));
+                    if (response.data.price > 0) {
+                        $('#detail-price').html(formatRupiah(response.data.price));
+                    } else {
+                        $('#price').hide();
+                        $('#detail-price').html('Gratis');
+                    }
                     $('#detail-description').html(response.data.description);
+                    $('#detail-photo').attr('src', response.data.image);
 
                     const image = response.data.image;
-                    const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
-                        ? image 
-                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                    const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) ?
+                        image :
+                        "{{ asset('assets/img/no-image/no-image.jpg') }}";
                     $('#detail-photo').attr('src', imageUrl);
 
                     let roundownString = '';
                     response.data.event_details.forEach(detail => {
-                        // console.log(detail.start);
 
                         roundownString += `
                     <tr>
@@ -235,8 +248,8 @@
                             <div class="ms-3">
                                 <h6 class=" fw-semibold mb-0">${detail.user}</h6>
                                 </div>
-                                </td>
-                                </tr>`
+                        </td>
+                    </tr>`
                     });
                     // <span>Curriculum Developer</span>
 
@@ -276,27 +289,52 @@
                             response
                             .data.data[0].user_event_attendance))
 
-                            if(response.data.data.length == 0) {
-                                $('#attendance-list tbody').append(empty());
-                            }
+                        if (response.data.data.length == 0) {
+                            $('#attendance-list tbody').append(empty());
+                        }
+                    }
+                });
+            }
+            get(1)
+
+            function get(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/user-events/" + id + "?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
+                    data: {
+                        name: $('#search-name').val(),
+                    },
+                    success: function(response) {
+                        $('#list-participant').empty();
+                        $.each(response.data.data, function(index, value) {
+                            $('#list-participant').append(generateListParticipant(value))
+                        });
+                        $('#pagination').html(handlePaginate(response.data.paginate));
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
                     }
                 });
             }
 
 
-            $('#list-participant').append(generateListParticipant([1, 2, 3, 4, 5, 6, 6]))
+            function generateListParticipant(value) {
 
-            function generateListParticipant(list) {
-                let listEl = '';
-
-                list.forEach(element => {
-                    listEl += `<div class="col-md-6 col-lg-3">
+                return `<div class="col-md-6 col-lg-3">
                                 <div class="card text-center p-0 bg-white">
                                     <div class="p-2 d-flex flex-column align-items-center mt-3">
                                         <img src="../../dist/images/profile/user-5.jpg" width="75" class="rounded-circle img-fluid">
-                                        <h5 class="card-title mt-3">Title</h5>
-                                        <span class="fs-2 mb-3">Email</span>
-                                        <a class="btn text-white" style="background-color: var(--purple-primary)" href="{{ route('admin.event-participant', '342') }}">
+                                        <h5 class="card-title mt-3">${value.user.name}</h5>
+                                        <span class="fs-2 mb-3">${value.user.email}</span>
+                                        <a class="btn text-white" style="background-color: var(--purple-primary)" href="{{ route('admin.event-participant', '') }}/${value.id}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                     stroke-width="2">
@@ -311,10 +349,7 @@
                                     </div>
                                 </div>
                             </div>`
-                });
 
-
-                return listEl;
             }
 
             function generateListAttendance(list) {

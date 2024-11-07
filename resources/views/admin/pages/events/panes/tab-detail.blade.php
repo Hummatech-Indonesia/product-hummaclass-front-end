@@ -8,17 +8,7 @@
         <span class="mb-1 badge rounded-pill font-medium text-white px-4" id="sub-category"
             style="background-color: var(--purple-primary)">Seminar</span>
         <h4 class="fw-semibold text-dark fs-8 mt-2" id="detail-title"></h4>
-        <div class="d-flex gap-5 mt-3">
-            <p class="d-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2">
-                        <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0" />
-                        <path d="M2 12c1.6-4.097 5.336-7 10-7s8.4 2.903 10 7c-1.6 4.097-5.336 7-10 7s-8.4-2.903-10-7" />
-                    </g>
-                </svg>
-                <span id="detail-view"></span>
-            </p>
+        <div class="d-flex gap-2 mt-3">
             <p class="d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -27,18 +17,7 @@
                 </svg>
                 <span id="detail-start-date"></span>
             </p>
-            <p class="d-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                    <g fill="none" fill-rule="evenodd">
-                        <path
-                            d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" />
-                        <path fill="currentColor"
-                            d="M10.975 3.002a1 1 0 0 1-.754 1.196a8 8 0 0 0-.583.156a1 1 0 0 1-.59-1.911q.36-.112.73-.195a1 1 0 0 1 1.197.754m2.05 0a1 1 0 0 1 1.196-.754c4.454 1.01 7.78 4.992 7.78 9.752c0 5.523-4.478 10-10 10c-4.761 0-8.743-3.325-9.753-7.779a1 1 0 0 1 1.95-.442a8 8 0 1 0 9.58-9.58a1 1 0 0 1-.753-1.197M6.614 4.72a1 1 0 0 1-.053 1.414q-.222.205-.427.426A1 1 0 0 1 4.668 5.2q.255-.276.532-.533a1 1 0 0 1 1.414.053M12 6a1 1 0 0 1 1 1v4.586l2.707 2.707a1 1 0 0 1-1.414 1.414l-3-3A1 1 0 0 1 11 12V7a1 1 0 0 1 1-1M3.693 8.388a1 1 0 0 1 .661 1.25a8 8 0 0 0-.156.583a1 1 0 0 1-1.95-.442q.084-.37.195-.73a1 1 0 0 1 1.25-.661" />
-                    </g>
-                </svg>
-                <span id="detail-time"></span>
-            </p>
-            <p class="d-flex align-items-center gap-2">
+            <p class="d-flex align-items-center gap-2" id="location">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 21 21">
                     <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
                         stroke-linejoin="round" transform="translate(4 2)">
@@ -56,17 +35,9 @@
                 </svg>
                 <span id="detail-capacity"></span> Peserta
             </p>
-            <p class="d-flex align-items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256">
-                    <path fill="currentColor"
-                        d="M128 136a8 8 0 0 1-8 8H72a8 8 0 0 1 0-16h48a8 8 0 0 1 8 8m-8-40H72a8 8 0 0 0 0 16h48a8 8 0 0 0 0-16m112 65.47V224a8 8 0 0 1-12 7l-24-13.74L172 231a8 8 0 0 1-12-7v-24H40a16 16 0 0 1-16-16V56a16 16 0 0 1 16-16h176a16 16 0 0 1 16 16v30.53a51.88 51.88 0 0 1 0 74.94M160 184v-22.53A52 52 0 0 1 216 76V56H40v128Zm56-12a51.88 51.88 0 0 1-40 0v38.22l16-9.16a8 8 0 0 1 7.94 0l16 9.16Zm16-48a36 36 0 1 0-36 36a36 36 0 0 0 36-36" />
-                </svg>
-                <span id="detail-has-certificate"></span>
-                Sertifikat
-            </p>
         </div>
         <div class="mt-3">
-            <p class="fs-4 mb-1">Harga Masuk</p>
+            <p class="fs-4 mb-1" id="price">Harga Masuk</p>
             <h4 class="fs-6 fw-bolder" style="color: var(--purple-primary)" id="detail-price">Rp 230.000</h4>
         </div>
         <hr>
