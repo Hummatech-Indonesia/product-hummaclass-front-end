@@ -11,11 +11,15 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="" class="mb-2 fw-semibold text-dark">Pertanyaan</label>
-                            <textarea name="question" id="question" class="form-control" value="{{ old('question') }}" placeholder="Masukan pertanyaan"></textarea>
+                            <textarea name="question" id="edit-question" class="form-control" value="{{ old('question') }}"
+                                placeholder="Masukan pertanyaan"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-group mt-2">
                             <label for="" class="mb-2 fw-semibold text-dark">Jawaban</label>
-                            <textarea name="answer" id="answer" class="form-control" value="{{ old('answer') }}" placeholder="Masukan jawaban"></textarea>
+                            <textarea name="answer" id="edit-answer" class="form-control" value="{{ old('answer') }}"
+                                placeholder="Masukan jawaban"></textarea>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                 </div>
