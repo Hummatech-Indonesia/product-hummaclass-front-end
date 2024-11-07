@@ -112,12 +112,13 @@
         }
 
         function user(index, value) {
+            var url = "{{ config('app.api_url') }}";
             return `
                         <tr class="fw-semibold">
                             <td>${index+1}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
+                                    <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
                                         class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                         height="40" alt="">
                                     <div class="ms-3">
