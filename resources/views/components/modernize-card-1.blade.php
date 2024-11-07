@@ -185,7 +185,7 @@
                             ${data.sub_category}
                         </button>
                         <img src="${data.photo && data.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) ? data.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" class="card-img-top img-fluid" alt="Course Image" 
-                            style="height: 220px; object-fit: cover; border-radius: 15px 15px 0 0;">
+                            style="height: 200px; object-fit: cover; border-radius: 15px 15px 0 0;">
                         <div class="card-body p-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge rounded-pill ${data.is_premium === 0 ? 'bg-light-success text-success' : 'bg-light-warning text-warning'} fw-semibold">
