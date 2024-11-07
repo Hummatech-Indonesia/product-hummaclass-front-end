@@ -61,7 +61,8 @@
             </div>
         </form>
         <div>
-            <a href="{{ route('admin.create-rewards.index') }}" class="btn text-white" style="background-color: #9425FE;">Tambahkan Barang</a>
+            <a href="{{ route('admin.create-rewards.index') }}" class="btn text-white"
+                style="background-color: #9425FE;">Tambahkan Barang</a>
         </div>
     </div>
 
@@ -82,7 +83,7 @@
                     </tr>
                 </thead>
                 <tbody id="list-point-exchange">
-                    
+
                 </tbody>
             </table>
         </div>

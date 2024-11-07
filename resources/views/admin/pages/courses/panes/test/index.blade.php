@@ -1,6 +1,9 @@
 <div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="" id="warning">
+
+        </div>
+        <div class="dont-show col-lg-6">
             <div class="card border border-1 shadow-none p-3">
                 <div class="d-flex gap-3 align-items-center ">
                     <span class="badge bg-light-warning text-warning py-2 px-1">
@@ -22,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="dont-show col-lg-6">
             <div class="card border border-1 shadow-none p-3">
                 <div class="d-flex gap-3 align-items-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
@@ -58,27 +61,32 @@
                     <thead class="text-dark fs-4">
                         <tr>
                             <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">No</th>
-                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Nama Siswa</th>
-                            <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">Pre Test</th>
-                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Post Test</th>
+                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Nama Siswa
+                            </th>
+                            <th class="fs-4 fw-semibold text-white mb-0 px-0" style="background-color: #9425FE">Pre Test
+                            </th>
+                            <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Post Test
+                            </th>
                             <th class="fs-4 fw-semibold text-white mb-0" style="background-color: #9425FE">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="test-content">
-                        @foreach (range(1,5) as $data)
-                        <tr>
-                            <td>1</td>
-                            <td>Alfian Ban Dalam</td>
-                            <td>
-                                <span class="badge text-primary fs-2 fw-semibold px-4 py-2" style="background-color: #F6EEFE">80</span>
-                            </td>
-                            <td>
-                                <span class="badge bg-light-danger text-danger fs-2 fw-semibold px-4 py-2">-</span>
-                            </td>
-                            <td>
-                                <a href="{{ route('admin.courses.test.index', 1) }}" class="btn text-white" style="background-color: #9425FE">Detail</a>
-                            </td>
-                        </tr>
+                        @foreach (range(1, 5) as $data)
+                            <tr>
+                                <td>1</td>
+                                <td>Alfian Ban Dalam</td>
+                                <td>
+                                    <span class="badge text-primary fs-2 fw-semibold px-4 py-2"
+                                        style="background-color: #F6EEFE">80</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light-danger text-danger fs-2 fw-semibold px-4 py-2">-</span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.courses.test.index', 1) }}" class="btn text-white"
+                                        style="background-color: #9425FE">Detail</a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -107,11 +115,12 @@
                     $('#total_question').html(response.data.total_question);
                 },
                 error: function(response) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
-                        icon: "error"
-                    });
+                    if (response.status == 400) {
+                        $('#warning').html(`<div class="alert alert-warning" role="alert">
+                                                ${response.responseJSON.meta.message}
+                                            </div>`);
+                        $('.dont-show').hide();
+                    }
                 }
             });
 

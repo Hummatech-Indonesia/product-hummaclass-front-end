@@ -9,9 +9,11 @@
             data: "data",
             dataType: "json",
             success: function(response) {
-                console.log(response);
                 $('#detailCourseRating').html(response.data.rating);
                 for (const key in response.data) {
+
+                    $('#edit-description').attr('href',
+                        `/admin/courses/${response.data.slug}/edit`);
                     if (response.data.hasOwnProperty(key)) {
 
                         if (key == 'description')

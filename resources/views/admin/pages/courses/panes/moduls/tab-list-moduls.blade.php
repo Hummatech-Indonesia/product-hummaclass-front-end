@@ -134,7 +134,7 @@
                                                     <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
                                                     <path d="M19 16h-12a2 2 0 0 0 -2 2" />
                                                     <path d="M9 8h6" />
-                                                </svg><span class="text-dark ms-2 fs-2" style="font-weight: bold;">10 Soal</span>
+                                                </svg><span class="text-dark ms-2 fs-2" style="font-weight: bold;">${value.module_question_count} Soal</span>
                                             </div>
                                         </div>
                                     </div>
