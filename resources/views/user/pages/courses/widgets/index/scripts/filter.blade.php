@@ -18,7 +18,7 @@
             }
 
             let filter = {
-                'categories': [],
+                'categories': ["{{ request()->subCategory }}"],
                 'minimum': null,
                 'maximum': null,
                 'title': null
@@ -110,98 +110,97 @@
                     </div>
                 </div>`;
             }
-        });
 
-        let debounceTimer;
-        $('#search-name').keyup(function() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(function() {
-                handleGetCourses(1, {
-                    title: $('#search-name').val()
-                })
-            }, 500);
-        });
-
-        let loading = true;
-        const gridParent = $('#courses-grid');
-
-        if (loading) {
-            gridParent.append(loadingCard(6));
-        }
-
-        let retryCount = 0;
-        const maxRetries = 3;
-
-        function handleGetCourses(page, data = {}) {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses?page=" + page,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                data: data,
-                dataType: "json",
-                success: function(response) {
-                    gridParent.empty();
-
-                    if (response.data.data.length > 0) {
-                        $.each(response.data.data, function(index, value) {
-                            gridParent.append(card(index, value));
-                        });
-
-                        renderPagination(response.data.paginate.last_page, response.data.paginate
-                            .current_page,
-                            function(page) {
-                                handleGetCourses(page);
-                            });
-                            $('.pagination__wrap').show();
-                    } else {
-                        gridParent.append(empty());
-                        $('.pagination__wrap').hide();
-                    }
-
-                    retryCount = 0;
-                    loading = false;
-                },
-                error: function(xhr) {
-                    let errorMessage = '';
-                    if (xhr.status === 0) {
-                        errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
-                    } else if (xhr.status >= 500) {
-                        errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
-                    } else if (xhr.status >= 400 && xhr.status < 500) {
-                        errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
-                    } else {
-                        errorMessage = 'Gagal memuat data. Coba lagi nanti.';
-                    }
-
-                    if (retryCount < maxRetries) {
-                        retryCount++;
-                        setTimeout(() => {
-                            handleGetCourses(1);
-                        }, 1000);
-                    } else {
-                        gridParent.empty();
-                        gridParent.append(
-                            `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                        console.log('Gagal memuat data setelah beberapa kali percobaan.');
-                        loading = false;
-                    }
-                }
+            let debounceTimer;
+            $('#search-name').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    handleGetCourses(1, {
+                        title: $('#search-name').val()
+                    })
+                }, 500);
             });
-        }
 
-        handleGetCourses(1);
+            let loading = true;
+            const gridParent = $('#courses-grid');
 
-        function card(index, value) {
-            let price;
-            if (value.promotional_price != 0) {
-                price =
-                    ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
-            } else {
-                price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
+            if (loading) {
+                gridParent.append(loadingCard(6));
             }
-            return `<div class="col-lg-4">
+
+            let retryCount = 0;
+            const maxRetries = 3;
+
+            function handleGetCourses(page, data = {}) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/courses?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        gridParent.empty();
+
+                        if (response.data.data.length > 0) {
+                            $.each(response.data.data, function(index, value) {
+                                gridParent.append(card(index, value));
+                            });
+
+                            renderPagination(response.data.paginate.last_page, response.data.paginate
+                                .current_page,
+                                function(page) {
+                                    handleGetCourses(page);
+                                });
+                            $('.pagination__wrap').show();
+                        } else {
+                            gridParent.append(empty());
+                            $('.pagination__wrap').hide();
+                        }
+
+                        retryCount = 0;
+                        loading = false;
+                    },
+                    error: function(xhr) {
+                        let errorMessage = '';
+                        if (xhr.status === 0) {
+                            errorMessage = 'Gagal memuat data. Periksa koneksi internet Anda.';
+                        } else if (xhr.status >= 500) {
+                            errorMessage = 'Terjadi kesalahan pada server. Coba lagi nanti.';
+                        } else if (xhr.status >= 400 && xhr.status < 500) {
+                            errorMessage = 'Permintaan tidak valid atau data tidak ditemukan.';
+                        } else {
+                            errorMessage = 'Gagal memuat data. Coba lagi nanti.';
+                        }
+
+                        if (retryCount < maxRetries) {
+                            retryCount++;
+                            setTimeout(() => {
+                                handleGetCourses(1);
+                            }, 1000);
+                        } else {
+                            gridParent.empty();
+                            gridParent.append(
+                                `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
+                            console.log('Gagal memuat data setelah beberapa kali percobaan.');
+                            loading = false;
+                        }
+                    }
+                });
+            }
+
+            handleGetCourses(1, filter);
+
+            function card(index, value) {
+                let price;
+                if (value.promotional_price != 0) {
+                    price =
+                        ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
+                } else {
+                    price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
+                }
+                return `<div class="col-lg-4">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
@@ -228,13 +227,13 @@
                     </div>
                 </div>
             </div>`;
-        }
+            }
 
-        function loadingCard(amount) {
-            let card = '';
+            function loadingCard(amount) {
+                let card = '';
 
-            for (let i = 0; i < amount; i++) {
-                card += `
+                for (let i = 0; i < amount; i++) {
+                    card += `
                 <div class="col col-lg-4">
                     <div class="card" aria-hidden="true">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="180"
@@ -259,8 +258,9 @@
                     </div>
                 </div>
                 `;
+                }
+                return card;
             }
-            return card;
-        }
+        });
     </script>
 @endpush
