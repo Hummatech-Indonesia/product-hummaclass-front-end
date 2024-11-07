@@ -121,7 +121,7 @@
                     <div class="category">${category.name}
                         <div class="subcategory">`
                     category.sub_category.forEach(subCategory => {
-                    dropdownChild += `<a class="subcategory-item d-block" href="{{ route('courses.courses.index') }}?subCategory=${subCategory.id}">Sub Kategori
+                        dropdownChild += `<a class="subcategory-item d-block" href="{{ route('courses.courses.index') }}?subCategory=${subCategory.id}">Sub Kategori
                                 </a>`
                     });
                     dropdownChild += `
@@ -264,6 +264,20 @@
 
             // Menggabungkan hasil format tanggal dan waktu
             return `${tanggalFormatted} ${waktuFormatted}`;
+        }
+
+        function commonAlert(setting = {
+            title: 'Terjadi Kesalahan!',
+            status: 'success',
+            message: 'Ada kesalahan saat memproses data.'
+        }) {
+            setting.title = setting.status == 'success' ? "Berhasil" : "Gagal";
+            Swal.fire({
+                title: setting.title,
+                text: setting.message,
+                icon: setting.status == 'success' ? 'info' : 'error',
+                confirmButtonText: 'Oke'
+            });
         }
     </script>
 
