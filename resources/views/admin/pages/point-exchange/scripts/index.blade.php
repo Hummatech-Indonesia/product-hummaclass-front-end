@@ -87,7 +87,6 @@
 
     function ListExchange(index, value) {
         var url = "{{ config('app.api_url') }}";
-
         return `
             <tr>
                 <td>${index + 1}</td>
