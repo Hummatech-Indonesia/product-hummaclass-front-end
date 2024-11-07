@@ -1,7 +1,7 @@
     <div class="mt-2 mb-3">
         <h4 class="fw-semibold">Daftar Kursus Dibeli</h4>
         <div class="d-flex gap-3">
-            <form action="">
+            <form action="" class="d-flex gap-2">
                 <div class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
                         name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
