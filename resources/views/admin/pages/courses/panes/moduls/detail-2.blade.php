@@ -443,20 +443,34 @@
 
             }
 
-            function setActiveTab(tabId) {
-                localStorage.setItem('activeTab', tabId);
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                const activeTab = localStorage.getItem('activeTab');
-                if (activeTab) {
-                    document.querySelector('.nav-link.active').classList.remove('active');
-                    document.querySelector('.tab-pane.active').classList.remove('active');
-
-                    document.querySelector(`.nav-link[href="#${activeTab}"]`).classList.add('active');
-                    document.querySelector(`#${activeTab}`).classList.add('active');
-                }
-            });
         });
     </script>
+
+<script>
+    function activateTabFromLocalStorage() {
+        const activeTab = localStorage.getItem("activeTab") || "#materi";
+        const tabElement = document.querySelector(`a[href="${activeTab}"]`);
+        if (tabElement) {
+            new bootstrap.Tab(tabElement).show();
+        }
+    }
+
+    function handleTabDisplay(activeTab) {
+        if (activeTab === "#materi") {
+        } else if (activeTab === "#task") {
+        } else if (activeTab === "#quiz") {
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        activateTabFromLocalStorage();
+    });
+
+    $('.nav-link[data-bs-toggle="tab"]').on("shown.bs.tab", function(event) {
+        const selectedTab = event.target.getAttribute("href");
+        localStorage.setItem("activeTab", selectedTab);
+        handleTabDisplay(selectedTab);
+    });
+</script>
+
 @endsection

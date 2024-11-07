@@ -9,8 +9,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
-
 
                     $('#list-point-exchange').empty();
 

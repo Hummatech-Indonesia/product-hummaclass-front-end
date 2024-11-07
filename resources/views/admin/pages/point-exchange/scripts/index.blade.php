@@ -7,7 +7,16 @@
 
         funDelete(url);
     });
+
     get(1)
+
+    let debounceTimer;
+    $('#search').keyup(function() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+            get(1)
+        }, 500);
+    });
 
     function get(page) {
         $.ajax({
@@ -15,6 +24,9 @@
             url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            data: {
+                search: $('#search').val()
             },
             dataType: "json",
             success: function(response) {
@@ -31,8 +43,6 @@
                     $('#list-point-exchange').append(empty());
                     $('#pagination').hide();
                 }
-
-
             },
             error: function(xhr) {
 
@@ -92,7 +102,7 @@
                 <td>${index + 1}</td>
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="${value.image && value.image !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.image) ? value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                        <img src="${value.image && value.image !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.image) ? url + value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                             class="me-2" style="object-fit: cover" width="40"
                             height="40" alt="">
                         <div class="ms-3">
