@@ -47,6 +47,7 @@
         }
 
         function getConfirmationPoint(index, value) {
+            var url = "{{ config('app.api_url') }}";
             const badgeClass =
                 value.status === "success" ? "bg-light-success text-success" :
                 value.status === "pending" ? "bg-light-warning text-warning" :
@@ -55,7 +56,7 @@
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
-                                <img src="${value.user.photo}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="">
+                                <img src="${value.user.photo && value.user.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.user.photo) ? value.user.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}" class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40" height="40" alt="">
                                 <div class="ms-3">
                                     <h6 class="fs-4 fw-semibold mb-0">${value.user.name}</h6>
                                     <span class="fw-normal">${value.user.email}</span>
