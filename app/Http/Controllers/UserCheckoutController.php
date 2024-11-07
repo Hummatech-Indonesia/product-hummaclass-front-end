@@ -24,6 +24,9 @@ class UserCheckoutController extends Controller
         } else {
             // dd($response->json());
             $course = $response->json()['data']['course'];
+            if (session('user')['roles'][0]['name'] == 'admin') {
+                return redirect()->route('courses.course-lesson.index', $course['modules'][0]['sub_modules'][0]['slug']);
+            }
             $courseId = $response->json()['data']['course']['id'];
             if (!$course['is_premium']) {
                 $response = Http::withToken($token)

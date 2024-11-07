@@ -87,7 +87,6 @@
                         $('.course_photo').attr('src', course.photo);
                         $('.category').text(course.category.name);
                         $('#description').html(course.description);
-
                     } catch (error) {
                         console.error('Error fetching course details:', error);
                     }
