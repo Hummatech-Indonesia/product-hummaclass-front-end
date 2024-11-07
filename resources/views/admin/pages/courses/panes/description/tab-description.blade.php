@@ -3,7 +3,7 @@
         style="font-weight:bold;top: 10px; left: 10px;background-color:#FFC224;" id="sub_category">
     </div>
     <div class="d-flex">
-        <img src="" id="thumbnail" style="width: 60%" alt="" class="rounded">
+        <img src="" id="thumbnail" style="object-fit: cover;width: 34%;height: 250px;" alt="" class="rounded">
         <div class="align-items-start p-3">
 
             <h4 style="font-weight: bold;" class="my-3" id="title"></h4>
