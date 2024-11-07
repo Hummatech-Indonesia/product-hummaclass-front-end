@@ -108,6 +108,32 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        $.ajax({
+            type: "get",
+            url: "{{ config('app.api_url') }}/api/categories",
+            dataType: "json",
+            success: function(response) {
+                $('#dropdownMenu').empty();
+                let dropdownChild = '';
+                let categoryName = '';
+                response.data.data.forEach(category => {
+                    dropdownChild += `
+                    <div class="category">${category.name}
+                        <div class="subcategory">`
+                    category.sub_category.forEach(subCategory => {
+                    dropdownChild += `<a class="subcategory-item d-block" href="{{ route('courses.courses.index') }}?subCategory=${subCategory.id}">Sub Kategori
+                                </a>`
+                    });
+                    dropdownChild += `
+                            </div>
+                    </div>
+                    `
+                });
+
+
+                $('#dropdownMenu').append(dropdownChild);
+            }
+        });
         // SVGInject(document.querySelectorAll("img.injectable"));
 
         function formatRupiah(price) {
