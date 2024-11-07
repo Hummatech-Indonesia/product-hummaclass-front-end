@@ -51,9 +51,9 @@
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-            <div class="d-flex justify-content-end gap-2">
-                <button type="reset" class="btn btn-secondary back">Kembali</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button type="reset" class="btn btn-danger back">Kembali</button>
+                <button type="submit" class="btn text-white" style="background-color: #9425FE">Simpan</button>
             </div>
         </form>
     </div>
