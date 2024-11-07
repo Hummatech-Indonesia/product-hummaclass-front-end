@@ -50,14 +50,16 @@
                             </div>
                         </div>
                         <div class="d-flex mt-3 gap-2">
-                            <span class="text-white py-1 px-1 d-flex align-items-center"
+                            <div>
+                                <span class="text-white py-1 px-1 d-flex align-items-center"
                                 style="background-color: #7209DB; border-radius: 9px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                    <path fill="currentColor"
-                                        d="m8.93 6.588l-2.29.287l-.082.38l.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319c.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246c-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0">
-                                    </path>
-                                </svg>
-                            </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <path fill="currentColor"
+                                            d="m8.93 6.588l-2.29.287l-.082.38l.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319c.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246c-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0">
+                                        </path>
+                                    </svg>
+                                </span>
+                            </div>
                             <p>Aktifkan menu diatas untuk fitur siswa hanya bisa mengumpulkan 5 menit sebelum durasi
                                 pengerjaan berakhir</p>
                         </div>
@@ -87,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-1 mb-3 d-flex justify-content-end align-items-center">
+                                    <div class="col-1 mt-2 d-flex justify-content-end align-items-center">
                                         <button data-repeater-delete class="btn btn-danger" type="button">
                                             <i class="ti ti-circle-x fs-5"></i>
                                         </button>
