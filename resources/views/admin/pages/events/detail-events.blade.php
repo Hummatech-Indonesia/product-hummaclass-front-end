@@ -38,10 +38,10 @@
 
         .ellipsis {
             /* width: 200px;
-                                                                            white-space: nowrap;
-                                                                            overflow: hidden;
-                                                                            text-overflow: ellipsis;
-                                                                            border: 1px solid #ddd; */
+                                                                                                                                                            white-space: nowrap;
+                                                                                                                                                            overflow: hidden;
+                                                                                                                                                            text-overflow: ellipsis;
+                                                                                                                                                            border: 1px solid #ddd; */
 
             cursor: pointer;
         }
@@ -210,19 +210,36 @@
                     event = response.data;
                     $('#detail-title').html(response.data.title);
                     $('#detail-start-date').html(response.data.start_date);
-                    $('#detail-start-date').html(response.data.start_date);
-                    $('#detail-location').html(response.data.location);
+                    if (response.data.location != null) {
+
+                        $('#detail-location').html(response.data.location);
+                    } else {
+                        console.log("tet");
+
+                        $('#location').removeClass('d-flex');
+                        $('#location').addClass('d-none');
+                    }
                     $('#detail-capacity').html(response.data.capacity);
                     $('#detail-has-certificate').html(response.data.has_certificate);
-                    $('#detail-price').html(formatRupiah(response.data.price));
-                    $('#detail-description').html(response.data.description);
+                    if (response.data.price > 0) {
+                        $('#detail-price').html(formatRupiah(response.data.price));
+                    } else {
+                        $('#price').hide();
+                        $('#detail-price').html('Gratis');
+                    }
+                    $('#detail-description').html(response.data.description); <<
+                    << << < HEAD
+                    $('#detail-photo').attr('src', response.data.image); ===
+                    === =
 
                     const image = response.data.image;
-                    const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
-                        ? image 
-                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                    const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) ?
+                        image :
+                        "{{ asset('assets/img/no-image/no-image.jpg') }}";
                     $('#detail-photo').attr('src', imageUrl);
 
+                    >>>
+                    >>> > 419 c0987de7a31a3063ede9f7d05c7577b81ed13
                     let roundownString = '';
                     response.data.event_details.forEach(detail => {
                         // console.log(detail.start);
@@ -235,8 +252,8 @@
                             <div class="ms-3">
                                 <h6 class=" fw-semibold mb-0">${detail.user}</h6>
                                 </div>
-                                </td>
-                                </tr>`
+                        </td>
+                    </tr>`
                     });
                     // <span>Curriculum Developer</span>
 
@@ -276,9 +293,9 @@
                             response
                             .data.data[0].user_event_attendance))
 
-                            if(response.data.data.length == 0) {
-                                $('#attendance-list tbody').append(empty());
-                            }
+                        if (response.data.data.length == 0) {
+                            $('#attendance-list tbody').append(empty());
+                        }
                     }
                 });
             }
