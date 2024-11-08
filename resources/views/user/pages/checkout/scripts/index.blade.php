@@ -259,8 +259,11 @@
                         window.location.href = url;
                     },
                     error: function(xhr, status, error) {
-                        alert('Error creating transaction:', error);
-                        console.error('Error creating transaction:', error);
+                        commonAlert({
+                            'title': 'Gagal',
+                            'text': xhr.responseJSON.message,
+                            'icon': status
+                        });
                     }
                 });
             }
