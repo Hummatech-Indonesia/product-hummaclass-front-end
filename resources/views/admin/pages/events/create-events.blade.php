@@ -101,7 +101,6 @@
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
-
             <div class="">
                 <div class="email-repeater mb-3">
                     <div data-repeater-list="repeater-group">
@@ -162,7 +161,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="text-end">
                 <a href="{{ route('admin.events.index') }}" class="btn text-white me-2"
                     style="background-color: #DB0909">Batal</a>
@@ -203,7 +201,7 @@
                         text: "Berhasil menambah data data.",
                         icon: "success"
                     }).then(() => {
-                        window.location.href="/admin/events"
+                        window.location.href = "/admin/events"
                     });
                 },
                 error: function(response) {

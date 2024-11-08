@@ -73,15 +73,26 @@
                     <input type="text" name="location" id="location" class="form-control" placeholder="Masukan lokasi">
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-6 mb-3">
                     <label for="start_date" class="fw-semibold form-label">Tanggal Mulai</label>
                     <input type="date" class="form-control" id="start_date" name="start_date"
+                        placeholder="Masukan jumlah kapasitas">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="end_date" class="fw-semibold form-label">Tanggal Selesai</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date"
                         placeholder="Masukan jumlah kapasitas">
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col-12 mb-3">
                     <label for="summernote-description" class="fw-semibold form-label">Deskripsi</label>
                     <textarea name="description" id="summernote-description" cols="30" rows="10"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="summernote-email-content" class="fw-semibold form-label">Konten Email</label>
+                    <textarea name="email_content" id="summernote-email-content" cols="30" rows="10"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
@@ -93,7 +104,6 @@
                             <h5 class="fw-semibold mt-3">Runtunan Acara</h5>
                             <hr>
                             <div class="row" id="roundown-list">
-                                <!-- Tempat repeater items akan ditambahkan -->
                             </div>
                         </div>
                     </div>
@@ -122,24 +132,21 @@
             $('#summernote-description').summernote({
                 height: 200
             });
+            $('#summernote-email-content').summernote({
+                height: 200
+            });
 
-            // Submit form using AJAX
             $('#update-events-form').submit(function(e) {
                 e.preventDefault();
 
-                // var formData = new FormData(this);
                 var formData = {};
                 $(this).serializeArray().forEach(function(field) {
-                    // Jika field.name adalah salah satu dari 'user[]', 'start[]', 'end[]', atau 'session[]'
                     if (['user[]', 'start[]', 'end[]', 'session[]'].includes(field.name)) {
-                        // Jika array belum ada, buat array baru di dalam formData
                         if (!formData[field.name]) {
                             formData[field.name] = [];
                         }
-                        // Tambahkan value ke dalam array yang sesuai
                         formData[field.name].push(field.value);
                     } else {
-                        // Untuk field lainnya, simpan sebagai nilai tunggal
                         formData[field.name] = field.value;
                     }
                 });
@@ -189,16 +196,19 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    console.log(response.data.image);
 
                     $('#thumbnail').attr('src', response.data.image);
                     $('#title').val(response.data.title);
                     $('#start_date').val(response.data.start_date);
+                    $('#end_date').val(response.data.end_date);
                     $('#capacity').val(response.data.capacity);
                     $('#summernote-description').summernote('code', response.data.description);
+                    $('#summernote-email-content').summernote('code', response.data.email_content);
+                    console.log(response.data.event_details);
 
                     // Tambahkan event_details
                     response.data.event_details.forEach(event_detail => {
+
                         createNewItem(event_detail);
                     });
                 },
@@ -216,12 +226,19 @@
                 let endValue = data ? data.end : ''; // Ambil nilai end jika data tersedia
                 let userValue = data ? data.user : ''; // Ambil nilai user jika data tersedia
                 let sessionValue = data ? data.session : ''; // Ambil nilai session jika data tersedia
+                let eventDate = data ? data.event_date : ''; // Ambil nilai session jika data tersedia
 
                 let newItem = document.createElement('div');
                 newItem.classList.add('row', 'mb-3');
 
                 newItem.innerHTML = `
                     <div class="row col-11">
+                         <div class="col-12 mb-3">
+                            <label for="event_date" class="fw-semibold form-label">Tanggal Mulai</label>
+                            <input type="date" class="form-control" value="${eventDate}" id="event_date"
+                                name="event_date[]" placeholder="Masukan jumlah kapasitas">
+                            <div class="invalid-feedback"></div>
+                        </div>
                         <div class="col-6 mb-3">
                             <label for="start" class="fw-semibold form-label">Jam Mulai</label>
                             <input type="time" class="form-control" name="start[]" value="${startValue}" placeholder="Masukan jam mulai">
