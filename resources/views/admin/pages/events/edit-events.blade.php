@@ -30,6 +30,7 @@
         <form action="" id="update-events-form" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-12 mb-3">
+                    <img src="" id="thumbnail" class="rounded" width="400px" alt="" srcset=""><br>
                     <label for="image" class="fw-semibold form-label">Thumbnail</label>
                     <input type="file" class="form-control" id="image" name="image">
                     <div class="invalid-feedback"></div>
@@ -188,6 +189,9 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    console.log(response.data.image);
+
+                    $('#thumbnail').attr('src', response.data.image);
                     $('#title').val(response.data.title);
                     $('#start_date').val(response.data.start_date);
                     $('#capacity').val(response.data.capacity);
