@@ -38,7 +38,6 @@
 
 
         function cardCourse(data) {
-            console.log(data.total_module);
 
             let card = `
             <div class="col-lg-4 col-md-6">
@@ -77,9 +76,9 @@
                     </div>
                     <div class="courses__item-bottom-two">
                         <ul class="list-wrap">
-                            <li><i class="flaticon-book"></i>${data.course.total_module}</li>
+                            <li><i class="flaticon-book"></i>${data.total_module}</li>
                             <li><i class="flaticon-clock"></i>11h 20m</li>
-                            <li><i class="flaticon-mortarboard"></i>${data.course.user_courses_count}</li>
+                            <li><i class="flaticon-mortarboard"></i>${data.user_courses_count}</li>
                         </ul>
                     </div>
                 </div>
