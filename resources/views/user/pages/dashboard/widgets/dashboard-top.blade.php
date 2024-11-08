@@ -1,6 +1,6 @@
 <div class="dashboard__top-wrap">
     <div class="dashboard__top-bg banner-user"
-        data-background="{{ session('user')['banner'] ? session('user')['banner'] : asset('assets/img/no-image/no-image.jpg') }}">
+        data-background="{{ isset(session('user')['banner']) ? session('user')['banner'] : asset('assets/img/no-image/no-image.jpg') }}">
     </div>
     <div class="dashboard__instructor-info">
         <div class="dashboard__instructor-info-left">
