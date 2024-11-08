@@ -208,7 +208,6 @@
 
                     // Tambahkan event_details
                     response.data.event_details.forEach(event_detail => {
-
                         createNewItem(event_detail);
                     });
                 },
@@ -217,6 +216,8 @@
                         title: "Terjadi Kesalahan!",
                         text: "Ada kesalahan saat menampilkan event data.",
                         icon: "error"
+                    }).then(() => {
+                        window.history.back();
                     });
                 }
             });

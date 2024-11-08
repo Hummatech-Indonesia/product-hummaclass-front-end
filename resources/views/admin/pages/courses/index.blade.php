@@ -62,42 +62,44 @@
     </div>
 
     <style>
-    .info-card {
-      background-color: #fff7eb;
-      border: 1px solid #ffdca9;
-      border-radius: 8px;
-      padding: 20px;
-    }
-    .info-card .info-icon {
-      background-color: #ffdca9;
-      color: #ff8800;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-    }
-    .info-card .info-header {
-      font-weight: bold;
-      color: #ff8800;
-    }
-  </style>
+        .info-card {
+            background-color: #fff7eb;
+            border: 1px solid #ffdca9;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .info-card .info-icon {
+            background-color: #ffdca9;
+            color: #ff8800;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .info-card .info-header {
+            font-weight: bold;
+            color: #ff8800;
+        }
+    </style>
 
 
     <div class="info-card mt-3 mb-5">
-    <div class="d-flex align-items-center mb-2">
-      <div class="info-icon">
-        <i class="bi bi-info-lg">!</i> 
-      </div>
-      <div class="info-header">Informasi</div>
+        <div class="d-flex align-items-center mb-2">
+            <div class="info-icon">
+                <i class="bi bi-info-lg">!</i>
+            </div>
+            <div class="info-header">Informasi</div>
+        </div>
+        <ul class="mb-0">
+            <li>Pastikan kursus yang anda akan tambahkan sudah sesuai dan benar, sebelum menekan tombol checklis</li>
+            <li>Ketika sudah menconfirm checklis kursus tidak dapat di edit</li>
+        </ul>
     </div>
-    <ul class="mb-0">
-      <li>Pastikan kursus yang anda akan tambahkan sudah sesuai dan benar, sebelum menekan tombol checklis</li>
-      <li>Ketika sudah menconfirm checklis kursus tidak dapat di edit</li>
-    </ul>
-  </div>
     <div class="row mt-4" id="list-card">
     </div>
     <div class="d-flex justify-content-center">

@@ -22,6 +22,15 @@
                 $('#summernote-description').summernote('code', response.data.description);
                 sub_category(response.data.category_id, response.data.sub_category_id);
                 category_id(response.data.category_id)
+            },
+            error: function(response) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Ada kesalahan saat menampilkan event data.",
+                    icon: "error"
+                }).then(() => {
+                    window.history.back();
+                });
             }
         });
 
