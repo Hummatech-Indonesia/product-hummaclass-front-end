@@ -38,7 +38,7 @@
 
 
         function cardCourse(data) {
-            console.log(data.course.slug);
+            console.log(data.course);
 
             let card = `
             <div class="col-lg-4 col-md-6">
