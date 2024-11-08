@@ -10,6 +10,9 @@
             dataType: "json",
             success: function(response) {
                 $('#detailCourseRating').html(response.data.rating);
+                const photoUrl = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo)
+                                ? response.data.photo
+                                : "{{ asset('assets/img/no-image/no-image.jpg') }}";
                 for (const key in response.data) {
 
                     $('#edit-description').attr('href',
@@ -28,9 +31,7 @@
                         else if (key == 'sub_category')
                             $('#sub_category').html(response.data[key].name)
                         else if (key == 'photo')
-                        var url = "{{ config('app.api_url') }}";
-                        var photoUrl = response.data.photo && response.data.photo !== url + '/storage' ? response.data.photo : "{{ asset('assets/img/no-image/no-image.jpg') }}";
-                        $('#thumbnail').attr('src', photoUrl);
+                            $('#thumbnail').attr('src', photoUrl);
                         else
                             $(`#${key}`).text(response.data[key])
                     }
