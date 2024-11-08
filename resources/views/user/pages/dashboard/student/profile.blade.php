@@ -42,13 +42,9 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span>(15 Reviews)</span>
+                                <span>(<span class="review-count"></span> Reviews)</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="dashboard__instructor-info-right">
-                        <a href="#" class="btn btn-two arrow-btn">Create a New Course <img
-                                src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
                     </div>
                 </div>
             </div>
@@ -79,22 +75,6 @@
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="itemOne-tab-pane" role="tabpanel"
                                         aria-labelledby="itemOne-tab" tabindex="0">
-                                        {{-- <div class="instructor__cover-bg banner-user"
-                                            data-background="{{ asset('assets/img/bg/student_bg.jpg') }}">
-                                            <div class="instructor__cover-info">
-                                                <div class="instructor__cover-info-left">
-                                                    <div class="thumb">
-                                                        <img class="detail-photo" src="{{ asset('assets/img/courses/details_instructors02.jpg') }}"
-                                                            alt="img">
-                                                    </div>
-                                                    <button title="Upload Photo"><i class="fas fa-camera"></i></button>
-                                                </div>
-                                                <div class="instructor__cover-info-right">
-                                                    <a href="#" class="btn btn-two arrow-btn">Edit Cover Photo</a>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-
                                         <form action="" enctype="multipart/form-data" id="edit-profile-form">
                                             @csrf
                                             <div class="instructor__cover-bg banner-user"
@@ -205,6 +185,8 @@
             },
             dataType: "json",
             success: function(response) {
+                console.log(response);
+                
                 append(response);
             },
             error: function(xhr) {
@@ -304,9 +286,13 @@
             $('.detail-name').text(data.name);
             $('#gender').val(data.gender);
 
-            var profileImage = data.photo ? data.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+            var profileImage = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
+                ? data.photo
+                : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
             $('.detail-photo').attr('src', profileImage);
-            var bannerImage = data.banner ? data.banner : '{{ asset('assets/img/no-image/no-image.jpg') }}';
+            var bannerImage = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
+                ? data.banner
+                : '{{ asset('assets/img/no-image/no-image.jpg') }}';
             $('.banner-user').css('background-image', 'url(' + bannerImage + ')');
         }
     });
