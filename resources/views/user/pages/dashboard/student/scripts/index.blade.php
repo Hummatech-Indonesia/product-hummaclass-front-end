@@ -38,7 +38,7 @@
 
 
         function cardCourse(data) {
-            // console.log(data.course);
+            console.log(data.course.total_module);
 
             let card = `
             <div class="col-lg-4 col-md-6">
