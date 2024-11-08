@@ -78,7 +78,7 @@
                         <ul class="list-wrap">
                             <li><i class="flaticon-book"></i>${data.total_module}</li>
                             <li><i class="flaticon-clock"></i>11h 20m</li>
-                            <li><i class="flaticon-mortarboard"></i>${data.user_courses_count}</li>
+                            <li><i class="flaticon-mortarboard"></i>${data.total_user}</li>
                         </ul>
                     </div>
                 </div>
