@@ -142,6 +142,7 @@
                     dataType: "json",
                     success: function(response) {
                         gridParent.empty();
+                        console.log(response.data.data);
 
                         if (response.data.data.length > 0) {
                             $.each(response.data.data, function(index, value) {

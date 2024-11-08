@@ -38,10 +38,10 @@
 
         .ellipsis {
             /* width: 200px;
-                                                                                                                                                                                                                                white-space: nowrap;
-                                                                                                                                                                                                                                overflow: hidden;
-                                                                                                                                                                                                                                text-overflow: ellipsis;
-                                                                                                                                                                                                                                border: 1px solid #ddd; */
+                                                                                                                                                                                                                                                white-space: nowrap;
+                                                                                                                                                                                                                                                overflow: hidden;
+                                                                                                                                                                                                                                                text-overflow: ellipsis;
+                                                                                                                                                                                                                                                border: 1px solid #ddd; */
 
             cursor: pointer;
         }
@@ -327,7 +327,7 @@
 
 
             function generateListParticipant(value) {
-
+                
                 return `<div class="col-md-6 col-lg-3">
                                 <div class="card text-center p-0 bg-white">
                                     <div class="p-2 d-flex flex-column align-items-center mt-3">

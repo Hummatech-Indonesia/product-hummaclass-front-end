@@ -21,27 +21,28 @@
             contentType: false,
             processData: false,
             success: function(response) {
-                console.log(response.data);
                 response.data.forEach(event => {
                     const dateKey = new Date(event.start_date).toLocaleDateString(
-                        'en-CA'); // Format YYYY-MM-DD dari start_date
+                        'en-CA');
                     const formattedDateKey = dateKey.split('-').reverse().join(
-                        '-'); // Ubah ke DD-MM-YYYY
+                        '-');
+
 
                     if (!events[formattedDateKey]) {
                         events[formattedDateKey] = [];
                     }
+                    console.log(formattedDateKey);
+
 
                     events[formattedDateKey].push({
                         slug: event.slug,
                         title: event.title,
-                        desc: event.description, // Deskripsi dari respons
-                        time: event.start_date, // Waktu mulai dari respons
-                        price: event.price // Harga dari respons
+                        desc: event.description,
+                        time: event.start_date,
+                        price: event.price
                     });
                 });
-
-                updateCalendar(); // Refresh kalender setelah mengisi data acara
+                updateCalendar();
             },
             error: function(response) {
                 Swal.fire({
@@ -91,7 +92,10 @@
             dayCell.classList.add('calendar-day');
             dayCell.innerHTML = `<h4>${day}</h4>`;
 
-            const formattedDateKey = `${day}-${currentMonth + 1}-${currentYear}`; // Format sesuai dengan key events
+            const formattedDateKey =
+                `${String(day).padStart(2, '0')}-${String(currentMonth + 1).padStart(2, '0')}-${currentYear}`;
+            console.log(formattedDateKey);
+
 
             if (events[formattedDateKey]) {
                 dayCell.innerHTML +=
@@ -133,8 +137,6 @@
                     // Batasi deskripsi
                     const truncatedDesc = event.desc.length > 20 ? event.desc.substring(0, 20) + '...' :
                         event.desc;
-                    console.log(event.slug);
-
                     eventItem.innerHTML = `
                             <a href="/events/${event.slug}">
                                 <span class="event-indicator ${event.price}-indicator"></span>
