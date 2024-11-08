@@ -164,7 +164,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.users.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-users"></i> <!-- Icon untuk User -->
+                            <i class="ti ti-users"></i>
                         </span>
                         <span class="hide-menu">User</span>
                     </a>
@@ -172,7 +172,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-user"></i> <!-- Icon untuk Profile -->
+                            <i class="ti ti-user"></i>
                         </span>
                         <span class="hide-menu">Profile</span>
                     </a>
