@@ -73,17 +73,17 @@
                 <div class="courses__item-three shine__animate-item border-0">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                            <img src="${value.course.photo}" />
+                            <img src="" />
                         </a>
                     </div>
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="javascript:void(0)">${value.course.sub_category}</a>
+                                <a href="javascript:void(0)"></a>
                 
                             </li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.course.title}</a></h5>
+                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
                                 <a href="instructor-details.html"><img
@@ -94,7 +94,7 @@
                                 <i class="fas fa-star"></i> (4.8 Reviews)
                             </div>
                         </div>
-                        <p class="info">${value.course.description}</p>
+                        <p class="info"></p>
                     </div>
                 </div>
                 <div class="border-card">
@@ -110,18 +110,10 @@
                     </div>
             
                     <div class="d-flex align-items-center justify-content-between">
-                        ${value.course.course_reviews && value.course.course_reviews.length > 0 ? 
-                            `<p>TELAH DINILAI</p>
-                            <div>
-                                <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}" class="outline-secondary">Tampilkan Penilaian Kursus</a>
-                            </div>` 
-                            : 
-                            `<p>Nilai kursus sebelum tanggal 10 Agustus 2024</p>
-                            <div class="d-flex gap-2">
-                                <button class="outline-danger">Batalkan Pesanan</button>
-                                <button class="btn-purple-primary px-4">Bayar</button>
-                            </div>`
-                        }
+                        
+
+
+
                     </div>
             
                 </div>
@@ -148,17 +140,17 @@
                 <div class="courses__item-three shine__animate-item border-0">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                            <img src="${value.course.photo}" />
+                            <img src="" />
                         </a>
                     </div>
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="javascript:void(0)">${value.course.sub_category}</a>
+                                <a href="javascript:void(0)"></a>
                 
                             </li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.course.title}</a></h5>
+                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
                                 <a href="instructor-details.html"><img
@@ -169,7 +161,7 @@
                                 <i class="fas fa-star"></i> (4.8 Reviews)
                             </div>
                         </div>
-                        <p class="info">${value.course.description}</p>
+                        <p class="info"></p>
                     </div>
                 </div>
                 <div class="border-card">
@@ -185,18 +177,9 @@
                     </div>
             
                     <div class="d-flex align-items-center justify-content-between">
-                        ${value.course.course_reviews && value.course.course_reviews.length > 0 ? 
-                            `<p>TELAH DINILAI</p>
-                            <div>
-                                <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}" class="outline-secondary">Tampilkan Penilaian Kursus</a>
-                            </div>` 
-                            : 
-                            `<p>Nilai kursus sebelum tanggal 10 Agustus 2024</p>
-                            <div class="d-flex gap-2">
-                                <button class="outline-danger">Batalkan Pesanan</button>
-                                <button class="btn-purple-primary px-4">Bayar</button>
-                            </div>`
-                        }
+
+
+
                     </div>
             
                 </div>
@@ -223,17 +206,17 @@
                 <div class="courses__item-three shine__animate-item border-0">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
-                            <img src="${value.course.photo}" />
+                            <img src="" />
                         </a>
                     </div>
                     <div class="courses__item-content">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="javascript:void(0)">${value.course.sub_category}</a>
+                                <a href="javascript:void(0)"></a>
                 
                             </li>
                         </ul>
-                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.course.title}</a></h5>
+                        <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
                                 <a href="instructor-details.html"><img
@@ -244,7 +227,7 @@
                                 <i class="fas fa-star"></i> (4.8 Reviews)
                             </div>
                         </div>
-                        <p class="info">${value.course.description}</p>
+                        <p class="info"></p>
                     </div>
                 </div>
                 <div class="border-card">
@@ -260,18 +243,10 @@
                     </div>
             
                     <div class="d-flex align-items-center justify-content-between">
-                        ${value.course.course_reviews && value.course.course_reviews.length > 0 ? 
-                            `<p>TELAH DINILAI</p>
-                            <div>
-                                <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}" class="outline-secondary">Tampilkan Penilaian Kursus</a>
-                            </div>` 
-                            : 
-                            `<p>Nilai kursus sebelum tanggal 10 Agustus 2024</p>
-                            <div class="d-flex gap-2">
-                                <button class="outline-danger">Batalkan Pesanan</button>
-                                <button class="btn-purple-primary px-4">Bayar</button>
-                            </div>`
-                        }
+                        
+                        
+
+                        
                     </div>
             
                 </div>

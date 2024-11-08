@@ -257,7 +257,7 @@
 
         return `
             <tr>
-                <td class="text-start" style="display: table-cell;">${value.course_id.title}</td>
+                <td class="text-start" style="display: table-cell;"></td>
                 <td class="text-start" style="display: table-cell;">${value.created_at}</td>
                 <td class="text-start" style="display: table-cell;">${value.amount}</td>
                 <td class="text-start" style="display: table-cell;">
@@ -272,7 +272,7 @@
     function paidContent(value) {
         return `
             <tr>
-                <td class="text-start" style="display: table-cell;">${value.course_id.title}</td>
+                <td class="text-start" style="display: table-cell;"></td>
                 <td class="text-start" style="display: table-cell;">${value.created_at}</td>
                 <td class="text-start" style="display: table-cell;">${value.amount}</td>
                 <td class="text-start" style="display: table-cell;">
