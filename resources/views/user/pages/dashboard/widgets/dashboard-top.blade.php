@@ -6,7 +6,7 @@
         <div class="dashboard__instructor-info-left">
             <div class="thumb">
                 <img class="detail-photo"
-                    src="{{ session('user')['photo'] ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
+                    src="{{ isset(session('user')['photo']) ? session('user')['photo'] : asset('assets/img/no-image/no-profile.jpeg') }}"
                     alt="img">
             </div>
             <div class="content">
