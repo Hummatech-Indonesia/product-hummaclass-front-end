@@ -185,6 +185,7 @@
         });
 
         function process(index, value) {
+            var url = "{{ config('app.api_url') }}";
             const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
             return `
             <div class="col-lg-4 col-md-6">
@@ -192,7 +193,7 @@
                     <div class="courses__item-thumb courses__item-thumb-two">
                         <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}"
                             class="shine__animate-link">
-                            <img src="${value.course.photo}"
+                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? url + value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 alt="img">
                         </a>
                     </div>
@@ -234,6 +235,7 @@
         }
 
         function finished(index, value) {
+            var url = "{{ config('app.api_url') }}";
             const statusText = value.study_percentage === 100 ? "SELESAI" : "PROSES";
             return `
             <div class="col-lg-4 col-md-6">
@@ -241,7 +243,7 @@
                     <div class="courses__item-thumb courses__item-thumb-two">
                         <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}"
                             class="shine__animate-link">
-                            <img src="${value.course.photo}"
+                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? url + value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 alt="img">
                         </a>
                     </div>
