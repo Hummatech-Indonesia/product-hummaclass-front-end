@@ -13,8 +13,11 @@
             success: function(response) {
                 console.log(response);
 
-                // Memperbarui konten halaman dengan respons data
-                $('.detail-image').attr('src', response.data.image);
+                const photo = response.data.image && /\.(jpeg|jpg|gif|png)$/i.test(response.data.image) 
+                    ? response.data.image
+                    : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                $('.detail-image').attr('src', photo);
+                // $('.detail-image').attr('src', response.data.image);
                 $('#detail-name').html(response.data.name);
                 $('#detail-description').html(response.data.description);
                 $('#detail-points_required').html(response.data.points_required);

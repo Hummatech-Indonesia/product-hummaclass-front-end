@@ -104,7 +104,7 @@
                     <div class="event__item-thumb">
                         <a href="javascript:void(0)" class="shine__animate-link">
                             <div style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                                <img src="${value.image ? url + '/storage/' + value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img" style="width: 100%; height:150px;">
+                                <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? url + value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img" style="width: 100%; height:150px;">
                             </div>
                         </a>
                     </div>
