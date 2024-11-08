@@ -129,7 +129,7 @@
             <div class="row" id="detail-course">
                 <div class="col-xl-9 col-lg-8">
                     <div class="courses__details-thumb">
-                        <img src="" id="photo" alt="img" width="100%">
+                        <img src="" id="photo" alt="img" width="100%" style="height: 450px; object-fit:cover;">
                     </div>
                     <div class="courses__details-content">
                         <ul class="courses__item-meta list-wrap">
@@ -355,8 +355,11 @@
                     //     $('#review-content').append(empty());
                     // }
 
-                    photo = `${response.data.photo}`;
+                    const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
+                        ? response.data.photo 
+                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
                     $('#photo').attr('src', photo);
+
                     $('#sub-title').append(response.data.sub_title);
                     $('#detail-title').append(response.data.title);
                     $('#currentBreadcrumb').html(response.data.title).attr('href', '/courses/courses/' +
