@@ -46,7 +46,7 @@
                 <div class="col-xl-9 col-lg-8">
                     <div class="blog__details-wrapper">
                         <div class="blog__details-thumb">
-                            <img id="detail-thumbnail" alt="img" width="100%">
+                            <img id="detail-thumbnail" alt="img" width="100%" style="height: 450px; object-fit: cover;">
                         </div>
                         <div class="blog__details-content">
                             <div class="blog__post-meta">
