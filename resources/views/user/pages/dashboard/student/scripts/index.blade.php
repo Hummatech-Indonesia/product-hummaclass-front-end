@@ -70,7 +70,7 @@
                             <h6 class="title">COMPLETE <span>${data.percentace}%</span></h6>
                             <div class="progress" role="progressbar" aria-label="Example with label"
                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: ${data.percentace}%"></div>
+                                <div class="progress-bar" style="width: ${data.study_percentage}%"></div>
                             </div>
                         </div>
                     </div>
