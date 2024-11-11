@@ -124,7 +124,10 @@
                                     height="40" alt="">                                    
                              </td>
                              <td>
-                                <span class="fw-normal">${value.email}</span>
+                                 <div class="ms-3">
+                                         <span class="fs-4 fw-semibold mb-0">${value.name}</span>
+                                         <span class="fw-normal">${value.email}</span>
+                                     </div>
                             </td>
                             <td>${value.total_courses} Kursus</td>
                             <td>
