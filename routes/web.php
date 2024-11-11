@@ -190,18 +190,22 @@ Route::get('point-exchange', function () {
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-    
+
     // kelas industri
     Route::prefix('class')->name('class.')->group(function () {
-        Route::get('school', function () {
-            return view('Kelas-Industri.admin.school.index');
-        })->name('school.index');
-        Route::get('school/{slug}', function () {
-            return view('Kelas-Industri.admin.school.details.detail');
-        })->name('school.index');
-
-        Route::get('create-school', function(){
+        Route::prefix('school')->name('school.')->group(function () {
+            Route::get('/', function () {
+                return view('Kelas-Industri.admin.school.index');
+            })->name('school.index');
+            Route::get('/{slug}', function () {
+                return view('Kelas-Industri.admin.school.details.detail');
+            })->name('school.index');
+        });
+        Route::get('/create-school', function () {
             return view('Kelas-Industri.admin.school.create');
+        })->name('school.create');
+        Route::get('/edit-school/{id}', function ($id) {
+            return view('Kelas-Industri.admin.school.edit', compact('id'));
         })->name('school.create');
     });
 
