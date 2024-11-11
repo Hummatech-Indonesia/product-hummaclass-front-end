@@ -7,7 +7,7 @@
             const image = $(this).data('image')
             const apiUrl = @json(config('app.api_url'));
             const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image)
-                ? apiUrl + "/storage/" + image
+                ? {{ config('app.api_url') }} + "/storage/" + image
                 : "{{ asset('assets/img/no-image/no-image.jpg') }}";
 
                 console.log("API URL: {{ config('app.api_url') }}");
