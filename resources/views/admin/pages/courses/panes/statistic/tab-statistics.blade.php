@@ -289,7 +289,7 @@
                 $('.rating5').html(response.data.ratings_distribution[5])
 
                 $('.percentRating1')
-                    .css('width', response.data.ratings_distribution[1] + '%')
+                    .css('width', response.data.ratings_percentage_distribution[1] + '%')
                     .attr('aria-valuenow', response.data.ratings_percentage_distribution[1]);
                 $('.percentRating2')
                     .css('width', response.data.ratings_percentage_distribution[2] + '%')

@@ -129,7 +129,8 @@
             <div class="row" id="detail-course">
                 <div class="col-xl-9 col-lg-8">
                     <div class="courses__details-thumb">
-                        <img src="" id="photo" alt="img" width="100%" style="height: 450px; object-fit:cover;">
+                        <img src="" id="photo" alt="img" width="100%"
+                            style="height: 450px; object-fit:cover;">
                     </div>
                     <div class="courses__details-content">
                         <ul class="courses__item-meta list-wrap">
@@ -355,9 +356,10 @@
                     //     $('#review-content').append(empty());
                     // }
 
-                    const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
-                        ? response.data.photo 
-                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                    const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data
+                            .photo) ?
+                        response.data.photo :
+                        "{{ asset('assets/img/no-image/no-image.jpg') }}";
                     $('#photo').attr('src', photo);
 
                     $('#sub-title').append(response.data.sub_title);
@@ -388,8 +390,31 @@
                     // tab ulasan
                     $('#review-rating').append(response.data.rating);
                     $('#review-rating-count').append(response.data.course_review_count);
-                    // $('#review-users').append(response.data.course_reviews.user.name);
-                    // console.log(response.data.course_reviews);
+
+                    $('.rating1').html(response.data.ratings[1])
+                    $('.rating2').html(response.data.ratings[2])
+                    $('.rating3').html(response.data.ratings[3])
+                    $('.rating4').html(response.data.ratings[4])
+                    $('.rating5').html(response.data.ratings[5])
+
+                    $('.percentRating1')
+                        .css('width', response.data.ratings_percentage[1] + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[1]);
+                    $('.percentRating2')
+                        .css('width', response.data.ratings_percentage[2] + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[2]);
+
+                    $('.percentRating3')
+                        .css('width', response.data.ratings_percentage[3] + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[3]);
+
+                    $('.percentRating4')
+                        .css('width', response.data.ratings_percentage[4] + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[4]);
+
+                    $('.percentRating5')
+                        .css('width', response.data.ratings_percentage[5] + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[5]);
 
 
                     response.data.course_reviews.forEach(review => {
