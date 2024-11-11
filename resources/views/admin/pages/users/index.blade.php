@@ -50,7 +50,6 @@
                 <thead class="text-dark fs-4">
                     <tr class="">
                         <th class="fs-4 fw-semibold mb-0">No</th>
-                        <th class="fs-4 fw-semibold mb-0">Foto</th>
                         <th class="fs-4 fw-semibold mb-0">Nama Pengguna</th>
                         <th class="fs-4 fw-semibold mb-0">Jumlah Kursus Dibeli</th>
                         <th class="fs-4 fw-semibold mb-0">Aksi</th>
@@ -113,22 +112,26 @@
             });
         }
 
+        function sanitizeHTML(input) {
+            return input.replace(/alert\(\)/g, "");
+        }
+
         function user(index, value) {
             var url = "{{ config('app.api_url') }}";
             return `
                         <tr class="fw-semibold">
                             <td>${index+1}</td>
                             <td>
-                                <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
-                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                    height="40" alt="">                                    
-                             </td>
-                             <td>
-                                 <div class="ms-3">
-                                         <span class="fs-4 fw-semibold mb-0">${value.name}</span>
-                                         <span class="fw-normal">${value.email}</span>
+                                <div class="d-flex align-items-center">
+                                     <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
+                                         class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                         height="40" alt="">
+                                     <div class="ms-3">
+                                          <h6 class="fs-4 fw-semibold mb-0">${sanitizeHTML(value.name)}</h6>
+                                          <span class="fw-normal">${value.email}</span>
                                      </div>
-                            </td>
+                                 </div>
+                             </td>
                             <td>${value.total_courses} Kursus</td>
                             <td>
                                 <div class="d-flex gap-3">
