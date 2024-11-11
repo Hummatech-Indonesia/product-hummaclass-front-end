@@ -102,7 +102,7 @@
                 <td>${index + 1}</td>
                 <td>
                     <div class="d-flex align-items-center">
-                        <img src="${value.image && value.image !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.image) ? url + value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                        <img src="${value.image && value.image !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.image) ? value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                             class="me-2" style="object-fit: cover" width="71"
                             height="63" alt="">
                         <div class="ms-3">
