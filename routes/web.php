@@ -190,6 +190,14 @@ Route::get('point-exchange', function () {
 // ================== ADMIN ==================
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    
+    // kelas industri
+    Route::prefix('class/')->name('class.')->group(function () {
+        Route::get('school', function () {
+            return view('Kelas-Industri.admin.school.index');
+        })->name('school.index');
+    });
+
     Route::get('home', function () {
         return view('admin.index');
     })->name('home');
@@ -328,16 +336,3 @@ Route::get('point-exchange-detail/{id}', function ($id) {
 
 // Load additional routes
 require_once('features/user/checkout.php');
-
-
-
-
-
-// kelas industri
-
-Route::prefix('class/')->name('class.')->group(function () {
-    Route::get('school', function(){
-        return view('Kelas-Industri.admin.school.index');
-    })->name('school.index');
-
-});
