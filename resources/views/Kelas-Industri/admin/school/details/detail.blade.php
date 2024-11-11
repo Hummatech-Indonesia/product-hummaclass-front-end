@@ -1,5 +1,35 @@
 @extends('admin.layouts.app')
 
+@section('style')
+<style>
+    .form-check-input:checked + .form-check-label {
+        background-color: #9425FE; /* Warna saat dipilih */
+        color: white; /* Warna teks saat dipilih */
+    }
+    .form-check-label {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 15px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .form-check-input {
+        display: none; /* Sembunyikan input asli */
+    }
+    .form-check-label:hover {
+        background-color: #9425FE; /* Warna saat hover */
+        color: white; /* Warna teks saat hover */
+    }
+    .form-check {
+        padding-left: 0;
+        margin-bottom: .125rem;
+        width: 100%;
+    }
+    .form-check-label {
+        width: 100%;
+    }
+</style>
+@endsection
+
 @section('content')
     <div class="card shadow-sm">
         <div class="card-body">

@@ -101,7 +101,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.class.school.*') ? 'active' : '' }}"
-                        href="{{ route('admin.courses.index') }}" aria-expanded="false">
+                        href="{{ route('admin.class.school.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
                         </span>
