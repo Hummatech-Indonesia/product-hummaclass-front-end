@@ -192,7 +192,7 @@ Route::get('point-exchange', function () {
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     
     // kelas industri
-    Route::prefix('class/')->name('class.')->group(function () {
+    Route::prefix('class')->name('class.')->group(function () {
         Route::get('school', function () {
             return view('Kelas-Industri.admin.school.index');
         })->name('school.index');

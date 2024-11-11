@@ -7,6 +7,49 @@
             background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
         }
     </style>
+    <style>
+        .card-body {
+            position: relative;
+            padding: 20px;
+        }
+
+        .card .badge {
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #F6EEFE;
+            color: #9425FE;
+        }
+
+        .menu-icon {
+            position: absolute;
+            right: 10%;
+            font-size: 1.2rem;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .detail-button {
+            background-color: #7209DB;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 0;
+            width: 100%;
+            font-weight: 500;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -54,81 +97,161 @@
         </a>
     </div>
 
-    <style>
-        .card-body {
-            position: relative;
-            padding: 20px;
-        }
 
-        .card .badge {
-            font-size: 0.85rem;
-            padding: 5px 10px;
-            border-radius: 5px;
-            background-color: #F6EEFE;
-            color: #9425FE;
-        }
-
-        .menu-icon {
-            position: absolute;
-            right: 10%;
-            font-size: 1.2rem;
-            color: #6c757d;
-            cursor: pointer;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .card-text {
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        .detail-button {
-            background-color: #7209DB;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            padding: 10px 0;
-            width: 100%;
-            font-weight: 500;
-        }
-    </style>
     <section class="container my-4">
-        <div class="col-md-4 col-lg-4 mb-4">
-            <div class="card shadow-sm text-center h-100">
-                <div class="card-body">
-                    <img src="https://media.istockphoto.com/id/943988552/id/foto/pelancong-wanita-muda-asia-di-distrik-pusat-kota-bangkok-memegang-kamera-film-vintage.jpg?s=1024x1024&w=is&k=20&c=dHBWIe80JakQOwGK6YYEMCNeQbPAyJcg45YWc8u-LuU="
-                        alt="School Logo" class="img-fluid mb-3 rounded">
-                    <div class="text-section d-flex flex-column align-items-start justify-content-center">
-                        <div class="d-flex justify-content-between align-items-center w-100 mb-3">
-                            <span class="badge">Negeri</span>
-                            <span class="menu-icon" title="Actions">&#x22EE;</span>
-                        </div>
-                        <h2 class="text-start bold">SMK NEGERI 1 KEPANJEN</h2>
-                        <h6 class="text-muted mb-4">Lorem Ipsum</h6>
+        <div class="row" id="list-card">
 
-                        <h5 class="card-title bold mb-1">Alamat:</h5>
-                        <p class="text-muted text-start">Jl. Raya Kepanjen No.1, Malang, Kec. Kepanjen, Kota Malang, Jawa Timur
-                            65111</p>
-                        <button class="detail-button">Lihat Detail</button>
+        </div>
+
+
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style=" color: white;">
+                        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+                        <button type="button" class="btn-close fw-bold" data-bs-dismiss="modal"
+                            aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama_sekolah" class="form-label fw-bold">Nama Sekolah</label>
+                                    <input type="text" class="form-control" id="nama_sekolah" name="nama_sekolah"
+                                        required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama_kepala_sekolah" class="form-label fw-bold">Nama Kepala Sekolah</label>
+                                    <input type="text" class="form-control" id="nama_kepala_sekolah"
+                                        name="nama_kepala_sekolah" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="npsn" class="form-label fw-bold">NPSN</label>
+                                    <input type="text" class="form-control" id="npsn" name="npsn" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="email" class="form-label fw-bold">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="nomer_telepon" class="form-label fw-bold">Nomer Telepon</label>
+                                    <input type="text" class="form-control" id="nomer_telepon" name="nomer_telepon"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="logo_sekolah" class="form-label fw-bold">Logo Sekolah</label>
+                                    <input type="file" class="form-control" id="logo_sekolah" name="logo_sekolah">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label fw-bold">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi" class="form-label fw-bold">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn"
+                                    style="background-color: #7209DB; color: white;">Simpan</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <div class="d-flex justify-content-center">
         <nav id="pagination">
 
         </nav>
     </div>
-    @include('components.modernize-card-1')
     <x-confirmation-modal-component />
     <x-delete-modal-component />
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+
+            get(1)
+
+            function get(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/schools?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
+                    data: {
+                        name: $('#search-name').val(),
+                    },
+                    success: function(response) {
+                        $('#list-card').empty();
+
+                        if (response.data.data.length > 0) {
+                            $.each(response.data.data, function(index, value) {
+                                $('#list-card').append(school(index, value));
+                            });
+                            $('#pagination').html(handlePaginate(response.data.paginate));
+                        } else {
+                            $('#list-card').append(emptyCard());
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function school(index, value) {
+                return `<div class="col-md-4 mb-4">
+                <div class="card shadow-sm text-center h-100">
+                    <div class="card-body">
+                        <img src="${value.photo}"
+                            alt="School Logo" class="img-fluid mb-3 rounded">
+                        <div class="text-section d-flex flex-column align-items-start justify-content-center">
+                            <div class="dropdown">
+                                <span class="menu-icon" title="Actions" data-bs-toggle="dropdown"
+                                    aria-expanded="false">&#x22EE;</span>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#editModal">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item" onclick="confirmDelete()">Hapus</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <h4 class="text-start bold">${value.name}</h4>
+                            <h6 class="text-muted mb-4">${value.description}</h6>
+
+                            <h5 class="card-title bold mb-1">Alamat:</h5>
+                            <p class="text-muted text-start">${value.address}</p>
+                            <button class="detail-button">Lihat Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+            }
+        });
+    </script>
 @endsection
