@@ -172,6 +172,7 @@
             </div>
         </div>
     </section>
+    
 
     <div class="d-flex justify-content-center">
         <nav id="pagination">
@@ -231,7 +232,7 @@
                             <div class="dropdown">
                                 <span class="menu-icon" title="Actions" data-bs-toggle="dropdown"
                                     aria-expanded="false">&#x22EE;</span>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu ms-auto">
                                     <li>
                                         <a href="#" class="dropdown-item" data-bs-toggle="modal"
                                             data-bs-target="#editModal">Edit</a>
