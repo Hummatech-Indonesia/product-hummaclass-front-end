@@ -135,57 +135,54 @@
             $('#summernote-email-content').summernote({
                 height: 200
             });
+            var id = "{{ $id }}";
+
 
             $('#update-events-form').submit(function(e) {
                 e.preventDefault();
+                var formData = new FormData(this);
 
-                var formData = {};
-                $(this).serializeArray().forEach(function(field) {
-                    if (['user[]', 'start[]', 'end[]', 'session[]'].includes(field.name)) {
-                        if (!formData[field.name]) {
-                            formData[field.name] = [];
-                        }
-                        formData[field.name].push(field.value);
-                    } else {
-                        formData[field.name] = field.value;
-                    }
-                });
-                var id = "{{ $id }}";
+                formData.append('_method', 'PATCH');
 
                 $.ajax({
-                    type: "PATCH",
+                    type: "POST",
                     url: "{{ config('app.api_url') }}/api/events/" + id,
+                    data: formData,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
-                    data: formData,
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
                         Swal.fire({
-                            title: "Berhasil!",
-                            text: "Event berhasil diperbarui.",
+                            title: "Sukses",
+                            text: "Berhasil menambah data.",
                             icon: "success"
-                        }).then(function() {
-                            window.location.href =
-                                "/admin/events"; // Redirect setelah sukses
+                        }).then(() => {
+                            window.location.href = "/admin/events";
                         });
                     },
                     error: function(response) {
-                        var errors = response.responseJSON.data;
-                        for (var key in errors) {
-                            $('#' + key).addClass('is-invalid');
-                            $('#' + key).next('.invalid-feedback').html(errors[key][0]);
-                        }
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
 
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Gagal memperbarui event, silakan cek kembali data yang Anda masukkan.",
-                            icon: "error"
-                        });
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.col').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
             });
 
-            var id = "{{ $id }}";
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/events/" + id,
