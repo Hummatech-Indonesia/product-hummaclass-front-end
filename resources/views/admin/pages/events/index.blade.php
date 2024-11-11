@@ -56,11 +56,11 @@
 
         </nav>
     </div>
+    <x-delete-modal-component></x-delete-modal-component>
 @endsection
 
 
 @section('script')
-    <x-delete-modal-component></x-delete-modal-component>
 
     <script>
         $(document).ready(function(page) {
