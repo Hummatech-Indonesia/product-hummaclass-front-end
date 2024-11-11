@@ -102,6 +102,75 @@
         <div class="row" id="list-card">
 
         </div>
+
+
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style=" color: white;">
+                        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+                        <button type="button" class="btn-close fw-bold" data-bs-dismiss="modal"
+                            aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama_sekolah" class="form-label fw-bold">Nama Sekolah</label>
+                                    <input type="text" class="form-control" id="nama_sekolah" name="nama_sekolah"
+                                        required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="nama_kepala_sekolah" class="form-label fw-bold">Nama Kepala Sekolah</label>
+                                    <input type="text" class="form-control" id="nama_kepala_sekolah"
+                                        name="nama_kepala_sekolah" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="npsn" class="form-label fw-bold">NPSN</label>
+                                    <input type="text" class="form-control" id="npsn" name="npsn" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="email" class="form-label fw-bold">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="nomer_telepon" class="form-label fw-bold">Nomer Telepon</label>
+                                    <input type="text" class="form-control" id="nomer_telepon" name="nomer_telepon"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="logo_sekolah" class="form-label fw-bold">Logo Sekolah</label>
+                                    <input type="file" class="form-control" id="logo_sekolah" name="logo_sekolah">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label fw-bold">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="deskripsi" class="form-label fw-bold">Deskripsi</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn"
+                                    style="background-color: #7209DB; color: white;">Simpan</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <div class="d-flex justify-content-center">
@@ -159,8 +228,18 @@
                         <img src="${value.photo}"
                             alt="School Logo" class="img-fluid mb-3 rounded">
                         <div class="text-section d-flex flex-column align-items-start justify-content-center">
-                            <div class="d-flex justify-content-between align-items-center w-100 mb-3">
-                                <span class="menu-icon" title="Actions">&#x22EE;</span>
+                            <div class="dropdown">
+                                <span class="menu-icon" title="Actions" data-bs-toggle="dropdown"
+                                    aria-expanded="false">&#x22EE;</span>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#editModal">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item" onclick="confirmDelete()">Hapus</a>
+                                    </li>
+                                </ul>
                             </div>
                             <h4 class="text-start bold">${value.name}</h4>
                             <h6 class="text-muted mb-4">${value.description}</h6>
