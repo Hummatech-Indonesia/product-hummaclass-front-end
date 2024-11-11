@@ -1,15 +1,14 @@
 <script>
     $(document).ready(function() {
+        var url = "{{ config('app.api_url') }}";
         $(document).on('click', '.detailReward', function() {
             $('.detailRewardModal').modal('show');
             const name = $(this).data('name')
             const description = $(this).data('name')
-            const image = $(this).data('image');
-            const baseUrl = "{{ config('app.api_url', 'https://core-ecourse.mijurnal.com') }}";
-            const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image)
-                ? baseUrl + "/storage/" + image 
+            const image = $(this).data('image')
+            const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
+                ? url + "/storage/" + image
                 : "{{ asset('assets/img/no-image/no-image.jpg') }}";
-
             const stock = $(this).data('stock')
             const points_required = $(this).data('points_required')
             $('#detailImage').attr('src', imageUrl);
