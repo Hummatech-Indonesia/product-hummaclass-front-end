@@ -114,7 +114,27 @@
 
         function user(index, value) {
             var url = "{{ config('app.api_url') }}";
-            return `categories`;
+            return `
+                        <tr class="fw-semibold">
+                            <td>${index+1}</td>
+                            <td>${value.total_courses} Kursus</td>
+                            <td>
+                                <div class="d-flex gap-3">
+                                    <a href="{{ route('admin.users.show', '') }}/${value.id}" class="btn px-2 text-white"
+                                        style="background-color: #9425FE">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2">
+                                                <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                                <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+            `
         }
         get(1);
     </script>
