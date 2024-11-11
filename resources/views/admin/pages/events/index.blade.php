@@ -105,7 +105,7 @@
                                 text: "Berhasil menghapus data.",
                                 icon: "success"
                             }).then(() => {
-                                handleGetEvents(1);
+                                location.reload();
                             });
                         },
                         error: function(response) {
