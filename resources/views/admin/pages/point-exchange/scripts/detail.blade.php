@@ -7,7 +7,7 @@
             const description = $(this).data('name')
             const image = $(this).data('image')
             const imageUrl = image && /\.(jpeg|jpg|gif|png)$/i.test(image) 
-                ? url + "/storage/" + image
+                ? image
                 : "{{ asset('assets/img/no-image/no-image.jpg') }}";
             const stock = $(this).data('stock')
             const points_required = $(this).data('points_required')
