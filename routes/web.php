@@ -196,6 +196,9 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('school', function () {
             return view('Kelas-Industri.admin.school.index');
         })->name('school.index');
+        Route::get('school/{slug}', function () {
+            return view('Kelas-Industri.admin.school.details.detail');
+        })->name('school.index');
 
         Route::get('create-school', function(){
             return view('Kelas-Industri.admin.school.create');
