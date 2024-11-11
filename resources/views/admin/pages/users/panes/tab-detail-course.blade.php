@@ -22,8 +22,8 @@
         </div>
     </div>
 
-    <div class="row">
-        @forelse (range(1,6) as $item)
+    <div class="row" id="course-user">
+        @forelse (range(1,1) as $item)
             <div class="col-lg-3">
                 <div class="card">
                     <button class="btn btn-sm btn-warning position-absolute ms-2 mt-2 text-dark">Development</button>
@@ -71,3 +71,5 @@
         @empty
         @endforelse
     </div>
+
+    
