@@ -82,12 +82,6 @@
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            <a class="ms-3">
-                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
-                    class="form-control px-4">
-                    <option value="">Kategori</option>
-                </select>
-            </a>
         </form>
         <a href="/admin/class/create-school" class="btn text-white" style="background-color: #7209DB">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">

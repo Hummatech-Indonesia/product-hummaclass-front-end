@@ -196,17 +196,17 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::prefix('school')->name('school.')->group(function () {
             Route::get('/', function () {
                 return view('Kelas-Industri.admin.school.index');
-            })->name('school.index');
+            })->name('index');
             Route::get('/{slug}', function () {
                 return view('Kelas-Industri.admin.school.details.detail');
-            })->name('school.show');
+            })->name('show');
         });
         Route::get('/create-school', function () {
             return view('Kelas-Industri.admin.school.create');
         })->name('school.create');
         Route::get('/edit-school/{id}', function ($id) {
             return view('Kelas-Industri.admin.school.edit', compact('id'));
-        })->name('school.create');
+        })->name('school.edit');
     });
 
     Route::get('home', function () {

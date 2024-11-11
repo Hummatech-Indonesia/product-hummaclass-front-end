@@ -67,7 +67,6 @@
                         <span class="hide-menu">Riwayat Transaksi</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow {{ Route::is('admin.point-exchange.index', 'admin.confirmation-point-exchange.index') ? 'active' : '' }}"
                         href="#" aria-expanded="false">
@@ -81,7 +80,7 @@
                             <a href="{{ route('admin.point-exchange.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
-                                  </div>
+                                </div>
                                 <span class="hide-menu">Barang Penukaran</span>
                             </a>
                         </li>
@@ -89,21 +88,26 @@
                             <a href="{{ route('admin.confirmation-point-exchange.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
-                                  </div>
+                                </div>
                                 <span class="hide-menu">Konfirmasi Penukaran</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-                {{-- <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('admin.point-exchange.index') ? 'active' : '' }}"
-                        href="{{ route('admin.point-exchange.index') }}" aria-expanded="false">
+
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">KELAS INDUSTRI</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('admin.class.school.*') ? 'active' : '' }}"
+                        href="{{ route('admin.courses.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
                         </span>
-                        <span class="hide-menu">Penukaran Poin</span>
+                        <span class="hide-menu">Sekolah</span>
                     </a>
-                </li> --}}
+                </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">KONTEN</span>
