@@ -1,0 +1,134 @@
+@extends('admin.layouts.app')
+
+@section('style')
+    <style>
+        .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
+        <div class="card-body px-4 py-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <h5 class="fw-semibold mb-8">Daftar Sekolah</h5>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a class="text-muted " href="index-2.html">Daftar Sekolah Pada Kelas Industri</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-3">
+                    <div class="text-center mb-n1">
+                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                            class="img-fluid mb-n3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-2">
+        <form action="" class="position-relative d-flex">
+            <input type="text" class="form-control product-search px-4 ps-5" name="title"
+                value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+                placeholder="Search">
+            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+            <a class="ms-3">
+                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
+                    class="form-control px-4">
+                    <option value="">Kategori</option>
+                </select>
+            </a>
+        </form>
+        <a href="{{ route('admin.courses.create') }}" class="btn text-white" style="background-color: #7209DB">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+            </svg>
+            Tambah Sekolah
+        </a>
+    </div>
+
+    <style>
+        .card-body {
+            position: relative;
+            padding: 20px;
+        }
+
+        .card .badge {
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #F6EEFE;
+            color: #9425FE;
+        }
+
+        .menu-icon {
+            position: absolute;
+            right: 10%;
+            font-size: 1.2rem;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .detail-button {
+            background-color: #7209DB;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 0;
+            width: 100%;
+            font-weight: 500;
+        }
+    </style>
+    <section class="container my-4">
+        <div class="col-md-4 col-lg-4 mb-4">
+            <div class="card shadow-sm text-center h-100">
+                <div class="card-body">
+                    <img src="https://media.istockphoto.com/id/943988552/id/foto/pelancong-wanita-muda-asia-di-distrik-pusat-kota-bangkok-memegang-kamera-film-vintage.jpg?s=1024x1024&w=is&k=20&c=dHBWIe80JakQOwGK6YYEMCNeQbPAyJcg45YWc8u-LuU="
+                        alt="School Logo" class="img-fluid mb-3 rounded">
+                    <div class="text-section d-flex flex-column align-items-start justify-content-center">
+                        <div class="d-flex justify-content-between align-items-center w-100 mb-3">
+                            <span class="badge">Negeri</span>
+                            <span class="menu-icon" title="Actions">&#x22EE;</span>
+                        </div>
+                        <h2 class="text-start bold">SMK NEGERI 1 KEPANJEN</h2>
+                        <h6 class="text-muted mb-4">Lorem Ipsum</h6>
+
+                        <h5 class="card-title bold mb-1">Alamat:</h5>
+                        <p class="text-muted text-start">Jl. Raya Kepanjen No.1, Malang, Kec. Kepanjen, Kota Malang, Jawa Timur
+                            65111</p>
+                        <button class="detail-button">Lihat Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="d-flex justify-content-center">
+        <nav id="pagination">
+
+        </nav>
+    </div>
+    @include('components.modernize-card-1')
+    <x-confirmation-modal-component />
+    <x-delete-modal-component />
+@endsection
+
+@section('script')
+@endsection
