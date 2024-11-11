@@ -112,8 +112,19 @@
             });
         }
 
-        function sanitizeHTML(input) {
-            return input.replace(/alert\(\)/g, "");
+        function escapeHTML(input) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '(': '&#40;',
+                ')': '&#41;'
+            };
+            return input.replace(/[&<>"'()]/g, function(m) {
+                return map[m];
+            });
         }
 
         function user(index, value) {
@@ -127,7 +138,7 @@
                                          class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                          height="40" alt="">
                                      <div class="ms-3">
-                                          <h6 class="fs-4 fw-semibold mb-0">${sanitizeHTML(value.name)}</h6>
+                                          <h6 class="fs-4 fw-semibold mb-0">${escapeHTML(value.name)}</h6>
                                           <span class="fw-normal">${value.email}</span>
                                      </div>
                                  </div>
