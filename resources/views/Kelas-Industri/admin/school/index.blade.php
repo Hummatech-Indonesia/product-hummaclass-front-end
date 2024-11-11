@@ -7,6 +7,49 @@
             background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
         }
     </style>
+    <style>
+        .card-body {
+            position: relative;
+            padding: 20px;
+        }
+
+        .card .badge {
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #F6EEFE;
+            color: #9425FE;
+        }
+
+        .menu-icon {
+            position: absolute;
+            right: 10%;
+            font-size: 1.2rem;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .detail-button {
+            background-color: #7209DB;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 0;
+            width: 100%;
+            font-weight: 500;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -54,81 +97,82 @@
         </a>
     </div>
 
-    <style>
-        .card-body {
-            position: relative;
-            padding: 20px;
-        }
 
-        .card .badge {
-            font-size: 0.85rem;
-            padding: 5px 10px;
-            border-radius: 5px;
-            background-color: #F6EEFE;
-            color: #9425FE;
-        }
-
-        .menu-icon {
-            position: absolute;
-            right: 10%;
-            font-size: 1.2rem;
-            color: #6c757d;
-            cursor: pointer;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .card-text {
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        .detail-button {
-            background-color: #7209DB;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            padding: 10px 0;
-            width: 100%;
-            font-weight: 500;
-        }
-    </style>
     <section class="container my-4">
-        <div class="col-md-4 col-lg-4 mb-4">
-            <div class="card shadow-sm text-center h-100">
-                <div class="card-body">
-                    <img src="https://media.istockphoto.com/id/943988552/id/foto/pelancong-wanita-muda-asia-di-distrik-pusat-kota-bangkok-memegang-kamera-film-vintage.jpg?s=1024x1024&w=is&k=20&c=dHBWIe80JakQOwGK6YYEMCNeQbPAyJcg45YWc8u-LuU="
-                        alt="School Logo" class="img-fluid mb-3 rounded">
-                    <div class="text-section d-flex flex-column align-items-start justify-content-center">
-                        <div class="d-flex justify-content-between align-items-center w-100 mb-3">
-                            <span class="badge">Negeri</span>
-                            <span class="menu-icon" title="Actions">&#x22EE;</span>
-                        </div>
-                        <h2 class="text-start bold">SMK NEGERI 1 KEPANJEN</h2>
-                        <h6 class="text-muted mb-4">Lorem Ipsum</h6>
+        <div class="row" id="list-card">
 
-                        <h5 class="card-title bold mb-1">Alamat:</h5>
-                        <p class="text-muted text-start">Jl. Raya Kepanjen No.1, Malang, Kec. Kepanjen, Kota Malang, Jawa Timur
-                            65111</p>
-                        <button class="detail-button">Lihat Detail</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
+
     <div class="d-flex justify-content-center">
         <nav id="pagination">
 
         </nav>
     </div>
-    @include('components.modernize-card-1')
     <x-confirmation-modal-component />
     <x-delete-modal-component />
 @endsection
 
 @section('script')
+    <script>
+        $(document).ready(function() {
+
+            get(1)
+
+            function get(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/schools?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
+                    data: {
+                        name: $('#search-name').val(),
+                    },
+                    success: function(response) {
+                        $('#list-card').empty();
+
+                        if (response.data.data.length > 0) {
+                            $.each(response.data.data, function(index, value) {
+                                $('#list-card').append(school(index, value));
+                            });
+                            $('#pagination').html(handlePaginate(response.data.paginate));
+                        } else {
+                            $('#list-card').append(emptyCard());
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function school(index, value) {
+                return `<div class="col-md-4 mb-4">
+                <div class="card shadow-sm text-center h-100">
+                    <div class="card-body">
+                        <img src="${value.photo}"
+                            alt="School Logo" class="img-fluid mb-3 rounded">
+                        <div class="text-section d-flex flex-column align-items-start justify-content-center">
+                            <div class="d-flex justify-content-between align-items-center w-100 mb-3">
+                                <span class="menu-icon" title="Actions">&#x22EE;</span>
+                            </div>
+                            <h4 class="text-start bold">${value.name}</h4>
+                            <h6 class="text-muted mb-4">${value.description}</h6>
+
+                            <h5 class="card-title bold mb-1">Alamat:</h5>
+                            <p class="text-muted text-start">${value.address}</p>
+                            <button class="detail-button">Lihat Detail</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+            }
+        });
+    </script>
 @endsection
