@@ -247,7 +247,7 @@
 
                             <h5 class="card-title bold mb-1">Alamat:</h5>
                             <p class="text-muted text-start">${value.address}</p>
-                            <button class="detail-button">Lihat Detail</button>
+                            <a href="{{ route('admin.class.school.show', '') }}/${value.slug}" class="detail-button">Lihat Detail</a>
                         </div>
                     </div>
                 </div>

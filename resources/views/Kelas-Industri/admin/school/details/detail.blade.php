@@ -48,7 +48,8 @@
             <ul class="nav nav-tabs d-flex justify-content-between" role="tablist">
                 <div class="d-flex">
                     <li class="nav-item home" role="presentation">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#classrooms" role="tab" aria-selected="true">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#classrooms" role="tab"
+                            aria-selected="true">
                             <span>Kelas</span>
                         </a>
                     </li>
@@ -69,14 +70,23 @@
         </div>
     </div>
     <div class="tab-content" id="myTabContent">
-      @include('Kelas-Industri.admin.school.details.panes.classroom')
-      @include('Kelas-Industri.admin.school.details.panes.teacher')
-      @include('Kelas-Industri.admin.school.details.panes.student')
+        @include('Kelas-Industri.admin.school.details.panes.classroom')
+        @include('Kelas-Industri.admin.school.details.panes.teacher')
+        @include('Kelas-Industri.admin.school.details.panes.student')
     </div>
 @endsection
 
 @section('script')
     <script>
+        $.ajax({
+            type: "get",
+            url: "{{ config('app.api_url') }}/api/schools/" + '{{ $slug }}',
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+            }
+        });
+
         function user(index, value) {
             var url = "{{ config('app.api_url') }}";
             return `
