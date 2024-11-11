@@ -31,54 +31,56 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        let id;
-        $(document).on('click', '.btn-update', function() {
-            $('#modal-edit').modal('show');
-            id = $(this).data('id');
+@push('script')
+    <script>
+        $(document).ready(function() {
+            let id;
+            $(document).on('click', '.btn-update', function() {
+                $('#modal-edit').modal('show');
+                id = $(this).data('id');
 
-            const name = $(this).data('name');
-            $('#name').val(name);
-        });
+                const name = $(this).data('name');
+                $('#name').val(name);
+            });
 
-        $('.updateConfirmation').click(function(e) {
-            e.preventDefault();
+            $('.updateConfirmation').click(function(e) {
+                e.preventDefault();
 
-            let url = "{{config('app.api_url')}}" + "/api/categories/" + id;
-            let formData = new FormData($('.editForm')[0]);
+                let url = "{{ config('app.api_url') }}" + "/api/categories/" + id;
+                let formData = new FormData($('.editForm')[0]);
 
 
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                dataType: "json",
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    $('#modal-edit').modal('hide');
-                    Swal.fire({
-                        title: "Berhasil!",
-                        text: response.meta.message,
-                        icon: "success"
-                    });
-                    get(1);
-                },
-                error: function(response) {
-                    let errorMessages = [];
-                    $.each(response.responseJSON.errors, function(field, messages) {
-                        $.each(messages, function(index, message) {
-                            errorMessages.push(message);
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formData,
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#modal-edit').modal('hide');
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
                         });
-                    });
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        html: errorMessages.join('<br>'),
-                        icon: "error"
-                    });
-                }
+                        get(1);
+                    },
+                    error: function(response) {
+                        let errorMessages = [];
+                        $.each(response.responseJSON.errors, function(field, messages) {
+                            $.each(messages, function(index, message) {
+                                errorMessages.push(message);
+                            });
+                        });
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            html: errorMessages.join('<br>'),
+                            icon: "error"
+                        });
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+@endpush
