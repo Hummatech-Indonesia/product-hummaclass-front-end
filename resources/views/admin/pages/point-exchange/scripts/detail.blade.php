@@ -10,7 +10,7 @@
                 ? image : "{{ asset('assets/img/no-image/no-image.jpg') }}";
             const stock = $(this).data('stock')
             const points_required = $(this).data('points_required')
-            $('#detailImage').attr('src', imageUrl);
+            $('#detailImage').attr('src', imgUrl);
             $('#detailName').val(name);
             $('#detailStock').val(stock);
             $('#detailPointsRequired').val(points_required);
