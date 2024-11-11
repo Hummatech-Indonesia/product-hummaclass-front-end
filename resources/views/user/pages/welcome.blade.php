@@ -291,7 +291,7 @@
                                         </div>
                                         <h5 class="mb-0 ms-3">Tugas Kompetensi</h5>
                                     </div>
-                                    <div class="d-flex align-items-center mt-3">
+                                    <div class="d-flex align-items-center mt-3 mb-4">
                                         <p style="font-size: 15px;">Bergabunglah dengan kelas kami dengan alat interaktif
                                             dan dukungan keraguan</p>
                                     </div>
