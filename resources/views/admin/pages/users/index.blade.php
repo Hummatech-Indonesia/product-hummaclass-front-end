@@ -88,7 +88,7 @@
             $('#tableBody').empty();
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/categories?page=" + page,
+                url: "{{ config('app.api_url') }}/api/users?page=" + page,
                 dataType: "json",
                 data: {
                     name: $('#search-name').val(),
