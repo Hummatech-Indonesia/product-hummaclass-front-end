@@ -119,11 +119,10 @@
                             <td>${index+1}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                  
-                                     <div class="ms-3">
-                                         <h6 class="fs-4 fw-semibold mb-0">${value.name}</h6>
-                                         <span class="fw-normal">${value.email}</span>
-                                     </div>
+                                     <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
+                                         class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                         height="40" alt="">
+                                    
                                  </div>
                              </td>
                             <td>${value.total_courses} Kursus</td>
