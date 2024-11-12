@@ -132,7 +132,6 @@
                     const eventItem = document.createElement('li');
                     eventItem.classList.add('list-group-item');
 
-                    // Batasi deskripsi
                     const truncatedDesc = event.desc.length > 20 ? event.desc.substring(0, 20) + '...' :
                         event.desc;
                     eventItem.innerHTML = `
@@ -180,5 +179,23 @@
         updateCalendar();
     });
 
-    updateCalendar(); // Panggil fungsi untuk pertama kali
+    updateCalendar();
+</script>
+
+<script>
+    document.querySelectorAll('.calendar-day').forEach(dayCell => {
+    dayCell.addEventListener('click', function() {
+        document.querySelectorAll('.calendar-day.selected').forEach(selectedDay => {
+            selectedDay.classList.remove('selected');
+            selectedDay.querySelector('span').style.color = '';
+        });
+
+        this.classList.add('selected');
+        const span = this.querySelector('span');
+        if (span) {
+            span.style.color = 'white';
+        }
+    });
+});
+
 </script>
