@@ -281,10 +281,6 @@
             $('.filter').change(function(e) {
                 e.preventDefault();
 
-                // console.log($.inArray($(this).attr('name'), ['search', 'module']));
-                console.log($(this).attr('name') + ": " + $(this).val());
-
-
                 if ($.inArray($(this).attr('name'), ['search', 'module']) === -1 && $(this).is(
                         ':checked')) {
                     filter[$(this).attr('name')] = true;

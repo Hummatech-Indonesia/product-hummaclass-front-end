@@ -282,7 +282,6 @@
                     }
                 },
                 error: function(xhr) {
-                    console.log(xhr);
                 }
             });
         }
@@ -302,7 +301,6 @@
                     });
                 },
                 error: function(xhr) {
-                    console.log(xhr);
                 }
             });
 
@@ -322,7 +320,6 @@
 
                 },
                 error: function(xhr) {
-                    console.log(xhr);
                 }
             });
 
@@ -342,7 +339,6 @@
 
                 },
                 error: function(xhr) {
-                    console.log(xhr);
                 }
             });
 

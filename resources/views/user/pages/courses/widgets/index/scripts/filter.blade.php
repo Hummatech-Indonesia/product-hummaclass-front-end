@@ -142,7 +142,6 @@
                     dataType: "json",
                     success: function(response) {
                         gridParent.empty();
-                        console.log(response.data.data);
 
                         if (response.data.data.length > 0) {
                             $.each(response.data.data, function(index, value) {
@@ -184,7 +183,6 @@
                             gridParent.empty();
                             gridParent.append(
                                 `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                            console.log('Gagal memuat data setelah beberapa kali percobaan.');
                             loading = false;
                         }
                     }

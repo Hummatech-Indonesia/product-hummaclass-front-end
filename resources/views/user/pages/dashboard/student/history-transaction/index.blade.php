@@ -253,8 +253,6 @@
     });
 
     function pendingContent(value) {
-        console.log(value);
-
         return `
             <tr>
                 <td class="text-start" style="display: table-cell;"></td>

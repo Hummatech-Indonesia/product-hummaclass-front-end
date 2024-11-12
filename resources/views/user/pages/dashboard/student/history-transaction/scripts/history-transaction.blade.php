@@ -8,12 +8,8 @@
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response);
-
 
                 $('#tab-all-history').empty();
-
-                console.log(response.data);
 
                 if (response.data.length > 0) {
                     $.each(response.data, function(index, value) {
@@ -52,8 +48,6 @@
     });
 
     function allHistory(index, value) {
-        console.log(value.invoice_status);
-
         let statusText = '';
         let statusClass = '';
 
@@ -122,8 +116,6 @@
     }
 
     function allWaitingPayment(index, value) {
-        console.log(value.invoice_status);
-
         let statusText = '';
         let statusClass = '';
 
@@ -188,8 +180,6 @@
     }
 
     function allFinish(index, value) {
-        console.log(value.invoice_status);
-
         let statusText = '';
         let statusClass = '';
 

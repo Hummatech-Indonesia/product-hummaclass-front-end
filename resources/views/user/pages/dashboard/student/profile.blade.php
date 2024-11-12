@@ -159,8 +159,6 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response);
-                
                 append(response);
             },
             error: function(xhr) {

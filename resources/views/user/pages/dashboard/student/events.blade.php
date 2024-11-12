@@ -45,7 +45,6 @@
             }
             , dataType: "json"
             , success: function(response) {
-                console.log(response.data);
                 
                 $('#eventContent').empty();
 

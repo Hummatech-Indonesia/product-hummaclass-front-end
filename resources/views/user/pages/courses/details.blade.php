@@ -293,10 +293,8 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response);
                     course = response.data;
 
-                    // console.log(response.data.user_course.is_pre_test);
                     if (response.data.user_course) {
                         if (response.data.user_course.has_pre_test == 0) {
                             $('#btn-checkout').text('Mulai Pre Test');
@@ -344,9 +342,6 @@
                         document.getElementById('courses-detail-sidebar').style.display = 'block';
                         document.getElementById('sidebar-tab-review').style.display = 'none';
                     }
-
-
-                    // console.log(response.data.course_reviews);
 
                     response.data.course_reviews.forEach((review) => {
                         $('#review-content').append(reviewContent(review));
@@ -418,7 +413,6 @@
 
 
                     response.data.course_reviews.forEach(review => {
-                        console.log(review.user.name);
 
                     });
 
@@ -558,7 +552,6 @@
         $('.last_step_update').click(function(e) {
             e.preventDefault();
             var sub_modul_id = $(this).data('sub-modul-id');
-            console.log(sub_modul_id);
         });
     </script>
 

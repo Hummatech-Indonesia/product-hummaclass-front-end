@@ -105,7 +105,6 @@
 
                                 transactionData.tripay.instructions.forEach((instruction,
                                     index) => {
-                                    // console.log(instruction.title, index);
 
                                     $('#accordionFlushExample').append(
                                         ` <div class="accordion-item">
