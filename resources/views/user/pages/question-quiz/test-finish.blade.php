@@ -197,7 +197,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response.data);
                     $('#total_question').html(response.data.total_question);
                     $('#score').html(response.data.score);
                     $('#total_correct').html(response.data.total_correct);
@@ -234,7 +233,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response.data);
                     if (response.data.status === "not_finished") {
 
                         $("#finished").attr("href", "{{ route('courses.quizz.index', '') }}/" + response

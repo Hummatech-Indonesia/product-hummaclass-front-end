@@ -156,7 +156,6 @@
                         }
                     });
                 }).catch((error) => {
-                    console.log('Error saving content:', error);
                 });
             });
 

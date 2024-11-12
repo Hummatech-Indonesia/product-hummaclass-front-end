@@ -34,7 +34,6 @@
                     }
 
                     $('#rewards_id').val(response.data.data.id);
-                    console.log(response.data.data.id);
 
                     $('.storeConfirm').click(function(e) {
                         // e.preventDefault();

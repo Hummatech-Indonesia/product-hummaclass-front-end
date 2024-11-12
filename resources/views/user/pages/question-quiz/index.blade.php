@@ -173,7 +173,6 @@
                         const timeDiff = targetTime - currentTime;
 
                         if (timeDiff <= 0) {
-                            console.log("Waktu tercapai!");
                             clearInterval(window.countdown);
                         } else {
                             const remainingHours = Math.floor(timeDiff / (1000 * 60 * 60)); // Jam
@@ -193,7 +192,6 @@
                             );
                             if (formattedHours == 00 && formattedMinutes == 00 && formattedSeconds ==
                                 00) {
-                                console.log('done');
                                 let answer = [];
                                 for (let index = 1; index <= response.data.paginate
                                     .last_page; index++) {

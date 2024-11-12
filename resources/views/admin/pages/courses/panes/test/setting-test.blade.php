@@ -208,7 +208,6 @@
                     });
                 },
                 error: function(response) {
-                    console.log(response.responseJSON.message);
                 }
             });
         }

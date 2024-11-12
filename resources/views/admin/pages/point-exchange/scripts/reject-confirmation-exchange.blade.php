@@ -12,7 +12,6 @@
                 , }
 
 
-                console.log(data);
 
 
                 $.ajax({

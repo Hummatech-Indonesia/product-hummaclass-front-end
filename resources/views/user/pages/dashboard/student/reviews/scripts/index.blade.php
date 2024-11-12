@@ -27,7 +27,6 @@
     });
 
     function reviewUser(index, value) {
-        console.log(value.rating);
         
         let rating = value.rating; 
         let ratingHtml = '';

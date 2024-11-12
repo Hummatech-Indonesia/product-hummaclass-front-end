@@ -140,7 +140,6 @@
                         name: $('#search-name').val(),
                     },
                     success: function(response) {
-                        console.log(response);
 
                         if (response.data.length > 0) {
                             let hasProcessCourses = false;

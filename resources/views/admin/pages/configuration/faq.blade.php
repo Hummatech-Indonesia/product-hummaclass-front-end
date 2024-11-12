@@ -172,7 +172,6 @@
 
                 const question = $(this).data('question');
                 const answer = $(this).data('answer');
-                console.log(question, answer);
 
                 $('#edit-question').val(question);
                 $('#edit-answer').val(answer);

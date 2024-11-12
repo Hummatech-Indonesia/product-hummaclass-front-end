@@ -1,7 +1,6 @@
 <script>
     $(document).ready(function() {
         var id = "{{ $id }}";
-        console.log(id);
         
         $.ajax({
             type: "GET",
@@ -11,7 +10,6 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response);
 
                 const photo = response.data.image && /\.(jpeg|jpg|gif|png)$/i.test(response.data.image) 
                     ? response.data.image
@@ -26,7 +24,6 @@
                 // Event click untuk tombol "Tukarkan"
                 $('.storeConfirm').click(function(e) {
                     e.preventDefault();
-                    console.log('woii');
 
                     var idReward = response.data.id;
 

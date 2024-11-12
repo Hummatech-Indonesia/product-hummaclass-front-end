@@ -114,7 +114,6 @@
             $('#description').summernote();
 
             function setValue(data) {
-                console.log(data.photo);
                 $('#title').val(data.title);
                 $('#sub_title').val(data.sub_title);
                 $('#price').val(data.price);
@@ -139,7 +138,6 @@
             $('#update-course-form').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
-                console.log(formData);
 
                 formData.append('_method', 'PATCH');
 

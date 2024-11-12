@@ -36,7 +36,6 @@
             $('.storeConfirmation').click(function(e) {
                 e.preventDefault();
                 let formData = new FormData($('.createForm')[0]);
-                console.log(formData);
 
                 $.ajax({
                     type: "POST",

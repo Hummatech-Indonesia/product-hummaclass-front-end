@@ -215,7 +215,6 @@
 
                         $('#detail-location').html(response.data.location);
                     } else {
-                        console.log("tet");
 
                         $('#location').removeClass('d-flex');
                         $('#location').addClass('d-none');
@@ -355,7 +354,6 @@
             function generateListAttendance(list) {
                 let listEl = '';
 
-                console.log(list);
 
                 list.forEach(attendance => {
                     listEl += `

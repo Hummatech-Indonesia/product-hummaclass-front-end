@@ -31,7 +31,6 @@
                     if (!events[formattedDateKey]) {
                         events[formattedDateKey] = [];
                     }
-                    console.log(formattedDateKey);
 
 
                     events[formattedDateKey].push({
@@ -94,7 +93,6 @@
 
             const formattedDateKey =
                 `${String(day).padStart(2, '0')}-${String(currentMonth + 1).padStart(2, '0')}-${currentYear}`;
-            console.log(formattedDateKey);
 
 
             if (events[formattedDateKey]) {

@@ -310,7 +310,6 @@
 
                 if (response.meta && response.meta.code === 200) {
                     var data = response.data;
-                    console.log(data);
 
 
                     var purchasesPerMonth = [{
@@ -368,7 +367,6 @@
                             x: item.month,
                             y: item.value
                         };
-                        console.log(item.value);
 
                     });
 

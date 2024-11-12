@@ -548,7 +548,6 @@
         }
 
         function latestTransaction(index, value) {
-            console.log(value);
             var url = "{{ config('app.api_url') }}";
             return `
                 <tr>
@@ -596,7 +595,6 @@
 
                         if (response.meta && response.meta.code === 200) {
                             var data = response.data;
-                            console.log(data);
 
                             // Mengambil data untuk grafik earning
                             var earningsData = [];

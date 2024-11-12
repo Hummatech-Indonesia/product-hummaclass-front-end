@@ -201,7 +201,6 @@
                     $('#capacity').val(response.data.capacity);
                     $('#summernote-description').summernote('code', response.data.description);
                     $('#summernote-email-content').summernote('code', response.data.email_content);
-                    console.log(response.data.event_details);
 
                     // Tambahkan event_details
                     response.data.event_details.forEach(event_detail => {

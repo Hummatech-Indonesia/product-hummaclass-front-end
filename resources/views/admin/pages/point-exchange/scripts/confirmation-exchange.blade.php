@@ -20,7 +20,6 @@
                     name: $('#search-name').val()
                 , }
                 , success: function(response) {
-                    console.log(response);
 
 
                     $('#confirmation-point-content').empty();

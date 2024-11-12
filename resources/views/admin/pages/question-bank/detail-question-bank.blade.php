@@ -151,7 +151,6 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 success: function(response) {
-                    console.log(response);
                     $.each(response.data, function(index, value) {
                         $('.moduleQuestionContainer').append(
                             `

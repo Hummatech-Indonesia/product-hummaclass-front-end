@@ -98,7 +98,6 @@
                 dataType: "json",
                 success: function(response) {
                     $('#list-event').empty();
-                    console.log(response.data.data);
 
                     if (response.data.data.length > 0) {
                         response.data.data.forEach(data => {
@@ -128,7 +127,6 @@
 
 
         function cardEvent(data) {
-            // console.log(data);
 
             let card = `
             <div class="col-xl-4 col-lg-4 col-md-6">
