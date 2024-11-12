@@ -69,7 +69,7 @@
             <div class="courses__item shine__animate-item">
                 <div class="courses__item-thumb">
                     <a href="{{ route('courses.courses.show', '') }}/${value.slug} class="shine__animate-link">
-                        <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? url + value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
+                        <img src="${value.photo && value.photo !== url + '/storage' ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
                     </a>
                 </div>
                 <div class="courses__item-content">

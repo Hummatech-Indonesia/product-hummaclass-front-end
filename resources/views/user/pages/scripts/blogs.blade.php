@@ -44,7 +44,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
-                        <a href="blog-details.html" class="shine__animate-link"><img src="${value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.thumbnail) ? url + value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img"></a>
+                        <a href="blog-details.html" class="shine__animate-link"><img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img"></a>
                         <a href="javascript:void(0)" class="post-tag bg-warning">${value.sub_category}</a>
                     </div>
                     <div class="blog__post-content">
