@@ -165,7 +165,7 @@
         }
 
         .calendar-day.selected span {
-            color: #fff;
+            color: #fff !important;
         }
     </style>
 @endsection
