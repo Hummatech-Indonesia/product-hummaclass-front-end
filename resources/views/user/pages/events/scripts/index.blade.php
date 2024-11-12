@@ -168,11 +168,9 @@
                         renderEvents();
                         updatePagination();
                     });
-
                     pageItem.appendChild(pageLink);
                     paginationList.appendChild(pageItem);
                 }
-
                 pagination.appendChild(paginationList);
                 eventList.appendChild(pagination);
 
@@ -182,7 +180,6 @@
                     });
                     document.querySelector(`.pagination__wrap .list-wrap li:nth-child(${currentPage})`).classList.add('active');
                 }
-
             };
 
 
