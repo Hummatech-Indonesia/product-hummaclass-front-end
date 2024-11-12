@@ -2,32 +2,52 @@
 
 @section('style')
 <style>
-    .form-check-input:checked + .form-check-label {
-        background-color: #9425FE; /* Warna saat dipilih */
-        color: white; /* Warna teks saat dipilih */
-    }
-    .form-check-label {
-        display: inline-block;
-        padding: 10px 20px;
-        border-radius: 15px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .form-check-input {
-        display: none; /* Sembunyikan input asli */
-    }
-    .form-check-label:hover {
-        background-color: #9425FE; /* Warna saat hover */
-        color: white; /* Warna teks saat hover */
-    }
-    .form-check {
-        padding-left: 0;
-        margin-bottom: .125rem;
-        width: 100%;
-    }
-    .form-check-label {
-        width: 100%;
-    }
+    .filter-radio:checked + .filter-label {
+    background-color: #9425FE; /* Warna saat dipilih */
+    color: white; /* Warna teks saat dipilih */
+}
+.filter-label {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 15px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.filter-radio {
+    display: none; /* Sembunyikan input asli */
+}
+.filter-label:hover {
+    background-color: #9425FE; /* Warna saat hover */
+    color: white; /* Warna teks saat hover */
+}
+.filter-option {
+    padding-left: 0;
+    margin-bottom: .125rem;
+    width: 100%;
+}
+.filter-label {
+    width: 100%;
+}
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single, .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-color: #d7dce0;
+    width: 435px;
+    height: 40px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #d7dce0;
+    border-radius: 5px;
+    width: 440px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #9425FE !important;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
 </style>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 @section('content')
@@ -104,6 +124,8 @@
         @include('Kelas-Industri.admin.school.details.panes.teacher')
         @include('Kelas-Industri.admin.school.details.panes.student')
     </div>
+
+    @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
 @endsection
 
 @section('script')
@@ -176,4 +198,57 @@
             $('#table-user-classroom').append(user(index, 3));
         }
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{-- 
+<script>
+    $(document).ready(function() {
+        $('.siswaOptions').select2({
+            dropdownParent: $('#modal-set-class')
+        });
+    });
+</script> --}}
+
+
+<script>
+    $(document).ready(function() {
+        const selectSiswa = $('.selectSiswa');
+        const siswaCard = $('#siswaCard');
+        const selectedStudentsCard = $('#selectedStudentsCard');
+        const selectedStudentsList = $('#selectedStudents');
+
+        selectSiswa.on('click', function() {
+            siswaCard.removeClass('d-none');
+        });
+
+        $('.siswaOptions').select2({
+            placeholder: "Cari",
+            allowClear: true,
+            dropdownParent: $('#modal-set-class')
+        });
+
+        $('.siswaOptions').on('change', function() {
+            const selectedOptions = $(this).find('option:selected');
+            const selectedCount = selectedOptions.length;
+            selectSiswa.val(`${selectedCount} Siswa Telah Dipilih`);
+        });
+
+        $('#selectStudents').on('click', function() {
+            const selectedOptions = $('.siswaOptions').find('option:selected');
+            selectedStudentsList.empty();
+
+            selectedOptions.each(function() {
+                const li = $('<li></li>').text($(this).text());
+                selectedStudentsList.append(li);
+            });
+
+            if (selectedStudentsList.children().length > 0) {
+                selectedStudentsCard.removeClass('d-none');
+                siswaCard.addClass('d-none');
+            } else {
+                selectedStudentsCard.addClass('d-none');
+            }
+        });
+    });
+</script>
 @endsection
