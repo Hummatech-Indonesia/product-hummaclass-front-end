@@ -80,6 +80,14 @@
             fill: #FFB649;
             stroke: #FFB649;
         }
+        .arrow-btn img {
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s ease;
+        }
+
+        .arrow-btn:hover img {
+            filter: brightness(0);
+        }
     </style>
 @endsection
 
