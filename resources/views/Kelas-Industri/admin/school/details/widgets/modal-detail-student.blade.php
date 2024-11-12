@@ -72,7 +72,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn text-white" style="background-color: #9425FE" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

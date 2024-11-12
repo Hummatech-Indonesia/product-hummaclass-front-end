@@ -3,8 +3,8 @@
 @section('style')
 <style>
     .filter-radio:checked + .filter-label {
-    background-color: #9425FE; /* Warna saat dipilih */
-    color: white; /* Warna teks saat dipilih */
+    background-color: #9425FE;
+    color: white;
 }
 .filter-label {
     display: inline-block;
@@ -13,11 +13,11 @@
     transition: background-color 0.3s, color 0.3s;
 }
 .filter-radio {
-    display: none; /* Sembunyikan input asli */
+    display: none;
 }
 .filter-label:hover {
-    background-color: #9425FE; /* Warna saat hover */
-    color: white; /* Warna teks saat hover */
+    background-color: #9425FE;
+    color: white;
 }
 .filter-option {
     padding-left: 0;
