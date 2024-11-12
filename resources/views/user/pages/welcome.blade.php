@@ -70,6 +70,10 @@
             color: var(--tg-common-color-white);
             border-color: #9C40F7;
         }
+
+        .categories__item:hover h1 {
+            color: white !important;
+        }
     </style>
 @endsection
 
