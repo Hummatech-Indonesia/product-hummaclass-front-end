@@ -45,6 +45,10 @@
     border: 1px solid #aaa;
     border-radius: 4px;
 }
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color: #9425FE;
+}
 </style>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -59,7 +63,7 @@
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title">SMK NEGERI 1 KEPANJEN</h5>
-                    <span class="badge bg-primary">Negeri</span>
+                    <span class="badge bg-light-primary text-primary">Negeri</span>
                 </div>
                 <div class="col-md-2 text-end">
                     <p class="mb-0">Tahun Ajaran</p>
@@ -126,6 +130,7 @@
     </div>
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
 @endsection
 
 @section('script')
