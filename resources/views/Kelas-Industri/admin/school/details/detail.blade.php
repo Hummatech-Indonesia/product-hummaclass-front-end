@@ -131,6 +131,7 @@
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
 @endsection
 
 @section('script')
@@ -252,6 +253,48 @@
                 siswaCard.addClass('d-none');
             } else {
                 selectedStudentsCard.addClass('d-none');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        const inputSiswa1 = $('.inputSiswa1');
+        const cardPilihSiswa1 = $('#cardPilihSiswa1');
+        const selectedStudentsCard1 = $('#selectedStudentsCard1');
+        const selectedStudentsList1 = $('#selectedStudentsList1');
+
+        inputSiswa1.on('click', function() {
+            cardPilihSiswa1.removeClass('d-none');
+        });
+
+        $('.selectSiswaOptions1').select2({
+            placeholder: "Cari",
+            allowClear: true,
+            dropdownParent: $('#modal-edit-class')
+        });
+
+        $('.selectSiswaOptions1').on('change', function() {
+            const selectedOptions = $(this).find('option:selected');
+            const selectedCount = selectedOptions.length;
+            inputSiswa1.val(`${selectedCount} Siswa Telah Dipilih`);
+        });
+
+        $('#selectStudents1').on('click', function() {
+            const selectedOptions = $('.selectSiswaOptions1').find('option:selected');
+            selectedStudentsList1.empty();
+
+            selectedOptions.each(function() {
+                const li = $('<li></li>').text($(this).text());
+                selectedStudentsList1.append(li);
+            });
+
+            if (selectedStudentsList1.children().length > 0) {
+                selectedStudentsCard1.removeClass('d-none');
+                cardPilihSiswa1.addClass('d-none');
+            } else {
+                selectedStudentsCard1.addClass('d-none');
             }
         });
     });
