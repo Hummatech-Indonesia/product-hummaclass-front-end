@@ -52,13 +52,13 @@
                     <div class="courses__item-content courses__item-content-two">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="course.html">${data.course.sub_category.name}</a>
+                                <a href="javascript:void(0)">${data.course.sub_category.name}</a>
                             </li>
                         </ul>
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${data.course.slug}">${data.course.title}</a></h5>
                         <div class="courses__item-content-bottom">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="assets/img/courses/course_author001.png"
                                         alt="img">${data.course.user?.name}</a>
                             </div>

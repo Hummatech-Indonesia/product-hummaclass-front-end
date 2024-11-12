@@ -80,7 +80,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>
@@ -145,7 +145,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>
@@ -209,7 +209,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>

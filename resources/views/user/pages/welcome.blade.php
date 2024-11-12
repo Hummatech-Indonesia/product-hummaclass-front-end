@@ -208,7 +208,7 @@
                             </li>
                         </ul>
                         <div class="tg-button-wrap">
-                            <a href="about-us.html" class="btn arrow-btn">Start Free Trial <img
+                            <a href="javascript:void(0)" class="btn arrow-btn">Start Free Trial <img
                                     src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
                         </div>
                     </div>
@@ -552,11 +552,11 @@
                                 </div>
                             </div>
                             <div class="instructor__content-two">
-                                <h3 class="title"><a href="contact.html">Jadilah Mentor</a></h3>
+                                <h3 class="title"><a href="javascript:void(0)">Jadilah Mentor</a></h3>
                                 <p>To take a trivial example, which of us undertakes physical exercise yes is this happen
                                     here.</p>
                                 <div class="tg-button-wrap">
-                                    <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img
+                                    <a href="javascript:void(0)" class="btn arrow-btn">Lamar Sekarang <img
                                             src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img"
                                             class="injectable"></a>
                                 </div>
@@ -577,10 +577,10 @@
                                 </div>
                             </div>
                             <div class="instructor__content-two">
-                                <h3 class="title"><a href="contact.html">Jadilah Murid</a></h3>
+                                <h3 class="title"><a href="javascript:void(0)">Jadilah Murid</a></h3>
                                 <p>Join millions of people from around the world learning together. Online learning.</p>
                                 <div class="tg-button-wrap">
-                                    <a href="contact.html" class="btn arrow-btn">Lamar Sekarang <img
+                                    <a href="javascript:void(0)" class="btn arrow-btn">Lamar Sekarang <img
                                             src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img"
                                             class="injectable"></a>
                                 </div>
@@ -607,7 +607,7 @@
                         <p>when an unknown printer took a galley of type and scrambled makespecimen book has survived not
                             only five centuries</p>
                         <div class="tg-button-wrap">
-                            <a href="instructors.html" class="btn arrow-btn">Lihat Semua Mentor <img
+                            <a href="javascript:void(0)" class="btn arrow-btn">Lihat Semua Mentor <img
                                     src="assets/img/icons/right_arrow.svg" alt="img" class="injectable"></a>
                         </div>
                     </div>
@@ -618,12 +618,12 @@
                             <div class="col-sm-6">
                                 <div class="instructor__item">
                                     <div class="instructor__thumb">
-                                        <a href="instructor-datails.html"><img
+                                        <a href="javascript:void(0)"><img
                                                 src="{{ asset('assets/img/instructor/instructor01.png') }}"
                                                 alt="img"></a>
                                     </div>
                                     <div class="instructor__content">
-                                        <h2 class="title"><a href="instructor-datails.html">Mark Jukarberg</a></h2>
+                                        <h2 class="title"><a href="javascript:void(0)">Mark Jukarberg</a></h2>
                                         <span class="designation">UX Design Lead</span>
                                         <p class="avg-rating">
                                             <i class="fas fa-star"></i>
@@ -643,12 +643,12 @@
                             <div class="col-sm-6">
                                 <div class="instructor__item">
                                     <div class="instructor__thumb">
-                                        <a href="instructor-datails.html"><img
+                                        <a href="javascript:void(0)"><img
                                                 src="{{ asset('assets/img/instructor/instructor02.png') }}"
                                                 alt="img"></a>
                                     </div>
                                     <div class="instructor__content">
-                                        <h2 class="title"><a href="instructor-datails.html">Olivia Mia</a></h2>
+                                        <h2 class="title"><a href="javascript:void(0)">Olivia Mia</a></h2>
                                         <span class="designation">Web Design</span>
                                         <p class="avg-rating">
                                             <i class="fas fa-star"></i>
@@ -668,12 +668,12 @@
                             <div class="col-sm-6">
                                 <div class="instructor__item">
                                     <div class="instructor__thumb">
-                                        <a href="instructor-datails.html"><img
+                                        <a href="javascript:void(0)"><img
                                                 src="{{ asset('assets/img/instructor/instructor03.png') }}"
                                                 alt="img"></a>
                                     </div>
                                     <div class="instructor__content">
-                                        <h2 class="title"><a href="instructor-datails.html">William Hope</a></h2>
+                                        <h2 class="title"><a href="javascript:void(0)">William Hope</a></h2>
                                         <span class="designation">Digital Marketing</span>
                                         <p class="avg-rating">
                                             <i class="fas fa-star"></i>
@@ -693,12 +693,12 @@
                             <div class="col-sm-6">
                                 <div class="instructor__item">
                                     <div class="instructor__thumb">
-                                        <a href="instructor-datails.html"><img
+                                        <a href="javascript:void(0)"><img
                                                 src="{{ asset('assets/img/instructor/instructor04.png') }}"
                                                 alt="img"></a>
                                     </div>
                                     <div class="instructor__content">
-                                        <h2 class="title"><a href="instructor-datails.html">Sophia Ava</a></h2>
+                                        <h2 class="title"><a href="javascript:void(0)">Sophia Ava</a></h2>
                                         <span class="designation">Web Development</span>
                                         <p class="avg-rating">
                                             <i class="fas fa-star"></i>

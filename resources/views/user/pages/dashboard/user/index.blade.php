@@ -98,7 +98,7 @@
                                         <div class="courses__item-content courses__item-content-two">
                                             <ul class="courses__item-meta list-wrap">
                                                 <li class="courses__item-tag">
-                                                    <a href="course.html">Development</a>
+                                                    <a href="javascript:void(0)">Development</a>
                                                 </li>
                                             </ul>
                                             <h5 class="title"><a href="{{ route('courses.courses.show', $item) }}">Learning
@@ -106,7 +106,7 @@
                                                     Imagination</a></h5>
                                             <div class="courses__item-content-bottom">
                                                 <div class="author-two">
-                                                    <a href="instructor-details.html"><img
+                                                    <a href="javascript:void(0)"><img
                                                             src="assets/img/courses/course_author001.png"
                                                             alt="img">David Millar</a>
                                                 </div>
