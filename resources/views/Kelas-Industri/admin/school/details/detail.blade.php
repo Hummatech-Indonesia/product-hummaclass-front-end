@@ -132,6 +132,7 @@
     @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
 @endsection
 
 @section('script')
@@ -164,7 +165,8 @@
                             <td>Kursus</td>
                             <td>
                                 <div class="d-flex gap-3">
-                                    <a href="{{ route('admin.users.show', '') }}/e" class="btn px-2 text-white"
+                                    <button class="btn px-2 text-white" data-bs-toggle="modal"
+                                        data-bs-target="#modal-detail-student"
                                         style="background-color: #9425FE">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
@@ -174,7 +176,7 @@
                                                 <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
                                             </g>
                                         </svg>
-                                    </a>
+                                    </button>
                                     <a href="/admin/courses/lorem-ipsum/edit" class="btn btn-sm btn-warning" style="width: 15%">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 48 48">
                                         <path fill="currentColor" d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z">
