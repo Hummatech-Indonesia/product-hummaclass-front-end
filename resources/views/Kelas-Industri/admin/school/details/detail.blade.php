@@ -120,6 +120,17 @@
                         </a>
                     </li>
                 </div>
+                <div class="">
+                    <li class="">
+                        <button class="btn addClassroom text-white" data-bs-toggle="modal"
+                            data-bs-target="#modal-create-vouchers" style="background-color: var(--purple-primary)">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12h-6m0 0H6m6 0V6m0 6v6"/></svg>
+                                Tambah Kelas
+                            </span>
+                        </button>
+                    </li>
+                </div>
             </ul>
         </div>
     </div>
@@ -136,6 +147,7 @@
 @endsection
 
 @section('script')
+@include('Kelas-Industri.admin.school.details.scripts.index')
     <script>
         $.ajax({
             type: "get",
@@ -208,15 +220,6 @@
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-{{-- 
-<script>
-    $(document).ready(function() {
-        $('.siswaOptions').select2({
-            dropdownParent: $('#modal-set-class')
-        });
-    });
-</script> --}}
-
 
 <script>
     $(document).ready(function() {
