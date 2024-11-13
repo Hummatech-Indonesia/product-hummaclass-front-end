@@ -264,7 +264,21 @@
             },
             dataType: "json",
             success: function(response) {
-                append(response.data);
+                $('#name').val(response.data.name);
+                $('#email').val(response.data.email);
+                $('#phone_number').val(response.data.phone_number);
+                $('#address').val(response.data.address);
+                $('.detail-name').text(response.data.name);
+                $('#gender').val(response.data.gender);
+                
+                var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
+                    ? response.data.photo
+                    : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';                    
+                $('.detail-photo').attr('src', profileImage1);
+                var bannerImage1 = response.data.banner && /\.(jpeg|jpg|gif|png)$/i.test(response.data.banner) 
+                    ? response.data.banner
+                    : '{{ asset('assets/img/no-image/no-image.jpg') }}';
+                $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
                
             },
             error: function(xhr) {
@@ -275,24 +289,6 @@
                 });
             }
         });
-
-        function append(data) {
-            $('#name').val(data.name);
-            $('#email').val(data.email);
-            $('#phone_number').val(data.phone_number);
-            $('#address').val(data.address);
-            $('.detail-name').text(data.name);
-            $('#gender').val(data.gender);
-            
-            var profileImage1 = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
-                ? data.photo
-                : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-            $('.detail-photo').attr('src', profileImage1);
-            var bannerImage1 = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
-                ? data.banner
-                : '{{ asset('assets/img/no-image/no-image.jpg') }}';
-            $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
-        }
     });
 </script>
 
