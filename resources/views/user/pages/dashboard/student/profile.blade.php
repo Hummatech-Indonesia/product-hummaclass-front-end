@@ -153,13 +153,13 @@
         // Fetch user data on page load
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/profile",
+            url: "{{ config('app.api_url') }}" + "/api/user",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
             dataType: "json",
             success: function(response) {
-                append(response);
+                
             },
             error: function(xhr) {
                 Swal.fire({
@@ -247,6 +247,32 @@
                     $('.detail-photo').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(file);
+            }
+        });
+
+       
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/profile" ,
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                append(response);
+               
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
             }
         });
 
