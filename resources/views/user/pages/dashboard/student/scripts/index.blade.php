@@ -5,7 +5,7 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/user-courses?page=" + page,
                 headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 success: function(response) {
@@ -93,7 +93,7 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/user-events?page=" + page,
                 headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 success: function(response) {
