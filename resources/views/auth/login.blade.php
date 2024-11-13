@@ -193,7 +193,7 @@
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: "{{ env('API_URL') }}/api/login", // Pastikan menempatkan URL dalam tanda kutip
+                    url: "{{ config('app.api_url') }}/api/login", // Pastikan menempatkan URL dalam tanda kutip
                     type: 'POST',
                     data: formData,
                     success: function(response) {
