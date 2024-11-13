@@ -65,33 +65,7 @@
     <!-- dashboard-area -->
     <section class="dashboard__area section-pb-120">
         <div class="container">
-            <div class="dashboard__top-wrap">
-                <div class="dashboard__top-bg" data-background="{{ asset('assets/img/bg/instructor_dashboard_bg.jpg') }}"></div>
-                <div class="dashboard__instructor-info">
-                    <div class="dashboard__instructor-info-left">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h4 class="title">John Due</h4>
-                            <div class="review__wrap review__wrap-two">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <span>(15 Reviews)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard__instructor-info-right">
-                        <a href="#" class="btn btn-two arrow-btn">Create a New Course <img
-                                src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
-                    </div>
-                </div>
-            </div>
+            @include('user.pages.dashboard.widgets.dashboard-top')
             <div class="row">
                 @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
