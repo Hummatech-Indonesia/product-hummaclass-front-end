@@ -264,7 +264,7 @@
             },
             dataType: "json",
             success: function(response) {
-                append(response);
+                append(response.data);
                
             },
             error: function(xhr) {
@@ -283,8 +283,6 @@
             $('#address').val(data.address);
             $('.detail-name').text(data.name);
             $('#gender').val(data.gender);
-
-            console.log(data.photo);
             
             var profileImage1 = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
                 ? data.photo
