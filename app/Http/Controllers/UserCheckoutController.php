@@ -22,7 +22,7 @@ class UserCheckoutController extends Controller
         if (isset($response->json()['data']['user_course'])) {
             return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
         } else {
-            // dd($response->json());
+            dd($response->json());
             $course = $response->json()['data']['course'];
             if (session('user')['roles'][0]['name'] == 'admin') {
                 return redirect()->route('courses.course-lesson.index', $course['modules'][0]['sub_modules'][0]['slug']);
