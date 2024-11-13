@@ -37,8 +37,8 @@
                     console.log(profileImage);
                     
                 $('#detail-photo-user').attr('src', profileImage);
-                var bannerImage = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner)
-                    ? data.banner
+                var bannerImage = response.data.banner && /\.(jpeg|jpg|gif|png)$/i.test(response.data.banner)
+                    ? response.data.banner
                     : '{{ asset('assets/img/no-image/no-image.jpg') }}';
                 $('#detail-banner-user').css('background-image', 'url(' + bannerImage + ')');
                 $('#detail-name-user').html(response.data.name);
