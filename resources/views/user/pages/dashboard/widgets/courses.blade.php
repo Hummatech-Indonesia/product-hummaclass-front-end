@@ -140,7 +140,6 @@
                         name: $('#search-name').val(),
                     },
                     success: function(response) {
-
                         if (response.data.length > 0) {
                             let hasProcessCourses = false;
                             let hasFinishedCourses = false;
@@ -155,23 +154,24 @@
                                 }
                             });
 
-                            if (!hasProcessCourses) {
-                                $('#process_courses').append(empty());
+                            if (response.data.paginate && response.data.paginate.last_page > 0) {
+                                renderPagination(
+                                    response.data.paginate.last_page,
+                                    response.data.paginate.current_page,
+                                    function(page) {
+                                        get(page);
+                                    }
+                                );
+                                $('.pagination__wrap').show();
+                            } else {
+                                $('.pagination__wrap').hide();
                             }
-
-                            if (!hasFinishedCourses) {
-                                $('#finished_courses').append(empty());
-                            }
-
                         } else {
                             $('#process_courses').append(empty());
                             $('#finished_courses').append(empty());
                         }
-
-
-                        // $('#pagination').html(handlePaginate(response.data.paginate))
-
                     },
+
                     error: function(xhr) {
                         Swal.fire({
                             title: "Terjadi Kesalahan!",
