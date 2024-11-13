@@ -194,7 +194,7 @@
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
                 let price;
-                if (value.promotional_price != 0) {
+                if (value.promotional_price != null) {
                     price =
                         ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
                 } else {
