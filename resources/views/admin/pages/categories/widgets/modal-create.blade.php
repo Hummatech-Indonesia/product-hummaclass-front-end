@@ -41,6 +41,9 @@
                     type: "POST",
                     url: "{{ config('app.api_url') }}/api/categories",
                     data: formData,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
                     dataType: "json",
                     processData: false,
                     contentType: false,
