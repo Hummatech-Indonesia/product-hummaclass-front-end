@@ -68,9 +68,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="event__details-thumb">
-                        <img id="detail-image" src="{{ asset('assets/img/events/event_details_img.jpg') }}" style="width: 100%; height:455px;object-fit:cover;" alt="img">
+                        <img id="detail-image" src="{{ asset('assets/img/events/event_details_img.jpg') }}"
+                            style="width: 100%; height:455px;object-fit:cover;" alt="img">
                     </div>
-                    <h2 class="title detail-title"></h2>
+                    <h2 class="title detail-title" style="max-width: 50ch;"></h2>
                     <div class="event__details-content-wrap">
                         <div class="row">
                             <div class="col-70">
@@ -197,7 +198,8 @@
                                             <div class="courses__details-enroll">
                                                 <div class="tg-button-wrap">
                                                     <a href="{{ route('checkout.event', $id) }}"
-                                                        class="btn arrow-btn w-100 d-flex justify-content-center" id="enter-btn">Masuk
+                                                        class="btn arrow-btn w-100 d-flex justify-content-center"
+                                                        id="enter-btn">Masuk
                                                         <img src="{{ asset('assets/img/icons/right_arrow.svg') }}"
                                                             alt="img" class="injectable"></a>
                                                 </div>
