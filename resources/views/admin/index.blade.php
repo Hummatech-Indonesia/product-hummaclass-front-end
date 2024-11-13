@@ -24,7 +24,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Voucher</p>
-                            <h5 class="fw-semibold mb-0 course-count">22</h5>
+                            <h5 class="fw-semibold mb-0" id="detail-course_voucher_count">22</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Jumlah Kursus</p>
-                            <h5 class="fw-semibold mb-0">88</h5>
+                            <h5 class="fw-semibold mb-0" id="detail-course_count">88</h5>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Kategori Kursus</p>
-                            <h5 class="fw-semibold mb-0">22</h5>
+                            <h5 class="fw-semibold mb-0" id="detail-sub_category_count">22</h5>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Berita</p>
-                            <h5 class="fw-semibold mb-0">7</h5>
+                            <h5 class="fw-semibold mb-0" id="detail-blog_count_count">7</h5>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Jumlah Event</p>
-                            <h5 class="fw-semibold mb-0">15</h5>
+                            <h5 class="fw-semibold mb-0" id="detail-event_count">15</h5>
                         </div>
                     </div>
                 </div>
@@ -580,8 +580,6 @@
         get(1);
     </script>
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-
     <script>
         $(document).ready(function() {
             $.ajax({
@@ -674,4 +672,37 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/dashboard-api",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log("Response Data: ", response.data); // Memeriksa data
+                $('#detail-blog_count_count').text(response.data.blog_count_count);
+                console.log("Setelah update blog_count_count:", $('#blog_count_count').text());
+                $('#detail-course_count').text(response.data.course_count);
+                $('#detail-course_voucher_count').text(response.data.course_voucher_count);
+                $('#detail-event_count').text(response.data.event_count);
+                $('#detail-sub_category_count').text(response.data.sub_category_count);
+
+                // Memicu refresh carousel jika diperlukan
+                $('.owl-carousel').trigger('refresh.owl.carousel');
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
+            }
+        });
+    });
+</script>
 @endpush
