@@ -30,16 +30,12 @@
             success: function(response) {
 
                 console.log(response);
-                
-                // const photo = response.data.thumbnail && /\.(jpeg|jpg|gif|png)$/i.test(response.data
-                //         .thumbnail) ?
-                //     response.data.thumbnail :
-                //     "{{ asset('assets/img/no-image/no-image.jpg') }}";
-                // $('#detail-photo-user').attr('src', response.data.photo);
-
+             
                 var profileImage = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
                     ? response.data.photo
                     : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    console.log(profileImage);
+                    
                 $('#detail-photo-user').attr('src', profileImage);
                 var bannerImage = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner)
                     ? data.banner
