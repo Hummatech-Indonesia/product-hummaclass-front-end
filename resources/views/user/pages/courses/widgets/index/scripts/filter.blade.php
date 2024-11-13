@@ -194,12 +194,16 @@
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
                 let price;
-                if (value.promotional_price != null) {
+                if (value.promotional_price != null && value.promotional_price >= 1) {
                     price =
-                        ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
+                        `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> ${formatRupiah(value.promotional_price)}</h6>`;
+                } else if (value.promotional_price === 0) {
+                    price =
+                        `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> Gratis</h6>`;
                 } else {
-                    price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
+                    price = `<h6 class="price">${formatRupiah(value.price)}</h6>`;
                 }
+
                 return `<div class="col-lg-4">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
