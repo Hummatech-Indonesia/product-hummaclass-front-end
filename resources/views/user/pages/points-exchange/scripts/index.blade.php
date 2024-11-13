@@ -1,7 +1,9 @@
 @section('script')
     <script>
         $(document).ready(function(page) {
-            $.ajax({
+
+            function handleGetRewards(page) {
+                $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
                 headers: {
@@ -21,7 +23,7 @@
                             renderPagination(response.data.paginate.last_page, response.data.paginate
                                 .current_page,
                                 function(page) {
-                                    handleGetEvent(page);
+                                    handleGetRewards(page);
                                 });
                             $('.pagination__wrap').show();
                         } else {
@@ -89,6 +91,10 @@
                     });
                 }
             });
+            }
+
+            handleGetRewards(1);
+
         });
 
 
