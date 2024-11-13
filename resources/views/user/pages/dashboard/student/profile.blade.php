@@ -159,7 +159,7 @@
             },
             dataType: "json",
             success: function(response) {
-                append(response);
+                
             },
             error: function(xhr) {
                 Swal.fire({
@@ -250,6 +250,32 @@
             }
         });
 
+       
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/profile" ,
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                append(response.data);
+               
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
+            }
+        });
+
         function append(data) {
             $('#name').val(data.name);
             $('#email').val(data.email);
@@ -257,15 +283,15 @@
             $('#address').val(data.address);
             $('.detail-name').text(data.name);
             $('#gender').val(data.gender);
-
-            var profileImage = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
+            
+            var profileImage1 = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
                 ? data.photo
                 : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-            $('.detail-photo').attr('src', profileImage);
-            var bannerImage = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
+            $('.detail-photo').attr('src', profileImage1);
+            var bannerImage1 = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
                 ? data.banner
                 : '{{ asset('assets/img/no-image/no-image.jpg') }}';
-            $('.banner-user').css('background-image', 'url(' + bannerImage + ')');
+            $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
         }
     });
 </script>
