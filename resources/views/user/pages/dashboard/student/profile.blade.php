@@ -305,11 +305,11 @@
 
 
                 $.ajax({
-                    url: "{{ config('app.api_url') }}" + "/api/password/update",
+                    url: "{{ config('app.api_url') }}" + "/api/password/update" + "?_method=PATCH",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
-                    type: 'PATCH',
+                    type: 'POST',
                     data: formData,
                     success: function(response) {
                         Swal.fire({
