@@ -19,7 +19,7 @@ class UserCheckoutController extends Controller
             ->maxRedirects(5)
             ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
 
-        if ($response->json()['data']['user_course']) {
+        if (isset($response->json()['data']['user_course'])) {
             return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
         } else {
             // dd($response->json());
