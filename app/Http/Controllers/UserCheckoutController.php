@@ -18,11 +18,10 @@ class UserCheckoutController extends Controller
         $response = Http::withToken($token)
             ->maxRedirects(5)
             ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
-
-        if ($response->json()['data']['user_course']) {
+        
+        if (isset($response->json()['data']['user_course'])) {
             return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
         } else {
-            // dd($response->json());
             $course = $response->json()['data']['course'];
             if (session('user')['roles'][0]['name'] == 'admin') {
                 return redirect()->route('courses.course-lesson.index', $course['modules'][0]['sub_modules'][0]['slug']);

@@ -37,8 +37,8 @@ const editor = new EditorJS({
       class: ImageTool,
       config: {
         endpoints: {
-          byFile: `${apiBaseUrl}/upload-image`, // Endpoint untuk unggahan file
-          byUrl: `${apiBaseUrl}/upload-image`, // Endpoint untuk unggahan dari URL
+          byFile: `${apiBaseUrl}/api/upload-image`, // Endpoint untuk unggahan file
+          byUrl: `${apiBaseUrl}/api/upload-image`, // Endpoint untuk unggahan dari URL
         },
       },
     },
