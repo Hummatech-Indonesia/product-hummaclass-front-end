@@ -6,7 +6,7 @@ import ImageTool from "@editorjs/image";
 import Embed from "@editorjs/embed";
 import RawTool from "@editorjs/raw";
 
-const apiBaseUrl = "{{ config('app.api_url') }}"; // Ganti dengan URL API Anda
+const apiBaseUrl = "https://core-ecourse.mijurnal.com/"; // Ganti dengan URL API Anda
 
 const editor = new EditorJS({
   holder: "editorjs",
