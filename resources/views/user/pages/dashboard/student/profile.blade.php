@@ -284,14 +284,14 @@
             $('.detail-name').text(data.name);
             $('#gender').val(data.gender);
 
-            var profileImage = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
+            var profileImage1 = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
                 ? data.photo
                 : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-            $('.detail-photo').attr('src', profileImage);
-            var bannerImage = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
+            $('.detail-photo').attr('src', profileImage1);
+            var bannerImage1 = data.banner && /\.(jpeg|jpg|gif|png)$/i.test(data.banner) 
                 ? data.banner
                 : '{{ asset('assets/img/no-image/no-image.jpg') }}';
-            $('.banner-user').css('background-image', 'url(' + bannerImage + ')');
+            $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
         }
     });
 </script>
