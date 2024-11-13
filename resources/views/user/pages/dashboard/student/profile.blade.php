@@ -153,7 +153,7 @@
         // Fetch user data on page load
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/user",
+            url: "{{ config('app.api_url') }}" + "/api/profile",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
