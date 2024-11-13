@@ -144,19 +144,12 @@
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
 
 @section('script')
 @include('Kelas-Industri.admin.school.details.scripts.index')
     <script>
-        $.ajax({
-            type: "get",
-            url: "{{ config('app.api_url') }}/api/schools/" + '{{ $slug }}',
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
-            }
-        });
 
         function user(index, value) {
             var url = "{{ config('app.api_url') }}";
