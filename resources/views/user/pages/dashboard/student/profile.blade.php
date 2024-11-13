@@ -284,6 +284,8 @@
             $('.detail-name').text(data.name);
             $('#gender').val(data.gender);
 
+            console.log(data.photo);
+            
             var profileImage1 = data.photo && /\.(jpeg|jpg|gif|png)$/i.test(data.photo) 
                 ? data.photo
                 : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
