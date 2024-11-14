@@ -30,7 +30,7 @@
             <div class="row mt-3">
                 <div class="col-4">
                     <div>
-                        <span class="badge bg-light-warning text-warning px-5"><svg class="me-1 mb-1"
+                        <span class="badge bg-light-warning text-warning pe-5"><svg class="me-1 mb-1"
                                 xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
