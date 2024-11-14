@@ -59,7 +59,7 @@
     <section class="container my-4">
         <div class="card form-container shadow p-4">
             <h2 class="text-start mb-2">Tambah Sekolah</h2>
-            <form method="post" id="create-school" enctype="multipart/form-data">
+            <form method="post" id="update-school" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <div class="col col-md-6 mb-3">
@@ -89,7 +89,8 @@
                 <div class="row mb-3">
                     <div class="col col-md-6 mb-3">
                         <label for="photo" class="form-label">Logo Sekolah</label>
-                        <input type="file" class="form-control" id="photo" name="photo">
+                        <input type="file" class="form-control" id="photo" name="photo"><br>
+                        <img src="" id="logo" alt="" srcset="" style="width: 200px">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6 mb-3">
@@ -113,7 +114,7 @@
                     </div>
                 </div>
                 <div class="text-end">
-                    <button type="submit" class="btn" style="background-color: #7209DB;color: white;">Tambah</button>
+                    <button type="submit" class="btn" style="background-color: #7209DB;color: white;">Update</button>
                 </div>
             </form>
         </div>
@@ -121,15 +122,12 @@
 @endsection
 @section('script')
     <script>
-        $('#create-school').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-
+        $(document).ready(function() {
+            var slug = "{{ $slug }}";
+            let id;
             $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/schools",
-                data: formData,
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/schools/" + slug,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -137,21 +135,25 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data.",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = "/admin/class/school"
-                    });
+                    id = response.data.id;
+                    $('#name').val(response.data.name);
+                    $('#head_master').val(response.data.head_master);
+                    $('#npsn').val(response.data.npsn);
+                    $('#email').val(response.data.email);
+                    $('#phone_number').val(response.data.phone_number);
+                    $('#address').val(response.data.address);
+                    $('#description').val(response.data.description);
+                    $('#logo').attr('src', response.data.photo);
+
                 },
                 error: function(response) {
                     if (response.status === 422) {
                         let errors = response.responseJSON.data;
+
                         $.each(errors, function(field, messages) {
-                            const input = $('[name="' + field + '"]');
-                            input.addClass('is-invalid');
-                            input.closest('.col').find('.invalid-feedback').text(messages[0]);
+                            $(`[name="${field}"]`).addClass('is-invalid');
+                            $(`[name="${field}"]`).closest('.col').find(
+                                '.invalid-feedback').text(messages[0]);
                         });
                     } else {
                         Swal.fire({
@@ -161,6 +163,51 @@
                         });
                     }
                 }
+            });
+
+            $('#update-school').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                formData.append('_method', 'PATCH');
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/schools/" + id,
+                    data: formData,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menambah data.",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href = "/admin/class/school";
+                        });
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.col').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

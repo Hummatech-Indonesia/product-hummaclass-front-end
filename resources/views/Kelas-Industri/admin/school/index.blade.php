@@ -157,7 +157,7 @@
                                     aria-expanded="false">&#x22EE;</span>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="/admin/class/edit-school/${value.id}" class="dropdown-item">Edit</a>
+                                        <a href="/admin/class/edit-school/${value.slug}" class="dropdown-item">Edit</a>
                                     </li>
                                     <li>
                                         <a style="cursor:pointer" data-id="${value.id}" class="dropdown-item btn-delete">Hapus</a>
