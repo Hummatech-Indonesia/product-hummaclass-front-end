@@ -24,9 +24,6 @@
                                             <input class="form-check-input filter-radio" type="radio" name="filter" id="option1" value="option1" />
                                             <label class="form-check-label filter-label" for="option1">
                                                 <div class="d-flex">
-                                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle me-1" style="font-size: 7px;margin-top: 6px;"></i>
-                                                    </div>
                                                     Option 1
                                                 </div>
                                             </label>
@@ -37,9 +34,6 @@
                                             <input class="form-check-input filter-radio" type="radio" name="filter" id="option2" value="option2" />
                                             <label class="form-check-label filter-label" for="option2">
                                                 <div class="d-flex">
-                                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle me-1" style="font-size: 7px;margin-top: 6px;"></i>
-                                                    </div>
                                                     Option 2
                                                 </div>
                                             </label>
@@ -50,9 +44,6 @@
                                             <input class="form-check-input filter-radio" type="radio" name="filter" id="option3" value="option3" />
                                             <label class="form-check-label filter-label" for="option3">
                                                 <div class="d-flex">
-                                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle me-1" style="font-size: 7px;margin-top: 6px;"></i>
-                                                    </div>
                                                     Option 3
                                                 </div>
                                             </label>
@@ -63,9 +54,6 @@
                                             <input class="form-check-input filter-radio" type="radio" name="filter" id="option4" value="option4" />
                                             <label class="form-check-label filter-label" for="option4">
                                                 <div class="d-flex">
-                                                    <div class="round-16 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-circle me-1" style="font-size: 7px;margin-top: 6px;"></i>
-                                                    </div>
                                                     Option 4
                                                 </div>
                                             </label>
