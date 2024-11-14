@@ -47,9 +47,15 @@
             dataType: "json",
             success: function(response) {
                 $.each(response.data.data, function(index, value) {
-                    $('#course-content').append(listCourse(index, value));
+                    if (index < 8) {
+                        $('#course-content').append(listCourse(index, value));
+                    }
                 });
-
+                if (courseData.length === 8) {
+                    $('#other-courses').show();
+                } else {
+                    $('#other-courses').hide();
+                }
             },
             error: function(xhr) {
 
