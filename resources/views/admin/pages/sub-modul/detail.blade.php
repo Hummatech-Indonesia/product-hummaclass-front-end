@@ -16,7 +16,6 @@
         .text-primary {
             color: #7209DB !important;
         }
-
     </style>
 @endsection
 @section('content')
@@ -44,7 +43,8 @@
 
     <div class="card p-3">
         <div>
-            <ul class="nav nav-tabs d-flex justify-content-between" style="list-style-type: disc; padding-left: 20px;" role="tablist">
+            <ul class="nav nav-tabs d-flex justify-content-between" style="list-style-type: disc; padding-left: 20px;"
+                role="tablist">
                 <div class="d-flex">
                     <li class="nav-item materi">
                         <a class="nav-link" data-bs-toggle="tab" href="#materi" role="tab">
