@@ -12,7 +12,7 @@
         handleTabDisplay(window.location.hash || "#classrooms");
 
         // Panggil fungsi setiap kali tab berubah
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
             const hash = $(e.target).attr('href');
             handleTabDisplay(hash);
         });

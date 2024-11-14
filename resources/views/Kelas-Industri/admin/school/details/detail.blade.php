@@ -1,57 +1,65 @@
 @extends('admin.layouts.app')
 
 @section('style')
-<style>
-    .filter-radio:checked + .filter-label {
-    background-color: #9425FE;
-    color: white;
-}
-.filter-label {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 15px;
-    transition: background-color 0.3s, color 0.3s;
-}
-.filter-radio {
-    display: none;
-}
-.filter-label:hover {
-    background-color: #9425FE;
-    color: white;
-}
-.filter-option {
-    padding-left: 0;
-    margin-bottom: .125rem;
-    width: 100%;
-}
-.filter-label {
-    width: 100%;
-}
-.select2-container--default.select2-container--open.select2-container--above .select2-selection--single, .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-color: #d7dce0;
-    width: 435px;
-    height: 40px;
-}
+    <style>
+        .filter-radio:checked+.filter-label {
+            background-color: #9425FE;
+            color: white;
+        }
 
-.select2-container--default .select2-selection--multiple {
-    border: 1px solid #d7dce0;
-    border-radius: 5px;
-    width: 440px;
-}
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #9425FE !important;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-}
+        .filter-label {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-    background-color: #9425FE;
-}
-</style>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        .filter-radio {
+            display: none;
+        }
 
+        .filter-label:hover {
+            background-color: #9425FE;
+            color: white;
+        }
+
+        .filter-option {
+            padding-left: 0;
+            margin-bottom: .125rem;
+            width: 100%;
+        }
+
+        .filter-label {
+            width: 100%;
+        }
+
+        .select2-container--default.select2-container--open.select2-container--above .select2-selection--single,
+        .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-color: #d7dce0;
+            width: 435px;
+            height: 40px;
+        }
+
+        .select2-container--default .select2-selection--multiple {
+            border: 1px solid #d7dce0;
+            border-radius: 5px;
+            width: 440px;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #9425FE !important;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+        }
+
+        .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+            background-color: #9425FE;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -63,11 +71,6 @@
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title">SMK NEGERI 1 KEPANJEN</h5>
-                    <span class="badge bg-light-primary text-primary">Negeri</span>
-                </div>
-                <div class="col-md-2 text-end">
-                    <p class="mb-0">Tahun Ajaran</p>
-                    <p class="fw-bold">2023/2024</p>
                 </div>
             </div>
             <hr>
@@ -125,7 +128,10 @@
                         <button class="btn addClassroom text-white" data-bs-toggle="modal"
                             data-bs-target="#modal-create-vouchers" style="background-color: var(--purple-primary)">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12h-6m0 0H6m6 0V6m0 6v6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2" d="M18 12h-6m0 0H6m6 0V6m0 6v6" />
+                                </svg>
                                 Tambah Kelas
                             </span>
                         </button>
@@ -148,9 +154,39 @@
 @endsection
 
 @section('script')
-@include('Kelas-Industri.admin.school.details.scripts.index')
+    @include('Kelas-Industri.admin.school.details.scripts.index')
     <script>
-
+        $(document).ready(function() {
+            var slug = "{{ $slug }}"
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/schools/" + slug,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil menambah data.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.href = "/admin/courses";
+                    });
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Ada kesalahan saat menyimpan data.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
         function user(index, value) {
             var url = "{{ config('app.api_url') }}";
             return `
@@ -212,89 +248,89 @@
         }
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        const selectSiswa = $('.selectSiswa');
-        const siswaCard = $('#siswaCard');
-        const selectedStudentsCard = $('#selectedStudentsCard');
-        const selectedStudentsList = $('#selectedStudents');
+    <script>
+        $(document).ready(function() {
+            const selectSiswa = $('.selectSiswa');
+            const siswaCard = $('#siswaCard');
+            const selectedStudentsCard = $('#selectedStudentsCard');
+            const selectedStudentsList = $('#selectedStudents');
 
-        selectSiswa.on('click', function() {
-            siswaCard.removeClass('d-none');
-        });
-
-        $('.siswaOptions').select2({
-            placeholder: "Cari",
-            allowClear: true,
-            dropdownParent: $('#modal-set-class')
-        });
-
-        $('.siswaOptions').on('change', function() {
-            const selectedOptions = $(this).find('option:selected');
-            const selectedCount = selectedOptions.length;
-            selectSiswa.val(`${selectedCount} Siswa Telah Dipilih`);
-        });
-
-        $('#selectStudents').on('click', function() {
-            const selectedOptions = $('.siswaOptions').find('option:selected');
-            selectedStudentsList.empty();
-
-            selectedOptions.each(function() {
-                const li = $('<li></li>').text($(this).text());
-                selectedStudentsList.append(li);
+            selectSiswa.on('click', function() {
+                siswaCard.removeClass('d-none');
             });
 
-            if (selectedStudentsList.children().length > 0) {
-                selectedStudentsCard.removeClass('d-none');
-                siswaCard.addClass('d-none');
-            } else {
-                selectedStudentsCard.addClass('d-none');
-            }
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        const inputSiswa1 = $('.inputSiswa1');
-        const cardPilihSiswa1 = $('#cardPilihSiswa1');
-        const selectedStudentsCard1 = $('#selectedStudentsCard1');
-        const selectedStudentsList1 = $('#selectedStudentsList1');
-
-        inputSiswa1.on('click', function() {
-            cardPilihSiswa1.removeClass('d-none');
-        });
-
-        $('.selectSiswaOptions1').select2({
-            placeholder: "Cari",
-            allowClear: true,
-            dropdownParent: $('#modal-edit-class')
-        });
-
-        $('.selectSiswaOptions1').on('change', function() {
-            const selectedOptions = $(this).find('option:selected');
-            const selectedCount = selectedOptions.length;
-            inputSiswa1.val(`${selectedCount} Siswa Telah Dipilih`);
-        });
-
-        $('#selectStudents1').on('click', function() {
-            const selectedOptions = $('.selectSiswaOptions1').find('option:selected');
-            selectedStudentsList1.empty();
-
-            selectedOptions.each(function() {
-                const li = $('<li></li>').text($(this).text());
-                selectedStudentsList1.append(li);
+            $('.siswaOptions').select2({
+                placeholder: "Cari",
+                allowClear: true,
+                dropdownParent: $('#modal-set-class')
             });
 
-            if (selectedStudentsList1.children().length > 0) {
-                selectedStudentsCard1.removeClass('d-none');
-                cardPilihSiswa1.addClass('d-none');
-            } else {
-                selectedStudentsCard1.addClass('d-none');
-            }
+            $('.siswaOptions').on('change', function() {
+                const selectedOptions = $(this).find('option:selected');
+                const selectedCount = selectedOptions.length;
+                selectSiswa.val(`${selectedCount} Siswa Telah Dipilih`);
+            });
+
+            $('#selectStudents').on('click', function() {
+                const selectedOptions = $('.siswaOptions').find('option:selected');
+                selectedStudentsList.empty();
+
+                selectedOptions.each(function() {
+                    const li = $('<li></li>').text($(this).text());
+                    selectedStudentsList.append(li);
+                });
+
+                if (selectedStudentsList.children().length > 0) {
+                    selectedStudentsCard.removeClass('d-none');
+                    siswaCard.addClass('d-none');
+                } else {
+                    selectedStudentsCard.addClass('d-none');
+                }
+            });
         });
-    });
-</script>
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            const inputSiswa1 = $('.inputSiswa1');
+            const cardPilihSiswa1 = $('#cardPilihSiswa1');
+            const selectedStudentsCard1 = $('#selectedStudentsCard1');
+            const selectedStudentsList1 = $('#selectedStudentsList1');
+
+            inputSiswa1.on('click', function() {
+                cardPilihSiswa1.removeClass('d-none');
+            });
+
+            $('.selectSiswaOptions1').select2({
+                placeholder: "Cari",
+                allowClear: true,
+                dropdownParent: $('#modal-edit-class')
+            });
+
+            $('.selectSiswaOptions1').on('change', function() {
+                const selectedOptions = $(this).find('option:selected');
+                const selectedCount = selectedOptions.length;
+                inputSiswa1.val(`${selectedCount} Siswa Telah Dipilih`);
+            });
+
+            $('#selectStudents1').on('click', function() {
+                const selectedOptions = $('.selectSiswaOptions1').find('option:selected');
+                selectedStudentsList1.empty();
+
+                selectedOptions.each(function() {
+                    const li = $('<li></li>').text($(this).text());
+                    selectedStudentsList1.append(li);
+                });
+
+                if (selectedStudentsList1.children().length > 0) {
+                    selectedStudentsCard1.removeClass('d-none');
+                    cardPilihSiswa1.addClass('d-none');
+                } else {
+                    selectedStudentsCard1.addClass('d-none');
+                }
+            });
+        });
+    </script>
 @endsection
