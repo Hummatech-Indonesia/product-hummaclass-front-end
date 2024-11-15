@@ -80,7 +80,7 @@
             fill: #FFB649;
             stroke: #FFB649;
         }
-        
+
         .arrow-btn img {
             filter: brightness(0);
             transition: filter 0.3s ease;
@@ -178,7 +178,7 @@
                                     data-bs-target="#instructors-tab-pane" type="button" role="tab"
                                     aria-controls="instructors-tab-pane" aria-selected="false">Instruktor</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li class="nav-item" role="presentation" id="task-tab">
                                 <button class="nav-link" id="task-tab" data-bs-toggle="tab"
                                     data-bs-target="#task-tab-pane" type="button" role="tab"
                                     aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
@@ -211,6 +211,8 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
+
+            $('#task-tab').addClass('d-none');
 
             @if (session('warning'))
                 Swal.fire({
@@ -319,16 +321,17 @@
                                 response.data.course_test_id);
                             $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
                             $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            $('#task-tab').removeClass('d-none');
                         } else if (response.data.user_course.has_pre_test == 1 && response.data
                             .user_course.has_post_test == 0) {
-                            $('#btn-checkout').text('Mulai Post Test');
-                            $('#btn-lesson').text('Mulai Post Test');
-                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
                         } else if (response.data.user_course.has_pre_test == 1 && response.data
                             .user_course.has_post_test == 1) {
                             document.getElementById('certificate-download').style.display = 'block';
@@ -341,14 +344,14 @@
                                 "{{ route('courses.course-lesson.index', '') }}/" +
                                 response.data.user_course.sub_module.slug);
                         } else {
-                            $('#btn-checkout').text('Lanjutkan');
-                            $('#btn-lesson').text('Lanjutkan');
-                            $('#btn-checkout').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                            $('#btn-lesson').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
+                            $('#btn-checkout').text('Mulai Post Test');
+                            $('#btn-lesson').text('Mulai Post Test');
+                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
                         }
                         document.getElementById('courses-detail-sidebar').style.display = 'none';
                         document.getElementById('sidebar-tab-review').style.display = 'block';
@@ -380,7 +383,8 @@
                     $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
                     let price = response.data.promotional_price ?? response.data.price;
-                    $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(price));
+                    $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(
+                        price));
                     if (response.data.is_admin) {
                         $('#btn-checkout').text('Lihat Kursus');
                     }

@@ -155,7 +155,7 @@
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
-                url: `{{ config('app.api_url') }}/api/course-post-test/${id}/?page=` + page,
+                url: `{{ config('app.api_url') }}/api/course-post-test/${id}?page=` + page,
                 dataType: "json",
                 success: function(response) {
 
