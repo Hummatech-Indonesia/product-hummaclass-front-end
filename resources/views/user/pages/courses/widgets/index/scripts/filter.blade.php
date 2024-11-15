@@ -195,12 +195,17 @@
                 var url = "{{ config('app.api_url') }}";
                 let price;
                 let price;
+                let price;
                 if (value.promotional_price != null && value.promotional_price !== "") {
                     price =
                         `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${value.price}</del> ${value.promotional_price}</h6>`;
+                } else if (value.promotional_price == null || value.promotional_price === "") {
+                    price =
+                        `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${value.price}</del> Gratis</h6>`;
                 } else {
-                    price = `<h6 class="price">${value.price === "" ? "Gratis" : value.price}</h6>`;
+                    price = `<h6 class="price">${value.price == null || value.price === "" ? "Gratis" : value.price}</h6>`;
                 }
+
                 return `<div class="col-lg-4">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
