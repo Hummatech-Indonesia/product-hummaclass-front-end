@@ -324,14 +324,14 @@
                             $('#task-tab').removeClass('d-none');
                         } else if (response.data.user_course.has_pre_test == 1 && response.data
                             .user_course.has_post_test == 0) {
-                            $('#btn-checkout').text('Mulai Post Test');
-                            $('#btn-lesson').text('Mulai Post Test');
-                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
                         } else if (response.data.user_course.has_pre_test == 1 && response.data
                             .user_course.has_post_test == 1) {
                             document.getElementById('certificate-download').style.display = 'block';
@@ -344,14 +344,14 @@
                                 "{{ route('courses.course-lesson.index', '') }}/" +
                                 response.data.user_course.sub_module.slug);
                         } else {
-                            $('#btn-checkout').text('Lanjutkan');
-                            $('#btn-lesson').text('Lanjutkan');
-                            $('#btn-checkout').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                            $('#btn-lesson').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
+                            $('#btn-checkout').text('Mulai Post Test');
+                            $('#btn-lesson').text('Mulai Post Test');
+                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
                         }
                         document.getElementById('courses-detail-sidebar').style.display = 'none';
                         document.getElementById('sidebar-tab-review').style.display = 'block';
