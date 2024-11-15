@@ -155,7 +155,8 @@
                 type: "GET",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-                    'Content-Type': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
                 },
                 url: `{{ config('app.api_url') }}/api/course-pre-test/${id}/?page=` + page,
                 dataType: "json",
