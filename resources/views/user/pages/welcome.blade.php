@@ -336,7 +336,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a href="{{ route('courses.courses.index') }}" class="outline-purple-primary d-none" id="other-course">
+                                    <a href="{{ route('courses.courses.index') }}" class="outline-purple-primary d-none" id="other-courses">
                                         Lihat Lainnya
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">
