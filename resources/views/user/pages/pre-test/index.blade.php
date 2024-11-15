@@ -157,7 +157,7 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                     'Content-Type': 'application/json'
                 },
-                url: `{{ config('app.api_url') }}/api/course-pre-test/${id}/?page=` + page,
+                url: `{{ config('app.api_url') }}/api/course-pre-test-test/${id}/?page=` + page,
                 dataType: "json",
                 success: function(response) {
                     $('.text-white.border-0.py-2').off('click').on('click', function() {
