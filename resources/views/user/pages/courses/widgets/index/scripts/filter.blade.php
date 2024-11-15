@@ -197,11 +197,11 @@
                 if (value.promotional_price != null && value.promotional_price >= 1) {
                     price =
                         `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> ${formatRupiah(value.promotional_price)}</h6>`;
-                } else if (value.promotional_price === 0) {
+                } else if (value.promotional_price === 0 || value.price === 0) {
                     price =
                         `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> Gratis</h6>`;
                 } else {
-                    price = `<h6 class="price">${formatRupiah(value.price)}</h6>`;
+                    price = `<h6 class="price">${value.price === 0 ? "Gratis" : formatRupiah(value.price)}</h6>`;
                 }
 
                 return `<div class="col-lg-4">
