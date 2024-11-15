@@ -3,7 +3,7 @@
         function getCourse(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-courses-guest?page=" + page,
+                url: "{{ config('app.api_url') }}" + "/api/user-courses?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
