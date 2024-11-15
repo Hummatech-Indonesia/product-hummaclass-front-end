@@ -110,7 +110,7 @@
                                                 <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
-                                        <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password" id="password" value="{{ old('name', request('name')) }}" placeholder="Password" aria-label="" aria-describedby="basic-addon1">
+                                        <input type="password" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password" id="password" value="{{ old('name', request('name')) }}" placeholder="Password" aria-label="" aria-describedby="basic-addon1">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <div class="input-group mb-3">
@@ -119,7 +119,7 @@
                                                 <path fill="#8B8B8B" fill-rule="evenodd" d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
-                                        <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password_confirmation" id="password_confirmation" value="{{ old('name', request('name')) }}" placeholder="Konfirmasi Password" aria-label="" aria-describedby="basic-addon1">
+                                        <input type="password" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password_confirmation" id="password_confirmation" value="{{ old('name', request('name')) }}" placeholder="Konfirmasi Password" aria-label="" aria-describedby="basic-addon1">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <button type="submit" class="btn text-white btn-md mt-3 w-100" style="background-color: #9425FE;border-radius: 10px;">
