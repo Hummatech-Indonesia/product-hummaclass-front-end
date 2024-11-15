@@ -220,23 +220,23 @@
                 $('#complete_percentage').html(response.data.complete_percentage);
 
                 $('.percentRating1')
-                    .css('width', response.data.ratings_percentage_distribution[1] + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[1]);
+                    .css('width', response.data.ratings_percentage_distribution[1] || 0 + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[1] || 0);
                 $('.percentRating2')
-                    .css('width', response.data.ratings_percentage_distribution[2] + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[2]);
+                    .css('width', response.data.ratings_percentage_distribution[2] || 0 + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[2] || 0);
 
                 $('.percentRating3')
-                    .css('width', response.data.ratings_percentage_distribution[3] + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[3]);
+                    .css('width', response.data.ratings_percentage_distribution[3] || 0 + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[3] || 0);
 
                 $('.percentRating4')
-                    .css('width', response.data.ratings_percentage_distribution[4] + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[4]);
+                    .css('width', response.data.ratings_percentage_distribution[4] || 0 + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[4] || 0);
 
                 $('.percentRating5')
-                    .css('width', response.data.ratings_percentage_distribution[5] + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[5]);
+                    .css('width', response.data.ratings_percentage_distribution[5] || 0 + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[5] || 0);
 
 
                 if (response.meta && response.meta.code === 200) {
