@@ -211,11 +211,11 @@
                 $('.post_test_average').html(response.data.post_test_average);
                 $('.pre_test_average').html(response.data.pre_test_average);
                 $('.completed').html(response.data.completed);
-                $('.rating1').html(response.data.ratings_distribution[1])
-                $('.rating2').html(response.data.ratings_distribution[2])
-                $('.rating3').html(response.data.ratings_distribution[3])
-                $('.rating4').html(response.data.ratings_distribution[4])
-                $('.rating5').html(response.data.ratings_distribution[5])
+                $('.rating1').html(response.data.ratings_distribution[1] || 0)
+                $('.rating2').html(response.data.ratings_distribution[2] || 0)
+                $('.rating3').html(response.data.ratings_distribution[3] || 0)
+                $('.rating4').html(response.data.ratings_distribution[4] || 0)
+                $('.rating5').html(response.data.ratings_distribution[5] || 0)
                 $('#uncomplete_percentage').html(response.data.uncomplete_percentage);
                 $('#complete_percentage').html(response.data.complete_percentage);
 
@@ -566,66 +566,72 @@
                     new ApexCharts(document.querySelector("#chart-radial-basic"), optionsBasic)
                         .render();
 
-                    // Data untuk grafik selesai pengerjaan
-                    var finishedWork = Array.isArray(data.completed_by_month) ? data.completed_by_month : [parseFloat(data.completed_by_month) || 0, 0];
+                        var finishedWork = [];
 
-                    var optionsZoomableCourse = {
-                        series: [{
-                            name: 'Selesai pengerjaan',
-                            data: finishedWork
-                        }],
-                        chart: {
-                            type: 'area',
-                            height: 110,
-                            zoom: {
-                                enabled: false
-                            },
-                            toolbar: {
-                                show: false
-                            },
-                        },
-                        dataLabels: {
-                            enabled: false
-                        },
-                        stroke: {
-                            curve: 'smooth',
-                            width: 2,
-                            colors: ['#9425fe']
-                        },
-                        fill: {
-                            type: 'gradient',
-                            gradient: {
-                                shade: 'light',
-                                gradientToColors: ['#f0e1ff'],
-                                opacityFrom: 0.4,
-                                opacityTo: 0,
-                                stops: [0, 100],
-                            },
-                        },
-                        grid: {
-                            show: false
-                        },
-                        xaxis: {
-                            type: 'datetime',
-                            labels: {
-                                show: false
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            },
-                        },
-                        yaxis: {
-                            show: false
-                        },
-                        tooltip: {
-                            enabled: false
-                        }
-                    };
+// Cek apakah data.completed_by_month ada dan bukan kosong
+if (data.completed_by_month && typeof data.completed_by_month === 'object') {
+    // Ambil nilai dari bulan yang ada (misalnya, 'november')
+    finishedWork = Object.values(data.completed_by_month); // Ambil semua nilai ke dalam array
+} else {
+    finishedWork = [0, 0]; // Jika tidak ada data, gunakan [0, 0]
+}
 
-                    new ApexCharts(document.querySelector("#chart-line-zoomable-course"), optionsZoomableCourse).render();
+// Opsi untuk grafik selesai pengerjaan
+var optionsZoomableCourse = {
+    series: [{
+        name: 'Completed Work',
+        data: finishedWork // Pastikan data adalah array
+    }],
+    chart: {
+        type: 'area',
+        height: 110,
+        zoom: {
+            enabled: false
+        },
+        toolbar: {
+            show: false
+        },
+    },
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        curve: 'smooth',
+        width: 2,
+        colors: ['#9425fe']
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shade: 'light',
+            gradientToColors: ['#f0e1ff'],
+            opacityFrom: 0.4,
+            opacityTo: 0,
+            stops: [0, 100],
+        },
+    },
+    grid: {
+        show: false
+    },
+    xaxis: {
+        type: 'datetime',
+        labels: {
+            show: false
+        },
+        axisBorder: {
+            show: false
+        },
+        axisTicks: {
+            show: false
+        },
+    },
+    yaxis: {
+        show: false
+    },
+    tooltip: {
+        enabled: false
+    }
+};
 
                 } else {
                     console.error("Error fetching data: ", response.meta.message);
