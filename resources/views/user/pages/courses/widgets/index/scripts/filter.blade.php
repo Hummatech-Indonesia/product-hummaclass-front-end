@@ -194,8 +194,6 @@
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
                 let price;
-                let price;
-                let price;
                 if (value.promotional_price != null && value.promotional_price !== "") {
                     price =
                         `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${value.price}</del> ${value.promotional_price}</h6>`;
