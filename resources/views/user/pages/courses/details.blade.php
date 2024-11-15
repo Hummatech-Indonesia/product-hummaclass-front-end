@@ -410,23 +410,23 @@
                     $('.rating5').html(response.data.ratings[5] || 0)
 
                     $('.percentRating1')
-                        .css('width', response.data.ratings_percentage[1] + '%')
-                        .attr('aria-valuenow', response.data.ratings_percentage[1]);
+                        .css('width', response.data.ratings_percentage[1] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[1] || 0);
                     $('.percentRating2')
-                        .css('width', response.data.ratings_percentage[2] + '%')
-                        .attr('aria-valuenow', response.data.ratings_percentage[2]);
+                        .css('width', response.data.ratings_percentage[2] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[2] || 0);
 
                     $('.percentRating3')
-                        .css('width', response.data.ratings_percentage[3] + '%')
-                        .attr('aria-valuenow', response.data.ratings_percentage[3]);
+                        .css('width', response.data.ratings_percentage[3] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[3] || 0);
 
                     $('.percentRating4')
-                        .css('width', response.data.ratings_percentage[4] + '%')
-                        .attr('aria-valuenow', response.data.ratings_percentage[4]);
+                        .css('width', response.data.ratings_percentage[4] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[4] || 0);
 
                     $('.percentRating5')
-                        .css('width', response.data.ratings_percentage[5] + '%')
-                        .attr('aria-valuenow', response.data.ratings_percentage[5]);
+                        .css('width', response.data.ratings_percentage[5] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[5] || 0);
 
 
                     response.data.course_reviews.forEach(review => {
