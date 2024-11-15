@@ -90,6 +90,9 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/users?page=" + page,
                 dataType: "json",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
                 data: {
                     name: $('#search-name').val(),
                 },

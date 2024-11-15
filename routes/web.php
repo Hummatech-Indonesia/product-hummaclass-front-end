@@ -109,8 +109,6 @@ Route::middleware(['auth_custom'])->group(function () {
         Route::get('upload-task/{id?}', fn($id) => view('user.pages.courses.task-execution.upload-task', compact('id')))->name('upload-task.index');
     });
     Route::get('detail/test', fn() => view('admin.pages.courses.test.index'));
-
-
 });
 
 Route::prefix('password')->name('password.')->group(function () {

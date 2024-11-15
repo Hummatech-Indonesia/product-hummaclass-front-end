@@ -13,7 +13,9 @@
 
                 if (response.data.data.length > 0) {
                     $.each(response.data.data, function(index, value) {
-                        $('#news-content').append(card(index, value));
+                        // if (index < 8) {
+                            $('#news-content').append(card(index, value));
+                        // }
                     });
 
                     renderPagination(response.data.paginate.last_page, response.data.paginate
@@ -25,6 +27,11 @@
                     $('#news-content').append(empty());
                 }
 
+                if (courseData.length === 8) {
+                    $('#other-news').show();
+                } else {
+                    $('#other-news').hide();
+                }
 
             }
             , error: function(xhr) {

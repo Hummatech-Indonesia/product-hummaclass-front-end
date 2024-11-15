@@ -24,7 +24,7 @@
                     style="background-color: #ffc224;color:black; width:100%">Terapkan</button>
             </div>
         </div>
-        <div class="courses-widget">
+        {{-- <div class="courses-widget">
             <h4 class="widget-title">Rating</h4>
             <div class="courses-rating-list">
                 <ul class="list-wrap">
@@ -105,7 +105,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
     </aside>
 </div>
 
