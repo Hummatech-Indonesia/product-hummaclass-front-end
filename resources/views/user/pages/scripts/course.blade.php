@@ -47,12 +47,12 @@
             },
             dataType: "json",
             success: function(response) {
-                
+
                 if (response.data.data.length > 0) {
                     $.each(response.data.data, function(index, value) {
-                        if (index < 8) {
+                        // if (index < 8) {
                             $('#course-content').append(listCourse(index, value));
-                        }
+                        // }
                     });
                  else {
                     $('#course-content').append(empty());
