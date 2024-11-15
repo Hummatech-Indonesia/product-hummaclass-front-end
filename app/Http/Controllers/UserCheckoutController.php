@@ -31,7 +31,7 @@ class UserCheckoutController extends Controller
                 $response = Http::withToken($token)
                     ->maxRedirects(5)
                     ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
-                if ($response->json()['data']) {
+                if (isset($response->json()['data'])) {
                     $subModuleSlug = $response->json()['data']['course']['modules'][0]['sub_modules'][0]['slug'];
                     return redirect()->route('courses.course-lesson.index', $subModuleSlug);
                 }
