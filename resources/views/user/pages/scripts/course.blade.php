@@ -79,12 +79,12 @@
 
         if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
             price = `<h6 class="price" style="font-size:15px">
-                        <del style="font-size:15px">${formatRupiah(value.price)} || ""}</del> ${value.promotional_price}
+                        <del style="font-size:15px">${value.price || ""}</del> ${value.promotional_price}
                     </h6>`;
         } 
         else if (!value.promotional_price || parseFloat(value.promotional_price) === 0) {
             price = `<h6 class="price" style="font-size:15px">
-                        <del style="font-size:15px">${formatRupiah(value.price)} || ""}</del> Gratis
+                        <del style="font-size:15px">${formatRupiah(value.price) || ""}</del> Gratis
                     </h6>`;
         } 
         else {
