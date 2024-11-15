@@ -56,7 +56,6 @@
                     $('#course-content').append(empty());
                 }
 
-                // Menampilkan/menyembunyikan elemen berdasarkan jumlah kursus
                 if (response.data.data.length === 8) {
                     $('#other-courses').show();
                 } else {
@@ -77,14 +76,19 @@
     function listCourse(index, value) {
         var url = "{{ config('app.api_url') }}";
         let price;
-        if (value.promotional_price != null && value.promotional_price >= 1) {
-            price =
-                `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> ${formatRupiah(value.promotional_price)}</h6>`;
-        } else if (value.promotional_price === 0) {
-            price =
-                `<h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del> Gratis</h6>`;
-        } else {
-            price = `<h6 class="price">${formatRupiah(value.price)}</h6>`;
+
+        if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
+            price = `<h6 class="price" style="font-size:15px">
+                        <del style="font-size:15px">${formatRupiah(value.price)} || ""}</del> ${value.promotional_price}
+                    </h6>`;
+        } 
+        else if (!value.promotional_price || parseFloat(value.promotional_price) === 0) {
+            price = `<h6 class="price" style="font-size:15px">
+                        <del style="font-size:15px">${formatRupiah(value.price)} || ""}</del> Gratis
+                    </h6>`;
+        } 
+        else {
+            price = `<h6 class="price">${(!value.price || value.price)} === '0') ? "Gratis" : formatRupiah(value.price)}}</h6>`;
         }
 
         return `
