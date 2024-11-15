@@ -7,6 +7,29 @@
             background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
         }
     </style>
+
+    <style>
+        .info-card {
+            border-radius: 8px;
+        }
+
+        .info-card .info-icon {
+            background-color: #ffdca9;
+            color: #ff8800;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        /* .info-card .info-header {
+            font-weight: bold;
+            color: #ff8800;
+        } */
+    </style>
 @endsection
 
 @section('content')
@@ -61,39 +84,12 @@
         </a>
     </div>
 
-    <style>
-        .info-card {
-            background-color: #fff7eb;
-            border: 1px solid #ffdca9;
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .info-card .info-icon {
-            background-color: #ffdca9;
-            color: #ff8800;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-        }
-
-        .info-card .info-header {
-            font-weight: bold;
-            color: #ff8800;
-        }
-    </style>
-
-
-    <div class="info-card mt-3 mb-5">
+    <div class="info-card bg-light-warning border border-warning mt-3 mb-5 p-4 border-1">
         <div class="d-flex align-items-center mb-2">
             <div class="info-icon">
-                <i class="bi bi-info-lg">!</i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="7.25" r="1.25" fill="currentColor"/><path fill="currentColor" d="M11 10h2v8h-2z"/></svg>
             </div>
-            <div class="info-header">Informasi</div>
+            <div class="info-header text-warning fw-semibold">Informasi</div>
         </div>
         <ul class="mb-0">
             <li>Pastikan kursus yang anda akan tambahkan sudah sesuai dan benar, sebelum menekan tombol checklis</li>

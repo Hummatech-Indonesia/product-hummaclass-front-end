@@ -174,6 +174,11 @@
                                     aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
+                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktor</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="task-tab" data-bs-toggle="tab"
                                     data-bs-target="#task-tab-pane" type="button" role="tab"
                                     aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
