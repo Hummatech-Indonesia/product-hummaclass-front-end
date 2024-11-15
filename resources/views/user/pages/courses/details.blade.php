@@ -403,11 +403,11 @@
                     $('#review-rating').append(response.data.rating);
                     $('#review-rating-count').append(response.data.course_review_count);
 
-                    $('.rating1').html(response.data.ratings[1])
-                    $('.rating2').html(response.data.ratings[2])
-                    $('.rating3').html(response.data.ratings[3])
-                    $('.rating4').html(response.data.ratings[4])
-                    $('.rating5').html(response.data.ratings[5])
+                    $('.rating1').html(response.data.ratings[1] || 0)
+                    $('.rating2').html(response.data.ratings[2] || 0)
+                    $('.rating3').html(response.data.ratings[3] || 0)
+                    $('.rating4').html(response.data.ratings[4] || 0)
+                    $('.rating5').html(response.data.ratings[5] || 0)
 
                     $('.percentRating1')
                         .css('width', response.data.ratings_percentage[1] + '%')
