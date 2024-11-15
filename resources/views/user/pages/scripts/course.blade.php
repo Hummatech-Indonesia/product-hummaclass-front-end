@@ -37,7 +37,6 @@
         });
     });
 
-
     $(document).ready(function() {
         $.ajax({
             type: "GET",
@@ -47,26 +46,24 @@
             },
             dataType: "json",
             success: function(response) {
-
                 if (response.data.data.length > 0) {
                     $.each(response.data.data, function(index, value) {
-                        // if (index < 8) {
+                        if (index < 8) {
                             $('#course-content').append(listCourse(index, value));
-                        // }
+                        }
                     });
-                 else {
+                } else {
                     $('#course-content').append(empty());
                 }
-                
 
-                if (courseData.length === 8) {
+                // Menampilkan/menyembunyikan elemen berdasarkan jumlah kursus
+                if (response.data.data.length === 8) {
                     $('#other-courses').show();
                 } else {
                     $('#other-courses').hide();
-                }
+                }
             },
             error: function(xhr) {
-
                 Swal.fire({
                     title: "Terjadi Kesalahan!",
                     text: "Tidak dapat memuat data kategori.",
@@ -75,6 +72,7 @@
             }
         });
     });
+
 
     function listCourse(index, value) {
         var url = "{{ config('app.api_url') }}";
