@@ -375,7 +375,7 @@
                     $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
                     let price = response.data.promotional_price ?? response.data.price;
-                    $('#price-course').html(price == 0 ? "Gratis" : formatRupiah(price));
+                    $('#price-course').html(price === "Rp. 0" ? "Gratis" : formatRupiah(price));
                     if (response.data.is_admin) {
                         $('#btn-checkout').text('Lihat Kursus');
                     }
