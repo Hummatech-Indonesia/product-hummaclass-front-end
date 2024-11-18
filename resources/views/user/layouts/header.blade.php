@@ -341,9 +341,10 @@
                 dataType: "json",
                 success: function(response) {
                     var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
-                    url + '/storage/' + response.data.photo :
+                        url + '/storage/' + response.data.photo :
                         '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
 
+                    console.log("Profile User Image URL:", profileUser);
                     $('.photo-user').attr('src', profileUser);
                 },
                 error: function(xhr) {
