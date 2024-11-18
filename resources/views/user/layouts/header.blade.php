@@ -261,11 +261,12 @@
                             </div>
                             <div class="mobile-login-btn">
                                 @session('user')
-                                <a href="{{ route('dashboard.users.profile', session('user')['id']) }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
-                                    alt="" class="injectable photo-user"></a>
+                                    <a href="{{ route('dashboard.users.profile', session('user')['id']) }}"><img
+                                            src="{{ asset('assets/img/icons/user.svg') }}" alt=""
+                                            class="injectable photo-user"></a>
                                 @else
-                                <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
-                                        alt="" class="injectable"></a>
+                                    <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
+                                            alt="" class="injectable"></a>
                                 @endsession
                             </div>
                             <div class="mobile-nav-toggler"><i class="tg-flaticon-menu-1"></i></div>
@@ -335,29 +336,29 @@
 
 <script>
     $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/profile",
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data
-                        .photo) ?
-                    response.data.photo :
-                    '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-                console.log(profileUser);
-                $('.sidebar-user-name').html(response.data.name);
-                $('.photo-user').attr('src', profileUser);
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data profil.",
-                    icon: "error"
-                });
-            }
-        });
+        @if (auth()->check()) // Memastikan hanya dijalankan jika user login
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/profile",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
+                            response.data.photo) ?
+                        response.data.photo :
+                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    $('.photo-user').attr('src', profileImage1);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data profil.",
+                        icon: "error"
+                    });
+                }
+            });
+        @endif
     });
 </script>
