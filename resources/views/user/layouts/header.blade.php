@@ -260,8 +260,13 @@
                                 </ul>
                             </div>
                             <div class="mobile-login-btn">
+                                @session('user')
+                                <a href="{{ route('dashboard.users.profile', session('user')['id']) }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
+                                    alt="" class="injectable photo-user"></a>
+                                @else
                                 <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
                                         alt="" class="injectable"></a>
+                                @endsession
                             </div>
                             <div class="mobile-nav-toggler"><i class="tg-flaticon-menu-1"></i></div>
                         </nav>
