@@ -244,7 +244,7 @@
                                                 <div class="user-profile">
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
-                                                        <img class="rounded rounded-circle photo-user"
+                                                        <img src="" class="rounded rounded-circle photo-user"
                                                             style="width: 48px; height: 48px; object-fit: cover;"
                                                             alt="">
                                                     </a>
