@@ -37,7 +37,7 @@
                     </div>
                     <div class="col col-md-6">
                         <label for="" class="form-label">Nomor Telepon</label>
-                        <input type="text" id="phone_number" name="phone_number" class="form-control">
+                        <input type="number" id="phone_number" name="phone_number" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
