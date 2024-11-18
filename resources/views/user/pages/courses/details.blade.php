@@ -287,7 +287,7 @@
             function reviewContent(value) {
                 var url = "{{ config('app.api_url') }}";
                 const reviewText = value.review ? value.review : 'No review available.';
-                const formattedReview = reviewText.replace(/(.{1,110})(?=\S)/g, "$1<br>");
+                const formattedReview = reviewText.replace(/(.{1,80})(?=\S)/g, "$1<br>");
 
                 return `
                 <div class="course-review-head">
