@@ -284,7 +284,7 @@
                 dataType: "json",
                 success: function(response) {
 
-                    if (response.data.user_quizzes.length >= 1) {
+                    if (response.data.user_quizzes == null) {
                         const createdAtStr = response.data.user_quizzes.created_at;
                         const createdAt = new Date(createdAtStr);
                         createdAt.setMinutes(createdAt.getMinutes() + response.data
