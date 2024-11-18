@@ -339,11 +339,11 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
-                            response.data.photo) ?
-                        response.data.photo :
-                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-                    $('.photo-user').attr('src', profileImage1);
+                    var photoUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
+                        response.data.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+
+                    $('.photo-user').attr('src', photoUser);
+
                 },
                 error: function(xhr) {
                     Swal.fire({
