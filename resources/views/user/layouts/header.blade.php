@@ -244,7 +244,7 @@
                                                 <div class="user-profile">
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
-                                                        <img class="rounded rounded-circle photo-user" width="48px" alt="">
+                                                        <img class="rounded rounded-circle photo-user" style="width: 48px; height: 48px; object-fit: cover;" alt="">
                                                     </a>
                                                     <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
                                                 </div>
