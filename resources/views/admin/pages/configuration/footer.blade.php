@@ -105,7 +105,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/contact",
+                    url: "{{ config('app.api_url') }}/api/contact?_method=PATCH",
                     data: formData,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
@@ -133,7 +133,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/contact-detail",
+                url: "{{ config('app.api_url') }}/api/contact",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
