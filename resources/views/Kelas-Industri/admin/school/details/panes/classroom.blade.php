@@ -16,7 +16,7 @@
 
         <div class="col-lg-9 col-md-12">
             <div class="d-flex justify-content-between mb-3">
-                <h5 class="fw-semibold">Detail Kelas - XII RPL 1</h5>
+                <h5 class="fw-semibold">Detail Kelas - <span id="classroom_name">XII RPL 1</span></h5>
                 <div>
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-edit-class">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 28 28">
@@ -58,17 +58,10 @@
                         <div class="d-flex gap-3 mb-3 mt-3">
                             <div class="position-relative">
                                 <input type="text" class="form-control product-search px-4 ps-5"
-                                    style="background-color: #fff" name="name"
-                                    value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
+                                    style="background-color: #fff" id="search-name" name="name" value=""
+                                    placeholder="Search">
                                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
                                     style="color: #8B8B8B"></i>
-                            </div>
-                            <div class="position-relative">
-                                <select name="" id="" class="form-select">
-                                    <option value="">Jenis Kelamin</option>
-                                    <option value="laki-laki">Laki-laki</option>
-                                    <option value="perempuan">Perempuan</option>
-                                </select>
                             </div>
                         </div>
                     </form>
@@ -97,12 +90,24 @@
     <script>
         $(document).ready(function() {
             var slug = "{{ $slug }}";
-
+            let debounceTimer;
+            let name;
 
             $(document).on('change', '.filter-radio', function() {
                 let selectedValue = $('input[name="filter"]:checked').val();
+                name = $('input[name="filter"]:checked').data('name');
+                $('#classroom_name').html(name); // Show classroom name
 
+                // Update student classrooms based on filter
                 updateStudentClassrooms(selectedValue);
+            });
+
+            $('#search-name').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    let selectedValue = $('input[name="filter"]:checked').val();
+                    updateStudentClassrooms(selectedValue);
+                }, 500);
             });
 
             function updateStudentClassrooms(classroomId) {
@@ -115,17 +120,18 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     dataType: "json",
-                    contentType: false,
-                    processData: false,
+                    data: {
+                        name: $('#search-name').val(),
+                    },
                     success: function(response) {
+                        $('#table-user-classroom').empty();
                         if (response.data.data.length > 0) {
                             $.each(response.data.data, function(index, value) {
-                                // $('#contentNews').append(news(index, value));
+                                $('#table-user-classroom').append(studentClassroom(index,
+                                    value));
                             });
-                            $('#pagination').html(handlePaginate(response.data.paginate))
-
                         } else {
-                            $('#contentNews').append(emptyCard());
+                            $('#table-user-classroom').append(emptyCard());
                         }
                     },
                     error: function(response) {
@@ -145,11 +151,12 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
-                contentType: false,
-                processData: false,
                 success: function(response) {
                     if (response.data.length > 0) {
-                        updateStudentClassrooms(response.data[0].id)
+                        $('#classroom_name').html(response.data[0].name);
+
+                        updateStudentClassrooms(response.data[0].id);
+
                         $.each(response.data, function(index, value) {
                             $('#list-classroom').append(listClassroom(index, value));
                         });
@@ -166,13 +173,49 @@
                 }
             });
 
-            // Fungsi untuk membuat list classroom
+
+            function studentClassroom(index, value) {
+                return `
+                <tr class="fw-semibold">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
+                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                height="40" alt="">
+                            <div class="ms-3">
+                                <h6 class="fs-4 fw-semibold mb-0">${value.student}</h6>
+                                <span class="fw-normal">${value.email}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${value.gender}</td>
+                    <td>${value.nisn}</td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-sm text-white" data-bs-toggle="modal"
+                                data-bs-target="#modal-detail-student"
+                                style="background-color: #9425FE">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 24 24">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2">
+                                        <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                        <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                    </g>
+                                </svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `
+            }
+
             function listClassroom(index, value) {
                 let checked = (index == 0) ? 'checked' : ''; // Pilih yang pertama sebagai default checked
                 return `
                 <li>
                     <div class="form-check form-check-inline sidebar-link filter-option">
-                        <input class="form-check-input filter-radio" type="radio" name="filter" 
+                        <input class="form-check-input filter-radio" data-name="${value.name}" type="radio" name="filter" 
                             id="option${index}" value="${value.id}" ${checked} />
                         <label class="form-check-label filter-label" for="option${index}">
                             <div class="d-flex">
