@@ -127,16 +127,19 @@
                                                     <label for="currentpassword">Password Lama</label>
                                                     <input id="old_password" name="old_password" type="password"
                                                         placeholder="Password Lama">
+                                                    <div class="invalid-feedback"></div>
                                                 </div>
                                                 <div class="form-grp">
                                                     <label for="newpassword">Password Baru</label>
                                                     <input id="password" name="password" type="password"
                                                         placeholder="Password Baru">
+                                                    <div class="invalid-feedback"></div>
                                                 </div>
                                                 <div class="form-grp">
                                                     <label for="repassword">Konfirmasi Password</label>
                                                     <input id="password_confirmation" name="password_confirmation"
                                                         type="password" placeholder="Re-Type New Password">
+                                                    <div class="invalid-feedback"></div>
                                                 </div>
                                                 <div class="submit-btn mt-25">
                                                     <button type="submit" class="btn">Update Password</button>
@@ -307,7 +310,6 @@
 
     <script>
         $(document).ready(function() {
-            // edit password
             $('#form-edit-password').submit(function(e) {
                 e.preventDefault();
 
@@ -315,7 +317,6 @@
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
-
 
                 $.ajax({
                     url: "{{ config('app.api_url') }}" + "/api/password/update" + "?_method=PATCH",
@@ -327,29 +328,34 @@
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil mengubah data.",
+                            text: "Password berhasil diperbarui.",
                             icon: "success"
                         }).then(function(param) {
-
+                            // Lakukan sesuatu setelah sukses
                         });
                     },
                     error: function(error) {
-                        let errors = error.responseJSON.data || {};
-                        let message = error.responseJSON.meta.message;
-                        if (errors) {
-                            for (let key in errors) {
-                                if (errors.hasOwnProperty(key)) {
-                                    if (key == 'description') {
-                                        let feedback = $(`.invalid-feedback`).closest(
-                                            `.${key}`);
-                                        feedback.text(errors[key])
-                                        feedback.removeClass('d-none')
-                                    } else {
-                                        $(`#${key}`).addClass('is-invalid')
-                                            .closest('.invalid-feedback').text(errors[key]);
-                                    }
-                                }
-                            }
+                        if (error.status === 422) {
+                            let errors = error.responseJSON
+                                .data; // Pastikan ini struktur yang tepat
+
+                            // Reset semua error sebelumnya
+                            $('.is-invalid').removeClass('is-invalid');
+                            $('.invalid-feedback').text('');
+
+                            // Tampilkan error baru di bawah input masing-masing
+                            $.each(errors, function(field, messages) {
+                                const inputElement = $(`[name="${field}"]`);
+                                inputElement.addClass('is-invalid');
+                                inputElement.closest('.form-grp').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
                         }
                     }
                 });
