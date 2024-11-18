@@ -244,9 +244,7 @@
                                                 <div class="user-profile">
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
-                                                        <img src="{{ !empty(session('user')['photo']) ? url('storage/'.session('user')['photo']) : asset('assets/img/no-image/no-profile.jpeg') }}" 
-                                                        class="rounded rounded-circle" width="48px" alt="">
-                                                   
+                                                        <img class="rounded rounded-circle photo-user" width="48px" alt="">
                                                     </a>
                                                     <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
                                                 </div>
@@ -326,4 +324,31 @@
             }
         }
     }
+</script>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/profile" ,
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
+                    ? response.data.photo
+                    : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                $('.photo-user').attr('src', profileImage1);
+
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
+            }
+        });
+    });
 </script>
