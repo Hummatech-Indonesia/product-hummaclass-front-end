@@ -25,7 +25,7 @@
             <div class="row">
                 @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
-                   
+
                     <div class="dashboard__content-wrap">
                         <div class="dashboard__content-title">
                             <h4 class="title">Profile Saya</h4>
@@ -58,10 +58,13 @@
                                                         <div class="thumb">
                                                             <img class="detail-photo"
                                                                 src="{{ asset('assets/img/courses/details_instructors02.jpg') }}"
-                                                                alt="img" style="width: 120px;height: 120px;object-fit: cover;">
+                                                                alt="img"
+                                                                style="width: 120px;height: 120px;object-fit: cover;">
                                                         </div>
-                                                        <button type="button" title="Upload Photo" id="uploadPhotoBtn"><i class="fas fa-camera"></i></button>
-                                                        <input type="file" id="profilePhotoInput" name="photo" accept="image/*" style="display:none;">
+                                                        <button type="button" title="Upload Photo" id="uploadPhotoBtn"><i
+                                                                class="fas fa-camera"></i></button>
+                                                        <input type="file" id="profilePhotoInput" name="photo"
+                                                            accept="image/*" style="display:none;">
                                                         <input type="file" id="coverPhotoInput" name="banner"
                                                             accept="image/*" style="display:none;">
                                                     </div>
@@ -79,13 +82,16 @@
                                                                 <label for="firstname">Nama</label>
                                                                 <input id="name" type="text" name="name"
                                                                     value="{{ old('name') }}">
+                                                                <div class="invalid-feedback"></div>
                                                             </div>
+
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-grp">
                                                                 <label for="username">Email</label>
                                                                 <input id="email" name="email" type="text"
                                                                     value="{{ old('email') }}">
+                                                                <div class="invalid-feedback"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
@@ -93,12 +99,14 @@
                                                                 <label for="phonenumber">Phone Number</label>
                                                                 <input id="phone_number" name="phone_number"
                                                                     type="number" value="{{ old('phone_number') }}">
+                                                                <div class="invalid-feedback"></div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-grp">
-                                                        <label for="bio">Bio</label>
+                                                        <label for="address">Alamat</label>
                                                         <textarea id="address" name="address">{{ old('address') }}</textarea>
+                                                        <div class="invalid-feedback"></div>
                                                     </div>
                                                     <input id="gender" name="gender" type="hidden"
                                                         value="{{ old('gender') }}">
@@ -148,149 +156,154 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        // Fetch user data on page load
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/user",
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data kategori.",
-                    icon: "error"
-                });
-            }
-        });
-
-        // Trigger file input when "Edit Cover Photo" is clicked
-        $('#editCoverPhotoBtn').click(function(e) {
-            e.preventDefault();
-            $('#coverPhotoInput').click();
-        });
-
-        // Trigger file input when "Upload Photo" button is clicked
-        $('#uploadPhotoBtn').click(function() {
-            $('#profilePhotoInput').click();
-        });
-
-        $('#edit-profile-form').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            
-
-            formData.append('_method', 'PATCH');
-
+    <script>
+        $(document).ready(function() {
+            // Fetch user data on page load
             $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/profile-update",
-                data: formData,
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/user",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
-                contentType: false,
-                processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data.",
-                        icon: "success"
-                    }).then(() => {
-                    });
-                },
-                error: function(response) {
-                    if (response.status === 422) {
-                        let errors = response.responseJSON.data;
 
-                        $.each(errors, function(field, messages) {
-                            $(`[name="${field}"]`).addClass('is-invalid');
-                            $(`[name="${field}"]`).closest('.col').find(
-                                '.invalid-feedback').text(messages[0]);
-                        });
-                    } else {
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+
+            // Trigger file input when "Edit Cover Photo" is clicked
+            $('#editCoverPhotoBtn').click(function(e) {
+                e.preventDefault();
+                $('#coverPhotoInput').click();
+            });
+
+            // Trigger file input when "Upload Photo" button is clicked
+            $('#uploadPhotoBtn').click(function() {
+                $('#profilePhotoInput').click();
+            });
+
+            $('#edit-profile-form').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                formData.append('_method', 'PATCH');
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/profile-update",
+                    data: formData,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
                         Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
+                            title: "Sukses",
+                            text: "Berhasil menambah data.",
+                            icon: "success"
+                        }).then(() => {});
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $('.is-invalid').removeClass('is-invalid');
+                            $('.invalid-feedback').text('');
+
+                            $.each(errors, function(field, messages) {
+                                const inputElement = $(`[name="${field}"]`);
+                                inputElement.addClass('is-invalid');
+                                inputElement.closest('.form-grp').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
+                });
+            });
+
+
+            // Handle cover photo input change event
+            $('#coverPhotoInput').change(function() {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.banner-user').css('background-image', 'url(' + e.target.result + ')');
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle profile photo input change event
+            $('#profilePhotoInput').change(function() {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('.detail-photo').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/profile",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#name').val(response.data.name);
+                    $('#email').val(response.data.email);
+                    $('#phone_number').val(response.data.phone_number);
+                    $('#address').val(response.data.address);
+                    $('.detail-name').text(response.data.name);
+                    $('#gender').val(response.data.gender);
+
+                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response
+                            .data.photo) ?
+                        response.data.photo :
+                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    $('.detail-photo').attr('src', profileImage1);
+                    var bannerImage1 = response.data.banner && /\.(jpeg|jpg|gif|png)$/i.test(response
+                            .data.banner) ?
+                        response.data.banner :
+                        '{{ asset('assets/img/no-image/no-image.jpg') }}';
+                    $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data modul.",
+                        icon: "error"
+                    });
                 }
             });
         });
-
-        // Handle cover photo input change event
-        $('#coverPhotoInput').change(function() {
-            var file = this.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('.banner-user').css('background-image', 'url(' + e.target.result + ')');
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Handle profile photo input change event
-        $('#profilePhotoInput').change(function() {
-            var file = this.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('.detail-photo').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-       
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/profile" ,
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                $('#name').val(response.data.name);
-                $('#email').val(response.data.email);
-                $('#phone_number').val(response.data.phone_number);
-                $('#address').val(response.data.address);
-                $('.detail-name').text(response.data.name);
-                $('#gender').val(response.data.gender);
-                
-                var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
-                    ? response.data.photo
-                    : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';                    
-                $('.detail-photo').attr('src', profileImage1);
-                var bannerImage1 = response.data.banner && /\.(jpeg|jpg|gif|png)$/i.test(response.data.banner) 
-                    ? response.data.banner
-                    : '{{ asset('assets/img/no-image/no-image.jpg') }}';
-                $('.banner-user').css('background-image', 'url(' + bannerImage1 + ')');
-               
-            },
-            error: function(xhr) {
-                Swal.fire({
-                    title: "Terjadi Kesalahan!",
-                    text: "Tidak dapat memuat data modul.",
-                    icon: "error"
-                });
-            }
-        });
-    });
-</script>
+    </script>
 
     <script>
         $(document).ready(function() {
