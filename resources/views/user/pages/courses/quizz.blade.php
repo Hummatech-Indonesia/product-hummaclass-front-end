@@ -283,34 +283,37 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    const createdAtStr = response.data.user_quizzes.created_at;
-                    const createdAt = new Date(createdAtStr);
-                    createdAt.setMinutes(createdAt.getMinutes() + response.data
-                        .duration);
-                    const targetTime = createdAt;
+
+                    if (response.data.user_quizzes.length >= 1) {
+                        const createdAtStr = response.data.user_quizzes.created_at;
+                        const createdAt = new Date(createdAtStr);
+                        createdAt.setMinutes(createdAt.getMinutes() + response.data
+                            .duration);
+                        const targetTime = createdAt;
 
 
-                    const options = {
-                        day: '2-digit',
-                        month: 'long', // Nama bulan lengkap dalam bahasa Indonesia
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        hour12: false // Format 24 jam
-                    };
+                        const options = {
+                            day: '2-digit',
+                            month: 'long', // Nama bulan lengkap dalam bahasa Indonesia
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                            hour12: false // Format 24 jam
+                        };
 
-                    const formattedTargetTime = new Intl.DateTimeFormat('id-ID', options).format(
-                        targetTime);
+                        const formattedTargetTime = new Intl.DateTimeFormat('id-ID', options).format(
+                            targetTime);
 
-                    const now = new Date();
+                        const now = new Date();
 
-                    if (now < targetTime) {
-                        $('#start_quiz').hide();
-                        $('#alert').append(
-                            `<div class="alert alert-warning" role="alert">
+                        if (now < targetTime) {
+                            $('#start_quiz').hide();
+                            $('#alert').append(
+                                `<div class="alert alert-warning" role="alert">
                                 Anda dapat mengerjakan ujian kembali pada ${formattedTargetTime}
                             </div>`);
+                        }
                     }
 
 
