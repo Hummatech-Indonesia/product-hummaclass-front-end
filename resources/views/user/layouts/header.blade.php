@@ -330,28 +330,29 @@
 
 <script>
     $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/profile",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
-                        response.data.photo :
-                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-                    console.log(profileUser);
-
-                    $('.photo-user').attr('src', profileUser);
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data profil.",
-                        icon: "error"
-                    });
-                }
-            });
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/profile",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data
+                        .photo) ?
+                    response.data.photo :
+                    '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                console.log(profileUser);
+                $('.sidebar-user-name').html(response.data.name);
+                $('.photo-user').attr('src', profileUser);
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data profil.",
+                    icon: "error"
+                });
+            }
+        });
     });
 </script>
