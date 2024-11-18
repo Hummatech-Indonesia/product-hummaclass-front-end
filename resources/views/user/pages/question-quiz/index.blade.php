@@ -157,7 +157,7 @@
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
-                url: `{{ config('app.api_url') }}/api/quizzes/working/${id}/?page=` + page,
+                url: `{{ config('app.api_url') }}/api/quizzes/working/${id}?page=` + page,
                 dataType: "json",
                 success: function(response) {
                     const createdAtStr = response.data.user_quiz.created_at;
