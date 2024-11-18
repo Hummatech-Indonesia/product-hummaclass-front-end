@@ -111,9 +111,6 @@
         $.ajax({
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/faq-user"
-            , headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
             , dataType: "json"
             , success: function(response) {
 
