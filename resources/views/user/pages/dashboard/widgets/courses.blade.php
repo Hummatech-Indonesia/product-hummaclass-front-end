@@ -169,6 +169,7 @@
                         } else {
                             $('#process_courses').append(empty());
                             $('#finished_courses').append(empty());
+                            $('.pagination__wrap').hide();
                         }
                     },
 
