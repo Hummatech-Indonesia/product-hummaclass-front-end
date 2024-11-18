@@ -93,6 +93,12 @@
         .course-review-head .review-author-content .author-name {
             justify-content: start;
         }
+        .review-text {
+            max-width: 500px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin: 0;
+        }
 
     </style>
 @endsection
@@ -286,9 +292,7 @@
 
             function reviewContent(value) {
                 var url = "{{ config('app.api_url') }}";
-                const reviewText = value.review ? value.review : 'No review available.';
-                const formattedReview = reviewText.replace(/(.{1,70})(?=\S)/g, "$1<br>");
-
+                const reviewText = value.review ? value.review : 'Tidak ada review.';
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
@@ -305,7 +309,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p>${formattedReview}</p>
+                <p class="review-text">${reviewText}</p>
                 </div>
                 </div>
             `;
