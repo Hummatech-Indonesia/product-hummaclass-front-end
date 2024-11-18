@@ -213,7 +213,9 @@
                             title: "Sukses",
                             text: "Berhasil mengubah data.",
                             icon: "success"
-                        }).then(() => {});
+                        }).then(() => {
+                            location.reload();
+                        });
                     },
                     error: function(response) {
                         if (response.status === 422) {
