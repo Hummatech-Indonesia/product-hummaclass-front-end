@@ -22,6 +22,7 @@
                 // $('#detail-thumbnail').attr('src', response.data.thumbnail);
                 // $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
+                $('#detail-title').html(response.data.title);
                 $('#detail-created').html(response.data.created);
                 $('#detail-description').html(response.data.description);
             },
