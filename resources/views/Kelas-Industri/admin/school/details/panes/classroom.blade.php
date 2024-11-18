@@ -80,6 +80,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <nav id="pagination_student"></nav>
                 </div>
             </div>
         </div>
@@ -130,6 +131,8 @@
                                 $('#table-user-classroom').append(studentClassroom(index,
                                     value));
                             });
+                            $('#pagination_student').html(handlePaginate(response.data.paginate))
+
                         } else {
                             $('#table-user-classroom').append(emptyCard());
                         }
