@@ -37,7 +37,7 @@
                     </div>
                     <div class="col col-md-6">
                         <label for="" class="form-label">Nomor Telepon</label>
-                        <input type="text" id="phone_number" name="phone_number" class="form-control">
+                        <input type="number" id="phone_number" name="phone_number" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                             Kembali
                         </button>
                         <button type="submit" class="btn text-white font-medium" style="background-color: #9425FE">
-                            Tambah
+                            Simpan
                         </button>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/contact",
+                    url: "{{ config('app.api_url') }}/api/contact?_method=PATCH",
                     data: formData,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
@@ -133,7 +133,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/contact-detail",
+                url: "{{ config('app.api_url') }}/api/contact",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
