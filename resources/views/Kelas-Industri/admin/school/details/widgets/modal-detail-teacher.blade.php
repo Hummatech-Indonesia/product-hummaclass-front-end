@@ -9,7 +9,9 @@
             <div class="modal-body text-center">
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <img id="image-detail" src="{{ asset('assets/img/no-image/no-profile.jpeg') }}" class="rounded-circle user-profile mb-3" style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
+                        <img id="image-detail" src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
+                            class="rounded-circle user-profile mb-3"
+                            style="object-fit: cover; width: 150px; height: 150px;" alt="User Profile Picture" />
                     </div>
                     <div class="col-12">
                         <h5 class="fw-semibold">Wali Kelas - X RPL 1</h5>
@@ -68,14 +70,16 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Alamat:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">ddfvfe</p>
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">ddfvfe
+                            </p>
                         </div>
                         <hr>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn text-white" style="background-color: #9425FE" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn text-white" style="background-color: #9425FE"
+                    data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

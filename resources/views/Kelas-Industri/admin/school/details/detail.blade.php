@@ -70,31 +70,33 @@
                     <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" alt="School Logo" class="img-fluid mb-2">
                 </div>
                 <div class="col-md-8">
-                    <h5 class="card-title">SMK NEGERI 1 KEPANJEN</h5>
+                    <h5 class="card-title" id="name"></h5>
+                    <p id="description"></p>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="d-flex justify-content-between mb-3"><strong>Kepala Sekolah:</strong><span> Lasmono S.Pd.
+                    <div class="d-flex justify-content-between mb-3"><strong>Kepala Sekolah:</strong><span id="head_master">
+                            Lasmono S.Pd.
                             Mm</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-3"><strong>NPSN:</strong><span> 123123123</span></div>
-                    <div class="d-flex justify-content-between mb-3"><strong>Nomor Telepon:</strong><span>
-                            082229414949</span></div>
-                    <div class="d-flex justify-content-between mb-3"><strong>Email:</strong><span>
-                            smkn1kepanjen@gmail.com</span>
-                    </div>
+                    <div class="d-flex justify-content-between mb-3"><strong>NPSN:</strong><span id="npsn">
+                            123123123</span></div>
+
                 </div>
                 <div class="col-md-6">
-                    <div class="d-flex justify-content-between mb-3"><strong>Jenjang Pendidikan:</strong><span>
-                            SMA/SMK/MA</span>
+                    <div class="d-flex justify-content-between mb-3"><strong>Email:</strong><span id="email">
+                            smkn1kepanjen@gmail.com</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-3"><strong>Akreditasi:</strong><span> C</span></div>
-                    <div class="d-flex justify-content-between mb-3"><strong>Deskripsi:</strong><span> -</span></div>
-                    <div class="d-flex justify-content-between mb-3"><strong>Alamat:</strong><span class="text-end"> Jl.
+                    <div class="d-flex justify-content-between mb-3"><strong>Nomor Telepon:</strong><span id="phone_number">
+                            082229414949</span></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="d-flex mb-3 me-3"><strong>Alamat:</strong><span class="" id="address"> Jl.
                             Ngadiluwih,
                             Kedungpedaringan, Kec. Kepanjen, Kabupaten Malang, Jawa Timur 65163, Indonesia</span></div>
+
                 </div>
             </div>
         </div>
@@ -168,13 +170,14 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data.",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = "/admin/courses";
-                    });
+                    $('#head_master').html(response.data.head_master);
+                    $('#npsn').html(response.data.npsn);
+                    $('#phone_number').html(response.data.phone_number);
+                    $('#name').html(response.data.name);
+                    $('#email').html(response.data.email);
+                    $('#address').html(response.data.address);
+                    $('#description').html(response.data.description);
+
                 },
                 error: function(response) {
                     Swal.fire({
