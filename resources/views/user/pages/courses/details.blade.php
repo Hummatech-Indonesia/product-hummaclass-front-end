@@ -286,6 +286,12 @@
 
             function reviewContent(value) {
                 var url = "{{ config('app.api_url') }}";
+                const reviewText = value.review ? value.review : 'No review available.';
+                const maxLength = 120;
+                const formattedReview = reviewText.length > maxLength 
+                    ? reviewText.substring(0, maxLength) + '...' 
+                    : reviewText;
+
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
@@ -302,7 +308,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p></p>
+                <p>${formattedReview}</p>
                 </div>
                 </div>
             `;
