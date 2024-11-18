@@ -303,7 +303,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p> ${formattedReview}</p>
+                <p></p>
                 </div>
                 </div>
             `;
