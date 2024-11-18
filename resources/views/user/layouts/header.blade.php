@@ -331,7 +331,6 @@
 <script>
     $(document).ready(function() {
         var url = "{{ config('app.api_url') }}";
-        @if (auth()->check())
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/profile",
@@ -343,8 +342,8 @@
                     var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
                         url + '/storage/' + response.data.photo :
                         '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    console.log(profileUser);
 
-                    console.log("Profile User Image URL:", profileUser);
                     $('.photo-user').attr('src', profileUser);
                 },
                 error: function(xhr) {
@@ -355,6 +354,5 @@
                     });
                 }
             });
-        @endif
     });
 </script>
