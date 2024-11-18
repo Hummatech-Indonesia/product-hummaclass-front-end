@@ -296,7 +296,7 @@
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
-                    <img src="${value.user.photo && value.user.photo !== url + '/storage' ? value.user.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 64px; height: 64px; object-fit: cover;" alt="img">
+                    <img src="${value.user_photo && value.user_photo !== url + '/storage' ? value.user_photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 64px; height: 64px; object-fit: cover;" alt="img">
                 </div>
                 <div class = "review-author-content" >
                 <div class="author-name">
