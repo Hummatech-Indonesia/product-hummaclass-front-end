@@ -330,6 +330,7 @@
 
 <script>
     $(document).ready(function() {
+        var url = "{{ config('app.api_url') }}";
         @if (auth()->check())
             $.ajax({
                 type: "GET",
@@ -340,11 +341,10 @@
                 dataType: "json",
                 success: function(response) {
                     var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
-                        response.data.photo :
+                    url + '/storage/' + response.data.photo :
                         '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
 
                     $('.photo-user').attr('src', profileUser);
-
                 },
                 error: function(xhr) {
                     Swal.fire({
