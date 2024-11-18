@@ -76,14 +76,6 @@
                             <div class="row" id="list-point-exchange">
 
                             </div>
-                            <nav class="pagination__wrap mt-30">
-                                <ul class="list-wrap">
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="/point-exchange">2</a></li>
-                                    <li><a href="/point-exchange">3</a></li>
-                                    <li><a href="/point-exchange">4</a></li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>
