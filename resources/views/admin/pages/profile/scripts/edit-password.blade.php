@@ -20,7 +20,7 @@
                 success: function(response) {
                     Swal.fire({
                         title: "Success",
-                        text: "Berhasil mengupdate data",
+                        text: "Berhasil mengubah data",
                         icon: "success"
                     }).then(function(param) {
                         window.location.href = "/admin/profile";
