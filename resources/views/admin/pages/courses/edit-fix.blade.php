@@ -86,12 +86,12 @@
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="form-actions mt-3">
-                    <div class="text-end">
+                    <div class="text-end d-flex gap-2">
                         <button type="reset" class="btn btn-danger text-white font-medium back">
                             Kembali
                         </button>
                         <button type="submit" style="background-color: #9425FE;" class="btn text-white font-medium">
-                            Tambah
+                            Simpan
                         </button>
                     </div>
                 </div>
