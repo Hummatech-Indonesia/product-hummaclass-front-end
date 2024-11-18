@@ -82,7 +82,7 @@
                             Kembali
                         </button>
                         <button type="submit" class="btn text-white font-medium" style="background-color: #9425FE">
-                            Tambah
+                            Simpan
                         </button>
                     </div>
                 </div>
