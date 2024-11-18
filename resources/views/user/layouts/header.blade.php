@@ -339,10 +339,11 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    var photoUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
-                        response.data.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) ?
+                        response.data.photo :
+                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
 
-                    $('.photo-user').attr('src', photoUser);
+                    $('.photo-user').attr('src', profileUser);
 
                 },
                 error: function(xhr) {
