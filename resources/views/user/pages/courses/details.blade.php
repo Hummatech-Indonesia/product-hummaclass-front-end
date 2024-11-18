@@ -94,7 +94,7 @@
             justify-content: start;
         }
         .review-text {
-            max-width: 500px;
+            max-width: 700px;
             word-wrap: break-word;
             overflow-wrap: break-word;
             margin: 0;
