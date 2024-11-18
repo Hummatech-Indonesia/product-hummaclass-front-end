@@ -286,7 +286,6 @@
 
             function reviewContent(value) {
                 var url = "{{ config('app.api_url') }}";
-                const formattedReview = value.review.replace(/(.{120})/g, "$1\n");
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
