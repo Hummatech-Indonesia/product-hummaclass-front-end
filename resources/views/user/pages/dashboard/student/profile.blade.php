@@ -313,8 +313,8 @@
                     data: formData,
                     success: function(response) {
                         Swal.fire({
-                            title: "Success",
-                            text: response.meta.title,
+                            title: "Sukses",
+                            text: "Berhasil menambah data.",
                             icon: "success"
                         }).then(function(param) {
 
