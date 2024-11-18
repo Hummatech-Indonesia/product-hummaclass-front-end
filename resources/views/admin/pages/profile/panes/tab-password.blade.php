@@ -3,15 +3,15 @@
     <div class="row mt-4">
         <div class="col-lg-12 mb-3">
             <label for="" class="form-label">Password Lama:</label>
-            <input type="text" class="form-control" value="" id="name" placeholder="Password Lama" disabled>
+            <input type="password" class="form-control" value="" id="name" placeholder="Password Lama" disabled>
         </div>
         <div class="col-lg-12 mb-3">
             <label for="" class="form-label">Password Baru:</label>
-            <input type="text" class="form-control" id="email" placeholder="Password Baru" disabled>
+            <input type="password" class="form-control" id="email" placeholder="Password Baru" disabled>
         </div>
         <div class="col-lg-12 mb-3">
             <label for="" class="form-label">Konfirmasi Password:</label>
-            <input type="text" class="form-control" id="gender" placeholder="Konfirmasi Password" disabled>
+            <input type="password" class="form-control" id="gender" placeholder="Konfirmasi Password" disabled>
         </div>
     </div>
     <div class="text-end">
@@ -32,15 +32,15 @@
         <div class="row mt-4">
             <div class="col-lg-12 mb-3">
                 <label for="" class="form-label">Password Lama:</label>
-                <input type="text" class="form-control old_password" id="name" placeholder="Password Lama" name="old_password">
+                <input type="password" class="form-control old_password" id="name" placeholder="Password Lama" name="old_password">
             </div>
             <div class="col-lg-12 mb-3">
                 <label for="" class="form-label">Password Baru:</label>
-                <input type="text" class="form-control password" id="email" placeholder="Password Baru" name="password">
+                <input type="password" class="form-control password" id="email" placeholder="Password Baru" name="password">
             </div>
             <div class="col-lg-12 mb-3">
                 <label for="" class="form-label">Konfirmasi Password:</label>
-                <input type="text" class="form-control password_confirmation" id="password_confirmation" placeholder="Konfirmasi Password" name="password_confirmation">
+                <input type="password" class="form-control password_confirmation" id="password_confirmation" placeholder="Konfirmasi Password" name="password_confirmation">
             </div>
         </div>
         <div class="text-end">
