@@ -89,6 +89,11 @@
         .arrow-btn:hover img {
             filter: brightness(0) invert(1);
         }
+
+        .course-review-head .review-author-content .author-name {
+            justify-content: start;
+        }
+
     </style>
 @endsection
 
@@ -280,10 +285,12 @@
             var course;
 
             function reviewContent(value) {
+                var url = "{{ config('app.api_url') }}";
+                const formattedReview = value.review.replace(/(.{120})/g, "$1\n");
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
-                    <img src="${value.user.photo}" alt="img">
+                    <img src="${value.user.photo && value.user.photo !== url + '/storage' ? value.user.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 64px; height: 64px; object-fit: cover;" alt="img">
                 </div>
                 <div class = "review-author-content" >
                 <div class="author-name">
@@ -296,7 +303,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p> ${value.review}</p>
+                <p> ${formattedReview}</p>
                 </div>
                 </div>
             `;
@@ -461,10 +468,11 @@
                                 $('#modal-create-review').modal('hide');
                                 Swal.fire({
                                     title: "Berhasil!",
-                                    text: response.meta.message,
+                                    text: "Berhasil menambah review",
                                     icon: "success"
+                                }).then(() => {
+                                    location.reload();
                                 });
-                                get(1);
                             },
                             error: function(response) {
                                 let errorMessages = [];
