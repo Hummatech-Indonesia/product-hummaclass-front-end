@@ -198,7 +198,7 @@
                                 <td>${value.created}</td>
                                 <td>${value.score}</td>
                                 ${status}
-                                <td><a class="btn btn-primary p-3" href="">Lihat Detail</a></td>
+                                <td><a class="btn btn-primary p-3 py-2 mb-2" href="">Lihat Detail</a></td>
                             </tr>`
                         );
                     });
