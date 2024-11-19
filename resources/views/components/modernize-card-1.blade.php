@@ -111,7 +111,7 @@
                         $('#modal-confirmation').modal('hide');
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil menghapus data.",
+                            text: "Berhasil konfirmasi data.",
                             icon: "success"
                         });
                         getCourse(1);
@@ -127,7 +127,7 @@
                         } else {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menghapus data.",
+                                text: "Ada kesalahan saat konfirmasi data.",
                                 icon: "error"
                             });
                         }
