@@ -4,93 +4,107 @@
 
             function handleGetRewards(page) {
                 $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/rewards?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
 
-                    $('#list-point-exchange').empty();
+                        $('#list-point-exchange').empty();
 
-                    if (response.data.data.length > 0) {
-                        $.each(response.data.data, function(index, value) {
-                            $('#list-point-exchange').append(ListExchange(index, value));
-                        });
+                        if (response.data.data.length > 0) {
+                            $.each(response.data.data, function(index, value) {
+                                $('#list-point-exchange').append(ListExchange(index, value));
+                            });
 
-                        if (response.data.paginate.last_page > 0) {
-                            renderPagination(response.data.paginate.last_page, response.data.paginate
-                                .current_page,
-                                function(page) {
-                                    handleGetRewards(page);
-                                });
-                            $('.pagination__wrap').show();
+                            if (response.data.paginate.last_page > 0) {
+                                renderPagination(response.data.paginate.last_page, response.data
+                                    .paginate
+                                    .current_page,
+                                    function(page) {
+                                        handleGetRewards(page);
+                                    });
+                                $('.pagination__wrap').show();
+                            } else {
+                                $('.pagination__wrap').hide();
+                            }
+
                         } else {
+                            $('#list-point-exchange').append(empty());
                             $('.pagination__wrap').hide();
                         }
 
-                    } else {
-                        $('#list-point-exchange').append(empty());
-                        $('.pagination__wrap').hide();
-                    }
+                        $('#rewards_id').val(response.data.data.id);
 
-                    $('#rewards_id').val(response.data.data.id);
+                        $('.storeConfirm').click(function(e) {
+                            // e.preventDefault();
+                            var id = $(this).data('id');
+                            Swal.fire({
+                                title: 'Tukar Poin?',
+                                text: "Apakah Anda yakin ingin menukar poin?",
+                                icon: 'info',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya, tukar!',
+                                cancelButtonText: 'Batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "{{ config('app.api_url') }}/api/rewards-claim/" +
+                                            id,
+                                        headers: {
+                                            'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                                        },
+                                        dataType: "json",
+                                        contentType: false,
+                                        processData: false,
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: "Sukses",
+                                                text: "Berhasil menambah data data.",
+                                                icon: "success"
+                                            });
+                                        },
+                                        error: function(xhr, status) {
+                                            commonAlert({
+                                                message: xhr
+                                                    .responseJSON
+                                                    .meta
+                                                    .message,
+                                                status: status,
+                                            });
+                                        }
+                                    });
+                                }
+                            });
 
-                    $('.storeConfirm').click(function(e) {
-                        // e.preventDefault();
-                        var id = $(this).data('id');
-                        Swal.fire({
-                            title: 'Tukar Poin?',
-                            text: "Apakah Anda yakin ingin menukar poin?",
-                            icon: 'info',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, tukar!',
-                            cancelButtonText: 'Batal'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "{{ config('app.api_url') }}/api/rewards-claim/" +
-                                        id,
-                                    headers: {
-                                        'Authorization': `Bearer {{ session('hummaclass-token') }}`
-                                    },
-                                    dataType: "json",
-                                    contentType: false,
-                                    processData: false,
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: "Sukses",
-                                            text: "Berhasil menambah data data.",
-                                            icon: "success"
-                                        });
-                                    },
-                                    error: function(xhr, status) {
-                                        commonAlert({
-                                            message: xhr
-                                                .responseJSON.meta
-                                                .message,
-                                            status: status,
-                                        });
-                                    }
-                                });
-                            }
                         });
+                    },
+                    error: function(xhr) {
+                        let errorMessage = "Terjadi kesalahan!";
 
-                    });
-                },
-                error: function(xhr) {
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            try {
+                                const response = JSON.parse(xhr.responseText);
+                                errorMessage = response.message || errorMessage;
+                            } catch (e) {
+                                errorMessage = xhr.responseText;
+                            }
+                        }
 
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data penukaran poin.",
-                        icon: "error"
-                    });
-                }
-            });
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: errorMessage,
+                            icon: "error"
+                        });
+                    }
+                });
             }
 
             handleGetRewards(1);
