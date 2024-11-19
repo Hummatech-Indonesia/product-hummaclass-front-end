@@ -352,11 +352,13 @@
                     $('.photo-user').attr('src', profileImage1);
                 },
                 error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data profil.",
-                        icon: "error"
-                    });
+                    if (response.status != 401) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data profil.",
+                            icon: "error"
+                        });
+                    }
                 }
             });
         @endif
