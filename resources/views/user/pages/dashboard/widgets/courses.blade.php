@@ -128,10 +128,10 @@
         $(document).ready(function() {
             get(1)
 
-            function get(page) {
+            function get() {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/user-course-activities?page=" + page,
+                    url: "{{ config('app.api_url') }}" + "/api/user-course-activities",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -154,22 +154,21 @@
                                 }
                             });
 
-                            if (response.data.paginate && response.data.paginate.last_page > 0) {
-                                renderPagination(
-                                    response.data.paginate.last_page,
-                                    response.data.paginate.current_page,
-                                    function(page) {
-                                        get(page);
-                                    }
-                                );
-                                $('.pagination__wrap').show();
-                            } else {
-                                $('.pagination__wrap').hide();
-                            }
+                            // if (response.data.paginate && response.data.paginate.last_page > 0) {
+                            //     renderPagination(
+                            //         response.data.paginate.last_page,
+                            //         response.data.paginate.current_page,
+                            //         function(page) {
+                            //             get(page);
+                            //         }
+                            //     );
+                            //     $('.pagination__wrap').show();
+                            // } else {
+                            //     $('.pagination__wrap').hide();
+                            // }
                         } else {
                             $('#process_courses').append(empty());
                             $('#finished_courses').append(empty());
-                            $('.pagination__wrap').hide();
                         }
                     },
 
