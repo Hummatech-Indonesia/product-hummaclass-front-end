@@ -365,7 +365,7 @@
                                         </div>
                                     </div>
                                     <p class="card-title fw-bolder">${course.title}</p>
-                                    <p class="card-text">${course.sub_title}</p>
+                                    <p class="card-text" style="height: 50px;">${course.sub_title.length > 50 ? course.sub_title.substring(0, 50) + '...' : course.sub_title}</p>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h4 class="fw-bolder" style="color: #7209DB">${formatRupiah(course.price)}
                                         </h4>
