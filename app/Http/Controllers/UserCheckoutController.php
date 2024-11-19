@@ -18,7 +18,7 @@ class UserCheckoutController extends Controller
         $response = Http::withToken($token)
             ->maxRedirects(5)
             ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
-        
+
         if (isset($response->json()['data']['user_course'])) {
             return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
         } else {
@@ -31,9 +31,7 @@ class UserCheckoutController extends Controller
                 $response = Http::withToken($token)
                     ->maxRedirects(5)
                     ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
-                    // dd($response, $response->json());
                 if (isset($response->json()['data'])) {
-                    // $subModuleSlug = $response->json()['data']['course']['modules'][0]['sub_modules'][0]['slug'];
                     $testId = $response->json()['data']['test_id'];
                     return redirect()->route('pre.test.index', $testId);
                 }
