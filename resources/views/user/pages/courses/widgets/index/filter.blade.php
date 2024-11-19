@@ -14,11 +14,13 @@
             <div class="courses-cat-list">
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="minimum" class="form-control" placeholder="Harga Minimum">
+                    <input type="number" id="minimum" class="form-control" min="0"
+                        placeholder="Harga Minimum">
                 </div>
                 <div class="input-group my-4">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="maksimum" class="form-control" placeholder="Harga Maksimum">
+                    <input type="number" id="maksimum" class="form-control" min="0"
+                        placeholder="Harga Maksimum">
                 </div>
                 <button id="filter_price" class="btn"
                     style="background-color: #ffc224;color:black; width:100%">Terapkan</button>

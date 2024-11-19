@@ -93,13 +93,13 @@
         .course-review-head .review-author-content .author-name {
             justify-content: start;
         }
+
         .review-text {
             max-width: 700px;
             word-wrap: break-word;
             overflow-wrap: break-word;
             margin: 0;
         }
-
     </style>
 @endsection
 
