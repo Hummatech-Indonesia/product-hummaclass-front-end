@@ -78,14 +78,14 @@
         let price;
 
         if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
-            price = `<h6 class="price" style="font-size:15px">
-                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:15px">${formatRupiah(value.price)}</del>` : ''}
+            price = `<h6 class="price" style="font-size:13px">
+                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
                         ${formatRupiah(value.promotional_price)}
                     </h6>`;
         } 
         else if (!value.promotional_price || parseFloat(value.promotional_price) === 0) {
-            price = `<h6 class="price" style="font-size:15px">
-                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:15px">${formatRupiah(value.price)}</del>` : ''}
+            price = `<h6 class="price" style="font-size:13px">
+                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
                         Gratis
                     </h6>`;
         } 

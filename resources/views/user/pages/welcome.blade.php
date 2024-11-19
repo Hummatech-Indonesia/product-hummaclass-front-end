@@ -74,6 +74,16 @@
         .categories__item:hover h1 {
             color: white !important;
         }
+
+        .courses__item-bottom .price {
+            font-size: 13px;
+            line-height: 1;
+            color: var(--tg-theme-primary);
+            font-weight: var(--tg-fw-bold);
+            margin: 0 0;
+            display: flex;
+            justify-content: end;
+        }
     </style>
 @endsection
 

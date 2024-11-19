@@ -3,7 +3,7 @@
 @section('style')
     <style>
         .courses__item-bottom .price {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1;
             color: var(--tg-theme-primary);
             font-weight: var(--tg-fw-bold);
