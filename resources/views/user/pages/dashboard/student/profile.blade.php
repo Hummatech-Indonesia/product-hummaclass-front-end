@@ -79,7 +79,8 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-grp">
-                                                                <label for="firstname">Nama</label>
+                                                                <label for="firstname">Nama <span
+                                                                        class="text-danger">*</span></label>
                                                                 <input id="name" type="text" name="name"
                                                                     value="{{ old('name') }}">
                                                                 <div class="invalid-feedback"></div>
@@ -88,7 +89,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-grp">
-                                                                <label for="username">Email</label>
+                                                                <label for="username">Email <span
+                                                                        class="text-danger">*</span></label>
                                                                 <input id="email" name="email" type="text"
                                                                     value="{{ old('email') }}">
                                                                 <div class="invalid-feedback"></div>
@@ -96,7 +98,8 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-grp">
-                                                                <label for="phonenumber">Phone Number</label>
+                                                                <label for="phonenumber">Phone Number <span
+                                                                        class="text-danger">*</span></label>
                                                                 <input id="phone_number" name="phone_number"
                                                                     type="number" value="{{ old('phone_number') }}">
                                                                 <div class="invalid-feedback"></div>
