@@ -123,7 +123,7 @@
                     <div class="event__item-thumb">
                         <a href="javascript:void(0)" class="shine__animate-link">
                             <div style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                                <img src="${value.photo && value.photo !== url + '/storage' ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img" style="width: 100%; height:150px;">
+                                <img src="${value.image && value.image !== url + '/storage' ? value.image : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img" style="width: 100%; height:150px;">
                             </div>
                         </a>
                     </div>
@@ -135,12 +135,12 @@
                                     <text x="11" y="15" text-anchor="middle" font-size="9" fill="currentColor" font-family="Arial" font-weight="lighter">H</text>
                                 </g>
                             </svg>
-                            100 Poin
+                            ${value.points_required} Poin
                         </span>
                         <h2 class="title"><a href="{{ route('detail-point-exchange.index', '') }}/${value.slug}">${value.name}</a></h2>
                         <div class="d-flex justify-content-between align-items-center pt-3" style="border-top: 1px solid #CCCCCC">
                             <div class="d-flex" style="font-size: 14px;">
-                                Sisa Kuota: ${value.points_required}
+                                Sisa Kuota: ${value.stock}
                             </div>
                             <div>
                                 <button data-id="${value.id}" class="btn-purple-primary storeConfirm px-4">
