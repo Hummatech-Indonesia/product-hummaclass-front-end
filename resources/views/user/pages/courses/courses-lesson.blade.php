@@ -281,8 +281,7 @@
                         }
                     }
                 },
-                error: function(xhr) {
-                }
+                error: function(xhr) {}
             });
         }
 
@@ -300,8 +299,7 @@
                         $('#content-course').append(contentCourse(index, value));
                     });
                 },
-                error: function(xhr) {
-                }
+                error: function(xhr) {}
             });
 
             let urlNext;
@@ -317,9 +315,12 @@
                     urlNext =
                         `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#nextButton').attr("href", urlNext);
-
                 },
                 error: function(xhr) {
+
+                    if (xhr.responseJSON.meta.code === 400) {
+                        $('#nextButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
+                    }
                 }
             });
 
@@ -338,8 +339,7 @@
                     $('#prevButton').attr("href", urlPrev);
 
                 },
-                error: function(xhr) {
-                }
+                error: function(xhr) {}
             });
 
             function contentCourse(index, value) {

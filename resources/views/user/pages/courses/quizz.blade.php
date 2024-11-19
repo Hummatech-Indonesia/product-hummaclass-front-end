@@ -135,7 +135,7 @@
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="d-flex justify-content-between">
-                                        <a href="" class="text-dark fw-bolder fs-6">
+                                        <a href="" id="prevButton" class="text-dark fw-bolder fs-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                 viewBox="0 0 16 9">
                                                 <path fill="currentColor"
@@ -145,7 +145,7 @@
                                             </svg>
                                             Kembali
                                         </a>
-                                        <a href="" class="text-dark fw-bolder fs-6">
+                                        <a href="" id="nextButton" class="text-dark fw-bolder fs-6">
                                             Selanjutnya
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                 viewBox="0 0 16 9">
@@ -172,6 +172,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
+
 
             $.ajax({
                 type: "GET",
@@ -207,6 +208,47 @@
 
             let photo;
             var id = "{{ $id }}";
+
+
+            let urlNext;
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/next/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlNext =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#nextButton').attr("href", urlNext);
+                },
+                error: function(xhr) {
+
+                    if (xhr.responseJSON.meta.code === 400) {
+                        $('#nextButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
+                    }
+                }
+            });
+
+            let urlPrev;
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/prev/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlPrev =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#prevButton').attr("href", urlPrev);
+
+                },
+                error: function(xhr) {}
+            });
 
             $.ajax({
                 type: "GET",
