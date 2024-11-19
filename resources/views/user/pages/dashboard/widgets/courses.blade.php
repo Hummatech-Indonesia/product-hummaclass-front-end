@@ -193,7 +193,7 @@
                     <div class="courses__item-thumb courses__item-thumb-two">
                         <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}"
                             class="shine__animate-link">
-                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? url + value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 alt="img">
                         </a>
                     </div>
