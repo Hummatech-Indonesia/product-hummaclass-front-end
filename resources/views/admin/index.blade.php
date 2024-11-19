@@ -394,10 +394,10 @@
                                                 <path d="M9 8h6" />
                                             </svg>
 
-                                            20 Materi
+                                            ${course.modules_count} Materi
                                         </p>
 
-                                        <p class="text-muted ">20 Terjual</p>
+                                        <p class="text-muted ">${course.user_courses_count} Terjual</p>
                                     </div>
                                     <div class=" pe-0">
                                         <a href="{{ route('courses.courses.show', '') }}/${course.slug}" class="btn text-white fs-2" style="background: #9425FE; width: 100%;">Lihat
