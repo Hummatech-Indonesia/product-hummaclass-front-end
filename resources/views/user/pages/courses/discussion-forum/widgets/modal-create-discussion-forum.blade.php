@@ -46,7 +46,7 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
-                            <select class="form-control" name="tag_id[]" multiple="" id="select2-with-tokenizer"
+                            <select class="form-control" name="tag_id[]" multiple="" id="select2-tokenizer"
                                 style="width: 100%; height: 36px">
                             </select>
                             @error('name')
@@ -71,7 +71,7 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#select2-with-tokenizer').select2({
+            $('#select2-tokenizer').select2({
                 dropdownParent: $('#modal-create-forum-discussion'),
                 tags: true,
             });
