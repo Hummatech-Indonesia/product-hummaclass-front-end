@@ -355,7 +355,7 @@
                             <div class="card overflow-hidden shadow-none border card-hover mb-4 mb-md-0">
                                 <button
                                     class="btn btn-sm btn-warning position-absolute ms-2 mt-2 text-dark">Development</button>
-                                <img src="${course.photo}" class="card-img-top"
+                                <img src="${course.photo}" class="card-img-top" style="width: 100%; height: 172px; object-fit: cover;"
                                     alt="...">
                                 <div class="card-body p-3">
                                     <div class="d-flex justify-content-between">
