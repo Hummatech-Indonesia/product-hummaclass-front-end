@@ -196,14 +196,14 @@
                 let price;
 
                 if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
-                    price = `<h6 class="price" style="font-size:15px">
-                                ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:15px">${formatRupiah(value.price)}</del>` : ''}
+                    price = `<h6 class="price" style="font-size:13px">
+                                ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
                                 ${formatRupiah(value.promotional_price)}
                             </h6>`;
                 } 
                 else if (!value.promotional_price || parseFloat(value.promotional_price) === 0) {
-                    price = `<h6 class="price" style="font-size:15px">
-                                ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:15px">${formatRupiah(value.price)}</del>` : ''}
+                    price = `<h6 class="price" style="font-size:13px">
+                                ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
                                 Gratis
                             </h6>`;
                 } 
@@ -226,7 +226,7 @@
                             <li class="avg-rating"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
                         </ul>
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
-                        <div class="courses__item-bottom">
+                        <div class="courses__item-bottom gap-2">
                             <div class="button">
                                 <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
                                     <span class="text">Daftar</span>
