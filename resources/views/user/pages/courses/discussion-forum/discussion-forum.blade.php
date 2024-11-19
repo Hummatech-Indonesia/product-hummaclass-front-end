@@ -30,6 +30,15 @@
         border-radius: 10px;
     }
 
+    .select2-container {
+        width: 100% !important;
+    }
+
+    .select2-dropdown {
+        z-index: 1055 !important;
+        position: absolute !important;
+    }
+
 </style>
 @endsection
 
