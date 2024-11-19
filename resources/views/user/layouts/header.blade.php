@@ -336,7 +336,6 @@
 
 <script>
     $(document).ready(function() {
-        @if (auth()->check()) // Memastikan hanya dijalankan jika user login
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/profile",
@@ -345,11 +344,15 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
+                    console.log({response})
+                    var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
                             response.data.photo) ?
                         response.data.photo :
                         '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-                    $('.photo-user').attr('src', profileImage1);
+
+                        console.log(profileUser);
+                        
+                    $('.photo-user').attr('src', profileUser);
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -359,6 +362,5 @@
                     });
                 }
             });
-        @endif
     });
 </script>
