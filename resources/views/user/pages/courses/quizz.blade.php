@@ -248,7 +248,7 @@
                         return `<li class="course-item">
                                     <a class="d-flex justify-content-between" style="color: black">
                                         <span class="ps-2">Quiz</span>
-                                        <span class="ps-2">${quiz.total_question} Soalk</span>
+                                        <span class="ps-2">${quiz.total_question} Soal</span>
                                     </a>
                                 </li>`;
                     }
