@@ -336,37 +336,35 @@
 
 <script>
     $(document).ready(function() {
-        @if (auth()->check()) // Memastikan hanya dijalankan jika user login
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/profile",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    console.log({
-                        response
-                    })
-                    var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
-                            response.data.photo) ?
-                        response.data.photo :
-                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/profile",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log({
+                    response
+                })
+                var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
+                        response.data.photo) ?
+                    response.data.photo :
+                    '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
 
-                    console.log(profileUser);
+                console.log(profileUser);
 
-                    $('.photo-user').attr('src', profileUser);
-                },
-                error: function(xhr) {
-                    if (response.status != 401) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Tidak dapat memuat data profil.",
-                            icon: "error"
-                        });
-                    }
+                $('.photo-user').attr('src', profileUser);
+            },
+            error: function(xhr) {
+                if (response.status != 401) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data profil.",
+                        icon: "error"
+                    });
                 }
-            });
-        @endif
+            }
+        });
     });
 </script>
