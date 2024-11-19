@@ -553,7 +553,7 @@
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="${value.user.photo && value.user.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.user.photo) ? value.user.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                            <img src="${value.user_photo && value.user_photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.user_photo) ? value.user_photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 class="rounded-circle" width="40" height="40">
                             <div class="ms-3">
                                 <h6 class="fs-4 fw-semibold mb-0">${value.user.name}</h6>
