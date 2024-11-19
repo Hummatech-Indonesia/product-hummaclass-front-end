@@ -351,7 +351,7 @@
                     const popularCourse = $('#popular-course');
                     response.data.data.forEach(course => {
                         popularCourse.append(`
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <div class="card overflow-hidden shadow-none border card-hover mb-4 mb-md-0">
                                 <button
                                     class="btn btn-sm btn-warning position-absolute ms-2 mt-2 text-dark">Development</button>
