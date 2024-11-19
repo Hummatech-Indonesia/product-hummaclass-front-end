@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="table-responsive mt-3">
                                     <table id="demo-foo-addrow"
-                                        class="table table-striped table-bordered m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg"
+                                        class="table table-striped table-bordered m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg align-middle"
                                         data-paging="true" data-paging-size="7" style="">
                                         <thead>
                                             <tr class="footable-header">
@@ -187,10 +187,10 @@
 
                         if (value.status == "Lulus") {
                             status =
-                                `<td><span class="bg-success p-2 text-white rounded text-center">${value.status}</span></td>`;
+                                `<td><span class="bg-success px-3 text-white rounded text-center">${value.status}</span></td>`;
                         } else {
                             status =
-                                `<td><span class="bg-danger p-2 text-white rounded text-center">${value.status}</span></td>`;
+                                `<td><span class="bg-danger px-3 text-white rounded text-center">${value.status}</span></td>`;
                         }
 
                         $('#user-quizzes').append(
@@ -198,7 +198,7 @@
                                 <td>${value.created}</td>
                                 <td>${value.score}</td>
                                 ${status}
-                                <td><a class="btn btn-primary" href="">Lihat Detail</a></td>
+                                <td><a class="btn btn-primary p-3" href="">Lihat Detail</a></td>
                             </tr>`
                         );
                     });
