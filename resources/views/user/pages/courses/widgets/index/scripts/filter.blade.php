@@ -211,7 +211,7 @@
                     price = `<h6 class="price">${(!value.price || value.price === '0') ? "Gratis" : formatRupiah(value.price)}</h6>`;
                 }
 
-                return `<div class="col-lg-4">
+                return `<div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
