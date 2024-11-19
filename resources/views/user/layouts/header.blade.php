@@ -345,26 +345,18 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log({
-                        response
-                    })
-                    var profileUser = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
+                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
                             response.data.photo) ?
                         response.data.photo :
                         '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-
-                    console.log(profileUser);
-
-                    $('.photo-user').attr('src', profileUser);
+                    $('.photo-user').attr('src', profileImage1);
                 },
                 error: function(xhr) {
-                    if (response.status != 401) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Tidak dapat memuat data profil.",
-                            icon: "error"
-                        });
-                    }
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data profil.",
+                        icon: "error"
+                    });
                 }
             });
         @endif
