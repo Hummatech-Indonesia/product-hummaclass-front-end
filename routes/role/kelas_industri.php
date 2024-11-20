@@ -14,11 +14,22 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
                 return view('Kelas-Industri.admin.school.details.detail', compact('slug'));
             })->name('show');
         });
+
+        Route::prefix('classroom')->name('classroom.')->group(function () {
+            Route::get('create/{slug}', function ($slug) {
+                return view('Kelas-Industri.admin.school.details.classroom-components.create-classroom', compact('slug'));
+            })->name('create');
+        });
+
+        // Route::get('create-classroom', function ($slug) {
+        //     return view('Kelas-Industri.admin.school.details.classroom-components.create-classroom', compact('slug'));
+        // });
+
         Route::get('/create-school', function () {
             return view('Kelas-Industri.admin.school.create');
         })->name('school.create');
-        Route::get('/edit-school/{slug}', function ($slug) {
-            return view('Kelas-Industri.admin.school.edit', compact('slug'));
+        Route::get('/edit-school/{slug}', function ($id) {
+            return view('Kelas-Industri.admin.school.edit', compact('id'));
         })->name('school.edit');
     });
 });

@@ -127,7 +127,7 @@
                 </div>
                 <div class="">
                     <li class="">
-                        <button class="btn addClassroom text-white" data-bs-toggle="modal"
+                        {{-- <button class="btn addClassroom text-white" data-bs-toggle="modal"
                             data-bs-target="#modal-create-vouchers" style="background-color: var(--purple-primary)">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -136,7 +136,8 @@
                                 </svg>
                                 Tambah Kelas
                             </span>
-                        </button>
+                        </button> --}}
+                        <a href="#" class="btn btn-primary" id="classroomCreate">Tambah Kelas</a>
                     </li>
                 </div>
             </ul>
@@ -160,6 +161,7 @@
     <script>
         $(document).ready(function() {
             var slug = "{{ $slug }}"
+            $('#classroomCreate').attr('href', '/admin/class/classroom/create/' + slug);
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/schools/" + slug,
@@ -170,6 +172,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+
                     $('#head_master').html(response.data.head_master);
                     $('#npsn').html(response.data.npsn);
                     $('#phone_number').html(response.data.phone_number);

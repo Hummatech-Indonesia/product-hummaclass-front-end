@@ -7,7 +7,6 @@
                         <h5 id="classtest">Daftar Kelas</h5>
                         <p>Daftar kelas industri pada sekolah</p>
                         <ul id="list-classroom">
-
                         </ul>
                     </div>
                 </div>
@@ -35,7 +34,7 @@
                                 class="img-fluid rounded-circle mb-2" width="80">
                         </div>
                         <div class="col-md-8">
-                            <h5 class="card-title">Suyadi</h5>
+                            <h5 class="card-title classroom-">Suyadi</h5>
                             <span class="">Wali Kelas -----</span>
                         </div>
                     </div>
