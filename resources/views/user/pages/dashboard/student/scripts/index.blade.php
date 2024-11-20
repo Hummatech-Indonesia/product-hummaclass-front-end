@@ -10,7 +10,6 @@
                 dataType: "json",
                 success: function(response) {
                     $('#list-course').empty();
-
                     if (response.data.data.length > 0) {
                         response.data.data.forEach(data => {
                             renderPagination(response.data.paginate.last_page, response.data.paginate
@@ -34,7 +33,6 @@
                 }
             });
         }
-
 
         function cardCourse(data) {
             const statusText = data.study_percentage === 100 ? "SELESAI" : "PROSES";
