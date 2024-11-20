@@ -25,11 +25,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
                 return view('Kelas-Industri.admin.school.details.teacher-components.create-teacher', compact('slug'));
             })->name('create');
         });
-        // Route::prefix('student')->name('student.')->group(function () {
-        //     Route::get('create/{slug}', function ($slug) {
-        //         return view('Kelas-Industri.admin.school.details.student-components.create-student', compact('slug'));
-        //     })->name('create');
-        // });
+        Route::prefix('student')->name('student.')->group(function () {
+            Route::get('create/{slug}', function ($slug) {
+                return view('Kelas-Industri.admin.school.details.student-components.create-student', compact('slug'));
+            })->name('create');
+        });
 
         // Route::get('create-classroom', function ($slug) {
         //     return view('Kelas-Industri.admin.school.details.classroom-components.create-classroom', compact('slug'));

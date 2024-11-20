@@ -3,13 +3,42 @@
     <div class="card">
         <form action="#" method="POST" id="createTeacherForm">
             <div class="card-header">
-                <h5>Tambah Guru</h5>
+                <h5>Tambah Murid</h5>
             </div>
             <div class="card-body">
-                <label for="user_id" class="form-label">User</label>
-                <select name="user_id" id="user_id" class="form-control">
-                    <option value="">Pilih User</option>
-                </select>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="name" class="form-label">Nama</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" id="email" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="phone_number" class="form-label">Nomor Telepon</label>
+                        <input type="text" name="phone_number" id="phone_number" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="gender" class="form-label">Gender</label>
+                        <select name="gender" id="gender" class="form-control">
+                            <option value="male">Laki-laki</option>
+                            <option value="female">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="nisn" class="form-label">Nomor induk siswa nasional</label>
+                        <input type="text" name="nisn" id="nisn" class="form-control">
+                    </div>
+                    <div class="col-4">
+                        <label for="date_birth" class="form-label">Tanggal Lahir</label>
+                        <input type="date" name="date_birth" id="date_birth" class="form-control">
+                    </div>
+                </div>
+                <label for="address" class="form-label">Alamat</label>
+                <textarea name="address" id="address" cols="15" rows="5" class="form-control"></textarea>
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-end gap-2">
@@ -81,7 +110,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/teachers/" + schoolId,
+                    url: "{{ config('app.api_url') }}/api/students/" + schoolId,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -90,13 +119,13 @@
                     contentType: false,
                     dataType: "json",
                     success: function(response) {
-                        console.log('Berhasil menambah guru:', response);
-                        alert('Guru berhasil ditambahkan.');
+                        console.log('Berhasil menambah murid:', response);
+                        alert('murid berhasil ditambahkan.');
                         window.location.href = '/admin/class/school/' +
                             slug;
                     },
                     error: function(xhr) {
-                        console.error('Gagal menambah guru:', xhr.responseText);
+                        console.error('Gagal menambah murid:', xhr.responseText);
                         alert('Terjadi kesalahan, silakan coba lagi.');
                     }
                 });
