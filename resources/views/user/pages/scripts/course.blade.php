@@ -106,7 +106,7 @@
                         <li class="courses__item-tag">
                             <a href="javascript:void(0)">${value.sub_category}</a>
                         </li>
-                        <li class="avg-rating"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
+                        <li class="avg-rating" style="font-size: 12px;"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
                     </ul>
                     <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
                     <div class="courses__item-bottom">
