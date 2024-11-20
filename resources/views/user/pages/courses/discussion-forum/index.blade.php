@@ -345,11 +345,13 @@
                 },
                 dataType: "json",
                 success: function(response) {
-
-                    $.each(response.data, function(index, value) {
-                        $('#tags').html(`<a href="#">#${value.name}</a>`);
-                    });
-
+                    if (response.data.length > 0) {
+                        $.each(response.data, function(index, value) {
+                            $('#tags').html(`<a href="#">#${value.name}</a>`);
+                        });
+                    } else {
+                        $('#tags').append(empty());
+                    }
 
                 },
                 error: function(xhr) {
