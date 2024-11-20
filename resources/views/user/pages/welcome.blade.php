@@ -337,7 +337,7 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-11">
+                    <div class="col-lg-12">
                         <div class="tab-content" id="courseTabContent">
                             <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
                                 aria-labelledby="all-tab" tabindex="0">
