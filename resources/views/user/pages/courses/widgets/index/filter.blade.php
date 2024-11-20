@@ -14,12 +14,12 @@
             <div class="courses-cat-list">
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="minimum" class="form-control" min="0"
+                    <input type="number" id="minimum" min="0" class="form-control" min="0"
                         placeholder="Harga Minimum">
                 </div>
                 <div class="input-group my-4">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="maksimum" class="form-control" min="0"
+                    <input type="number" id="maksimum" min="0" class="form-control" min="0"
                         placeholder="Harga Maksimum">
                 </div>
                 <button id="filter_price" class="btn"
@@ -148,3 +148,17 @@
         color: #6D6C80;
     }
 </style>
+
+<script>
+    document.getElementById('minimum').addEventListener('input', function (e) {
+    if (this.value < 0) {
+        this.value = 0;
+    }
+});
+
+document.getElementById('maksimum').addEventListener('input', function (e) {
+    if (this.value < 0) {
+        this.value = 0;
+    }
+});
+</script>
