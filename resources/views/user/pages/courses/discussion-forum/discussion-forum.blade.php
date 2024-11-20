@@ -29,26 +29,8 @@
         -ms-border-radius: 3px;
         border-radius: 10px;
     }
-
-    .select2-container {
-        width: 100% !important;
-    }
-
-    .select2-dropdown {
-        z-index: 1055 !important;
-        position: absolute !important;
-    }
-
 </style>
 
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
-  integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.bootstrap5.min.css" integrity="sha512-Ars0BmSwpsUJnWMw+KoUKGKunT7+T8NGK0ORRKj+HT8naZzLSIQoOSIIM3oyaJljgLxFi0xImI5oZkAWEFARSA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('content')
@@ -151,20 +133,3 @@
 </div>
 
 @endsection
-
-@push('script')
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
-integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
-crossorigin="anonymous"
-referrerpolicy="no-referrer"
-></script>
-
-<script>
-    $(document).ready(function() {
-        $("#test").selectize({});
-    })
-    $(function () {
-    });
-  </script>
-@endpush
