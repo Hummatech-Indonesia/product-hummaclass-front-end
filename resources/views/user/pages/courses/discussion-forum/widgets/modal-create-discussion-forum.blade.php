@@ -1,5 +1,24 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.default.min.css"
+    integrity="sha512-pTaEn+6gF1IeWv3W1+7X7eM60TFu/agjgoHmYhAfLEU8Phuf6JKiiE8YmsNC0aCgQv4192s4Vai8YZ6VNM6vyQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.bootstrap5.min.css"
+    integrity="sha512-Ars0BmSwpsUJnWMw+KoUKGKunT7+T8NGK0ORRKj+HT8naZzLSIQoOSIIM3oyaJljgLxFi0xImI5oZkAWEFARSA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    .selectize-control.multi .selectize-input [data-value] {
+        background-color: #9C40F7;
+        background-image: linear-gradient(to bottom, #9C40F7, #9C40F7);
+    }
+
+    .selectize-control.multi .selectize-input>div {
+        color: #fff;
+    }
+</style>
+
 <!-- Modal -->
-<div class="modal fade" id="modal-create-forum-discussion" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+<div class="modal fade" id="modal-create-forum-discussion" tabindex="-1" aria-labelledby="importPegawai"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content shadow-md">
             <div class="modal-header" style="background-color: #9425FE; position: relative;">
@@ -46,9 +65,16 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
-                            <select class="form-control" name="tag_id[]" multiple="" id="select2-tokenizer"
-                                style="width: 100%; height: 36px">
-                            </select>
+                            <div>
+                                {{-- <select class="form-control" name="tag_id[]" multiple="" id="select2-tokenizer"
+                                    style="width: 100%; height: 36px">
+                                </select> --}}
+                                <select name="tag_id[]" id="test" multiple="" style="width: 100%; height: 36px">
+                                    <option value="">woi</option>
+                                    <option value="a">wois</option>
+                                    <option value="b">wois</option>
+                                </select>
+                            </div>
                             @error('name')
                                 <span class="text-danger error-edit">{{ $message }}</span>
                             @enderror
@@ -69,12 +95,12 @@
 </div>
 
 @push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+        integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
-            $('#select2-tokenizer').select2({
-                dropdownParent: $('#modal-create-forum-discussion'),
-                tags: true,
-            });
+            $("#test").selectize({});
             $('#form-create-discussion-forum').submit(function(e) {
                 e.preventDefault();
 
@@ -130,5 +156,11 @@
                 });
             });
         });
+    </script>
+
+    <script>
+        setInterval(() => {
+            $('.selectize-dropdown').css('width', '100%')
+        }, 100);
     </script>
 @endpush
