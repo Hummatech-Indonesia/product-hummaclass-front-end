@@ -112,13 +112,19 @@
             }
 
             let debounceTimer;
-            $('#search-name').keyup(function() {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(function() {
-                    handleGetCourses(1, {
-                        title: $('#search-name').val()
-                    })
-                }, 500);
+            const inputSearch = $('input[name="title"]');
+
+            inputSearch.keypress(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        handleGetCourses(1, {
+                            title: inputSearch
+                            .val()
+                        });
+                    }, 500);
+                }
             });
 
             let loading = true;
