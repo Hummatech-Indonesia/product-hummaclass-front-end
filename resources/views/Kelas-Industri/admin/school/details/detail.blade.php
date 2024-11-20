@@ -138,6 +138,8 @@
                             </span>
                         </button> --}}
                         <a href="#" class="btn btn-primary" id="classroomCreate">Tambah Kelas</a>
+                        <a href="#" class="btn btn-primary" id="teacherCreate">Tambah Guru</a>
+                        <a href="#" class="btn btn-primary" id="studentCreate">Tambah Siswa</a>
                     </li>
                 </div>
             </ul>
@@ -151,7 +153,7 @@
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
-    @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class') 
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
@@ -162,6 +164,8 @@
         $(document).ready(function() {
             var slug = "{{ $slug }}"
             $('#classroomCreate').attr('href', '/admin/class/classroom/create/' + slug);
+            $('#teacherCreate').attr('href', '/admin/class/teacher/create/' + slug);
+            $('#studentCreate').attr('href', '/admin/class/student/create/' + slug);
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/schools/" + slug,
