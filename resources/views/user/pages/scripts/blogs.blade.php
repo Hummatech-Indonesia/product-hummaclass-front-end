@@ -27,12 +27,6 @@
                     $('#news-content').append(empty());
                 }
 
-                if (courseData.length === 8) {
-                    $('#other-news').show();
-                } else {
-                    $('#other-news').hide();
-                }
-
             }
             , error: function(xhr) {
 
