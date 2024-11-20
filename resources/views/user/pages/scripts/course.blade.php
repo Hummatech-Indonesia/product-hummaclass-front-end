@@ -95,7 +95,7 @@
 
         return `
         <div class="swiper-slide">
-            <div class="courses__item shine__animate-item" style="width: 285.5px !important;">
+            <div class="courses__item shine__animate-item" style="width: 290.5px !important;">
                 <div class="courses__item-thumb">
                     <a href="{{ route('courses.courses.show', '') }}/${value.slug} class="shine__animate-link">
                         <img src="${value.photo && value.photo !== url + '/storage' ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
