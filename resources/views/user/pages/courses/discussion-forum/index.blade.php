@@ -321,7 +321,6 @@
                 success: function(response) {
 
                     $.each(response.data, function(index, value) {
-
                         $('.list-modul').append(
                             `<option value="${value.id}">${value.title}</option>`
                         );
@@ -346,8 +345,11 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.data.length > 0) {
+                        $('#tags').empty();
                         $.each(response.data, function(index, value) {
-                            $('#tags').html(`<a href="#">#${value.name}</a>`);
+                            console.log(value);
+
+                            $('#tags').append(`<a href="#">#${value.name}</a>`);
                         });
                     } else {
                         $('#tags').append(empty());
@@ -408,18 +410,10 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="white" stroke-linecap="round" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h13.4a.6.6 0 0 1 .6.6v13.114M6 17h14M6 21h14"/><path stroke-linejoin="round" d="M6 21a2 2 0 1 1 0-4"/><path d="M9 7h6"/></g></svg>
                                 <h6 class="text-white">${value.discussion_title}</h6>
                             </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="white" d="M16 3a1 1 0 0 1 .117 1.993L16 5v4.764l1.894 3.789a1 1 0 0 1 .1.331L18 14v2a1 1 0 0 1-.883.993L17 17h-4v4a1 1 0 0 1-1.993.117L11 21v-4H7a1 1 0 0 1-.993-.883L6 16v-2a1 1 0 0 1 .06-.34l.046-.107L8 9.762V5a1 1 0 0 1-.117-1.993L8 3z"/></svg>
-                            </div>
                         </div>
                     </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 16 16">
-                                    <path fill="black"
-                                        d="M4.146.146A.5.5 0 0 1 4.5 0h7a.5.5 0 0 1 .5.5c0 .68-.342 1.174-.646 1.479c-.126.125-.25.224-.354.298v4.431l.078.048c.203.127.476.314.751.555C12.36 7.775 13 8.527 13 9.5a.5.5 0 0 1-.5.5h-4v4.5c0 .276-.224 1.5-.5 1.5s-.5-1.224-.5-1.5V10h-4a.5.5 0 0 1-.5-.5c0-.973.64-1.725 1.17-2.189A6 6 0 0 1 5 6.708V2.277a3 3 0 0 1-.354-.298C4.342 1.674 4 1.179 4 .5a.5.5 0 0 1 .146-.354" />
-                                </svg>
                                 <div class="d-flex align-items-center ms-2">
                                     <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded-circle"
                                         width="40" height="40">
@@ -440,11 +434,13 @@
                                         </div>
                                 </div>
                                 <div class="d-flex gap-3">
+                                    <a>
+                                    </a>
                                     <div class="d-flex align-items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-black" width="25"
                                             height="25" viewBox="0 0 1024 1024">
                                             <path fill="currentColor"
-                                                d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40m-280 0c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40" />
+                                                d="M573 421c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0 39-17.9 39-40s-17.9-40-39-40m-280 0c-23.1 0-41 17.9-41 40s17.9 40 41 40c21.1 0   39-17.9 39-40s-17.9-40-39-40" />
                                             <path fill="currentColor"
                                                 d="M894 345c-48.1-66-115.3-110.1-189-130v.1c-17.1-19-36.4-36.5-58-52.1c-163.7-119-393.5-82.7-513 81c-96.3 133-92.2 311.9 6 439l.8 132.6c0 3.2.5 6.4 1.5 9.4c5.3 16.9 23.3 26.2 40.1 20.9L309 806c33.5 11.9 68.1 18.7 102.5 20.6l-.5.4c89.1 64.9 205.9 84.4 313 49l127.1 41.4c3.2 1 6.5 1.6 9.9 1.6c17.7 0 32-14.3 32-32V753c88.1-119.6 90.4-284.9 1-408M323 735l-12-5l-99 31l-1-104l-8-9c-84.6-103.2-90.2-251.9-11-361c96.4-132.2 281.2-161.4 413-66c132.2 96.1 161.5 280.6 66 412c-80.1 109.9-223.5 150.5-348 102m505-17l-8 10l1 104l-98-33l-12 5c-56 20.8-115.7 22.5-171 7l-.2-.1C613.7 788.2 680.7 742.2 729 676c76.4-105.3 88.8-237.6 44.4-350.4l.6.4c23 16.5 44.1 37.1 62 62c72.6 99.6 68.5 235.2-8 330" />
                                             <path fill="currentColor"

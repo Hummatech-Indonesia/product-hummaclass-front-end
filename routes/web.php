@@ -102,7 +102,7 @@ Route::middleware(['auth_custom'])->group(function () {
 
         // discussion
         Route::get('discussion-forum/{id?}', fn($id) => view('user.pages.courses.discussion-forum.index', compact('id')))->name('discussion-forum.index');
-        Route::get('discussion-forum/modul', fn() => view('user.pages.courses.discussion-forum.discussion-forum'))->name('discussion-forum.modul');
+        Route::get('discussion-forum/modul/{id?}', fn() => view('user.pages.courses.discussion-forum.discussion-forum'))->name('discussion-forum.modul');
 
         // task
         Route::get('task-execution', fn() => view('user.pages.courses.task-execution.index'))->name('task-execution.index');
