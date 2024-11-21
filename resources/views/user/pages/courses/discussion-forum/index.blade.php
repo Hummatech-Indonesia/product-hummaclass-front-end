@@ -434,8 +434,7 @@
                                         </div>
                                 </div>
                                 <div class="d-flex gap-3">
-                                    <a>
-                                    </a>
+                                    <a href="/discussion-forum/modul/${value.id}" class="text-black">
                                     <div class="d-flex align-items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-black" width="25"
                                             height="25" viewBox="0 0 1024 1024">
@@ -448,6 +447,7 @@
                                         </svg>
                                         ${value.discussion_answers_count} Balasan
                                     </div>
+                                    </a>
                                     <div class="d-flex align-items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 24 24">
