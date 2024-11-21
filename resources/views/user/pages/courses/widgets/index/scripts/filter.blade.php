@@ -80,26 +80,30 @@
                 if (value.sub_category.length > 0) {
                     $.each(value.sub_category, function(subIndex, subValue) {
                         subCategoryRows += `
-                <li>
-                    <div class="form-check">
-                        <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
-                        <label class="form-check-label" for="cat_1">${subValue.name} (${subValue.course_count})</label>
-                    </div>
-                </li>
-                `;
+                    <li>
+                        <div class="form-check">
+                            <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
+                            <label class="form-check-label" for="cat_1">${subValue.name} (${subValue.course_count})</label>
+                        </div>
+                    </li>
+                    `;
                     });
                 }
+
+                const isActive = index === 0 ? 'show' : '';
+                const isExpanded = index === 0 ? 'true' : 'false';
+
                 return `
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapse-${index}" aria-expanded="true"
+                    <h2 class="accordion-header" id="flush-heading-${index}">
+                        <button class="accordion-button ${isActive ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse-${index}" aria-expanded="${isExpanded}"
                             aria-controls="flush-collapse-${index}">
                             ${value.name} (${value.course_item_count})
                         </button>
                     </h2>
-                    <div id="flush-collapse-${index}" class="accordion-collapse collapse show"
-                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                    <div id="flush-collapse-${index}" class="accordion-collapse collapse ${isActive}"
+                        aria-labelledby="flush-heading-${index}" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div class="courses-cat-list">
                                 <ul class="list-wrap">
@@ -121,7 +125,7 @@
                     debounceTimer = setTimeout(function() {
                         handleGetCourses(1, {
                             title: inputSearch
-                            .val()
+                                .val()
                         });
                     }, 500);
                 }
