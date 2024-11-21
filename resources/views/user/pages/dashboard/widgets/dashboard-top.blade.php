@@ -43,7 +43,7 @@
                 $('#detail-banner-user').css('background-image', 'url(' + bannerImage + ')');
                 $('#detail-name-user').html(response.data.name);
                 $('#detail-email-user').html(response.data.email);
-                // $('#detail-created').html(response.data.created);
+                $('#sidebar-user-name').html(response.data.name);
                 // $('#detail-description').html(response.data.description);
             },
             error: function(xhr) {
