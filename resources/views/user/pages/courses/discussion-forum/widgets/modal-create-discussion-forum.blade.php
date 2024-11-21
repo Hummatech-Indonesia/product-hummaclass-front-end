@@ -65,14 +65,14 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
-                            <select class="form-control" name="tag[]" multiple="" id="select2-tokenizer"
+                            {{-- <select class="form-control" name="tag[]" multiple="" id="select2-tokenizer"
                                 style="width: 100%; height: 36px">
-                            </select>
+                            </select> --}}
                             <div>
                                 {{-- <select class="form-control" name="tag_id[]" multiple="" id="select2-tokenizer"
                                     style="width: 100%; height: 36px">
                                 </select> --}}
-                                <select name="tag_id[]" id="test" multiple="" style="width: 100%; height: 36px">
+                                <select name="tag[]" id="test" multiple="" style="width: 100%; height: 36px">
                                 </select>
                             </div>
                             @error('name')
