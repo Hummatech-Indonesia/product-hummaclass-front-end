@@ -117,29 +117,18 @@
 
             let debounceTimer;
             const inputSearch = $('input[name="title"]');
-
-            inputSearch.keypress(function(event) {
-                if (event.which === 13) {
-                    event.preventDefault();
-                    clearTimeout(debounceTimer);
-                    debounceTimer = setTimeout(function() {
-                        handleGetCourses(1, {
-                            title: inputSearch
-                                .val()
-                        });
-                    }, 500);
-                }
-            });
-
             let loading = true;
             const gridParent = $('#courses-grid');
-
-            if (loading) {
-                gridParent.append(loadingCard(6));
-            }
-
             let retryCount = 0;
             const maxRetries = 3;
+
+            function getQueryParameter(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            const initialTitle = getQueryParameter('title') || '';
+            inputSearch.val(initialTitle);
 
             function handleGetCourses(page, data = {}) {
                 $.ajax({
@@ -161,7 +150,9 @@
                             renderPagination(response.data.paginate.last_page, response.data.paginate
                                 .current_page,
                                 function(page) {
-                                    handleGetCourses(page);
+                                    handleGetCourses(page, {
+                                        title: inputSearch.val()
+                                    });
                                 });
                             $('.pagination__wrap').show();
                         } else {
@@ -187,7 +178,7 @@
                         if (retryCount < maxRetries) {
                             retryCount++;
                             setTimeout(() => {
-                                handleGetCourses(1);
+                                handleGetCourses(page, data);
                             }, 1000);
                         } else {
                             gridParent.empty();
@@ -199,7 +190,26 @@
                 });
             }
 
-            handleGetCourses(1, filter);
+            inputSearch.keypress(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        const searchTitle = inputSearch.val();
+                        handleGetCourses(1, {
+                            title: searchTitle
+                        });
+                    }, 500);
+                }
+            });
+
+            if (loading) {
+                gridParent.append(loadingCard(6));
+            }
+
+            handleGetCourses(1, initialTitle ? {
+                title: initialTitle
+            } : {});
 
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
