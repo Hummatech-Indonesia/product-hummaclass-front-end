@@ -24,6 +24,9 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             Route::get('create/{slug}', function ($slug) {
                 return view('Kelas-Industri.admin.school.details.teacher-components.create-teacher', compact('slug'));
             })->name('create');
+            Route::get('{id}/edit', function ($id) {
+                return view('Kelas-Industri.admin.school.details.teacher-components.edit-teacher', compact('id'));
+            })->name('edit');
         });
         Route::prefix('student')->name('student.')->group(function () {
             Route::get('create/{slug}', function ($slug) {

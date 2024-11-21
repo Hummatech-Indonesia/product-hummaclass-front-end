@@ -21,56 +21,57 @@
                     <div class="col-12 col-md-6">
                         <div class="d-flex " style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Nama:</h6>
-                            <p class="ms-2 mb-0" id="name-detail">wenv</p>
+                            <p class="ms-2 mb-0" id="teacher-name-detail">nama</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Email:</h6>
-                            <p class="ms-2 mb-0" id="email-detail">a@gmail.com</p>
+                            <p class="ms-2 mb-0" id="teacher-email-detail">a@gmail.com</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">NIP:</h6>
-                            <p class="ms-2 mb-0" id="nip-detail">34567890</p>
+                            <p class="ms-2 mb-0" id="teacher-nip-detail">34567890</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Agama:</h6>
-                            <p class="ms-2 mb-0" id="email-detail">Islam</p>
+                            <p class="ms-2 mb-0" id="teacher-religion-detail">Islam</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Tanggal Lahir:</h6>
-                            <p class="ms-2 mb-0" id="email-detail">20 Mei 2024</p>
+                            <p class="ms-2 mb-0" id="teacher-birth-detail">20 Mei 2024</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Nomor Telepon:</h6>
-                            <p class="ms-2 mb-0" id="email-detail">12344323432</p>
+                            <p class="ms-2 mb-0" id="teacher-phone_number-detail">12344323432</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex" style="margin-bottom: 0.5rem;">
                             <h6 style="margin-bottom: 0;">Jenis Kelamin:</h6>
-                            <p class="ms-2 mb-0" id="email-detail">Laki-laki</p>
+                            <p class="ms-2 mb-0" id="teacher-gender-detail">Laki-laki</p>
                         </div>
                         <hr>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex text-start">
                             <h6 style="margin-bottom: 0;">Alamat:</h6>
-                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="address-detail">ddfvfe
+                            <p class="ms-2 text-muted text-break" style="margin-bottom: 0;" id="teacher-address-detail">
+                                ddfvfe
                             </p>
                         </div>
                         <hr>

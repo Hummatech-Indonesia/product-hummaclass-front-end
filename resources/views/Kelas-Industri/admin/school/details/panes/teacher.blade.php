@@ -2,6 +2,7 @@
     <div class="row teacher-card-container">
     </div>
 </div>
+
 @push('script')
     <script>
         $(document).ready(function() {
@@ -25,18 +26,20 @@
 
                             {{-- buttons --}}
                             <div class="col-md-12 d-flex justify-content-between gap-2 mt-3">
-                                <button href="http://127.0.0.1:8001/admin/courses/lorem-ipsum" class="btn text-white fs-2" data-bs-toggle="modal"
+                                <button id="detailTeacherButton" 
+                                data-id="${value.id}"
+                                     class="btn text-white fs-2" data-bs-toggle="modal"
                                 data-bs-target="#modal-detail-teacher"
                                     style="background: #9425FE; width: 70%;">Lihat Detail</button>
-                                <a href="/admin/courses/lorem-ipsum/edit" class="btn btn-sm btn-warning" style="width: 15%">
+                                <button id="editTeacherButton" data-id="${value.id}" class="btn btn-sm btn-warning" style="width: 15%">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 48 48">
                                         <path fill="currentColor"
                                             d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z">
                                         </path>
                                     </svg>
-                                </a>
+                                </button>
 
-                                <button data-id="78216ca2-d422-3c8b-bcc2-60945b4eb294"
+                                <button data-id="${value.id}" id="deleteTeacherButton"
                                     class="btn btn-sm text-white btn-delete" style="width: 15%;background-color: #DB0909;"
                                     fdprocessedid="athmbv">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
@@ -61,23 +64,78 @@
                 $('.teacher-card-container').append(teacherList(index, 3));
             }
 
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/teachers/" + "{{ $slug }}",
-                dataType: "json",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                success: function(response) {
-                    console.log(response);
-                    $.each(response.data, function(indexInArray, valueOfElement) {
+            function getTeachers() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/teachers/" + "{{ $slug }}",
+                    dataType: "json",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    success: function(response) {
+                        console.log(response);
                         $('.teacher-card-container').empty();
-                        $('.teacher-card-container').prepend(
-                            teacherList(indexInArray, valueOfElement)
-                        );
+                        $.each(response.data, function(indexInArray, valueOfElement) {
+                            $('.teacher-card-container').append(
+                                teacherList(indexInArray, valueOfElement)
+                            );
+                        });
+                    }
+                });
+            }
+
+            getTeachers();
+
+            $(document).on('click', '#deleteTeacherButton', function() {
+                $('#modal-delete').modal('show')
+                const id = $(this).data('id')
+                console.log('test');
+                $('#deleteForm').submit(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{{ config('app.api_url') }}/api/teachers/" + id,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            getTeachers();
+                        }
                     });
-                }
-            });
+                });
+            })
+
+            $(document).on('click', '#editTeacherButton', function() {
+                const id = $(this).data('id')
+                window.location.href = "/admin/class/teacher/" + id + "/edit"
+            })
+
+            $(document).on('click', '#detailTeacherButton', function() {
+                $('#modal-detail-teacher').modal('show')
+                const id = $(this).data('id')
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/teacher-detail/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        const name = response.data.user.name;
+                        const email = response.data.user.email;
+                        const gender = response.data.user.gender;
+                        const address = response.data.user.address;
+                        const phone_number = response.data.user.phone_number;
+
+                        $('#teacher-name-detail').html(name);
+                        $('#teacher-gender-detail').html(gender);
+                        $('#teacher-email-detail').html(email);
+                        $('#teacher-address-detail').html(address);
+                        $('#teacher-phone_number-detail').html(phone_number);
+                    }
+                });
+            })
         });
     </script>
 @endpush

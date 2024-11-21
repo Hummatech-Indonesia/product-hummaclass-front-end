@@ -153,12 +153,14 @@
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-set-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
-    @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class') 
+    @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
+
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
 
 @section('script')
+    <x-delete-modal-component></x-delete-modal-component>
     @include('Kelas-Industri.admin.school.details.scripts.index')
     <script>
         $(document).ready(function() {

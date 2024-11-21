@@ -16,7 +16,7 @@
                     data-bs-dismiss="modal">
                     Batal
                 </button>
-                <button type="button" class="btn text-white deleteConfirmation" style="background-color: #DB0909;"
+                <button type="submit" class="btn text-white deleteConfirmation" style="background-color: #DB0909;"
                     data-bs-dismiss="modal">
                     Hapus
                 </button>
