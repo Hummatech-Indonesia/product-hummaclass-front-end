@@ -28,8 +28,6 @@
             },
             dataType: "json",
             success: function(response) {
-
-                console.log(response);
              
                 var profileImage = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
                     ? response.data.photo
