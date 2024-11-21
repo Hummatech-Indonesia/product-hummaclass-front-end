@@ -167,6 +167,29 @@
                                         class="menu-item {{ Route::currentRouteName() == 'point-exchange.index' ? 'active' : '' }}">
                                         <a href="{{ route('point-exchange.index') }}">Penukaran Hadiah</a>
                                     </li>
+                                    @session('user')
+                                    {{-- <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <div class="user-profile">
+                                                <a
+                                                    href="{{ route('dashboard.users.profile', session('user')['id']) }}">
+                                                    <img src="" class="rounded rounded-circle photo-user"
+                                                        style="width: 48px; height: 48px; object-fit: cover;"
+                                                        alt="">
+                                                </a>
+                                                <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
+                                            </div>
+                                        </form>
+                                    </li> --}}
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    <li
+                                        class="menu-item d-block d-md-none">
+                                            <button type="submit" class="border-0 bg-transparent ps-4">Keluar</button>
+                                        </li>
+                                    </form>
+                                    @endsession
                                 </ul>
                             </div>
                             <div class="tgmenu__search d-none d-md-block">
@@ -290,7 +313,8 @@
                             <div class="tgmobile__menu-outer">
                                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                             </div>
-                            <div class="social-links">
+                            
+                            {{-- <div class="social-links">
                                 <ul class="list-wrap">
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -298,7 +322,7 @@
                                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </nav>
                     </div>
                     <div class="tgmobile__menu-backdrop"></div>
