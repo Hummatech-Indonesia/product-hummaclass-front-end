@@ -32,15 +32,16 @@
                     if (errors) {
                         for (let key in errors) {
                             if (errors.hasOwnProperty(key)) {
-                                if (key == 'description') {
-                                    let feedback = $(`.invalid-feedback`).closest(
-                                        `.${key}`);
-                                    feedback.text(errors[key])
-                                    feedback.removeClass('d-none')
-                                } else {
-                                    $(`#${key}`).addClass('is-invalid')
-                                        .closest('.invalid-feedback').text(errors[key]);
-                                }
+                                // if (key == 'description') {
+                                let feedback = $(`.invalid-feedback`).closest(
+                                    `.${key}`);
+                                feedback.text(errors[key])
+                                feedback.removeClass('d-none')
+                                // } else {
+                                $(`input[name="${key}"]`).addClass('is-invalid').closest('.invalid-feedback').text(errors[key]);
+                                console.log($(`input[name="${key}"]`).addClass('is-invalid').closest('.invalid-feedback'));
+                                
+                                // }
                             }
                         }
                     }
