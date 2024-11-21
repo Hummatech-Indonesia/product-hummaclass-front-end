@@ -68,12 +68,12 @@
                     </div>
                     <div class="col col-md-6 mt-3" id="price-container">
                         <label for="" class="form-label">Harga</label>
-                        <input type="number" class="form-control" id="price" name="price">
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Masukan harga">
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6 mt-3" id="promotional-price-container" style="display: none">
                         <label for="" class="form-label">Harga Promo (opsional)</label>
-                        <input type="number" class="form-control" id="promotional_price" name="promotional_price">
+                        <input type="text" class="form-control" id="promotional_price" name="promotional_price">
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -246,5 +246,39 @@
                 pricePriceContainer.style.display = 'none';
             }
         });
+    </script>
+
+    <script>
+        const priceInput = document.getElementById('price');
+
+        priceInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value) {
+                this.value = formatRupiah(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        function formatRupiah(angka) {
+            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+    </script>
+    
+    <script>
+        const promotionalInput = document.getElementById('promotional_price');
+
+        promotionalInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value) {
+                this.value = formatRupiah(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        function formatRupiah(angka) {
+            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
     </script>
 @endsection
