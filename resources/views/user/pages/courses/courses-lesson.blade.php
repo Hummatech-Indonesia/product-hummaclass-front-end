@@ -339,7 +339,11 @@
                     $('#prevButton').attr("href", urlPrev);
 
                 },
-                error: function(xhr) {}
+                error: function(xhr) {
+                    if (xhr.responseJSON.meta.code === 400) {
+                        $('#prevButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
+                    }
+                }
             });
 
             function contentCourse(index, value) {
