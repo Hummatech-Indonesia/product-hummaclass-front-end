@@ -73,6 +73,8 @@
                                     style="width: 100%; height: 36px">
                                 </select> --}}
                                 <select name="tag[]" id="test" multiple="" style="width: 100%; height: 36px">
+                                    <option value="test">test</option>
+                                    <option value="woi">woi</option>
                                 </select>
                             </div>
                             @error('name')
