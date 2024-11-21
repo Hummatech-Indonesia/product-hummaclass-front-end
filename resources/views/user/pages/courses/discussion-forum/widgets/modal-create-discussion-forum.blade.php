@@ -65,6 +65,9 @@
                     <div class="mb-3">
                         <div class="form-group">
                             <label for="name" class="fw-semibold form-label">Kata Kunci</label>
+                            <select class="form-control" name="tag[]" multiple="" id="select2-tokenizer"
+                                style="width: 100%; height: 36px">
+                            </select>
                             <div>
                                 {{-- <select class="form-control" name="tag_id[]" multiple="" id="select2-tokenizer"
                                     style="width: 100%; height: 36px">
@@ -77,9 +80,6 @@
                             @enderror
                         </div>
                     </div>
-                    <p>Tuliskan beberapa kata kunci pertanyaan Anda di sini dengan tanda koma sebagai pemisah. Maksimal
-                        6 kata kunci yang bisa ditambahkan.<br>
-                        Contoh: android, intents, material design</p>
                 </div>
                 <div class="modal-footer mb-4 d-flex gap-3">
                     <button type="button" class="outline-purple-primary" data-bs-dismiss="modal">Nanti saja</button>
@@ -122,6 +122,7 @@
                             icon: "success"
                         }).then(function() {
                             $('#modal-create-forum-discussion').modal('hide');
+                            window.location.reload()
                         })
                     },
                     error: function(error) {
