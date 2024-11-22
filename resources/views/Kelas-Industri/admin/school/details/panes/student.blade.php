@@ -67,7 +67,7 @@
                             $('#pagination_list_student').html(handlePaginate(response.data.paginate))
 
                         } else {
-                            $('#tableBody').append(emptyCard());
+                            $('#tableBody').append(empty());
                         }
                     },
                     error: function(response) {
