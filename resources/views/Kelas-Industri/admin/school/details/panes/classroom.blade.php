@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-9 col-md-12" id="data-class">
             <div class="d-flex justify-content-between mb-3">
                 <h5 class="fw-semibold">Detail Kelas - <span id="classroom_name">XII RPL 1</span></h5>
                 <div>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-12">
+        <div class="col-lg-9 col-md-12 d-none" id="no-data-class">
                 <h5 class="fw-semibold mb-3">Detail Kelas - XII RPL 1</h5>
                 <div class="d-flex justify-content-center align-items-center mt-5 pt-5">
                     <div>
