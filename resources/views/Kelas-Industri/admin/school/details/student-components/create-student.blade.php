@@ -21,18 +21,25 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <label for="gender" class="form-label">Gender</label>
                         <select name="gender" id="gender" class="form-control">
                             <option value="male">Laki-laki</option>
                             <option value="female">Perempuan</option>
                         </select>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <label for="nisn" class="form-label">Nomor induk siswa nasional</label>
                         <input type="text" name="nisn" id="nisn" class="form-control">
                     </div>
-                    <div class="col-4">
+                </div>
+                <div class="row">
+
+                    <div class="col-6">
+                        <label for="religion" class="form-label">Agama</label>
+                        <input type="text" name="religion" id="religion" class="form-control">
+                    </div>
+                    <div class="col-6">
                         <label for="date_birth" class="form-label">Tanggal Lahir</label>
                         <input type="date" name="date_birth" id="date_birth" class="form-control">
                     </div>
