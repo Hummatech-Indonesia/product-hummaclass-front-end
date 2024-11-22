@@ -67,13 +67,16 @@
                         <div class="invalid-feedback"></div>
                     </div>
                     <div class="col col-md-6 mt-3" id="price-container">
-                        <label for="" class="form-label">Harga</label>
-                        <input type="text" class="form-control" id="price" name="price" placeholder="Masukan harga">
+                        <label for="price-input" class="form-label">Harga</label>
+                        <input type="text" class="form-control" id="price-input" placeholder="Masukan harga">
+                        <input type="hidden" class="form-control" id="price" name="price">
                         <div class="invalid-feedback"></div>
                     </div>
+
                     <div class="col col-md-6 mt-3" id="promotional-price-container" style="display: none">
                         <label for="" class="form-label">Harga Promo (opsional)</label>
-                        <input type="text" class="form-control" id="promotional_price" name="promotional_price">
+                        <input type="text" class="form-control" id="promotional-price-input">
+                        <input type="hidden" class="form-control" id="promotional-price" name="promotional_price">
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -249,36 +252,44 @@
     </script>
 
     <script>
-        const priceInput = document.getElementById('price');
+        const priceInput = document.getElementById('price-input');
+        const priceHidden = document.getElementById('price');
 
         priceInput.addEventListener('input', function(e) {
-            let value = this.value.replace(/[^0-9]/g, '');
-            if (value) {
-                this.value = formatRupiah(value);
+            let rawValue = this.value.replace(/[^0-9]/g, '');
+
+            priceHidden.value = rawValue;
+
+            if (rawValue) {
+                this.value = formatRupiah(rawValue);
             } else {
                 this.value = '';
             }
         });
 
         function formatRupiah(angka) {
-            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
     </script>
-    
+
     <script>
-        const promotionalInput = document.getElementById('promotional_price');
+        const promotionalInput = document.getElementById('promotional-price-input');
+        const promotionalHidden = document.getElementById('promotional-price');
 
         promotionalInput.addEventListener('input', function(e) {
-            let value = this.value.replace(/[^0-9]/g, '');
-            if (value) {
-                this.value = formatRupiah(value);
+            let rawValue = this.value.replace(/[^0-9]/g, '');
+
+            promotionalHidden.value = rawValue;
+
+            if (rawValue) {
+                this.value = formatRupiah(rawValue);
             } else {
                 this.value = '';
             }
         });
 
         function formatRupiah(angka) {
-            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
     </script>
 @endsection
