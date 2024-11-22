@@ -310,4 +310,22 @@
             });
         });
     </script>
+
+
+    <script>
+        const priceInput = document.getElementById('price');
+
+        priceInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value) {
+                this.value = formatRupiah(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        function formatRupiah(angka) {
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+    </script>
 @endsection
