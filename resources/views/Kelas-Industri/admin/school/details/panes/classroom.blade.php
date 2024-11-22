@@ -84,26 +84,26 @@
             </div>
         </div>
 
-        {{-- <div class="col-lg-9 col-md-12">
-            <h5 class="fw-semibold mb-3">Detail Kelas - XII RPL 1</h5>
-            <div class="d-flex justify-content-center align-items-center mt-5 pt-5">
-                <div>
-                    <div class="text-center">
-                        <img src="{{ asset('admin/assets/images/background/cloud-class.png') }}" style="width: 160px;" alt="">
-                    </div>
-                    <h6 class="fw-semibold text-center">Siswa Belum Ditambahkan</h6>
-                    <div class="d-flex gap-1">
-                        <button class="btn text-white btn-sm px-4" style="background-color: #9425FE" data-bs-toggle="modal"
-                        data-bs-target="#modal-set-class">Atur Kelas</button>
-                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#import-student">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z"/></g></svg>
-                            Import Siswa
-                        </button>
+        <div class="col-lg-9 col-md-12">
+                <h5 class="fw-semibold mb-3">Detail Kelas - XII RPL 1</h5>
+                <div class="d-flex justify-content-center align-items-center mt-5 pt-5">
+                    <div>
+                        <div class="text-center">
+                            <img src="{{ asset('admin/assets/images/background/cloud-class.png') }}" style="width: 160px;" alt="">
+                        </div>
+                        <h6 class="fw-semibold text-center">Siswa Belum Ditambahkan</h6>
+                        <div class="d-flex gap-1">
+                            <button class="btn text-white btn-sm px-4" style="background-color: #9425FE" data-bs-toggle="modal"
+                            data-bs-target="#modal-set-class">Atur Kelas</button>
+                            <button class="btn btn-success btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#import-student">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M13.586 2a2 2 0 0 1 1.284.467l.13.119L19.414 7a2 2 0 0 1 .578 1.238l.008.176V20a2 2 0 0 1-1.85 1.995L18 22h-6v-2h6V10h-4.5a1.5 1.5 0 0 1-1.493-1.356L12 8.5V4H6v8H4V4a2 2 0 0 1 1.85-1.995L6 2zM7.707 14.465l2.829 2.828a1 1 0 0 1 0 1.414l-2.829 2.828a1 1 0 1 1-1.414-1.414L7.414 19H3a1 1 0 1 1 0-2h4.414l-1.121-1.121a1 1 0 1 1 1.414-1.415ZM14 4.414V8h3.586z"/></g></svg>
+                                Import Siswa
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> --}}
     </div>
 </div>
 
