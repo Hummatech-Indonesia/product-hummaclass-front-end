@@ -11,21 +11,24 @@
         } else {
             $('.addClassroom').removeClass('d-none');
         }
+
+        $(`a[href="${hash}"]`).tab('show');
     }
 
     $(document).ready(function () {
         const defaultHash = "#classrooms";
         const initialHash = window.location.hash || defaultHash;
+
         handleTabDisplay(initialHash);
 
         $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
             const hash = $(e.target).attr('href');
             handleTabDisplay(hash);
+            history.replaceState(null, null, hash);
         });
 
-        $('a[data-bs-toggle="tab"]').on('click', function (e) {
-            const newHash = $(this).attr('href');
-            history.replaceState(null, null, newHash);
+        window.addEventListener('hashchange', function () {
+            handleTabDisplay(window.location.hash || defaultHash);
         });
     });
 </script>

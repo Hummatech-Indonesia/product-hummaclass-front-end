@@ -1,4 +1,15 @@
 <div class="tab-pane fade" id="teachers" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
+    <form action="">
+        <div class="d-flex gap-3 mb-3 mt-3">
+            <div class="position-relative">
+                <input type="text" class="form-control product-search px-4 ps-5"
+                    style="background-color: #fff" id="search-name" name="name" value=""
+                    placeholder="Search">
+                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                    style="color: #8B8B8B"></i>
+            </div>
+        </div>
+    </form>
     <div class="row teacher-card-container">
     </div>
 </div>
@@ -75,11 +86,16 @@
                     success: function(response) {
                         console.log(response);
                         $('.teacher-card-container').empty();
-                        $.each(response.data, function(indexInArray, valueOfElement) {
-                            $('.teacher-card-container').append(
-                                teacherList(indexInArray, valueOfElement)
-                            );
-                        });
+
+                        if (response.data.length > 0) {
+                            $.each(response.data, function(indexInArray, valueOfElement) {
+                                $('.teacher-card-container').append(
+                                    teacherList(indexInArray, valueOfElement)
+                                );
+                            });
+                        } else {
+                            $('.teacher-card-container').append(emptyCard());
+                        }
                     }
                 });
             }
