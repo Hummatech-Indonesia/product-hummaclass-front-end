@@ -261,7 +261,7 @@
         });
 
         function formatRupiah(angka) {
-            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
     </script>
     
@@ -278,7 +278,7 @@
         });
 
         function formatRupiah(angka) {
-            return 'Rp. ' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         }
     </script>
 @endsection
