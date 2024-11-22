@@ -26,7 +26,7 @@
                     $('#title').html(response.data.title);
 
                     var contentData = JSON.parse(response.data.content);
-                    var contentHtml = '';
+                    let contentHtml = '';
 
                     contentData.blocks.forEach(function(block) {
                         if (block.type === 'raw') {
@@ -45,7 +45,7 @@
                             contentHtml += `<ul>${listItems}</ul>`;
                         }
                     });
-                    $('#content').html(contentHTML);
+                    $('#content').html(contentHtml);
 
                     var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
                         .module_id);
