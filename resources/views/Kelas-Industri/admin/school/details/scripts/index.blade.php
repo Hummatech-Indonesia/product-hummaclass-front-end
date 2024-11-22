@@ -1,20 +1,31 @@
 <script>
     function handleTabDisplay(hash) {
-        $('.addClassroom').addClass('d-none'); // Sembunyikan tombol secara default
+        $('.addClassroom, .addTeacher, .addStudent').addClass('d-none');
 
         if (hash === "#classrooms") {
-            $('.addClassroom').removeClass('d-none'); // Tampilkan tombol di tab Kelas
+            $('.addClassroom').removeClass('d-none');
+        } else if (hash === "#teachers") {
+            $('.addTeacher').removeClass('d-none');
+        } else if (hash === "#students") {
+            $('.addStudent').removeClass('d-none');
+        } else {
+            $('.addClassroom').removeClass('d-none');
         }
     }
 
-    $(document).ready(function() {
-        // Panggil fungsi saat halaman dimuat pertama kali
-        handleTabDisplay(window.location.hash || "#classrooms");
+    $(document).ready(function () {
+        const defaultHash = "#classrooms";
+        const initialHash = window.location.hash || defaultHash;
+        handleTabDisplay(initialHash);
 
-        // Panggil fungsi setiap kali tab berubah
-        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
             const hash = $(e.target).attr('href');
             handleTabDisplay(hash);
+        });
+
+        $('a[data-bs-toggle="tab"]').on('click', function (e) {
+            const newHash = $(this).attr('href');
+            history.replaceState(null, null, newHash);
         });
     });
 </script>
