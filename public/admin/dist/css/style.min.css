@@ -22866,7 +22866,8 @@
 
 :root,
 [data-bs-theme=light] {
-    --purple-primary: #9425FE;  
+    --purple-primary: #9425FE;
+    --purple-light-primary:#F6EEFE;
     --bs-blue: #5D87FF;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;

@@ -327,3 +327,4 @@ Route::get('point-exchange-detail/{id}', function ($id) {
 // Load additional routes
 require_once('features/user/checkout.php');
 require_once('role/kelas_industri.php');
+require_once('role/mentor.php');
