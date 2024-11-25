@@ -15,6 +15,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             })->name('show');
         });
 
+        Route::prefix('division')->name('division.')->group(function () {
+            Route::get('/', function () {
+                return view('Kelas-Industri.admin.division.index');
+            })->name('index');
+        });
+
         Route::prefix('classroom')->name('classroom.')->group(function () {
             Route::get('create/{slug}', function ($slug) {
                 return view('Kelas-Industri.admin.school.details.classroom-components.create-classroom', compact('slug'));

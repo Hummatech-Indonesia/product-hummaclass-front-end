@@ -34,7 +34,6 @@
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-6">
                         <label for="religion" class="form-label">Agama</label>
                         <input type="text" name="religion" id="religion" class="form-control">

@@ -108,6 +108,15 @@
                         <span class="hide-menu">Sekolah</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('admin.class.division.*') ? 'active' : '' }}"
+                        href="{{ route('admin.class.division.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Divisi</span>
+                    </a>
+                </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">KONTEN</span>
