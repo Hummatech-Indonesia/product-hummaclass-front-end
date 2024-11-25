@@ -9,7 +9,8 @@
                 </div>
                 <div class="modal-body">
                     <label for="create-classroom-division-id-input" class="form-label">Divisi</label>
-                    <select name="division_id" id="create-classroom-division-id-input" class="form-control">
+                    <select name="division_id" id="create-classroom-division-id-input"
+                        class="form-control classroom-division-id-input">
                         <option value=""></option>
                     </select>
                     <label for="create-classroom-name-input" class="form-label">Nama</label>

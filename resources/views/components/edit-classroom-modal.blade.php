@@ -4,12 +4,13 @@
         <div class="modal-content">
             <form action="#" id="edit-classroom-form" enctype="multipart/form-data">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kelas</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Kelas</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <label for="edit-classroom-division-id-input" class="form-label">Divisi</label>
-                    <select name="division_id" id="edit-classroom-division-id-input" class="form-control">
+                    <select name="division_id" id="edit-classroom-division-id-input"
+                        class="form-control classroom-division-id-input">
                         <option value=""></option>
                     </select>
                     <label for="edit-classroom-name-input" class="form-label">Nama</label>
