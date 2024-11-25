@@ -78,9 +78,13 @@
             -webkit-box-orient: vertical;
         }
 
+        .bg-primary {
+            background-color: #9425FE !important;
+        }
+
         /* .card-challenge .card .btn {
-                                                                                    align-self: stretch;
-                                                                                } */
+                                align-self: stretch;
+                                } */
 
         p,
         h1,
@@ -118,25 +122,28 @@
     </div>
 
     <div class="d-flex justify-content-between mt-2">
-        <form action="" class="position-relative d-flex">
-            <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                placeholder="Search">
-            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            <a class="ms-3">
-                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
-                    class="form-control px-4">
-                    <option value="">Kategori</option>
-                </select>
-            </a>
-            <a class="ms-3">
-                <select name="" id="status" style="background-color: #fff; width:10rem" class="form-control px-4">
-                    <option value="">Status</option>
-                    <option value="1">Siap Ditampilkan</option>
-                    <option value="0">Belum Siap Ditampilkan</option>
-                </select>
-            </a>
-        </form>
+        <div class="d-flex gap-3">
+            <form action="" class="position-relative d-flex">
+                <input type="text" class="form-control product-search px-4 ps-5" name="title"
+                    value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+                    placeholder="Search">
+                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+            </form>
+
+            <form action="" class="position-relative d-flex">
+                {{-- <input type="text" class="form-control product-search px-4 ps-5" name="title"
+                    value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+                    placeholder="Search"> --}}
+                <button class="btn btn-primary d-flex justify-content-center align-items-center bg-white border-1"
+                    fdprocessedid="w216xn" style="
+                    border-color: #dfe5ef;
+                ">
+                    <i class="ti ti-sort-ascending-letters fs-6 text-dark"></i>
+                </button>
+            </form>
+        </div>
+
+        <button class="btn btn-primary rounded-2 bg-primary"><i class="ti ti-plus"></i> Tambah</button>
     </div>
 
     <div class="row row-cols-2 row-cols-md-3 mt-4" id="list-card">
@@ -144,10 +151,11 @@
             <div class="card rounded-4 shadow card-challenge">
                 <div class="card-header bg-transparent px-3 pb-4">
                     <div class="row align-items-center">
-                        <div class="col-7 d-flex flex-column justify-content-center">
-                            <span class="badge rounded-pill badge text-bg-purple">Batas : 21 November 2024 11:20</span>
+                        <div class="col-8 d-flex flex-column justify-content-center">
+                            <span class="badge rounded-pill badge text-bg-purple fs-2">Batas : <span>21 November 2024
+                                    11:20</span></span>
                         </div>
-                        <div class="col-5">
+                        <div class="col-4">
                             <div class="d-flex align-items-start">
                                 <div class="ms-auto">
                                     <div class="dropdown dropstart">
