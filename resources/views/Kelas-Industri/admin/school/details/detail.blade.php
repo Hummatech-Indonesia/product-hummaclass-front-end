@@ -137,8 +137,8 @@
                                 Tambah Kelas
                             </span>
                         </button> --}}
-                        <a href="#classroomsCreate" class="btn text-white addClassroom d-none" style="background-color: #9425FE;"
-                            id="classroomCreate">Tambah Kelas</a>
+                        <a href="#" class="btn text-white addClassroom d-none" style="background-color: #9425FE;"
+                            id="create-classroom-button">Tambah Kelas</a>
                         <a href="#teacherCreate" class="btn text-white addTeacher d-none" style="background-color: #9425FE;"
                             id="teacherCreate">Tambah Guru</a>
                         <a href="#studentCreate" class="btn text-white addStudent d-none" style="background-color: #9425FE;"
