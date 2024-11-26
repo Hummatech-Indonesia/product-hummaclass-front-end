@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <form action="#" enctype="multipart/form-data" id="create-footer-form">
+    <form action="#" enctype="multipart/form-data" id="update-header-form">
         <div class="card">
             <div class="card-header bg-white border-bottom">
                 <h5 class="mb-0">Info</h5>
@@ -37,16 +37,19 @@
                     </div>
 
                     <div class="col col-md-12">
-                        <label for="" class="form-label">Deskripsi</label>
+                        <label for="description" class="form-label">Deskripsi</label>
                         <textarea name="description" id="description" cols="30" rows="10"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>
+            <div class="card-footer d-flex justify-content-end">
+                <button class="btn btn-primary">Update</button>
+            </div>
         </div>
     </form>
 @endsection
-@push('script')
+@section('script')
     <script>
         $('#description').summernote({
             height: 200
@@ -54,15 +57,24 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#create-footer-form').submit(function(e) {
-                e.preventDefault();
 
-                var formData = new FormData(this);
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/headers",
+                dataType: "json",
+                success: function(response) {
+                    $('#title').val(response.data.title);
+                    $('#description').summernote('code', response.data.description);
+                }
+            });
+
+            $('#update-header-form').submit(function(e) {
+                e.preventDefault();
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/contact?_method=PATCH",
-                    data: formData,
+                    url: "{{ config('app.api_url') }}/api/headers?_method=PATCH",
+                    data: new FormData(this),
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -72,7 +84,7 @@
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil menambah data data.",
+                            text: "Berhasil mengubah data.",
                             icon: "success"
                         });
                     },
@@ -87,30 +99,7 @@
 
             });
 
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/contact",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    $("#email").val(response.data.email);
-                    $("#phone_number").val(response.data.phone_number);
-                    $("#facebook").val(response.data.facebook);
-                    $("#twitter").val(response.data.twitter);
-                    $("#whatsapp").val(response.data.whatsapp);
-                },
-                error: function(response) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
-                        icon: "error"
-                    });
-                }
-            });
+
         });
     </script>
-@endpush
+@endsection
