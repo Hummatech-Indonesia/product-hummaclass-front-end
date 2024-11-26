@@ -138,10 +138,11 @@
                                 </svg>
                                 Datang
                             </span>
-                            <br>Di Kelas Industri <b>Hummatech</b>
+                            <div id="header-title"><br>Di Kelas Industri <b>Hummatech</b></div>
                         </h3>
 
-                        <p data-aos="fade-right" data-aos-delay="600">Meningkatkan skill guru dan siswa dengan program kelas
+                        <p data-aos="fade-right" data-aos-delay="600" id="header-description">Meningkatkan skill guru dan
+                            siswa dengan program kelas
                             berbasis Industri.</p>
 
                     </div>
@@ -414,6 +415,32 @@
 
 
 @section('script')
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}/api/headers",
+            dataType: "json",
+            success: function(response) {
+                $('#header-title').html(response.data.title)
+                $('#header-description').html(response.data.description);
+            },
+            error: function(xhr) {
+                alert('gagal fetch header')
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}/api/superior-features",
+            dataType: "json",
+            success: function(response) {
+                $('#feature-title').html(response.data.title)
+                $('#feature-description').html(response.data.description)
+                $('#feature-mentor').html(response.data.mentor)
+                $('#feature-course').html(response.data.course)
+                $('#feature-task').html(response.data.task)
+            }
+        });
+    </script>
     @include('user.pages.scripts.course')
     @include('user.pages.scripts.blogs')
     @include('user.pages.scripts.footer')
