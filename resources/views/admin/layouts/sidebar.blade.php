@@ -81,7 +81,7 @@
                             <a href="{{ route('admin.point-exchange.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
-                                  </div>
+                                </div>
                                 <span class="hide-menu">Barang Penukaran</span>
                             </a>
                         </li>
@@ -89,7 +89,7 @@
                             <a href="{{ route('admin.confirmation-point-exchange.index') }}" class="sidebar-link">
                                 <div class="round-16 d-flex align-items-center justify-content-center">
                                     <i class="ti ti-circle"></i>
-                                  </div>
+                                </div>
                                 <span class="hide-menu">Konfirmasi Penukaran</span>
                             </a>
                         </li>
@@ -153,6 +153,22 @@
                                     <i class="ti ti-circle"></i>
                                 </div>
                                 <span class="hide-menu">Footer</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.configuration.header.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Header</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.configuration.superior-feature.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Fitur Unggulan</span>
                             </a>
                         </li>
                     </ul>
