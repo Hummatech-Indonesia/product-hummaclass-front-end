@@ -38,8 +38,8 @@
                 </svg>
                 Unduh Sertifikat
             </a>
-            <button class="btn btn-primary w-100 mt-3 addReviews" data-bs-toggle="modal"
-                data-bs-target="#modal-create-review">
+            <button class="btn btn-primary w-100 mt-3 addReviews" style="display: none" id="review-course"
+                data-bs-toggle="modal" data-bs-target="#modal-create-review">
                 Review Kursus
             </button>
             {{-- <a class="btn btn-primary mt-3 w-100" id="btn-lesson">Lanjutkan</a> --}}
