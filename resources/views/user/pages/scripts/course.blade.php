@@ -9,7 +9,6 @@
             dataType: "json",
             success: function(response) {
 
-                $('#category-list').empty();
                 $.each(response.data.data, function(index, value) {
                     $('#category_count').append(
                         `<div class="swiper-slide">
@@ -24,21 +23,6 @@
                                     </div>
                             </div>`
                     );
-
-                    $('#category-list').append(`
-                    <div class="card">
-                        <div class="card-body rounded-3">
-                            <div class="col row align-items-center">
-                                <div class="col-4">
-                                    <img src="{{ asset('assets/img/no-image/no-image.jpg') }}" alt="">
-                                </div>
-                                <div class="col ps-0">
-                                    <h6 class="m-0">${value.name}</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    `)
                 });
 
             },
@@ -86,7 +70,62 @@
                 });
             }
         });
+
+
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/top-courses",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.data.length > 0) {
+                    $.each(response.data, function(index, value) {
+                        if (index < 8) {
+                            $('#course-top-content').append(listCourse(index, value));
+                        }
+                    });
+                } else {
+                    $('#course-content').append(empty());
+                }
+
+                if (response.data.data.length === 8) {
+                    $('#other-courses').show();
+                } else {
+                    $('#other-courses').hide();
+                }
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
+                });
+            }
+        });
     });
+
+    $.ajax({
+        type: "GET",
+        url: "{{ config('app.api_url') }}" + "/api/superior-feature",
+        headers: {
+            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+        },
+        dataType: "json",
+        success: function(response) {
+            let el;
+            for (const property in response.data) {
+                el = $(`feature-${property}`);
+                if (el) {
+                    el.text(response.data[property])
+                }
+            }
+        },
+        error: function(xhr, status, asdf) {
+
+        }
+    })
 
 
     function listCourse(index, value) {
