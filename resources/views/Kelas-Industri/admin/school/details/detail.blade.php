@@ -127,23 +127,12 @@
                 </div>
                 <div class="">
                     <li class="">
-                        {{-- <button class="btn addClassroom text-white" data-bs-toggle="modal"
-                            data-bs-target="#modal-create-vouchers" style="background-color: var(--purple-primary)">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2" d="M18 12h-6m0 0H6m6 0V6m0 6v6" />
-                                </svg>
-                                Tambah Kelas
-                            </span>
-                        </button> --}}
                         <a href="#" class="btn text-white addClassroom d-none" style="background-color: #9425FE;"
                             id="create-classroom-button">Tambah Kelas</a>
                         <a href="#teacherCreate" class="btn text-white addTeacher d-none" style="background-color: #9425FE;"
                             id="teacherCreate">Tambah Guru</a>
                         <a href="#studentCreate" class="btn text-white addStudent d-none" style="background-color: #9425FE;"
                             id="studentCreate">Tambah Siswa</a>
-
                     </li>
                 </div>
             </ul>
@@ -159,6 +148,8 @@
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-mentor')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-teacher')
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
@@ -182,7 +173,6 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-
                     $('#head_master').html(response.data.head_master);
                     $('#npsn').html(response.data.npsn);
                     $('#phone_number').html(response.data.phone_number);
@@ -190,7 +180,6 @@
                     $('#email').html(response.data.email);
                     $('#address').html(response.data.address);
                     $('#description').html(response.data.description);
-
                 },
                 error: function(response) {
                     Swal.fire({
