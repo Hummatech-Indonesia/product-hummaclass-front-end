@@ -157,7 +157,8 @@
                             <li class="courses__item-tag">
                                 <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Reviews)
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span
+                                    id="detail-rating"></span>&nbsp;Reviews)
                             </li>
                         </ul>
                         <h2 class="title mb-0" id="detail-title"></h2>
@@ -323,7 +324,6 @@
                 dataType: "json",
                 success: function(response) {
                     course = response.data;
-
                     if (response.data.user_course) {
                         if (response.data.user_course.has_pre_test == 0) {
                             $('#btn-checkout').text('Mulai Pre Test');
@@ -348,6 +348,7 @@
                         } else if (response.data.user_course.has_pre_test == 1 && response.data
                             .user_course.has_post_test == 1) {
                             document.getElementById('certificate-download').style.display = 'block';
+                            document.getElementById('review-course').style.display = 'block';
                             $('#btn-checkout').text('Lanjutkan');
                             $('#btn-lesson').text('Lanjutkan');
                             $('#btn-checkout').attr('href',

@@ -173,10 +173,10 @@
     <script>
         $(document).ready(function() {
 
-
+            var moduleSlug = "{{ $id }}"
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-quizzes",
+                url: "{{ config('app.api_url') }}" + "/api/user-quizzes/" + moduleSlug,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },

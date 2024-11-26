@@ -206,7 +206,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::prefix('configuration')->name('configuration.')->group(function () {
         Route::get('footer', fn() => view('admin.pages.configuration.footer'))->name('footer.index');
-
+        Route::get('superior-feature', fn() => view('admin.pages.configuration.superior-feature'))->name('superior-feature.index');
+        Route::get('header', fn() => view('admin.pages.configuration.header'))->name('header.index');
         Route::get('faq', fn() => view('admin.pages.configuration.faq'))->name('faq.index');
     });
 });
