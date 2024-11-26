@@ -9,6 +9,7 @@
             dataType: "json",
             success: function(response) {
 
+                $('#category-list').empty();
                 $.each(response.data.data, function(index, value) {
                     $('#category_count').append(
                         `<div class="swiper-slide">
@@ -23,6 +24,21 @@
                                     </div>
                             </div>`
                     );
+
+                    $('#category-list').append(`
+                    <div class="card">
+                        <div class="card-body rounded-3">
+                            <div class="col row align-items-center">
+                                <div class="col-4">
+                                    <img src="{{ asset('assets/img/no-image/no-image.jpg') }}" alt="">
+                                </div>
+                                <div class="col ps-0">
+                                    <h6 class="m-0">${value.name}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `)
                 });
 
             },
@@ -76,43 +92,39 @@
     function listCourse(index, value) {
         var url = "{{ config('app.api_url') }}";
         let price;
+        let currentPrice;
+
+        if (value.price) {
+            currentPrice = `<h6 class="price">
+                        ${value.price && parseFloat(value.price) > 0 ? formatRupiah(value.price) : "Gatis"} 
+                    </h6>`;
+        }
 
         if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
             price = `<h6 class="price" style="font-size:13px">
-                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
-                        ${formatRupiah(value.promotional_price)}
-                    </h6>`;
-        } else if (value.price && parseFloat(value.price) > 0) {
-            price = `<h6 class="price" style="font-size:13px">
-                        ${formatRupiah(value.price)}
+                        ${value.promotional_price && parseFloat(value.promotional_price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.promotional_price)}</del>` : ''}
                     </h6>`;
         } else {
-            price = `<h6 class="price" style="font-size:13px">Gratis</h6>`;
+            price = '';
         }
-
         return `
         <div class="swiper-slide">
-            <div class="courses__item shine__animate-item" style="width: 300px !important;">
+            <div class="courses__item shine__animate-item" style="width: 300px !important;padding: 0;">
                 <div class="courses__item-thumb">
                     <a href="{{ route('courses.courses.show', '') }}/${value.slug} class="shine__animate-link">
                         <img src="${value.photo && value.photo !== url + '/storage' ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
                     </a>
                 </div>
-                <div class="courses__item-content">
-                    <ul class="courses__item-meta list-wrap">
+                <div class="courses__item-content" style="padding: 0 25px 25px;">
+                    <ul class="courses__item-meta list-wrap" style="flex-direction: row;justify-content: space-between;gap: 0;">
                         <li class="courses__item-tag">
                             <a href="javascript:void(0)">${value.sub_category}</a>
                         </li>
-                        <li class="avg-rating" style="font-size: 12px;"><i class="fas fa-star"></i> (${value.rating} Reviews)</li>
+                        <li class="avg-rating" style="font-size: 12px;"><i class="fas fa-star"></i> (${value.rating??0} Reviews)</li>
                     </ul>
                     <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
                     <div class="courses__item-bottom">
-                        <div class="button">
-                            <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
-                                <span class="text">Daftar</span>
-                                <i class="flaticon-arrow-right"></i>
-                            </a>
-                        </div>
+                        ${currentPrice}
                         <h5 class="price">${price}</h5>
                     </div>
                 </div>
