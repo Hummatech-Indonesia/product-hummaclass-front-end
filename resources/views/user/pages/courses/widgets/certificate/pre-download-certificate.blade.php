@@ -307,7 +307,7 @@
                                 </div>
                                 <div class="verifikasi"><b>Verifikasi Sertifikat</b></div>
                                 <div class="link">class.hummatech.com/sertifikat/example</div>
-                                <div class=""><i>Berlaku hingga 28 Agustus 2024</i></div>
+                                <div class=""><i>Berlaku hingga <span id="expired">28 Agustus 2024 </span></i></div>
                             </div>
                         </div>
                     </div>
@@ -360,6 +360,7 @@
                         $('#course_title').html(response.data.course.title);
                         $('#username').html(response.data.username);
                         $('#date').html(formatDate(response.data.created_at));
+                        $('#expired').html(formatDate(response.data.expired));
                     @else
                         $('#breadCrumbCourse').html(response.data.event.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.event
