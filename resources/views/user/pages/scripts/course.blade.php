@@ -108,7 +108,7 @@
 
     $.ajax({
         type: "GET",
-        url: "{{ config('app.api_url') }}" + "/api/superior-feature",
+        url: "{{ config('app.api_url') }}" + "/api/superior-features",
         headers: {
             Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
         },
@@ -137,7 +137,10 @@
             currentPrice = `<h6 class="price">
                         ${value.price && parseFloat(value.price) > 0 ? formatRupiah(value.price) : "Gatis"} 
                     </h6>`;
+
+
         }
+        console.log(currentPrice);
 
         if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
             price = `<h6 class="price" style="font-size:13px">
