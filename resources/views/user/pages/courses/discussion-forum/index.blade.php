@@ -201,22 +201,6 @@
                         data-bs-target="#modal-create-forum-discussion"
                         style="border: 1px solid #000;border-radius: 15px;">Buat Diskusi Baru</button>
                     <div class="card card-body mt-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
-                        <h5>Filter Berdasarkan</h5>
-                        <div class="form-check mb-1">
-                            <input class="form-check-input  filter" name="answered" type="checkbox" value=""
-                                id="flexCheckChecked">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Diskusi sudah selesai
-                            </label>
-                        </div>
-                        <div class="form-check mb-1">
-                            <input class="form-check-input filter" name="unanswered" type="checkbox" value=""
-                                id="diskusibelumselesai">
-                            <label class="form-check-label" for="diskusibelumselesai">
-                                Diskusi belum selesai
-                            </label>
-                        </div>
-
                         <h5 class="mt-3">Urutkan Berdasarkan</h5>
                         <div class="form-check mb-1">
                             <input class="form-check-input filter" name="latest" type="checkbox" id="diskusiterbaru">
