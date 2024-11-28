@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                align-self: stretch;
-                                } */
+                                                        align-self: stretch;
+                                                        } */
 
         p,
         h1,
@@ -147,68 +147,73 @@
     </div>
 
     <div class="row row-cols-2 row-cols-md-3 mt-4" id="list-card">
-        <div class="col">
-            <div class="card rounded-4 shadow card-challenge">
-                <div class="card-header bg-transparent px-3 pb-4">
-                    <div class="row align-items-center">
-                        <div class="col-8 d-flex flex-column justify-content-center">
-                            <span class="badge rounded-pill badge text-bg-purple fs-2">Batas : <span>21 November 2024
-                                    11:20</span></span>
-                        </div>
-                        <div class="col-4">
-                            <div class="d-flex align-items-start">
-                                <div class="ms-auto">
-                                    <div class="dropdown dropstart">
-                                        <a href="#" class="link text-dark" id="dropdownMenuButton"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="ti ti-dots-vertical fs-7"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <li>
-                                                <h6 class="dropdown-header">New</h6>
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Folder</a></li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Google Docs</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Google Sheets</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="#">Google Slides</a>
-                                            </li>
-                                        </ul>
+        @foreach (range(1, 10) as $index => $item)
+            <div class="col">
+                <div class="card rounded-4 shadow card-challenge">
+                    <div class="card-header bg-transparent px-3 pb-4">
+                        <div class="row align-items-center">
+                            <div class="col-8 d-flex flex-column justify-content-center">
+                                <span class="badge rounded-pill badge text-bg-purple fs-2">Batas : <span>21 November 2024
+                                        11:20</span></span>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="ms-auto">
+                                        <div class="dropdown dropstart">
+                                            <a href="#" class="link text-dark" id="dropdownMenuButton"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="ti ti-dots-vertical fs-7"></i>
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <li>
+                                                    <h6 class="dropdown-header">New</h6>
+                                                </li>
+                                                <li><a class="dropdown-item" href="#">Folder</a></li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Google Docs</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Google Sheets</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">Google Slides</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body px-3 pt-0 pb-3">
-                    <div class="row align-items-center" style="flex-direction: row; flex-wrap: nowrap;">
-                        <div class="col-2">
-                            {{-- <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
+                    <div class="card-body px-3 pt-0 pb-3">
+                        <div class="row align-items-center" style="flex-direction: row; flex-wrap: nowrap;">
+                            <div class="col-2">
+                                {{-- <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
                                 class="img-fluid rounded-circle"> --}}
 
-                            <div class="d-flex align-items-center justify-content-center rounded-circle p-1 border border-3"
-                                style="aspect-ratio: 1 / 1; border-color: rgb(216, 216, 216) !important;">
-                                <span class="text-center" style="width: fit-content;">S</span>
+                                <div class="d-flex align-items-center justify-content-center rounded-circle p-1 border border-3"
+                                    style="aspect-ratio: 1 / 1; border-color: rgb(216, 216, 216) !important;">
+                                    <span class="text-center" style="width: fit-content;">S</span>
+                                </div>
+                            </div>
+                            <div class="col p-0" style="max-width: 100%;">
+                                <h6 class="card-title fs-3 fw-semibold text-muted m-0">Wali Kelasl kaj lkjlskd jflkadsj
+                                    lkksjd flkjasd lkjsdl fjalsdfj</h6>
                             </div>
                         </div>
-                        <div class="col p-0" style="max-width: 100%;">
-                            <h6 class="card-title fs-3 fw-semibold text-muted m-0">Wali Kelasl kaj lkjlskd jflkadsj
-                                lkksjd flkjasd lkjsdl fjalsdfj</h6>
-                        </div>
+                        <h5 class="my-3">XII DKV 2 -SMK KEPANJEN</h5>
+                        <p class="fs-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo cupiditate
+                            asperiores,
+                            voluptatum
+                            numquam obcaecati velit! Aliquid maxime eligendi animi laborum assumenda qui, sunt, fuga,
+                            deserunt
+                            doloremque et debitis reiciendis voluptas?</p>
+                        <a href="{{ route('mentor.challenge.show', $index) }}"
+                            class="btn btn-primary bg-primary border-0 rounded-2 w-100 mb-1">Selengkapnya</a>
                     </div>
-                    <h5 class="my-3">XII DKV 2 -SMK KEPANJEN</h5>
-                    <p class="fs-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo cupiditate asperiores,
-                        voluptatum
-                        numquam obcaecati velit! Aliquid maxime eligendi animi laborum assumenda qui, sunt, fuga, deserunt
-                        doloremque et debitis reiciendis voluptas?</p>
-                    <a href="#" class="btn btn-primary bg-primary rounded-2 w-100 mb-1">Selengkapnya</a>
                 </div>
             </div>
-        </div>
+        @endforeach
 
     </div>
     <div class="d-flex justify-content-center">

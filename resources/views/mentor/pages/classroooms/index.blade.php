@@ -81,52 +81,41 @@
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            <a class="ms-3">
-                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
-                    class="form-control px-4">
-                    <option value="">Kategori</option>
-                </select>
-            </a>
-            <a class="ms-3">
-                <select name="" id="status" style="background-color: #fff; width:10rem" class="form-control px-4">
-                    <option value="">Status</option>
-                    <option value="1">Siap Ditampilkan</option>
-                    <option value="0">Belum Siap Ditampilkan</option>
-                </select>
-            </a>
         </form>
     </div>
 
     <div class="row row-cols-4 mt-4" id="list-card">
-        <div class="col">
-            <div class="card rounded-4 shadow">
-                <div class="card-header bg-transparent px-3 pb-4">
-                    <div class="row align-items-center">
-                        <div class="col-7 d-flex flex-column justify-content-center">
-                            <h4 class="fw-bold p-0">XII DKV 2</h4>
-                            <p class="fs-2 m-0">SMKN 1 KEPANJEN</p>
-                        </div>
-                        <div class="col-5">
-                            <span class="badge rounded-pill badge text-bg-purple">Negeri</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body px-3 pt-0 pb-3">
-                    <div class="row align-items-center">
-                        <div class="col-3">
-                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
-                                class="img-fluid rounded-circle">
-                        </div>
-                        <div class="col p-0">
-                            <h6 class="card-title fs-3 fw-semibold text-muted">Wali Kelas</h6>
-                            <p class="card-text fs-2 text-muted">Suyadi Oke Joss Sp.d</p>
+        @foreach (range(1, 10) as $index => $item)
+            <div class="col">
+                <div class="card rounded-4 shadow">
+                    <div class="card-header bg-transparent px-3 pb-4">
+                        <div class="row align-items-center">
+                            <div class="col-7 d-flex flex-column justify-content-center">
+                                <h4 class="fw-bold p-0">XII DKV 2</h4>
+                                <p class="fs-2 m-0">SMKN 1 KEPANJEN</p>
+                            </div>
+                            <div class="col-5">
+                                <span class="badge rounded-pill badge text-bg-purple">Negeri</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="" class="btn btn-primary bg-primary rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
+                    <div class="card-body px-3 pt-0 pb-3">
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
+                                    class="img-fluid rounded-circle">
+                            </div>
+                            <div class="col p-0">
+                                <h6 class="card-title fs-3 fw-semibold text-muted">Wali Kelas</h6>
+                                <p class="card-text fs-2 text-muted">Suyadi Oke Joss Sp.d</p>
+                            </div>
+                        </div>
+                        <a href="{{ route('mentor.classroom.show', $index) }}"
+                            class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
+        @endforeach
     </div>
     <div class="d-flex justify-content-center">
         <nav id="pagination">

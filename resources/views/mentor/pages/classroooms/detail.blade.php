@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('mentor.layouts.app')
 
 @section('style')
     <style>
@@ -132,7 +132,8 @@
         </div>
     </div>
 
-    @include('Kelas-Industri.admin.school.details.panes.student')
+    {{-- @include('Kelas-Industri.admin.school.details.panes.student') --}}
+    @include('mentor.pages.classroooms.panes.detail.student')
 
     <div class="card shadow-sm">
         <div class="card-body">
