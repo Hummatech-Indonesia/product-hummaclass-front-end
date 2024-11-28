@@ -50,6 +50,8 @@
                     var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
                         .module_id);
                     $('#button-back').attr('href', url);
+                    $('#edit-btn').attr('href', "{{ route('admin.edit-materi.index', ':id') }}".replace(
+                        ':id', response.data.id));
                 },
                 error: function(xhr) {
                     Swal.fire({

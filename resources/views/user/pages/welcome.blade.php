@@ -426,6 +426,8 @@
             },
             error: function(xhr) {
                 alert('gagal fetch header')
+                console.log(xhr);
+                
             }
         });
         $.ajax({
