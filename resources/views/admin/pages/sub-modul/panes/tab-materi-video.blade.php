@@ -81,7 +81,7 @@
                         break;
                     case 'image':
                         html +=
-                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 60%; border-radius: 15px;">`;
+                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
                     default:
                         break;
                 }
