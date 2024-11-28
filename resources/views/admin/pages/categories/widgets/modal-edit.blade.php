@@ -53,6 +53,9 @@
                 $.ajax({
                     type: "POST",
                     url: url,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
                     data: formData,
                     dataType: "json",
                     processData: false,
