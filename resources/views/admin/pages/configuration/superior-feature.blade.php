@@ -5,11 +5,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h5 class="fw-semibold mb-8">Header</h5>
+                    <h5 class="fw-semibold mb-8">Fitur Unggulan</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted" href="javascript:void(0)">Pengaturan pada header hummaclass</a>
+                                <a class="text-muted" href="javascript:void(0)">Pengaturan pada fitur unggulan hummaclass</a>
                             </li>
                         </ol>
                     </nav>
@@ -22,8 +22,8 @@
         </div>
     </div>
 
-    <form action="#" enctype="multipart/form-data" id="create-footer-form">
-        <div class="card">
+    <div class="card">
+        <form action="#" enctype="multipart/form-data" id="update-superior-feature-form">
             <div class="card-header bg-white border-bottom">
                 <h5 class="mb-0">Info</h5>
             </div>
@@ -47,41 +47,37 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="kursus" class="form-label">Kursus Terbaik</label>
-                        <textarea name="kursus" id="kursus" class="form-control" rows="5"></textarea>
+                        <label for="course" class="form-label">Kursus Terbaik</label>
+                        <textarea name="course" id="course" class="form-control" rows="5"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <div class="col-md-4 mb-3">
-                        <label for="tugas" class="form-label">Tugas Kompetensi</label>
-                        <textarea name="tugas" id="tugas" class="form-control" rows="5"></textarea>
+                        <label for="task" class="form-label">Tugas Kompetensi</label>
+                        <textarea name="task" id="task" class="form-control" rows="5"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="row">
                     <div class="col-12 text-end">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 @endsection
 
 @push('script')
     <script>
         $(document).ready(function() {
-            $('#create-footer-form').submit(function(e) {
+            $('#update-superior-feature-form').submit(function(e) {
                 e.preventDefault();
-
-                var formData = new FormData(this);
-
                 $.ajax({
                     type: "POST",
-                    url: "{{ config('app.api_url') }}/api/contact?_method=PATCH",
-                    data: formData,
+                    url: "{{ config('app.api_url') }}/api/superior-features?_method=PATCH",
+                    data: new FormData(this),
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -91,7 +87,7 @@
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil menambah data.",
+                            text: "Berhasil mengubah data.",
                             icon: "success"
                         });
                     },
@@ -107,7 +103,7 @@
 
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/contact",
+                url: "{{ config('app.api_url') }}/api/superior-features",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -115,11 +111,11 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    $("#email").val(response.data.email);
-                    $("#phone_number").val(response.data.phone_number);
-                    $("#facebook").val(response.data.facebook);
-                    $("#twitter").val(response.data.twitter);
-                    $("#whatsapp").val(response.data.whatsapp);
+                    $('#title').val(response.data.title);
+                    $('#mentor').val(response.data.mentor);
+                    $('#course').val(response.data.course);
+                    $('#task').val(response.data.task);
+                    $('#description').val(response.data.description);
                 },
                 error: function(response) {
                     Swal.fire({
