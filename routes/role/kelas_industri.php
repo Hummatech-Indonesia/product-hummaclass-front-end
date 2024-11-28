@@ -1,6 +1,18 @@
 <?php
 
+use App\Http\Controllers\Student\DashboardController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::prefix('students')->name('students.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
+        Route::get('classes', [DashboardController::class, 'classes'])->name('classes.index');
+        Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
+        Route::get('events', [DashboardController::class, 'events'])->name('events.index');
+    });
+});
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
