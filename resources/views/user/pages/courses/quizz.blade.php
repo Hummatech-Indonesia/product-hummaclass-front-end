@@ -326,8 +326,8 @@
                 dataType: "json",
                 success: function(response) {
 
-                    if (response.data.user_quizzes != null) {
-                        const createdAtStr = response.data.user_quizzes.created_at;
+                    if (response.data.user_quiz_me != null) {
+                        const createdAtStr = response.data.user_quiz_me.created_at;
                         const createdAt = new Date(createdAtStr);
                         createdAt.setMinutes(createdAt.getMinutes() + response.data
                             .duration);
