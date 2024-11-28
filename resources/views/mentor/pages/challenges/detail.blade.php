@@ -146,7 +146,7 @@
         <div class="d-flex flex-nowrap align-items-center gap-2">
             <button class="btn btn-primary rounded-2 d-flex gap-2 d-flex flex-nowrap align-items-center bg-primary border-0"><i class="ti ti-download"></i> Download Semua
                 File</button>
-            <a href="{{ route('challenge.index') }}" class="btn btn-primary rounded-2 bg-warning border-0">Kembali</a>
+            <a href="{{ route('mentor.challenge.index') }}" class="btn btn-primary rounded-2 bg-warning border-0">Kembali</a>
         </div>
     </div>
 

@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                        align-self: stretch;
-                                                        } */
+                                                            align-self: stretch;
+                                                            } */
 
         p,
         h1,
@@ -143,7 +143,8 @@
             </form>
         </div>
 
-        <button class="btn btn-primary rounded-2 bg-primary"><i class="ti ti-plus"></i> Tambah</button>
+        <a href="{{ route('mentor.challenge.create') }}" class="btn btn-primary rounded-2 bg-primary border-0"><i
+                class="ti ti-plus"></i> Tambah</a>
     </div>
 
     <div class="row row-cols-2 row-cols-md-3 mt-4" id="list-card">
