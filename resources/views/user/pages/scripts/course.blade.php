@@ -40,14 +40,14 @@
     $(document).ready(function() {
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/courses?order=best seller",
+            url: "{{ config('app.api_url') }}" + "/api/top-courses",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
             dataType: "json",
             success: function(response) {
-                if (response.data.data.length > 0) {
-                    $.each(response.data.data, function(index, value) {
+                if (response.data.length > 0) {
+                    $.each(response.data, function(index, value) {
                         if (index < 8) {
                             $('#course-content').append(listCourse(index, value));
                         }
@@ -74,7 +74,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/top-courses",
+            url: "{{ config('app.api_url') }}" + "/api/top-rating-courses",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
@@ -127,47 +127,56 @@
         }
     })
 
-
     function listCourse(index, value) {
-        var url = "{{ config('app.api_url') }}";
-        let price;
-        let currentPrice;
+        const apiUrl = "{{ config('app.api_url') }}";
+        const defaultImage = '{{ asset('assets/img/no-image/no-image.jpg') }}';
+        let priceContent = '';
 
-        if (value.price) {
-            currentPrice = `<h6 class="price">
-                        ${value.price && parseFloat(value.price) > 0 ? formatRupiah(value.price) : "Gatis"} 
-                    </h6>`;
-
-
-        }
-        console.log(currentPrice);
-
+        // Jika ada harga promosi
         if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
-            price = `<h6 class="price" style="font-size:13px">
-                        ${value.promotional_price && parseFloat(value.promotional_price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.promotional_price)}</del>` : ''}
-                    </h6>`;
-        } else {
-            price = '';
+            priceContent = `
+            <h6 class="price">
+                ${formatRupiah(value.promotional_price)} 
+                <del style="font-size:13px; margin-left: 10px;">${formatRupiah(value.price)}</del>
+            </h6>`;
+        } else if (value.price) {
+            // Jika tidak ada harga promosi
+            const priceValue = parseFloat(value.price);
+            priceContent = `
+            <h6 class="price">
+                ${priceValue > 0 ? formatRupiah(priceValue) : "Gratis"}
+            </h6>`;
         }
+
+        // Generate Image URL
+        const photoUrl = value.photo && value.photo !== `${apiUrl}/storage` ?
+            value.photo :
+            defaultImage;
+
+        // Return HTML Template
         return `
         <div class="swiper-slide">
-            <div class="courses__item shine__animate-item" style="width: 300px !important;padding: 0;">
+            <div class="courses__item shine__animate-item" style="width: 300px; padding: 0;">
                 <div class="courses__item-thumb">
-                    <a href="{{ route('courses.courses.show', '') }}/${value.slug} class="shine__animate-link">
-                        <img src="${value.photo && value.photo !== url + '/storage' ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
+                    <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
+                        <img src="${photoUrl}" alt="img">
                     </a>
                 </div>
                 <div class="courses__item-content" style="padding: 0 25px 25px;">
-                    <ul class="courses__item-meta list-wrap" style="flex-direction: row;justify-content: space-between;gap: 0;">
+                    <ul class="courses__item-meta list-wrap" style="flex-direction: row; justify-content: space-between; gap: 0;">
                         <li class="courses__item-tag">
-                            <a href="javascript:void(0)">${value.sub_category}</a>
+                            <a href="javascript:void(0)">${value.sub_category || ''}</a>
                         </li>
-                        <li class="avg-rating" style="font-size: 12px;"><i class="fas fa-star"></i> (${value.rating??0} Reviews)</li>
+                        <li class="avg-rating" style="font-size: 12px;">
+                            <i class="fas fa-star"></i> (${value.rating || 0} Reviews)
+                        </li>
                     </ul>
-                    <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
+                    <h5 class="title">
+                        <a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title || ''}</a>
+                        <p>by <b>${value.user.name}</b></p>
+                    </h5>
                     <div class="courses__item-bottom">
-                        ${currentPrice}
-                        <h5 class="price">${price}</h5>
+                        ${priceContent}
                     </div>
                 </div>
             </div>
