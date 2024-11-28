@@ -67,7 +67,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" alt="School Logo" class="img-fluid mb-2">
+                    <img src="" id="photo" style="border-radius:5px" alt="School Logo" class="img-fluid mb-2">
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title" id="name"></h5>
@@ -173,6 +173,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $('#photo').attr('src', response.data.photo);
                     $('#head_master').html(response.data.head_master);
                     $('#npsn').html(response.data.npsn);
                     $('#phone_number').html(response.data.phone_number);
@@ -190,64 +191,6 @@
                 }
             });
         });
-    </script>
-    <script>
-        function user(index, value) {
-            var url = "{{ config('app.api_url') }}";
-            return `
-                <tr class="fw-semibold">
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                height="40" alt="">
-                            <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0">Nama</h6>
-                                <span class="fw-normal">Email</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td>Laki</td>
-                    <td>1234567</td>
-                    <td>
-                        <div class="d-flex gap-1">
-                            <button class="btn btn-sm text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student"
-                                style="background-color: #9425FE">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24">
-                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2">
-                                        <path d="M3 13c3.6-8 14.4-8 18 0" />
-                                        <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
-                                    </g>
-                                </svg>
-                            </button>
-                            <button data-id="78216ca2-d422-3c8b-bcc2-60945b4eb294" class="btn btn-sm text-white btn-delete" fdprocessedid="athmbv" style="background-color: #DB0909;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M4 7l16 0"></path>
-                                    <path d="M10 11l0 6"></path>
-                                    <path d="M14 11l0 6"></path>
-                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                </svg>
-                            </button>
-                            <a href="/admin/courses/lorem-ipsum/edit" class="btn btn-sm btn-warning">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" viewBox="0 0 48 48">
-                                    <path fill="currentColor" d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z">
-                                    </path>
-                                </svg>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            `
-        }
-
-        for (let index = 0; index < 10; index++) {
-            $('#tableBody').append(user(index, 3));
-        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

@@ -1,11 +1,12 @@
-<div class="card">
+<div class="tab-pane fade" id="students" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
     <div class="card-body">
         <h5 class="card-title">Daftar Siswa</h5>
         <form action="">
             <div class="d-flex gap-3 mt-2 mb-3">
                 <div class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
-                        name="name" value="{{ old('name', request('name')) }}" id="input-search" placeholder="Search">
+                        name="name" value="{{ old('name', request('name')) }}" id="input-search"
+                        placeholder="Search">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
                         style="color: #8B8B8B"></i>
                 </div>
@@ -30,7 +31,7 @@
     </div>
 </div>
 @push('script')
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             var slug = "{{ $slug }}"
             let debounceTimer;
@@ -114,5 +115,5 @@
                 </tr>
             `
         }
-    </script> --}}
+    </script>
 @endpush

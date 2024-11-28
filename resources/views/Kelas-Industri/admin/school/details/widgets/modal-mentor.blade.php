@@ -27,3 +27,30 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/get-mentors/" + id,
+                headers: {
+                    'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                },
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    window.location.href = "/admin/modules/" + id;
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Ada kesalahan saat menyimpan data.",
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

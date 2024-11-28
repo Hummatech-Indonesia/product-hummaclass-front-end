@@ -15,7 +15,7 @@
 
         <div class="col-lg-9 col-md-12" id="data-class">
             <div class="d-flex justify-content-between mb-3">
-                <h5 class="fw-semibold">Detail Kelas - <span id="classroom_name">XII RPL 1</span></h5>
+                <h5 class="fw-semibold">Detail Kelas - <span id="classroom_name"></span></h5>
                 <div>
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-edit-class">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 28 28">
@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-md-7">
                                 <h5 class="card-title classroom-">Syadi</h5>
-                                <span class="">Wali Kelas XI RPL 1</span>
+                                <span class="">Wali Kelas -</span>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 </svg></span> Tambah
                             Mentor</button>
                     </div>
-
+                                                                                                                                                                                                                                                                                                                                                                                                                       
                     <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
                         <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
                             class="img-fluid" style="max-width: 85px; height: auto;">
@@ -108,7 +108,7 @@
         </div>
 
         <div class="col-lg-9 col-md-12 d-none" id="no-data-class">
-            <h5 class="fw-semibold mb-3">Detail Kelas - XII RPL 1</h5>
+            <h5 class="fw-semibold mb-3">Detail Kelas -</h5>
             <div class="d-flex justify-content-center align-items-center mt-5 pt-5">
                 <div>
                     <div class="text-center">
