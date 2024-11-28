@@ -12,25 +12,11 @@
 
             </div>
         </form>
-        <div class="table-responsive rounded-2 mb-4">
-            <table class="table border text-nowrap customize-table mb-0 align-middle">
-                <thead class="text-dark fs-4">
-                    <tr class="">
-                        <th class="fs-4 fw-semibold mb-0">Nama Siswa</th>
-                        <th class="fs-4 fw-semibold mb-0">Jenis Kelamin</th>
-                        <th class="fs-4 fw-semibold mb-0">NISN</th>
-                        <th class="fs-4 fw-semibold mb-0">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
-            </table>
-        </div>
         <nav id="pagination_list_student"></nav>
     </div>
 </div>
 @push('script')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var slug = "{{ $slug }}"
             let debounceTimer;
@@ -114,5 +100,5 @@
                 </tr>
             `
         }
-    </script>
+    </script> --}}
 @endpush
