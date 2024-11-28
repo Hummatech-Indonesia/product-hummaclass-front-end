@@ -5,6 +5,7 @@ import Checklist from "@editorjs/checklist";
 import ImageTool from "@editorjs/image";
 import Embed from "@editorjs/embed";
 import RawTool from "@editorjs/raw";
+import Table from "@editorjs/table";
 
 const apiBaseUrl = "https://e-course.mijurnal.com"; // Ganti dengan URL API Anda
 
@@ -32,6 +33,16 @@ const editor = new EditorJS({
     checklist: {
       class: Checklist,
       inlineToolbar: true,
+    },
+    table: {
+      class: Table,
+      inlineToolbar: true,
+      config: {
+        rows: 2,
+        cols: 3,
+        maxRows: 5,
+        maxCols: 5,
+      },
     },
     image: {
       class: ImageTool,
