@@ -423,7 +423,7 @@
                             contentHtml += block.data.html; // Menambahkan HTML secara langsung
                         } else if (block.type === 'image') {
                             contentHtml +=
-                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
+                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 60%; border-radius: 15px;">`;
                         } else if (block.type === 'paragraph') {
                             contentHtml += `<p>${block.data.text}</p>`;
                         } else if (block.type === 'header') {
