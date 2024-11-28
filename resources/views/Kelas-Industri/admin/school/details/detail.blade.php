@@ -67,7 +67,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2 text-center">
-                    <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" alt="School Logo" class="img-fluid mb-2">
+                    <img style="border-radius: 5px;" src="" id="logo" alt="School Logo" class="img-fluid mb-2">
                 </div>
                 <div class="col-md-8">
                     <h5 class="card-title" id="name"></h5>
@@ -173,6 +173,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
+                    $('#logo').attr('src', response.data.photo);
                     $('#head_master').html(response.data.head_master);
                     $('#npsn').html(response.data.npsn);
                     $('#phone_number').html(response.data.phone_number);
