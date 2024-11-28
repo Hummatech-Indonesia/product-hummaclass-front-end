@@ -38,8 +38,8 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
-                        href="{{ route('admin.news.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.news.index') }}"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
                         </span>
@@ -47,17 +47,17 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
-                        href="{{ route('admin.events.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('mentor.challenge.index') ? 'active' : '' }}"
+                        href="{{ route('mentor.challenge.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
-                        <span class="hide-menu">Challenge</span>
+                        <span class="hide-menu">Tantangan</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
-                        href="{{ route('admin.events.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
@@ -65,8 +65,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
-                        href="{{ route('admin.events.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"
+                        aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
@@ -91,7 +91,7 @@
                             <i class="ti ti-user"></i>
                         </span>
                         <span class="hide-menu">Profile</span>
-                    </li>
+                </li>
                 </a>
             </ul>
         </nav>
