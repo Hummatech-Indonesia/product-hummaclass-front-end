@@ -168,7 +168,7 @@
                                         <a href="{{ route('point-exchange.index') }}">Penukaran Hadiah</a>
                                     </li>
                                     @session('user')
-                                    {{-- <li>
+                                        {{-- <li>
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
                                             <div class="user-profile">
@@ -182,18 +182,18 @@
                                             </div>
                                         </form>
                                     </li> --}}
-                                    <form action="{{ route('logout') }}" method="POST">
-                                        @csrf
-                                    <li
-                                        class="menu-item d-block d-md-none">
-                                            <button type="submit" class="border-0 bg-transparent ps-4">Keluar</button>
-                                        </li>
-                                    </form>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <li class="menu-item d-block d-md-none">
+                                                <button type="submit" class="border-0 bg-transparent ps-4">Keluar</button>
+                                            </li>
+                                        </form>
                                     @endsession
                                 </ul>
                             </div>
                             <div class="tgmenu__search d-none d-md-block">
-                                <form action="{{ route('courses.courses.index') }}" method="GET" class="tgmenu__search-form">
+                                <form action="{{ route('courses.courses.index') }}" method="GET"
+                                    class="tgmenu__search-form">
                                     @method('GET')
                                     <div class="select-grp">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
@@ -313,7 +313,7 @@
                             <div class="tgmobile__menu-outer">
                                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                             </div>
-                            
+
                             {{-- <div class="social-links">
                                 <ul class="list-wrap">
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -376,7 +376,8 @@
                 $('.photo-user').attr('src', profileImage1);
             },
             error: function(xhr) {
-                if (response.status === 401) {
+
+                if (xhr.status != 401) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         text: "Tidak dapat memuat data profil.",

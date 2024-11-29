@@ -109,18 +109,26 @@
 
     function latestNews(index, value) {
         var url = "{{ config('app.api_url') }}";
-        var noImageUrl = "{{ asset('assets/img/no-image/no-image.jpg') }}"; // Variabel untuk URL gambar default
+
+        var noImageUrl = "{{ asset('assets/img/no-image/no-image.jpg') }}";
+
+        var newsUrl = "{{ route('news.show', ':id') }}".replace(':id', value.id);
+
+        var imgUrl = value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value
+                .thumbnail) ?
+            url + value.thumbnail :
+            noImageUrl;
 
         return `
         <div class="rc-post-item">
             <div class="rc-post-thumb">
                 <a href="javascript:void(0)">
-                    <img src="${value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.thumbnail) ? url + value.thumbnail : noImageUrl}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
+                    <img src="${imgUrl}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
                 </a>
             </div>
             <div class="rc-post-content">
                 <h4 class="title">
-                    <a href="${route('news.show', value.id)}">
+                    <a href="${newsUrl}">
                         ${value.title && value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}
                     </a>
                 </h4>
@@ -128,6 +136,7 @@
         </div>
     `;
     }
+
 
 
 
