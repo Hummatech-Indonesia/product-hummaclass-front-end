@@ -26,7 +26,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('mentor.home') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-home"></i> <!-- Icon untuk Dashboard -->
                         </span>
@@ -38,8 +38,8 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.news.index') }}"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
+                        href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
                         </span>
@@ -56,12 +56,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"
-                        aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('mentor.attendance.index') ? 'active' : '' }}"
+                        href="{{ route('mentor.attendance.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
-                        <span class="hide-menu">Riwayat Transaksi</span>
+                        <span class="hide-menu">Absensi</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
