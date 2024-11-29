@@ -116,7 +116,7 @@
 
         var imgUrl = value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value
                 .thumbnail) ?
-            url + value.thumbnail :
+            value.thumbnail :
             noImageUrl;
 
         return `
