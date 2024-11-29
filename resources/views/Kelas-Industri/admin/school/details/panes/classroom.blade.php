@@ -17,7 +17,8 @@
             <div class="d-flex justify-content-between mb-3">
                 <h5 class="fw-semibold">Detail Kelas - <span id="classroom_name"></span></h5>
                 <div>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal-edit-class">
+                    <button class="btn btn-warning" id="edit-class" data-id="" data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-class">
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 28 28">
                             <path fill="white"
                                 d="M19.289 3.15a3.932 3.932 0 1 1 5.56 5.56l-1.54 1.54l-5.56-5.56zm-2.6 2.6L4.502 17.937c-.44.44-.76.986-.928 1.586l-1.547 5.525a.75.75 0 0 0 .924.924l5.524-1.547a3.6 3.6 0 0 0 1.587-.928L22.25 11.311z" />
@@ -61,7 +62,7 @@
                                 </svg></span> Tambah
                             Mentor</button>
                     </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                       
+
                     <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
                         <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
                             class="img-fluid" style="max-width: 85px; height: auto;">
@@ -149,9 +150,11 @@
             $(document).on('change', '.filter-radio', function() {
                 let selectedValue = $('input[name="filter"]:checked').val();
                 name = $('input[name="filter"]:checked').data('name');
-                $('#classroom_name').html(name); // Show classroom name
+                id = $('input[name="filter"]:checked').val();
+                $('#classroom_name').html(name);
+                $('#edit-class').attr('data-id', id);
 
-                // Update student classrooms based on filter
+
                 updateStudentClassrooms(selectedValue);
             });
 
@@ -209,7 +212,7 @@
                 success: function(response) {
                     if (response.data.length > 0) {
                         $('#classroom_name').html(response.data[0].name);
-
+                        $('#edit-class').attr('data-id', response.data[0].id);
                         updateStudentClassrooms(response.data[0].id);
 
                         $.each(response.data, function(index, value) {
@@ -228,7 +231,7 @@
                 }
             });
 
-
+          
             function studentClassroom(index, value) {
                 return `
                 <tr class="fw-semibold">
