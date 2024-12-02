@@ -26,7 +26,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('mentor.dashboard.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-home"></i> <!-- Icon untuk Dashboard -->
                         </span>

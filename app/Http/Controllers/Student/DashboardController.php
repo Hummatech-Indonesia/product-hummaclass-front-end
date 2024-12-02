@@ -24,4 +24,8 @@ class DashboardController extends Controller
     {
         return view('student.pages.dashboard.events.index');
     }
+    public function schoolYear(): View
+    {
+        return view('Kelas-industri.admin.school-year.index');
+    }
 }
