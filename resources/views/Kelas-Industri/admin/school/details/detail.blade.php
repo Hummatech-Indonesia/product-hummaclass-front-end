@@ -59,7 +59,7 @@
             background-color: #9425FE;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -156,6 +156,10 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/forms/select2.init.js') }}"></script>
     <x-delete-modal-component></x-delete-modal-component>
     @include('Kelas-Industri.admin.school.details.scripts.index')
     <script>

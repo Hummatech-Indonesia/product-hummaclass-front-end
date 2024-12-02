@@ -133,6 +133,7 @@
                             </svg>
                             Import Siswa
                         </button>
+                        <input type="hidden" name="" id="for_classroom_id">
                     </div>
                 </div>
             </div>
@@ -153,8 +154,7 @@
                 id = $('input[name="filter"]:checked').val();
                 $('#classroom_name').html(name);
                 $('#edit-class').attr('data-id', id);
-
-
+                $('#for_classroom_id').val(id);
                 updateStudentClassrooms(selectedValue);
             });
 
@@ -213,6 +213,9 @@
                     if (response.data.length > 0) {
                         $('#classroom_name').html(response.data[0].name);
                         $('#edit-class').attr('data-id', response.data[0].id);
+                        $('#for_classroom_id').val(response.data[0].id);
+                        console.log($('#for_classroom_id').val());
+                        
                         updateStudentClassrooms(response.data[0].id);
 
                         $.each(response.data, function(index, value) {
@@ -231,7 +234,7 @@
                 }
             });
 
-          
+
             function studentClassroom(index, value) {
                 return `
                 <tr class="fw-semibold">

@@ -10,7 +10,7 @@
                 <div>
                     <div class="form-group mb-3">
                         <label for="" class="mb-2 fw-semibold text-dark">Nama Mentor</label>
-                        <select name="user_id" id="user_id" class="form-control">
+                        <select class="form-control" id="user_id" name="user_id" style="width: 100%; height: 36px">
                             <option value="">--Pilih Mentor--</option>
                         </select>
                         @error('user_id')
@@ -31,6 +31,9 @@
     <script>
         var slug = "{{ $slug }}";
         $(document).ready(function() {
+            var classroom_id = $('#for_classroom_id').val();
+            console.log(classroom_id);
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/get-mentors",
@@ -62,7 +65,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: "POST",
-                url: "{{ config('app.api_url') }}/api/students/" + schoolId,
+                url: "{{ config('app.api_url') }}/api/teacher-classrooms/" + schoolId,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
