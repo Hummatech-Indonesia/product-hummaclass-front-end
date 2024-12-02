@@ -28,49 +28,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="card position-relative border-1 col-6">
-                    <div class="card-body p-3 row">
-                        <div class="row align-items-center">
-                            <div class="col-md-3 text-center" style="z-index: 1;">
-                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="School Logo"
-                                    class="img-fluid rounded-circle mb-2" width="90">
-                            </div>
-                            <div class="col-md-7">
-                                <h5 class="card-title classroom-">Syadi</h5>
-                                <span class="">Wali Kelas -</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-                        <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
-                            class="img-fluid" style="max-width: 85px; height: auto;">
-                    </div>
-                    <div class="position-absolute bottom-0 start-0" style="padding: 0px;">
-                        <img src="{{ asset('admin/assets/images/background/bubble-left.png') }}" alt="Description"
-                            class="img-fluid" style="max-width: 75px; height: auto;">
-                    </div>
+                <div class="card position-relative border-1 col-6" id="card_teacher">
                 </div>
-                <div class="card position-relative border-1 col-6">
-                    <div class="card-body p-3 d-flex justify-content-center align-items-center" style="height: 100px;">
-                        <button class="btn" style="background-color: #9425FE;color:white; height:40px"
-                            data-bs-toggle="modal" data-bs-target="#modal-mentor"><span><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-plus" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                </svg></span> Tambah
-                            Mentor</button>
-                    </div>
-
-                    <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
-                        <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
-                            class="img-fluid" style="max-width: 85px; height: auto;">
-                    </div>
-                    <div class="position-absolute bottom-0 start-0" style="padding: 0px;">
-                        <img src="{{ asset('admin/assets/images/background/bubble-left.png') }}" alt="Description"
-                            class="img-fluid" style="max-width: 75px; height: auto;">
-                    </div>
+                <div class="card position-relative border-1 col-6" id="card_mentor">
                 </div>
             </div>
 
@@ -120,10 +80,8 @@
                     <div class="d-flex gap-1">
                         <button class="btn text-white btn-sm px-4" style="background-color: #9425FE"
                             data-bs-toggle="modal" data-bs-target="#modal-set-class">Atur Kelas</button>
-                        <button class="btn btn-success btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#import-student">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                viewBox="0 0 24 24">
+                        <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#import-student">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                 <g fill="none" fill-rule="evenodd">
                                     <path
                                         d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
@@ -154,7 +112,9 @@
                 id = $('input[name="filter"]:checked').val();
                 $('#classroom_name').html(name);
                 $('#edit-class').attr('data-id', id);
-                $('#for_classroom_id').val(id);
+                addMentor(id)
+                addTeacher(id)
+                getDetailClassroom(id)
                 updateStudentClassrooms(selectedValue);
             });
 
@@ -166,6 +126,7 @@
                 }, 500);
             });
 
+            //Update Student Classroom
             function updateStudentClassrooms(classroomId) {
                 if (!classroomId) return;
 
@@ -202,6 +163,7 @@
                 });
             }
 
+            //Get All Classroom
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/classrooms/" + slug,
@@ -213,10 +175,10 @@
                     if (response.data.length > 0) {
                         $('#classroom_name').html(response.data[0].name);
                         $('#edit-class').attr('data-id', response.data[0].id);
-                        $('#for_classroom_id').val(response.data[0].id);
-                        console.log($('#for_classroom_id').val());
-                        
+                        addMentor(response.data[0].id)
                         updateStudentClassrooms(response.data[0].id);
+                        getDetailClassroom(response.data[0].id)
+                        addTeacher(response.data[0].id)
 
                         $.each(response.data, function(index, value) {
                             $('#list-classroom').append(listClassroom(index, value));
@@ -234,7 +196,180 @@
                 }
             });
 
+            //Get Classroom
+            function getDetailClassroom(classroom_id) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/classroom-detail/" + classroom_id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.data.mentor) {
+                            $('#card_mentor').append(
+                                mentorOrTeacher(response.data)
+                            );
+                        } else {
+                            $('#card_mentor').append(
+                                ` <div class="card-body p-3 d-flex justify-content-center align-items-center" style="height: 100px;">
+                                    <button class="btn" style="background-color: #9425FE;color:white; height:40px"
+                                        data-bs-toggle="modal" data-bs-target="#modal-mentor"><span><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                class="bi bi-plus" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                            </svg></span> Tambah
+                                        Mentor</button>
+                                </div>
+                                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                                    <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
+                                        class="img-fluid" style="max-width: 85px; height: auto;">
+                                </div>
+                                <div class="position-absolute bottom-0 start-0" style="padding: 0px;">
+                                    <img src="{{ asset('admin/assets/images/background/bubble-left.png') }}" alt="Description"
+                                        class="img-fluid" style="max-width: 75px; height: auto;">
+                                </div>`
+                            );
 
+                        }
+                        if (response.data.teacher) {
+                            $('#card_teacher').append(
+                                mentorOrTeacher(response.data)
+                            );
+                        } else {
+                            $('#card_teacher').append(
+                                ` <div class="card-body p-3 d-flex justify-content-center align-items-center" style="height: 100px;">
+                                    <button class="btn" style="background-color: #9425FE;color:white; height:40px"
+                                        data-bs-toggle="modal" data-bs-target="#modal-teacher"><span><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                class="bi bi-plus" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+                                            </svg></span> Tambah
+                                        Guru</button>
+                                </div>
+                                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                                    <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
+                                        class="img-fluid" style="max-width: 85px; height: auto;">
+                                </div>
+                                <div class="position-absolute bottom-0 start-0" style="padding: 0px;">
+                                    <img src="{{ asset('admin/assets/images/background/bubble-left.png') }}" alt="Description"
+                                        class="img-fluid" style="max-width: 75px; height: auto;">
+                                </div>`
+                            );
+
+                        }
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat mengambil data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function mentorOrTeacher(user) {
+                return `<div class="card-body p-3 row">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 text-center" style="z-index: 1;">
+                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="School Logo"
+                                class="img-fluid rounded-circle mb-2" width="90">
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="card-title classroom-">${user.mentor.name}</h5>
+                            <span class="">Mentor-${user.name}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="position-absolute bottom-0 end-0" style="padding: 0px;">
+                    <img src="{{ asset('admin/assets/images/background/bubble-right.png') }}" alt="Description"
+                        class="img-fluid" style="max-width: 85px; height: auto;">
+                </div>
+                <div class="position-absolute bottom-0 start-0" style="padding: 0px;">
+                    <img src="{{ asset('admin/assets/images/background/bubble-left.png') }}" alt="Description"
+                        class="img-fluid" style="max-width: 75px; height: auto;">
+                </div>`
+            }
+
+            //Add Teacher
+            function addTeacher(classroom_id) {
+                $('#add-teacher').submit(function(e) {
+                    e.preventDefault();
+
+                    var formData = new FormData(this);
+
+                    console.log(formData);
+
+                    formData.append('_method', 'PATCH');
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/mentor-classrooms/" + classroom_id,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses",
+                                text: "Berhasil menambah data.",
+                                icon: "success"
+                            }).then(() => {
+                                window.location.href = "/admin/courses";
+                            });
+                        },
+                        error: function(xhr) {
+                            console.error('Gagal menambah murid:', xhr.responseText);
+                            alert('Terjadi kesalahan, silakan coba lagi.');
+                        }
+                    });
+                });
+            }
+
+
+            //Add Mentor
+            function addMentor(classroom_id) {
+                $('#add-mentor').submit(function(e) {
+                    e.preventDefault();
+
+                    var formData = new FormData(this);
+
+                    formData.append('_method', 'PATCH');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/mentor-classrooms/" + classroom_id,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses",
+                                text: "Berhasil menambah data.",
+                                icon: "success"
+                            }).then(() => {
+                                window.location.href = "/admin/courses";
+                            });
+                        },
+                        error: function(xhr) {
+                            console.error('Gagal menambah murid:', xhr.responseText);
+                            alert('Terjadi kesalahan, silakan coba lagi.');
+                        }
+                    });
+                });
+            }
+
+            //Student Classroom
             function studentClassroom(index, value) {
                 return `
                 <tr class="fw-semibold">
@@ -271,6 +406,7 @@
             `
             }
 
+            //Menampilkan List Classroom
             function listClassroom(index, value) {
                 let checked = (index == 0) ? 'checked' : ''; // Pilih yang pertama sebagai default checked
                 return `

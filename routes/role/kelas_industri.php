@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Student\DashboardController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 

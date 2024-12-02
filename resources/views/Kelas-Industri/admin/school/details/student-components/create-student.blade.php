@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <div class="card">
-        <form action="#" method="POST" id="createTeacherForm">
+        <form action="#" method="POST" id="createStudentForm">
             <div class="card-header">
                 <h5>Tambah Murid</h5>
             </div>
@@ -44,8 +44,8 @@
             </div>
             <div class="card-footer">
                 <div class="d-flex justify-content-end gap-2">
-                    <button type="submit" class="btn btn-primary">Konfirmasi</button>
                     <button type="button" class="btn btn-secondary backButton">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </div>
         </form>
@@ -62,46 +62,8 @@
                 window.location.href = '/admin/class/school/' + slug;
             });
 
-            // Fetch data user
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/users",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    $('#user_id').empty();
-                    $('#user_id').append('<option value="">Pilih User</option>'); // Placeholder
-                    $.each(response.data.data, function(index, value) {
-                        $('#user_id').append(
-                            `<option value="${value.id}">${value.name}</option>`);
-                    });
-                },
-                error: function(xhr) {
-                    console.error('Gagal memuat data user:', xhr.responseText);
-                }
-            });
-
-            // Fetch data sekolah
-            var schoolId; // Variabel untuk menyimpan id sekolah
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/schools/" + slug,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    schoolId = response.data.id;
-                },
-                error: function(xhr) {
-                    console.error('Gagal memuat data sekolah:', xhr.responseText);
-                }
-            });
-
             // Submit form
-            $('#createTeacherForm').submit(function(e) {
+            $('#createStudentForm').submit(function(e) {
                 e.preventDefault();
 
                 if (!schoolId) {

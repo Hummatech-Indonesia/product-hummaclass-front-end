@@ -29,11 +29,7 @@
 </div>
 @push('script')
     <script>
-        var slug = "{{ $slug }}";
         $(document).ready(function() {
-            var classroom_id = $('#for_classroom_id').val();
-            console.log(classroom_id);
-
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/get-mentors",
@@ -55,36 +51,6 @@
                         text: "Ada kesalahan saat menyimpan data.",
                         icon: "error"
                     });
-                }
-            });
-        });
-
-        $('#add-mentor').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-            $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/teacher-classrooms/" + schoolId,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: "json",
-                success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data.",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = "/admin/courses";
-                    });
-                },
-                error: function(xhr) {
-                    console.error('Gagal menambah murid:', xhr.responseText);
-                    alert('Terjadi kesalahan, silakan coba lagi.');
                 }
             });
         });
