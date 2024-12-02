@@ -13,4 +13,6 @@ Route::prefix('mentor')->name('mentor.')->group(function () {
     Route::get('challenges-create', fn() => view('mentor.pages.challenges.create'))->name('challenge.create');
 
     Route::get('attendances', fn() => view('mentor.pages.attendances.index'))->name('attendance.index');
+
+    Route::get('journals', fn() => view('mentor.pages.journals.index'))->name('journal.index');
 });

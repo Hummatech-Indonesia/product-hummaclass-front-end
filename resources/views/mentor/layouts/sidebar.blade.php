@@ -65,12 +65,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('admin.events.index') }}"
+                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}" href="{{ route('mentor.journal.index') }}"
                         aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
                         </span>
-                        <span class="hide-menu">Keuangan</span>
+                        <span class="hide-menu">Jurnal</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
