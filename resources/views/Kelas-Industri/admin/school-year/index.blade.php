@@ -24,9 +24,14 @@
 
     <div class="d-flex justify-content-between align-items-center my-3">
         <h3><b>Daftar tahun ajaran</b></h3>
-        <button class="btn px-3 py-1 text-white" id="create-school-year-button" style="background:var(--purple-primary)"><i
-                class="fa fa-plus fa-md"></i>
-            Tambah</button>
+        <div class="d-flex gap-2">
+            <button class="btn px-3 py-1 text-white" id="create-school-year-button"
+                style="background:var(--purple-primary)"><i class="fa fa-plus fa-md"></i>
+                Tambah</button>
+            <button class="btn px-3 py-1 text-white btn-danger" id="delete-school-year-button"><i
+                    class="fa fa-minus fa-md"></i>
+                Hapus tahun ajaran terakhir</button>
+        </div>
     </div>
 
     <div class="row" id="school-year-list">
@@ -51,15 +56,7 @@
                             <div class="dropdown py-1" style="position: absolute; right: 10px; top: 10px;">
                                 <div class="badge" style="background: var(--light-purple); color: var(--purple-primary);">
                                     ${value.status == 'inactive' ? 'Tidak Aktif' : 'Aktif'}
-                                </div>
-                                <a href="#" class="text-decoration-none text-dark" data-bs-toggle="dropdown"
-                                    aria-expanded="false" style="color: var(--purple-primary);">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li><a class="dropdown-item" id="edit-school-year-button" data-id="${value.id}" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" id="delete-school-year-button" data-id="${value.id}" href="#">Hapus</a></li>
-                                </ul>
+                                </div> 
                             </div>
                         </div>
                         <!-- Tahun Ajaran -->
@@ -163,7 +160,6 @@
             })
 
             $(document).on('click', '#delete-school-year-button', function() {
-                const id = $(this).data('id')
                 Swal.fire({
                     title: "Apakah anda ingin mengubah status tahun ajaran baru?",
                     showCancelButton: true,
@@ -172,8 +168,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "{{ config('app.api_url') }}/api/school-years/" + id +
-                                '?_method=DELETE',
+                            url: "{{ config('app.api_url') }}/api/school-years?_method=DELETE",
                             headers: {
                                 Authorization: 'Bearer ' +
                                     "{{ session('hummaclass-token') }}",
