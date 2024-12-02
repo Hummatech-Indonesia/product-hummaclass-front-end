@@ -40,7 +40,7 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function() {  
             function schoolYearList(index, value) {
                 return `
             <div class="col-md-4">
