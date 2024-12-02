@@ -207,8 +207,9 @@
                     dataType: "json",
                     success: function(response) {
                         if (response.data.mentor) {
+
                             $('#card_mentor').append(
-                                mentorOrTeacher(response.data)
+                                mentorOrTeacher(response.data.name, response.data.mentor.name, 'Mentor')
                             );
                         } else {
                             $('#card_mentor').append(
@@ -235,7 +236,7 @@
                         }
                         if (response.data.teacher) {
                             $('#card_teacher').append(
-                                mentorOrTeacher(response.data)
+                                mentorOrTeacher(response.data.name, response.data.teacher.user.name, 'Wali Kelas')
                             );
                         } else {
                             $('#card_teacher').append(
@@ -271,7 +272,8 @@
                 });
             }
 
-            function mentorOrTeacher(user) {
+            function mentorOrTeacher(classroom_name, name, status) {
+
                 return `<div class="card-body p-3 row">
                     <div class="row align-items-center">
                         <div class="col-md-3 text-center" style="z-index: 1;">
@@ -279,8 +281,8 @@
                                 class="img-fluid rounded-circle mb-2" width="90">
                         </div>
                         <div class="col-md-7">
-                            <h5 class="card-title classroom-">${user.mentor.name}</h5>
-                            <span class="">Mentor-${user.name}</span>
+                            <h5 class="card-title classroom-">${name}</h5>
+                            <span class="">${status}-${classroom_name}</span>
                         </div>
                     </div>
                 </div>
@@ -307,7 +309,7 @@
                     formData.append('_method', 'PATCH');
                     $.ajax({
                         type: "POST",
-                        url: "{{ config('app.api_url') }}/api/mentor-classrooms/" + classroom_id,
+                        url: "{{ config('app.api_url') }}/api/teacher-classrooms/" + classroom_id,
                         headers: {
                             Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                         },
@@ -321,7 +323,7 @@
                                 text: "Berhasil menambah data.",
                                 icon: "success"
                             }).then(() => {
-                                window.location.href = "/admin/courses";
+                                window.location.reload();
                             });
                         },
                         error: function(xhr) {
@@ -358,7 +360,7 @@
                                 text: "Berhasil menambah data.",
                                 icon: "success"
                             }).then(() => {
-                                window.location.href = "/admin/courses";
+                                window.location.reload();
                             });
                         },
                         error: function(xhr) {

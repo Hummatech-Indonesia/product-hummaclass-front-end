@@ -30,19 +30,18 @@
 </div>
 @push('script')
     <script>
+        var slug = "{{ $slug }}"
         $(document).ready(function() {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/get-teachers",
+                url: "{{ config('app.api_url') }}/api/get-teachers/" + slug,
                 headers: {
                     'Authorization': `Bearer {{ session('hummaclass-token') }}`
                 },
                 dataType: "json",
                 contentType: false,
                 processData: false,
-                success: function(response) {                    
-                    console.log(response);
-
+                success: function(response) {
                     $.each(response.data, function(index, value) {
                         $('#teacher_id').append(
                             `<option value="${value.id}">${value.user.name}</option>`);
