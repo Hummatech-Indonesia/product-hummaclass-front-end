@@ -12,6 +12,24 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
     });
 
+    Route::prefix('students-ki')->name('students-ki.')->group(function () {
+        Route::get('/', function () {
+            return view('user.pages.dashboard.student-ki.index');
+        })->name('index');
+        Route::get('course-list', function () {
+            return view('user.pages.dashboard.student-ki.course-list');
+        })->name('course-list');
+        Route::get('events-list', function () {
+            return view('user.pages.dashboard.student-ki.events-list');
+        })->name('events-list');
+        Route::get('reviews', function () {
+            return view('user.pages.dashboard.student-ki.reviews');
+        })->name('reviews');
+        Route::get('transaction-history', function () {
+            return view('user.pages.dashboard.student-ki.transaction-history');
+        })->name('transaction-history');
+    });
+
 });
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
