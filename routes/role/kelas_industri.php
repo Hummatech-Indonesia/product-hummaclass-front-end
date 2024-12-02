@@ -12,6 +12,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
     });
+
 });
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -63,4 +64,9 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('Kelas-Industri.admin.school.edit', compact('id'));
         })->name('school.edit');
     });
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
+    });
+
 });

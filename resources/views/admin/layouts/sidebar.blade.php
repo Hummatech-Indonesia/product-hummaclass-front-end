@@ -100,6 +100,15 @@
                     <span class="hide-menu">KELAS INDUSTRI</span>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('admin.dashboard.school-year.*') ? 'active' : '' }}"
+                        href="{{ route('admin.dashboard.school-year.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Tahun Ajaran</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.class.school.*') ? 'active' : '' }}"
                         href="{{ route('admin.class.school.index') }}" aria-expanded="false">
                         <span>
