@@ -29,7 +29,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             return view('user.pages.dashboard.student-ki.transaction-history');
         })->name('transaction-history');
     });
-
 });
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -85,5 +84,4 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
     });
-
 });

@@ -37,17 +37,22 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Daftar Siswa</h5>
-                    <form action="">
-                        <div class="d-flex gap-3 mb-3 mt-3">
-                            <div class="position-relative">
-                                <input type="text" class="form-control product-search px-4 ps-5"
-                                    style="background-color: #fff" id="search-name" name="name" value=""
-                                    placeholder="Search">
-                                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
-                                    style="color: #8B8B8B"></i>
+                    <div class="d-flex justify-content-between">
+                        <form action="">
+                            <div class="d-flex gap-3 mb-3 mt-3">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control product-search px-4 ps-5"
+                                        style="background-color: #fff" id="search-name" name="name" value=""
+                                        placeholder="Search">
+                                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                                        style="color: #8B8B8B"></i>
+                                </div>
                             </div>
+                        </form>
+                        <div class="">
+                            <button class="btn btn-primary">Tambah Siswa</button>
                         </div>
-                    </form>
+                    </div>
                     <div class="table-responsive rounded-2 mb-4 mt-4">
                         <table class="table border text-nowrap customize-table mb-0 align-middle">
                             <thead class="text-dark fs-4">
@@ -59,11 +64,12 @@
                                 </tr>
                             </thead>
                             <tbody id="table-user-classroom">
-                                <!-- Data siswa akan dimuat di sini -->
                             </tbody>
                         </table>
                     </div>
-                    <nav id="pagination_student"></nav>
+                    <div class="d-flex justify-content-end">
+                        <nav id="pagination_student"></nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -150,7 +156,9 @@
                             $('#pagination_student').html(handlePaginate(response.data.paginate))
 
                         } else {
-                            $('#table-user-classroom').append(emptyCard());
+                            $('#table-user-classroom').append(
+                                `<div>${emptyCard()}</div>`
+                            );
                         }
                     },
                     error: function(response) {
