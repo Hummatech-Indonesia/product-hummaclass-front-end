@@ -132,6 +132,8 @@
                             data-bs-target="#modal-set-class">Tambah Kelas</a>
                         <a href="#teacherCreate" class="btn text-white addTeacher d-none" style="background-color: #9425FE;"
                             id="teacherCreate">Tambah Guru</a>
+                        <a href="#studentCreate" class="btn text-white addStudent d-none btn-success"
+                            id="studentCreate">Import Siswa</a>
                         <a href="#studentCreate" class="btn text-white addStudent d-none" style="background-color: #9425FE;"
                             id="studentCreate">Tambah Siswa</a>
                     </li>

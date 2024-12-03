@@ -30,7 +30,7 @@
                 Tambah</button>
             <button class="btn px-3 py-1 text-white btn-danger" id="delete-school-year-button"><i
                     class="fa fa-minus fa-md"></i>
-                Hapus tahun ajaran terakhir</button>
+                Hapus</button>
         </div>
     </div>
 
@@ -40,33 +40,34 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function() {  
-            function schoolYearList(index, value) {
+        $(document).ready(function() {
+            function schoolYearList(index, value, isActive) {
+
                 return `
-            <div class="col-md-4">
-                <div class="card position-relative" style="overflow: hidden;">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Badge Tahun Ajaran di sisi kiri -->
-                            <div class="position-absolute border rounded-end px-3 py-1 text-white"
-                                style="left: 0; top: 10px; background: var(--purple-primary);">
-                                <b>Tahun Ajaran</b>
+                    <div class="col-md-4">
+                        <div class="card position-relative" style="overflow: hidden;">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- Badge Tahun Ajaran di sisi kiri -->
+                                    <div class="position-absolute border rounded-end px-3 py-1 text-white"
+                                        style="left: 0; top: 10px; background: var(--purple-primary);">
+                                        <b>Tahun Ajaran</b>
+                                    </div>
+                                    <!-- Badge Aktif dan Ikon dengan Dropdown -->
+                                    <div class="dropdown py-1" style="position: absolute; right: 10px; top: 10px;">
+                                        <div class="badge" style="background: var(--light-purple); color: var(--purple-primary);">
+                                ${isActive ? 'Aktif' : 'Tidak Aktif'}
+                                        </div> 
+                                    </div>
+                                </div>
+                                <!-- Tahun Ajaran -->
+                                <h3 style="color: var(--purple-primary); margin-top: 40px;"><b>${value.school_year}</b></h3>
                             </div>
-                            <!-- Badge Aktif dan Ikon dengan Dropdown -->
-                            <div class="dropdown py-1" style="position: absolute; right: 10px; top: 10px;">
-                                <div class="badge" style="background: var(--light-purple); color: var(--purple-primary);">
-                                    ${value.status == 'inactive' ? 'Tidak Aktif' : 'Aktif'}
-                                </div> 
-                            </div>
+                            <!-- Lingkaran Manis -->
+                            <img src="{{ asset('assets/img/card/buble.png') }}" alt="buble.png" class="position-absolute"
+                                style="transform: scaleX(-1); bottom: 0; right: 0;">
                         </div>
-                        <!-- Tahun Ajaran -->
-                        <h3 style="color: var(--purple-primary); margin-top: 40px;"><b>${value.school_year}</b></h3>
                     </div>
-                    <!-- Lingkaran Manis -->
-                    <img src="{{ asset('assets/img/card/buble.png') }}" alt="buble.png" class="position-absolute"
-                        style="transform: scaleX(-1); bottom: 0; right: 0;">
-                </div>
-            </div>
             `
             }
 
@@ -79,10 +80,12 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        const dataLength = response.data.length;
                         $('#school-year-list').empty();
                         $.each(response.data, function(indexInArray, valueOfElement) {
+                            const isActive = indexInArray + 1 == dataLength;
                             $('#school-year-list').append(
-                                schoolYearList(indexInArray, valueOfElement)
+                                schoolYearList(indexInArray, valueOfElement, isActive)
                             );
                         });
                     },
