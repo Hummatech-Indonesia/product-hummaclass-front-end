@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="index-2.html">Daftar Kelas Pada Kelas Industri</a>
+                                <a class="text-muted " href="index-2.html">Daftar Mentor Pada Kelas Industri</a>
                             </li>
                         </ol>
                     </nav>
@@ -44,23 +44,31 @@
 
     <!-- Modal Body -->
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-    <div class="modal fade" id="modalId" tabindex="-1" role="dialog"
-        aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered " role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleId">
-                        Modal title
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">Body</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
+                <form id="create-mentor-form" action="">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Tambah Mentor
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="placeholder" placeholder="Nama" name="name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" id="placeholder" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -77,6 +85,40 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            $('#create-mentor-form').submit(function(e) {
+                e.preventDefault();
+
+                formData = $(this).closest('form').serialize();
+
+                $.ajax({
+                    type: "post",
+                    url: "{{ config('app.api_url') }}/api/mentors",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    data: formData,
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Berhasil',
+                            text: response.meta.message,
+                            icon: 'success',
+                            confirmButtonText: 'Oke',
+                        }).then(() => {
+                            window.location.href = "{{ route('admin.mentor.index') }}";
+                        });
+                    },
+                    error: function(xhr, status) {
+                        commonAlert({
+                            'title': 'Gagal',
+                            'text': xhr.responseJSON.message,
+                            'icon': status
+                        });
+                    }
+                });
+
+            });
+
             $.ajax({
                 type: "get",
                 url: "{{ config('app.api_url') }}/api/mentors",

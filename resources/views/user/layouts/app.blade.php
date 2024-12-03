@@ -37,6 +37,7 @@
             --tg-theme-primary: #9425FE;
         }
     </style>
+    @vite('resources/js/app.js')
 </head>
 
 <body style="
