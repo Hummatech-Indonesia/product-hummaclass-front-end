@@ -1,4 +1,4 @@
-<div class="col-lg-3">
+<div class="col-lg-3 mb-3">
     <div class="dashboard__sidebar-wrap">
         <div class="dashboard__sidebar-title mb-20">
             <h6 class="title">Welcome, Jone Due</h6>
