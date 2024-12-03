@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\CheckRoleHelper;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +23,7 @@ class GuestMiddleware
             if ($role['name'] == 'guest') {
                 return $next($request);
             } else {
-                if ($role['name'] == 'admin') {
-                    return redirect()->route('admin.home');
-                }
-                if ($role['name'] == 'mentor') {
-                    return redirect()->route('mentor.dashboard.index');
-                }
-                return redirect('/');
+                return redirect(CheckRoleHelper::check($user));
             }
         }
     }
