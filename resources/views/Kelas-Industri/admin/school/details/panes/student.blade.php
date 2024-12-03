@@ -31,6 +31,7 @@
     </div>
 </div>
 @push('script')
+    <x-delete-modal-component></x-delete-modal-component>
     <script>
         $(document).ready(function() {
             var slug = "{{ $slug }}"
@@ -78,42 +79,87 @@
                 });
             }
 
-        });
-
-        function studentClassroom(index, value) {
-            return `
-                <tr class="fw-semibold">
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
-                                class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                height="40" alt="">
-                            <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0">${value.student}</h6>
-                                <span class="fw-normal">${value.email}</span>
+            function studentClassroom(index, value) {
+                return `
+                    <tr class="fw-semibold">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
+                                    class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                    height="40" alt="">
+                                <div class="ms-3">
+                                    <h6 class="fs-4 fw-semibold mb-0">${value.name}</h6>
+                                    <span class="fw-normal">${value.email}</span>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>${value.gender}</td>
-                    <td>${value.nisn}</td>
-                    <td>
-                        <div class="d-flex gap-1">
-                            <button class="btn btn-sm text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student"
-                                style="background-color: #9425FE">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24">
-                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2">
-                                        <path d="M3 13c3.6-8 14.4-8 18 0" />
-                                        <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
-                                    </g>
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `
-        }
+                        </td>
+                        <td>${value.gender}</td>
+                        <td>${value.nisn}</td>
+                        <td>
+                            <div class="d-flex gap-1">
+                                <button class="btn btn-sm text-white" data-bs-toggle="modal"
+                                    data-bs-target="#modal-detail-student"
+                                    style="background-color: #9425FE">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                        viewBox="0 0 24 24">
+                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2">
+                                            <path d="M3 13c3.6-8 14.4-8 18 0" />
+                                            <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
+                                        </g>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-sm text-white btn-warning" id="edit-student-button" data-id="${value.id}">
+                                    <i class="fa fa-trash fa-md"></i>
+                                </button>
+                                <button class="btn btn-sm text-white btn-danger" id="delete-modal-button" data-id="${value.id}">
+                                    <i class="fa fa-trash fa-md"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `
+            }
+
+            $(document).on('click', '#edit-student-button', function() {
+                const id = $(this).data('id')
+                window.location.href = "/admin/class/student/edit/" + id
+            })
+
+            $(document).on('click', '#delete-modal-button', function() {
+                $('#modal-delete').modal('show')
+                const studentId = $(this).data('id')
+
+                $('#create-division-form').off('submit');
+                $('#deleteForm').submit(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/students/" + studentId +
+                            "?_method=DELETE",
+                        headers: {
+                            'Authorization': 'Bearer {{ session('hummaclass-token') }}'
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses!",
+                                text: "Berhasil menghapus data.",
+                                icon: "success"
+                            });
+                            $('#modal-delete').modal('hide')
+                            get(1);
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "",
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            })
+        });
     </script>
 @endpush
