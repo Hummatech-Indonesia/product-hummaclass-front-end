@@ -28,6 +28,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('transaction-history', function () {
             return view('user.pages.dashboard.student-ki.transaction-history');
         })->name('transaction-history');
+
+        Route::get('profile', fn() => view('user.pages.dashboard.student-ki.profile.index'))->name('profile');
     });
 });
 

@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="instructor-review.html">
+                    <a href="/dashboard/students-ki/profile">
                         <i class="skillgro-avatar"></i>
                         Profile Saya
                     </a>
