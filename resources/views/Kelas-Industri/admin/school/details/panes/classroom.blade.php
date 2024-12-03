@@ -50,7 +50,9 @@
                             </div>
                         </form>
                         <div class="">
-                            <button class="btn btn-primary">Tambah Siswa</button>
+                            <button class="btn" id="add-student-classroom" data-bs-toggle="modal"
+                                style="background-color: #9425FE;color:white" data-bs-target="#modal-student">Tambah
+                                Siswa</button>
                         </div>
                     </div>
                     <div class="table-responsive rounded-2 mb-4 mt-4">
@@ -120,20 +122,21 @@
                 $('#edit-class').attr('data-id', id);
                 addMentor(id)
                 addTeacher(id)
+                addStudentClassroom(id)
                 getDetailClassroom(id)
-                updateStudentClassrooms(selectedValue);
+                getStudentClassroom(selectedValue);
             });
 
             $('#search-name').keyup(function() {
                 clearTimeout(debounceTimer);
                 debounceTimer = setTimeout(function() {
                     let selectedValue = $('input[name="filter"]:checked').val();
-                    updateStudentClassrooms(selectedValue);
+                    getStudentClassroom(selectedValue);
                 }, 500);
             });
 
-            //Update Student Classroom
-            function updateStudentClassrooms(classroomId) {
+            //Get Student Classroom
+            function getStudentClassroom(classroomId) {
                 if (!classroomId) return;
 
                 $.ajax({
@@ -148,17 +151,21 @@
                     },
                     success: function(response) {
                         $('#table-user-classroom').empty();
+                        var defaultSelected = [];
+
                         if (response.data.data.length > 0) {
                             $.each(response.data.data, function(index, value) {
+                                defaultSelected.push(value.student_id);
                                 $('#table-user-classroom').append(studentClassroom(index,
                                     value));
                             });
-                            $('#pagination_student').html(handlePaginate(response.data.paginate))
 
+                            // Panggil fungsi untuk mengatur Select2
+                            getStudentClassroomSelect2(defaultSelected);
+
+                            $('#pagination_student').html(handlePaginate(response.data.paginate));
                         } else {
-                            $('#table-user-classroom').append(
-                                `<div>${emptyCard()}</div>`
-                            );
+                            $('#table-user-classroom').append(`<div>${emptyCard()}</div>`);
                         }
                     },
                     error: function(response) {
@@ -170,6 +177,77 @@
                     }
                 });
             }
+
+            // Fungsi untuk mengisi Select2 dan memilih default
+            function getStudentClassroomSelect2(defaultSelected = []) {
+                $('#add-student-classroom').click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ config('app.api_url') }}/api/student-without-classroom/" + slug,
+                        headers: {
+                            Authorization: `Bearer {{ session('hummaclass-token') }}`
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            $('#select2').empty(); // Kosongkan opsi sebelumnya
+                            $.each(response.data, function(index, value) {
+
+                                $('#select2').append(
+                                    `<option value="${value.id}">${value.name}</option>`
+                                );
+                            });
+
+                            // Pilih nilai default jika ada
+                            if (defaultSelected && defaultSelected.length > 0) {
+                                $('#select2').val(defaultSelected).trigger('change');
+                            }
+                        },
+                        error: function(response) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            }
+
+            function addStudentClassroom(classroom_id) {
+                $('#form-add-student-classroom').submit(function(e) {
+                    e.preventDefault();
+                    var formData = new FormData(this);
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/student-classrooms/" + classroom_id,
+                        headers: {
+                            Authorization: `Bearer {{ session('hummaclass-token') }}`
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses",
+                                text: "Berhasil menambah data.",
+                                icon: "success"
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function(response) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            }
+
 
             //Get All Classroom
             $.ajax({
@@ -184,9 +262,10 @@
                         $('#classroom_name').html(response.data[0].name);
                         $('#edit-class').attr('data-id', response.data[0].id);
                         addMentor(response.data[0].id)
-                        updateStudentClassrooms(response.data[0].id);
+                        getStudentClassroom(response.data[0].id);
                         getDetailClassroom(response.data[0].id)
                         addTeacher(response.data[0].id)
+                        addStudentClassroom(response.data[0].id)
 
                         $.each(response.data, function(index, value) {
                             $('#list-classroom').append(listClassroom(index, value));
