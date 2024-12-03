@@ -84,4 +84,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
     });
+
+    Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index');
 });
