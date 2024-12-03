@@ -8,8 +8,15 @@ export default defineConfig({
         "resources/sass/app.scss",
         "resources/js/app.js",
         "resources/js/codex-editor.js",
+        "resources/views/**",
       ],
       refresh: true,
     }),
   ],
+  server: {
+    host: 'localhost',
+    hmr: {
+      host: 'localhost',
+    }
+  }
 });
