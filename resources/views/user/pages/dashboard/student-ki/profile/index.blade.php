@@ -17,9 +17,9 @@
 
     <section class="dashboard__area section-pb-120">
         <div class="container">
-            @include('user.pages.dashboard.student-ki.widgets.top-students-ki')
+            @include('user.pages.dashboard.student-ki.layouts.top-students-ki')
             <div class="row">
-                @include('user.pages.dashboard.student-ki.widgets.sidebar-students')
+                @include('user.pages.dashboard.student-ki.layouts.sidebar-students')
                 <div class="col-lg-9">
                     <div class="dashboard__content-wrap">
                         <div class="dashboard__content-title">

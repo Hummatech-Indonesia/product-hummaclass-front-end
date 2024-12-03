@@ -17,16 +17,16 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             return view('user.pages.dashboard.student-ki.index');
         })->name('index');
         Route::get('course-list', function () {
-            return view('user.pages.dashboard.student-ki.course-list');
+            return view('user.pages.dashboard.student-ki.course-list.index');
         })->name('course-list');
         Route::get('events-list', function () {
-            return view('user.pages.dashboard.student-ki.events-list');
+            return view('user.pages.dashboard.student-ki.events-list.index');
         })->name('events-list');
         Route::get('reviews', function () {
-            return view('user.pages.dashboard.student-ki.reviews');
+            return view('user.pages.dashboard.student-ki.reviews.index');
         })->name('reviews');
         Route::get('transaction-history', function () {
-            return view('user.pages.dashboard.student-ki.transaction-history');
+            return view('user.pages.dashboard.student-ki.transaction-history.index');
         })->name('transaction-history');
 
         Route::get('profile', fn() => view('user.pages.dashboard.student-ki.profile.index'))->name('profile');

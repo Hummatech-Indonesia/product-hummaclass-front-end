@@ -1,13 +1,10 @@
 @extends('user.layouts.app')
 @section('style')
     <style>
-        /* Gaya manual untuk tombol Edit */
         .btn-edit {
             border: 2px solid #ffc107;
-            /* Warna outline kuning */
             background-color: transparent;
             color: #ffc107;
-            /* Warna teks */
             padding: 8px 16px;
             border-radius: 5px;
             transition: all 0.3s ease;
@@ -15,18 +12,13 @@
 
         .btn-edit:hover {
             background-color: #ffc107;
-            /* Warna latar saat hover */
             color: #fff;
-            /* Warna teks saat hover */
         }
 
-        /* Gaya manual untuk tombol Hapus */
         .btn-delete {
             border: 2px solid #dc3545;
-            /* Warna outline merah */
             background-color: transparent;
             color: #dc3545;
-            /* Warna teks */
             padding: 8px 16px;
             border-radius: 5px;
             transition: all 0.3s ease;
@@ -34,12 +26,9 @@
 
         .btn-delete:hover {
             background-color: #dc3545;
-            /* Warna latar saat hover */
             color: #fff;
-            /* Warna teks saat hover */
         }
 
-        /* Styling tambahan untuk memastikan konsistensi */
         .dashboard__review-action {
             display: flex;
             gap: 10px;
@@ -64,9 +53,9 @@
 
     <section class="dashboard__area section-pb-120">
         <div class="container">
-            @include('user.pages.dashboard.student-ki.widgets.top-students-ki')
+            @include('user.pages.dashboard.student-ki.layouts.top-students-ki')
             <div class="row">
-                @include('user.pages.dashboard.student-ki.widgets.sidebar-students')
+                @include('user.pages.dashboard.student-ki.layouts.sidebar-students')
                 <div class="col-lg-9">
                     <div class="dashboard__content-wrap">
                         <div class="dashboard__content-title">

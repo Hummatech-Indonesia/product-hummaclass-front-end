@@ -1,11 +1,10 @@
 <div class="row mb-3">
-    @foreach (range(1, 4) as $item)
+    @foreach (range(1, 5) as $item)
         <div class="col-xl-4 col-md-6">
             <div class="courses__item courses__item-two shine__animate-item">
                 <div class="courses__item-thumb courses__item-thumb-two">
                     <a href="course-details.html" class="shine__animate-link">
-                        <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}"
-                            alt="img">
+                        <img src="{{ asset('assets/img/courses/course_thumb02.jpg') }}" alt="img">
                     </a>
                 </div>
                 <div class="courses__item-content courses__item-content-two">
@@ -29,22 +28,11 @@
                     </div>
                     <div class="progress-item progress-item-two">
                         <h6 class="title">Selesai <span>100%</span></h6>
-                        <div class="progress" role="progressbar"
-                            aria-label="Example with label" aria-valuenow="25"
+                        <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25"
                             aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar" style="width: 100%"></div>
                         </div>
                     </div>
-                </div>
-                <div class="courses__item-bottom-two ">
-                    <ul class="list-wrap">
-                        <li><i class="flaticon-book"></i>60</li>
-                        <li><i class="flaticon-clock"></i>70h 45m</li>
-                        <li><i class="flaticon-mortarboard"></i>202</li>
-                    </ul>
-                    <a href="javascript:void(0)" class="btn w-75 px-3 shadow-none"
-                        type="button">Lihat
-                        Detail</a>
                 </div>
             </div>
         </div>

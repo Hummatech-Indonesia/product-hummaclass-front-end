@@ -79,9 +79,9 @@
 
     <section class="dashboard__area section-pb-120">
         <div class="container">
-            @include('user.pages.dashboard.student-ki.widgets.top-students-ki')
+            @include('user.pages.dashboard.student-ki.layouts.top-students-ki')
             <div class="row">
-                @include('user.pages.dashboard.student-ki.widgets.sidebar-students')
+                @include('user.pages.dashboard.student-ki.layouts.sidebar-students')
                 <div class="col-lg-9">
                     <div class="dashboard__content-title">
                         <h4 class="mb-4">Riwayat Transaksi</h4>
@@ -109,16 +109,16 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel"
                                 aria-labelledby="all-tab" tabindex="0">
-                                @include('user.pages.dashboard.student-ki.panes.tabs-transaction-all')
+                                @include('user.pages.dashboard.student-ki.transaction-history.panes.tabs-transaction-all')
                             </div>
                             <div class="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab"
                                 tabindex="0">
-                                @include('user.pages.dashboard.student-ki.panes.tabs-transaction-panding')
+                                @include('user.pages.dashboard.student-ki.transaction-history.panes.tabs-transaction-panding')
 
                             </div>
                             <div class="tab-pane fade" id="finish-tab-pane" role="tabpanel" aria-labelledby="finish-tab"
                                 tabindex="0">
-                                @include('user.pages.dashboard.student-ki.panes.tabs-transaction-finish')
+                                @include('user.pages.dashboard.student-ki.transaction-history.panes.tabs-transaction-finish')
                             </div>
                         </div>
                     </div>
