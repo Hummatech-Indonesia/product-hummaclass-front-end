@@ -17,4 +17,6 @@ Route::prefix('mentor')->name('mentor.')->group(function () {
     Route::get('journals', fn() => view('mentor.pages.journals.index'))->name('journal.index');
 
     Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking.index');
+
+    Route::get('profile', fn() => view('admin.pages.profile.index'))->name('profile.index');
 });

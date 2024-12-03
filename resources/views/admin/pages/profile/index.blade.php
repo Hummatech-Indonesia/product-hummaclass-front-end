@@ -1,5 +1,4 @@
-@extends('admin.layouts.app')
-
+@extends(session('user')['roles'][0]['name'] == 'admin' ? 'admin.layouts.app' : 'mentor.layouts.app')
 @section('style')
 <style>
     .user-profile-tab .nav-item .nav-link.active {

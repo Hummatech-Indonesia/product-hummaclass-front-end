@@ -26,7 +26,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('mentor.dashboard.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('mentor.dashboard.index') ? 'active' : '' }}" href="{{ route('mentor.dashboard.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-home"></i> <!-- Icon untuk Dashboard -->
                         </span>
@@ -38,7 +38,7 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('mentor.classroom.index') ? 'active' : '' }}"
                         href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('mentor.journal.index') ? 'active' : '' }}"
                         href="{{ route('mentor.journal.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-file"></i> <!-- Icon untuk Event -->
@@ -83,7 +83,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('mentor.ranking.index') ? 'active' : '' }}"
                         href="{{ route('mentor.ranking.index') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -100,7 +100,7 @@
                     <span class="hide-menu">PROFILE</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('admin.profile.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('mentor.profile.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user"></i>
                         </span>
