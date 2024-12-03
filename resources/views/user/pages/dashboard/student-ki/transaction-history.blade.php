@@ -24,8 +24,40 @@
         }
 
         .btn-penilaian:hover {
-            background-color: #6D6C80;
-            color: white;
+            background-color: white;
+            color: #6D6C80;
+        }
+
+        .btn-pembatalan {
+            border: 2px solid #DB0909;
+            background-color: transparent;
+            color: #DB0909;
+            padding: 0.375rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-pembatalan:hover {
+            background-color: white;
+            color: #DB0909;
+        }
+
+         .btn-bayar {
+            border: 2px solid #DB0909;
+            background-color: transparent;
+            color: #DB0909;
+            padding: 0.375rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-bayar:hover {
+            background-color: white;
+            color: #DB0909;
         }
     </style>
 @endsection
@@ -81,11 +113,12 @@
                             </div>
                             <div class="tab-pane fade" id="pending-tab-pane" role="tabpanel" aria-labelledby="pending-tab"
                                 tabindex="0">
-                                ppp
+                                @include('user.pages.dashboard.student-ki.panes.tabs-transaction-panding')
+
                             </div>
                             <div class="tab-pane fade" id="finish-tab-pane" role="tabpanel" aria-labelledby="finish-tab"
                                 tabindex="0">
-                                po
+                                @include('user.pages.dashboard.student-ki.panes.tabs-transaction-finish')
                             </div>
                         </div>
                     </div>
