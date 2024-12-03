@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Student\DashboardController;
-use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,6 +10,24 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('classes', [DashboardController::class, 'classes'])->name('classes.index');
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
+    });
+
+    Route::prefix('students-ki')->name('students-ki.')->group(function () {
+        Route::get('/', function () {
+            return view('user.pages.dashboard.student-ki.index');
+        })->name('index');
+        Route::get('course-list', function () {
+            return view('user.pages.dashboard.student-ki.course-list');
+        })->name('course-list');
+        Route::get('events-list', function () {
+            return view('user.pages.dashboard.student-ki.events-list');
+        })->name('events-list');
+        Route::get('reviews', function () {
+            return view('user.pages.dashboard.student-ki.reviews');
+        })->name('reviews');
+        Route::get('transaction-history', function () {
+            return view('user.pages.dashboard.student-ki.transaction-history');
+        })->name('transaction-history');
     });
 });
 
@@ -62,6 +79,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('/edit-school/{slug}', function ($id) {
             return view('Kelas-Industri.admin.school.edit', compact('id'));
         })->name('school.edit');
+    });
+
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
     });
 
     Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index');

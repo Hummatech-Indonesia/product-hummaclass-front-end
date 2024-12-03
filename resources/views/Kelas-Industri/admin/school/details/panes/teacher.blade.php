@@ -2,9 +2,8 @@
     <form action="">
         <div class="d-flex gap-3 mb-3 mt-3">
             <div class="position-relative">
-                <input type="text" class="form-control product-search px-4 ps-5"
-                    style="background-color: #fff" id="search-name" name="name" value=""
-                    placeholder="Search">
+                <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
+                    id="search-name" name="name" value="" placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
                     style="color: #8B8B8B"></i>
             </div>
@@ -12,13 +11,18 @@
     </form>
     <div class="row teacher-card-container">
     </div>
+    <div class="d-flex justify-content-end">
+        <nav id="pagination">
+
+        </nav>
+    </div>
 </div>
 
 @push('script')
     <script>
         $(document).ready(function() {
-
             function teacherList(index, value) {
+                var url = "{{ config('app.api_url') }}";
                 return `
                 <div class="col-lg-3 col-md-4 col-sm-12">
                     <div class="card text-center">
@@ -27,12 +31,12 @@
                         <div class="card-body p-2">
                             <div class="mt-4" class="" style="position: relative; z-index: 2;">
                                 <div style="width: 5rem;" class="m-auto">
-                                    <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}"
+                                    <img src="${value.user.photo && value.user.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.user.photo) ? value.user.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
                                         class="img-fluid rounded-circle"
                                         style="z-index: 2; background-color: grey; aspect-ratio: 1/1;object-fit:cover" />
                                 </div>
-                                <h3 class="card-title mt-3"></h3>
-                                <h6 class="card-subtitle"></h6>
+                                <h3 class="card-title mt-3">${value.user.name}</h3>
+                                <h6 class="card-subtitle">${value.user.email}</h6>
                             </div>
 
                             {{-- buttons --}}
@@ -71,9 +75,6 @@
             `
             }
 
-            for (let index = 0; index < 10; index++) {
-                $('.teacher-card-container').append(teacherList(index, 3));
-            }
 
             function getTeachers() {
                 $.ajax({
@@ -87,12 +88,14 @@
                         console.log(response);
                         $('.teacher-card-container').empty();
 
-                        if (response.data.length > 0) {
-                            $.each(response.data, function(indexInArray, valueOfElement) {
+                        if (response.data.data.length > 0) {
+                            $.each(response.data.data, function(indexInArray, valueOfElement) {
                                 $('.teacher-card-container').append(
                                     teacherList(indexInArray, valueOfElement)
                                 );
                             });
+                            $('#pagination').html(handlePaginate(response.data.paginate))
+
                         } else {
                             $('.teacher-card-container').append(emptyCard());
                         }

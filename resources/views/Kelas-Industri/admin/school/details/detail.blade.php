@@ -59,7 +59,7 @@
             background-color: #9425FE;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -127,8 +127,9 @@
                 </div>
                 <div class="">
                     <li class="">
-                        <a href="#" class="btn text-white addClassroom d-none" style="background-color: #9425FE;"
-                            id="create-classroom-button">Tambah Kelas</a>
+                        <a href="#" class="btn text-white addClassroom d-none"
+                            style="background-color: #9425FE;"data-bs-toggle="modal"
+                            data-bs-target="#modal-set-class">Tambah Kelas</a>
                         <a href="#teacherCreate" class="btn text-white addTeacher d-none" style="background-color: #9425FE;"
                             id="teacherCreate">Tambah Guru</a>
                         <a href="#studentCreate" class="btn text-white addStudent d-none" style="background-color: #9425FE;"
@@ -148,13 +149,17 @@
     @include('Kelas-Industri.admin.school.details.widgets.modal-import-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-edit-class')
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
-    @include('Kelas-Industri.admin.school.details.widgets.modal-mentor')
     @include('Kelas-Industri.admin.school.details.widgets.modal-teacher')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-mentor')
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
 
 @section('script')
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/forms/select2.init.js') }}"></script>
     <x-delete-modal-component></x-delete-modal-component>
     @include('Kelas-Industri.admin.school.details.scripts.index')
     <script>
