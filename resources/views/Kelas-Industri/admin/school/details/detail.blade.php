@@ -151,6 +151,7 @@
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-student')
     @include('Kelas-Industri.admin.school.details.widgets.modal-teacher')
     @include('Kelas-Industri.admin.school.details.widgets.modal-mentor')
+    @include('Kelas-Industri.admin.school.details.widgets.modal-student')
 
     @include('Kelas-Industri.admin.school.details.widgets.modal-detail-teacher')
 @endsection
