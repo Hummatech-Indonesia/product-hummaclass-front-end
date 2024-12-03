@@ -178,13 +178,13 @@
                             },
                             dataType: "json",
                             success: function(response) {
+                                Swal.fire("Berhasil!", "", "success");
                                 getSchoolYears();
                             },
                             error: function(xhr) {
                                 Swal.fire("Terjadi kesalahan!", "", "error");
                             }
                         });
-                        Swal.fire("Berhasil!", "", "success");
                     } else if (result.isDenied) {
                         Swal.fire("Batal menghapus tahun ajaran", "", "info");
                     }
