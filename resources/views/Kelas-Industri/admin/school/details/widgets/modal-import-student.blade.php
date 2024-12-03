@@ -1,11 +1,11 @@
-<div class="modal fade" id="import-student" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
+<div class="modal fade" id="import-student-modal" tabindex="-1" aria-labelledby="importPegawai" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="importPegawai">Import Siswa</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" id="import-student-form">
                 @method('post')
                 @csrf
                 <div class="modal-body">
@@ -21,9 +21,12 @@
                             </ul>
                         </div>
                         <div class="ms-4">
-                            <a href="" class="btn text-white" style="background-color: #9425FE">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="17" height="17" viewBox="0 0 256 256">
-                                    <path fill="white" d="m213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66M160 51.31L188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48zm-42.34-82.34L139.31 152l18.35 18.34a8 8 0 0 1-11.32 11.32L128 163.31l-18.34 18.35a8 8 0 0 1-11.32-11.32L116.69 152l-18.35-18.34a8 8 0 0 1 11.32-11.32L128 140.69l18.34-18.35a8 8 0 0 1 11.32 11.32" />
+                            <a href="{{ asset('format-excel-student.xlsx') }}" class="btn text-white"
+                                style="background-color: #9425FE" download="student-format.xlsx">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="me-1" width="17" height="17"
+                                    viewBox="0 0 256 256">
+                                    <path fill="white"
+                                        d="m213.66 82.34l-56-56A8 8 0 0 0 152 24H56a16 16 0 0 0-16 16v176a16 16 0 0 0 16 16h144a16 16 0 0 0 16-16V88a8 8 0 0 0-2.34-5.66M160 51.31L188.69 80H160ZM200 216H56V40h88v48a8 8 0 0 0 8 8h48zm-42.34-82.34L139.31 152l18.35 18.34a8 8 0 0 1-11.32 11.32L128 163.31l-18.34 18.35a8 8 0 0 1-11.32-11.32L116.69 152l-18.35-18.34a8 8 0 0 1 11.32-11.32L128 140.69l18.34-18.35a8 8 0 0 1 11.32 11.32" />
                                 </svg>
                                 Download Format Excel
                             </a>
@@ -33,14 +36,15 @@
                         <label for="" class="form-label">File Excel</label>
                         <input type="file" class="form-control" name="file">
                         @error('')
-                        <span class="invalid-feedback" role="alert" style="color: red;">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                            <span class="invalid-feedback" role="alert" style="color: red;">
+                                <strong>{{ $message }}</strong>
+                            </span>
                         @enderror
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn mb-1 waves-effect waves-light btn-light"
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn text-white" style="background-color: #9425FE">Import</button>
                 </div>
             </form>
