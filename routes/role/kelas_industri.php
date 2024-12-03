@@ -11,6 +11,11 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
     });
+    
+    Route::prefix('teacher')->name('teacher.')->group(function () {
+    Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
+        
+    });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
         Route::get('/', function () {
@@ -90,5 +95,5 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
     });
 
-    Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index');
+    Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index')->middleware('mentor');
 });
