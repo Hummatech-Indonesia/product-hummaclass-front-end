@@ -121,6 +121,39 @@
                 `
             }
 
+            $(document).on('click', '#import-student-button', function() {
+                $('#import-student-modal').modal('show')
+                $('#import-student-form').submit(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/import-student/" + slug,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                        },
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses!",
+                                text: "Berhasil mengimport data siswa",
+                                icon: "error"
+                            });
+
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Gagal mengimport data siswa",
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            })
+
             $(document).on('click', '#edit-student-button', function() {
                 const id = $(this).data('id')
                 window.location.href = "/admin/class/student/edit/" + id
