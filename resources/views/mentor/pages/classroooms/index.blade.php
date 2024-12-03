@@ -84,9 +84,9 @@
         </form>
     </div>
 
-    <div class="row row-cols-4 mt-4" id="list-card">
+    <div class="row mt-4" id="list-card">
         @foreach (range(1, 10) as $index => $item)
-            <div class="col">
+            <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card rounded-4 shadow">
                     <div class="card-header bg-transparent px-3 pb-4">
                         <div class="row align-items-center">
