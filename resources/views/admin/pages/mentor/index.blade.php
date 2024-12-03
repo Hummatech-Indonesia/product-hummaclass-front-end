@@ -72,6 +72,38 @@
             </div>
         </div>
     </div>
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="edit-mentor-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <form id="edit-mentor-form" action="">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Tambah Mentor
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" id="placeholder" placeholder="Nama" name="name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" id="placeholder" placeholder="Email"
+                                name="email">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional: Place to the bottom of scripts -->
     <script>
@@ -143,7 +175,7 @@
                                         <i class="ti ti-dots-vertical fs-7"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="">
-                                        <li><a class="dropdown-item" href="#">Edit</a></li>
+                                        <li><a class="dropdown-item btn-edit" href="#" data-mentor="${data.id}">Edit</a></li>
                                         <li><a class="dropdown-item" href="#">Hapus</a></li>
                                     </ul>
                                 </div>
@@ -161,6 +193,14 @@
                     });
                     $('#mentor-list').empty();
                     $('#mentor-list').append(content);
+
+                    $('.btn-edit').click(function(e) {
+                        e.preventDefault();
+
+                        let mentorId = $(this).data('mentor')
+
+                        $('#edit-mentor-modal').modal('show');
+                    });
                 }
             });
         });
