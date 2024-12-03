@@ -30,21 +30,22 @@
         <form action="" id="create-challenges-form" enctype="multipart/form-data">
             <div class="row">
                 <div class="col col-md-6">
-                    <label for="classroom_id" class="form-label">Sekolah</label>
-                    <select name="classroom_id" id="classroom_id" class="form-select">
+                    <label for="school_id" class="form-label">Sekolah</label>
+                    <select name="school_id" id="school_id" class="form-select">
+                        <option>Pilih Sekolah</option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="col col-md-6">
-                    <label for="is_online" class="form-label">Kelas</label>
-                    <select name="is_online" id="is_online" class="form-select">
+                    <label for="classroom_id" class="form-label">Kelas</label>
+                    <select name="classroom_id" id="classroom_id" class="form-select">
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
             <div class="col-12 mb-3">
                 <label for="title" class="fw-semibold form-label">Judul</label>
-                <input type="number" class="form-control" id="title" name="title"
+                <input type="text" class="form-control" id="title" name="title"
                     placeholder="Masukan jumlah kapasitas">
                 <div class="invalid-feedback"></div>
             </div>
@@ -67,9 +68,27 @@
                     <div class="invalid-feedback"></div>
                 </div>
             </div>
+            <div class="d-flex flex-column">
+                <h5 class="card-title mb-0">
+                    Tipe Pengumpulan
+                </h5>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="image_active" name="image_active" value="0">
+                <label class="form-check-label" for="image_active">Gambar</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="link_active" name="link_active" value="0">
+                <label class="form-check-label" for="link_active">Link</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="file_active" name="file_active" value="0">
+                <label class="form-check-label" for="file_active">File</label>
+            </div>
     </div>
     <div class="text-end">
-        <a href="{{ route('mentor.challenge.index') }}" class="btn text-white me-2" style="background-color: #DB0909">Batal</a>
+        <a href="{{ route('mentor.challenge.index') }}" class="btn text-white me-2"
+            style="background-color: #DB0909">Batal</a>
         <button type="submit" class="btn text-white" style="background-color: var(--purple-primary)">Tambah</button>
     </div>
     </form>
@@ -85,84 +104,110 @@
             $('#summernote-email-content').summernote({
                 height: 200
             });
-        });
-        $('#create-challenges-form').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
+            // console.log("{{ session('hummaclass-token') }}");
+
+            const selectSchool = $('#school_id');
+            const selectClassroom = $('#classroom_id');
+
+            let classrooms;
+
+            selectSchool.change(function(e) {
+                e.preventDefault();
+
+                getClassroom($(this).val());
+            });
 
             $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/challenges",
-                data: formData,
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/schools-all",
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
-                contentType: false,
-                processData: false,
                 success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambah data data.",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.href = "{{ route('mentor.challenge.index') }}"
+                    let schoolOptions = '';
+
+                    response.data.forEach(school => {
+                        schoolOptions += `
+                        <option value="${school.slug}">${school.name}</option>
+                        `
                     });
+                    selectSchool.append(schoolOptions);
                 },
-                error: function(response) {
-                    if (response.responseJSON && response.responseJSON.errors) {
-                        $.each(response.responseJSON.errors, function(key, value) {
-                            $('#' + key).addClass('is-invalid');
-                            $('#' + key).next('.invalid-feedback').text(value[0]);
-                        });
-                    } else {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
-                    }
+                error: function(xhr, status, error) {
+                    commonAlert({
+                        'title': 'Gagal',
+                        'text': xhr.responseJSON.message,
+                        'icon': status
+                    });
                 }
             });
-        });
 
-        document.getElementById('is_premium').addEventListener('change', function() {
-            var priceContainer = document.getElementById('price-container');
-            priceContainer.style.display = this.value == '0' ? 'none' : 'block';
-        });
+            function getClassroom(schoolSlug) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/classrooms/" + schoolSlug,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        let classrooomOptions = '';
 
-        document.getElementById('is_online').addEventListener('change', function() {
-            var locationContainer = document.getElementById('location-container');
-            locationContainer.style.display = this.value == '1' ? 'none' : 'block';
-        });
-
-        document.getElementById('roundown-btn').addEventListener('click', function() {})
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let repeaterContainer = document.querySelector('[data-repeater-list]');
-            let addButton = document.querySelector('[data-repeater-create]');
-            let template = document.querySelector('[data-repeater-item]').cloneNode(true);
-            template.querySelectorAll('input').forEach(input => input.value = ''); // Kosongkan input di template
-
-            addButton.addEventListener('click', function() {
-                let newItem = template.cloneNode(true);
-                let deleteButton = newItem.querySelector('[data-repeater-delete]');
-
-                deleteButton.addEventListener('click', function() {
-                    if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
-                        newItem.remove();
+                        response.data.forEach(school => {
+                            classrooomOptions += `<option value="${school.id}">${school.name}</option>`
+                        });
+                        selectClassroom.empty();
+                        selectClassroom.append(classrooomOptions);
+                    },
+                    error: function(xhr, status, error) {
+                        commonAlert({
+                            'title': 'Gagal',
+                            'text': xhr.responseJSON.message,
+                            'icon': status
+                        });
                     }
                 });
+            }
 
-                repeaterContainer.appendChild(newItem);
-            });
+            $('#create-challenges-form').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
 
-            document.querySelectorAll('[data-repeater-delete]').forEach(function(deleteButton) {
-                deleteButton.addEventListener('click', function() {
-                    if (confirm('Apakah Anda yakin ingin menghapus acara ini?')) {
-                        deleteButton.closest('[data-repeater-item]').remove();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/challenges",
+                    data: formData,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses",
+                            text: "Berhasil menambah data data.",
+                            icon: "success"
+                        }).then(() => {
+                            window.location.href =
+                                "{{ route('mentor.challenge.index') }}"
+                        });
+                    },
+                    error: function(response) {
+                        if (response.responseJSON && response.responseJSON.errors) {
+                            $.each(response.responseJSON.errors, function(key, value) {
+                                $('#' + key).addClass('is-invalid');
+                                $('#' + key).next('.invalid-feedback').text(value[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
             });
