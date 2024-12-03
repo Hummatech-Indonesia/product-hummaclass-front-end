@@ -195,7 +195,7 @@
                         <span class="badge text-bg-light-success text-success">${value.status}</span>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"
+                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x``
                             data-bs-target="#modal-detail-student" data-url="${value.link}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
