@@ -49,6 +49,11 @@
             width: 100%;
             font-weight: 500;
         }
+
+        .card img {
+            max-width: 70%;
+            height: auto;
+        }
     </style>
 @endsection
 
@@ -146,12 +151,22 @@
             }
 
             function school(index, value) {
-                return `<div class="col-md-4 mb-4">
-                <div class="card shadow-sm text-center h-100">
-                    <div class="card-body">
-                        <img src="${value.photo}"
-                            alt="School Logo" class="img-fluid mb-3 rounded">
-                        <div class="text-section d-flex flex-column align-items-start justify-content-center">
+                function limitText(text, limit) {
+                    return text.length > limit ? text.substring(0, limit) + "..." : text;
+                }
+
+                const limitedDescription = limitText(value.description, 80);
+                const limitedAddress = limitText(value.address, 50);
+
+
+                return `<div class="col-12 col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm text-center h-100 d-flex flex-column">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <img src="${value.photo}" alt="School Logo" 
+                            class="img-fluid mb-3 rounded" 
+                            style="max-width: 200px; height: auto;">
+
+                        <div class="text-section w-100 d-flex flex-column align-items-start justify-content-between">
                             <div class="dropdown ms-auto">
                                 <span class="menu-icon" title="Actions" data-bs-toggle="dropdown"
                                     aria-expanded="false">&#x22EE;</span>
@@ -165,16 +180,18 @@
                                 </ul>
                             </div>
                             <h4 class="text-start bold">${value.name}</h4>
-                            <h6 class="text-muted mb-4">${value.description}</h6>
-
+                            <h6 class="text-muted text-start mb-4">${limitedDescription}</h6>
                             <h5 class="card-title bold mb-1">Alamat:</h5>
-                            <p class="text-muted text-start">${value.address}</p>
-                            <a href="{{ route('admin.class.school.show', '') }}/${value.slug}" class="detail-button">Lihat Detail</a>
+                            <p class="text-muted text-start">${limitedAddress}</p>
                         </div>
+
+                        <a href="{{ route('admin.class.school.show', '') }}/${value.slug}" 
+                            class="detail-button mt-auto">Lihat Detail</a>
                     </div>
                 </div>
             </div>`
             }
+
 
             $(document).on('click', '.btn-delete', function() {
                 var id = $(this).data('id');
