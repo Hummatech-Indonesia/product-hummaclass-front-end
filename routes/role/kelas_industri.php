@@ -63,4 +63,6 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('Kelas-Industri.admin.school.edit', compact('id'));
         })->name('school.edit');
     });
+
+    Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index');
 });
