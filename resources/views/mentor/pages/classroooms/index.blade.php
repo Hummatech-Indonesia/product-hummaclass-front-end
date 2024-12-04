@@ -125,4 +125,6 @@
 @endsection
 
 @section('script')
+<script>
+</script>
 @endsection
