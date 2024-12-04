@@ -11,10 +11,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
     });
-    
+
     Route::prefix('teacher')->name('teacher.')->group(function () {
-    Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
-        
+        Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
@@ -93,6 +92,15 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
+    });
+
+    Route::prefix('exams')->name('exams.')->group(function () {
+        Route::get('/', function () {
+            return view('admin.pages.exams.assessments.index');
+        })->name('index');
+        Route::get('assessment-settings ', function () {
+            return view('admin.pages.exams.assessment-settings.index');
+        })->name('assessment-settings');
     });
 
     Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index')->middleware('mentor');
