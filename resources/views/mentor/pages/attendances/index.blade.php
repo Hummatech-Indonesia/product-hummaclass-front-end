@@ -82,10 +82,6 @@
             background-color: #9425FE !important;
         }
 
-        /* .card-challenge .card .btn {
-                                                                                                                                                align-self: stretch;
-                                                                                                                                                } */
-
         p,
         h1,
         h2,
@@ -131,8 +127,8 @@
             </form>
         </div>
 
-        <a href="{{ route('mentor.challenge.create') }}" class="btn btn-primary rounded-2 bg-primary border-0"><i
-                class="ti ti-plus"></i> Buat Absensi</a>
+        <button class="btn btn-primary rounded-2 bg-primary border-0" data-bs-toggle="modal"
+            data-bs-target="#create-modal"><i class="ti ti-plus"></i> Buat Absensi</button>
     </div>
 
     <div class="card mt-3">
@@ -162,6 +158,53 @@
 
         </nav>
     </div>
+
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <form action="" id="create-form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Tambah Jurnal
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- <div class="row justify-content-center align-items-center g-2"> --}}
+                        <div class="mb-3">
+                            <label for="inputName" class="form-label">Nama Sekolah</label>
+                            {{-- <input type="text" class="form-control" id="inputName" placeholder="Masukkan nama sekolah"> --}}
+                            <select class="form-control" id="classroom_id" name="school_id">
+                                <option>Pilih Sekolah</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputDate" class="form-label">Tanggal</label>
+                            <input type="date" class="form-control" id="inputDate">
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+        const myModal = new bootstrap.Modal(
+            document.getElementById("modalId"),
+            options,
+        );
+    </script>
 @endsection
 
 @section('script')
@@ -177,6 +220,34 @@
         $.each(data, function(index, value) {
             $('#tableBody').append(studentClassroom(index,
                 value));
+        });
+
+        $('#create-form').submit(function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            $.ajax({
+                type: "post",
+                url: "{{ config('app.api_url') }}/api/journals",
+                data: formData,
+                dataType: "json",
+                success: function(response) {
+                    Swal.fire({
+                        title: "Sukses",
+                        text: "Berhasil menambahkan jurnal.",
+                        icon: "success"
+                    }).then(() => {
+                        window.location.reload();
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: xhr.responseJSON.meta.message,
+                        icon: "error"
+                    });
+                }
+            });
         });
 
         function studentClassroom(index, value) {
@@ -195,7 +266,8 @@
                         <span class="badge text-bg-light-success text-success">${value.status}</span>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x``
+                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x`
+            `
                             data-bs-target="#modal-detail-student" data-url="${value.link}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

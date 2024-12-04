@@ -35,6 +35,10 @@
             background-color: #9425FE !important;
         }
 
+        .bg-light-primary {
+            background-color: var(--light-purple) !important;
+        }
+
         .text-bg-purple {
             color: var(--purple-primary) !important;
             background: var(--purple-light-primary) !important;
@@ -86,35 +90,6 @@
 
     <div class="row mt-4" id="list-card">
         @foreach (range(1, 10) as $index => $item)
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card rounded-4 shadow">
-                    <div class="card-header bg-transparent px-3 pb-4">
-                        <div class="row align-items-center">
-                            <div class="col-7 d-flex flex-column justify-content-center">
-                                <h4 class="fw-bold p-0">XII DKV 2</h4>
-                                <p class="fs-2 m-0">SMKN 1 KEPANJEN</p>
-                            </div>
-                            <div class="col-5">
-                                <span class="badge rounded-pill badge text-bg-purple">Negeri</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body px-3 pt-0 pb-3">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
-                                    class="img-fluid rounded-circle">
-                            </div>
-                            <div class="col p-0">
-                                <h6 class="card-title fs-3 fw-semibold text-muted">Wali Kelas</h6>
-                                <p class="card-text fs-2 text-muted">Suyadi Oke Joss Sp.d</p>
-                            </div>
-                        </div>
-                        <a href="{{ route('mentor.classroom.show', $index) }}"
-                            class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
-                    </div>
-                </div>
-            </div>
         @endforeach
     </div>
     <div class="d-flex justify-content-center">
@@ -125,6 +100,67 @@
 @endsection
 
 @section('script')
-<script>
-</script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "get",
+                url: "{{ config('app.api_url') }}/api/mentor/classrooms",
+                headers: {
+                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                },
+                success: function(response) {
+                    let classroomList = '';
+                    response.data.forEach(classroom => {
+                        classroomList += `
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card rounded-4 shadow">
+                                <div class="card-header bg-transparent px-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-7 d-flex flex-column justify-content-center">
+                                            <h4 class="fw-bold p-0">${classroom.name}</h4>
+                                            <p class="fs-2 m-0">${classroom.school.name}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-3 pb-3" style="max-width: 150px;">
+                                    <span
+                                    class="badge text-bg-purple"
+                                    >New!</span>
+                                </div>
+                                <div class="card-body px-3 pt-0 pb-3">
+                                    
+                                    <div class="row">
+                                        <div class="row col align-items-center">
+                                            <div class="col-3  p-2">
+                                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
+                                                    class="img-fluid rounded-circle">
+                                            </div>
+                                            <div class="col p-0">
+                                                <h6 class="card-title fs-3 fw-semibold">Wali Kelas</h6>
+                                                <p class="card-text fs-2 text-muted">${classroom.teacher.user.name}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <a href="{{ route('mentor.classroom.show', '') }}/${classroom.slug}"
+                                                class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                `
+                    });
+
+                    $('#list-card').append(classroomList);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: xhr.responseJSON.meta.message,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
