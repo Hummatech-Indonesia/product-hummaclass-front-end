@@ -47,64 +47,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-lg-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <h5 class="mb-3 fw-semibold">Daftar Sekolah</h5>
-                    <form action="">
-                        <input type="text" class="form-control rounded-3 mb-3" value="Cari...">
-                    </form>
-                    <div class="accordion accordion-flush position-relative overflow-hidden" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed fs-4 fw-semibold" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                    aria-controls="flush-collapseOne">
-                                    <img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" alt=""
-                                        class="img-fluid me-2" style="max-width: 40px; height: auto;">
-                                    SMKN 1 Kepanjen
-                                </button>
-                            </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion" id="accordionNestedExample">
-                                    <!-- Accordion Item 1 -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="flush-headingNestedOne">
-                                            <button class="accordion-button collapsed fs-4 fw-semibold" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseNestedOne"
-                                                aria-expanded="false" aria-controls="flush-collapseNestedOne">
-                                                XII - lorem ipsum
-                                            </button>
-                                        </h2>
-                                        <div id="flush-collapseNestedOne" class="accordion-collapse collapse"
-                                            aria-labelledby="flush-headingNestedOne"
-                                            data-bs-parent="#accordionNestedExample">
-                                            <div class="accordion-body fw-normal" style="background-color: #F7F7F7">
-                                                <div class="d-flex align-items-center mb-3">
-                                                    <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
-                                                        class="rounded-circle" width="30" height="30" />
-                                                    <div class="ms-3">
-                                                        <h6 class="fs-3 fw-semibold mb-0">Alfian fahrul ban dalam</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center mb-3">
-                                                    <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
-                                                        class="rounded-circle" width="30" height="30" />
-                                                    <div class="ms-3">
-                                                        <h6 class="fs-3 fw-semibold mb-0">Alfian fahrul ban dalam</h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.pages.exams.assesments.list-school')
         <div class="col-12 col-lg-8">
             <div class="card">
                 <div class="card-body p-3">
@@ -152,8 +95,7 @@
                                         <td>1</td>
                                         <td>Menghargai orang sekitar dalam proses ujian</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com"
-                                                id="email1">
+                                            <input type="checkbox" name="email[]" value="genelia@gmail.com" id="email1">
                                         </td>
                                         <td class="text-center">
                                             <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
@@ -172,8 +114,7 @@
                                         <td>2</td>
                                         <td>Menunjukan sikap jujur dalam mengerjakan</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com"
-                                                id="email1">
+                                            <input type="checkbox" name="email[]" value="genelia@gmail.com" id="email1">
                                         </td>
                                         <td class="text-center">
                                             <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
@@ -259,9 +200,6 @@
                 </svg>
                 Download PDF
             </button>
-
-
-
         </div>
     </div>
 @endsection
