@@ -660,7 +660,9 @@
     {{-- <script src="{{ asset('admin/summernote/summernote.min.js') }}"></script> --}}
     <script src="{{ asset('admin/dist/libs/summernote/dist/summernote-lite.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+    <script src="{{ asset('admin/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/plugins/repeater-init.js') }}"></script>
+
 
 
     <script>
