@@ -109,6 +109,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link {{ Route::is('dashboard.learning-paths.index') ? 'active' : '' }}"
+                        href="{{ route('dashboard.learning-paths.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Learning Path</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ Route::is('admin.class.school.*') ? 'active' : '' }}"
                         href="{{ route('admin.class.school.index') }}" aria-expanded="false">
                         <span>
@@ -124,6 +133,26 @@
                             <i class="ti ti-book"></i>
                         </span>
                         <span class="hide-menu">Divisi</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">UJIAN</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/exams" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-news"></i>
+                        </span>
+                        <span class="hide-menu">Penilaian</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="/admin/exams/assessment-settings" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-news"></i>
+                        </span>
+                        <span class="hide-menu">Pengaturan</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
