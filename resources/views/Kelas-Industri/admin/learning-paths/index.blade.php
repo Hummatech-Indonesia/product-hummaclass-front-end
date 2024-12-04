@@ -81,7 +81,7 @@
                     Tambah</button>
             </div>
             <div id="course-learning-path-list">
-                <div class="card input-group position-relative">
+                {{-- <div class="card input-group position-relative">
                     <div class="card-body align-items-center">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5><b>Langkah 1</b></h5>
@@ -129,7 +129,7 @@
                     </div>
                     <button class="btn ms-auto position-absolute" style="height: 100%; right:0;background:#ECECEC;"><i
                             class="fa fa-ellipsis-v"></i></button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -139,14 +139,102 @@
         $(document).ready(function() {
             function divisionList(index, value) {
                 return `
-                <div class="nav flex-column nav-pills nav-division_id-link" data-division_id="${value.division.id}" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link ${index == 0 ? 'active' : ''}" id="v-pills-${value.division.name}-tab" data-bs-toggle="pill"
+                <div class="nav flex-column nav-pills "  id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link nav-division_id-link ${index == 0 ? 'active' : ''}"  data-division_id="${value.division.id}" id="v-pills-${value.division.name}-tab" data-bs-toggle="pill"
                         href="#v-pills-${value.division.name}" role="tab" aria-controls="v-pills-${value.division.name}"
                         aria-selected="true">
                         ${value.division.name}
                     </a>
                 </div>
                 `
+            }
+
+            function courseLearningPathList(index, value) {
+                return `
+                <div class="card input-group position-relative">
+                    <div class="card-body align-items-center">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5><b>Langkah ${index+1}</b></h5>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-5">
+                                <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="kursus.jpg"
+                                    class="img-fluid rounded">
+                            </div>
+                            <div class="col-7">
+                                <div class="d-flex gap-2 align-items-center">
+                                    <div class="p-1 rounded text-center" style="background: #F6EEFE;color:#9425FE;">
+                                        <span>Development</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user.jpg"
+                                            class="rounded-circle" style="height: 24px;width:24px;">
+                                        <span class="text-muted"> David Millar</span>
+                                    </div>
+                                </div>
+                                <h4><b>Learning Javascript with Imagination</b></h4>
+                                <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                    Amet,
+                                    facere
+                                    corporis, ullam voluptatibus hic beatae ducimus aspernatur debitis nihil autem
+                                    placeat?
+                                    Deserunt saepe, optio enim corporis beatae nesciunt commodi nihil!</p>
+                                <h4 style="color: #9425FE;"><b>Rp. 300.000</b> / <span class="fs-2 text-dark"><i
+                                            class="fa fa-star fa-md text-warning"></i> (4,5
+                                        Reviews)</span></h4>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <div class="p-2 rounded" style="background: #FEF5EE;">
+                                        <div class="d-flex gap-2"><i style="color: #FFB649;" class="fa fa-book fa-md"></i>
+                                            <b>8 Modul</b>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 rounded" style="background: #FEF5EE;">
+                                        <div class="d-flex gap-2"><i style="color: #FFB649;" class="fa fa-folder fa-md"></i>
+                                            <b>1 Tugas Akhir</b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn ms-auto position-absolute" style="height: 100%; right:0;background:#ECECEC;"><i
+                            class="fa fa-ellipsis-v"></i></button>
+                </div>
+                `
+            }
+
+            function getCourseLearningPath(class_level, division_id) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/learning-paths",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    data: {
+                        class_level: class_level,
+                        division_id: division_id
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#course-learning-path-list').empty();
+                        $.each(response.data, function(index, value) {
+                            $.each(value.course_learning_paths, function(indexInArray,
+                                valueOfElement) {
+                                $('#course-learning-path-list').append(
+                                    courseLearningPathList(indexInArray,
+                                        valueOfElement)
+                                );
+                            });
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data learning path.",
+                            icon: "error"
+                        });
+                    }
+                });
             }
 
             function getDivision(class_level) {
@@ -167,6 +255,8 @@
                                 valueOfElement));
                         });
                         let division_id = $('.nav-division_id-link.active').data('division_id')
+
+                        getCourseLearningPath(class_level, division_id)
                     },
                     error: function(xhr) {
                         Swal.fire({
@@ -185,7 +275,14 @@
             $(document).on('click', '.nav-class_level-link', function() {
                 $('.nav-class_level-link').removeClass('active')
                 $(this).addClass('active')
-                getDivision($(this).data('class_level'))
+                class_level = $(this).data('class_level')
+                getDivision(class_level)
+            })
+
+            $(document).on('click', '.nav-division_id-link', function() {
+                $('.nav-division_id-link').removeClass('active')
+                $(this).addClass('active')
+                getCourseLearningPath(class_level, $(this).data('division_id'))
             })
         });
     </script>
