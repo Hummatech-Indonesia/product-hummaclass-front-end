@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LearningPathController;
 use App\Http\Controllers\Student\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('classes', [DashboardController::class, 'classes'])->name('classes.index');
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
+    });
+
+    Route::prefix('learning-paths')->name('learning-paths.')->group(function () {
+        Route::get('/', [LearningPathController::class, 'index'])->name('index');
     });
 
     Route::prefix('teacher')->name('teacher.')->group(function () {
