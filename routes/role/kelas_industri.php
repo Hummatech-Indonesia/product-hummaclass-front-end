@@ -101,10 +101,10 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::prefix('exams')->name('exams.')->group(function () {
         Route::get('/', function () {
-            return view('admin.pages.exams.assessments.index');
+            return view('admin.pages.exams.assesments.index');
         })->name('index');
         Route::get('assessment-settings ', function () {
-            return view('admin.pages.exams.assessment-settings.index');
+            return view('admin.pages.exams.assesment-settings.index');
         })->name('assessment-settings');
     });
 

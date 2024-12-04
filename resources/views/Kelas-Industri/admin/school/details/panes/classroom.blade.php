@@ -177,6 +177,7 @@
                     }
                 });
             }
+            getStudentClassroomSelect2([])
 
             // Fungsi untuk mengisi Select2 dan memilih default
             function getStudentClassroomSelect2(defaultSelected = []) {
