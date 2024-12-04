@@ -19,6 +19,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
+        Route::get('classroom', function () {
+            return view('teacher.pages.classroom.index');
+        })->name('classroom');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {

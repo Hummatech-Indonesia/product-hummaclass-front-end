@@ -26,7 +26,7 @@
                 <!-- Dashboard -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.dashboard.index') ? 'active' : '' }}" href="{{ route('mentor.dashboard.index') }}" aria-expanded="false">
+                    <a class="sidebar-link" href="/dashboard/teacher/dashboard" aria-expanded="false">
                         <span>
                             <i class="ti ti-home"></i> <!-- Icon untuk Dashboard -->
                         </span>
@@ -38,12 +38,12 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.classroom.index') ? 'active' : '' }}"
-                        href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
+                    <a class="sidebar-link"
+                        href="/dashboard/teacher/classroom" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
                         </span>
-                        <span class="hide-menu">Daftar Kelas</span>
+                        <span class="hide-menu">Kelas</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
