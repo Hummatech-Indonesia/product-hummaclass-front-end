@@ -14,7 +14,7 @@
             padding-bottom: 10px;
         }
 
-        .table input[type="checkbox"] {
+        .table input[type="radio"] {
             margin: 0;
             padding: 2px;
             transform: scale(1.3);
@@ -95,38 +95,38 @@
                                         <td>1</td>
                                         <td>Menghargai orang sekitar dalam proses ujian</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com" id="email1">
+                                            <input type="radio" name="skill" value="genelia@gmail.com" id="email1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="role[]" value="designer" id="role1">
+                                            <input type="radio" name="skill" value="designer" id="role1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="age[]" value="23" id="age1">
+                                            <input type="radio" name="skill" value="23" id="age1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="date[]" value="12-10-2014" id="date1">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Menunjukan sikap jujur dalam mengerjakan</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com" id="email1">
+                                            <input type="radio" name="skill" value="genelia@gmail.com" id="email1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="role[]" value="designer" id="role1">
+                                            <input type="radio" name="skill" value="designer" id="role1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="age[]" value="23" id="age1">
+                                            <input type="radio" name="skill" value="23" id="age1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="date[]" value="12-10-2014" id="date1">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
 
@@ -143,40 +143,40 @@
                                         <td>1</td>
                                         <td>Siswa mampu menjalankan dan membuat program di visual studio code</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com"
+                                            <input type="radio" name="skill" value="genelia@gmail.com"
                                                 id="email1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="role[]" value="designer" id="role1">
+                                            <input type="radio" name="skill" value="designer" id="role1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="age[]" value="23" id="age1">
+                                            <input type="radio" name="skill" value="23" id="age1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="date[]" value="12-10-2014" id="date1">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
                                         <td>Menunjukan sikap jujur dalam mengerjakan</td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="email[]" value="genelia@gmail.com"
+                                            <input type="radio" name="skill" value="genelia@gmail.com"
                                                 id="email1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="phone[]" value="+123456789" id="phone1">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="role[]" value="designer" id="role1">
+                                            <input type="radio" name="skill" value="designer" id="role1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="age[]" value="23" id="age1">
+                                            <input type="radio" name="skill" value="23" id="age1">
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="date[]" value="12-10-2014" id="date1">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
                                 </tbody>

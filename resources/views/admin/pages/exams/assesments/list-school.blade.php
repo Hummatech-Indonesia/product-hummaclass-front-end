@@ -6,14 +6,16 @@
                 <input type="text" class="form-control rounded-3 mb-3" value="Cari...">
             </form>
             <div class="accordion accordion-flush position-relative overflow-hidden" id="list-school">
-
+                <!-- Data sekolah akan diisi oleh AJAX -->
             </div>
         </div>
     </div>
 </div>
+
 @push('script')
     <script>
         $(document).ready(function() {
+            // AJAX request untuk memuat data sekolah
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/schools-all",
@@ -22,20 +24,49 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    $.each(response.data, function(index, value) {
-                        $('#list-school').append(listSchool(value));
-                    });
+                    if (response.data.length) {
+                        $.each(response.data, function(index, value) {
+                            $('#list-school').append(listSchool(value));
+                        });
+                    } else {
+                        $('#list-school').html('<p>No schools found.</p>');
+                    }
                 },
                 error: function(xhr, status) {
                     commonAlert({
                         'title': 'Gagal',
-                        'text': xhr.responseJSON.message,
+                        'text': xhr.responseJSON ? xhr.responseJSON.message :
+                            'Something went wrong!',
                         'icon': status
                     });
                 }
             });
+
+            // Event listener untuk klik pada .student-item
+            $(document).on('click', '.student-item', function() {
+                var parent = $(this);
+                var studentName = parent.find('h6'); // Mendapatkan elemen <h6> dalam student-item
+
+                // Toggle background color dan teks warna saat item diklik
+                if (parent.hasClass('checkbox-checked')) {
+                    parent.removeClass('checkbox-checked').css({
+                        'background-color': '',
+                        'padding': '',
+                        'border-radius': ''
+                    });
+                    studentName.css('color', ''); // Kembalikan warna teks ke default
+                } else {
+                    parent.addClass('checkbox-checked').css({
+                        'background-color': '#9425FE',
+                        'padding': '4px',
+                        'border-radius': '15px'
+                    });
+                    studentName.css('color', 'white'); // Set warna teks menjadi putih
+                }
+            });
         });
 
+        // Fungsi untuk mengisi daftar sekolah dan kelas
         function listSchool(school) {
             let classrooms = '';
             var url = "{{ config('app.api_url') }}";
@@ -45,13 +76,16 @@
 
                 $.each(classroom.student_classrooms, function(index, student) {
                     students += `
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="${student.photo && student.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(student.photo) ? student.photo : '{{ asset('admin/dist/images/profile/user-1.jpg') }}'}"
-                                class="rounded-circle" width="30" height="30" />
-                            <div class="ms-3">
-                                <h6 class="fs-3 fw-semibold mb-0">${student.student}</h6>
-                            </div>
-                        </div>`;
+                    <div class="d-flex align-items-center mb-3 student-item" style="cursor:pointer" data-student-id="${student.id}">
+                        <img src="${student.photo && student.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(student.photo) ? student.photo : '{{ asset('admin/dist/images/profile/user-1.jpg') }}'}"
+                            class="rounded-circle" width="30" height="30" />
+                        <div class="ms-3">
+                            <h6 class="fs-3 fw-semibold mb-0">${student.student}</h6>
+                        </div>
+                        <!-- Checkbox disembunyikan, karena akan dihandle oleh klik div -->
+                        <input type="checkbox" class="student-checkbox d-none">
+                    </div>
+                    `;
                 });
 
                 classrooms += `
@@ -65,7 +99,7 @@
                     </h2>
                     <div id="flush-collapseNested-${school.id}-${index}" class="accordion-collapse collapse"
                         aria-labelledby="flush-headingNested-${school.id}-${index}" data-bs-parent="#accordionNestedExample">
-                        <div class="accordion-body fw-normal" style="background-color: #F7F7F7">
+                        <div class="accordion-body fw-normal">
                             ${students}
                         </div>
                     </div>
