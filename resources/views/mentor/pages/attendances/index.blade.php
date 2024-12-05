@@ -211,6 +211,11 @@
                         success: function(response) {
                             $('#edit-attendance-modal').modal('hide')
                             getAttendances(1)
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Berhasil mengubah data",
+                                icon: "success"
+                            });
                         },
                         error: function(xhr) {
                             Swal.fire({
@@ -238,6 +243,11 @@
                         dataType: "json",
                         success: function(response) {
                             getAttendances(1)
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Berhasil menghapus data",
+                                icon: "success"
+                            });
                         },
                         error: function(xhr) {
                             Swal.fire({
