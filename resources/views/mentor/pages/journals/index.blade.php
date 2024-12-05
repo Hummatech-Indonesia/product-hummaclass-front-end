@@ -125,6 +125,66 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).ready(function() {
+      classroom();
+      function classroom() {
+          $.ajax({
+              type: "GET",
+              url: "{{ config('app.api_url') }}/api/mentor/classrooms",
+              headers: {
+                  Authorization: "Bearer {{ session('hummaclass-token') }}"
+              },
+              dataType: "json",
+              success: function(response) {                
+                  $('#classroom_id').empty().append(
+                      '<option value="">Pilih Kelas</option>'
+                  ); // Kosongkan select dan tambahkan placeholder
+                  $.each(response.data, function(index, value) {
+                      $('#classroom_id').append(
+                          `<option value="${value.id}">${value.name}</option>`
+                      );
+                  });
+                  $('#classroom_id_update').empty().append(
+                      '<option value="">Pilih Kelas</option>'
+                  ); // Kosongkan select dan tambahkan placeholder
+                  $.each(response.data, function(index, value) {
+                      $('#classroom_id_update').append(
+                          `<option value="${value.id}">${value.name}</option>`
+                      );
+                  });
+              },
+              error: function(xhr) {
+                  Swal.fire({
+                      title: "Terjadi Kesalahan!",
+                      text: "Tidak dapat memuat data kelas.",
+                      icon: "error"
+                  });
+              }
+          });
+      }
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.btn-detail-journal', function() {
+            var name = $(this).data('name');
+            var title = $(this).data('title');
+            var classroom = $(this).data('classroom');
+            var date = $(this).data('date');
+            var description = $(this).data('description');
+            var image = $(this).data('image');
+            
+            $('#name-detail').text(name);
+            $('#title-detail').text(title);
+            $('#classroom-detail').text(classroom);
+            $('#date-detail').text(date);
+            $('#description-detail').text(description);
+            $('#image-detail').attr('src', image);
+            $('#modal-detail-journal').modal('show');
+        });
+    });
+</script>
     @include('mentor.pages.journals.scripts.datatable')
-    @include('mentor.pages.journals.scripts.detail')
+    @include('mentor.pages.journals.scripts.delete')
 @endsection

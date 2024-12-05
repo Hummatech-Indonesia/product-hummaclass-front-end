@@ -1,22 +1,90 @@
 <script>
-    const data = [{
-        name: "arif",
-        title: "Jurnal 1",
-        image: "https://hummatech.com/storage/service/pF4KmNe9YTmdxpEVbkvKnXcyVyDa02jWQSEujslr.jpg",
-        date: "10 Januari 2023",
-        school: {
-            name: "XII RPL 1 - SMKN 1 Kepanjen"
+    $.ajax({
+        type: "get",
+        url: "{{ config('app.api_url') }}/api/journals",
+        headers: {
+            Authorization: "Bearer {{ session('hummaclass-token') }}"
         },
-        description: "lorem ipsum dolor sit amet...",
-    }]
-    $.each(data, function(index, value) {
-        $('#tableBody').append(studentClassroom(index,
-            value));
+        dataType: "json",
+        success: function(response) {
+            let content = '';
+
+            $('#tableBody').empty();
+            $.each(response.data, function(index, data) {
+                content += mentorJournal(index, data);
+            });
+            $('#tableBody').append(content);
+
+            let journalId;
+            $('.btn-edit').click(function(e) {
+                e.preventDefault();
+
+                journalId = $(this).data('journal')
+                let title = $(this).data('title')
+                let image = $(this).data('image')
+                let classroom_id = $(this).data('classroom')
+                let description = $(this).data('description')
+
+                let formData = $('#update-journal-form')
+
+                $('#title-edit').val(title);
+                $('#image-edit').attr('src', image);
+                $('#classroom_id_update').val(classroom_id);
+                $('#description-edit').val(description);
+
+                $('#modal-update').modal('show');
+            });
+
+
+            $('#update-journal-form').submit(function(e) {
+                e.preventDefault();
+
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: `{{ config('app.api_url') }}/api/journals/${journalId}`,
+                    data: formData,
+                    dataType: "json",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses!",
+                            text: "Berhasil memperbarui data.",
+                            icon: "success"
+                        });
+                        window.location.href = "/mentor/journals";
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $.each(errors, function(field, messages) {
+
+                                $(`[name="${field}"]`).addClass('is-invalid');
+
+                                $(`[name="${field}"]`).closest('.form-group').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
+                    }
+                });
+            });
+        }
     });
 
-    function studentClassroom(index, value) {
+    function mentorJournal(index, data) {
         return `
-            <tr class="fw-semibold">
+           <tr class="fw-semibold">
                 <td>
                     <div class="d-flex align-items-center">
                         <div class="ms-3">
@@ -24,24 +92,24 @@
                         </div>
                     </div>
                 </td>
-                <td>${value.title}</td>
-                <td><img src="${value.image}" width="100%"/></td>
-                <td>${value.date}</td>
+                <td>${data.title}</td>
+                <td><img src="${data.image}" width="100%" /></td>
+                <td>${data.date}</td>
                 <td>
-                    <span>${value.school.name}</span>
-                    </td>
+                    <span>${data.classroom.name}</span>
+                </td>
                 <td>   
-                    <span>${value.description}</span>
+                    <span>${data.description}</span>
                 </td>
                 <td>
                     <div class="d-flex gap-1">
-                        <button class="btn btn-sm text-white btn-detail" style="background-color: #9425FE"
-                            data-name="${value.name}"
-                            data-title="${value.title}"
-                            data-classroom="${value.school.name}"
-                            data-date="${value.date}"
-                            data-description="${value.description}"
-                            data-image="${value.image}"
+                        <button class="btn btn-sm text-white btn-detail-journal" style="background-color: #9425FE"
+                            data-name="${data.user.name}"
+                            data-title="${data.title}"
+                            data-classroom="${data.classroom.name}"
+                            data-image="${data.image}"
+                            data-description="${data.description}"
+                            data-date="${data.date}"
                             >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24">
@@ -52,8 +120,7 @@
                                 </g>
                             </svg>
                         </button>
-                        <button class="btn btn-sm btn-danger text-white" data-bs-toggle="modal"
-                            data-bs-target="#modal-delete">
+                        <button class="btn btn-sm btn-danger text-white btn-delete" data-id="${data.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
@@ -66,8 +133,13 @@
                                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                             </svg>
                         </button>
-                        <button class="btn btn-sm btn-warning text-white" data-bs-toggle="modal"
-                            data-bs-target="#modal-update">
+                        <button class="btn btn-sm btn-warning btn-edit text-white" 
+                            data-journal="${data.id}"
+                            data-title="${data.title}"
+                            data-image="${data.image}"
+                            data-classroom="${data.classroom.id}"
+                            data-description="${data.description}"
+                            >
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
