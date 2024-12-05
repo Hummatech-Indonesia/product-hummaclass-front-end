@@ -1,4 +1,4 @@
-@extends('mentor.layouts.app')
+@extends(session('user')['roles'][0]['name'] == 'teacher' ? 'teacher.layouts.app' : 'mentor.layouts.app')
 @section('style')
     <style>
         .btn-close {

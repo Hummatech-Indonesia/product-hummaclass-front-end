@@ -40,6 +40,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('test', function () {
             return view('teacher.pages.test.index');
         })->name('test');
+        Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {

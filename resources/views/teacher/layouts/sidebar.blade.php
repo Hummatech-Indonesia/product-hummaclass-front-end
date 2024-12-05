@@ -83,8 +83,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.ranking.index') ? 'active' : '' }}"
-                        href="{{ route('mentor.ranking.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('dashboard.teacher.ranking') ? 'active' : '' }}"
+                        href="{{ route('dashboard.teacher.ranking') }}" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path fill="currentColor" fill-rule="evenodd"
