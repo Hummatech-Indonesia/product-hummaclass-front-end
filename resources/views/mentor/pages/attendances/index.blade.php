@@ -65,6 +65,15 @@
     <script>
         $(document).ready(function() {
 
+            let debounceTimer;
+
+            $('#search').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    getAttendances(1);
+                }, 500);
+            });
+
             function attendanceList(index, value) {
                 return `
                         <tr>
@@ -72,7 +81,7 @@
                             <td>${value.classroom} - ${value.school}</td>
                             <td>${value.date}</td>
                             <td><span class="p-1 text-success bg-light-success rounded">${value.status == 1?'Dibuka':'Ditutup'}</span></td>
-                            <td><button class="btn btn-secondary"><i class="fa fa-file fa-md"></i></button></td>
+                            <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="fa fa-file fa-md"></i></button></td>
                             <td>
                                 <ul class="d-flex gap-2">
                                     <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
@@ -90,6 +99,9 @@
                     url: "{{ config('app.api_url') }}/api/attendances?page=" + page,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    data: {
+                        search: $('#search').val()
                     },
                     dataType: "json",
                     success: function(response) {
@@ -110,6 +122,27 @@
             }
 
             getAttendances(1);
+
+            $(document).on('click', '#share-link-button', function() {
+                const id = $(this).data('id')
+                const attendanceUrl = "{{ config('app.api_url') }}/api/attendance/student/" + id
+                navigator.clipboard.writeText(attendanceUrl)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil menyalin URL ke clipboard.",
+                            icon: "success"
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Gagal menyalin URL:', err);
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil melakukan absensi, namun gagal menyalin URL ke clipboard.",
+                            icon: "warning"
+                        });
+                    });
+            })
 
             $(document).on('click', '#detail-attendance-button', function() {
                 const slug = $(this).data('slug')
