@@ -57,7 +57,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link"
-                        href="/dashboard/teacher/report" aria-expanded="false">
+                        href="/dashboard/teacher/raport" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                 <g fill="currentColor">
@@ -74,12 +74,12 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.journal.index') ? 'active' : '' }}"
-                        href="{{ route('mentor.journal.index') }}" aria-expanded="false">
+                    <a class="sidebar-link"
+                        href="/dashboard/teacher/test" aria-expanded="false">
                         <span>
                             <i class="ti ti-file"></i> <!-- Icon untuk Event -->
                         </span>
-                        <span class="hide-menu">Jurnal</span>
+                        <span class="hide-menu">Test</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

@@ -34,9 +34,12 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('journal-detail', function () {
             return view('teacher.pages.journal.detail');
         })->name('journal-detail');
-        Route::get('report', function () {
-            return view('teacher.pages.report.index');
-        })->name('report');
+        Route::get('raport', function () {
+            return view('teacher.pages.raport.index');
+        })->name('raport');
+        Route::get('test', function () {
+            return view('teacher.pages.test.index');
+        })->name('test');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
