@@ -125,7 +125,7 @@
                                 <div class="px-3 pb-3" style="max-width: 150px;">
                                     <span
                                     class="badge text-bg-purple"
-                                    >New!</span>
+                                    >${classroom.division.name}</span>
                                 </div>
                                 <div class="card-body px-3 pt-0 pb-3">
                                     

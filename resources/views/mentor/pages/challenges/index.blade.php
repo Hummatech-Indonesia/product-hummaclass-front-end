@@ -2,15 +2,18 @@
 
 @section('style')
     <style>
-         .bg-primary {
+        .bg-primary {
             background-color: #9425FE !important;
         }
+
         .text-primary {
             color: #9425FE !important;
         }
+
         .bg-light-primary {
             background-color: #9525fe27 !important;
         }
+
         .text-bg-purple {
             color: var(--purple-primary) !important;
             background: var(--purple-light-primary) !important;
@@ -59,8 +62,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                                                                                                                align-self: stretch;
-                                                                                                                                                } */
+                                                                                                                                                    align-self: stretch;
+                                                                                                                                                    } */
 
         p,
         h1,
@@ -99,7 +102,7 @@
 
     <div class="row gap-2">
         <div class="col-lg-4 col-sm-12 col-md-3 me-auto">
-            <form action="" class="position-relative d-flex gap-2">
+            <form action="" class="position-relative d-flex gap-2" id="search-form">
                 <input type="text" class="form-control product-search px-4 ps-5" name="title"
                     value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                     placeholder="Search">
@@ -111,7 +114,7 @@
                 </button>
             </form>
         </div>
-        <div class="col-sm-12 col-md-2 col-xl-auto" >
+        <div class="col-sm-12 col-md-2 col-xl-auto">
             <a href="{{ route('mentor.challenge.create') }}" class="w-100 btn btn-primary rounded-2 bg-primary border-0">
                 <i class="ti ti-plus"></i> Tambah
             </a>
@@ -130,17 +133,32 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $.ajax({
-                type: "get",
-                url: "{{ config('app.api_url') }}/api/challenges",
-                headers: {
-                    Authorization: "Bearer {{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    let challengesList = '';
-                    response.data.forEach(challenge => {
-                        challengesList += `
+            let search = '';
+            getChallenges();
+            console.log($('#search-form'));
+            
+            $('#search-form').submit(function(e) {
+                e.preventDefault();
+                
+                search = $('#search-name').val();
+                getChallenges();
+            });
+
+            function getChallenges() {
+                $.ajax({
+                    type: "get",
+                    url: "{{ config('app.api_url') }}/api/challenges",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    data: {
+                        search: search
+                    },
+                    success: function(response) {
+                        let challengesList = '';
+                        response.data.forEach(challenge => {
+                            challengesList += `
                         <div class="col">
                             <div class="card rounded-4 shadow card-challenge">
                                 <div class="card-header bg-transparent px-3 pb-4">
@@ -197,11 +215,12 @@
                             </div>
                         </div>
             `
-                    });
-                    $('#list-card').empty();
-                    $('#list-card').append(challengesList);
-                }
-            });
+                        });
+                        $('#list-card').empty();
+                        $('#list-card').append(challengesList);
+                    }
+                });
+            }
         });
     </script>
 @endsection

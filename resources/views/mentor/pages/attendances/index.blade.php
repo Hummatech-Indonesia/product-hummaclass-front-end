@@ -164,8 +164,8 @@
     <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-            <form action="" id="create-form">
-                <div class="modal-content">
+            <div class="modal-content">
+                <form action="" id="create-form">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">
                             Tambah Jurnal
@@ -193,8 +193,8 @@
                         </button>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -217,6 +217,35 @@
             status: "Dibuka",
             link: "asdfsadfasdf",
         }]
+
+        function getAttendances(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/attendances?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#tableBody').empty();
+                    let attendancesList = '';
+                    response.data.data.forEach((attendance, index) => {
+                        attendancesList += studentClassroom(index, attendance);
+                    });
+
+                    $('#tableBody').append(attendancesList);
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: xhr.responseJSON.meta.message,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        getAttendances(1);
         $.each(data, function(index, value) {
             $('#tableBody').append(studentClassroom(index,
                 value));
@@ -260,14 +289,13 @@
                             </div>
                         </div>
                     </td>
-                    <td>${value.school.name}</td>
+                    <td>${value.classroom} - ${value.school}</td>
                     <td>${value.date}</td>
                     <td>
-                        <span class="badge text-bg-light-success text-success">${value.status}</span>
+                        <span class="badge text-bg-light-success text-success">${value.status?'Dibuka':'Ditutup'}</span>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x`
-            `
+                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x
                             data-bs-target="#modal-detail-student" data-url="${value.link}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
