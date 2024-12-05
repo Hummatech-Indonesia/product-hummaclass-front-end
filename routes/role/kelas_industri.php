@@ -37,6 +37,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('report', function () {
             return view('teacher.pages.report.index');
         })->name('report');
+        Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
