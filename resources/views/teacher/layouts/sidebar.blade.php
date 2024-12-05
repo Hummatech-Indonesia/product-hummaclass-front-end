@@ -41,23 +41,23 @@
                     <a class="sidebar-link"
                         href="/dashboard/teacher/classroom" aria-expanded="false">
                         <span>
-                            <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
+                            <i class="ti ti-news"></i> 
                         </span>
                         <span class="hide-menu">Kelas</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.challenge.index') ? 'active' : '' }}"
-                        href="{{ route('mentor.challenge.index') }}" aria-expanded="false">
+                    <a class="sidebar-link"
+                        href="/dashboard/teacher/journal" aria-expanded="false">
                         <span>
-                            <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
+                            <i class="ti ti-calendar-event"></i> 
                         </span>
-                        <span class="hide-menu">Tantangan</span>
+                        <span class="hide-menu">Jurnal</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.attendance.index') ? 'active' : '' }}"
-                        href="{{ route('mentor.attendance.index') }}" aria-expanded="false">
+                    <a class="sidebar-link"
+                        href="/dashboard/teacher/report" aria-expanded="false">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                 <g fill="currentColor">
@@ -70,7 +70,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Absensi</span>
+                        <span class="hide-menu">Report</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

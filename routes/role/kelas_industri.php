@@ -25,6 +25,18 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('classroom-details', function () {
             return view('teacher.pages.classroom.class-detail');
         })->name('classroom-details');
+        Route::get('journal', function () {
+            return view('teacher.pages.journal.index');
+        })->name('journal');
+        Route::get('journal-create', function () {
+            return view('teacher.pages.journal.create');
+        })->name('journal-create');
+        Route::get('journal-detail', function () {
+            return view('teacher.pages.journal.detail');
+        })->name('journal-detail');
+        Route::get('report', function () {
+            return view('teacher.pages.report.index');
+        })->name('report');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
