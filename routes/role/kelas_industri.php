@@ -13,9 +13,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
     });
 
-    Route::prefix('learning-paths')->name('learning-paths.')->group(function () {
-        Route::get('/', [LearningPathController::class, 'index'])->name('index');
-    });
 
     Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
@@ -81,6 +78,11 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             Route::get('/', function () {
                 return view('Kelas-Industri.admin.division.index');
             })->name('index');
+        });
+        
+        Route::prefix('learning-paths')->name('learning-paths.')->group(function () {
+            Route::get('/', [LearningPathController::class, 'index'])->name('index');
+            Route::get('/create', [LearningPathController::class, 'create'])->name('create');
         });
 
         Route::prefix('classroom')->name('classroom.')->group(function () {

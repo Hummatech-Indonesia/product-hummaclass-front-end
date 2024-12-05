@@ -11,4 +11,9 @@ class LearningPathController extends Controller
     {
         return view('Kelas-Industri.admin.learning-paths.index');
     }
+
+    public function create(): View
+    {
+        return view('Kelas-Industri.admin.learning-paths.create');
+    }
 }

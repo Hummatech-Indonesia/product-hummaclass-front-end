@@ -109,8 +109,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('dashboard.learning-paths.index') ? 'active' : '' }}"
-                        href="{{ route('dashboard.learning-paths.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Route::is('admin.class.learning-paths.index') ? 'active' : '' }}"
+                        href="{{ route('admin.class.learning-paths.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-book"></i>
                         </span>
