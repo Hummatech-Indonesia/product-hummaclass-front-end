@@ -98,12 +98,12 @@
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
-        @include('mentor.layouts.sidebar')
+        @include('teacher.layouts.sidebar')
         <!--  Sidebar End -->
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @include('mentor.layouts.header')
+            @include('teacher.layouts.header')
             <!--  Header End -->
             <div class="container-fluid">
                 @yield('content')

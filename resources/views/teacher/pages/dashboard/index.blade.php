@@ -1,4 +1,4 @@
-@extends('mentor.layouts.app')
+@extends('teacher.layouts.app')
 
 @section('style')
     <style>

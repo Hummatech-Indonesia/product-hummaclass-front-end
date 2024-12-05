@@ -19,6 +19,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::prefix('teacher')->name('teacher.')->group(function () {
         Route::get('dashboard', fn() => view('teacher.pages.dashboard.index'))->name('index')->middleware('teacher');
+        Route::get('classroom', function () {
+            return view('teacher.pages.classroom.index');
+        })->name('classroom');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {
@@ -103,9 +106,12 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('/', function () {
             return view('admin.pages.exams.assesments.index');
         })->name('index');
-        Route::get('assessment-settings ', function () {
-            return view('admin.pages.exams.assesment-settings.index');
+        Route::get('assessment-settings', function () {
+            return view('admin.pages.exams.assessment-settings.index');
         })->name('assessment-settings');
+        Route::get('assessment-settings-format', function () {
+            return view('admin.pages.exams.assessment-settings.settings');
+        })->name('assessment-settings-format');
     });
 
     Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index')->middleware('mentor');
