@@ -22,6 +22,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('classroom', function () {
             return view('teacher.pages.classroom.index');
         })->name('classroom');
+        Route::get('classroom-details', function () {
+            return view('teacher.pages.classroom.class-detail');
+        })->name('classroom-details');
     });
 
     Route::prefix('students-ki')->name('students-ki.')->group(function () {

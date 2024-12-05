@@ -76,10 +76,10 @@
                             </div>
                         </div>
                         <div class="col-12 col-lg-5 d-flex align-items-center justify-content-lg-end">
-                            <button class="btn mb-1 waves-effect waves-light text-light w-100 "
+                            <a href="/dashboard/teacher/classroom-details" class="btn mb-1 waves-effect waves-light text-light w-100 "
                                 style="background-color: #9425FE;" type="button">
                                 Lihat Kelas
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
