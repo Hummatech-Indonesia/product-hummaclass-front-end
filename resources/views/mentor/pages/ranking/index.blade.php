@@ -83,9 +83,7 @@
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </div>
             <div class="me-2">
-                <select name="school" id="" class="form-control bg-white">
-                    <option value="SMKN 1 Kepanjen">SMKN 1 Kepanjen</option>
-                    <option value="SMKN 2 Kepanjen">SMKN 2 Kepanjen</option>
+                <select name="school" id="search-school" class="form-control bg-white">
                 </select>
             </div>
             <button class="btn bg-primary text-white">Cari</button>
