@@ -77,7 +77,8 @@
             <div class="d-flex justify-content-between mb-3">
                 <input type="text" name="search" id="search" class="form-control bg-white "
                     placeholder="Cari kursus.." style="max-width:250px;">
-                <button class="btn text-white" style="background: #9425FE;"><i class="fa fa-plus fa-md"></i>
+                <button class="btn text-white" id="create-learning-path-button" style="background: #9425FE;"><i
+                        class="fa fa-plus fa-md"></i>
                     Tambah</button>
             </div>
             <div id="course-learning-path-list">
@@ -135,6 +136,7 @@
     </div>
 @endsection
 @section('script')
+    <x-create-learning-path-modal></x-create-learning-path-modal>
     <script>
         $(document).ready(function() {
             function divisionList(index, value) {
@@ -297,6 +299,10 @@
                 $('.nav-division_id-link').removeClass('active')
                 $(this).addClass('active')
                 getCourseLearningPath(class_level, $(this).data('division_id'))
+            })
+
+            $(document).on('click', '#create-learning-path-button', function() {
+                $('#create-learning-path-modal').modal('show')
             })
         });
     </script>
