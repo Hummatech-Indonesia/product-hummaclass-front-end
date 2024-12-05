@@ -109,6 +109,10 @@
             <nav id="pagination_list_student"></nav>
         </div>
     </div>
+
+    <div class="d-flex justify-content-center">
+        <nav id="pagination"></nav>
+    </div>
 @endsection
 @section('script')
     @include('mentor.pages.ranking.scripts.datatable')
