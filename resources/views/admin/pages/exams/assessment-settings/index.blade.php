@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+
 @section('style')
     <style>
         .nav-pills .nav-link.active {
@@ -41,17 +42,18 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h5 class="fw-semibold mb-8">pengaturan penilaian</h5>
+                    <h5 class="fw-semibold mb-8">Pengaturan Penilaian</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="javascript:void(0)">pengaturan penilaian bagi siswa kelas
-                                    industri</a>
+                                <a class="text-muted " href="javascript:void(0)">Pengaturan Penilaian bagi Siswa Kelas
+                                    Industri</a>
                             </li>
                         </ol>
                     </nav>
@@ -70,21 +72,21 @@
         <li class="nav-item">
             <a href="javascript:void(0)"
                 class="nav-link d-flex align-items-center justify-content-center active px-3 px-md-3 me-0 me-md-2 text-body-color"
-                id="all-category" data-bs-toggle="pill" data-bs-target="#kelas10">
+                id="all-category" data-bs-toggle="pill" data-bs-target="#kelas10" data-class-level="10">
                 <span class="d-md-block font-weight-medium">Kelas 10</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="javascript:void(0)"
                 class="nav-link d-flex align-items-center justify-content-center px-3 px-md-3 me-0 me-md-2 text-body-color"
-                id="note-business" data-bs-toggle="pill" data-bs-target="#kelas11">
+                id="note-business" data-bs-toggle="pill" data-bs-target="#kelas11" data-class-level="11">
                 <span class="d-md-block font-weight-medium">Kelas 11</span>
             </a>
         </li>
         <li class="nav-item">
             <a href="javascript:void(0)"
                 class="nav-link d-flex align-items-center justify-content-center px-3 px-md-3 me-0 me-md-2 text-body-color"
-                id="note-social" data-bs-toggle="pill" data-bs-target="#kelas12">
+                id="note-social" data-bs-toggle="pill" data-bs-target="#kelas12" data-class-level="12">
                 <span class="d-md-block font-weight-medium">Kelas 12</span>
             </a>
         </li>
@@ -92,15 +94,151 @@
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="kelas10">
-            @include('admin.pages.exams.assessment-settings.panes.tab-class')
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
         </div>
         <div class="tab-pane fade" id="kelas11">
-            @include('admin.pages.exams.assessment-settings.panes.tab-class')
-
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
         </div>
         <div class="tab-pane fade" id="kelas12">
-            @include('admin.pages.exams.assessment-settings.panes.tab-class')
-
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        let class_level = 10;
+
+        $('.nav-link').click(function(e) {
+            e.preventDefault();
+
+            class_level = $(this).data('class-level');
+
+        });
+
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/divisions",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $.each(response.data, function(index, value) {
+                        $('#division_id').append(
+                            `
+                                <option value="${value.id}">${value.name}</option>
+                            `
+                        );
+                    });
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Ada kesalahan saat menyimpan data.",
+                        icon: "error"
+                    });
+                }
+            });
+            $('#division_id').on('change', function() {
+                var division_id = $(this).val();
+                getAssesmentForm(division_id, class_level)
+                $('#setting-format').attr('href',
+                    `/admin/exams/assessment-settings-format/${division_id}/${class_level}`);
+            });
+
+            $('#setting-format').click(function() {
+                var divisionId = $('#division_id').val();
+
+                if (!divisionId) {
+                    alert('Harap pilih divisi terlebih dahulu!');
+                } else {
+                    console.log('Divisi yang dipilih:', divisionId);
+                }
+            });
+
+
+            function getAssesmentForm(division_id, class_level) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" +
+                        class_level,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        // Sikap
+                        $('#body').append(
+                            `
+                            <tr>
+                                <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b>
+                                </td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            </tr>
+                            `
+                        );
+                        $.each(response.data.assementFormAttitudes, function(index, value) {
+                            $('#body').append(showTableAssesmentForm(index, value));
+                        });
+
+                        //Keterampilan
+                        $('#body').append(
+                            `
+                           <tr>
+                                <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b>
+                                </td>
+                                <td class="custom-cell" style="background-color: #E8DEF3">
+                                    <b>KETERAMPILAN</b>
+                                </td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            </tr>
+                            `
+                        );
+                        $.each(response.data.assementFormSkills, function(index, value) {
+                            $('#body').append(showTableAssesmentForm(index, value));
+                        });
+
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+
+            function showTableAssesmentForm(index, value) {
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${value.indicator}</td>
+                        <td class="text-center">
+                        </td>
+                        <td class="text-center">
+                        </td>
+                        <td class="text-center">
+                        </td>
+                        <td class="text-center">
+                        </td>
+                        <td class="text-center">
+                        </td>
+                    </tr>
+                `
+            }
+        });
+    </script>
 @endsection
