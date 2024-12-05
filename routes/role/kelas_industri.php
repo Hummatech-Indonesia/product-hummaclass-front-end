@@ -124,8 +124,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('assessment-settings', function () {
             return view('admin.pages.exams.assessment-settings.index');
         })->name('assessment-settings');
-        Route::get('assessment-settings-format', function () {
-            return view('admin.pages.exams.assessment-settings.settings');
+        Route::get('assessment-settings-format/{division_id}/{class_level}', function ($division_id, $class_level) {
+            return view('admin.pages.exams.assessment-settings.settings', compact('division_id', 'class_level'));
         })->name('assessment-settings-format');
     });
 
