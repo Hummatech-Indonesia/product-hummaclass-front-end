@@ -1,356 +1,265 @@
 @extends('mentor.layouts.app')
-
-@section('style')
-    <style>
-        .btn-close {
-            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-            background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
-        }
-
-        .info-card {
-            background-color: #fff7eb;
-            border: 1px solid #ffdca9;
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .info-card .info-icon {
-            background-color: #ffdca9;
-            color: #ff8800;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-        }
-
-        .info-card .info-header {
-            font-weight: bold;
-            color: #ff8800;
-        }
-
-        .bg-primary {
-            background-color: #9425FE !important;
-        }
-
-        .text-bg-purple {
-            color: var(--purple-primary) !important;
-            background: var(--purple-light-primary) !important;
-        }
-
-
-
-        .card-challenge {
-            height: 314px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-challenge .card-title {
-            min-height: 40px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            max-width: 260px;
-            /* Vertikal */
-            /* justify-content: center; */
-            /* Opsional: jika ingin teks berada di tengah horizontal */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .card-challenge .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-challenge .card-body p {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            /* Batas 3 baris untuk deskripsi */
-            -webkit-box-orient: vertical;
-        }
-
-        .bg-primary {
-            background-color: #9425FE !important;
-        }
-
-        p,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5 {
-            padding: 0;
-        }
-    </style>
-@endsection
-
 @section('content')
+    <!-- Header Card -->
     <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
-                <div class="col-9">
-                    <h5 class="fw-semibold mb-8">Absensi</h5>
+                <div class="col-md-9 col-sm-8">
+                    <h5 class="fw-semibold mb-2">Absensi</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="index-2.html">Absensi Siswa Kelas Industri</a>
+                                <a class="text-muted" href="index-2.html">Absensi untuk Siswa kelas industri</a>
                             </li>
                         </ol>
                     </nav>
                 </div>
-                <div class="col-3">
-                    <div class="text-center mb-n1">
-                        <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
-                            class="img-fluid mb-n3" />
-                    </div>
+                <div class="col-md-3 col-sm-4 text-center">
+                    <img src="{{ asset('admin/dist/images/backgrounds/track-bg.png') }}" width="70px" alt=""
+                        class="img-fluid mb-n3" />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-2">
-        <div class="d-flex gap-3">
-            <form action="" class="position-relative d-flex">
-                <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                    value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                    placeholder="Search">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </form>
-        </div>
-
-        <button class="btn btn-primary rounded-2 bg-primary border-0" data-bs-toggle="modal"
-            data-bs-target="#create-modal"><i class="ti ti-plus"></i> Buat Absensi</button>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <input type="text" name="search" id="search" class="form-control" placeholder="Cari.."
+            style="max-width: 250px;">
+        <button class="btn btn-primary" id="create-attendance-button"><i class="fa fa-plus fa-md"></i> Tambah</button>
     </div>
 
-    <div class="card mt-3">
-        <div class="card-body">
-            <h5 class="card-title">Daftar Absensi</h5>
-            <div class="table-responsive rounded-2 mb-4">
-                <table class="table border text-nowrap customize-table mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                        <tr class="">
-                            <th class="fs-4 fw-semibold mb-0">No</th>
-                            <th class="fs-4 fw-semibold mb-0">Nama Sekolah</th>
-                            <th class="fs-4 fw-semibold mb-0">Tanggal</th>
-                            <th class="fs-4 fw-semibold mb-0">Status</th>
-                            <th class="fs-4 fw-semibold mb-0">Link</th>
-                            <th class="fs-4 fw-semibold mb-0">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                    </tbody>
-                </table>
-            </div>
-            <nav id="pagination_list_student"></nav>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center">
-        <nav id="pagination">
-
-        </nav>
-    </div>
-
-    <!-- Modal Body -->
-    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-    <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="" id="create-form">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">
-                            Tambah Jurnal
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="row justify-content-center align-items-center g-2"> --}}
-                        <div class="mb-3">
-                            <label for="inputName" class="form-label">Nama Sekolah</label>
-                            {{-- <input type="text" class="form-control" id="inputName" placeholder="Masukkan nama sekolah"> --}}
-                            <select class="form-control" id="classroom_id" name="school_id">
-                                <option>Pilih Sekolah</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="inputDate" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" id="inputDate">
-                        </div>
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Optional: Place to the bottom of scripts -->
-    <script>
-        const myModal = new bootstrap.Modal(
-            document.getElementById("modalId"),
-            options,
-        );
-    </script>
+    <h3 class="mb-3"><b>Daftar Absensi</b></h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Sekolah</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+                <th>Link</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="attendance-list">
+            {{-- <tr>
+                <td>1</td>
+                <td>XII RPL 1 - SMKN 1 Kepanjen</td>
+                <td>10 Januari 2024</td>
+                <td>Status</td>
+                <td><button class="btn btn-secondary"><i class="fa fa-file fa-md"></i></button></td>
+                <td>
+                    <ul class="d-flex gap-2">
+                        <li><button class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
+                        <li><button class="btn btn-warning"><i class="fa fa-eye fa-md"></i></button></li>
+                        <li><button class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
+                    </ul>
+                </td>
+            </tr> --}}
+        </tbody>
+    </table>
 @endsection
-
 @section('script')
+    <x-delete-modal-component></x-delete-modal-component>
+    @include('mentor.pages.attendances.widgets.edit-attendance-modal')
+    @include('mentor.pages.attendances.widgets.create-attendance-modal')
     <script>
-        const data = [{
-            school: {
-                name: "XII RPL 1 - SMKN 1 Kepanjen"
-            },
-            date: "10 Januari 2023",
-            status: "Dibuka",
-            link: "asdfsadfasdf",
-        }]
+        $(document).ready(function() {
 
-        function getAttendances(page) {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/attendances?page=" + page,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-                },
-                dataType: "json",
-                success: function(response) {
-                    $('#tableBody').empty();
-                    let attendancesList = '';
-                    response.data.data.forEach((attendance, index) => {
-                        attendancesList += studentClassroom(index, attendance);
-                    });
+            let debounceTimer;
 
-                    $('#tableBody').append(attendancesList);
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: xhr.responseJSON.meta.message,
-                        icon: "error"
-                    });
-                }
+            $('#search').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    getAttendances(1);
+                }, 500);
             });
-        }
 
-        getAttendances(1);
-        $.each(data, function(index, value) {
-            $('#tableBody').append(studentClassroom(index,
-                value));
-        });
-
-        $('#create-form').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-            $.ajax({
-                type: "post",
-                url: "{{ config('app.api_url') }}/api/journals",
-                data: formData,
-                dataType: "json",
-                success: function(response) {
-                    Swal.fire({
-                        title: "Sukses",
-                        text: "Berhasil menambahkan jurnal.",
-                        icon: "success"
-                    }).then(() => {
-                        window.location.reload();
-                    });
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: xhr.responseJSON.meta.message,
-                        icon: "error"
-                    });
-                }
-            });
-        });
-
-        function studentClassroom(index, value) {
-            return `
-                <tr class="fw-semibold">
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0">${index + 1}</h6>
-                            </div>
-                        </div>
-                    </td>
-                    <td>${value.classroom} - ${value.school}</td>
-                    <td>${value.date}</td>
-                    <td>
-                        <span class="badge text-bg-light-success text-success">${value.status?'Dibuka':'Ditutup'}</span>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-light" style="color: grey;" data-bs-toggle="modal"x
-                            data-bs-target="#modal-detail-student" data-url="${value.link}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-copy">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path
-                                    d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
-                                <path
-                                    d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
-                            </svg>
-                        </button>
-                    </td>
-                    <td>
-                        <div class="d-flex gap-1">
-                            <button class="btn btn-sm text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student" style="background-color: #9425FE">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24">
-                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2">
-                                        <path d="M3 13c3.6-8 14.4-8 18 0" />
-                                        <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6" />
-                                    </g>
-                                </svg>
-                            </button>
-                            <button class="btn btn-sm btn-danger text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 7l16 0" />
-                                    <path d="M10 11l0 6" />
-                                    <path d="M14 11l0 6" />
-                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                </svg>
-                            </button>
-                            <button class="btn btn-sm btn-warning text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
-                                    <path d="M13.5 6.5l4 4" />
-                                </svg>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
+            function attendanceList(index, value) {
+                return `
+                        <tr>
+                            <td>${index+1}</td>
+                            <td>${value.classroom} - ${value.school}</td>
+                            <td>${value.date}</td>
+                            <td><span class="p-1 text-success bg-light-success rounded">${value.status == 1?'Dibuka':'Ditutup'}</span></td>
+                            <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="fa fa-file fa-md"></i></button></td>
+                            <td>
+                                <ul class="d-flex gap-2">
+                                    <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
+                                    <li><button data-id="${value.id}" data-title="${value.title}" data-classroom_id="${value.classroom_id}" id="edit-attendance-button" class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button></li>
+                                    <li><button data-id="${value.id}" id="delete-attendance-button" class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
+                                </ul>
+                            </td>
+                        </tr>
             `
-        }
+            }
+
+            function getAttendances(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/attendances?page=" + page,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    data: {
+                        search: $('#search').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#attendance-list').empty();
+                        $.each(response.data.data, function(indexInArray, valueOfElement) {
+                            $('#attendance-list').append(attendanceList(indexInArray,
+                                valueOfElement));
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            getAttendances(1);
+
+            $(document).on('click', '#share-link-button', function() {
+                const id = $(this).data('id')
+                const attendanceUrl = "{{ config('app.api_url') }}/api/attendance/student/" + id
+                navigator.clipboard.writeText(attendanceUrl)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil menyalin URL ke clipboard.",
+                            icon: "success"
+                        });
+                    })
+                    .catch(err => {
+                        console.error('Gagal menyalin URL:', err);
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil melakukan absensi, namun gagal menyalin URL ke clipboard.",
+                            icon: "warning"
+                        });
+                    });
+            })
+
+            $(document).on('click', '#detail-attendance-button', function() {
+                const slug = $(this).data('slug')
+
+                window.location.href = "/mentor/attendance-detail/" + slug
+            })
+
+            $(document).on('click', '#create-attendance-button', function() {
+                $('#create-attendance-modal').modal('show');
+                $('#edit-attendance-form').off('submit')
+                $('#create-attendance-form').submit(function(e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/attendances",
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                        },
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        dataType: "json",
+                        success: function(response) {
+                            $('#create-attendance-modal').modal('hide');
+                            getAttendances(1);
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Berhasil menambahkan data",
+                                icon: "success"
+                            });
+
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: xhr.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            })
+
+            $(document).on('click', '#edit-attendance-button', function() {
+                const id = $(this).data('id')
+                const classroom_id = $(this).data('classroom_id')
+                const title = $(this).data('title')
+                $('#edit-attendance-modal').modal('show')
+                $('#classroom_id').val(classroom_id)
+                $('#title').val(title)
+                $('#edit-attendance-form').off('submit')
+                $('#edit-attendance-form').submit(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/attendances/" + id +
+                            '?_method=PATCH',
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                        },
+                        data: new FormData(this),
+                        contentType: false,
+                        processData: false,
+                        dataType: "json",
+                        success: function(response) {
+                            $('#edit-attendance-modal').modal('hide')
+                            getAttendances(1)
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Berhasil mengubah data",
+                                icon: "success"
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: xhr.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            })
+
+            $(document).on('click', '#delete-attendance-button', function() {
+                const id = $(this).data('id')
+                $('#modal-delete').modal('show')
+                $('#edit-attendance-form').off('submit')
+                $('#deleteForm').submit(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{{ config('app.api_url') }}/api/attendances/" + id,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            getAttendances(1)
+                            Swal.fire({
+                                title: "Berhasil!",
+                                text: "Berhasil menghapus data",
+                                icon: "success"
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: xhr.responseJSON.meta.message,
+                                icon: "error"
+                            });
+                        }
+                    });
+
+                });
+            })
+        });
     </script>
 @endsection
