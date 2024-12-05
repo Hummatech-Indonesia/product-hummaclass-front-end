@@ -133,7 +133,6 @@
                     </table>
                 </div>
             
-                <!-- Button section -->
                 <div class="d-flex justify-content-end gap-2">
                     <button class="btn mb-1 waves-effect waves-light btn-danger" type="button">Batal</button>
                     <button class="btn mb-1 waves-effect waves-light btn-primary" type="submit">Tambah</button>
