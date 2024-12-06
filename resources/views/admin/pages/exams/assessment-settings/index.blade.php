@@ -94,13 +94,13 @@
 
     <div class="tab-content">
         <div class="tab-pane fade show active" id="kelas10">
-            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions-10')
         </div>
         <div class="tab-pane fade" id="kelas11">
-            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions-11')
         </div>
         <div class="tab-pane fade" id="kelas12">
-            @include('admin.pages.exams.assessment-settings.panes.tab-divisions')
+            @include('admin.pages.exams.assessment-settings.panes.tab-divisions-12')
         </div>
     </div>
 @endsection
@@ -116,8 +116,6 @@
 
                 class_level = $(this).data('class-level');
 
-                division_id = $('.division_id').val('');
-
                 division();
             });
 
@@ -132,10 +130,9 @@
                     },
                     dataType: "json",
                     success: function(response) {
+
                         $('.division_id').empty();
-                        $('.division_id').append(
-                            `<option value="">Pilih Divisi</option>`
-                        );
+                        $('.division_id').append(`<option value="">Pilih Divisi</option>`);
                         $.each(response.data, function(index, value) {
                             $('.division_id').append(
                                 `<option value="${value.id}">${value.name}</option>`
@@ -153,7 +150,10 @@
             }
 
             $('.division_id').on('change', function() {
-                division_id = $(this).val();
+                console.log("class_level: ", class_level);
+
+                division_id = $('.division_id').val();
+
 
                 if (division_id) {
                     getAssesmentForm(division_id, class_level);
@@ -163,17 +163,25 @@
             });
 
             $('.setting-format').click(function() {
-                division_id = $('.division_id').val();
+
+                if (class_level == 10) {
+                    division_id = $('#division_10').val();
+                } else if (class_level == 11) {
+                    division_id = $('#division_11').val();
+                } else if (class_level == 12) {
+                    division_id = $('#division_12').val();
+                }
 
                 if (!division_id) {
                     alert('Harap pilih divisi terlebih dahulu!');
-                    $('.setting-format').attr('href', '#')
+                    $('.setting-format').attr('href', '#');
                 } else {
                     $('.setting-format').attr('href',
-                        `/admin/exams/assessment-settings-format/${division_id}/${class_level}`)
+                        `/admin/exams/assessment-settings-format/${division_id}/${class_level}`);
                 }
             });
 
+            // Fungsi untuk mendapatkan form penilaian
             function getAssesmentForm(division_id, class_level) {
                 $.ajax({
                     type: "GET",
@@ -188,16 +196,16 @@
 
                         // Sikap
                         $('#body').append(`
-                        <tr>
-                            <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        </tr>
-                    `);
+                    <tr>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                    </tr>
+                `);
 
                         $.each(response.data.assementFormAttitudes, function(index, value) {
                             $('#body').append(showTableAssesmentForm(index, value));
@@ -205,16 +213,16 @@
 
                         // Keterampilan
                         $('#body').append(`
-                        <tr>
-                            <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        </tr>
-                    `);
+                    <tr>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                    </tr>
+                `);
 
                         $.each(response.data.assementFormSkills, function(index, value) {
                             $('#body').append(showTableAssesmentForm(index, value));
@@ -230,18 +238,19 @@
                 });
             }
 
+            // Fungsi untuk menampilkan data penilaian
             function showTableAssesmentForm(index, value) {
                 return `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${value.indicator}</td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                    <td class="text-center"></td>
-                </tr>
-            `;
+            <tr>
+                <td>${index + 1}</td>
+                <td>${value.indicator}</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+            </tr>
+        `;
             }
         });
     </script>

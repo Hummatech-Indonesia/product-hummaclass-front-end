@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row align-items-center mb-3">
             <div class="col-3 rounded-2 px-0" style="background-color: #ECECEC">
-                <select name="division_id" class="division_id form-control">
+                <select name="division_id" class="division_id form-control" id="division_11">
                     <option value="">Pilih Divisi</option>
                 </select>
             </div>
