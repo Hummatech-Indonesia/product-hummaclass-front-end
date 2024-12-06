@@ -149,19 +149,6 @@
                 });
             }
 
-            $('.division_id').on('change', function() {
-                console.log("class_level: ", class_level);
-
-                division_id = $('.division_id').val();
-
-
-                if (division_id) {
-                    getAssesmentForm(division_id, class_level);
-                } else {
-                    $('#body').empty();
-                }
-            });
-
             $('.setting-format').click(function() {
 
                 if (class_level == 10) {
@@ -180,78 +167,6 @@
                         `/admin/exams/assessment-settings-format/${division_id}/${class_level}`);
                 }
             });
-
-            // Fungsi untuk mendapatkan form penilaian
-            function getAssesmentForm(division_id, class_level) {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" +
-                        class_level,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#body').empty();
-
-                        // Sikap
-                        $('#body').append(`
-                    <tr>
-                        <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                    </tr>
-                `);
-
-                        $.each(response.data.assementFormAttitudes, function(index, value) {
-                            $('#body').append(showTableAssesmentForm(index, value));
-                        });
-
-                        // Keterampilan
-                        $('#body').append(`
-                    <tr>
-                        <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                    </tr>
-                `);
-
-                        $.each(response.data.assementFormSkills, function(index, value) {
-                            $('#body').append(showTableAssesmentForm(index, value));
-                        });
-                    },
-                    error: function(response) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-
-            // Fungsi untuk menampilkan data penilaian
-            function showTableAssesmentForm(index, value) {
-                return `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${value.indicator}</td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-                <td class="text-center"></td>
-            </tr>
-        `;
-            }
         });
     </script>
 @endsection

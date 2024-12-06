@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
 
-                    <tbody id="body">
+                    <tbody id="body_10">
 
                     </tbody>
                 </table>
@@ -51,3 +51,92 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        $(document).ready(function() {
+
+            $('#division_10').on('change', function() {
+
+                division_id = $('#division_10').val();
+
+                if (division_id) {
+                    getAssesmentForm(division_id, 10);
+                } else {
+                    $('#body_10').empty();
+                }
+            });
+
+            // Fungsi untuk mendapatkan form penilaian
+            function getAssesmentForm(division_id) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" +
+                        10,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#body_10').empty();
+
+                        // Sikap
+                        $('#body_10').append(`
+                    <tr>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                    </tr>
+                `);
+
+                        $.each(response.data.assementFormAttitudes, function(index, value) {
+                            $('#body_10').append(showTableAssesmentForm(index, value));
+                        });
+
+                        // Keterampilan
+                        $('#body_10').append(`
+                    <tr>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                    </tr>
+                `);
+
+                        $.each(response.data.assementFormSkills, function(index, value) {
+                            $('#body_10').append(showTableAssesmentForm(index, value));
+                        });
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            // Fungsi untuk menampilkan data penilaian
+            function showTableAssesmentForm(index, value) {
+                return `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${value.indicator}</td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+            </tr>
+            `;
+            }
+        });
+    </script>
+@endpush
