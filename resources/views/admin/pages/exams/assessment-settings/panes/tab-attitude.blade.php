@@ -5,7 +5,7 @@
         <form class="mt-4" id="add-assesment-form-attitude">
             <div class="">
                 <div class="email-repeater mb-3">
-                    <div data-repeater-list="repeater-group">
+                    <div data-repeater-list="repeater-group" id="repeater-attitude">
                         <div data-repeater-item class="row mb-3">
                             <h5>Indikator</h5>
                             <div class="col col-md-11">
@@ -70,13 +70,18 @@
 
             var formData = $('#add-assesment-form-attitude').serializeArray();
 
-            console.log(formData);
+            const formIndicator = []
+            formData.forEach(element => {
+                formIndicator.push(element.value)
+            });
 
             $.ajax({
                 type: "POST",
                 url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" + class_level +
                     "/attitude",
-                data: formData,
+                data: {
+                    indicator: formIndicator
+                },
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -87,7 +92,7 @@
                         text: "Berhasil menambah data.",
                         icon: "success"
                     }).then(() => {
-                        window.location.reload();
+                        window.location.href = "/admin/exams/assessment-settings";
                     });
                 },
                 error: function(response) {
