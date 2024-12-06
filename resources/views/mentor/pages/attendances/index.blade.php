@@ -81,7 +81,7 @@
                             <td>${value.classroom} - ${value.school}</td>
                             <td>${value.date}</td>
                             <td><span class="p-1 text-success bg-light-success rounded">${value.status == 1?'Dibuka':'Ditutup'}</span></td>
-                            <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="fa fa-file fa-md"></i></button></td>
+                            <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="ti ti-copy" style="font-size: 20px;"></i></button></td>
                             <td>
                                 <ul class="d-flex gap-2">
                                     <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
