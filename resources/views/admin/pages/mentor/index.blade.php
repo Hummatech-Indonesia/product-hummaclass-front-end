@@ -81,16 +81,16 @@
                 <form id="edit-mentor-form" action="">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">
-                            Tambah Mentor
+                            Edit Mentor
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group mb-3">
-                            <input type="text" class="form-control" id="placeholder" placeholder="Nama" name="name">
+                            <input type="text" class="form-control" id="name" placeholder="Nama" name="name">
                         </div>
                         <div class="form-group mb-3">
-                            <input type="email" class="form-control" id="placeholder" placeholder="Email"
+                            <input type="email" class="form-control" id="email" placeholder="Email"
                                 name="email">
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             Batal
                         </button>
-                        <button type="submit" class="btn btn-primary">Tambah</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>
@@ -117,6 +117,28 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            let mentorId;
+            $('#edit-mentor-form').submit(function (e) { 
+                e.preventDefault();
+                
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: `{{ config('app.api_url') }}/api/mentors-update/${mentorId}`,
+                    data: formData,
+                    dataType: "json",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response);
+                        $('#edit-mentor-modal').modal('hide');
+                    },
+                });
+            });
+            
             $('#create-mentor-form').submit(function(e) {
                 e.preventDefault();
 
@@ -197,7 +219,23 @@
                     $('.btn-edit').click(function(e) {
                         e.preventDefault();
 
-                        let mentorId = $(this).data('mentor')
+                        mentorId = $(this).data('mentor')
+                        let formData = $('#edit-mentor-form')
+
+                        $.ajax({
+                            type: "GET",
+                            url: `{{ config('app.api_url') }}/api/mentors/${mentorId}`,
+                            dataType: "json",
+                            headers: {
+                                Authorization: "Bearer {{ session('hummaclass-token') }}"
+                            },
+                            success: function (response) {
+                                $('#name').val(response.data.name);
+                                $('#email').val(response.data.email);
+
+                            }
+                        });
+                        
 
                         $('#edit-mentor-modal').modal('show');
                     });
