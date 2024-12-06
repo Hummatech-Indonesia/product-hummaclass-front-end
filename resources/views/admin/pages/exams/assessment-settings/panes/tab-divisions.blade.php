@@ -2,12 +2,12 @@
     <div class="card-body">
         <div class="row align-items-center mb-3">
             <div class="col-3 rounded-2 px-0" style="background-color: #ECECEC">
-                <select name="division_id" id="division_id" class="form-control">
+                <select name="division_id" class="division_id form-control">
                     <option value="">Pilih Divisi</option>
                 </select>
             </div>
             <div class="col-9 text-lg-end mt-3 mt-lg-0">
-                <a id="setting-format" class="btn btn-warning px-3" id="add-notes">
+                <a class="setting-format btn btn-warning px-3">
                     <i class="ti ti-settings me-1 fs-4"></i>
                     <span class="font-weight-medium fs-3">Atur Format</span>
                 </a>

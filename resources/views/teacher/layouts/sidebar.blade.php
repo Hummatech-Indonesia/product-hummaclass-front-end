@@ -70,7 +70,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="hide-menu">Report</span>
+                        <span class="hide-menu">Raport</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

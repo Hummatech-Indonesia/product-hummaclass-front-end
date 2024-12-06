@@ -37,6 +37,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('test', function () {
             return view('teacher.pages.test.index');
         })->name('test');
+        Route::get('test-detail', function () {
+            return view('teacher.pages.test.detail');
+        })->name('test-detail');
         Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking');
     });
 
@@ -63,6 +66,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
 Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->group(function () {
 
+
+
     // kelas industri
     Route::prefix('class')->name('class.')->group(function () {
         Route::prefix('school')->name('school.')->group(function () {
@@ -79,7 +84,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
                 return view('Kelas-Industri.admin.division.index');
             })->name('index');
         });
-        
+
         Route::prefix('learning-paths')->name('learning-paths.')->group(function () {
             Route::get('/', [LearningPathController::class, 'index'])->name('index');
             Route::get('/create', [LearningPathController::class, 'create'])->name('create');
@@ -121,6 +126,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
 
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('school-year', [DashboardController::class, 'schoolYear'])->name('school-year.index');
+        Route::get('zooms', fn() => view('Kelas-Industri.admin.zooms.index'))->name('zooms.index');
     });
 
     Route::prefix('exams')->name('exams.')->group(function () {

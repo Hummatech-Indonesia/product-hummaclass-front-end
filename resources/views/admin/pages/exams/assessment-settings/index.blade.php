@@ -107,108 +107,40 @@
 
 @section('script')
     <script>
-        let class_level = 10;
-
-        $('.nav-link').click(function(e) {
-            e.preventDefault();
-
-            class_level = $(this).data('class-level');
-
-        });
-
         $(document).ready(function() {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/divisions",
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    $.each(response.data, function(index, value) {
-                        $('#division_id').append(
-                            `
-                                <option value="${value.id}">${value.name}</option>
-                            `
-                        );
-                    });
-                },
-                error: function(response) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Ada kesalahan saat menyimpan data.",
-                        icon: "error"
-                    });
-                }
-            });
-            $('#division_id').on('change', function() {
-                var division_id = $(this).val();
-                getAssesmentForm(division_id, class_level)
-                $('#setting-format').attr('href',
-                    `/admin/exams/assessment-settings-format/${division_id}/${class_level}`);
+            let division_id = '';
+            let class_level = 10;
+
+            $('.nav-link').click(function(e) {
+                e.preventDefault();
+
+                class_level = $(this).data('class-level');
+
+                division_id = $('.division_id').val('');
+
+                division();
             });
 
-            $('#setting-format').click(function() {
-                var divisionId = $('#division_id').val();
+            division();
 
-                if (!divisionId) {
-                    alert('Harap pilih divisi terlebih dahulu!');
-                } else {
-                    console.log('Divisi yang dipilih:', divisionId);
-                }
-            });
-
-
-            function getAssesmentForm(division_id, class_level) {
+            function division() {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" +
-                        class_level,
+                    url: "{{ config('app.api_url') }}/api/divisions",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     dataType: "json",
                     success: function(response) {
-                        // Sikap
-                        $('#body').append(
-                            `
-                            <tr>
-                                <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b>
-                                </td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            </tr>
-                            `
+                        $('.division_id').empty();
+                        $('.division_id').append(
+                            `<option value="">Pilih Divisi</option>`
                         );
-                        $.each(response.data.assementFormAttitudes, function(index, value) {
-                            $('#body').append(showTableAssesmentForm(index, value));
+                        $.each(response.data, function(index, value) {
+                            $('.division_id').append(
+                                `<option value="${value.id}">${value.name}</option>`
+                            );
                         });
-
-                        //Keterampilan
-                        $('#body').append(
-                            `
-                           <tr>
-                                <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b>
-                                </td>
-                                <td class="custom-cell" style="background-color: #E8DEF3">
-                                    <b>KETERAMPILAN</b>
-                                </td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                            </tr>
-                            `
-                        );
-                        $.each(response.data.assementFormSkills, function(index, value) {
-                            $('#body').append(showTableAssesmentForm(index, value));
-                        });
-
                     },
                     error: function(response) {
                         Swal.fire({
@@ -220,24 +152,96 @@
                 });
             }
 
+            $('.division_id').on('change', function() {
+                division_id = $(this).val();
+
+                if (division_id) {
+                    getAssesmentForm(division_id, class_level);
+                } else {
+                    $('#body').empty();
+                }
+            });
+
+            $('.setting-format').click(function() {
+                division_id = $('.division_id').val();
+
+                if (!division_id) {
+                    alert('Harap pilih divisi terlebih dahulu!');
+                    $('.setting-format').attr('href', '#')
+                } else {
+                    $('.setting-format').attr('href',
+                        `/admin/exams/assessment-settings-format/${division_id}/${class_level}`)
+                }
+            });
+
+            function getAssesmentForm(division_id, class_level) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" +
+                        class_level,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#body').empty();
+
+                        // Sikap
+                        $('#body').append(`
+                        <tr>
+                            <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        </tr>
+                    `);
+
+                        $.each(response.data.assementFormAttitudes, function(index, value) {
+                            $('#body').append(showTableAssesmentForm(index, value));
+                        });
+
+                        // Keterampilan
+                        $('#body').append(`
+                        <tr>
+                            <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                            <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                        </tr>
+                    `);
+
+                        $.each(response.data.assementFormSkills, function(index, value) {
+                            $('#body').append(showTableAssesmentForm(index, value));
+                        });
+                    },
+                    error: function(response) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
 
             function showTableAssesmentForm(index, value) {
                 return `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${value.indicator}</td>
-                        <td class="text-center">
-                        </td>
-                        <td class="text-center">
-                        </td>
-                        <td class="text-center">
-                        </td>
-                        <td class="text-center">
-                        </td>
-                        <td class="text-center">
-                        </td>
-                    </tr>
-                `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${value.indicator}</td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                </tr>
+            `;
             }
         });
     </script>

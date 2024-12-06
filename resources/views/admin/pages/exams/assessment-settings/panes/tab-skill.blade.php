@@ -5,11 +5,11 @@
         <form class="mt-4" id="add-assesment-form-skill">
             <div class="">
                 <div class="email-repeater mb-3">
-                    <div>
+                    <div data-repeater-list="repeater-group" id="repeater-skill">
                         <div data-repeater-item class="row mb-3">
                             <h5>Indikator</h5>
                             <div class="col col-md-11">
-                                <input type="text" name="indicator_attitude[]" class="form-control"
+                                <input type="text" name="indicator_skill[]" class="form-control"
                                     placeholder="Masukkan indikator" />
                                 <div class="invalid-feedback"></div>
                             </div>
@@ -50,7 +50,7 @@
 
             var isValid = true;
 
-            $("input[name='indicator_attitude[]']").each(function() {
+            $("input[name='indicator_skill[]']").each(function() {
                 if ($(this).val() === "") {
                     isValid = false;
                     $(this).addClass('is-invalid');
@@ -72,11 +72,9 @@
 
             var formData = $('#add-assesment-form-skill').serializeArray();
 
-            formData = formData.map(function(item) {
-                if (item.name === "indicator_attitude[]") {
-                    item.name = "indicator[]";
-                }
-                return item;
+            const formIndicator = []
+            formData.forEach(element => {
+                formIndicator.push(element.value)
             });
 
 
@@ -84,7 +82,9 @@
                 type: "POST",
                 url: "{{ config('app.api_url') }}/api/assesment-form/" + division_id + "/" + class_level +
                     "/skill",
-                data: formData,
+                data: {
+                    indicator: formIndicator
+                },
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },

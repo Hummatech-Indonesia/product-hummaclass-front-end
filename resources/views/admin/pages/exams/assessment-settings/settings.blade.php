@@ -60,7 +60,7 @@
     <script>
         var division_id = "{{ $division_id }}"
         var class_level = "{{ $class_level }}"
-        // Route::get('assesment-form/{division}/{classLevel}', [AssesmentFormController::class, 'index']);
+
         $(document).ready(function() {
             $.ajax({
                 type: "GET",
@@ -75,20 +75,41 @@
                         $('#repeater-attitude').empty();
                         $.each(response.data.assementFormAttitudes, function(index, value) {
                             $('#repeater-attitude').append(` 
-                        <div data-repeater-item class="row mb-3">
-                            <h5>Indikator</h5>
-                            <div class="col col-md-11">
-                                <input type="text" name="indicator_attitude[]" class="form-control"
-                                    placeholder="Masukkan indikator" value="${value.indicator}" />
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <div class="col-md-1">
-                                <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light w-100"
-                                    type="button">
-                                    <i class="ti ti-circle-x fs-5"></i>
-                                </button>
-                            </div>
-                        </div>`);
+                                <div data-repeater-item class="row mb-3">
+                                    <h5>Indikator</h5>
+                                    <div class="col col-md-11">
+                                        <input type="text" name="indicator_attitude[]" class="form-control"
+                                            placeholder="Masukkan indikator" value="${value.indicator}" />
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light w-100"
+                                            type="button">
+                                            <i class="ti ti-circle-x fs-5"></i>
+                                        </button>
+                                    </div>
+                                </div>`);
+                        });
+                    }
+
+                    if (response.data.assementFormSkills.length > 0) {
+                        $('#repeater-skill').empty();
+                        $.each(response.data.assementFormSkills, function(index, value) {
+                            $('#repeater-skill').append(` 
+                            <div data-repeater-item class="row mb-3">
+                                <h5>Indikator</h5>
+                                <div class="col col-md-11">
+                                    <input type="text" name="indicator_attitude[]" class="form-control"
+                                        placeholder="Masukkan indikator" value="${value.indicator}" />
+                                    <div class="invalid-feedback"></div>
+                                </div>
+                                <div class="col-md-1">
+                                    <button data-repeater-delete="" class="btn btn-danger waves-effect waves-light w-100"
+                                        type="button">
+                                        <i class="ti ti-circle-x fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>`);
                         });
                     }
                 },
