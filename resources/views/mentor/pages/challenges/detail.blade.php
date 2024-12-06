@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        align-self: stretch;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-self: stretch;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
 
         p,
         h1,
@@ -261,9 +261,14 @@
                         }
                     }
 
-                    let challengesSubmit = '';
-                    response.data.challenge_submit.forEach((challenge, index) => {
-                        challengesSubmit += `
+                    $.ajax({
+                        type: "get",
+                        url: "{{ config('app.api_url') }}/api/mentor/detail-student/classrooms",
+                        dataType: "json",
+                        success: function(response) {
+                            let challengesSubmit = '';
+                            response.data.challenge_submit.forEach((challenge, index) => {
+                                challengesSubmit += `
                             <tr class="fw-semibold">
                                 <td>
                                     <input class="form-check-input fs-5" type="checkbox" id="inlineCheckbox1"
@@ -299,55 +304,61 @@
                                     </select></td>
                             </tr>`
 
-                        pointSubmit.push({
-                            student_id: challenge.student_id,
-                            point: challenge.point
-                        });
-                    });
-
-                    $('#tableBody').append(challengesSubmit);
-
-                    $('select').change(function(e) {
-                        e.preventDefault();
-
-                        pointSubmit.find(item => item.student_id == $(this).data('student')).point = $(this).val();
-
-                        console.log(pointSubmit);
-                        
-                    });
-
-                    $('#submit-btn').click(function(e) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ config('app.api_url') }}/api/mentor/challenge-add-point/" +
-                                challengeId,
-                            headers: {
-                                Authorization: "Bearer {{ session('hummaclass-token') }}"
-                            },
-                            data: {
-                                _method: "PUT",
-                                challenge_submit: pointSubmit
-                            },
-                            success: function(response) {
-                                Swal.fire({
-                                    title: "Sukses",
-                                    text: "Berhasil menilai jawaban.",
-                                    icon: "success"
-                                }).then(() => {
-                                    window.location.reload();
+                                pointSubmit.push({
+                                    student_id: challenge.student_id,
+                                    point: challenge.point
                                 });
-                            },
-                            error: function(xhr) {
-                                Swal.fire({
-                                    title: "Terjadi Kesalahan!",
-                                    text: xhr.responseJSON.meta.message,
-                                    icon: "error"
+                            });
+
+                            $('#tableBody').append(challengesSubmit);
+
+                            $('select').change(function(e) {
+                                e.preventDefault();
+
+                                pointSubmit.find(item => item.student_id == $(this)
+                                    .data('student')).point = $(this).val();
+
+                                console.log(pointSubmit);
+
+                            });
+
+                            $('#submit-btn').click(function(e) {
+                                e.preventDefault();
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "{{ config('app.api_url') }}/api/mentor/challenge-add-point/" +
+                                        challengeId,
+                                    headers: {
+                                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                                    },
+                                    data: {
+                                        _method: "PUT",
+                                        challenge_submit: pointSubmit
+                                    },
+                                    success: function(response) {
+                                        Swal.fire({
+                                            title: "Sukses",
+                                            text: "Berhasil menilai jawaban.",
+                                            icon: "success"
+                                        }).then(() => {
+                                            window.location
+                                                .reload();
+                                        });
+                                    },
+                                    error: function(xhr) {
+                                        Swal.fire({
+                                            title: "Terjadi Kesalahan!",
+                                            text: xhr
+                                                .responseJSON
+                                                .meta.message,
+                                            icon: "error"
+                                        });
+                                    }
                                 });
-                            }
-                        });
-                    });;
+                            });
+                        }
+                    });
                 }
             });
         });

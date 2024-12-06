@@ -178,7 +178,21 @@
                                 },
                                 dataType: "json",
                                 success: function(response) {
-
+                                    Swal.fire({
+                                        title: "Berhasil",
+                                        text: response.meta.message,
+                                        icon: "success",
+                                    }).then(function() {
+                                        window.location.href =
+                                            "{{ route('admin.class.learning-paths.index') }}";
+                                    });
+                                },
+                                error: function(xhr) {
+                                    Swal.fire({
+                                        title: "Terjadi Kesalahan!",
+                                        text: "Tidak dapat memuat data learning path.",
+                                        icon: "error"
+                                    });
                                 }
                             });
                         });
