@@ -37,6 +37,9 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('test', function () {
             return view('teacher.pages.test.index');
         })->name('test');
+        Route::get('test-detail', function () {
+            return view('teacher.pages.test.detail');
+        })->name('test-detail');
         Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking');
     });
 
