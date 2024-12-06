@@ -70,8 +70,14 @@
                             title: "Sukses!",
                             text: "Berhasil menyimpan data.",
                             icon: "success"
+                        }).then(() => {
+                            fetchNewData();
+                            $('#modal-create').modal('hide');
+
+                            $('#modal-create').on('hidden.bs.modal', function() {
+                                $('#create-journal-form')[0].reset();   
+                            });
                         });
-                        window.location.href = "/mentor/journals";
                     },
                     error: function(response) {
                         if (response.status === 422) {

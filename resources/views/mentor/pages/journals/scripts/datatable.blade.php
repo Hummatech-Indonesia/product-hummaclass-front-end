@@ -19,7 +19,10 @@
             $('.btn-edit').click(function(e) {
                 e.preventDefault();
 
+                
+                
                 journalId = $(this).data('journal')
+                console.log(journalId)
                 let title = $(this).data('title')
                 let image = $(this).data('image')
                 let classroom_id = $(this).data('classroom')
@@ -31,7 +34,6 @@
                 $('#image-edit').attr('src', image);
                 $('#classroom_id_update').val(classroom_id);
                 $('#description-edit').val(description);
-
                 $('#modal-update').modal('show');
             });
 
@@ -55,8 +57,9 @@
                             title: "Sukses!",
                             text: "Berhasil memperbarui data.",
                             icon: "success"
+                        }).then(() => {
+                            window.location.reload();
                         });
-                        window.location.href = "/mentor/journals";
                     },
                     error: function(response) {
                         if (response.status === 422) {

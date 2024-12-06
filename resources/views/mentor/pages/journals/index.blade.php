@@ -142,7 +142,7 @@
                   ); // Kosongkan select dan tambahkan placeholder
                   $.each(response.data, function(index, value) {
                       $('#classroom_id').append(
-                          `<option value="${value.id}">${value.name}</option>`
+                          `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
                       );
                   });
                   $('#classroom_id_update').empty().append(
@@ -150,7 +150,7 @@
                   ); // Kosongkan select dan tambahkan placeholder
                   $.each(response.data, function(index, value) {
                       $('#classroom_id_update').append(
-                          `<option value="${value.id}">${value.name}</option>`
+                          `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
                       );
                   });
               },
@@ -184,6 +184,32 @@
             $('#modal-detail-journal').modal('show');
         });
     });
+</script>
+<script>
+    function fetchNewData() {
+    $.ajax({
+        type: "GET",
+        url: "{{ config('app.api_url') }}/api/journals",
+        headers: {
+            Authorization: "Bearer {{ session('hummaclass-token') }}"
+        },
+        dataType: "json",
+        success: function(response) {
+            const tableBody = $('#tableBody');
+            tableBody.empty();
+
+            let content = '';
+            $.each(response.data, function(index, data) {
+                content += mentorJournal(index, data);
+            });
+
+            tableBody.html(content);
+        },
+        error: function(error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+}
 </script>
     @include('mentor.pages.journals.scripts.datatable')
     @include('mentor.pages.journals.scripts.delete')
