@@ -294,6 +294,7 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        $('#card_mentor').empty();
                         if (response.data.mentor) {
                             $('#card_mentor').append(
                                 mentorOrTeacher(response.data.name, response.data.mentor.name,
@@ -311,6 +312,7 @@
                 `);
                         }
 
+                        $('#card_teacher').empty();
                         if (response.data.teacher) {
                             $('#card_teacher').append(
                                 mentorOrTeacher(response.data.name, response.data.teacher.user.name,
