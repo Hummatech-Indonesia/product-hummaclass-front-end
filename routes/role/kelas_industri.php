@@ -28,8 +28,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('journal-create', function () {
             return view('teacher.pages.journal.create');
         })->name('journal-create');
-        Route::get('journal-detail', function () {
-            return view('teacher.pages.journal.detail');
+        Route::get('journal-detail/{id}', function (string $id) {
+            return view('teacher.pages.journal.detail', compact('id'));
         })->name('journal-detail');
         Route::get('raport', function () {
             return view('teacher.pages.raport.index');

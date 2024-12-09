@@ -52,20 +52,24 @@
         </div>
     </div>
 
-    <form action="">
+    <form id="form-create" enctype="multipart/form-data">
         <div class="card border">
             <div class="card-body">
                 <div class="mb-3">
+                    <h5 class="fw-semibold mb-3">Pilih Kelas</h5>
+                    <select id="class-input" name="classroom_id" class="form-control"></select>
+                </div>
+                <div class="mb-3">
                     <h5 class="fw-semibold mb-2">Judul</h5>
-                    <input type="text" class="form-control" id="placeholder" placeholder="Masukkan Judul" name="">
+                    <input type="text" class="form-control" name="title" id="placeholder" placeholder="Masukkan Judul" name="">
                 </div>
                 <div class="mb-3">
                     <h5 class="fw-semibold mb-2">Bukti</h5>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" name="image" type="file" id="formFile">
                 </div>
                 <div class="mb-3">
                     <h5 class="fw-semibold mb-3">Deskripsi</h5>
-                    <textarea class="form-control" rows="4"></textarea>
+                    <textarea class="form-control" name="description" rows="4"></textarea>
                 </div>
             </div>
         </div>
@@ -95,41 +99,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (range(1, 4) as $item)
-                                <tr>
-                                    <td>
-                                        <p class="mb-0 fw-normal">1</p>
-                                    </td>
-                                    <td>
-                                        <h6 class="fw-normal mb-0">Ahmad Lukman Hakim</h6>
-                                    </td>
-                                    <td style="padding-right: 20px;">
-                                        <p class="mb-0 fw-normal">X RPL 1</p>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-wrap gap-3 justify-content-start">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input success check-outline outline-success" type="checkbox" id="hadir-check-{{ $item }}" value="hadir">
-                                                <label class="form-check-label" for="hadir-check-{{ $item }}">Hadir</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input success check-outline outline-success" type="checkbox" id="izin-check-{{ $item }}" value="izin">
-                                                <label class="form-check-label" for="izin-check-{{ $item }}">Izin</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input success check-outline outline-success" type="checkbox" id="sakit-check-{{ $item }}" value="sakit">
-                                                <label class="form-check-label" for="sakit-check-{{ $item }}">Sakit</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input success check-outline outline-success" type="checkbox" id="alpha-check-{{ $item }}" value="alpha">
-                                                <label class="form-check-label" for="alpha-check-{{ $item }}">Alpha</label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                        <tbody id="list-student"></tbody>
                     </table>
                 </div>
             
@@ -140,4 +110,7 @@
             </div>
         </div>
     </form>
+@endsection
+@section('script')
+    @include('teacher.pages.journal.scripts.create')
 @endsection
