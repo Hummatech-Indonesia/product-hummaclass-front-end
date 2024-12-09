@@ -33,15 +33,15 @@
 
     <div class="d-flex justify-content-between mt-2">
         <form action="" class="position-relative d-flex">
-            <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+            <input type="text" class="form-control product-search px-4 ps-5" name="search"
+                value="{{ old('title', request('title')) }}" id="search" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
     </div>
 
-    <div class="row mt-4" id="list-card">
-        @foreach (range(1, 3) as $index => $item)
+    <div class="row mt-4" id="list-course">
+        {{-- @foreach (range(1, 3) as $index => $item)
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card rounded-4 shadow">
                     <div class="card-header bg-transparent">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @endforeach --}}
     </div>
     <div class="d-flex justify-content-center">
         <nav id="pagination">
@@ -106,4 +106,5 @@
     </div>
 @endsection
 @section('script')
+    @include('teacher.pages.test.script.datatable')
 @endsection
