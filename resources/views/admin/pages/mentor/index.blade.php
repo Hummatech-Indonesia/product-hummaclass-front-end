@@ -219,7 +219,7 @@
                                         class="rounded-circle img-fluid">
                                     <h5 class="card-title mt-3 fw-bolder">${data.name}</h5>
                                     <span class="mb-3">${data.email}</span>
-                                    <a href="#" class="btn text-success text-white d-block w-100 mt-3 btn-sm"
+                                    <a href="{{ route('admin.mentor.show', '') }}/${data.id}" class="btn text-success text-white d-block w-100 mt-3 btn-sm"
                                         style="background: var(--purple-primary);">Lihat Detail</a>
                                 </div>
                             </div>

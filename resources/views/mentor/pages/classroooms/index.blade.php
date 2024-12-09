@@ -137,7 +137,7 @@
                                             </div>
                                             <div class="col p-0">
                                                 <h6 class="card-title fs-3 fw-semibold">Wali Kelas</h6>
-                                                <p class="card-text fs-2 text-muted">${classroom.teacher.user.name}</p>
+                                                <p class="card-text fs-2 text-muted">${classroom.teacher? classroom.teacher.user.name : '-'}</p>
                                             </div>
                                         </div>
                                         <div class="col-5">

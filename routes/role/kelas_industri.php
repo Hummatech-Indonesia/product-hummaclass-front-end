@@ -140,6 +140,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
             return view('admin.pages.exams.assessment-settings.settings', compact('division_id', 'class_level'));
         })->name('assessment-settings-format');
     });
-    
+
     Route::get('mentor', fn() => view('admin.pages.mentor.index'))->name('mentor.index');
+    Route::get('mentor/{mentor}', fn($mentor) => view('admin.pages.mentor.detail', compact('mentor')))->name('mentor.show');
 });
