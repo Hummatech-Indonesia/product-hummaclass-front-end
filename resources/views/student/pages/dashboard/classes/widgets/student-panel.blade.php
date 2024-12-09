@@ -6,8 +6,8 @@
                     <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user"
                         class="rounded-circle me-3" style="width: 64px; height: 64px;">
                     <div>
-                        <h5 class="mb-1">Suyadi Oke Joss, S.Pd</h5>
-                        <p class="text-muted mb-0">Wali Kelas XII RPL 1</p>
+                        <h5 class="mb-1" id="teacher-name">Suyadi Oke Joss, S.Pd</h5>
+                        <p class="text-muted mb-0">Wali Kelas <span id="classroom-name">XII RPL 1</span></p>
                     </div>
                 </div>
                 <img src="{{ asset('assets/img/bubble/bubble1.png') }}" alt=""
@@ -22,7 +22,7 @@
                     <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user"
                         class="rounded-circle me-3" style="width: 64px; height: 64px;">
                     <div>
-                        <h5 class="mb-1">Alfian Ban Dalam</h5>
+                        <h5 class="mb-1" id="mentor-name">Alfian Ban Dalam</h5>
                         <p class="text-muted mb-0">Mentor Kelas Industri</p>
                     </div>
                 </div>
@@ -50,9 +50,9 @@
                         <th class="px-3">Alamat</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="student-list">
                     @for ($i = 1; $i <= 10; $i++)
-                        <tr>
+                        {{-- <tr>
                             <td class="px-3">{{ $i }}</td>
                             <td class="px-3">
                                 <div class="d-flex flex-column flex-md-row align-items-center">
@@ -72,7 +72,7 @@
                             <td class="text-truncate px-3" style="max-width: 200px;">
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             </td>
-                        </tr>
+                        </tr> --}}
                     @endfor
                 </tbody>
             </table>
@@ -89,3 +89,110 @@
         </div>
     </div>
 </div>
+@push('script')
+    <script>
+        $(document).ready(function() {
+            function studentList(index, value) {
+                return `
+                <tr>
+                    <td class="px-3">${index + 1}</td>
+                    <td class="px-3">
+                        <div class="d-flex flex-column flex-md-row align-items-center">
+                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user"
+                                class="rounded-circle me-3 mb-2 mb-md-0"
+                                style="height: 48px; width: 48px; object-fit: cover;">
+
+                            <div>
+                                <b class="mb-0">${value.student}</b>
+                                <p class="text-muted mb-0" style="font-size: 14px;">
+                                    ${value.class || 'Unknown'}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="px-3">${value.email}</td>
+                    <td class="px-3">${value.phone_number}</td>
+                    <td class="text-truncate px-3" style="max-width: 200px;">
+                        ${value.address}
+                    </td>
+                </tr>
+            `;
+            }
+
+            function debounce(callback, delay) {
+                let timer;
+                return function(...args) {
+                    clearTimeout(timer);
+                    timer = setTimeout(() => callback(...args), delay);
+                };
+            }
+
+            function getStudents(classroomId, page) {
+                $.ajax({
+                    type: "GET",
+                    url: `{{ config('app.api_url') }}/api/student-classrooms/${classroomId}?page=${page}`,
+                    headers: {
+                        Authorization: `Bearer {{ session('hummaclass-token') }}`
+                    },
+                    data: {
+                        name: $('#search').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#student-list').empty();
+                        if (response.data && response.data.data) {
+                            $.each(response.data.data, function(index, value) {
+                                $('#student-list').append(studentList(index, value));
+                            });
+                        } else {
+                            $('#student-list').append(
+                                '<tr><td colspan="5" class="text-center">No students found.</td></tr>'
+                                );
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat mengambil data siswa.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function detailStudent() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/student-auth",
+                    headers: {
+                        Authorization: `Bearer {{ session('hummaclass-token') }}`
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        const classroom = response.data.classroom;
+
+                        $('#teacher-name').text(response.data.teacher_name);
+                        $('#classroom-name').text(classroom.name || 'Unknown');
+                        $('#mentor-name').text(response.data.mentor_name);
+
+                        const debouncedSearch = debounce(() => getStudents(classroom.id, 1), 500);
+
+                        $('#search').off('keyup').on('keyup', debouncedSearch);
+
+                        getStudents(classroom.id, 1);
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat mengambil data siswa.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            detailStudent();
+        });
+    </script>
+@endpush
