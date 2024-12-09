@@ -25,8 +25,8 @@
     </div>
 
     <div class="d-flex justify-content-between mt-2">
-        <form action="" class="position-relative d-flex">
-            <input type="text" class="form-control product-search px-4 ps-5" name="title"
+        <form action="" class="position-relative d-flex" id="search-form">
+            <input type="text" class="form-control product-search px-4 ps-5" name="name"
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    <x-delete-modal-component />
 
     <!-- Optional: Place to the bottom of scripts -->
     <script>
@@ -118,9 +119,16 @@
     <script>
         $(document).ready(function() {
             let mentorId;
-            $('#edit-mentor-form').submit(function (e) { 
+
+            $('#search-form').submit(function(e) {
                 e.preventDefault();
-                
+                getMentor($(this).serialize());
+            });
+
+            getMentor();
+            $('#edit-mentor-form').submit(function(e) {
+                e.preventDefault();
+
                 var formData = new FormData(this);
                 $.ajax({
                     type: "POST",
@@ -132,13 +140,13 @@
                     },
                     contentType: false,
                     processData: false,
-                    success: function (response) {
-                        console.log(response);
+                    success: function(response) {
                         $('#edit-mentor-modal').modal('hide');
+                        getMentor();
                     },
                 });
             });
-            
+
             $('#create-mentor-form').submit(function(e) {
                 e.preventDefault();
 
@@ -159,7 +167,10 @@
                             icon: 'success',
                             confirmButtonText: 'Oke',
                         }).then(() => {
-                            window.location.href = "{{ route('admin.mentor.index') }}";
+                            // window.location.href = "{{ route('admin.mentor.index') }}";
+                            $('#modalId').modal('hide');
+
+                            getMentor();
                         });
                     },
                     error: function(xhr, status) {
@@ -173,17 +184,19 @@
 
             });
 
-            $.ajax({
-                type: "get",
-                url: "{{ config('app.api_url') }}/api/mentors",
-                headers: {
-                    Authorization: "Bearer {{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    let content = '';
-                    $.each(response.data.data, function(index, data) {
-                        content += `
+            function getMentor(data = {}) {
+                $.ajax({
+                    type: "get",
+                    url: "{{ config('app.api_url') }}/api/mentors",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        let content = '';
+                        $.each(response.data.data, function(index, data) {
+                            content += `
                         <div class="col">
                             <div class="card text-center alert-dismissible fade show alert p-0 bg-white" role="alert">
                                 <div class="dropdown dropstart"
@@ -198,7 +211,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="">
                                         <li><a class="dropdown-item btn-edit" href="#" data-mentor="${data.id}">Edit</a></li>
-                                        <li><a class="dropdown-item" href="#">Hapus</a></li>
+                                        <li><button class="dropdown-item delete-menu" data-id="${data.id}" href="#">Hapus</button></li>
                                     </ul>
                                 </div>
                                 <div class="p-2 d-block mt-3">
@@ -212,35 +225,65 @@
                             </div>
                         </div>
                         `
-                    });
-                    $('#mentor-list').empty();
-                    $('#mentor-list').append(content);
-
-                    $('.btn-edit').click(function(e) {
-                        e.preventDefault();
-
-                        mentorId = $(this).data('mentor')
-                        let formData = $('#edit-mentor-form')
-
-                        $.ajax({
-                            type: "GET",
-                            url: `{{ config('app.api_url') }}/api/mentors/${mentorId}`,
-                            dataType: "json",
-                            headers: {
-                                Authorization: "Bearer {{ session('hummaclass-token') }}"
-                            },
-                            success: function (response) {
-                                $('#name').val(response.data.name);
-                                $('#email').val(response.data.email);
-
-                            }
                         });
-                        
+                        $('#mentor-list').empty();
+                        $('#mentor-list').append(content);
 
-                        $('#edit-mentor-modal').modal('show');
-                    });
-                }
-            });
+                        $('.delete-menu').click(function() {
+                            $('#modal-delete').modal('show');
+                            console.log($('#deleteForm').data('id', $(this).data('id')))
+                        });
+
+                        $('#deleteForm').submit(function(e) {
+                            e.preventDefault();
+
+                            $.ajax({
+                                type: "delete",
+                                url: "{{ config('app.api_url') }}/api/users/" + $(
+                                    '#deleteForm').data('id'),
+                                headers: {
+                                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                                },
+                                dataType: "json",
+                                success: function(response) {
+                                    getMentor();
+                                },
+                                error: function(params) {
+                                    Swal.fire({
+                                        title: 'Gagal',
+                                        text: params.responseJSON.message,
+                                        icon: 'error',
+                                        confirmButtonText: 'Oke',
+                                    });
+                                }
+                            });
+                        });
+
+                        $('.btn-edit').click(function(e) {
+                            e.preventDefault();
+
+                            mentorId = $(this).data('mentor')
+                            let formData = $('#edit-mentor-form')
+
+                            $.ajax({
+                                type: "GET",
+                                url: `{{ config('app.api_url') }}/api/mentors/${mentorId}`,
+                                dataType: "json",
+                                headers: {
+                                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                                },
+                                success: function(response) {
+                                    $('#name').val(response.data.name);
+                                    $('#email').val(response.data.email);
+                                }
+                            });
+
+
+                            $('#edit-mentor-modal').modal('show');
+                        });
+                    }
+                });
+            }
         });
     </script>
 @endsection
