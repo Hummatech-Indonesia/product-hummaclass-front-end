@@ -184,7 +184,7 @@
             let data = {}
             $.ajax({
                 type: "get",
-                url: "{{ config('app.api_url') }}/api/mentor/detail/classroom/{{ $slug }}",
+                url: "{{ config('app.api_url') }}/api/detail/classroom/{{ $slug }}",
                 headers: {
                     Authorization: "Bearer {{ session('hummaclass-token') }}"
                 },

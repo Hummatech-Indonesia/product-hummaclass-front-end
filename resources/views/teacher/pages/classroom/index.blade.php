@@ -56,18 +56,18 @@
 
     <div class="row">
         @foreach (range(1, 4) as $item)
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card card-body rounded-3 border">
                     <span class="side-stick"></span>
                     <h5 class="note-title text-truncate w-75 mb-0 fw-semibold mb-1" data-noteHeading=""> XII DKV 2</h5>
                     <p class="note-date fs-2 mb-2">SMKN 1 KEPANJEN</p>
-                    <div class="col-12 col-lg-6 mb-3">
+                    <div class="col-12 mb-3">
                         <span class="mb-1 badge font-medium rounded-1" style="background-color: #F6EEFE; color: #9425FE">
                             Devisi Web Development
                         </span>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-7 d-flex align-items-center mb-3">
+                        <div class="col-12 col-md-7 d-flex align-items-center mb-3">
                             <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded-circle"
                                 width="31" height="31" />
                             <div class="ms-3">
@@ -75,8 +75,10 @@
                                 <span class="fw-normal fs-2">Suyadi Oke Joss Sp.d</span>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-5 d-flex align-items-center justify-content-lg-end">
-                            <a href="/dashboard/teacher/classroom-details" class="btn mb-1 waves-effect waves-light text-light w-100 "
+                        <div
+                            class="col-12 col-md-5 d-flex align-items-center justify-content-md-end justify-content-center">
+                            <a href="/dashboard/teacher/classroom-details"
+                                class="btn mb-1 waves-effect waves-light text-light w-100 btn-sm"
                                 style="background-color: #9425FE;" type="button">
                                 Lihat Kelas
                             </a>
