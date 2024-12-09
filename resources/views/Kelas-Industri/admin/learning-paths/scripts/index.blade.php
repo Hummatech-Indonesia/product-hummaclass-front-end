@@ -3,6 +3,9 @@
         let onDragCard = null;
         let selectedDropzone = null;
         let positions = [];
+        let division_id;
+        let class_level;
+        let changed = false;
 
         function updatePositions() {
             positions = [];
@@ -13,7 +16,28 @@
                     position: index + 1,
                 });
             });
-            console.log('Updated positions:', positions);
+            courseIds = $.map(positions, function(elementOrValue, indexOrKey) {
+                return elementOrValue.id;
+            });
+
+            if (!changed) {
+                changed = true;
+            } else {
+                $.ajax({
+                    type: "post",
+                    url: "{{ config('app.api_url') }}/api/learning-paths",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: {
+                        course_id: courseIds,
+                        division_id: division_id,
+                        class_level: class_level
+                    },
+                    dataType: "json",
+                    success: function(response) {}
+                });
+            }
         }
 
         function divisionList(index, value) {
@@ -47,7 +71,7 @@
                 'Gratis';
 
             return `
-                <div id="${value.id}" class="card m-0 input-group position-relative">
+                <div id="${value.course.id}" class="card input-group position-relative">
                     <div class="card-body align-items-center">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5><b>Langkah ${index + 1}</b></h5>
@@ -202,7 +226,39 @@
             });
         }
 
-        let class_level = $('.nav-class_level-link.active').data('class_level');
-        getCourseLearningPath(class_level, $('.nav-division_id-link.active').data('division_id'));
+        class_level = $('.nav-class_level-link.active').data('class_level');
+        // getCourseLearningPath(class_level, $('.nav-division_id-link.active').data('division_id'));
+        function getDivision(class_level) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/divisions",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                data: {
+                    class_level: class_level
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#division-tab-list').empty();
+                    $.each(response.data, function(indexInArray, valueOfElement) {
+                        $('#division-tab-list').append(divisionList(indexInArray,
+                            valueOfElement));
+                    });
+                    division_id = $('.nav-division_id-link.active').data('division_id')
+
+                    getCourseLearningPath(class_level, division_id)
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data learning path.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        getDivision(class_level);
     });
 </script>
