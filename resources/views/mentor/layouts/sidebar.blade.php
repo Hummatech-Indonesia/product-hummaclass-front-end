@@ -38,7 +38,7 @@
                     <span class="hide-menu">KONTEN</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.classroom.index') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('mentor.classroom.*') ? 'active' : '' }}"
                         href="{{ route('mentor.classroom.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i> <!-- Icon untuk Berita -->
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Route::is('mentor.challenge.index') ? 'active' : '' }}"
+                    <a class="sidebar-link {{ Route::is('mentor.challenge.*') ? 'active' : '' }}"
                         href="{{ route('mentor.challenge.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar-event"></i> <!-- Icon untuk Event -->
