@@ -102,7 +102,7 @@
                                     <p class="fs-2 m-0">${value.school.name}</p>
                                 </div>
                                 <div class="col-5">
-                                    <span class="badge rounded-2 badge text-bg-purple">Negeri</span>
+                                    <span class="badge rounded-2 badge text-bg-purple">${value.division.name}</span>
                                 </div>
                             </div>
                         </div>
