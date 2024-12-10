@@ -118,9 +118,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-7 d-flex align-items-center mb-3">
-                                <img src="${value.teacher.user.photo}" class="rounded-circle" width="31" height="31" />
+                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" class="rounded-circle" width="31" height="31" />
                                 <div class="ms-3">
-                                    <!-- Menampilkan Nama Guru -->
                                     <h6 class="fs-3 fw-semibold mb-0">Wali Kelas</h6>
                                     <span class="fw-normal fs-2">${value.teacher.user.name}</span>
                                 </div>
