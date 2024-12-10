@@ -107,11 +107,7 @@
                     value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                     placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                <button class="btn btn-primary d-flex justify-content-center align-items-center bg-white border-1"
-                    fdprocessedid="w216xn" style="
-                    border-color: #dfe5ef;">
-                    <i class="ti ti-sort-ascending-letters fs-6 text-dark"></i>
-                </button>
+                
             </form>
         </div>
         <div class="col-sm-12 col-md-2 col-xl-auto">
