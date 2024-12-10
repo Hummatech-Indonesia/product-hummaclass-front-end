@@ -5,8 +5,8 @@ use App\Http\Controllers\Student\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::prefix('students')->name('students.')->group(function () {
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth_custom')->group(function () {
+    Route::prefix('students')->name('students.')->middleware('student') ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('classes', [DashboardController::class, 'classes'])->name('classes.index');
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');

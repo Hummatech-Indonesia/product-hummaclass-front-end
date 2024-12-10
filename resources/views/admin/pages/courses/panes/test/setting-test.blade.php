@@ -76,14 +76,14 @@
                                         <div class="row">
                                             <div class="col-6 mb-3">
                                                 <label class="fw-semibold form-label">Modul</label>
-                                                <select id="module_id" name="module_id[]" class="form-control">
+                                                <select name="module_id[]" class="form-control module_id">
                                                     <option value="">Pilih Modul</option>
                                                 </select>
                                                 <div class="invalid-feedback"></div>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <label class="fw-semibold form-label">Jumlah Soal Diambil</label>
-                                                <input type="number" class="form-control" name="question_count[]"
+                                                <input type="number" class="form-control question_count" name="question_count[]"
                                                     placeholder="Masukan jumlah soal">
                                                 <div class="invalid-feedback"></div>
                                             </div>
@@ -163,7 +163,7 @@
                         window.location.href = "/admin/courses/" + response.data[0].course.slug;
                     });
                     $.each(response.data, function(index, value) {
-                        $('#module_id').append(`<option value="${value.id}">${value.title}</option>`);
+                        $('.module_id').append(`<option value="${value.id}">${value.title}</option>`);
                     });
                 },
                 error: function() {
@@ -196,13 +196,13 @@
                             <div class="row">
                                 <div class="col-6 mb-3">
                                     <label class="fw-semibold form-label">Modul</label>
-                                    <select id="module_id" name="module_id[]" class="form-control">
+                                    <select name="module_id[]" class="form-control module_id">
                                         <option value="${value.module.id}">${value.module.title}</option>
                                     </select>
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label class="fw-semibold form-label">Jumlah Soal Diambil</label>
-                                    <input type="number" class="form-control" value="${value.question_count}" name="question_count[]" placeholder="Masukan jumlah soal">
+                                    <input type="number" class="form-control question_count" value="${value.question_count}" name="question_count[]" placeholder="Masukan jumlah soal">
                                 </div>
                             </div>`);
                     });
@@ -216,6 +216,10 @@
             e.preventDefault();
 
             var formData = new FormData(this);
+            $(".question_count").attr('name', 'question_count[]');
+            $(".module_id").attr('name', 'module_id[]');
+            
+            
 
             $.ajax({
                 type: "POST",

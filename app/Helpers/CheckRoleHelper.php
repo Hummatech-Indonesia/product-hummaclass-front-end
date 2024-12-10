@@ -27,6 +27,9 @@ class CheckRoleHelper
             } else
             if ($role['name'] == 'teacher') {
                 $redirect = route('dashboard.teacher.index');
+            } else 
+            if ($role['name'] == 'student') {
+                $redirect = route('dashboard.students.index');
             } else {
                 $redirect = '/';
             }
