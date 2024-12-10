@@ -13,7 +13,6 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth_custom')->group
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
         Route::get('challenge', [DashboardController::class, 'challenge'])->name('challenge.index');
         Route::get('challenge-detail', [DashboardController::class, 'challengeDetail'])->name('challenge.detail');
-
     });
 
 
@@ -122,8 +121,8 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('/create-school', function () {
             return view('Kelas-Industri.admin.school.create');
         })->name('school.create');
-        Route::get('/edit-school/{slug}', function ($id) {
-            return view('Kelas-Industri.admin.school.edit', compact('id'));
+        Route::get('/edit-school/{slug}', function ($slug) {
+            return view('Kelas-Industri.admin.school.edit', compact('slug'));
         })->name('school.edit');
     });
 
