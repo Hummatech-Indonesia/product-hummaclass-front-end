@@ -216,7 +216,7 @@
             }
 
             function addStudentClassroom(classroom_id) {
-                $('#form-add-student-classroom').submit(function(e) {
+                $('#form-add-student-classroom').off('submit').submit(function(e) {
                     e.preventDefault();
                     var formData = new FormData(this);
                     $.ajax({
