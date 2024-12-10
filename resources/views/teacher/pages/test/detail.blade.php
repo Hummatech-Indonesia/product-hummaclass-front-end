@@ -114,7 +114,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="card-title fw-semibold">Total Siswa</h4>
-                            <h2 class="mb-0 text-success fw-semibold">487</h2>
+                            <h2 class="mb-0 text-success fw-semibold" id="count_student"></h2>
                         </div>
                         <div class="bg-light-success p-3 rounded-3 text-success">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 640 512">
@@ -134,7 +134,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="card-title fw-semibold">Nilai Tertinggi</h4>
-                            <h2 class="mb-0 text-primary fw-semibold">92</h2>
+                            <h2 class="mb-0 text-primary fw-semibold" id="highest_score"></h2>
                         </div>
                         <div class="bg-light-primary py-1 px-2 rounded-3 text-primary">
                             <i class="ti ti-trending-up text-primary display-6"></i>
@@ -150,7 +150,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="card-title fw-semibold">Nilai Rata-rata</h4>
-                            <h2 class="mb-0 text-warning fw-semibold">25.6</h2>
+                            <h2 class="mb-0 text-warning fw-semibold" id="average_score"></h2>
                         </div>
                         <div class="bg-light-warning p-2 rounded-3 text-warning">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
@@ -169,7 +169,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="card-title fw-semibold">Nilai Terendah</h4>
-                            <h2 class="mb-0 text-danger fw-semibold">0</h2>
+                            <h2 class="mb-0 text-danger fw-semibold" id="lowest_score"></h2>
                         </div>
                         <div class="bg-light-danger py-1 px-2 rounded-3 text-danger">
                             <i class="ti ti-trending-down text-danger display-6"></i>
@@ -186,36 +186,19 @@
                 <div class="col-12 col-lg-3 mb-2">
                     @include('teacher.pages.test.panes.class-list')
                 </div>
-
+    
                 <div class="col-12 col-lg-9 mb-2">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                             aria-labelledby="v-pills-home-tab">
                             @include('teacher.pages.test.panes.class-detail')
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab">
-                            @include('teacher.pages.test.panes.class-detail')
-
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab">
-                            @include('teacher.pages.test.panes.class-detail')
-
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab">
-                            @include('teacher.pages.test.panes.class-detail')
-
-                        </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
         <div class="tab-pane fade" id="nilai-essay">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12 col-lg-3 mb-2">
                     @include('teacher.pages.test.panes.class-list')
                 </div>
@@ -244,8 +227,11 @@
                     </div>
 
                 </div>
-            </div>
-
+            </div> --}}
         </div>
     </div>
+@endsection
+
+@section('script')
+    @include('teacher.pages.test.script.detail')
 @endsection

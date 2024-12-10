@@ -40,8 +40,8 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth_custom')->group
         Route::get('test', function () {
             return view('teacher.pages.test.index');
         })->name('test');
-        Route::get('test-detail', function () {
-            return view('teacher.pages.test.detail');
+        Route::get('test-detail/{slug}', function (string $slug) {
+            return view('teacher.pages.test.detail', compact('slug'));
         })->name('test-detail');
         Route::get('ranking', fn() => view('mentor.pages.ranking.index'))->name('ranking');
     });

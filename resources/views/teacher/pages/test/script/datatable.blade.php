@@ -57,7 +57,7 @@
                                 </div>
                                 <p>${value.duration} Menit</p>
                             </div>
-                            <a href="/dashboard/teacher/test-detail" class="btn bg-primary text-white w-100">Detail Ujian</a>
+                            <a href="/dashboard/teacher/test-detail/${value.course.slug}" class="btn bg-primary text-white w-100">Detail Ujian</a>
                         </div>
                     </div>
                 </div>

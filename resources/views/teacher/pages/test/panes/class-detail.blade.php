@@ -3,22 +3,22 @@
         <h5 class="fw-semibold mb-3"><b>Daftar Siswa Pada Ujian</b></h5>
         <div class="row g-3 mb-3">
             <div class="col-12 col-md-6 col-lg-4">
-                <input type="text" class="form-control rounded-3" id="placeholder" placeholder="Cari...">
+                <input type="text" name="search" class="form-control rounded-3" id="search-student" placeholder="Cari...">
             </div>
 
             <div class="col-12 col-md-6 col-lg-3">
-                <select class="form-select rounded-3" id="preTestSelect">
-                    <option selected disabled>Pre Test</option>
-                    <option value="1">Post Test</option>
+                <select class="form-select rounded-3" id="type-student">
+                    <option value="pre-test">Pre Test</option>
+                    <option value="port-test">Post Test</option>
                 </select>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3">
+            {{-- <div class="col-12 col-md-6 col-lg-3">
                 <select class="form-select rounded-3" id="statusSelect">
                     <option selected disabled>Semua Status</option>
                     <option value="1">Sudah Dinilai</option>
                 </select>
-            </div>
+            </div> --}}
         </div>
 
         <div class="table-responsive rounded-2 mb-4">
@@ -38,9 +38,6 @@
                             <h6 class="fs-4 fw-semibold mb-0 text-center">Soal Salah</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0 text-center">Status</h6>
-                        </th>
-                        <th>
                             <h6 class="fs-4 fw-semibold mb-0 text-center">Nilai</h6>
                         </th>
                         <th>
@@ -48,8 +45,8 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach (range(1, 4) as $item)
+                <tbody id="user-course-list">
+                    {{-- @foreach (range(1, 4) as $item)
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -80,9 +77,13 @@
                                 <button class="btn mb-1 waves-effect waves-light btn-danger" type="button">Reset</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+@push('scipt')
+    
+@endpush
