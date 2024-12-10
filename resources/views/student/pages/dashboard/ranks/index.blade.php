@@ -5,7 +5,7 @@
     <div class="card p-3">
         <div class="card-body">
             <p><b>Peringkat Anda</b></p>
-            <p class="text-dark"><b><i class="fas fa-trophy me-2"></i>{{ session('user')['name'] }},anda berada di peringkat 5</b></p>
+            <p class="text-dark"><b><i class="fas fa-trophy me-2"></i>{{ session('user')['name'] }}, anda berada di peringkat 5</b></p>
             <div class="col-6 mb-3">
                 <div class="d-flex gap-2">
                     <input type="text" name="search" id="search" class="form-control">
@@ -46,26 +46,23 @@
                     page: page
                 },
                 success: function(response) {
-                    // console.log('API Response:', response); 
+                    console.log('API Response:', response);  
 
-                    $('#rank-list').empty(); 
-                    if (response && response.data && Array.isArray(response.data) && response.data.length > 0) {
-                        $.each(response.data, function(index, student) {
-                            $('#rank-list').append(`
+                    if (response.success && response.data.data.length > 0) {
+                        let rankListHTML = '';
+                        response.data.data.forEach((student, index) => {
+                            rankListHTML += `
                                 <tr>
-                                    <td>${student.rank}</td> <!-- Menampilkan peringkat langsung -->
+                                    <td>${student.rank}</td>
                                     <td>${student.name}</td>
                                     <td>${student.school.name}</td>
                                     <td>${student.point}</td>
                                 </tr>
-                            `);
+                            `;
                         });
+                        $('#rank-list').html(rankListHTML);  
                     } else {
-                        $('#rank-list').append(`
-                            <tr>
-                                <td colspan="4" class="text-center">Data tidak ditemukan.</td>
-                            </tr>
-                        `);
+                        $('#rank-list').html('<tr><td colspan="4">Tidak ada data ditemukan</td></tr>');
                     }
                 },
                 error: function(xhr) {
@@ -79,8 +76,7 @@
             });
         }
 
-        get();
+        get(1);
     });
 </script>
-
 @endpush
