@@ -24,7 +24,7 @@
     </style>
 @endsection
 @section('content')
-    <h4 class="mb-4">Detail Tantangan</h4>
+    <h4 class="mb-4">Tantangan</h4>
 
     <div class="col-12 col-lg-4 mb-4">
         <input type="text" name="search" id="search" placeholder="Cari..." class="form-control rounded-3">
