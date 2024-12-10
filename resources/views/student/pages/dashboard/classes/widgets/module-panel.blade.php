@@ -19,7 +19,7 @@
     <input type="text" name="search" id="search" class="form-control" placeholder="Cari...">
 </div>
 
-<div class="row">
+<div class="row" id="course-list">
     @for ($i = 1; $i <= 12; $i++)
         <div class="col-12 col-md-4 mt-4">
             <div class="card">
@@ -44,3 +44,60 @@
         </div>
     @endfor
 </div>
+@push('script')
+    <script>
+        $(document).ready(function() {
+            function courseList(index, value, class_level) {
+                return `
+                <div class="col-12 col-md-4 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <i class="fa fa-book me-3" style="font-size: 32px;"></i>
+                                <div>
+                                    <h5>${value.course.title}</h5>
+                                    <p class="text-muted">Kelas ${class_level}</p>
+                                </div>
+                            </div>
+                            <p>${value.course.description}</p>
+                            <div class="d-flex justify-content-between mt-3">
+                                <div style="border: 1px;border-radius:5%;color:blueviolet;">
+                                    <p>${value.module_count} Bab</p>
+                                </div>
+                                <div class="btn btn-primary">Detail</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+            }
+
+            function getCourses(page) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/student/learning-path",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    data: {
+                        search: $('#search').val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#course-list').empty();
+                        $.each(response.data.data, function(index, value) {
+                            const class_level = value.class_level
+                            $.each(value.course_learning_paths, function(indexInArray,
+                                valueOfElement) {
+                                $('#course-list').append(courseList(indexInArray,
+                                    valueOfElement, class_level));
+                            });
+                        });
+                    }
+                });
+            }
+
+            getCourses(1)
+        });
+    </script>
+@endpush
