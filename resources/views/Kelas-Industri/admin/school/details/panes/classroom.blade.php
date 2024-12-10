@@ -381,14 +381,12 @@
 
             //Add Teacher
             function addTeacher(classroom_id) {
-                $('#add-teacher').submit(function(e) {
+                $('#add-teacher').off('submit').submit(function(e) { // Hapus listener sebelumnya
                     e.preventDefault();
 
                     var formData = new FormData(this);
-
-                    console.log(formData);
-
                     formData.append('_method', 'PATCH');
+
                     $.ajax({
                         type: "POST",
                         url: "{{ config('app.api_url') }}/api/teacher-classrooms/" + classroom_id,
@@ -409,7 +407,7 @@
                             });
                         },
                         error: function(xhr) {
-                            console.error('Gagal menambah murid:', xhr.responseText);
+                            console.error('Gagal menambah guru:', xhr.responseText);
                             alert('Terjadi kesalahan, silakan coba lagi.');
                         }
                     });
@@ -419,11 +417,10 @@
 
             //Add Mentor
             function addMentor(classroom_id) {
-                $('#add-mentor').submit(function(e) {
+                $('#add-mentor').off('submit').submit(function(e) { // Hapus listener sebelumnya
                     e.preventDefault();
 
                     var formData = new FormData(this);
-
                     formData.append('_method', 'PATCH');
 
                     $.ajax({
@@ -446,12 +443,13 @@
                             });
                         },
                         error: function(xhr) {
-                            console.error('Gagal menambah murid:', xhr.responseText);
+                            console.error('Gagal menambah mentor:', xhr.responseText);
                             alert('Terjadi kesalahan, silakan coba lagi.');
                         }
                     });
                 });
             }
+
 
             //Student Classroom
             function studentClassroom(index, value) {
