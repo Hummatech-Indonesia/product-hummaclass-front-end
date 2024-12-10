@@ -16,7 +16,7 @@
 </div>
 
 <div class="col-6 my-3">
-    <input type="text" name="search" id="search" class="form-control" placeholder="Cari...">
+    <input type="text" name="search" id="module-search" class="form-control" placeholder="Cari...">
 </div>
 
 <div class="row" id="course-list">
@@ -47,6 +47,15 @@
 @push('script')
     <script>
         $(document).ready(function() {
+
+            let debounceTimer;
+            $('#module-search').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    getCourses(1)
+                }, 500);
+            });
+
             function courseList(index, value, class_level) {
                 return `
                 <div class="col-12 col-md-4 mt-4">
@@ -75,12 +84,12 @@
             function getCourses(page) {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}/api/student/learning-path",
+                    url: "{{ config('app.api_url') }}/api/student/learning-path?page=" + page,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     data: {
-                        search: $('#search').val()
+                        search: $('#module-search').val()
                     },
                     dataType: "json",
                     success: function(response) {
