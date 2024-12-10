@@ -28,4 +28,13 @@ class DashboardController extends Controller
     {
         return view('Kelas-industri.admin.school-year.index');
     }
+    public function challenge(): View
+    {
+        return view('student.pages.dashboard.challenge.index');
+    }
+
+    public function challengeDetail(): View
+    {
+        return view('student.pages.dashboard.challenge.detail');
+    }
 }

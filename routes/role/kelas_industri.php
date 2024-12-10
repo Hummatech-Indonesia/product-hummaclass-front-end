@@ -6,11 +6,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('dashboard')->name('dashboard.')->middleware('auth_custom')->group(function () {
-    Route::prefix('students')->name('students.')->middleware('student') ->group(function () {
+    Route::prefix('students')->name('students.')->middleware('student')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::get('classes', [DashboardController::class, 'classes'])->name('classes.index');
         Route::get('ranks', [DashboardController::class, 'ranks'])->name('ranks.index');
         Route::get('events', [DashboardController::class, 'events'])->name('events.index');
+        Route::get('challenge', [DashboardController::class, 'challenge'])->name('challenge.index');
+        Route::get('challenge-detail', [DashboardController::class, 'challengeDetail'])->name('challenge.detail');
+
     });
 
 

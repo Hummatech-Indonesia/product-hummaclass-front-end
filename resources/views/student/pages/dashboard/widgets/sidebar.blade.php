@@ -11,16 +11,16 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('dashboard.tasks.index') ? 'active' : '' }}">
-                    <a href="#">
-                        <i class="fas fa-tasks"></i> <!-- Ikon Tugas -->
-                        Tugas
-                    </a>
-                </li>
                 <li class="{{ request()->routeIs('dashboard.students.classes.index') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.students.classes.index') }}">
                         <i class="fas fa-chalkboard"></i> <!-- Ikon Kelas -->
                         Kelas
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('dashboard.students.challenge.index') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.students.challenge.index') }}">
+                        <i class="fas fa-chalkboard"></i> <!-- Ikon Kelas -->
+                        Tantangan
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('dashboard.schedule.index') ? 'active' : '' }}">
