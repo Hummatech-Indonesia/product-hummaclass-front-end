@@ -105,8 +105,8 @@
             }
 
             function classroom(index, value) {
-                return 
-                `<div class="col-12 col-md-6 col-lg-4">
+                return `
+                <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-body rounded-3 border">
                         <span class="side-stick"></span>
                         <h5 class="note-title text-truncate w-75 mb-0 fw-semibold mb-1" data-noteHeading=""> ${value.name} </h5>
@@ -134,7 +134,8 @@
                             </div>
                         </div>
                     </div>
-                </div>`
+                </div>
+                `
             }
 
             get(1);
