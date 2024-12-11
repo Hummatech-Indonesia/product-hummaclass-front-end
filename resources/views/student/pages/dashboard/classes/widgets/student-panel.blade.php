@@ -148,7 +148,7 @@
                         } else {
                             $('#student-list').append(
                                 '<tr><td colspan="5" class="text-center">No students found.</td></tr>'
-                                );
+                            );
                         }
                     },
                     error: function() {
@@ -173,14 +173,16 @@
                         const classroom = response.data.classroom;
 
                         $('#teacher-name').text(response.data.teacher_name);
-                        $('#classroom-name').text(classroom.name || 'Unknown');
+                        $('#classroom-name').text(classroom?.name ?? 'Unknown');
                         $('#mentor-name').text(response.data.mentor_name);
 
                         const debouncedSearch = debounce(() => getStudents(classroom.id, 1), 500);
 
                         $('#search').off('keyup').on('keyup', debouncedSearch);
 
-                        getStudents(classroom.id, 1);
+                        if (classroom) {
+                            getStudents(classroom.id, 1);
+                        }
                     },
                     error: function() {
                         Swal.fire({

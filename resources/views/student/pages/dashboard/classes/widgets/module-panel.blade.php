@@ -93,6 +93,21 @@
                     },
                     dataType: "json",
                     success: function(response) {
+                        if (response.meta.code) {
+                            Swal.fire({
+                                title: 'Oops!',
+                                text: response.meta.message,
+                                icon: 'warning',
+                                confirmButtonText: 'Oke'
+                            });
+                            $('#class-content').html(
+                                `<div class="d-flex align-items-center h-100">` +
+                                `<h1 class="fs-4 text-center w-100">${response.meta.message}</h1>` +
+                                `</div>`
+                            )
+                            return;
+                        }
+
                         $('#course-list').empty();
                         $.each(response.data.data, function(index, value) {
                             const class_level = value.class_level
