@@ -44,7 +44,7 @@
         function getRankStudent(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/mentor/student/list",
+                url: "{{ config('app.api_url') }}/api/mentor/student/list?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },

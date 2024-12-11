@@ -87,7 +87,7 @@
 
     function mentorJournal(index, data) {
         return `
-           <tr class="fw-semibold">
+            <tr class="fw-semibold">
                 <td>
                     <div class="d-flex align-items-center">
                         <div class="ms-3">

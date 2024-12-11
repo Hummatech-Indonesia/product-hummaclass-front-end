@@ -7,7 +7,7 @@
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
                 fetchClassData();
-            }, 500);
+            }, 500);   
         });
 
         $(document).on('change', ('.filter-class'), function(e){

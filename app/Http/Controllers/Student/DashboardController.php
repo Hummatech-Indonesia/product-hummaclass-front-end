@@ -33,8 +33,8 @@ class DashboardController extends Controller
         return view('student.pages.dashboard.challenge.index');
     }
 
-    public function challengeDetail(): View
+    public function challengeDetail(string $slug): View
     {
-        return view('student.pages.dashboard.challenge.detail');
+        return view('student.pages.dashboard.challenge.detail', compact('slug'));
     }
 }

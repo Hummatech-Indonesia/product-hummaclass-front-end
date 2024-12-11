@@ -53,12 +53,16 @@
     </style>
 @endsection
 @section('content')
-    <h4 class="mb-4">Detail Tantangan</h4>
+    <h4 class="mb-4" id="title-challenge"></h4>
 
     <div class="card shadow border p-3">
         <div class="card-body">
-            <h5 class="">Pengumpulan Tantangan</h5>
-            <p>Submit tantangan yang telah anda selesaikan dibawah ini.</p>
+            <div class="d-flex justify-content-between align-items-center mb-3" id="button-download">
+                <div>
+                    <h5 class="">Pengumpulan Tantangan</h5>
+                    <p>Submit tantangan yang telah anda selesaikan dibawah ini.</p>
+                </div>
+            </div>
 
             <div class="bg-light-danger py-4 px-4 mb-3 rounded-3 border border-danger">
                 <h5>Peringatan</h5>
@@ -74,21 +78,17 @@
                 </ul>
             </div>
 
-            <div class="row mb-3">
-                <div class="col-12 col-lg-2 d-flex align-items-center">
-                    <h5 class="fw-normal mb-0">File Tugas :</h5>
-                </div>
-                <div class="col-12 col-lg-10">
-                    <input type="file" class="border w-100 p-2 rounded-3">
-                </div>
-            </div>
+            <form id="submit-challenge" enctype="multipart/form-data">
+                <div class="row mb-3" id="list-submits"></div>
 
-
-            <div class="d-flex justify-content-end gap-2">
-                <a href="#" class="btn btn-outline-warning btn-back shadow-none" type="button">Kembali</a>
-                <button class="btn btn-primary btn-submit px-5" type="submit">Kirim</button>
-            </div>
+                <div class="d-flex justify-content-end gap-2" id="button-submits">
+                    <a href="/dashboard/students/challenge" class="btn btn-outline-warning btn-back shadow-none" type="button">Kembali</a>
+                </div>
+            </form>
 
         </div>
     </div>
+@endsection
+@section('script')
+    @include('student.pages.dashboard.challenge.script.detail')
 @endsection
