@@ -290,6 +290,7 @@
                                             class="injectable photo-user"></a>
                                 @else
                                     <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
+                                            style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;"
                                             alt="" class="injectable"></a>
                                 @endsession
                             </div>
