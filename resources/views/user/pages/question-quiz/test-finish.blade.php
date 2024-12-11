@@ -175,7 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 mb-5">
                         <a href="" id="finished" class="w-100 btn-warning">Selesai</a>
                     </div>
                 </div>
