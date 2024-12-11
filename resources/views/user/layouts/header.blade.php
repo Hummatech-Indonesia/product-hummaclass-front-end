@@ -287,6 +287,7 @@
                                 @session('user')
                                     <a href="{{ route('dashboard.users.profile', session('user')['id']) }}"><img
                                             src="{{ asset('assets/img/icons/user.svg') }}" alt=""
+                                            style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;"
                                             class="injectable photo-user"></a>
                                 @else
                                     <a href="{{ route('login') }}"><img src="{{ asset('assets/img/icons/user.svg') }}"
