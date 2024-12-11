@@ -154,24 +154,31 @@
         <div class="row">
             @include('user.pages.dashboard.widgets.sidebar')
             <div class="col-lg-9">
-                <div class="dashboard__nav-wrap">
-                    <ul class="nav nav-tabs" id="courseTab" style="border-bottom: none !important;" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="btn active-tab active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">
+                <div class="">
+                    <ul class="nav nav-tabs ms-auto mb-3" id="courseTab" style="border-bottom: none !important;" role="tablist">
+                        <li class="nav-item me-2" role="presentation">
+                            <button class="btn active-tab active" id="all-tab" data-bs-toggle="tab"
+                                data-bs-target="#all-tab-pane" type="button" role="tab"
+                                aria-controls="all-tab-pane" aria-selected="true">
                                 Semua
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="btn active-tab" id="waiting-payment" data-bs-toggle="tab" data-bs-target="#waiting-payment-pane" type="button" role="tab" aria-controls="waiting-payment-pane" aria-selected="false">
-                                Menunggu Pembayaran
+                        <li class="nav-item me-2" role="presentation">
+                            <button class="btn active-tab" id="waiting-payment" data-bs-toggle="tab"
+                                data-bs-target="#waiting-payment-pane" type="button" role="tab"
+                                aria-controls="waiting-payment-pane" aria-selected="false">
+                                Menunggu <span class="d-none d-sm-inline">Pembayaran</span>
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="btn active-tab" id="finish" data-bs-toggle="tab" data-bs-target="#finish-pane" type="button" role="tab" aria-controls="finish-pane" aria-selected="false">
+                            <button class="btn active-tab" id="finish" data-bs-toggle="tab"
+                                data-bs-target="#finish-pane" type="button" role="tab"
+                                aria-controls="finish-pane" aria-selected="false">
                                 Selesai
                             </button>
                         </li>
                     </ul>
+                    
                 </div>
                 <div class="tab-content" id="courseTabContent">
                     <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
