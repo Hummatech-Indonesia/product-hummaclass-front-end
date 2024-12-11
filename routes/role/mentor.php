@@ -9,7 +9,8 @@ Route::prefix('mentor')->name('mentor.')->group(function () {
     Route::get('classrooms/{slug}', fn($slug) => view('mentor.pages.classroooms.detail', compact('slug')))->name('classroom.show');
 
     Route::get('challenges', fn() => view('mentor.pages.challenges.index'))->name('challenge.index');
-    Route::get('challenges/{id}', fn($id) => view('mentor.pages.challenges.detail', compact('id')))->name('challenge.show');
+    Route::get('challenges/{slug}/edit', fn($slug) => view('mentor.pages.challenges.edit', compact('slug')))->name('challenge.edit');
+    Route::get('challenges/{slug}', fn($slug) => view('mentor.pages.challenges.detail', compact('slug')))->name('challenge.show');
     Route::get('challenges-create', fn() => view('mentor.pages.challenges.create'))->name('challenge.create');
 
     Route::get('attendances', fn() => view('mentor.pages.attendances.index'))->name('attendance.index');

@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted" href="javascript:void(0)">Tambah tantangan pada hummalass</a>
+                                <a class="text-muted" href="javascript:void(0)">Edit tantangan pada hummalass</a>
                             </li>
                         </ol>
                     </nav>
@@ -25,9 +25,9 @@
     </div>
 
     <div class="card">
-        <form action="" id="create-challenge-form">
+        <form action="" id="edit-challenge-form">
             <div class="card-body">
-                <h3 class="mb-3"><b>Tambah Tantangan</b></h3>
+                <h3 class="mb-3"><b>Edit Tantangan</b></h3>
 
                 <div class="row mb-3">
                     <div class="col col-md-6">
@@ -103,6 +103,97 @@
 @section('script')
     <script>
         $(document).ready(function() {
+
+            function formatToISO(dateString) {
+                const months = {
+                    "January": "01",
+                    "February": "02",
+                    "March": "03",
+                    "April": "04",
+                    "May": "05",
+                    "June": "06",
+                    "July": "07",
+                    "August": "08",
+                    "September": "09",
+                    "October": "10",
+                    "November": "11",
+                    "December": "12"
+                };
+
+                const [day, monthName, year, time] = dateString.split(/[- ]+/);
+                const month = months[monthName];
+
+                return `${year}-${month}-${day.padStart(2, '0')}T${time}`;
+            }
+
+            function getChallenge() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/challenges/{{ $slug }}",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#title').val(response.data.title)
+                        $('#description').summernote('code', response.data.description)
+                        $('#start_date').val(formatToISO(response.data.start_date))
+                        $('#end_date').val(formatToISO(response.data.end_date))
+                        response.data.image_active == 1 ? $('#image_active').attr('checked', true) : $(
+                            '#image_active').attr('checked', false);;
+                        response.data.link_active == 1 ? $('#link_active').attr('checked', true) : $(
+                            '#link_active').attr('checked', false);;
+                        response.data.file_active == 1 ? $('#file_active').attr('checked', true) : $(
+                            '#file_active').attr('checked', false);;
+
+                        $('#edit-challenge-form').off('submit')
+                        $('#edit-challenge-form').submit(function(e) {
+                            e.preventDefault();
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ config('app.api_url') }}/api/challenges/" +
+                                    response.data.id + "?_method=PATCH",
+                                headers: {
+                                    Authorization: 'Bearer ' +
+                                        "{{ session('hummaclass-token') }}"
+                                },
+                                data: new FormData(this),
+                                processData: false,
+                                contentType: false,
+                                dataType: "json",
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: "Sukses!",
+                                        text: "Berhasil menambah tantangan.",
+                                        icon: "success"
+                                    }).then(() => {
+                                        window.location.href =
+                                            "/mentor/challenges"
+                                    });
+                                },
+                                error: function(xhr) {
+                                    Swal.fire({
+                                        title: "Terjadi Kesalahan!",
+                                        text: "Ada kesalahan saat menambah data tantangan.",
+                                        icon: "error"
+                                    });
+                                }
+                            });
+                        });
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menambah data tantangan.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            getChallenge()
+
             $('.summernote').summernote({
                 height: 200
             })
@@ -151,7 +242,7 @@
                         `);
                         $.each(response.data, function(index, value) {
                             $('#school_id').append(`
-                            <option value="${value.slug}">${value.name}</option>
+                            <option value="${value.slug}" >${value.name}</option>
                             `);
                         });
                     },
@@ -172,36 +263,6 @@
                 getClassrooms($(this).val())
             });
 
-            $('#create-challenge-form').submit(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "{{ config('app.api_url') }}/api/challenges",
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    dataType: "json",
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Sukses!",
-                            text: "Berhasil menambah tantangan.",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.href = "/mentor/challenges"
-                        });
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menambah data tantangan.",
-                            icon: "error"
-                        });
-                    }
-                });
-            });
         });
     </script>
 @endsection
