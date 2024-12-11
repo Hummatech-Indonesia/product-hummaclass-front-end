@@ -22,18 +22,25 @@
         </div>
     </div>
 
-    <div class="table-responsive">
-        <div class="d-flex justify-content-between my-2">
-
-            <form action="" id="search-form">
-                <div class="d-flex gap-2">
-                    <input type="text" name="search" id="search" placeholder="cari..." class="form-control bg-white">
-                    <button type="submit" class="btn btn-primary">Cari</button>
-                </div>
-            </form>
-
-            <button class="btn btn-primary" id="create-division-button">Tambah Divisi</button>
+    <div class="row mb-3">
+        <div class="col-12 col-lg-10 mb-3">
+            <div class="col-lg-4">
+                <form action="" id="search-form">
+                    <div class="d-flex gap-2">
+                        <input type="text" name="search" id="search" placeholder="cari..."
+                            class="form-control bg-white">
+                        <button type="submit" class="btn btn-primary">Cari</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <div class="col-12 col-lg-2">
+            <button class="btn btn-primary w-100" id="create-division-button">Tambah Divisi</button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>

@@ -62,7 +62,7 @@
     </div>
 
     <div class="row">
-        <div class="col-3">
+        <div class="col-12 col-lg-3">
             <div class="card">
                 <div class="card-body">
                     <h3 class="mb-4"><b>Pilihan Devisi</b></h3>
@@ -72,14 +72,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-12 col-lg-9">
             <h3><b>Kursus</b></h3>
-            <div class="d-flex justify-content-between mb-3">
+            <div class="d-flex justify-content-between mb-3 gap-2">
                 <input type="text" name="search" id="search" class="form-control bg-white"
                     placeholder="Cari kursus.." style="max-width:250px;">
                 <button id="create-learning-path-button"
                     class="btn text-white" style="background: #9425FE;"><i class="fa fa-plus fa-md"></i>
-                    Tambah</button>
+                    <span class="ms-2">Tambah</span>    
+                </button>
             </div>
             <div id="course-learning-path-list">
             </div>

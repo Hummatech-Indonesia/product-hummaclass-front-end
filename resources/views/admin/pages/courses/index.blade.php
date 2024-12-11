@@ -33,33 +33,46 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-2">
-        <form action="" class="position-relative d-flex">
-            <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                placeholder="Search">
-            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            <a class="ms-3">
-                <select name="" id="sub-categories" style="background-color: #fff; width:10rem"
-                    class="form-control px-4">
-                    <option value="">Kategori</option>
-                </select>
+    <div class="row align-items-center mt-2 g-3">
+        <div class="col-12 col-md-10">
+            <form action="" class="row g-2">
+                <div class="col-12 col-md-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control product-search px-4 ps-5" name="title"
+                            value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+                            placeholder="Search">
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="d-flex gap-2">
+                        <select name="" id="sub-categories" style="background-color: #fff;" class="form-control">
+                            <option value="">Kategori</option>
+                        </select>
+                        <select name="" id="status" style="background-color: #fff;" class="form-control">
+                            <option value="">Status</option>
+                            <option value="1">Siap Ditampilkan</option>
+                            <option value="0">Belum Siap Ditampilkan</option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
+        <div class="col-12 col-md-2">
+            <a href="{{ route('admin.courses.create') }}" class="btn text-white w-100" style="background-color: #7209DB">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                </svg>
+                Tambah
             </a>
-            <a class="ms-3">
-                <select name="" id="status" style="background-color: #fff; width:10rem" class="form-control px-4">
-                    <option value="">Status</option>
-                    <option value="1">Siap Ditampilkan</option>
-                    <option value="0">Belum Siap Ditampilkan</option>
-                </select>
-            </a>
-        </form>
-        <a href="{{ route('admin.courses.create') }}" class="btn text-white" style="background-color: #7209DB">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
-            </svg>
-            Tambah
-        </a>
+        </div>
     </div>
+
+
 
     <style>
         .info-card {

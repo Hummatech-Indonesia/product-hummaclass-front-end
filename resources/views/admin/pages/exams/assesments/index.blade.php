@@ -53,7 +53,7 @@
                 <div class="card-body p-3">
                     <h5 class="mb-3 fw-semibold">Form Penilaian</h5>
                     <form action="" action="" enctype="multipart/form-data">
-                        {{-- <div class="table-responsive"> --}}
+                        <div class="table-responsive">
                         <table id="demo-foo-addrow" class="table table-bordered m-t-30 contact-list" data-paging="true"
                             data-paging-size="7">
                             <thead>
@@ -144,7 +144,7 @@
                                 {{-- </div> --}}
                             </tbody>
                         </table>
-                        {{-- </div> --}}
+                        </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary border-0 px-4"
                                 style="background-color: #9425FE">Simpan</button>

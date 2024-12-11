@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-2">
+    <div class="d-flex justify-content-between mt-2 gap-2">
         <form action="" class="position-relative d-flex">
             <input type="text" class="form-control product-search px-4 ps-5" name="title"
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
