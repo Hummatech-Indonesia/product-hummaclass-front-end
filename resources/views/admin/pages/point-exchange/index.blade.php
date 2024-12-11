@@ -42,18 +42,24 @@
         </div>
     </div>
 
-    <div class="mb-3 d-flex justify-content-between">
-        <form action="" class="d-flex gap-3">
-            <div class="position-relative">
-                <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
-                    name="name" value="{{ old('name', request('name')) }}" id="search" placeholder="Search">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
-                    style="color: #8B8B8B"></i>
+    <div class="row mb-3">
+        <div class="col-12 col-lg-10 mb-2">
+            <form action="">
+                <div class="col-lg-3">
+                    <div class="position-relative">
+                        <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
+                            name="name" value="{{ old('name', request('name')) }}" id="search" placeholder="Search">
+                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                            style="color: #8B8B8B"></i>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 col-lg-2">
+            <div class="text-end">
+                <a href="{{ route('admin.create-rewards.index') }}" class="btn text-white "
+                    style="background-color: #9425FE;">Tambahkan Barang</a>
             </div>
-        </form>
-        <div>
-            <a href="{{ route('admin.create-rewards.index') }}" class="btn text-white"
-                style="background-color: #9425FE;">Tambahkan Barang</a>
         </div>
     </div>
 

@@ -22,11 +22,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h5 class="fw-semibold mb-8">Kategori</h5>
+                    <h5 class="fw-semibold mb-8">Riwayat Transaksi</h5>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted" href="javascript:void(0)">Daftar kategori</a>
+                                <a class="text-muted" href="index-2.html">Daftar Riwayat Transaksi</a>
                             </li>
                         </ol>
                     </nav>
@@ -40,9 +40,9 @@
     </div>
 
     <div class="card p-3">
-        <h5 class="fw-semibold">Kategori</h5>
+        <h5 class="fw-semibold">Riwayat Transaksi</h5>
 
-        <div class="d-flex justify-content-between mt-2">
+        <div class="col-12 col-lg-3 col-md-12 mt-2">
             <div class="position-relative">
                 <input type="text" class="form-control product-search px-4 ps-5" id="search-name" placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
@@ -113,7 +113,7 @@
                 error: function() {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
+                        text: "Tidak dapat memuat data Riwayat Transaksi.",
                         icon: "error"
                     });
                 }
