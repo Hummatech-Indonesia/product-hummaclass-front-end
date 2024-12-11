@@ -16,8 +16,7 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png"
-        href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/get-skill/logo 2.png') }}">
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('admin/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 

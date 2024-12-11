@@ -99,6 +99,7 @@
 
         function funConfirmation(url) {
 
+            $('.deleteConfirmation').off('click');
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -118,7 +119,7 @@
                     },
                     error: function(response) {
                         $('#modal-confirmation').modal('hide');
-                        if (response.status == 400) {
+                        if (response.status >= 400) {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
                                 text: response.responseJSON.meta.message,
