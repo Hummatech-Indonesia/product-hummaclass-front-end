@@ -218,7 +218,7 @@
             function addStudentClassroom(classroom_id) {
                 $('#form-add-student-classroom').off('submit').submit(function(e) {
                     e.preventDefault();
-                    var formData = new FormData(this);
+                    var formData = new FormData(this);k
                     $.ajax({
                         type: "POST",
                         url: "{{ config('app.api_url') }}/api/student-classrooms/" + classroom_id,
