@@ -1,89 +1,94 @@
 <script>
-    $.ajax({
-        type: "get",
-        url: "{{ config('app.api_url') }}/api/journals",
-        headers: {
-            Authorization: "Bearer {{ session('hummaclass-token') }}"
-        },
-        dataType: "json",
-        success: function(response) {
-            let content = '';
+    function get(page) {
+        $.ajax({
+            type: "get",
+            url: "{{ config('app.api_url') }}/api/journals?page=" + page,
+            headers: {
+                Authorization: "Bearer {{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                let content = '';
 
-            $('#tableBody').empty();
-            $.each(response.data, function(index, data) {
-                content += mentorJournal(index, data);
-            });
-            $('#tableBody').append(content);
-
-            let journalId;
-            $('.btn-edit').click(function(e) {
-                e.preventDefault();
-
-                
-                
-                journalId = $(this).data('journal')
-                console.log(journalId)
-                let title = $(this).data('title')
-                let image = $(this).data('image')
-                let classroom_id = $(this).data('classroom')
-                let description = $(this).data('description')
-
-                let formData = $('#update-journal-form')
-
-                $('#title-edit').val(title);
-                $('#image-edit').attr('src', image);
-                $('#classroom_id_update').val(classroom_id);
-                $('#description-edit').val(description);
-                $('#modal-update').modal('show');
-            });
-
-
-            $('#update-journal-form').submit(function(e) {
-                e.preventDefault();
-
-                var formData = new FormData(this);
-                $.ajax({
-                    type: "POST",
-                    url: `{{ config('app.api_url') }}/api/journals/${journalId}`,
-                    data: formData,
-                    dataType: "json",
-                    headers: {
-                        Authorization: "Bearer {{ session('hummaclass-token') }}"
-                    },
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        Swal.fire({
-                            title: "Sukses!",
-                            text: "Berhasil memperbarui data.",
-                            icon: "success"
-                        }).then(() => {
-                            window.location.reload();
-                        });
-                    },
-                    error: function(response) {
-                        if (response.status === 422) {
-                            let errors = response.responseJSON.data;
-
-                            $.each(errors, function(field, messages) {
-
-                                $(`[name="${field}"]`).addClass('is-invalid');
-
-                                $(`[name="${field}"]`).closest('.form-group').find(
-                                    '.invalid-feedback').text(messages[0]);
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menyimpan data.",
-                                icon: "error"
-                            });
-                        }
-                    }
+                $('#tableBody').empty();
+                $.each(response.data.data, function(index, data) {
+                    content += mentorJournal(index, data);
                 });
-            });
-        }
-    });
+                $('#tableBody').append(content);
+                $('#pagination').html(handlePaginate(response.data.paginate));
+
+                let journalId;
+                $('.btn-edit').click(function(e) {
+                    e.preventDefault();
+                    journalId = $(this).data('journal')
+                    console.log(journalId)
+                    let title = $(this).data('title')
+                    let image = $(this).data('image')
+                    let classroom_id = $(this).data('classroom')
+                    let description = $(this).data('description')
+
+                    let formData = $('#update-journal-form')
+
+                    $('#title-edit').val(title);
+                    $('#image-edit').attr('src', image);
+                    $('#classroom_id_update').val(classroom_id);
+                    $('#description-edit').val(description);
+                    $('#modal-update').modal('show');
+                });
+
+
+                $('#update-journal-form').submit(function(e) {
+                    e.preventDefault();
+
+                    var formData = new FormData(this);
+                    $.ajax({
+                        type: "POST",
+                        url: `{{ config('app.api_url') }}/api/journals/${journalId}`,
+                        data: formData,
+                        dataType: "json",
+                        headers: {
+                            Authorization: "Bearer {{ session('hummaclass-token') }}"
+                        },
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses!",
+                                text: "Berhasil memperbarui data.",
+                                icon: "success"
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function(response) {
+                            if (response.status === 422) {
+                                let errors = response.responseJSON.data;
+
+                                $.each(errors, function(field, messages) {
+
+                                    $(`[name="${field}"]`).addClass(
+                                        'is-invalid');
+
+                                    $(`[name="${field}"]`).closest(
+                                            '.form-group')
+                                        .find(
+                                            '.invalid-feedback').text(messages[
+                                            0]);
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Terjadi Kesalahan!",
+                                    text: "Ada kesalahan saat menyimpan data.",
+                                    icon: "error"
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    }
+    get(1)
 
     function mentorJournal(index, data) {
         return `

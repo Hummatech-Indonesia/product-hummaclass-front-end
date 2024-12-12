@@ -82,9 +82,12 @@
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
-        <button class="btn me-1 mb-1 bg-primary text-white btn-lg px-4 fs-4 font-medium"
-            data-bs-toggle="modal" data-bs-target="#modal-create">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2"/></svg>
+        <button class="btn me-1 mb-1 bg-primary text-white btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal"
+            data-bs-target="#modal-create">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2" />
+            </svg>
             Tambah
         </button>
     </div>
@@ -109,7 +112,7 @@
                     </tbody>
                 </table>
             </div>
-            <nav id="pagination_list_student"></nav>
+            {{-- <nav id="pagination_list_student"></nav> --}}
         </div>
     </div>
     <div class="d-flex justify-content-center">
@@ -124,93 +127,93 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-      classroom();
-      function classroom() {
-          $.ajax({
-              type: "GET",
-              url: "{{ config('app.api_url') }}/api/mentor/classrooms",
-              headers: {
-                  Authorization: "Bearer {{ session('hummaclass-token') }}"
-              },
-              dataType: "json",
-              success: function(response) {                
-                  $('#classroom_id').empty().append(
-                      '<option value="">Pilih Kelas</option>'
-                  ); // Kosongkan select dan tambahkan placeholder
-                  $.each(response.data, function(index, value) {
-                      $('#classroom_id').append(
-                          `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
-                      );
-                  });
-                  $('#classroom_id_update').empty().append(
-                      '<option value="">Pilih Kelas</option>'
-                  ); // Kosongkan select dan tambahkan placeholder
-                  $.each(response.data, function(index, value) {
-                      $('#classroom_id_update').append(
-                          `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
-                      );
-                  });
-              },
-              
-              error: function(xhr) {
-                  Swal.fire({
-                      title: "Terjadi Kesalahan!",
-                      text: "Tidak dapat memuat data kelas.",
-                      icon: "error"
-                  });
-              }
-          });
-      }
-    })
-</script>
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.btn-detail-journal', function() {
-            var name = $(this).data('name');
-            var title = $(this).data('title');
-            var classroom = $(this).data('classroom');
-            var date = $(this).data('date');
-            var description = $(this).data('description');
-            var image = $(this).data('image');
-            
-            $('#name-detail').text(name);
-            $('#title-detail').text(title);
-            $('#classroom-detail').text(classroom);
-            $('#date-detail').text(date);
-            $('#description-detail').text(description);
-            $('#image-detail').attr('src', image);
-            $('#modal-detail-journal').modal('show');
-        });
-    });
-</script>
-<script>
-    function fetchNewData() {
-    $.ajax({
-        type: "GET",
-        url: "{{ config('app.api_url') }}/api/journals",
-        headers: {
-            Authorization: "Bearer {{ session('hummaclass-token') }}"
-        },
-        dataType: "json",
-        success: function(response) {
-            const tableBody = $('#tableBody');
-            tableBody.empty();
+    <script>
+        $(document).ready(function() {
+            classroom();
 
-            let content = '';
-            $.each(response.data, function(index, data) {
-                content += mentorJournal(index, data);
+            function classroom() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/mentor/classrooms",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#classroom_id').empty().append(
+                            '<option value="">Pilih Kelas</option>'
+                        ); // Kosongkan select dan tambahkan placeholder
+                        $.each(response.data, function(index, value) {
+                            $('#classroom_id').append(
+                                `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
+                            );
+                        });
+                        $('#classroom_id_update').empty().append(
+                            '<option value="">Pilih Kelas</option>'
+                        ); // Kosongkan select dan tambahkan placeholder
+                        $.each(response.data, function(index, value) {
+                            $('#classroom_id_update').append(
+                                `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
+                            );
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kelas.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.btn-detail-journal', function() {
+                var name = $(this).data('name');
+                var title = $(this).data('title');
+                var classroom = $(this).data('classroom');
+                var date = $(this).data('date');
+                var description = $(this).data('description');
+                var image = $(this).data('image');
+
+                $('#name-detail').text(name);
+                $('#title-detail').text(title);
+                $('#classroom-detail').text(classroom);
+                $('#date-detail').text(date);
+                $('#description-detail').text(description);
+                $('#image-detail').attr('src', image);
+                $('#modal-detail-journal').modal('show');
             });
+        });
+    </script>
+    <script>
+        function fetchNewData() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/journals",
+                headers: {
+                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    const tableBody = $('#tableBody');
+                    tableBody.empty();
 
-            tableBody.html(content);
-        },
-        error: function(error) {
-            console.error('Error fetching data:', error);
+                    let content = '';
+                    $.each(response.data, function(index, data) {
+                        content += mentorJournal(index, data);
+                    });
+
+                    tableBody.html(content);
+                },
+                error: function(error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
         }
-    });
-}
-</script>
+    </script>
     @include('mentor.pages.journals.scripts.datatable')
     @include('mentor.pages.journals.scripts.delete')
 @endsection
