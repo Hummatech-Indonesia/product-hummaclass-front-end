@@ -41,41 +41,28 @@
             </tr>
         </thead>
         <tbody id="attendance-list">
-            {{-- <tr>
-                <td>1</td>
-                <td>XII RPL 1 - SMKN 1 Kepanjen</td>
-                <td>10 Januari 2024</td>
-                <td>Status</td>
-                <td><button class="btn btn-secondary"><i class="fa fa-file fa-md"></i></button></td>
-                <td>
-                    <ul class="d-flex gap-2">
-                        <li><button class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
-                        <li><button class="btn btn-warning"><i class="fa fa-eye fa-md"></i></button></li>
-                        <li><button class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
-                    </ul>
-                </td>
-            </tr> --}}
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        <nav id="pagination"></nav>
+    </div>
 @endsection
 @section('script')
     <x-delete-modal-component></x-delete-modal-component>
     @include('mentor.pages.attendances.widgets.edit-attendance-modal')
     @include('mentor.pages.attendances.widgets.create-attendance-modal')
     <script>
-        $(document).ready(function() {
+        let debounceTimer;
 
-            let debounceTimer;
+        $('#search').keyup(function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                get(1);
+            }, 500);
+        });
 
-            $('#search').keyup(function() {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(function() {
-                    getAttendances(1);
-                }, 500);
-            });
-
-            function attendanceList(index, value) {
-                return `
+        function attendanceList(index, value) {
+            return `
                         <tr>
                             <td>${index+1}</td>
                             <td>${value.classroom} - ${value.school}</td>
@@ -91,24 +78,131 @@
                             </td>
                         </tr>
             `
-            }
+        }
 
-            function getAttendances(page) {
+        function get(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/attendances?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                },
+                data: {
+                    search: $('#search').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#attendance-list').empty();
+                    $.each(response.data.data, function(indexInArray, valueOfElement) {
+                        $('#attendance-list').append(attendanceList(indexInArray,
+                            valueOfElement));
+                    });
+                    $('#pagination').html(handlePaginate(response.data.paginate));
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: xhr.responseJSON.meta.message,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        get(1);
+
+        $(document).on('click', '#share-link-button', function() {
+            const id = $(this).data('id')
+            const attendanceUrl = "{{ config('app.api_url') }}/api/attendance/student/" + id
+            navigator.clipboard.writeText(attendanceUrl)
+                .then(() => {
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: "Berhasil menyalin URL ke clipboard.",
+                        icon: "success"
+                    });
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin URL:', err);
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: "Berhasil melakukan absensi, namun gagal menyalin URL ke clipboard.",
+                        icon: "warning"
+                    });
+                });
+        })
+
+        $(document).on('click', '#detail-attendance-button', function() {
+            const slug = $(this).data('slug')
+
+            window.location.href = "/mentor/attendance-detail/" + slug
+        })
+
+        $(document).on('click', '#create-attendance-button', function() {
+            $('#create-attendance-modal').modal('show');
+            $('#create-attendance-form').off('submit')
+            $('#create-attendance-form').submit(function(e) {
+                e.preventDefault();
+
                 $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/attendances?page=" + page,
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/attendances",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                     },
-                    data: {
-                        search: $('#search').val()
-                    },
+                    data: new FormData(this),
+                    processData: false,
+                    contentType: false,
                     dataType: "json",
                     success: function(response) {
-                        $('#attendance-list').empty();
-                        $.each(response.data.data, function(indexInArray, valueOfElement) {
-                            $('#attendance-list').append(attendanceList(indexInArray,
-                                valueOfElement));
+                        $('#create-attendance-modal').modal('hide');
+                        get(1);
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil menambahkan data",
+                            icon: "success"
+                        });
+
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        })
+
+        $(document).on('click', '#edit-attendance-button', function() {
+            const id = $(this).data('id')
+            const classroom_id = $(this).data('classroom_id')
+            const title = $(this).data('title')
+            $('#edit-attendance-modal').modal('show')
+            $('#classroom_id').val(classroom_id)
+            $('#title').val(title)
+            $('#edit-attendance-form').off('submit')
+            $('#edit-attendance-form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/attendances/" + id +
+                        '?_method=PATCH',
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#edit-attendance-modal').modal('hide')
+                        get(1)
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: "Berhasil mengubah data",
+                            icon: "success"
                         });
                     },
                     error: function(xhr) {
@@ -119,147 +213,40 @@
                         });
                     }
                 });
-            }
+            });
+        })
 
-            getAttendances(1);
-
-            $(document).on('click', '#share-link-button', function() {
-                const id = $(this).data('id')
-                const attendanceUrl = "{{ config('app.api_url') }}/api/attendance/student/" + id
-                navigator.clipboard.writeText(attendanceUrl)
-                    .then(() => {
+        $(document).on('click', '#delete-attendance-button', function() {
+            const id = $(this).data('id')
+            $('#modal-delete').modal('show')
+            $('#edit-attendance-form').off('submit')
+            $('#deleteForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ config('app.api_url') }}/api/attendances/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        get(1)
                         Swal.fire({
                             title: "Berhasil!",
-                            text: "Berhasil menyalin URL ke clipboard.",
+                            text: "Berhasil menghapus data",
                             icon: "success"
                         });
-                    })
-                    .catch(err => {
-                        console.error('Gagal menyalin URL:', err);
+                    },
+                    error: function(xhr) {
                         Swal.fire({
-                            title: "Berhasil!",
-                            text: "Berhasil melakukan absensi, namun gagal menyalin URL ke clipboard.",
-                            icon: "warning"
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
                         });
-                    });
-            })
-
-            $(document).on('click', '#detail-attendance-button', function() {
-                const slug = $(this).data('slug')
-
-                window.location.href = "/mentor/attendance-detail/" + slug
-            })
-
-            $(document).on('click', '#create-attendance-button', function() {
-                $('#create-attendance-modal').modal('show');
-                $('#edit-attendance-form').off('submit')
-                $('#create-attendance-form').submit(function(e) {
-                    e.preventDefault();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ config('app.api_url') }}/api/attendances",
-                        headers: {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-                        },
-                        data: new FormData(this),
-                        processData: false,
-                        contentType: false,
-                        dataType: "json",
-                        success: function(response) {
-                            $('#create-attendance-modal').modal('hide');
-                            getAttendances(1);
-                            Swal.fire({
-                                title: "Berhasil!",
-                                text: "Berhasil menambahkan data",
-                                icon: "success"
-                            });
-
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: xhr.responseJSON.meta.message,
-                                icon: "error"
-                            });
-                        }
-                    });
+                    }
                 });
-            })
 
-            $(document).on('click', '#edit-attendance-button', function() {
-                const id = $(this).data('id')
-                const classroom_id = $(this).data('classroom_id')
-                const title = $(this).data('title')
-                $('#edit-attendance-modal').modal('show')
-                $('#classroom_id').val(classroom_id)
-                $('#title').val(title)
-                $('#edit-attendance-form').off('submit')
-                $('#edit-attendance-form').submit(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ config('app.api_url') }}/api/attendances/" + id +
-                            '?_method=PATCH',
-                        headers: {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-                        },
-                        data: new FormData(this),
-                        contentType: false,
-                        processData: false,
-                        dataType: "json",
-                        success: function(response) {
-                            $('#edit-attendance-modal').modal('hide')
-                            getAttendances(1)
-                            Swal.fire({
-                                title: "Berhasil!",
-                                text: "Berhasil mengubah data",
-                                icon: "success"
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: xhr.responseJSON.meta.message,
-                                icon: "error"
-                            });
-                        }
-                    });
-                });
-            })
-
-            $(document).on('click', '#delete-attendance-button', function() {
-                const id = $(this).data('id')
-                $('#modal-delete').modal('show')
-                $('#edit-attendance-form').off('submit')
-                $('#deleteForm').submit(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        type: "DELETE",
-                        url: "{{ config('app.api_url') }}/api/attendances/" + id,
-                        headers: {
-                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            getAttendances(1)
-                            Swal.fire({
-                                title: "Berhasil!",
-                                text: "Berhasil menghapus data",
-                                icon: "success"
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: xhr.responseJSON.meta.message,
-                                icon: "error"
-                            });
-                        }
-                    });
-
-                });
-            })
-        });
+            });
+        })
     </script>
 @endsection
