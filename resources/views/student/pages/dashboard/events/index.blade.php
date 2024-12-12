@@ -1,6 +1,11 @@
 @extends('student.layouts.app')
 @section('style')
     @include('student.pages.dashboard.events.widgets.style')
+    <style>
+        .text-purple {
+            color: #9425FE !important;
+        }
+    </style>
 @endsection
 @section('content')
     <!-- event-area -->
@@ -27,7 +32,7 @@
 
                             <div class="col-lg-4 col-md-12">
                                 <div class="card p-3 mb-3">
-                                    <h4>Daftar Acara</h4>
+                                    <h4>Daftar Zoom</h4>
                                 </div>
                                 <div class="event-sidebar">
                                     <ul class="list-group list-group-flush" id="eventList"></ul>
