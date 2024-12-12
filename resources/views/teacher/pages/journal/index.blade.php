@@ -58,18 +58,12 @@
         </div>
     </div>
 
-    <div class="row align-items-center mb-4">
-        <div class="col-12 col-sm-8 col-md-9 col-lg-10 mb-2">
-            <div class="col-lg-3">
-                <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF" id="search" placeholder="Cari...">
-            </div>
-        </div>
-        <div class="col-12 col-sm-4 col-md-3 col-lg-2 text-sm-end">
-            <a href="/dashboard/teacher/journal-create" class="btn btn-primary w-100 w-sm-auto" type="button">
-                <i class="ti ti-plus"></i>
-                Tambah
-            </a>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
+        <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF; max-width: 250px;"
+            id="search" placeholder="Cari...">
+        <a href="/dashboard/teacher/journal-create" class="btn btn-primary" type="button">
+            <i class="fa fa-plus fa-md d-none d-md-inline"></i> Tambah
+        </a>
     </div>
 
     <div class="card border">
