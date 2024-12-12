@@ -12,8 +12,6 @@
         .bg-custom-primary {
             background-color: #9425FE;
         }
-
-        
     </style>
 @endsection
 @section('content')
@@ -40,21 +38,15 @@
         </div>
     </div>
 
-    <div class="row gap-2">
-        <div class="col-lg-4 col-sm-12 col-md-3 me-auto">
-            <form action="" class="position-relative d-flex gap-2" id="search-form">
-                <input type="text" class="form-control product-search px-4 ps-5" name="title" id="search"
-                    style="background-color: #fff" placeholder="Cari..">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-
-            </form>
-        </div>
-        <div class="col-sm-12 col-md-2 col-xl-auto">
-            <a href="{{ route('mentor.challenge.create') }}"
-                class="w-100 btn btn-primary bg-custom-primary rounded-2 border-0">
-                <i class="ti ti-plus"></i> Tambah
-            </a>
-        </div>
+    <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
+        <form action="" class="position-relative" id="search-form">
+            <input type="text" class="form-control product-search px-4 ps-5" name="title" id="search"
+                style="background-color: #fff" placeholder="Cari..">
+            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+        </form>
+        <a href="{{ route('mentor.challenge.create') }}" class="btn btn-primary bg-custom-primary rounded-2 border-0">
+            <i class="fa fa-plus fa-md d-none d-sm-inline"></i> Tambah
+        </a>
     </div>
 
     <div class="row row-cols-2 row-cols-md-3 mt-4" id="challenge-list">
