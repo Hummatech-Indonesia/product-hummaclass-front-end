@@ -125,47 +125,42 @@
 
 @section('script')
     <script>
-        $(document).ready(function() {
-            classroom();
-
-            function classroom() {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/mentor/classrooms",
-                    headers: {
-                        Authorization: "Bearer {{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#classroom_id').empty().append(
-                            '<option value="">Pilih Kelas</option>'
-                        ); // Kosongkan select dan tambahkan placeholder
-                        $.each(response.data, function(index, value) {
-                            $('#classroom_id').append(
-                                `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
-                            );
-                        });
-                        $('#classroom_id_update').empty().append(
-                            '<option value="">Pilih Kelas</option>'
-                        ); // Kosongkan select dan tambahkan placeholder
-                        $.each(response.data, function(index, value) {
-                            $('#classroom_id_update').append(
-                                `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
-                            );
-                        });
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Tidak dapat memuat data kelas.",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-        })
-    </script>
-    <script>
+        function classroom() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/mentor/classrooms",
+                headers: {
+                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#classroom_id').empty().append(
+                        '<option value="">Pilih Kelas</option>'
+                    ); // Kosongkan select dan tambahkan placeholder
+                    $.each(response.data, function(index, value) {
+                        $('#classroom_id').append(
+                            `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
+                        );
+                    });
+                    $('#classroom_id_update').empty().append(
+                        '<option value="">Pilih Kelas</option>'
+                    ); // Kosongkan select dan tambahkan placeholder
+                    $.each(response.data, function(index, value) {
+                        $('#classroom_id_update').append(
+                            `<option value="${value.id}">${value.school.name} - ${value.name}</option>`
+                        );
+                    });
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kelas.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+        classroom()
         $(document).ready(function() {
             $(document).on('click', '.btn-detail-journal', function() {
                 var name = $(this).data('name');
@@ -185,32 +180,5 @@
             });
         });
     </script>
-    <script>
-        function fetchNewData() {
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/journals",
-                headers: {
-                    Authorization: "Bearer {{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    const tableBody = $('#tableBody');
-                    tableBody.empty();
-
-                    let content = '';
-                    $.each(response.data, function(index, data) {
-                        content += mentorJournal(index, data);
-                    });
-
-                    tableBody.html(content);
-                },
-                error: function(error) {
-                    console.error('Error fetching data:', error);
-                }
-            });
-        }
-    </script>
     @include('mentor.pages.journals.scripts.datatable')
-    @include('mentor.pages.journals.scripts.delete')
 @endsection

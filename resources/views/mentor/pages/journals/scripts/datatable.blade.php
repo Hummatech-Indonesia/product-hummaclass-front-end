@@ -1,95 +1,4 @@
 <script>
-    function get(page) {
-        $.ajax({
-            type: "get",
-            url: "{{ config('app.api_url') }}/api/journals?page=" + page,
-            headers: {
-                Authorization: "Bearer {{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                let content = '';
-
-                $('#tableBody').empty();
-                $.each(response.data.data, function(index, data) {
-                    content += mentorJournal(index, data);
-                });
-                $('#tableBody').append(content);
-                $('#pagination').html(handlePaginate(response.data.paginate));
-
-                let journalId;
-                $('.btn-edit').click(function(e) {
-                    e.preventDefault();
-                    journalId = $(this).data('journal')
-                    console.log(journalId)
-                    let title = $(this).data('title')
-                    let image = $(this).data('image')
-                    let classroom_id = $(this).data('classroom')
-                    let description = $(this).data('description')
-
-                    let formData = $('#update-journal-form')
-
-                    $('#title-edit').val(title);
-                    $('#image-edit').attr('src', image);
-                    $('#classroom_id_update').val(classroom_id);
-                    $('#description-edit').val(description);
-                    $('#modal-update').modal('show');
-                });
-
-
-                $('#update-journal-form').submit(function(e) {
-                    e.preventDefault();
-
-                    var formData = new FormData(this);
-                    $.ajax({
-                        type: "POST",
-                        url: `{{ config('app.api_url') }}/api/journals/${journalId}`,
-                        data: formData,
-                        dataType: "json",
-                        headers: {
-                            Authorization: "Bearer {{ session('hummaclass-token') }}"
-                        },
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            Swal.fire({
-                                title: "Sukses!",
-                                text: "Berhasil memperbarui data.",
-                                icon: "success"
-                            }).then(() => {
-                                window.location.reload();
-                            });
-                        },
-                        error: function(response) {
-                            if (response.status === 422) {
-                                let errors = response.responseJSON.data;
-
-                                $.each(errors, function(field, messages) {
-
-                                    $(`[name="${field}"]`).addClass(
-                                        'is-invalid');
-
-                                    $(`[name="${field}"]`).closest(
-                                            '.form-group')
-                                        .find(
-                                            '.invalid-feedback').text(messages[
-                                            0]);
-                                });
-                            } else {
-                                Swal.fire({
-                                    title: "Terjadi Kesalahan!",
-                                    text: "Ada kesalahan saat menyimpan data.",
-                                    icon: "error"
-                                });
-                            }
-                        }
-                    });
-                });
-            }
-        });
-    }
-    get(1)
-
     function mentorJournal(index, data) {
         return `
             <tr class="fw-semibold">
@@ -142,7 +51,7 @@
                             </svg>
                         </button>
                         <button class="btn btn-sm btn-warning btn-edit text-white" 
-                            data-journal="${data.id}"
+                            data-id="${data.id}"
                             data-title="${data.title}"
                             data-image="${data.image}"
                             data-classroom="${data.classroom.id}"
@@ -162,4 +71,105 @@
             </tr>
         `
     }
+
+    function get(page) {
+        $.ajax({
+            type: "get",
+            url: "{{ config('app.api_url') }}/api/journals?page=" + page,
+            headers: {
+                Authorization: "Bearer {{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                let content = '';
+
+                $('#tableBody').empty();
+                $.each(response.data.data, function(index, data) {
+                    content += mentorJournal(index, data);
+                });
+                $('#tableBody').append(content);
+                $('#pagination').html(handlePaginate(response.data.paginate));
+
+            }
+        });
+    }
+
+    get(1)
+
+    $(document).ready(function() {
+
+        $(document).on('click', '.btn-edit', function() {
+            $('#modal-update').modal('show')
+            const id = $(this).data('id')
+            const title = $(this).data('title')
+            const description = $(this).data('description')
+            const classroom = $(this).data('classroom')
+
+            $('#title-edit').val(title);
+            $('#description-edit').val(description);
+            $('#classroom_id_update').val(classroom);
+            $('#update-journal-form').off().submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/journals/" + id,
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    data: new FormData(this),
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses!",
+                            text: "berhasil menghapus data",
+                            icon: "success"
+                        }).then(() => {
+                            $('#modal-update').modal('hide')
+                            get(1)
+                        })
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi kesalahan!",
+                            text: "gagal menghapus data",
+                            icon: "error"
+                        })
+                    }
+                });
+            });
+        })
+
+        $(document).on('click', '.btn-delete', function() {
+            var id = $(this).data('id');
+            $('#modal-delete').modal('show');
+            $('#deleteForm').off().submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ config('app.api_url') }}/api/journals/" + id,
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            title: "sukses!",
+                            text: "berhasil menghapus data",
+                            icon: "success"
+                        })
+                        get(1)
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: 'Gagal menghapus data',
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        })
+    });
 </script>
