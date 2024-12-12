@@ -5,8 +5,8 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="footer__widget">
                         <div class="logo mb-35">
-                            <a href="#"><img src="{{ asset('assets/img/logo/logo-class-industri.png') }}"
-                                    width="80px" alt="img"></a>
+                            <a href="#"><img src="{{ asset('assets/img/logo/get-skill/landscape white.png') }}"
+                                    width="230px" alt="img"></a>
                         </div>
                         <div class="footer__content">
                             <p>when an unknown printer took galley of
@@ -58,7 +58,7 @@
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <div class="copy-right-text">
-                        <p>© 2010-2024 hummaclass.com. All rights reserved.</p>
+                        <p>© 2010-2024 GetSkill. All rights reserved.</p>
                     </div>
                 </div>
                 <div class="col-md-5">
