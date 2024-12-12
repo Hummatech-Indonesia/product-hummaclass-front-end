@@ -32,10 +32,26 @@
                         <div class="invalid-feedback"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="date" class="form-label">Tanggal</label>
-                        <input type="date" name="date" id="date" class="form-control">
-                        <div class="invalid-feedback"></div>
+                    <div class="row mb-3">
+                        <div class="col-6 col-lg-6">
+                            <label for="date" class="form-label">Hari</label>
+                            <select name="day" class="form-control">
+                                <option value="MONDAY">Senin</option>
+                                <option value="TUESDAY">Selasa</option>
+                                <option value="WEDNESDAY">Rabu</option>
+                                <option value="THURSDAY">Kamis</option>
+                                <option value="FRIDAY">Jumat</option>
+                                <option value="SATURDAY">Sabtu</option>
+                                <option value="SUNDAY">Minggu</option>
+                            </select>
+                            <div class="invalid-feedback"></div>
+                        </div>
+    
+                        <div class="col-6 col-lg-6">
+                            <label for="date" class="form-label">Waktu</label>
+                            <input type="time" name="time" id="time" class="form-control">
+                            <div class="invalid-feedback"></div>
+                        </div>
                     </div>
 
                     <div class="mb-3">

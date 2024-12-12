@@ -86,8 +86,8 @@
                         </tr>
                     </thead>
                     <tbody id="zoom-list">
-                        @for ($i = 1; $i <= 10; $i++)
-                            {{-- <tr>
+                        {{-- @for ($i = 1; $i <= 10; $i++)
+                            <tr>
                                 <td>{{ $i }}</td>
                                 <td>
                                     XII RPL 1 - SMKN 1 Kepanjen</td>
@@ -108,11 +108,14 @@
                                         <button class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button>
                                         <button class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button>
                                     </div>
-                                </td> --}}
+                                </td> 
                             </tr>
-                        @endfor
+                        @endfor--}}
                     </tbody>
                 </table>
+                <div class="d-flex justify-content-end">
+                    <nav id="pagination"></nav>
+                </div>
             </div>
         </div>
     </div>
@@ -226,7 +229,6 @@
     </script>
 
     <script>
-        $(document).ready(function() {
             function zoomList(index, value) {
                 return `
                 <tr>
@@ -262,7 +264,7 @@
                 `
             }
 
-            function getZoom(page) {
+            function get(page) {
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/zooms?page=" + page,
@@ -279,6 +281,7 @@
                         $.each(response.data.data, function(indexInArray, valueOfElement) {
                             $('#zoom-list').append(zoomList(indexInArray, valueOfElement));
                         });
+                        $('#pagination').html(handlePaginate(response.data.paginate));
                     },
                     error: function(xhr) {
                         Swal.fire({
@@ -290,7 +293,7 @@
                 });
             }
 
-            getZoom(1)
+            get(1)
 
             $(document).on('click', '#create-zoom-button', function() {
                 $('#create-zoom-modal').modal('show');
@@ -407,7 +410,7 @@
                         },
                         dataType: "json",
                         success: function(response) {
-                            getZoom(1)
+                            get(1)
                             Swal.fire({
                                 title: "Sukses!",
                                 text: "Berhasil menghapus jadwal zoom",
@@ -424,6 +427,5 @@
                     });
                 });
             })
-        });
     </script>
 @endsection

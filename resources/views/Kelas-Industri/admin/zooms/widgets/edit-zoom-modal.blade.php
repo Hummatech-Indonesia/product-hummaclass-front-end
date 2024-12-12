@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="date" class="form-label">Tanggal</label>
-                        <input type="date" name="date" id="date-edit" class="form-control" placeholder="Judul..">
+                        <input type="datetime-local" name="date" id="date-edit" class="form-control" placeholder="Judul..">
                     </div>
 
                     <div class="mb-3">
@@ -67,13 +67,11 @@
                 link
             });
 
-            let formattedDate = date.split(' ')[0];
-
             $('#title-edit').val(title);
             $('#school_id-edit').val(school_id).trigger('change');
             $('#classroom_id-edit').val(classroom_id).trigger('change');
             $('#mentor_id-edit').val(mentor_id).trigger('change');
-            $('#date-edit').val(formattedDate);
+            $('#date-edit').val(date);
             $('#link-edit').val(link);
 
             $('#edit-zoom-modal').modal('show');
@@ -218,7 +216,8 @@
                             title: "Sukses",
                             text: "Jadwal Zoom berhasil diperbarui.",
                             icon: "success",
-                        });
+                        }),
+                        window.location.reload();
                         $('#edit-zoom-modal').modal('hide');
                     },
                     error: function(xhr) {
