@@ -12,6 +12,8 @@
         .bg-custom-primary {
             background-color: #9425FE;
         }
+
+        
     </style>
 @endsection
 @section('content')
@@ -79,58 +81,70 @@
             });
 
             function challengeList(index, value) {
+                const maxDescriptionLength = 100;
+                const maxTitleLength = 60;
+                const truncatedDescription = value.description.length > maxDescriptionLength ?
+                    value.description.substring(0, maxDescriptionLength) + "..." :
+                    value.description;
+                const truncatedTitle = value.title.length > maxTitleLength ?
+                    value.title.substring(0, maxTitleLength) + "..." :
+                    value.title;
+
                 return `
-                <div class="col">
-                    <div class="card rounded-4 shadow card-challenge">
-                        <div class="card-header bg-transparent px-3 pb-4">
-                            <div class="row align-items-center">
-                                <div class="col-8 d-flex flex-column justify-content-center">
-                                    <span class="badge rounded badge text-custom-primary bg-light-custom-primary px-2 fs-2">
-                                        <span>Batas: ${value.end_date}</span></span>
-                                </div>
-                                <div class="col-4">
-                                    <div class="d-flex align-items-start">
-                                        <div class="ms-auto">
-                                            <div class="dropdown dropstart">
-                                                <a href="#" class="link text-dark" id="dropdownMenuButton"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="ti ti-dots-vertical fs-7"></i>
-                                                </a>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <li>
-                                                        <h6 class="dropdown-header">Aksi</h6>
-                                                    </li>
-                                                    <li><button class="dropdown-item" id="edit-challenge-button" onclick="window.location.href='/mentor/challenges/${value.slug}/edit';">Edit</button></li>
-                                                    <li><button class="dropdown-item" data-id="${value.id}" id="delete-challenge-button">Hapus</button>
-                                                    </li>
-                                                </ul>
+                    <div class="col-12 col-lg-4 col-md-6 d-flex mb-3"> 
+                        <div class="card rounded-4 shadow card-challenge h-100"> <!-- h-100 untuk membuat tinggi kartu konsisten -->
+                            <div class="card-header bg-transparent px-3 pb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-8 col-lg-8 col-md-8">
+                                        <span class="badge rounded badge text-custom-primary bg-light-custom-primary fs-2">
+                                            <span>Batas: ${value.end_date}</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-4 col-lg-4 col-md-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="ms-auto">
+                                                <div class="dropdown dropstart">
+                                                    <a href="#" class="link text-dark" id="dropdownMenuButton"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="ti ti-dots-vertical fs-7"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                        <li>
+                                                            <h6 class="dropdown-header">Aksi</h6>
+                                                        </li>
+                                                        <li><button class="dropdown-item" id="edit-challenge-button" onclick="window.location.href='/mentor/challenges/${value.slug}/edit';">Edit</button></li>
+                                                        <li><button class="dropdown-item" data-id="${value.id}" id="delete-challenge-button">Hapus</button></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card-body px-3 pt-0 pb-3">
-                            <div class="row align-items-center" style="flex-direction: row; flex-wrap: nowrap;">
-                                <div class="col-2">
-                                    <div class="d-flex align-items-center justify-content-center rounded-circle p-1 border border-3"
-                                        style="aspect-ratio: 1 / 1; border-color: rgb(216, 216, 216) !important;">
-                                        <span class="text-center" style="width: fit-content;">S</span>
+                            <div class="card-body px-3 pt-0 pb-3 d-flex flex-column"> <!-- Flexbox untuk memastikan isi kartu rata -->
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <div class="d-flex align-items-center justify-content-center rounded-circle p-1 border border-3"
+                                            style="aspect-ratio: 1 / 1; border-color: rgb(216, 216, 216) !important; overflow: hidden;">
+                                            <span class="text-center" style="width: fit-content;">S</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <h6 class="card-title fs-3 fw-semibold text-muted m-0 text-break" 
+                                            title="${value.title}">${truncatedTitle}</h6>
                                     </div>
                                 </div>
-                                <div class="col p-0" style="max-width: 100%;">
-                                    <h6 class="card-title fs-3 fw-semibold text-muted m-0">${value.title}</h6>
-                                </div>
+                                <h5 class="my-3 mb-3">${value.classroom} - ${value.school}</h5>
+                                <p class="fs-2 mb-0">${truncatedDescription}</p>
+                                <button type="submit" id="detail-challenge-button"
+                                    class="btn btn-primary bg-custom-primary border-0 rounded-2 w-100 mt-auto" onclick="window.location.href='/mentor/challenges/${value.slug}'">Selengkapnya</button>
                             </div>
-                            <h5 class="my-3">${value.classroom} - ${value.school}</h5>
-                            <p class="fs-2">${value.description}</p>
-                            <button type="submit" id="detail-challenge-button"
-                                class="btn btn-primary bg-custom-primary border-0 rounded-2 w-100 mb-1" onclick="window.location.href='/mentor/challenges/${value.slug}'">Selengkapnya</button>
                         </div>
                     </div>
-                </div>
-                `
+                    `;
+
             }
+
 
             function getChallenges(page) {
                 $.ajax({

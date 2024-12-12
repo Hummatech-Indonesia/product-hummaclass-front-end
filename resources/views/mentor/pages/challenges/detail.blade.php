@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-self: stretch;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        align-self: stretch;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
 
         p,
         h1,
@@ -152,7 +152,7 @@
         </div>
     </div>
 
-    <div class="card w-100 mt-4 mb-4">
+    <div class="card w-100 mt-4 mb-4 overflow-hidden">
         <div class="p-4 d-flex align-items-stretch h-100">
             <div class="row align-items-center">
                 <div class="col-1 d-flex align-items-center justify-content-center p-3 rounded-2"
@@ -165,10 +165,12 @@
                         </path>
                     </svg>
                 </div>
-                <div class="col-8 col-md-9 d-flex align-items-center">
+                <div class="col-12 col-lg-11 d-flex align-items-center">
                     <div>
-                        <a href="javascript:void(0)" class="text-dark fs-4 link lh-sm" id="title"></a>
-                        <h6 class="card-subtitle mt-2 mb-0 fw-normal text-muted" id="description"></h6>
+                        <a href="javascript:void(0)" class="text-dark fs-4 link lh-sm text-break" id="title"
+                            style="word-break: break-word;"></a>
+                        <h6 class="card-subtitle mt-2 mb-0 fw-normal text-muted text-break" id="description"
+                            style="word-break: break-word;"></h6>
                     </div>
                 </div>
             </div>
