@@ -7,7 +7,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_task_clear"></h2>
                         <p class="mb-0 me-2">sudah dikerjakan</p>
                     </div>
                     <span>
@@ -23,7 +23,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_task_not_clear"></h2>
                         <p class="mb-0 me-2">Belum dikerjakan</p>
                     </div>
                     <span>
@@ -38,7 +38,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_task_not_clear_2"></h2>
                         <p class="mb-0 me-2">Tidak dikerjakan</p>
                     </div>
                     <span>
@@ -63,7 +63,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_challenge_clear"></h2>
                         <p class="mb-0 me-2">sudah dikerjakan</p>
                     </div>
                     <span>
@@ -79,7 +79,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_challenge_not_clear"></h2>
                         <p class="mb-0 me-2">Belum dikerjakan</p>
                     </div>
                     <span>
@@ -94,7 +94,7 @@
             <div class="p-4 rounded-3 bg-light-primary mb-3">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h2 class="mb-0 me-2 text-primary">20</h2>
+                        <h2 class="mb-0 me-2 text-primary" id="count_challenge_not_clear_2"></h2>
                         <p class="mb-0 me-2">Tidak dikerjakan</p>
                     </div>
                     <span>
@@ -110,3 +110,4 @@
         </div>
     </div>
 </div>
+

@@ -65,3 +65,6 @@
 
     </div>
 @endsection
+@section('script')
+    @include('student.pages.dashboard.script.dashboard')
+@endsection
