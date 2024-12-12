@@ -260,5 +260,26 @@
         }
 
         getDivision(class_level);
+        
+        $(document).on('click', '#create-learning-path-button', function(e) {
+            e.preventDefault();
+
+            // $('#create-learning-path-modal').modal('show');
+            let class_level = $('.nav-class_level-link.active').data('class_level')
+            let division_id = $('.nav-division_id-link.active').data('division_id')
+
+            let division = JSON.stringify({
+                id: division_id,
+                name: $('.nav-division_id-link.active').text(),
+            })
+
+            let classroom = JSON.stringify({
+                id: class_level,
+                name: $('.nav-class_level-link.active').text(),
+            })
+
+            window.location.href =
+                `{{ route('admin.class.learning-paths.create') }}?division=${division}&classroom=${classroom}`;
+        })
     });
 </script>

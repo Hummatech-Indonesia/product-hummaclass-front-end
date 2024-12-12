@@ -48,8 +48,10 @@
 
     <h3><b>Kursus</b></h3>
     <div class="d-flex justify-content-between mb-3">
-        <input type="text" name="search" id="search" class="form-control bg-white " placeholder="Cari kursus.."
-            style="max-width:250px;">
+        <form action="" id="search-form">
+            <input type="text" name="search" id="search" class="form-control bg-white " placeholder="Cari kursus.."
+                style="max-width:250px;">
+        </form>
     </div>
     <div id="course-learning-path-list">
     </div>
@@ -101,8 +103,8 @@
                             <div class="card-body align-items-center">
                                 <div class="stepcourse-${index} position-absolute rounded-circle d-none"></div>
                                 <input type="checkbox" id="course_check_${index}" data-index="${index}" class="course_check position-absolute d-none" value="${value.id}"/>
-                                <div class="row mt-2 align-items-center">
-                                    <div class="col-2">
+                                <div class="row mt-2 gap-sm-2 align-items-center">
+                                    <div class="col-12 col-md-2">
                                         <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="kursus.jpg"
                                             class="img-fluid rounded">
                                     </div>
@@ -149,7 +151,8 @@
                     },
                     data: {
                         class_level: class_level,
-                        division_id: division_id
+                        division_id: division_id,
+                        search: $('#search').val()
                     },
                     dataType: "json",
                     success: function(response) {
@@ -229,6 +232,12 @@
 
 
             getCourseLearningPath(classId, divisionId);
+            
+            $('#search-form').submit(function (e) { 
+                e.preventDefault();
+                
+                getCourseLearningPath(classId, divisionId);
+            });
         });
     </script>
 @endsection
