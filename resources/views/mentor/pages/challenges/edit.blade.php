@@ -107,26 +107,63 @@
     <script>
         $(document).ready(function() {
 
-            function formatToISO(dateString) {
-                const months = {
-                    "January": "01",
-                    "February": "02",
-                    "March": "03",
-                    "April": "04",
-                    "May": "05",
-                    "June": "06",
-                    "July": "07",
-                    "August": "08",
-                    "September": "09",
-                    "October": "10",
-                    "November": "11",
-                    "December": "12"
-                };
+            function getClassrooms(schoolSlug, classroomId) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/classrooms/" + schoolSlug,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#classroom_id').empty();
+                        $('#classroom_id').append(`
+                            <option value="">Pilih Kelas</option>  
+                        `);
+                        $.each(response.data, function(index, value) {
+                            $('#classroom_id').append(`
+                            <option value="${value.id}" ${value.id ==classroomId ? 'selected' : ''}>${value.name}</option>
+                            `);
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat mengambil data tantangan.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
 
-                const [day, monthName, year, time] = dateString.split(/[- ]+/);
-                const month = months[monthName];
-
-                return `${year}-${month}-${day.padStart(2, '0')}T${time}`;
+            function getSchools(schoolSlug, classroomId) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/schools-all",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        $('#school_id').empty();
+                        $('#school_id').append(`
+                            <option value="">Pilih Sekolah</option>  
+                        `);
+                        $.each(response.data, function(index, value) {
+                            $('#school_id').append(`
+                            <option value="${value.slug}" ${value.slug == schoolSlug ?'selected' : ''}>${value.name}</option>
+                            `);
+                        });
+                        getClassrooms(schoolSlug, classroomId)
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat mengambil data tantangan.",
+                            icon: "error"
+                        });
+                    }
+                });
             }
 
             function getChallenge() {
@@ -140,8 +177,8 @@
                     success: function(response) {
                         $('#title').val(response.data.title)
                         $('#description').summernote('code', response.data.description)
-                        $('#start_date').val(formatToISO(response.data.start_date))
-                        $('#end_date').val(formatToISO(response.data.end_date))
+                        $('#start_date').val(response.data.start_date)
+                        $('#end_date').val(response.data.end_date)
                         response.data.image_active == 1 ? $('#image_active').attr('checked', true) : $(
                             '#image_active').attr('checked', false);;
                         response.data.link_active == 1 ? $('#link_active').attr('checked', true) : $(
@@ -184,6 +221,7 @@
                             });
                         });
 
+                        getSchools(response.data.school_slug, response.data.classroom_id)
                     },
                     error: function(xhr) {
                         Swal.fire({
@@ -200,66 +238,6 @@
             $('.summernote').summernote({
                 height: 200
             })
-
-            function getClassrooms(schoolSlug) {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/classrooms/" + schoolSlug,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#classroom_id').empty();
-                        $('#classroom_id').append(`
-                            <option value="">Pilih Kelas</option>  
-                        `);
-                        $.each(response.data, function(index, value) {
-                            $('#classroom_id').append(`
-                            <option value="${value.id}">${value.name}</option>
-                            `);
-                        });
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat mengambil data tantangan.",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-
-            function getSchools() {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/schools-all",
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#school_id').empty();
-                        $('#school_id').append(`
-                            <option value="">Pilih Sekolah</option>  
-                        `);
-                        $.each(response.data, function(index, value) {
-                            $('#school_id').append(`
-                            <option value="${value.slug}" >${value.name}</option>
-                            `);
-                        });
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat mengambil data tantangan.",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-
-            getSchools()
 
             $('#school_id').change(function(e) {
                 e.preventDefault();
