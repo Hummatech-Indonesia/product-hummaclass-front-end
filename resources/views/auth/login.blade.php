@@ -46,7 +46,7 @@
                                         <h3 class="text-white fw-semibold fs-9">Kemampuanmu Di</h3>
                                         <h2 class="fw-bolder fs-12 mt-1 mb-3"
                                             style="color: #9425FE; position: relative; display: inline-block;">
-                                            HummaClass
+                                            GetSkill
                                             <span
                                                 style="position: absolute; bottom: -10px; left: 0px; width: calc(70% + 10px); height: 4px; background-color: #9425FE;"></span>
                                         </h2>
@@ -79,7 +79,7 @@
                             class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                             <div class="col-sm-8 col-md-6 col-xl-9">
                                 <div class="logo mb-5">
-                                    <a href="/"><img src="assets/img/logo/logo.svg" width="100px;"
+                                    <a href="/"><img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}" width="130px;"
                                             alt="Logo"></a>
                                 </div>
                                 <h2 class="mb-3 fs-7 fw-bolder">Selamat Datang👋</h2>
