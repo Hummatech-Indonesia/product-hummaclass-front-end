@@ -131,7 +131,7 @@
             function getStudents(classroomId, page) {
                 $.ajax({
                     type: "GET",
-                    url: `{{ config('app.api_url') }}/api/k/${classroomId}?page=${page}`,
+                    url: `{{ config('app.api_url') }}/api/student-classrooms/${classroomId}?page=${page}`,
                     headers: {
                         Authorization: `Bearer {{ session('hummaclass-token') }}`
                     },

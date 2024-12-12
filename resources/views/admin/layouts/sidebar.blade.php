@@ -103,7 +103,7 @@
                     <a class="sidebar-link {{ Route::is('admin.dashboard.school-year.*') ? 'active' : '' }}"
                         href="{{ route('admin.dashboard.school-year.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-calendar"></i> <!-- Tahun Ajaran -->
                         </span>
                         <span class="hide-menu">Tahun Ajaran</span>
                     </a>
@@ -112,7 +112,7 @@
                     <a class="sidebar-link {{ Route::is('admin.dashboard.zooms.*') ? 'active' : '' }}"
                         href="{{ route('admin.dashboard.zooms.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-video"></i> <!-- Zoom -->
                         </span>
                         <span class="hide-menu">Zoom</span>
                     </a>
@@ -121,7 +121,7 @@
                     <a class="sidebar-link {{ Route::is('admin.class.learning-paths.index') ? 'active' : '' }}"
                         href="{{ route('admin.class.learning-paths.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-road"></i> <!-- Learning Path -->
                         </span>
                         <span class="hide-menu">Learning Path</span>
                     </a>
@@ -130,7 +130,7 @@
                     <a class="sidebar-link {{ Route::is('admin.class.school.*') ? 'active' : '' }}"
                         href="{{ route('admin.class.school.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-building"></i> <!-- Sekolah -->
                         </span>
                         <span class="hide-menu">Sekolah</span>
                     </a>
@@ -139,7 +139,7 @@
                     <a class="sidebar-link {{ Route::is('admin.class.division.*') ? 'active' : '' }}"
                         href="{{ route('admin.class.division.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-book"></i>
+                            <i class="ti ti-layout"></i> <!-- Divisi -->
                         </span>
                         <span class="hide-menu">Divisi</span>
                     </a>
@@ -147,7 +147,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('admin.mentor.index') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-users"></i>
+                            <i class="ti ti-user-circle"></i> <!-- Mentor -->
                         </span>
                         <span class="hide-menu">Mentor</span>
                     </a>
@@ -159,7 +159,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/admin/exams" aria-expanded="false">
                         <span>
-                            <i class="ti ti-news"></i>
+                            <i class="ti ti-clipboard"></i> <!-- Penilaian -->
                         </span>
                         <span class="hide-menu">Penilaian</span>
                     </a>
@@ -167,11 +167,12 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/admin/exams/assessment-settings" aria-expanded="false">
                         <span>
-                            <i class="ti ti-news"></i>
+                            <i class="ti ti-settings"></i> <!-- Pengaturan -->
                         </span>
                         <span class="hide-menu">Pengaturan</span>
                     </a>
                 </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">KONTEN</span>
