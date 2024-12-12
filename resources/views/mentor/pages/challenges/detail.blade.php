@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        align-self: stretch;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-self: stretch;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
 
         p,
         h1,
@@ -299,7 +299,7 @@
                                                 <path d="M12 17a3 3 0 1 1 0-6a3 3 0 0 1 0 6"></path>
                                             </g>
                                         </svg> Gambar</button></td>
-                                <td>${challenge.status}</td>
+                                <td>${challenge.status == 'confirmed' ? 'dinilai' : 'belum dinilai'}</td>
                                 <td><select class="form-select mr-sm-2" id="inlineFormCustomSelect" data-student="${challenge.student_id}">
                                         <option ${challenge.point == null?'selected':''}>Nilai</option>
                                         <option value="1" ${challenge.point == 1?'selected':''}>1</option>
@@ -330,9 +330,9 @@
                                 e.preventDefault();
 
                                 $.ajax({
-                                    type: "PUT",
+                                    type: "POST",
                                     url: "{{ config('app.api_url') }}/api/mentor/challenge-add-point/" +
-                                        challengeId,
+                                        challengeId + "?_method=PUT",
                                     headers: {
                                         Authorization: "Bearer {{ session('hummaclass-token') }}"
                                     },

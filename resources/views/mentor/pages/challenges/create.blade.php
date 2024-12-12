@@ -74,15 +74,18 @@
                     </div>
                     <div class="col-md-8">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input primary" type="checkbox" id="image_active" value="true">
+                            <input class="form-check-input primary" type="checkbox" id="image_active" name="image_active"
+                                value="1">
                             <label class="form-check-label" for="image_active">Gambar</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input primary" type="checkbox" id="file_active" value="true">
+                            <input class="form-check-input primary" type="checkbox" id="file_active" name="file_active"
+                                value="1">
                             <label class="form-check-label" for="file_active">File</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input primary" type="checkbox" id="link_active" value="true">
+                            <input class="form-check-input primary" type="checkbox" id="link_active" name="link_active"
+                                value="1">
                             <label class="form-check-label" for="link_active">Link</label>
                         </div>
                     </div>
