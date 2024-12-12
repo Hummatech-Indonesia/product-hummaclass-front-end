@@ -75,19 +75,16 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-2">
+    <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
         <form action="" class="position-relative d-flex">
             <input type="text" class="form-control product-search px-4 ps-5" name="title"
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
-        <button class="btn me-1 mb-1 bg-primary text-white btn-lg px-4 fs-4 font-medium" data-bs-toggle="modal"
+        <button class="btn me-1 mb-1 bg-primary text-white px-4" data-bs-toggle="modal"
             data-bs-target="#modal-create">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2" />
-            </svg>
+            <i class="fa fa-plus fa-md d-none d-md-inline"></i>
             Tambah
         </button>
     </div>

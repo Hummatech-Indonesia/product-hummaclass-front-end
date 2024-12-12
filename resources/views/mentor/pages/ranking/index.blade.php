@@ -76,17 +76,17 @@
 
     <form action="" class="position-relative">
         <div class="row g-3">
-            <div class="col-12 col-lg-3 position-relative">
+            <div class="col-12 col-lg-4 d-flex gap-2 position-relative">
                 <input type="text" class="form-control product-search px-4 ps-5" name="name"
                     value="{{ old('name', request('name')) }}" id="search-name" style="background-color: #fff"
                     placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </div>
-
-            <div class="col-12 col-lg-3 d-flex">
                 <select name="school" id="search-school" class="form-control bg-white me-2">
                 </select>
-                <button type="submit" class="btn bg-primary text-white">Cari</button>
+            </div>
+
+            <div class="col-12 col-lg-1 col-md-12 d-flex">
+                <button type="submit" class="btn bg-primary text-white w-100">Cari</button>
             </div>
         </div>
     </form>

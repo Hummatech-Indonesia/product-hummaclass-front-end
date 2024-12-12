@@ -22,27 +22,32 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
         <input type="text" name="search" id="search" class="form-control" placeholder="Cari.."
-            style="max-width: 250px;">
-        <button class="btn btn-primary" id="create-attendance-button"><i class="fa fa-plus fa-md"></i> Tambah</button>
+            style="max-width: 250px; background-color: white">
+        <button class="btn btn-primary" id="create-attendance-button">
+            <i class="fa fa-plus fa-md d-none d-md-inline"></i> Tambah
+        </button>
     </div>
 
+
     <h3 class="mb-3"><b>Daftar Absensi</b></h3>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Sekolah</th>
-                <th>Tanggal</th>
-                <th>Status</th>
-                <th>Link</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody id="attendance-list">
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Sekolah</th>
+                    <th>Tanggal</th>
+                    <th>Status</th>
+                    <th>Link</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="attendance-list">
+            </tbody>
+        </table>
+    </div>
     <div class="d-flex justify-content-end">
         <nav id="pagination"></nav>
     </div>
