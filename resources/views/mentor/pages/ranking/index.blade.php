@@ -74,21 +74,23 @@
         </div>
     </div>
 
-    <div class="d-flex mt-2">
-        <form action="" class="position-relative d-flex">
-            <div class="me-2">
+    <form action="" class="position-relative">
+        <div class="row g-3">
+            <div class="col-12 col-lg-3 position-relative">
                 <input type="text" class="form-control product-search px-4 ps-5" name="name"
                     value="{{ old('name', request('name')) }}" id="search-name" style="background-color: #fff"
                     placeholder="Search">
                 <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
             </div>
-            <div class="me-2">
-                <select name="school" id="search-school" class="form-control bg-white">
+
+            <div class="col-12 col-lg-3 d-flex">
+                <select name="school" id="search-school" class="form-control bg-white me-2">
                 </select>
+                <button type="submit" class="btn bg-primary text-white">Cari</button>
             </div>
-            <button class="btn bg-primary text-white">Cari</button>
-        </form>
-    </div>
+        </div>
+    </form>
+
 
     <div class="card mt-3">
         <div class="card-body">

@@ -22,8 +22,9 @@
         </div>
     </div>
 
-    <input type="text" name="search" id="search" class="form-control mb-3" placeholder="Cari.."
-        style="max-width: 25%;">
+    <div class="col-12 col-lg-3">
+        <input type="text" name="search" id="search" class="form-control mb-3" style="background-color: white" placeholder="Cari..">
+    </div>
 
     <div class="table-responsive rounded">
         <table class="table table-hover">

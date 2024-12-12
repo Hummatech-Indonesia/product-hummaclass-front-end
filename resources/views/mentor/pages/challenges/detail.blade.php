@@ -83,8 +83,8 @@
         }
 
         /* .card-challenge .card .btn {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        align-self: stretch;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                align-self: stretch;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                } */
 
         p,
         h1,
@@ -121,41 +121,37 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between mt-2">
-        <div class="d-flex gap-3">
-            <form action="" class="position-relative d-flex">
-                <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                    value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                    placeholder="Search">
-                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-            </form>
-
-            {{-- <form action="" class="position-relative d-flex">
-                <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                    value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                    placeholder="Search">
-                <button class="btn btn-primary d-flex justify-content-center align-items-center bg-white border-1"
-                    fdprocessedid="w216xn" style="
-                    border-color: #dfe5ef;
-                ">
-                    <i class="ti ti-sort-ascending-letters fs-6 text-dark"></i>
-                </button>
-            </form> --}}
+    <div class="row g-3">
+        <div class="col-12 col-lg-7">
+            <div class="col-lg-4 position-relative">
+                <form action="" class="d-flex">
+                    <input type="text" class="form-control product-search px-4 ps-5" name="title"
+                        value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+                        placeholder="Search">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
+            </div>
         </div>
 
-        <div class="d-flex flex-nowrap align-items-center gap-2">
-            <a class="btn btn-primary rounded-2 d-flex gap-2 d-flex flex-nowrap align-items-center bg-primary border-0"
-                id="download-all-file"><i class="ti ti-download"></i> Download Semua
-                File</a>
-            <a href="{{ route('mentor.challenge.index') }}"
-                class="btn btn-primary rounded-2 bg-warning border-0">Kembali</a>
+        <div class="col-12 col-lg-5">
+            <div class="d-flex justify-content-lg-end justify-content-between align-items-center gap-2">
+                <a href="#" class="btn btn-primary rounded-2 d-flex gap-2 align-items-center bg-primary border-0"
+                    id="download-all-file">
+                    <i class="ti ti-download"></i> Download Semua File
+                </a>
+                <a href="{{ route('mentor.challenge.index') }}" class="btn btn-primary rounded-2 bg-warning border-0">
+                    Kembali
+                </a>
+            </div>
         </div>
+
     </div>
+
 
     <div class="card w-100 mt-4 mb-4 overflow-hidden">
         <div class="p-4 d-flex align-items-stretch h-100">
-            <div class="row align-items-center">
-                <div class="col-1 d-flex align-items-center justify-content-center p-3 rounded-2"
+            <div class="row">
+                <div class="col-1 d-flex mb-3  p-3 rounded-2"
                     style="width: fit-content;height: fit-content;color: var(--purple-primary);background: var(--light-purple)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-puzzle">
