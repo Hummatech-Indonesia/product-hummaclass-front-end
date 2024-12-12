@@ -13,7 +13,7 @@
     function get() {
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}/api/events-user",
+            url: "{{ config('app.api_url') }}/api/student/zooms",
             headers: {
                 'Authorization': `Bearer {{ session('hummaclass-token') }}`
             },
@@ -22,24 +22,20 @@
             processData: false,
             success: function(response) {
                 response.data.forEach(event => {
-                    const dateKey = new Date(event.start_date).toLocaleDateString(
+                    const dateKey = new Date(event.date).toLocaleDateString(
                         'en-CA');
                     const formattedDateKey = dateKey.split('-').reverse().join(
                         '-');
 
-
                     if (!events[formattedDateKey]) {
                         events[formattedDateKey] = [];
                     }
-                    console.log(formattedDateKey);
-
 
                     events[formattedDateKey].push({
-                        slug: event.slug,
                         title: event.title,
-                        desc: event.description,
-                        time: event.start_date,
-                        price: event.price
+                        link: event.link,
+                        time: event.date,
+                        school: event.school.name
                     });
                 });
                 updateCalendar();
@@ -94,7 +90,6 @@
 
             const formattedDateKey =
                 `${String(day).padStart(2, '0')}-${String(currentMonth + 1).padStart(2, '0')}-${currentYear}`;
-            console.log(formattedDateKey);
 
 
             if (events[formattedDateKey]) {
@@ -135,15 +130,22 @@
                     eventItem.classList.add('list-group-item');
 
                     // Batasi deskripsi
-                    const truncatedDesc = event.desc.length > 20 ? event.desc.substring(0, 20) + '...' :
-                        event.desc;
+                    console.log(event);
+
+                    const truncatedLink = event.link.length > 20 ? event.link.substring(0, 20) + '...' :
+                        event.link;
                     eventItem.innerHTML = `
-                            <a href="/events/${event.slug}">
-                                <span class="event-indicator ${event.price}-indicator"></span>
-                                <h6 style="color: #9425FE;">${event.title}</h6>
-                                <small>${truncatedDesc}</small>
-                                <small>${formatRupiah(event.price)}</small><br>
-                                <small>${dayKey}</small>
+                            <a target="blank" href="${event.link}">
+                                <h6>${event.title}</h6>
+                                <small>${truncatedLink}</small>
+                                <div class=d-flex align-items-center gap-2" style="color: grey">
+                                    <svg class="text-danger" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-event"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" /><path d="M16 3l0 4" /><path d="M8 3l0 4" /><path d="M4 11l16 0" /><path d="M8 15h2v2h-2z" /></svg>
+                                    <span class="ms-2">${dayKey}</span>
+                                </div>
+                                <div class=d-flex align-items-center gap-2 text-muted" style="color: grey">
+                                        <svg class="text-purple" xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-building-bank"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M3 10l18 0" /><path d="M5 6l7 -3l7 3" /><path d="M4 10l0 11" /><path d="M20 10l0 11" /><path d="M8 14l0 3" /><path d="M12 14l0 3" /><path d="M16 14l0 3" /></svg>
+                                        <span class="ms-2">${event.school}</span>
+                                </div>
                             </a>
                         `;
                     eventList.appendChild(eventItem);

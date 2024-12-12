@@ -93,7 +93,9 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        if (response.meta.code) {
+                        console.log(response.meta.code);
+                        
+                        if (response.meta.code == 204) {
                             Swal.fire({
                                 title: 'Oops!',
                                 text: response.meta.message,
