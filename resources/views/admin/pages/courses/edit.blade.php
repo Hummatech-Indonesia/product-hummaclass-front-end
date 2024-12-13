@@ -26,10 +26,10 @@
 
     <div class="card">
         <form action="" id="edit-course-form" enctype="multipart/form-data">
-            <div class="card-header">
-                <h3>Edit Kursus</h3>
-            </div>
             <div class="card-body">
+                <div class="bg-transparent border-bottom mb-3">
+                    <h3><b>Edit Kursus</b></h3>
+                </div>
                 <img src="" alt="image.jpg" id="preview-image" class="img-fluid d-block mb-3"
                     style="max-height: 200px;">
                 <label for="photo" class="form-label">Thumbnail</label>
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <label for="is_premium" class="form-label"></label>
+                <label for="is_premium" class="form-label">Status</label>
                 <select name="is_premium" id="is_premium" class="form-control mb-3">
                     <option value="1">Premium</option>
                     <option value="0">Gratis</option>
@@ -80,10 +80,8 @@
             </div>
             <div class="card-footer">
                 <div class="ms-auto" style="width: fit-content;">
-                    <button class="btn btn-primary" type="submit"><i class="fa fa-edit fa-md"></i> Konfirmasi</button>
-                    <button class="btn btn-secondary" id="back-button" type="button"><i
-                            class="fa fa-arrow-left fa-md"></i>
-                        Kembali</button>
+                    <button class="btn btn-primary" style="background-color: #9425FE;" type="submit">Konfirmasi</button>
+                    <button class="btn btn-secondary" id="back-button" type="button">Kembali</button>
                 </div>
             </div>
         </form>
@@ -97,7 +95,6 @@
                 var reader = new FileReader();
                 reader.onload = function() {
                     $('#preview-image').attr('src', reader.result);
-                    $('#preview-image').css('display', 'block');
                 }
                 reader.readAsDataURL(event.target.files[0]);
             }
