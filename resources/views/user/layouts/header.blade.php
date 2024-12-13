@@ -363,30 +363,32 @@
 
 <script>
     $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/profile",
-            headers: {
-                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            },
-            dataType: "json",
-            success: function(response) {
-                var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
-                        response.data.photo) ?
-                    response.data.photo :
-                    '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
-                $('.photo-user').attr('src', profileImage1);
-            },
-            error: function(xhr) {
+        @if (auth()->check())
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/profile",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    var profileImage1 = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(
+                            response.data.photo) ?
+                        response.data.photo :
+                        '{{ asset('assets/img/no-image/no-profile.jpeg') }}';
+                    $('.photo-user').attr('src', profileImage1);
+                },
+                error: function(xhr) {
 
-                if (xhr.status != 401) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data profil.",
-                        icon: "error"
-                    });
+                    if (xhr.status != 401) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data profil.",
+                            icon: "error"
+                        });
+                    }
                 }
-            }
-        });
+            });
+        @endif
     });
 </script>
