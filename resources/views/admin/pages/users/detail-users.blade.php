@@ -83,10 +83,12 @@
                     success: function(response) {
 
                         $('#detail-name').html(response.data.name);
+                        $('#detail-name-two').html(response.data.name);
                         $('#detail-email').html(response.data.email);
+                        $('#detail-email-two').html(response.data.email);
                         $('#detail-phone-number').html(response.data.phone_number);
-                        $('#detail-gender').html(response.data.gender);
-                        $('#detail-created').html(response.data.created_at);
+                        $('#detail-gender').html(response.data.gender == 'male' ? 'Laki Laki' : 'Perempuan');
+                        $('#detail-created').html(response.data.created);
                         $('#detail-courses').html(response.data.total_courses);
                         $('#detail-address').html(response.data.address);
 
