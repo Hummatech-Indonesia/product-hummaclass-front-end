@@ -213,7 +213,7 @@
                         </div>
 
                         <div class="row mb-5">
-                            <div class="col-lg-8 col-md-12">
+                            <div class="col-lg-8 col-md-12 mb-3">
                                 <div class="card p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <h2 class="fw-semibold" style="color: #9425FE;">Kalender</h2>

@@ -29,14 +29,14 @@
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label fw-semibold text-dark">Jumlah Soal</label>
-                                <input type="text" class="form-control" id="total_question"
+                                <input type="number" class="form-control" id="total_question"
                                     placeholder="Masukan jumlah soal" name="total_question">
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 <label class="form-label fw-semibold text-dark">Durasi Pengerjaan</label>
-                                <input type="text" id="duration" class="form-control"
+                                <input type="number" id="duration" class="form-control"
                                     placeholder="Masukan durasi pengerjaan" name="duration">
                             </div>
                         </div>

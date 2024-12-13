@@ -227,9 +227,10 @@
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #F6EEFE;border-radius:20px;">
+                    <div class="row g-3">
+                        <div class="col-lg-4">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #F6EEFE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
@@ -244,13 +245,15 @@
                                     </div>
                                     <div class="d-flex align-items-center mt-3">
                                         <p style="font-size: 15px;">Mentor Kami ramah dan ahli dalam domain untuk membuat
-                                            Anda belajar dengan mudah</p>
+                                            Anda belajar
+                                            dengan mudah</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #EEF0FE;border-radius:20px;">
+                        <div class="col-lg-4">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #EEF0FE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
@@ -268,13 +271,15 @@
                                     </div>
                                     <div class="d-flex align-items-center mt-3">
                                         <p style="font-size: 15px;">Semua kursus kami dibuat dan untuk membuat Anda
-                                            menikmati mempelajari hal-hal baru</p>
+                                            menikmati mempelajari
+                                            hal-hal baru</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #FEF5EE;border-radius:20px;">
+                        <div class="col-lg-4">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #FEF5EE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
@@ -293,7 +298,8 @@
                                     </div>
                                     <div class="d-flex align-items-center mt-3 mb-4">
                                         <p style="font-size: 15px;">Bergabunglah dengan kelas kami dengan alat interaktif
-                                            dan dukungan keraguan</p>
+                                            dan dukungan
+                                            keraguan</p>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +338,8 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a href="{{ route('courses.courses.index') }}" class="outline-purple-primary d-none" id="other-courses">
+                                    <a href="{{ route('courses.courses.index') }}" class="outline-purple-primary d-none"
+                                        id="other-courses">
                                         Lihat Lainnya
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24">

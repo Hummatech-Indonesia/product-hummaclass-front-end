@@ -10,11 +10,13 @@
                     alt="img">
             </div>
             <div class="content">
-                <h4 class="title detail-name"></h4>
+                <h4 class="text-white" style="font-size: 25px">{{ session('user')['name'] }}</h4>
                 <div class="review__wrap review__wrap-two">
-                    <span>{{ session('user')['email'] }}</span>
+                <h6 class="text-white fw-normal" style="font-size: 11">{{ session('user')['email'] }}</h6>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
