@@ -56,18 +56,14 @@
         </div>
     </div>
 
-    <div class="row g-3 align-items-center mb-3">
-        <div class="col-12 col-md-6 col-lg-9">
-            <div class="col-lg-4">
-                <input type="text" name="search" id="search" class="form-control bg-white rounded-3"
-                    placeholder="Cari...">
-            </div>
+    <div class="d-flex justify-content-between mb-3">
+        <div class="">
+            <input type="text" name="search" id="search" class="form-control bg-white rounded-2"
+                placeholder="Cari...">
         </div>
-        <div class="col-12 col-md-6 col-lg-3 text-md-end">
-            <button class="btn btn-primary w-100 w-lg-auto" id="create-zoom-button">
-                <i class="ti ti-plus"></i> Tambah Jadwal Zoom
-            </button>
-        </div>
+        <button class="btn btn-primary" id="create-zoom-button">
+            <i class="ti ti-plus d-none d-sm-inline"></i> Tambah <span class="d-none d-sm-inline">Jadwal Zoom</span>
+        </button>
     </div>
 
 
@@ -110,7 +106,7 @@
                                     </div>
                                 </td> 
                             </tr>
-                        @endfor--}}
+                        @endfor --}}
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-end">
@@ -229,8 +225,8 @@
     </script>
 
     <script>
-            function zoomList(index, value) {
-                return `
+        function zoomList(index, value) {
+            return `
                 <tr>
                     <td>${index+1}</td>
                     <td>${value.classroom.name} - ${value.school.name}</td>
@@ -262,170 +258,170 @@
                     </td>
                 </tr>
                 `
-            }
+        }
 
-            function get(page) {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/zooms?page=" + page,
-                    headers: {
-                        Authorization: 'Bearer ' +
-                            "{{ session('hummaclass-token') }}",
-                    },
-                    data: {
-                        search: $('#search').val()
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        $('#zoom-list').empty();
-                        $.each(response.data.data, function(indexInArray, valueOfElement) {
-                            $('#zoom-list').append(zoomList(indexInArray, valueOfElement));
-                        });
-                        $('#pagination').html(handlePaginate(response.data.paginate));
-                    },
-                    error: function(xhr) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Gagal mengambil jadwal zoom",
-                            icon: "error"
-                        });
-                    }
-                });
-            }
-
-            get(1)
-
-            $(document).on('click', '#create-zoom-button', function() {
-                $('#create-zoom-modal').modal('show');
-
-                $('#create-zoom-form')[0].reset();
-
-                $('#create-zoom-form').off('submit');
-
-                $('#create-zoom-form').submit(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ config('app.api_url') }}/api/zooms",
-                        headers: {
-                            'Authorization': `Bearer {{ session('hummaclass-token') }}`
-                        },
-                        data: new FormData(this),
-                        contentType: false,
-                        processData: false,
-                        dataType: "json",
-                        success: function(response) {
-                            Swal.fire({
-                                title: "Sukses!",
-                                text: "Berhasil menambah jadwal zoom",
-                                icon: "success"
-                            }).then(() => {
-                                fetchNewData();
-                                $('#create-zoom-modal').modal('hide');
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: "Gagal menambah jadwal zoom",
-                                icon: "error"
-                            });
-                        }
+        function get(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/zooms?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' +
+                        "{{ session('hummaclass-token') }}",
+                },
+                data: {
+                    search: $('#search').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    $('#zoom-list').empty();
+                    $.each(response.data.data, function(indexInArray, valueOfElement) {
+                        $('#zoom-list').append(zoomList(indexInArray, valueOfElement));
                     });
-                });
-            });
-
-
-            function fetchNewData() {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}/api/zooms",
-                    headers: {
-                        Authorization: "Bearer {{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        const tableBody = $('#zoom-list');
-                        tableBody.empty();
-
-                        let content = '';
-                        $.each(response.data.data, function(index, data) {
-                            content += zoomList(index,
-                                data);
-
-                            console.log(content);
-
-                        });
-
-                        tableBody.html(content);
-                    },
-                    error: function(error) {
-                        console.error('Error fetching data:', error);
-                    }
-                });
-            }
-
-            let zoomId;
-
-
-            $(document).on('click', '.btn-copy', function() {
-                const zoomLink = $(this).data('link');
-
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(zoomLink).then(() => {
-                        Swal.fire({
-                            title: "Berhasil!",
-                            text: "Link Zoom berhasil disalin!",
-                            icon: "success"
-                        });
-                    }).catch(err => {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Gagal menyalin link Zoom",
-                            icon: "error"
-                        });
-                        console.error("Clipboard error:", err);
-                    });
-                } else {
+                    $('#pagination').html(handlePaginate(response.data.paginate));
+                },
+                error: function(xhr) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Browser Anda tidak mendukung salin otomatis.",
+                        text: "Gagal mengambil jadwal zoom",
                         icon: "error"
                     });
                 }
             });
+        }
 
-            $(document).on('click', '#delete-zoom-button', function() {
-                const id = $(this).data('id')
-                $('#modal-delete').modal('show')
-                $('#deleteForm').off('submit')
-                $('#deleteForm').submit(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        type: "DELETE",
-                        url: "{{ config('app.api_url') }}/api/zooms/" + id,
-                        headers: {
-                            Authorization: 'Bearer ' +
-                                "{{ session('hummaclass-token') }}",
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            get(1)
-                            Swal.fire({
-                                title: "Sukses!",
-                                text: "Berhasil menghapus jadwal zoom",
-                                icon: "success"
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                title: "Terjadi Kesalahan!",
-                                text: "Gagal menghapus jadwal zoom",
-                                icon: "error"
-                            });
-                        }
-                    });
+        get(1)
+
+        $(document).on('click', '#create-zoom-button', function() {
+            $('#create-zoom-modal').modal('show');
+
+            $('#create-zoom-form')[0].reset();
+
+            $('#create-zoom-form').off('submit');
+
+            $('#create-zoom-form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/zooms",
+                    headers: {
+                        'Authorization': `Bearer {{ session('hummaclass-token') }}`
+                    },
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(response) {
+                        Swal.fire({
+                            title: "Sukses!",
+                            text: "Berhasil menambah jadwal zoom",
+                            icon: "success"
+                        }).then(() => {
+                            fetchNewData();
+                            $('#create-zoom-modal').modal('hide');
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Gagal menambah jadwal zoom",
+                            icon: "error"
+                        });
+                    }
                 });
-            })
+            });
+        });
+
+
+        function fetchNewData() {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/zooms",
+                headers: {
+                    Authorization: "Bearer {{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    const tableBody = $('#zoom-list');
+                    tableBody.empty();
+
+                    let content = '';
+                    $.each(response.data.data, function(index, data) {
+                        content += zoomList(index,
+                            data);
+
+                        console.log(content);
+
+                    });
+
+                    tableBody.html(content);
+                },
+                error: function(error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        }
+
+        let zoomId;
+
+
+        $(document).on('click', '.btn-copy', function() {
+            const zoomLink = $(this).data('link');
+
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(zoomLink).then(() => {
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: "Link Zoom berhasil disalin!",
+                        icon: "success"
+                    });
+                }).catch(err => {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Gagal menyalin link Zoom",
+                        icon: "error"
+                    });
+                    console.error("Clipboard error:", err);
+                });
+            } else {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Browser Anda tidak mendukung salin otomatis.",
+                    icon: "error"
+                });
+            }
+        });
+
+        $(document).on('click', '#delete-zoom-button', function() {
+            const id = $(this).data('id')
+            $('#modal-delete').modal('show')
+            $('#deleteForm').off('submit')
+            $('#deleteForm').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "DELETE",
+                    url: "{{ config('app.api_url') }}/api/zooms/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' +
+                            "{{ session('hummaclass-token') }}",
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        get(1)
+                        Swal.fire({
+                            title: "Sukses!",
+                            text: "Berhasil menghapus jadwal zoom",
+                            icon: "success"
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Gagal menghapus jadwal zoom",
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+        })
     </script>
 @endsection
