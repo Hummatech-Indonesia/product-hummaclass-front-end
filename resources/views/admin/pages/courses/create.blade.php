@@ -46,19 +46,17 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col col-md-6">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="" class="form-label">Title</label>
                         <input type="text" name="title" id="title" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="" class="form-label">Subtitle</label>
                         <textarea class="form-control" name="sub_title" id="sub_title" rows="1"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col col-md-12">
+                    <div class="col-12 col-md-12">
                         <label for="" class="form-label">Status</label>
                         <select name="is_premium" id="is_premium" class="form-select">
                             <option value="0">Gratis</option>
@@ -66,25 +64,25 @@
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6 mt-3" id="price-container">
+                    <div class="col-12 col-md-6 mt-3" id="price-container">
                         <label for="" class="form-label">Harga</label>
                         <input type="number" class="form-control" id="price" name="price">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6 mt-3" id="promotional-price-container" style="display: none">
+                    <div class="col-12 col-md-6 mt-3" id="promotional-price-container" style="display: none">
                         <label for="" class="form-label">Harga Promo (opsional)</label>
                         <input type="number" class="form-control" id="promotional_price" name="promotional_price">
                         <div class="invalid-feedback"></div>
                     </div>
 
-                    <div class="col col-md-6 mt-3">
+                    <div class="col-12 col-md-6 mt-3">
                         <label for="" class="form-label">Kategori</label>
                         <select name="category_id" id="category_id" class="form-select">
                             <option value="">Pilih Kategori</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6 mt-3">
+                    <div class="col-12 col-md-6 mt-3">
                         <label for="" class="form-label">Sub Kategori</label>
                         <select name="sub_category_id" id="sub_category_id" class="form-select">
                             <option value="">Pilih Sub Kategori</option>
@@ -92,6 +90,8 @@
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
+
+
 
                 <div class="mt-3">
                     <label for="" class="form-label">Deskripsi</label>

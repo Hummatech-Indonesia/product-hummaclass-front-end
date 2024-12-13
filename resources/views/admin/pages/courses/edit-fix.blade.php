@@ -32,47 +32,55 @@
         <div class="card-body">
             <form action="#" enctype="multipart/form-data" id="update-course-form">
                 <div class="row">
-                    <div class="col col-md-12">
-                        <label for="" class="form-label">Thumbnail</label><br>
-                        <img id="thumbnail" width="250" alt="thumbnail" srcset=""><br>
+                    <!-- Thumbnail -->
+                    <div class="col-12 mb-3">
+                        <label for="photo" class="form-label">Thumbnail</label><br>
+                        <img id="thumbnail" width="250" alt="thumbnail" srcset="" class="mb-3"><br>
                         <input type="file" name="photo" id="photo" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Title</label>
+
+                    <!-- Title -->
+                    <div class="col-md-6 mb-3">
+                        <label for="title" class="form-label">Title</label>
                         <input type="text" name="title" id="title" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Subtitle</label>
+
+                    <!-- Subtitle -->
+                    <div class="col-md-6 mb-3">
+                        <label for="sub_title" class="form-label">Subtitle</label>
                         <textarea class="form-control" name="sub_title" id="sub_title" rows="1"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Status</label>
-                        <select name="is_premium" id="is_premium" class="form-select">
 
+                    <!-- Status -->
+                    <div class="col-lg-6 mb-3">
+                        <label for="is_premium" class="form-label">Status</label>
+                        <select name="is_premium" id="is_premium" class="form-select">
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
-                        <label for="" class="form-label">Harga</label>
+
+                    <!-- Harga -->
+                    <div class="col-md-6 mb-3">
+                        <label for="price" class="form-label">Harga</label>
                         <input type="number" class="form-control" id="price" name="price">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6 mt-3">
-                        <label for="" class="form-label">Kategori</label>
+
+                    <!-- Kategori -->
+                    <div class="col-md-6 mb-3">
+                        <label for="category_id" class="form-label">Kategori</label>
                         <select name="category_id" id="category_id" class="form-select">
                             <option value="">Pilih Kategori</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6 mt-3">
-                        <label for="" class="form-label">Sub Kategori</label>
+
+                    <!-- Sub Kategori -->
+                    <div class="col-md-6 mb-3">
+                        <label for="sub_category_id" class="form-label">Sub Kategori</label>
                         <select name="sub_category_id" id="sub_category_id" class="form-select">
                             <option value="">Pilih Sub Kategori</option>
                         </select>
@@ -80,20 +88,18 @@
                     </div>
                 </div>
 
+                <!-- Deskripsi -->
                 <div class="mt-3">
-                    <label for="" class="form-label">Deskripsi</label>
-                    <textarea id="description" name="description"></textarea>
+                    <label for="description" class="form-label">Deskripsi</label>
+                    <textarea id="description" name="description" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
-                <div class="form-actions mt-3">
-                    <div class="text-end">
-                        <button type="reset" class="btn btn-danger text-white font-medium back">
-                            Kembali
-                        </button>
-                        <button type="submit" style="background-color: #9425FE;" class="btn text-white font-medium">
-                            Tambah
-                        </button>
-                    </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions mt-3 text-end">
+                    <button type="reset" class="btn btn-danger text-white font-medium back">Kembali</button>
+                    <button type="submit" style="background-color: #9425FE;"
+                        class="btn text-white font-medium">Tambah</button>
                 </div>
             </form>
         </div>
