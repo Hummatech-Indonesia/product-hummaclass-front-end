@@ -141,7 +141,6 @@
                         `;
             }
 
-
             function getCourseLearningPath(class_level, division_id) {
                 $.ajax({
                     type: "GET",
@@ -162,7 +161,15 @@
                                 courseLearningPathList(index,
                                     value)
                             );
+
+                            if (value.step) {
+                                selectedCourse.push(value.id)
+                            }
                         });
+
+                        console.log(selectedCourse);
+                        updateStep();
+
 
                         $('.submit-btn').click(function(e) {
                             e.preventDefault();
@@ -218,6 +225,7 @@
                                     updateStep();
                                 }
                             }
+                            console.log(selectedCourse);
                         });
                     },
                     error: function(xhr) {
@@ -232,10 +240,10 @@
 
 
             getCourseLearningPath(classId, divisionId);
-            
-            $('#search-form').submit(function (e) { 
+
+            $('#search-form').submit(function(e) {
                 e.preventDefault();
-                
+
                 getCourseLearningPath(classId, divisionId);
             });
         });
