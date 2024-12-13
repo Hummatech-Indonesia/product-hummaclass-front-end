@@ -83,7 +83,7 @@
                         const dataLength = response.data.length;
                         $('#school-year-list').empty();
                         $.each(response.data, function(indexInArray, valueOfElement) {
-                            const isActive = indexInArray + 1 == dataLength;
+                            const isActive = indexInArray == 0;
                             $('#school-year-list').append(
                                 schoolYearList(indexInArray, valueOfElement, isActive)
                             );
