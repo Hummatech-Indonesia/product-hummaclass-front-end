@@ -7,7 +7,7 @@
         let class_level;
         let changed = false;
 
-        function updatePositions() {
+        function updatePositions(id) {
             positions = [];
             const cards = document.querySelectorAll('#course-learning-path-list > .card');
             cards.forEach((card, index) => {
@@ -24,8 +24,8 @@
                 changed = true;
             } else {
                 $.ajax({
-                    type: "post",
-                    url: "{{ config('app.api_url') }}/api/learning-paths",
+                    type: "put",
+                    url: "{{ config('app.api_url') }}/api/learning-paths/" + id,
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -109,12 +109,14 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn-drag btn ms-auto position-absolute" style="height: 100%; right:0;background:#ECECEC;"><i
+                    <button class="btn-drag btn ms-auto position-absolute" data-id="${value.learning_path.id}" style="height: 100%; right:0;background:#ECECEC;"><i
                             class="fa fa-ellipsis-v"></i></button>
                 </div>
                 <div class="dropzone" style="height: 30px;"></div>
             `;
         }
+
+        let selectedDataId = null;
 
         function initDragAndDrop() {
             const cards = document.querySelectorAll('#course-learning-path-list > .card');
@@ -125,6 +127,8 @@
                 dragButton.addEventListener('mousedown', (event) => {
                     event.preventDefault();
                     onDragCard = card;
+
+                    selectedDataId = dragButton.getAttribute('data-id');
 
                     const rect = onDragCard.getBoundingClientRect();
                     onDragCard.classList.add('dragging');
@@ -183,7 +187,8 @@
                     selectedDropzone = null;
                     onDragCard = null;
 
-                    updatePositions();
+                    updatePositions(selectedDataId);
+                    selectedDataId = null;
                 }
             });
         }
