@@ -102,7 +102,7 @@
                         <div class="card position-relative w-100">
                             <div class="card-body align-items-center">
                                 <div class="stepcourse-${index} position-absolute rounded-circle d-none"></div>
-                                <input type="checkbox" id="course_check_${index}" data-index="${index}" class="course_check position-absolute d-none" value="${value.id}"/>
+                                <input type="checkbox" id="course_check_${index}" data-index="${index}" class="course_check position-absolute d-none" value="${value.id}" ${value.step? 'checked' : ''}/>
                                 <div class="row mt-2 gap-sm-2 align-items-center">
                                     <div class="col-12 col-md-2">
                                         <img src="{{ asset('assets/img/courses/course_thumb01.jpg') }}" alt="kursus.jpg"
@@ -156,20 +156,20 @@
                     dataType: "json",
                     success: function(response) {
                         $('#course-learning-path-list').empty();
+                        let courseEmpty = selectedCourse.length == 0;
                         $.each(response.data, function(index, value) {
                             $('#course-learning-path-list').append(
                                 courseLearningPathList(index,
                                     value)
                             );
 
-                            if (value.step) {
+                            if (value.step && courseEmpty) {
                                 selectedCourse.push(value.id)
                             }
                         });
 
                         console.log(selectedCourse);
                         updateStep();
-
 
                         $('.submit-btn').click(function(e) {
                             e.preventDefault();
