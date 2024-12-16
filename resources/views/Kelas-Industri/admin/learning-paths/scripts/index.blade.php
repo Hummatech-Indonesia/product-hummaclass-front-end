@@ -248,7 +248,8 @@
                             valueOfElement));
                     });
 
-                    getCourseLearningPath(class_level, division_id);
+                    getCourseLearningPath(class_level, $('.nav-division_id-link.active').data(
+                        'division_id'));
 
                     $('.nav-division_id-link').click(function(e) {
                         e.preventDefault();
