@@ -348,7 +348,7 @@
 
                             @if (session('user')['roles'][0]['name'] == 'student')
                                 {
-                                    if (course.is_learning_path) {
+                                    if (course.is_student) {
                                         $('#btn-checkout').text('Mulai Materi');
                                         $('#btn-checkout').click(function(e) {
                                             e.preventDefault();
