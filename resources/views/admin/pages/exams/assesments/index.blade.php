@@ -54,96 +54,97 @@
                     <h5 class="mb-3 fw-semibold">Form Penilaian</h5>
                     <form action="" action="" enctype="multipart/form-data">
                         <div class="table-responsive">
-                        <table id="demo-foo-addrow" class="table table-bordered m-t-30 contact-list" data-paging="true"
-                            data-paging-size="7">
-                            <thead>
-                                <tr>
-                                    <th rowspan="3" class="text-center align-middle">No</th>
-                                    <th rowspan="3" class="text-center align-middle">Komponen/Sub Komponen
-                                        Indikator
-                                    </th>
-                                    <th colspan="5" class="text-center">Kompeten</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">Sangat Baik</th>
-                                    <th class="text-center">Baik</th>
-                                    <th class="text-center">Cukup</th>
-                                    <th class="text-center">Kurang</th>
-                                    <th class="text-center">Sangat Kurang</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-center">5</th>
-                                    <th class="text-center">4</th>
-                                    <th class="text-center">3</th>
-                                    <th class="text-center">2</th>
-                                    <th class="text-center">1</th>
-                                </tr>
-                            </thead>
+                            <table id="demo-foo-addrow" class="table table-bordered m-t-30 contact-list" data-paging="true"
+                                data-paging-size="7">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="3" class="text-center align-middle">No</th>
+                                        <th rowspan="3" class="text-center align-middle">Komponen/Sub Komponen
+                                            Indikator
+                                        </th>
+                                        <th colspan="5" class="text-center">Kompeten</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Sangat Baik</th>
+                                        <th class="text-center">Baik</th>
+                                        <th class="text-center">Cukup</th>
+                                        <th class="text-center">Kurang</th>
+                                        <th class="text-center">Sangat Kurang</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">5</th>
+                                        <th class="text-center">4</th>
+                                        <th class="text-center">3</th>
+                                        <th class="text-center">2</th>
+                                        <th class="text-center">1</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody id="form-list">
-                                <tr>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                </tr>
-                                {{-- <div class="attitude-list"> --}}
-                                <tr>
-                                    <td>1</td>
-                                    <td>Menghargai orang sekitar dalam proses ujian</td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="genelia@gmail.com" id="email1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="+123456789" id="phone1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="designer" id="role1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="23" id="age1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="12-10-2014" id="date1">
-                                    </td>
-                                </tr>
-                                {{-- </div> --}}
+                                <tbody id="form-list">
+                                    <tr>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"><b>I</b></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"><b>SIKAP</b></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                    </tr>
+                                    {{-- <div class="attitude-list"> --}}
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Menghargai orang sekitar dalam proses ujian</td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="genelia@gmail.com" id="email1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="designer" id="role1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="23" id="age1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
+                                        </td>
+                                    </tr>
+                                    {{-- </div> --}}
 
-                                <tr>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                    <td class="custom-cell" style="background-color: #E8DEF3"></td>
-                                </tr>
-                                {{-- <div class="skill-list"> --}}
-                                <tr>
-                                    <td>1</td>
-                                    <td>Siswa mampu menjalankan dan membuat program di visual studio code</td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="genelia@gmail.com" id="email1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="+123456789" id="phone1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="designer" id="role1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="23" id="age1">
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="radio" name="skill" value="12-10-2014" id="date1">
-                                    </td>
-                                </tr>
-                                {{-- </div> --}}
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                        <td class="custom-cell" style="background-color: #E8DEF3"></td>
+                                    </tr>
+                                    {{-- <div class="skill-list"> --}}
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Siswa mampu menjalankan dan membuat program di visual studio code</td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="genelia@gmail.com"
+                                                id="email1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="+123456789" id="phone1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="designer" id="role1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="23" id="age1">
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="radio" name="skill" value="12-10-2014" id="date1">
+                                        </td>
+                                    </tr>
+                                    {{-- </div> --}}
+                                </tbody>
+                            </table>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn mb-1 waves-effect waves-light btn-primary border-0 px-4"
@@ -184,28 +185,27 @@
                         <div class="ms-3">
                             <h6 class="fs-3 fw-semibold mb-0">${student.student}</h6>
                         </div>
-                        <!-- Checkbox disembunyikan, karena akan dihandle oleh klik div -->
                         <input type="checkbox" class="student-checkbox d-none">
                     </div>
                     `;
                     });
 
                     classrooms += `
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingNested-${school.id}-${index}">
-                        <button class="accordion-button collapsed fs-4 fw-semibold classroom-accordion-button" data-division_id="${classroom.division.id}" data-class_level="${classroom.class_level}" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#flush-collapseNested-${school.id}-${index}"
-                            aria-expanded="false" aria-controls="flush-collapseNested-${school.id}-${index}">
-                            ${classroom.class_level} - ${classroom.name}
-                        </button>
-                    </h2>
-                    <div id="flush-collapseNested-${school.id}-${index}" class="accordion-collapse collapse"
-                        aria-labelledby="flush-headingNested-${school.id}-${index}" data-bs-parent="#accordionNestedExample">
-                        <div class="accordion-body fw-normal">
-                            ${students}
-                        </div>
-                    </div>
-                </div>`;
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingNested-${school.id}-${index}">
+                                <button class="accordion-button collapsed fs-4 fw-semibold classroom-accordion-button" data-division_id="${classroom.division.id}" data-class_level="${classroom.class_level}" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseNested-${school.id}-${index}"
+                                    aria-expanded="false" aria-controls="flush-collapseNested-${school.id}-${index}">
+                                    ${classroom.class_level} - ${classroom.name}
+                                </button>
+                            </h2>
+                            <div id="flush-collapseNested-${school.id}-${index}" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingNested-${school.id}-${index}" data-bs-parent="#accordionNestedExample">
+                                <div class="accordion-body fw-normal">
+                                    ${students}
+                                </div>
+                            </div>
+                        </div>`;
                 });
 
                 return `
