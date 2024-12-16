@@ -35,7 +35,7 @@
                         Peringkat
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('dashboard.students.events.index') ? 'active' : '' }}">
+                {{-- <li class="{{ request()->routeIs('dashboard.students.events.index') ? 'active' : '' }}">
                     <a href="{{ route('dashboard.students.events.index') }}">
                         <i class="fas fa-calendar-check"></i> <!-- Ikon Event -->
                         Event
@@ -46,7 +46,7 @@
                         <i class="fas fa-gift"></i> <!-- Ikon Hadiah -->
                         Hadiah
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ request()->routeIs('dashboard.payments.index') ? 'active' : '' }}">
                     <a href="#">
                         <i class="fas fa-credit-card"></i> <!-- Ikon Pembayaran -->
