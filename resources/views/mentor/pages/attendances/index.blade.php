@@ -184,7 +184,7 @@
             const id = $(this).data('id')
             const classroom_id = $(this).data('classroom_id')
             const title = $(this).data('title')
-            const school_id = $(this).data('school_id')
+            const school_id = $(this).data('school_id') 
             $('#edit-attendance-modal').modal('show')
             $('#classroom_id').val(classroom_id).trigger('change')
             $('#school_id').val(school_id).trigger('change')

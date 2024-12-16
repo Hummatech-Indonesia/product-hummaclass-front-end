@@ -67,7 +67,7 @@
                 <div class="card-body">
                     <h3 class="mb-4"><b>Pilihan Devisi</b></h3>
                     <!-- Nav tabs -->
-                    <div id="division-tab-list">
+                    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical" id="division-tab-list">
                     </div>
                 </div>
             </div>
@@ -77,9 +77,9 @@
             <div class="d-flex justify-content-between mb-3 gap-2">
                 <input type="text" name="search" id="search" class="form-control bg-white"
                     placeholder="Cari kursus.." style="max-width:250px;">
-                <button id="create-learning-path-button"
-                    class="btn text-white" style="background: #9425FE;"><i class="fa fa-plus fa-md"></i>
-                    <span class="ms-2">Tambah</span>    
+                <button id="create-learning-path-button" class="btn text-white" style="background: #9425FE;"><i
+                        class="fa fa-plus fa-md"></i>
+                    <span class="ms-2">Tambah</span>
                 </button>
             </div>
             <div id="course-learning-path-list">
