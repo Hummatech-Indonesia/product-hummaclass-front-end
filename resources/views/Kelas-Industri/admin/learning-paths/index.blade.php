@@ -75,8 +75,9 @@
         <div class="col-12 col-lg-9">
             <h3><b>Kursus</b></h3>
             <div class="d-flex justify-content-between mb-3 gap-2">
-                <input type="text" name="search" id="search" class="form-control bg-white"
-                    placeholder="Cari kursus.." style="max-width:250px;">
+                <div></div>
+                {{-- <input type="text" name="search" id="search" class="form-control bg-white"
+                    placeholder="Cari kursus.." style="max-width:250px;"> --}}
                 <button id="create-learning-path-button" class="btn text-white" style="background: #9425FE;"><i
                         class="fa fa-plus fa-md"></i>
                     <span class="ms-2">Tambah</span>

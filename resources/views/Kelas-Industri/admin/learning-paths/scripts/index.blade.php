@@ -110,8 +110,7 @@
                     <button class="btn-drag btn ms-auto position-absolute" data-id="${value.learning_path.id}" style="height: 100%; right:0;background:#ECECEC;"><i
                             class="fa fa-ellipsis-v"></i></button>
                 </div>
-                <div class="dropzone" style="height: 30px;"></div>
-            `;
+                `;
         }
 
         let selectedDataId = null;
@@ -248,9 +247,28 @@
                         $('#division-tab-list').append(divisionList(indexInArray,
                             valueOfElement));
                     });
-                    division_id = $('.nav-division_id-link.active').data('division_id')
 
-                    getCourseLearningPath(class_level, division_id)
+                    getCourseLearningPath(class_level, division_id);
+
+                    $('.nav-division_id-link').click(function(e) {
+                        e.preventDefault();
+
+                        let divisionId = $('.nav-division_id-link.active').data(
+                            'division_id');
+                        let classLevel = $('.nav-class_level-link.active').data(
+                            'class_level');
+                        getCourseLearningPath(classLevel, divisionId);
+                    });
+
+                    $('.nav-class_level-link').click(function(e) {
+                        e.preventDefault();
+
+                        let divisionId = $('.nav-division_id-link.active').data(
+                            'division_id');
+                        let classLevel = $('.nav-class_level-link.active').data(
+                            'class_level');
+                        getCourseLearningPath(classLevel, divisionId);
+                    });
                 },
                 error: function(xhr) {
                     Swal.fire({
