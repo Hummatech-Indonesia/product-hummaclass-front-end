@@ -84,7 +84,7 @@
 
                 return `
                     <div class="col-12 col-lg-4 col-md-6 d-flex mb-3"> 
-                        <div class="card rounded-4 shadow card-challenge h-100"> <!-- h-100 untuk membuat tinggi kartu konsisten -->
+                        <div class="card rounded-4 shadow card-challenge h-100 w-100"> 
                             <div class="card-header bg-transparent px-3 pb-4">
                                 <div class="row align-items-center">
                                     <div class="col-8 col-lg-8 col-md-8">
