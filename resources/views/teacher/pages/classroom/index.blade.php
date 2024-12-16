@@ -25,8 +25,7 @@
 
     <div class="row g-2 mb-3">
         <div class="col-12 col-lg-3">
-            <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF" id="placeholder"
-                placeholder="Cari...">
+            <input type="text" name="search" id="search" placeholder="Cari.." class="form-control bg-white">
         </div>
         <div class="col-12 col-lg-5">
             <div class="row g-2">
@@ -63,17 +62,25 @@
     <script>
         $(document).ready(function() {
 
+            let debounceTimer;
+
+            $('#search').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    get(1)
+                }, 500);
+            });
+
             function get(page) {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}/api/teacher/classrooms",
+                    url: "{{ config('app.api_url') }}/api/teacher/classrooms?page=" + page,
                     headers: {
                         Authorization: 'Bearer {{ session('hummaclass-token') }}'
                     },
                     dataType: "json",
                     data: {
-                        name: $('#placeholder').val(),
-                        page: page 
+                        search: $('#search').val(),
                     },
                     success: function(response) {
                         console.log('Response:', response);

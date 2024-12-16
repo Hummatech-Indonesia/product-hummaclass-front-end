@@ -1,8 +1,7 @@
 <script>
-
-    $(document).ready(function () {
+    $(document).ready(function() {
         let debounceTimer;
-    
+
         $('#search').keyup(function() {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(function() {
@@ -10,7 +9,7 @@
             }, 500);
         });
 
-        function notData(){
+        function notData() {
             return `
                 <tr>
                     <td colspan="7" class="text-center">
@@ -19,7 +18,7 @@
                 </tr>
             `
         }
-    
+
         function journalList(index, value) {
             return `
                 <tr>
@@ -56,25 +55,26 @@
                 </tr>
             `
         }
-    
+
         function getJournalTeacher(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}/api/journals",
+                url: "{{ config('app.api_url') }}/api/journals?page=" + page,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
                 data: {
-                    search:$('#search').val(),
+                    search: $('#search').val(),
                 },
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     $('#journal-list').empty();
-                    if (response.data.length === 0) {
+                    if (response.data.data.length === 0) {
                         $('#journal-list').append(notData());
                     } else {
-                        $.each(response.data, function (indexInArray, valueOfElement) { 
-                            $('#journal-list').append(journalList(indexInArray, valueOfElement));
+                        $.each(response.data.data, function(indexInArray, valueOfElement) {
+                            $('#journal-list').append(journalList(indexInArray,
+                                valueOfElement));
                         });
                     }
                 },
@@ -87,8 +87,7 @@
                 }
             });
         }
-    
+
         getJournalTeacher(1);
     });
-
 </script>
