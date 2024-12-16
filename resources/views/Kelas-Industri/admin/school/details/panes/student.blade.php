@@ -110,7 +110,7 @@
                                     </svg>
                                 </button>
                                 <button class="btn btn-sm text-white btn-warning" id="edit-student-button" data-id="${value.id}">
-                                    <i class="fa fa-trash fa-md"></i>
+                                    <i class="fa fa-edit fa-md"></i>
                                 </button>
                                 <button class="btn btn-sm text-white btn-danger" id="delete-modal-button" data-id="${value.id}">
                                     <i class="fa fa-trash fa-md"></i>
