@@ -129,7 +129,8 @@
             <div class="row" id="detail-course">
                 <div class="col-xl-9 col-lg-8">
                     <div class="courses__details-thumb">
-                        <img src="" id="photo" alt="img" width="100%" style="height: 450px; object-fit:cover;">
+                        <img src="" id="photo" alt="img" width="100%"
+                            style="height: 450px; object-fit:cover;">
                     </div>
                     <div class="courses__details-content">
                         <ul class="courses__item-meta list-wrap">
@@ -284,184 +285,223 @@
                 </div>
             `;
             }
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
-                headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                },
-                dataType: "json",
-                success: function(response) {
-                    console.log(response);
-                    course = response.data;
 
-                    // console.log(response.data.user_course.is_pre_test);
-                    if (response.data.user_course) {
-                        if (response.data.user_course.has_pre_test == 0) {
-                            $('#btn-checkout').text('Mulai Pre Test');
-                            $('#btn-lesson').text('Mulai Pre Test');
-                            $('#btn-checkout').attr('href', "{{ route('pre.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('#btn-lesson').attr('href', "{{ route('pre.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
-                        } else if (response.data.user_course.has_pre_test == 1 && response.data
-                            .user_course.has_post_test == 0) {
-                            $('#btn-checkout').text('Mulai Post Test');
-                            $('#btn-lesson').text('Mulai Post Test');
-                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
-                                response.data.course_test_id);
-                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
-                        } else if (response.data.user_course.has_pre_test == 1 && response.data
-                            .user_course.has_post_test == 1) {
-                            document.getElementById('certificate-download').style.display = 'block';
-                            $('#btn-checkout').text('Lanjutkan');
-                            $('#btn-lesson').text('Lanjutkan');
-                            $('#btn-checkout').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                            $('#btn-lesson').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
+            function getCourseDetail() {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                        course = response.data;
+
+                        console.log(response.data.user_course);
+                        if (response.data.user_course) {
+                            if (response.data.user_course.has_pre_test == 0) {
+                                $('#btn-checkout').text('Mulai Pre Test');
+                                $('#btn-lesson').text('Mulai Pre Test');
+                                $('#btn-checkout').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                    response.data.course_test_id);
+                                $('#btn-lesson').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                    response.data.course_test_id);
+                                $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                                $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            } else if (response.data.user_course.has_pre_test == 1 && response.data
+                                .user_course.has_post_test == 0) {
+                                $('#btn-checkout').text('Mulai Post Test');
+                                $('#btn-lesson').text('Mulai Post Test');
+                                $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
+                                    response.data.course_test_id);
+                                $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
+                                    response.data.course_test_id);
+                                $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                                $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            } else if (response.data.user_course.has_pre_test == 1 && response.data
+                                .user_course.has_post_test == 1) {
+                                document.getElementById('certificate-download').style.display = 'block';
+                                $('#btn-checkout').text('Lanjutkan');
+                                $('#btn-lesson').text('Lanjutkan');
+                                $('#btn-checkout').attr('href',
+                                    "{{ route('courses.course-lesson.index', '') }}/" +
+                                    response.data.user_course.sub_module.slug);
+                                $('#btn-lesson').attr('href',
+                                    "{{ route('courses.course-lesson.index', '') }}/" +
+                                    response.data.user_course.sub_module.slug);
+                            } else {
+                                $('#btn-checkout').text('Lanjutkan');
+                                $('#btn-lesson').text('Lanjutkan');
+                                $('#btn-checkout').attr('href',
+                                    "{{ route('courses.course-lesson.index', '') }}/" +
+                                    response.data.user_course.sub_module.slug);
+                                $('#btn-lesson').attr('href',
+                                    "{{ route('courses.course-lesson.index', '') }}/" +
+                                    response.data.user_course.sub_module.slug);
+                            }
+                            document.getElementById('courses-detail-sidebar').style.display = 'none';
+                            document.getElementById('sidebar-tab-review').style.display = 'block';
                         } else {
-                            $('#btn-checkout').text('Lanjutkan');
-                            $('#btn-lesson').text('Lanjutkan');
-                            $('#btn-checkout').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                            $('#btn-lesson').attr('href',
-                                "{{ route('courses.course-lesson.index', '') }}/" +
-                                response.data.user_course.sub_module.slug);
-                        }
-                        document.getElementById('courses-detail-sidebar').style.display = 'none';
-                        document.getElementById('sidebar-tab-review').style.display = 'block';
-                    } else {
-                        document.getElementById('courses-detail-sidebar').style.display = 'block';
-                        document.getElementById('sidebar-tab-review').style.display = 'none';
-                    }
+                            document.getElementById('courses-detail-sidebar').style.display = 'block';
+                            document.getElementById('sidebar-tab-review').style.display = 'none';
 
+                            @if (session('user')['roles'][0]['name'] == 'student')
+                                {
+                                    if (course.is_learning_path) {
+                                        $('#btn-checkout').text('Mulai Materi');
+                                        $('#btn-checkout').click(function(e) {
+                                            e.preventDefault();
+                                            $.ajax({
+                                                type: "post",
+                                                url: "{{ config('app.api_url') }}/api/student/lesson-start/" +
+                                                    id,
+                                                headers: {
+                                                    Authorization: 'Bearer ' +
+                                                        "{{ session('hummaclass-token') }}",
+                                                    Accept: 'application/json'
+                                                },
+                                                dataType: "json",
+                                                success: function(response) {
+                                                    if (!response.data
+                                                        .has_pre_test) {
+                                                        window.location.href =
+                                                            "{{ route('pre.test.index', '') }}/" +
+                                                            response.data.course
+                                                            .course_test_id;
+                                                    } else {
+                                                        window.location.href =
+                                                            "{{ route('courses.course-lesson.index', '') }}/" +
+                                                            response.data
+                                                            .sub_module.slug;
+                                                    }
+                                                },
+                                                error: function(xhr) {
 
-                    // console.log(response.data.course_reviews);
-
-                    response.data.course_reviews.forEach((review) => {
-                        $('#review-content').append(reviewContent(review));
-                    });
-
-                    // } else {
-                    //     $('#review-content').append(empty());
-                    // }
-
-                    const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data.photo) 
-                        ? response.data.photo 
-                        : "{{ asset('assets/img/no-image/no-image.jpg') }}";
-                    $('#photo').attr('src', photo);
-
-                    $('#sub-title').append(response.data.sub_title);
-                    $('#detail-title').append(response.data.title);
-                    $('#currentBreadcrumb').html(response.data.title).attr('href', '/courses/courses/' +
-                        response.data.slug);
-                    $('#detail-category').append(response.data.sub_category.name);
-                    $('#detail-count-user').append(response.data.user_courses_count);
-                    $('#detail-date').append(formatDate(response.data.created));
-                    $('#detail-rating').append(response.data.rating);
-                    $('#price-course').html(formatRupiah(response.data.promotional_price ?? response
-                        .data
-                        .price));
-                    if (response.data.is_admin) {
-                        $('#btn-checkout').text('Lihat Kursus');
-                    }
-
-
-                    // tab deskripsi
-                    $('#description-title').append(response.data.title);
-                    $('#description-description').append(response.data.description);
-                    $.each(response.data.modules, function(index, value) {
-                        $('#module-content').append(moduleContent(index, value));
-                    });
-
-                    // tab konten kursus
-
-                    // tab ulasan
-                    $('#review-rating').append(response.data.rating);
-                    $('#review-rating-count').append(response.data.course_review_count);
-                    // $('#review-users').append(response.data.course_reviews.user.name);
-                    // console.log(response.data.course_reviews);
-
-
-                    response.data.course_reviews.forEach(review => {
-                        console.log(review.user.name);
-
-                    });
-
-
-                    $(document).on('click', '.addReviews', function() {
-                        $('#modal-create-review').modal('show');
-                    });
-
-                    $('#course_id').val(response.data.id);
-
-                    $('.storeConfirmation').click(function(e) {
-                        e.preventDefault();
-
-                        let formData = new FormData($('#form-create-review')[0]);
-
-                        $.ajax({
-                            type: "POST",
-                            url: "{{ config('app.api_url') }}/api/course-reviews/" +
-                                response.data.id,
-                            headers: {
-                                Authorization: 'Bearer ' +
-                                    "{{ session('hummaclass-token') }}",
-                            },
-                            data: formData,
-                            dataType: "json",
-                            processData: false,
-                            contentType: false,
-                            success: function(response) {
-                                $('#modal-create-review').modal('hide');
-                                Swal.fire({
-                                    title: "Berhasil!",
-                                    text: response.meta.message,
-                                    icon: "success"
-                                });
-                                get(1);
-                            },
-                            error: function(response) {
-                                let errorMessages = [];
-
-                                if (response.responseJSON && response.responseJSON
-                                    .errors) {
-                                    $.each(response.responseJSON.errors, function(
-                                        field, messages) {
-                                        $.each(messages, function(index,
-                                            message) {
-                                            errorMessages.push(
-                                                message);
+                                                }
+                                            });
                                         });
+                                    @endif
+                                }
+                            }
+                        }
+                        response.data.course_reviews.forEach((review) => {
+                            $('#review-content').append(reviewContent(review));
+                        });
+
+                        const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data
+                                .photo) ?
+                            response.data.photo :
+                            "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                        $('#photo').attr('src', photo);
+
+                        $('#sub-title').append(response.data.sub_title);
+                        $('#detail-title').append(response.data.title);
+                        $('#currentBreadcrumb').html(response.data.title).attr('href',
+                            '/courses/courses/' +
+                            response.data.slug);
+                        $('#detail-category').append(response.data.sub_category.name);
+                        $('#detail-count-user').append(response.data.user_courses_count);
+                        $('#detail-date').append(formatDate(response.data.created));
+                        $('#detail-rating').append(response.data.rating);
+                        $('#price-course').html(formatRupiah(response.data.promotional_price ?? response
+                            .data
+                            .price));
+                        if (response.data.is_admin) {
+                            $('#btn-checkout').text('Lihat Kursus');
+                        }
+
+
+                        // tab deskripsi
+                        $('#description-title').append(response.data.title);
+                        $('#description-description').append(response.data.description);
+                        $.each(response.data.modules, function(index, value) {
+                            $('#module-content').append(moduleContent(index, value));
+                        });
+
+                        // tab konten kursus
+
+                        // tab ulasan
+                        $('#review-rating').append(response.data.rating);
+                        $('#review-rating-count').append(response.data.course_review_count);
+                        // $('#review-users').append(response.data.course_reviews.user.name);
+                        // console.log(response.data.course_reviews);
+
+
+                        response.data.course_reviews.forEach(review => {
+                            console.log(review.user.name);
+
+                        });
+
+
+                        $(document).on('click', '.addReviews', function() {
+                            $('#modal-create-review').modal('show');
+                        });
+
+                        $('#course_id').val(response.data.id);
+
+                        $('.storeConfirmation').click(function(e) {
+                            e.preventDefault();
+
+                            let formData = new FormData($('#form-create-review')[0]);
+
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ config('app.api_url') }}/api/course-reviews/" +
+                                    response.data.id,
+                                headers: {
+                                    Authorization: 'Bearer ' +
+                                        "{{ session('hummaclass-token') }}",
+                                },
+                                data: formData,
+                                dataType: "json",
+                                processData: false,
+                                contentType: false,
+                                success: function(response) {
+                                    $('#modal-create-review').modal('hide');
+                                    Swal.fire({
+                                        title: "Berhasil!",
+                                        text: response.meta.message,
+                                        icon: "success"
+                                    });
+                                    get(1);
+                                },
+                                error: function(response) {
+                                    let errorMessages = [];
+
+                                    if (response.responseJSON && response
+                                        .responseJSON
+                                        .errors) {
+                                        $.each(response.responseJSON.errors,
+                                            function(
+                                                field, messages) {
+                                                $.each(messages, function(index,
+                                                    message) {
+                                                    errorMessages.push(
+                                                        message);
+                                                });
+                                            });
+                                    }
+
+                                    Swal.fire({
+                                        title: "Terjadi Kesalahan!",
+                                        html: errorMessages.join('<br>'),
+                                        icon: "error"
                                     });
                                 }
-
-                                Swal.fire({
-                                    title: "Terjadi Kesalahan!",
-                                    html: errorMessages.join('<br>'),
-                                    icon: "error"
-                                });
-                            }
+                            });
                         });
-                    });
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
-                        icon: "error"
-                    });
-                }
-            });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Tidak dapat memuat data kategori.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+            getCourseDetail();
 
             function moduleContent(index, value) {
 
