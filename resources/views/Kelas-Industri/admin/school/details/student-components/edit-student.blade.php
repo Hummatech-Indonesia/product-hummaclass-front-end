@@ -7,39 +7,39 @@
             </div>
             <div class="card-body">
                 <div class="row mb-3">
-                    <div class="col col-6">
+                    <div class="col-12 col-lg-6 mb-3">
                         <label for="name" class="form-label">Nama</label>
                         <input type="text" name="name" id="name" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-6">
+                    <div class="col-12 col-lg-6">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col col-6">
+                    <div class="col-12 col-lg-6 mb-3">
                         <label for="phone_number" class="form-label">Nomor Telepon</label>
                         <input type="text" name="phone_number" id="phone_number" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-6">
+                    <div class="col-12 col-lg-6">
                         <label for="nisn" class="form-label">Nomor induk siswa nasional</label>
                         <input type="text" name="nisn" id="nisn" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col col-6">
-                        <label for="gender" class="form-label">Gender</label>
+                    <div class="col-12 col-lg-6 mb-3">
+                        <label for="gender" class="form-label">Jenis Kelamin</label>
                         <select name="gender" id="gender" class="form-control">
                             <option value="male">Laki-laki</option>
                             <option value="female">Perempuan</option>
                         </select>
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-6">
+                    <div class="col-12 col-lg-6">
                         <label for="date_birth" class="form-label">Tanggal Lahir</label>
                         <input type="date" name="date_birth" id="date_birth" class="form-control">
                         <div class="invalid-feedback"></div>

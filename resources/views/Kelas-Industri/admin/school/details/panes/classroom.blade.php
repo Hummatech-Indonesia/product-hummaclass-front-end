@@ -27,19 +27,19 @@
                     </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="card position-relative border-1 col-6" id="card_teacher">
+            <div class="row px-3">
+                <div class="card position-relative border-1 col-lg-6" id="card_teacher">
                 </div>
-                <div class="card position-relative border-1 col-6" id="card_mentor">
+                <div class="card position-relative border-1 col-lg-6" id="card_mentor">
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Daftar Siswa</h5>
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between gap-2">
                         <form action="">
-                            <div class="d-flex gap-3 mb-3 mt-3">
+                            <div class="d-flex gap-3">
                                 <div class="position-relative">
                                     <input type="text" class="form-control product-search px-4 ps-5"
                                         style="background-color: #fff" id="search-name" name="name" value=""
@@ -52,7 +52,7 @@
                         <div class="">
                             <button class="btn" id="add-student-classroom" data-bs-toggle="modal"
                                 style="background-color: #9425FE;color:white" data-bs-target="#modal-student">Tambah
-                                Siswa</button>
+                                <span class="d-none d-sm-inline">Siswa</span></button>
                         </div>
                     </div>
                     <div class="table-responsive rounded-2 mb-4 mt-4">
@@ -165,7 +165,11 @@
 
                             $('#pagination_student').html(handlePaginate(response.data.paginate));
                         } else {
-                            $('#table-user-classroom').append(`<div>${emptyCard()}</div>`);
+                           $('#table-user-classroom').append(`
+                            <tr>
+                                <td colspan="4" class="text-center">${emptyCard()}</td>
+                            </tr>
+                        `);
                         }
                     },
                     error: function(response) {

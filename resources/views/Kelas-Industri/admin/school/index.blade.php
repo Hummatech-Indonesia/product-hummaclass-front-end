@@ -85,14 +85,14 @@
         <form action="" class="position-relative d-flex">
             <input type="text" class="form-control product-search px-4 ps-5" name="title"
                 value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
-                placeholder="Search">
+                placeholder="Cari...">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
         <a href="/admin/class/create-school" class="btn text-white" style="background-color: #7209DB">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="d-none d-sm-inline">
                 <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
             </svg>
-            Tambah Sekolah
+            Tambah <span class="d-none d-sm-inline">Sekolah</span>
         </a>
     </div>
 

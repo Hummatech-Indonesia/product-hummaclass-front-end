@@ -56,68 +56,67 @@
     </div>
 
     <!-- Form Card -->
-    <section class="container my-4">
-        <div class="card form-container shadow p-4">
-            <h2 class="text-start mb-2">Tambah Sekolah</h2>
-            <form method="post" id="create-school" enctype="multipart/form-data">
-                @csrf
-                <div class="row mb-3">
-                    <div class="col col-md-6 mb-3">
-                        <label for="name" class="form-label">Nama Sekolah</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="col col-md-6 mb-3">
-                        <label for="head_master" class="form-label">Nama Kepala Sekolah</label>
-                        <input type="text" class="form-control" id="head_master" name="head_master">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                </div>
+    <div class="card form-container shadow p-4">
+        <h3 class="text-start mb-3">Tambah Sekolah</h3>
+        <form method="post" id="create-school" enctype="multipart/form-data">
+            @csrf
 
-                <div class="row mb-3">
-                    <div class="col col-md-6 mb-3">
-                        <label for="npsn" class="form-label">NPSN</label>
-                        <input type="number" class="form-control" id="npsn" name="npsn">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="col col-md-6 mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
-                        <div class="invalid-feedback"></div>
-                    </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="name" class="form-label">Nama Sekolah</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                    <div class="invalid-feedback"></div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col col-md-6 mb-3">
-                        <label for="photo" class="form-label">Logo Sekolah</label>
-                        <input type="file" class="form-control" id="photo" name="photo">
-                        <div class="invalid-feedback"></div>
-                    </div>
-                    <div class="col col-md-6 mb-3">
-                        <label for="phone_number" class="form-label">Nomer Telepon</label>
-                        <input type="number" class="form-control" id="phone_number" name="phone_number">
-                        <div class="invalid-feedback"></div>
-                    </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="head_master" class="form-label">Nama Kepala Sekolah</label>
+                    <input type="text" class="form-control" id="head_master" name="head_master">
+                    <div class="invalid-feedback"></div>
                 </div>
-                <div class="row mb-3">
-                    <div class="mb-3 col">
-                        <label for="address" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="address" name="address" rows="3"></textarea>
-                        <div class="invalid-feedback"></div>
-                    </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="npsn" class="form-label">NPSN</label>
+                    <input type="number" class="form-control" id="npsn" name="npsn">
+                    <div class="invalid-feedback"></div>
                 </div>
-                <div class="row mb-3">
-                    <div class="mb-3 col">
-                        <label for="description" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                        <div class="invalid-feedback"></div>
-                    </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <div class="invalid-feedback"></div>
                 </div>
-                <div class="text-end">
-                    <button type="submit" class="btn" style="background-color: #7209DB;color: white;">Tambah</button>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="photo" class="form-label">Logo Sekolah</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                    <div class="invalid-feedback"></div>
                 </div>
-            </form>
-        </div>
-    </section>
+                <div class="col-12 col-md-6 mb-3">
+                    <label for="phone_number" class="form-label">Nomer Telepon</label>
+                    <input type="number" class="form-control" id="phone_number" name="phone_number">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3 col">
+                    <label for="address" class="form-label">Alamat</label>
+                    <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="mb-3 col">
+                    <label for="description" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn" style="background-color: #7209DB;color: white;">Tambah</button>
+            </div>
+        </form>
+    </div>
 @endsection
 @section('script')
     <script>
