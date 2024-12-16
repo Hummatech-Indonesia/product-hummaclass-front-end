@@ -81,17 +81,14 @@
 
     <div class="d-flex justify-content-between mt-2">
         <form action="" class="position-relative d-flex">
-            <input type="text" class="form-control product-search px-4 ps-5" name="title"
-                value="{{ old('title', request('title')) }}" id="search-name" style="background-color: #fff"
+            <input type="text" class="form-control product-search px-4 ps-5" name="seacrh" id="search"
+                value="{{ old('seacrh', request('seacrh')) }}" id="search-name" style="background-color: #fff"
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
     </div>
 
-    <div class="row mt-4" id="list-card">
-        @foreach (range(1, 10) as $index => $item)
-        @endforeach
-    </div>
+    <div class="row mt-4" id="list-card"></div>
     <div class="d-flex justify-content-center">
         <nav id="pagination">
 
@@ -102,65 +99,83 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $.ajax({
-                type: "get",
-                url: "{{ config('app.api_url') }}/api/mentor/classrooms",
-                headers: {
-                    Authorization: "Bearer {{ session('hummaclass-token') }}"
-                },
-                success: function(response) {
-                    let classroomList = '';
-                    response.data.forEach(classroom => {
-                        classroomList += `
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="card rounded-4 shadow">
-                                <div class="card-header bg-transparent px-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-7 d-flex flex-column justify-content-center">
-                                            <h4 class="fw-bold p-0">${classroom.name}</h4>
-                                            <p class="fs-2 m-0">${classroom.school.name}</p>
-                                        </div>
+
+            let debounceTimer;
+            $('#search').keyup(function() {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(function() {
+                    fetchClass()
+                }, 500);
+            });
+
+            function classList(index, value){
+                return `        
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card rounded-4 shadow">
+                            <div class="card-header bg-transparent px-3">
+                                <div class="row align-items-center">
+                                    <div class="col-7 d-flex flex-column justify-content-center">
+                                        <h4 class="fw-bold p-0">${value.name}</h4>
+                                        <p class="fs-2 m-0">${value.school.name}</p>
                                     </div>
                                 </div>
-                                <div class="px-3 pb-3" style="max-width: 150px;">
-                                    <span
-                                    class="badge text-bg-purple"
-                                    >${classroom.division.name}</span>
-                                </div>
-                                <div class="card-body px-3 pt-0 pb-3">
-                                    
-                                    <div class="row">
-                                        <div class="row col align-items-center">
-                                            <div class="col-3  p-2">
-                                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
-                                                    class="img-fluid rounded-circle">
-                                            </div>
-                                            <div class="col p-0">
-                                                <h6 class="card-title fs-3 fw-semibold">Wali Kelas</h6>
-                                                <p class="card-text fs-2 text-muted">${classroom.teacher? classroom.teacher.user.name : '-'}</p>
-                                            </div>
+                            </div>
+                            <div class="px-3 pb-3" style="max-width: 150px;">
+                                <span
+                                class="badge text-bg-purple"
+                                >${value.division.name}</span>
+                            </div>
+                            <div class="card-body px-3 pt-0 pb-3">
+                                
+                                <div class="row">
+                                    <div class="row col align-items-center">
+                                        <div class="col-3  p-2">
+                                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
+                                                class="img-fluid rounded-circle">
                                         </div>
-                                        <div class="col-5">
-                                            <a href="{{ route('mentor.classroom.show', '') }}/${classroom.slug}"
-                                                class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
+                                        <div class="col p-0">
+                                            <h6 class="card-title fs-3 fw-semibold">Wali Kelas</h6>
+                                            <p class="card-text fs-2 text-muted">${value.teacher? value.teacher.user.name : '-'}</p>
                                         </div>
+                                    </div>
+                                    <div class="col-5">
+                                        <a href="{{ route('mentor.classroom.show', '') }}/${value.slug}"
+                                            class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                `
-                    });
+                    </div>
+                `   
+            }
 
-                    $('#list-card').append(classroomList);
-                },
-                error: function(xhr) {
-                    Swal.fire({
-                        title: "Terjadi Kesalahan!",
-                        text: xhr.responseJSON.meta.message,
-                        icon: "error"
-                    });
-                }
-            });
+            function fetchClass() {
+                $.ajax({
+                    type: "get",
+                    url: "{{ config('app.api_url') }}/api/mentor/classrooms",
+                    headers: {
+                        Authorization: "Bearer {{ session('hummaclass-token') }}"
+                    },
+                    data: {
+                        search: $('#search').val()
+                    },
+                    success: function(response) {
+                        $('#list-card').empty();
+                        $.each(response.data, function(index, value) {
+                            $('#list-card').append(classList(index, value));
+                        });
+                    },
+                    error: function(xhr) {
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: xhr.responseJSON.meta.message,
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            fetchClass();
         });
     </script>
 @endsection

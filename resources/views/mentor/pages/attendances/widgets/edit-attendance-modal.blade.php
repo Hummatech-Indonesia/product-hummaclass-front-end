@@ -8,6 +8,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <label for="classroom_id" class="form-label">Sekolah</label>
+                    <select name="" id="school_id" class="form-control school-id-form">
+                        <option value=""></option>
+                    </select>
                     <label for="classroom_id" class="form-label">Kelas</label>
                     <select name="classroom_id" id="classroom_id" class="form-control classroom-id-form">
                         <option value=""></option>

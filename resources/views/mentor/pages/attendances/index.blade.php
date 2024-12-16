@@ -77,7 +77,7 @@
                             <td>
                                 <ul class="d-flex gap-2">
                                     <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
-                                    <li><button data-id="${value.id}" data-title="${value.title}" data-classroom_id="${value.classroom_id}" id="edit-attendance-button" class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button></li>
+                                    <li><button data-id="${value.id}" data-title="${value.title}" data-classroom_id="${value.classroom_id}" data-school_id="${value.school_id}" id="edit-attendance-button" class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button></li>
                                     <li><button data-id="${value.id}" id="delete-attendance-button" class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
                                 </ul>
                             </td>
@@ -184,8 +184,10 @@
             const id = $(this).data('id')
             const classroom_id = $(this).data('classroom_id')
             const title = $(this).data('title')
+            const school_id = $(this).data('school_id')
             $('#edit-attendance-modal').modal('show')
-            $('#classroom_id').val(classroom_id)
+            $('#classroom_id').val(classroom_id).trigger('change')
+            $('#school_id').val(school_id).trigger('change')
             $('#title').val(title)
             $('#edit-attendance-form').off('submit')
             $('#edit-attendance-form').submit(function(e) {
