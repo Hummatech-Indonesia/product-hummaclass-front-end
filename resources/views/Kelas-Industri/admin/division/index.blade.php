@@ -122,6 +122,8 @@
                             $('#create-division-modal').modal('hide');
                             $('#create-name-input').val('');
                             getDivision();
+                            Swal.fire("Berhasil!", "Divisi berhasil dibuat.",
+                                "success");
                         },
                         error: function(xhr) {
                             alert(xhr)
@@ -152,6 +154,8 @@
                         success: function(response) {
                             $('#edit-division-modal').modal('hide');
                             getDivision();
+                            Swal.fire("Berhasil!", "Divisi berhasil diperbarui.",
+                                "success");
                         },
                         error: function(xhr) {
                             console.log(xhr);
@@ -177,6 +181,8 @@
                         success: function(response) {
                             $('#modal-delete').modal('hide');
                             getDivision();
+                            Swal.fire("Berhasil!", "Divisi berhasil dihapus.",
+                                "success");
                         },
                         error: function(xhr) {
                             alert(xhr)
