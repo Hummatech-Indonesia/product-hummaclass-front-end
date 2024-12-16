@@ -25,15 +25,16 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).on('click', '.add-sub-category', function() {
         const id = $(this).data('id');
         $('#modal-create-subcategory').modal('show');
-        addSubCategory(id)
+        addSubCategory(id);
     });
 
     function addSubCategory(id) {
-        $('#create-sub-category-form').submit(function(e) {
+        $('#create-sub-category-form').off('submit').on('submit', function(e) {
             e.preventDefault();
 
             var formData = new FormData(this);
@@ -51,12 +52,11 @@
                 success: function(response) {
                     Swal.fire({
                         title: "Sukses",
-                        text: "Berhasil menambah data data.",
+                        text: "Berhasil menambah data.",
                         icon: "success"
                     });
                     $('#modal-create-subcategory').modal('hide');
                     $('#modal-create-subcategory').find('input').val('');
-
                     get(1);
                 },
                 error: function(response) {
