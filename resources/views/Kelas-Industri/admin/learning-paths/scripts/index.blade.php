@@ -42,13 +42,11 @@
 
         function divisionList(index, value) {
             return `
-            <div class="nav flex-column nav-pills "  id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link nav-division_id-link ${index == 0 ? 'active' : ''}"  data-division_id="${value.id}" id="v-pills-${value.name}-tab" data-bs-toggle="pill"
                     href="#v-pills-${value.name}" role="tab" aria-controls="v-pills-${value.name}"
                     aria-selected="true">
                     ${value.name}
                 </a>
-            </div>
             `;
         }
 
@@ -265,7 +263,7 @@
         }
 
         getDivision(class_level);
-        
+
         $(document).on('click', '#create-learning-path-button', function(e) {
             e.preventDefault();
 
