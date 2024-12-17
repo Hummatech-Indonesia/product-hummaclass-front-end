@@ -38,7 +38,6 @@
                                     <li><i class="fas fa-star"></i></li>
                                     <li><i class="fas fa-star"></i></li>
                                 </ul>
-                                <span>(42)</span>
                             </div>
                         </div>
                     </li>
@@ -53,7 +52,6 @@
                                     <li><i class="fas fa-star"></i></li>
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                 </ul>
-                                <span>(23)</span>
                             </div>
                         </div>
                     </li>
@@ -68,7 +66,6 @@
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                 </ul>
-                                <span>(11)</span>
                             </div>
                         </div>
                     </li>
@@ -83,7 +80,6 @@
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                 </ul>
-                                <span>(7)</span>
                             </div>
                         </div>
                     </li>
@@ -98,7 +94,6 @@
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                     <li class="delete"><i class="fas fa-star"></i></li>
                                 </ul>
-                                <span>(3)</span>
                             </div>
                         </div>
                     </li>
