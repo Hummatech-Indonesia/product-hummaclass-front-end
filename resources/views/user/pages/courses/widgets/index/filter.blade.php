@@ -20,8 +20,7 @@
                     <span class="input-group-text">Rp</span>
                     <input type="number" id="maksimum" class="form-control" placeholder="Harga Maksimum">
                 </div>
-                <button id="filter_price" class="btn"
-                    style="background-color: #ffc224;color:black; width:100%">Terapkan</button>
+                
             </div>
         </div>
         <div class="courses-widget">
@@ -106,6 +105,8 @@
                 </ul>
             </div>
         </div>
+        <button id="filter_price" class="btn"
+                    style="background-color: #ffc224;color:black; width:100%">Terapkan</button>
     </aside>
 </div>
 

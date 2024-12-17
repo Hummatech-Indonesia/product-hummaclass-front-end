@@ -195,21 +195,37 @@
 
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
-                let price;
+                // let price;
+                // if (value.promotional_price != 0) {
+                //     price =
+                //         ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
+                // } else {
+                //     price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
+                // }
+
+                let originalPrice, promoPrice;
+
                 if (value.promotional_price != 0) {
-                    price =
-                        ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
+                    originalPrice = `<h6 class="price" style="font-size:20px; color: grey;">
+                                        <del>${formatRupiah(value.price)}</del>
+                                    </h6>`;
+                    promoPrice = `<h6 class="price" style="font-size:25px;">
+                                        ${formatRupiah(value.promotional_price)}
+                                </h6>`;
                 } else {
-                    price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
+                    originalPrice = `<h6 class="price" style="font-size:20px;">
+                                        ${formatRupiah(value.price)}
+                                    </h6>`;
                 }
+
                 return `<div class="col-lg-4">
-                <div class="courses__item shine__animate-item">
+                <div class="courses__item shine__animate-item p-0">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
                             <img src="${value.photo && value.photo !== '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
                         </a>
                     </div>
-                    <div class="courses__item-content">
+                    <div class="courses__item-content p-3">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
                                 <a class="sub_category">${value.sub_category}</a>
@@ -217,14 +233,10 @@
                             <li class="avg-rating"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
                         </ul>
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
+                        <p class="author">By <a href="#">David Millar</a></p>
                         <div class="courses__item-bottom">
-                            <div class="button">
-                                <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
-                                    <span class="text">Daftar</span>
-                                    <i class="flaticon-arrow-right"></i>
-                                </a>
-                            </div>
-                           ${price}
+                           ${promoPrice}
+                           ${originalPrice}
                         </div>
                     </div>
                 </div>
