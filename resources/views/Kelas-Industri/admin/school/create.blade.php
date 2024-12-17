@@ -61,7 +61,7 @@
         <form method="post" id="create-school" enctype="multipart/form-data">
             @csrf
 
-            <div class="row mb-3">
+            <div class="row mb-3">  
                 <div class="col-12 col-md-6 mb-3">
                     <label for="name" class="form-label">Nama Sekolah</label>
                     <input type="text" class="form-control" id="name" name="name">

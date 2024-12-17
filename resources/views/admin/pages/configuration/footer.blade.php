@@ -29,13 +29,13 @@
                 <h5 class="mb-0">Info</h5>
             </div>
             <div class="card-body">
-                <div class="row mt-3">
-                    <div class="col col-md-6">
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="" class="form-label">Email</label>
                         <input type="text" id="email" name="email" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col-12 col-md-6">
                         <label for="" class="form-label">Nomor Telepon</label>
                         <input type="text" id="phone_number" name="phone_number" class="form-control">
                         <div class="invalid-feedback"></div>
@@ -57,12 +57,12 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col col-md-6">
+                    <div class="col-12 col-md-6 mb-3">
                         <label for="" class="form-label">Facebook</label>
                         <input type="text" id="facebook" name="facebook" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col-12 col-md-6">
                         <label for="" class="form-label">Twitter</label>
                         <input type="text" id="twitter" name="twitter" class="form-control">
                         <div class="invalid-feedback"></div>

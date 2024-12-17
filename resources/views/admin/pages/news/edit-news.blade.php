@@ -64,7 +64,7 @@
                 <a href="{{ route('admin.news.index') }}" class="btn text-white me-2"
                     style="background-color: #DB0909">Batal</a>
                 <button type="submit" class="btn text-white"
-                    style="background-color: var(--purple-primary)">Tambah</button>
+                    style="background-color: var(--purple-primary)">Simpan</button>
             </div>
         </form>
     </div>

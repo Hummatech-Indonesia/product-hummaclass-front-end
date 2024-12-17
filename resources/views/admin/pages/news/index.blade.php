@@ -42,7 +42,7 @@
     </div>
 
     <div class="mb-3">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between gap-2    ">
             <form action="" class="d-flex gap-3">
                 <div class="position-relative">
                     <input type="text" class="form-control product-search px-4 ps-5" style="background-color: #fff"
@@ -54,12 +54,12 @@
             <div>
                 <a href="{{ route('admin.news.create') }}" class="btn text-white"
                     style="background-color: var(--purple-primary)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="d-none d-sm-inline">
                         <path fill="currentColor"
                             d="M19.875 3H4.125C2.953 3 2 3.897 2 5v14c0 1.103.953 2 2.125 2h15.75C21.047 21 22 20.103 22 19V5c0-1.103-.953-2-2.125-2m0 16H4.125c-.057 0-.096-.016-.113-.016q-.01 0-.012.008L3.988 5.046c.007-.01.052-.046.137-.046h15.75c.079.001.122.028.125.008l.012 13.946c-.007.01-.052.046-.137.046" />
                         <path fill="currentColor" d="M6 7h6v6H6zm7 8H6v2h12v-2h-4zm1-4h4v2h-4zm0-4h4v2h-4z" />
                     </svg>
-                    Tambah Berita
+                    Tambah <span class="d-none d-sm-inline"> Berita</span>
                 </a>
             </div>
         </div>
