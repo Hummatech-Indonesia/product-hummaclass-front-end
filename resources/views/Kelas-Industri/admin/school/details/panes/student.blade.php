@@ -97,8 +97,7 @@
                         <td>${value.nisn}</td>
                         <td>
                             <div class="d-flex gap-1">
-                                <button class="btn btn-sm text-white" data-bs-toggle="modal"
-                                    data-bs-target="#modal-detail-student"
+                                <button class="btn btn-sm text-white" id="detail-student-button" data-name="${value.name}" data-gender="${value.gender}" data-nisn="${value.nisn}" data-email="${value.email}" data-address="${value.address}" data-phone-number="${value.phone_number}" data-date-birth="${value.date_birth}"
                                     style="background-color: #9425FE">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -120,6 +119,39 @@
                     </tr>
                 `
             }
+
+            function formatDate(dateString) {
+                const months = [
+                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                ]
+
+                const [year, month, day] = dateString.split('-') // Pecah format "YYYY-MM-DD"
+                const formattedDay = parseInt(day) // Menghapus 0 di depan angka jika ada
+                const monthName = months[parseInt(month) - 1] // Ambil nama bulan dari array
+
+                return `${formattedDay} ${monthName} ${year}` // Gabungkan ke format yang diinginkan
+            }
+
+            $(document).on('click', '#detail-student-button', function() {
+                $('#detail-student-modal').modal('show')
+                const name = $(this).data('name')
+                const address = $(this).data('address')
+                const email = $(this).data('email')
+                const phone_number = $(this).data('phone_number')
+                const date_birth = $(this).data('date-birth')
+                const gender = $(this).data('gender')
+                const nisn = $(this).data('nisn')
+                $('#name-detail').text(name)
+                $('#address-detail').text(address)
+                $('#email-detail').text(email)
+                $('#phone-number-detail').text(phone_number)
+                $('#date-birth-detail').text(formatDate(date_birth))
+                $('#gender-detail').text(gender)
+                $('#nisn-detail').text(nisn)
+            })
+
+
 
             $(document).on('click', '#import-student-button', function() {
                 $('#import-student-modal').modal('show')

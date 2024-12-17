@@ -165,7 +165,7 @@
 
                             $('#pagination_student').html(handlePaginate(response.data.paginate));
                         } else {
-                           $('#table-user-classroom').append(`
+                            $('#table-user-classroom').append(`
                             <tr>
                                 <td colspan="4" class="text-center">${emptyCard()}</td>
                             </tr>
@@ -465,7 +465,7 @@
                                 class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
                                 height="40" alt="">
                             <div class="ms-3">
-                                <h6 class="fs-4 fw-semibold mb-0">${value.student.name}</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">${value.student}</h6>
                                 <span class="fw-normal">${value.email}</span>
                             </div>
                         </div>
@@ -474,8 +474,7 @@
                     <td>${value.nisn}</td>
                     <td>
                         <div class="d-flex gap-1">
-                            <button class="btn btn-sm text-white" data-bs-toggle="modal"
-                                data-bs-target="#modal-detail-student"
+                            <button class="btn btn-sm text-white" id="detail-student-button" data-name="${value.student}" data-email="${value.email}" data-gender="${value.gender}" data-nisn="${value.nisn}" data-date-birth="${value.date_birth}" data-address="${value.address}" data-phone-number="${value.phone_number}"
                                 style="background-color: #9425FE">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24">
@@ -509,6 +508,37 @@
                     </div>
                 </li>`;
             }
+
+            function formatDate(dateString) {
+                const months = [
+                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                ]
+
+                const [year, month, day] = dateString.split('-') // Pecah format "YYYY-MM-DD"
+                const formattedDay = parseInt(day) // Menghapus 0 di depan angka jika ada
+                const monthName = months[parseInt(month) - 1] // Ambil nama bulan dari array
+
+                return `${formattedDay} ${monthName} ${year}` // Gabungkan ke format yang diinginkan
+            }
+
+            $(document).on('click', '#detail-student-button', function() {
+                $('#detail-student-modal').modal('show')
+                const name = $(this).data('name')
+                const address = $(this).data('address')
+                const email = $(this).data('email')
+                const phone_number = $(this).data('phone-number')
+                const date_birth = $(this).data('date-birth')
+                const gender = $(this).data('gender')
+                const nisn = $(this).data('nisn')
+                $('#name-detail').text(name)
+                $('#address-detail').text(address)
+                $('#email-detail').text(email)
+                $('#phone-number-detail').text(phone_number)
+                $('#date-birth-detail').text(formatDate(date_birth))
+                $('#gender-detail').text(gender)
+                $('#nisn-detail').text(nisn)
+            })
         });
     </script>
 @endpush
