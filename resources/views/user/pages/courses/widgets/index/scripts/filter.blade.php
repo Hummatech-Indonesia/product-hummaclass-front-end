@@ -14,6 +14,7 @@
             if (paramCourses != null) {
                 handleGetCourses(1, {
                     'categories': paramCourses,
+                    'rating': paramCourses,
                 });
             }
 
@@ -21,15 +22,30 @@
                 'categories': ["{{ request()->subCategory }}"],
                 'minimum': null,
                 'maximum': null,
-                'title': null
+                'title': null,
+                'rating': null,
             }
             $('#filter_price').click(function(e) {
                 e.preventDefault();
 
                 filter.maximum = $('#maksimum').val();
                 filter.minimum = $('#minimum').val();
+                filter.rating = $('#')
                 handleGetCourses(1, filter);
             });
+
+            $('.form-rating').on('change', function() {
+                let selectedRatings = [];
+
+                $('.form-rating:checked').each(function() {
+                    selectedRatings.push($(this).val());
+                });
+
+                filter.rating = selectedRatings.length > 0 ? selectedRatings : null;
+
+                handleGetCourses(1, filter);
+            });
+
             getCategories();
 
             function getCategories() {
@@ -195,14 +211,6 @@
 
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
-                // let price;
-                // if (value.promotional_price != 0) {
-                //     price =
-                //         ` <h6 class="price" style="font-size:15px"><del style="font-size:15px">${formatRupiah(value.price)}</del>${formatRupiah(value.promotional_price)}</h6>`
-                // } else {
-                //     price = ` <h6 class="price">${formatRupiah(value.price)}</h6>`
-                // }
-
                 let originalPrice, promoPrice;
 
                 if (value.promotional_price != 0) {

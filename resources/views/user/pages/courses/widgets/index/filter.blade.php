@@ -29,7 +29,7 @@
                 <ul class="list-wrap">
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input class="form-check-input form-rating" type="checkbox" name="rating" id="rating5" value="5">
                             <div class="rating">
                                 <ul class="list-wrap">
                                     <li><i class="fas fa-star"></i></li>
@@ -44,7 +44,7 @@
                     </li>
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input class="form-check-input form-rating" type="checkbox" name="rating" id="rating4" value="4">
                             <div class="rating">
                                 <ul class="list-wrap">
                                     <li><i class="fas fa-star"></i></li>
@@ -59,7 +59,7 @@
                     </li>
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input class="form-check-input form-rating" type="checkbox" name="rating" id="rating3" value="3">
                             <div class="rating">
                                 <ul class="list-wrap">
                                     <li><i class="fas fa-star"></i></li>
@@ -74,7 +74,7 @@
                     </li>
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input class="form-check-input form-rating" type="checkbox" name="rating" id="rating2" value="2">
                             <div class="rating">
                                 <ul class="list-wrap">
                                     <li><i class="fas fa-star"></i></li>
@@ -89,7 +89,7 @@
                     </li>
                     <li>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="">
+                            <input class="form-check-input form-rating" type="checkbox" name="rating" id="rating1" value="1">
                             <div class="rating">
                                 <ul class="list-wrap">
                                     <li><i class="fas fa-star"></i></li>
