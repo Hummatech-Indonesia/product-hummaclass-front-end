@@ -57,9 +57,17 @@
     </div>
 
     <div class="d-flex justify-content-between mb-3">
-        <div class="">
-            <input type="text" name="search" id="search" class="form-control bg-white rounded-2"
-                placeholder="Cari...">
+        <div class="row col-9">
+            <div class="col-3">
+                <input type="text" name="search" id="search" class="form-control bg-white rounded-2"
+                    placeholder="Cari...">
+            </div>
+            <div class="col-3">
+                <select name="school_id" id="filter_school_id" class="form-control bg-white rounded-2"></select>
+            </div>
+            <div class="col-3">
+                <select name="classroom_id" id="classroom_id" class="form-control bg-white rounded-2"></select>
+            </div>
         </div>
         <button class="btn btn-primary" id="create-zoom-button">
             <i class="ti ti-plus d-none d-sm-inline"></i> Tambah <span class="d-none d-sm-inline">Jadwal Zoom</span>
@@ -168,6 +176,15 @@
                         `<option value="${school.id}" data-classrooms='${JSON.stringify(school.classrooms)}'>${school.name}</option>`
                     );
                 });
+                
+                $("#filter_school_id")
+                    .empty()
+                    .append('<option value="">Pilih Sekolah</option>');
+                $.each(schools, function(index, school) {
+                    $("#filter_school_id").append(
+                        `<option value="${school.id}" data-classrooms='${JSON.stringify(school.classrooms)}'>${school.name}</option>`
+                    );
+                });
             }
 
             // Event listener untuk dropdown sekolah
@@ -225,13 +242,61 @@
     </script>
 
     <script>
+
+        let debounceTimer;
+
+        $('#search').keyup(function (e) { 
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                get(1);
+            }, 500);
+        });
+
+        $('#filter_school_id').change(function (e) { 
+            e.preventDefault();
+            var selectedValue = $(this).val();
+            classrooms(selectedValue);
+            get(1);
+        });
+
+        function classrooms(id) {
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}/api/classroom/" + id,
+                headers: {
+                    Authorization: 'Bearer ' +
+                        "{{ session('hummaclass-token') }}",
+                },
+                dataType: "json",
+                success: function (response) {
+                    $("#classroom_id").empty().append('<option value="">Pilih Kelas</option>');
+                    $.each(response.data, function(index, classroom) {
+                    $("#classroom_id").append(
+                        `<option value="${classroom.id}">${classroom.name}</option>`
+                    );
+                });
+                },
+                error: function (e){
+                    $("#classroom_id").empty().append('<option value="">Pilih Kelas</option>');
+                }
+            });
+        }
+
+        classrooms(0);
+
+        $('#classroom_id').change(function (e) { 
+            e.preventDefault();
+            get(1);
+        });
+
+
         function zoomList(index, value) {
             return `
                 <tr>
                     <td>${index+1}</td>
                     <td>${value.classroom.name} - ${value.school.name}</td>
                     <td>
-                         <span class="mb-1 badge font-medium bg-light-primary text-primary p-2 rounded-2">${value.date}</span>
+                        <span class="mb-1 badge font-medium bg-light-primary text-primary p-2 rounded-2">${value.date}</span>
                     </td>
                     <td>
                         <div class="d-flex gap-2">
@@ -269,7 +334,9 @@
                         "{{ session('hummaclass-token') }}",
                 },
                 data: {
-                    search: $('#search').val()
+                    search: $('#search').val(),
+                    school_id: $('#filter_school_id').val(),
+                    classroom_id: $('#classroom_id').val(),
                 },
                 dataType: "json",
                 success: function(response) {
