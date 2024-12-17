@@ -103,8 +103,8 @@
                                 $('#v-pills-tab').append(`
                             <li class="nav-item">
                                 <a class="nav-link rounded-3 active" id="v-pills-${classroom.id}-tab" data-bs-toggle="pill"
-                                   href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
-                                   aria-selected="false">${classroom.name}</a>
+                                    href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
+                                aria-selected="false">${classroom.name}</a>
                             </li>
                         `);
                             });
@@ -129,8 +129,7 @@
                 if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
                 if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
 
-                getClassrooms(query,
-                selectedGrades); 
+                getClassrooms(query, selectedGrades); 
             });
 
             $('input[type="checkbox"]').on('change', function() {
@@ -141,10 +140,60 @@
                 if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
                 if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
 
-                getClassrooms(query,
-                selectedGrades); 
+                getClassrooms(query, selectedGrades); 
             });
 
+
+            function stduent_list(index, value) {
+                return `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="${value.student.photo}"
+                                    class="rounded-circle" width="40" height="40" />
+                                <div class="ms-3">
+                                    <h6 class="fs-4 fw-semibold mb-0">${value.student.name}</h6>
+                                    <span class="fw-normal">${value.classroom}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <h6 class="fw-normal mb-0">${value.value}</h6>
+                        </td>
+                    </tr>
+                `
+            }
+
+            function listStudent(id) {
+                $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/assesment-student/" + id,
+                    headers: {
+                        "Authorization": "Bearer {{ session('hummaclass-token') }}",
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    data: {
+                        search: $().val(),
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        $('#student-list').empty();
+                        if (response.data.length == 0) {
+                            $('#student-list').append(empty());
+                        } else {
+                            $.each(response.data, function (indexInArray, valueOfElement) { 
+                                $('#student-list').append(stduent_list(indexInArray, valueOfElement));
+                            });
+                        }
+                    },
+                    error: function(){
+                        $('#student-list').append(empty());
+                    }
+                });    
+            }
+
+            listStudent(null);
         });
     </script>
 @endpush
