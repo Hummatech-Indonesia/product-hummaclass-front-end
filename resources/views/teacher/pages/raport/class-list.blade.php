@@ -75,19 +75,19 @@
                         console.error('Response:', xhr.responseText);
                     }
                 });
-
             }
 
             schoolYears();
 
-            function getClassrooms(query = '', gradeFilters = []) {
+            function getClassrooms(query = '', gradeFilters = [], schoolYear = '') {
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/class-teacher",
                     data: {
                         query: query,
-                        grades: gradeFilters
-                    }, 
+                        grades: gradeFilters,
+                        school_year: schoolYear 
+                    },
                     headers: {
                         "Authorization": "Bearer {{ session('hummaclass-token') }}",
                         "Content-Type": "application/json",
@@ -101,12 +101,12 @@
                             .length > 0) {
                             response.data.forEach(function(classroom) {
                                 $('#v-pills-tab').append(`
-                            <li class="nav-item">
-                                <a class="nav-link rounded-3 active" id="v-pills-${classroom.id}-tab" data-bs-toggle="pill"
-                                   href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
-                                   aria-selected="false">${classroom.name}</a>
-                            </li>
-                        `);
+                                    <li class="nav-item">
+                                        <a class="nav-link rounded-3 active" id="v-pills-${classroom.id}-tab" data-bs-toggle="pill"
+                                           href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
+                                           aria-selected="false">${classroom.name}</a>
+                                    </li>
+                                `);
                             });
                         } else {
                             console.log('Tidak ada data kelas atau format tidak sesuai');
@@ -121,30 +121,46 @@
 
             getClassrooms();
 
+            $('form').on('submit', function(event) {
+                event.preventDefault();
+
+                var query = $('#search').val(); 
+                var selectedGrades = []; 
+
+                if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
+                if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
+                if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
+
+                var schoolYear = $('#schoolYears').val();
+
+                getClassrooms(query, selectedGrades, schoolYear);
+            });
+
             $('#search').on('input', function() {
-                var query = $(this).val(); 
+                var query = $(this).val();
                 var selectedGrades = [];
 
                 if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
                 if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
                 if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
 
-                getClassrooms(query,
-                selectedGrades); 
+                var schoolYear = $('#schoolYears').val();
+
+                getClassrooms(query, selectedGrades, schoolYear);
             });
 
             $('input[type="checkbox"]').on('change', function() {
-                var query = $('#search').val(); 
+                var query = $('#search').val();
                 var selectedGrades = [];
 
                 if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
                 if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
                 if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
 
-                getClassrooms(query,
-                selectedGrades); 
-            });
+                var schoolYear = $('#schoolYears').val();
 
+                getClassrooms(query, selectedGrades, schoolYear);
+            });
         });
     </script>
 @endpush
