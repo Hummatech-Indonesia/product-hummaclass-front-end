@@ -23,14 +23,14 @@
                         Tantangan
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('dashboard.schedule.index') ? 'active' : '' }}">
-                    <a href="#">
+                <li class="{{ request()->routeIs('dashboard.students.events.index') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard.students.events.index') }}">
                         <i class="fas fa-calendar-alt"></i> <!-- Ikon Jadwal -->
                         Jadwal
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('dashboard.students.ranks.index') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard.students.ranks.index') }}">
+                    <a href="{{ route('dashboard.students.events.index') }}">
                         <i class="fas fa-trophy"></i> <!-- Ikon Peringkat -->
                         Peringkat
                     </a>
