@@ -79,8 +79,8 @@
                             class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                             <div class="col-sm-8 col-md-6 col-xl-9">
                                 <div class="logo mb-5">
-                                    <a href="/"><img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}" width="130px;"
-                                            alt="Logo"></a>
+                                    <a href="/"><img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}"
+                                            width="130px;" alt="Logo"></a>
                                 </div>
                                 <h2 class="mb-3 fs-7 fw-bolder">Selamat Datang👋</h2>
                                 <p class=" mb-9">Just enter your username and password below and you'll be back in
@@ -154,8 +154,8 @@
                                             Password</a>
                                     </div>
                                     <button type="submit" class="btn text-white btn-md mt-3 w-100"
-                                        style="background-color: #9425FE;border-radius: 10px;">
-                                        Masuk
+                                        style="background-color: #9425FE;border-radius: 10px;" id="btn-submit">
+                                        <span class="me-2 text">Masuk</span>
                                     </button>
                                     <div class="text-center mt-2">
                                         <p style="color: #989898;">Belum punya akun? <a href="{{ route('register') }}"
@@ -178,7 +178,7 @@
             $('#google-login').click(function(e) {
                 e.preventDefault();
                 window.location.href =
-                "{{ env('API_URL') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
+                    "{{ env('API_URL') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
             });
 
             // Login Form Submission
@@ -190,6 +190,10 @@
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
+
+                $('#btn-submit').append(
+                    `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>`);
+
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
@@ -204,7 +208,7 @@
                             data: {
                                 _token: "{{ csrf_token() }}", // Kirim CSRF token untuk keamanan
                                 token: response.data
-                                .token, // Kirim token dari API ke server Laravel
+                                    .token, // Kirim token dari API ke server Laravel
                                 user: response.data.user
                             },
                             success: function() {
