@@ -92,7 +92,8 @@
             });
         });
 
-
+        $('#btn-spinner').show();
+        $('#btn-exchange').prop('disabled', true);
 
         function ListExchange(index, value) {
 
@@ -124,8 +125,9 @@
                                 Sisa Kuota: ${value.points_required}
                             </div>
                             <div>
-                                <button data-id="${value.id}" class="btn-purple-primary storeConfirm px-4">
+                                <button data-id="${value.id}" class="btn-purple-primary storeConfirm px-4 btn-exchange">
                                     Tukarkan
+                                    <span class="spinner-border spinner-border-sm ms-2 btn-spinner" role="status" aria-hidden="true" style="display: none;"></span>
                                 </button>
                             </div>
                         </div>
@@ -134,5 +136,21 @@
             </div>
     `;
         }
+    </script>
+
+    <script>
+        $(document).on('click', '.btn-exchange', function() {
+            var button = $(this);
+            var spinner = button.find('.btn-spinner');
+            var id = button.data('id');
+
+            button.prop('disabled', true);
+            spinner.show();
+
+            setTimeout(function() {
+                spinner.hide();
+                button.prop('disabled', false);
+            }, 2000);
+        });
     </script>
 @endsection
