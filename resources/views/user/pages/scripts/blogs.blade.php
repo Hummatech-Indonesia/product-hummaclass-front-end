@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function() {
+
+        let loading_blogs = true;
+
         $.ajax({
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/blogs"
@@ -27,6 +30,8 @@
                     $('#news-content').append(empty());
                 }
 
+                loading_blogs = false;
+
             }
             , error: function(xhr) {
 
@@ -35,8 +40,14 @@
                     , text: "Tidak dapat memuat data kategori."
                     , icon: "error"
                 });
+
+                loading_blogs = false;
             }
         });
+
+        if (loading_blogs) {
+            $('#news-content').append(loadCard(3));
+        }
     });
 
     function card(index, value) {
@@ -60,6 +71,7 @@
             </div>
     `;
     }
+
 
 
     // jangan dihapus

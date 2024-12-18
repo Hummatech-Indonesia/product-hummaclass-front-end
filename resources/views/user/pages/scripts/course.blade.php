@@ -38,14 +38,19 @@
     });
 
     $(document).ready(function() {
+
+        let loading_top_courses = true;
+        let loading_rating_courses = true;
+
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/top-courses",
+            url: "{{ config('app.api_url') }}/api/top-courses",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
             dataType: "json",
             success: function(response) {
+                $('#course-content').empty();
                 if (response.data.length > 0) {
                     $.each(response.data, function(index, value) {
                         if (index < 8) {
@@ -61,6 +66,8 @@
                 } else {
                     $('#other-courses').hide();
                 }
+
+                loading_top_courses = false;
             },
             error: function(xhr) {
                 Swal.fire({
@@ -68,6 +75,8 @@
                     text: "Tidak dapat memuat data kategori.",
                     icon: "error"
                 });
+
+                loading_top_courses = false;
             }
         });
 
@@ -80,6 +89,7 @@
             },
             dataType: "json",
             success: function(response) {
+                $('#course-top-content').empty();
                 if (response.data.length > 0) {
                     $.each(response.data, function(index, value) {
                         if (index < 8) {
@@ -87,7 +97,7 @@
                         }
                     });
                 } else {
-                    $('#course-content').append(empty());
+                    $('#course-top-content').append(empty());
                 }
 
                 if (response.data.data.length === 8) {
@@ -95,6 +105,8 @@
                 } else {
                     $('#other-courses').hide();
                 }
+
+                loading_rating_courses = false;
             },
             error: function(xhr) {
                 Swal.fire({
@@ -102,10 +114,60 @@
                     text: "Tidak dapat memuat data kategori.",
                     icon: "error"
                 });
+
+                loading_rating_courses = false;
             }
         });
-    });
 
+        if (loading_top_courses) {
+            $('#course-content').append(loadCard(4));
+        }
+        
+        if (loading_rating_courses) {
+            $('#course-top-content').append(loadCard(4));
+        }
+
+    });
+    
+    function loadCard(amount) {
+        let card = '';
+
+        for (let i = 0; i <= amount; i++) {
+            card += `
+                    <div class="col-lg-3 col-md-3 col-sm-12 mb-3">
+                        <div class="card" aria-hidden="true">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="150px"
+                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                                    </svg>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-7"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-6"></span>
+                                            <span class="placeholder col-8"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            
+            }
+            return card;
+    }
+    
     $.ajax({
         type: "GET",
         url: "{{ config('app.api_url') }}" + "/api/superior-features",
@@ -123,7 +185,6 @@
             }
         },
         error: function(xhr, status, asdf) {
-
         }
     })
 
