@@ -45,162 +45,147 @@
 @push('script')
     <script>
         $(document).ready(function() {
-            function schoolYears() {
+            function loadSchoolYears() {
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/school-years",
                     headers: {
                         "Authorization": "Bearer {{ session('hummaclass-token') }}",
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
                     },
-                    dataType: "json",
                     success: function(response) {
-                        $('#schoolYears').empty();
-
-                        if (response && response.data && response.data.length > 0) {
-                            $('#schoolYears').append('<option selected>Pilih Tahun Ajaran</option>');
-
-                            response.data.forEach(function(year) {
-                                $('#schoolYears').append('<option value="' + year.id + '">' +
-                                    year.school_year + '</option>'
+                        $('#schoolYears').empty().append(
+                            '<option selected>Pilih Tahun Ajaran</option>');
+                        if (response.data) {
+                            response.data.forEach(year => {
+                                $('#schoolYears').append(
+                                    `<option value="${year.id}">${year.school_year}</option>`
                                 );
                             });
-                        } else {
-                            console.error('Tidak ada data tahun ajaran');
                         }
                     },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching school years:', error);
-                        console.error('Response:', xhr.responseText);
-                    }
                 });
             }
 
-            schoolYears();
-
-            function getClassrooms(query = '', gradeFilters = [], schoolYear = '') {
+            function loadClassrooms(query = '', grades = [], schoolYear = '') {
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/class-teacher",
                     data: {
-                        query: query,
-                        grades: gradeFilters,
+                        query,
+                        grades,
                         school_year: schoolYear
                     },
                     headers: {
                         "Authorization": "Bearer {{ session('hummaclass-token') }}",
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
                     },
-                    dataType: "json",
                     success: function(response) {
                         $('#v-pills-tab').empty();
-
-                        if (response && response.data && Array.isArray(response.data) && response.data
-                            .length > 0) {
-                            response.data.forEach(function(classroom) {
+                        $('#v-pills-tabContent').empty();
+                        if (response.data && response.data.length > 0) {
+                            response.data.forEach((classroom, index) => {
                                 $('#v-pills-tab').append(`
-                            <li class="nav-item">
-                                <a class="nav-link rounded-3 active" id="v-pills-${classroom.id}-tab" data-bs-toggle="pill"
-                                    href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
-                                aria-selected="false">${classroom.name}</a>
-                            </li>
-                        `);
+                                <li class="nav-item">
+                                    <a class="nav-link ${index === 0 ? 'active' : ''}" id="v-pills-${classroom.id}-tab" data-bs-toggle="pill" 
+                                        href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}" 
+                                        aria-selected="${index === 0}">${classroom.name}</a>
+                                </li>
+                            `);
+
+                                $('#v-pills-tabContent').append(`
+                                <div class="tab-pane fade ${index === 0 ? 'show active' : ''}" id="v-pills-${classroom.id}" role="tabpanel" 
+                                    aria-labelledby="v-pills-${classroom.id}-tab">
+                                    
+                                    <h5 class="fw-semibold mb-3"><b>Detail Kelas - ${classroom.name}</b></h5>
+                                    <div class="card border">
+                                        <div class="card-body p-3">
+                                            <h5 class="fw-semibold mb-3"><b>Daftar Siswa</b></h5>
+                                            <div class="col-12 col-sm-8 col-md-9 col-lg-4 mb-3">
+                                                <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF"
+                                                    id="studentSearch-${classroom.id}" placeholder="Cari Siswa...">
+                                            </div>
+                                            <div class="table-responsive rounded-2 mb-4">
+                                                <table class="table border text-nowrap customize-table mb-0 align-middle">
+                                                    <thead class="text-dark fs-4">
+                                                        <tr>
+                                                            <th>
+                                                                <h6 class="fs-4 fw-semibold mb-0">Nama Siswa</h6>
+                                                            </th>
+                                                            <th>
+                                                                <h6 class="fs-4 fw-semibold mb-0">Nilai</h6>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="student-list-${classroom.id}">
+                                                    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            `);
+
+                                if (index === 0) {
+                                    loadStudents(classroom.id);
+                                }
                             });
                         } else {
-                            console.log('Tidak ada data kelas atau format tidak sesuai');
+                            $('#v-pills-tab').append(
+                                '<li class="nav-item"><span class="nav-link disabled">Tidak ada kelas</span></li>'
+                            );
+                            $('#v-pills-tabContent').append(
+                                '<div class="tab-pane fade show active">Tidak ada data kelas.</div>'
+                            );
                         }
                     },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching classrooms:', error);
-                        console.error('Response:', xhr.responseText);
-                    }
                 });
             }
 
-            getClassrooms();
-
-            $('form').on('submit', function(event) {
-                event.preventDefault();
-
-                var query = $('#search').val();
-                var selectedGrades = [];
-
-                if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
-                if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
-                if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
-
-                var schoolYear = $('#schoolYears').val();
-
-                getClassrooms(query, selectedGrades, schoolYear);
-            });
-
-            $('input[type="checkbox"]').on('change', function() {
-                var query = $('#search').val();
-                var selectedGrades = [];
-
-                if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
-                if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
-                if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
-
-                var schoolYear = $('#schoolYears').val();
-
-                getClassrooms(query, selectedGrades, schoolYear);
-            });
-
-            function stduent_list(index, value) {
-                return `
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <img src="${value.student.photo}"
-                            class="rounded-circle" width="40" height="40" />
-                        <div class="ms-3">
-                            <h6 class="fs-4 fw-semibold mb-0">${value.student.name}</h6>
-                            <span class="fw-normal">${value.classroom}</span>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <h6 class="fw-normal mb-0">${value.value}</h6>
-                </td>
-            </tr>
-        `
-            }
-
-            function listStudent(id) {
+            function loadStudents(classroomId) {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}/api/assesment-student/" + id,
+                    url: "{{ config('app.api_url') }}/api/assesment-student/" + classroomId,
                     headers: {
                         "Authorization": "Bearer {{ session('hummaclass-token') }}",
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
                     },
-                    data: {
-                        search: $().val(),
-                    },
-                    dataType: "json",
                     success: function(response) {
-                        $('#student-list').empty();
-                        if (response.data.length == 0) {
-                            $('#student-list').append(empty());
-                        } else {
-                            $.each(response.data, function(indexInArray, valueOfElement) {
-                                $('#student-list').append(stduent_list(indexInArray,
-                                    valueOfElement));
+                        const studentList = $(`#student-list-${classroomId}`);
+                        studentList.empty();
+                        if (response.data) {
+                            response.data.forEach(student => {
+                                studentList.append(`
+                                <tr>
+                                    <td>${student.student.name}</td>
+                                    <td>${student.value}</td>
+                                </tr>
+                            `);
                             });
+                        } else {
+                            studentList.append('<tr><td colspan="2">Tidak ada data</td></tr>');
                         }
                     },
-                    error: function() {
-                        $('#student-list').append(empty());
-                    }
                 });
             }
 
-            listStudent(null);
+            $('#v-pills-tab').on('click', '.nav-link', function() {
+                const classroomId = $(this).attr('href').replace('#v-pills-', '');
+                loadStudents(classroomId);
+            });
 
+            $('#filterForm').on('submit', function(e) {
+                e.preventDefault();
+                const query = $('#search').val();
+                const grades = [];
+                if ($('#checkbox1').is(':checked')) grades.push(10);
+                if ($('#checkbox2').is(':checked')) grades.push(11);
+                if ($('#checkbox3').is(':checked')) grades.push(12);
+                const schoolYear = $('#schoolYears').val();
+                loadClassrooms(query, grades, schoolYear);
+            });
+
+            loadSchoolYears();
+            loadClassrooms();
         });
     </script>
 @endpush
