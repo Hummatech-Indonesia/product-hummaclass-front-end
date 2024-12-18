@@ -40,7 +40,7 @@
             <input type="text" name="search" id="search" placeholder="Cari..." class="form-control rounded-3">
         </div>
         <div class="table-responsive">
-            <table class="table table-hover align-middle border border-none mb-0">
+            <table class="table border text-nowrap customize-table mb-0 align-middle">
                 <thead class="">
                     <tr>
                         <th class="px-3">No</th>
@@ -51,32 +51,10 @@
                     </tr>
                 </thead>
                 <tbody id="student-list">
-                    @for ($i = 1; $i <= 10; $i++)
-                        {{-- <tr>
-                            <td class="px-3">{{ $i }}</td>
-                            <td class="px-3">
-                                <div class="d-flex flex-column flex-md-row align-items-center">
-                                    <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user"
-                                        class="rounded-circle me-3 mb-2 mb-md-0"
-                                        style="height: 48px; width: 48px; object-fit: cover;">
-
-                                    <div>
-                                        <b class="mb-0">Alfian Kopling</b>
-                                        <p class="text-muted mb-0" style="font-size: 14px;">XI RPL 1</p>
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td class="px-3">{{ $i }}@gmail.com</td>
-                            <td class="px-3">0987654321</td>
-                            <td class="text-truncate px-3" style="max-width: 200px;">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            </td>
-                        </tr> --}}
-                    @endfor
+                    
                 </tbody>
             </table>
-            <div class="d-flex justify-content-end">
+            {{-- <div class="d-flex justify-content-end">
                 <nav class="pagination__wrap mt-40">
                     <ul class="list-wrap">
                         <li class="active"><a href="#">1</a></li>
@@ -85,7 +63,7 @@
                         <li><a href="shop.html">4</a></li>
                     </ul>
                 </nav>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -96,17 +74,17 @@
                 return `
                 <tr>
                     <td class="px-3">${index + 1}</td>
-                    <td class="px-3">
-                        <div class="d-flex flex-column flex-md-row align-items-center">
+                    <td class="me-5">
+                        <div class="d-flex align-items-center">
                             <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt="user"
-                                class="rounded-circle me-3 mb-2 mb-md-0"
-                                style="height: 48px; width: 48px; object-fit: cover;">
+                                class="rounded-circle me-3 mb-2"
+                                style="height: 40px; width: 40px; object-fit: cover;">
 
-                            <div>
-                                <b class="mb-0">${value.student} wkwk</b>
-                                <p class="text-muted mb-0" style="font-size: 14px;">
+                            <div class="ms-2 me-5">
+                                <h6 class="mb-0">${value.student}</h6>
+                                <span class="text-muted mb-0" style="font-size: 14px;">
                                     ${value.class || 'Unknown'}
-                                </p>
+                                </span>
                             </div>
                         </div>
                     </td>
@@ -117,6 +95,7 @@
                         ${value.address}
                     </td>
                 </tr>
+                
             `;
             }
 
