@@ -2,6 +2,8 @@
     <script>
         $(document).ready(function(page) {
 
+            let loading = true;
+
             function handleGetRewards(page) {
                 $.ajax({
                     type: "GET",
@@ -83,6 +85,8 @@
                             });
 
                         });
+
+                        loading = false;
                     },
                     error: function(xhr) {
                         let errorMessage = "Terjadi kesalahan!";
@@ -103,15 +107,57 @@
                             text: errorMessage,
                             icon: "error"
                         });
+
+                        loading = false;
                     }
                 });
             }
 
             handleGetRewards(1);
 
+            if (loading) {
+                $('#list-point-exchange').append(loadingCard(4));
+            }
+
         });
 
+        function loadingCard(amount) {
+            let card = '';
 
+            for (let i = 0; i < amount; i++) {
+                card += `
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="card" aria-hidden="true">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="150px"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#868e96"></rect>
+                                </svg>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title placeholder-glow">
+                                        <span class="placeholder col-6"></span>
+                                    </h5>
+                                    <p class="card-text placeholder-glow">
+                                        <span class="placeholder col-7"></span>
+                                        <span class="placeholder col-4"></span>
+                                        <span class="placeholder col-4"></span>
+                                        <span class="placeholder col-6"></span>
+                                        <span class="placeholder col-8"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+            return card;
+        }
 
         function ListExchange(index, value) {
 
@@ -151,7 +197,7 @@
                     </div>
                 </div>
             </div>
-    `;
+                `;
         }
     </script>
 @endsection

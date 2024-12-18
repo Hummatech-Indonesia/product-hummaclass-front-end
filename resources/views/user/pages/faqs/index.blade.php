@@ -108,14 +108,15 @@
 @section('script')
 <script>
     $(document).ready(function() {
+
+        let loading = true;
+
         $.ajax({
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/faq-user"
             , dataType: "json"
             , success: function(response) {
-
                 $('#accordionFaq').empty();
-
                 if (response.data.length > 0) {
                     $.each(response.data, function(index, value) {
                         $('#accordionFaq').append(card(index, value));
@@ -124,7 +125,7 @@
                     $('#accordionFaq').append(empty());
                 }
 
-
+                loading = false;
             }
             , error: function(xhr) {
 
@@ -133,26 +134,61 @@
                     , text: "Tidak dapat memuat data kategori."
                     , icon: "error"
                 });
+
+                loading = false;
             }
         });
-    });
 
-    function card(index, value) {
-        return `
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-heading${index}">
-                    <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${index}" aria-expanded="${index === 0}" aria-controls="flush-collapse${index}">
-                        ${value.question}
-                    </button>
-                </h2>
-                <div id="flush-collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="flush-heading${index}" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                        ${value.answer}    
+        if (loading) {
+            $('#accordionFaq').append(loadingCard(3));
+        }
+        
+        function card(index, value) {
+            return `
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading${index}">
+                        <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${index}" aria-expanded="${index === 0}" aria-controls="flush-collapse${index}">
+                            ${value.question}
+                        </button>
+                    </h2>
+                    <div id="flush-collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" aria-labelledby="flush-heading${index}" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            ${value.answer}    
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-    }
+            `;
+        }
+    
+        function loadingCard(amount) {
+            let card = '';
+    
+            for (let i = 0; i < amount; i++) {
+
+                const isOpen = i === 0 ? 'show' : ''; 
+                const ariaExpanded = i === 0 ? 'true' : 'false'; 
+
+                card += `
+                    <div class="accordion-item mb-3 rounded">
+                        <h2 class="accordion-header placeholder-glow" id="flush-heading">
+                            <button class="accordion-button ${isOpen ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-${i}" aria-controls="flush-collapse-${i}">
+                                <p class="placeholder col-${7 + i}"></p>
+                            </button>
+                        </h2>
+                        <div id="flush-collapse-${i}" class="accordion-collapse collapse ${isOpen}" aria-labelledby="flush-heading-${i}" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p class="placeholder col-7"></p>
+                                <p class="placeholder col-4"></p>
+                                <p class="placeholder col-6"></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+    
+            return card;
+        }
+    });
 
 </script>
 @endsection
