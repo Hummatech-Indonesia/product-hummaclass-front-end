@@ -265,12 +265,13 @@
                                         <li>
                                             <form action="{{ route('logout') }}" method="POST">
                                                 @csrf
-                                                <div class="user-profile">
+                                                <div class="user-profile d-flex align-items-center">
                                                     <a
                                                         href="{{ route('dashboard.users.profile', session('user')['id']) }}">
-                                                        <img src="" class="rounded rounded-circle photo-user"
+                                                        <img src="{{ session('user')['photo'] ?? asset(asset('assets/img/icons/user.svg')) }}"
+                                                            class="rounded rounded-circle photo-user"
                                                             style="width: 48px; height: 48px; object-fit: cover;"
-                                                            alt="">
+                                                            alt="User Photo">
                                                     </a>
                                                     <button type="submit" class="btn shadow-none py-3 ms-3">Keluar</button>
                                                 </div>
