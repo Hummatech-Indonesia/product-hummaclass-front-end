@@ -86,7 +86,7 @@
                     data: {
                         query: query,
                         grades: gradeFilters,
-                        school_year: schoolYear 
+                        school_year: schoolYear
                     },
                     headers: {
                         "Authorization": "Bearer {{ session('hummaclass-token') }}",
@@ -106,7 +106,7 @@
                                     href="#v-pills-${classroom.id}" role="tab" aria-controls="v-pills-${classroom.id}"
                                 aria-selected="false">${classroom.name}</a>
                             </li>
-                            `);
+                        `);
                             });
                         } else {
                             console.log('Tidak ada data kelas atau format tidak sesuai');
@@ -124,27 +124,13 @@
             $('form').on('submit', function(event) {
                 event.preventDefault();
 
-                var query = $('#search').val(); 
-                var selectedGrades = []; 
-
-                if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
-                if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
-                if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
-
-                var schoolYear = $('#schoolYears').val();
-
-                getClassrooms(query, selectedGrades, schoolYear);
-            });
-
-            $('#search').on('input', function() {
-                var query = $(this).val();
+                var query = $('#search').val();
                 var selectedGrades = [];
 
                 if ($('#checkbox1').is(':checked')) selectedGrades.push(10);
                 if ($('#checkbox2').is(':checked')) selectedGrades.push(11);
                 if ($('#checkbox3').is(':checked')) selectedGrades.push(12);
 
-                getClassrooms(query, selectedGrades); 
                 var schoolYear = $('#schoolYears').val();
 
                 getClassrooms(query, selectedGrades, schoolYear);
@@ -165,22 +151,22 @@
 
             function stduent_list(index, value) {
                 return `
-                    <tr>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="${value.student.photo}"
-                                    class="rounded-circle" width="40" height="40" />
-                                <div class="ms-3">
-                                    <h6 class="fs-4 fw-semibold mb-0">${value.student.name}</h6>
-                                    <span class="fw-normal">${value.classroom}</span>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <h6 class="fw-normal mb-0">${value.value}</h6>
-                        </td>
-                    </tr>
-                `
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="${value.student.photo}"
+                            class="rounded-circle" width="40" height="40" />
+                        <div class="ms-3">
+                            <h6 class="fs-4 fw-semibold mb-0">${value.student.name}</h6>
+                            <span class="fw-normal">${value.classroom}</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <h6 class="fw-normal mb-0">${value.value}</h6>
+                </td>
+            </tr>
+        `
             }
 
             function listStudent(id) {
@@ -196,20 +182,21 @@
                         search: $().val(),
                     },
                     dataType: "json",
-                    success: function (response) {
+                    success: function(response) {
                         $('#student-list').empty();
                         if (response.data.length == 0) {
                             $('#student-list').append(empty());
                         } else {
-                            $.each(response.data, function (indexInArray, valueOfElement) { 
-                                $('#student-list').append(stduent_list(indexInArray, valueOfElement));
+                            $.each(response.data, function(indexInArray, valueOfElement) {
+                                $('#student-list').append(stduent_list(indexInArray,
+                                    valueOfElement));
                             });
                         }
                     },
-                    error: function(){
+                    error: function() {
                         $('#student-list').append(empty());
                     }
-                });    
+                });
             }
 
             listStudent(null);
