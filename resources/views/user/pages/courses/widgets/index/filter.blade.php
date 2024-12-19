@@ -101,7 +101,9 @@
             </div>
         </div>
         <button id="filter_price" class="btn"
-                    style="background-color: #ffc224;color:black; width:100%">Terapkan</button>
+                    style="background-color: #ffc224;color:black; width:100%">Terapkan
+            <span id="btn-spinner-filter" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true" style="display: none;"></span>    
+            </button>
     </aside>
 </div>
 

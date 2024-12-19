@@ -27,6 +27,7 @@
             }
             $('#filter_price').click(function(e) {
                 e.preventDefault();
+                $('#btn-spinner-filter').show();
 
                 filter.maximum = $('#maksimum').val();
                 filter.minimum = $('#minimum').val();
