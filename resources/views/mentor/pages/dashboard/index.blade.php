@@ -56,41 +56,13 @@
     </div>
 
 
-    <div class="row mt-4" id="classroom-list">
-        {{-- <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card rounded-4 shadow">
-                    <div class="card-header bg-transparent px-3 pb-4">
-                        <div class="row align-items-center">
-                            <div class="col-7 d-flex flex-column justify-content-center">
-                                <h4 class="fw-bold p-0">XII DKV 2</h4>
-                                <p class="fs-2 m-0">SMKN 1 KEPANJEN</p>
-                            </div>
-                            <div class="col-5">
-                                <span class="badge rounded-2 badge text-bg-purple">Negeri</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body px-3 pt-0 pb-3">
-                        <div class="row align-items-center">
-                            <div class="col-3">
-                                <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}" alt=""
-                                    class="img-fluid rounded-circle">
-                            </div>
-                            <div class="col p-0">
-                                <h6 class="card-title fs-3 fw-semibold text-muted">Wali Kelas</h6>
-                                <p class="card-text fs-2 text-muted">Suyadi Oke Joss Sp.d</p>
-                            </div>
-                        </div>
-                        <a href="{{ route('mentor.classroom.show', $index) }}"
-                            class="btn btn-primary bg-primary border-0 rounded-2 w-100 mt-3 mb-1">Lihat Kelas</a>
-                    </div>
-                </div>
-            </div> --}}
-    </div>
+    <div class="row mt-4" id="classroom-list"></div>
 @endsection
 @section('script')
     <script>
         $(document).ready(function() {
+            let loading = true;
+
             function classroomList(index, value) {
                 return `
                 <div class="col-lg-3 col-md-4 col-sm-6">
@@ -147,11 +119,17 @@
                             dataType: "json",
                             success: function(response) {
                                 $('#classroom-list').empty();
-                                $.each(response.data, function(indexInArray,
-                                    valueOfElement) {
-                                    $('#classroom-list').append(classroomList(
-                                        indexInArray, valueOfElement));
-                                });
+                                if (response.data.length > 0) {
+                                    $.each(response.data, function(indexInArray,
+                                        valueOfElement) {
+                                        $('#classroom-list').append(classroomList(
+                                            indexInArray, valueOfElement));
+                                    });
+                                } else {
+                                    $('#classroom-list').append(emptyCard());
+                                }
+
+                                loading = false;
                             },
                             error: function(xhr) {
                                 Swal.fire({
@@ -159,6 +137,8 @@
                                     text: "Ada kesalahan saat mengambil data kelas.",
                                     icon: "error"
                                 });
+
+                                loading = false;
                             }
                         });
                     },
@@ -168,13 +148,56 @@
                             text: "Ada kesalahan saat mengambil data user.",
                             icon: "error"
                         });
+
+                        loading = false;
                     }
                 });
-
-
             }
 
             getClassrooms(1)
+
+            if (loading) {
+                $('#classroom-list').append(loadCard(3));
+            }
         });
+
+        function loadCard(amount) {
+            let card = '';
+
+            for (let i = 0; i <= amount; i++) {
+                card += `
+                        <div class="col-lg-3 col-md-3 col-sm-12 mb-3">
+                            <div class="card" aria-hidden="true">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="150px"
+                                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                                            <title>Placeholder</title>
+                                            <rect width="100%" height="100%" fill="#868e96"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title placeholder-glow">
+                                                <span class="placeholder col-6"></span>
+                                            </h5>
+                                            <p class="card-text placeholder-glow">
+                                                <span class="placeholder col-7"></span>
+                                                <span class="placeholder col-4"></span>
+                                                <span class="placeholder col-4"></span>
+                                                <span class="placeholder col-6"></span>
+                                                <span class="placeholder col-8"></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                
+            }
+            return card;
+        }
     </script>
 @endsection

@@ -130,7 +130,9 @@
                                                 </a>
                                             </div>
                                             <div class="tg-button-wrap mt-3">
-                                                <button class="btn-warning w-100 storeConfirm">Tukarkan <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></button>
+                                                <button class="btn-warning w-100 storeConfirm">Tukarkan <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable">
+                                                    <span id="btn-spinner-exchange" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true" style="display: none;"></span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

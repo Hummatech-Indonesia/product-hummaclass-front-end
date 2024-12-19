@@ -57,6 +57,7 @@
     @include('mentor.pages.attendances.widgets.edit-attendance-modal')
     @include('mentor.pages.attendances.widgets.create-attendance-modal')
     <script>
+        let loading = true;
         let debounceTimer;
 
         $('#search').keyup(function() {
@@ -68,20 +69,20 @@
 
         function attendanceList(index, value) {
             return `
-                        <tr>
-                            <td>${index+1}</td>
-                            <td>${value.classroom} - ${value.school}</td>
-                            <td>${value.date}</td>
-                            <td><span class="p-1 text-success bg-light-success rounded">${value.status == 1?'Dibuka':'Ditutup'}</span></td>
-                            <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="ti ti-copy" style="font-size: 20px;"></i></button></td>
-                            <td>
-                                <ul class="d-flex gap-2">
-                                    <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
-                                    <li><button data-id="${value.id}" data-title="${value.title}" data-classroom_id="${value.classroom_id}" data-school_id="${value.school_id}" id="edit-attendance-button" class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button></li>
-                                    <li><button data-id="${value.id}" id="delete-attendance-button" class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
-                                </ul>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>${index+1}</td>
+                        <td>${value.classroom} - ${value.school}</td>
+                        <td>${value.date}</td>
+                        <td><span class="p-1 text-success bg-light-success rounded">${value.status == 1?'Dibuka':'Ditutup'}</span></td>
+                        <td><button class="btn btn-secondary" id="share-link-button" data-id="${value.id}"><i class="ti ti-copy" style="font-size: 20px;"></i></button></td>
+                        <td>
+                            <ul class="d-flex gap-2">
+                                <li><button data-id="${value.id}" data-slug="${value.slug}" id="detail-attendance-button"  class="btn btn-info"><i class="fa fa-eye fa-md"></i></button></li>
+                                <li><button data-id="${value.id}" data-title="${value.title}" data-classroom_id="${value.classroom_id}" data-school_id="${value.school_id}" id="edit-attendance-button" class="btn btn-warning"><i class="fa fa-edit fa-md"></i></button></li>
+                                <li><button data-id="${value.id}" id="delete-attendance-button" class="btn btn-danger"><i class="fa fa-trash fa-md"></i></button></li>
+                            </ul>
+                        </td>
+                    </tr>
             `
         }
 
@@ -98,11 +99,17 @@
                 dataType: "json",
                 success: function(response) {
                     $('#attendance-list').empty();
-                    $.each(response.data.data, function(indexInArray, valueOfElement) {
-                        $('#attendance-list').append(attendanceList(indexInArray,
-                            valueOfElement));
-                    });
-                    $('#pagination').html(handlePaginate(response.data.paginate));
+                    if (response.data.data.length > 0) {
+                        $.each(response.data.data, function(indexInArray, valueOfElement) {
+                            $('#attendance-list').append(attendanceList(indexInArray,
+                                valueOfElement));
+                        });
+                        $('#pagination').html(handlePaginate(response.data.paginate));
+                    } else {
+                        $('#attendance-list').append(empty());
+                    }
+
+                    loading = false;
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -110,11 +117,17 @@
                         text: xhr.responseJSON.meta.message,
                         icon: "error"
                     });
+
+                    loading = false;
                 }
             });
         }
 
         get(1);
+
+        if (loading) {
+            $('#attendance-list').append(load(3));
+        }
 
         $(document).on('click', '#share-link-button', function() {
             const id = $(this).data('id')
@@ -255,5 +268,27 @@
 
             });
         })
+
+        function load(amount) {
+            let card = '';
+
+            for (let i = 0; i <= amount; i++) {
+                card += `
+                    <tr class="placeholder-glow">
+                        <td><p class="placeholder col-4"></p></td>
+                        <td><p class="placeholder col-4"></p> <p class="placeholder col-5"></p></td>
+                        <td><p class="placeholder col-5"></p></td>
+                        <td><span class="placeholder col-4"></span></td>
+                        <td><span class="placeholder col-6"></span></td>
+                        <td>
+                            <span class="placeholder col-3"></span>
+                            <span class="placeholder col-3"></span>
+                            <span class="placeholder col-3"></span>
+                        </td>
+                    </tr>
+                `;
+            }
+            return card;
+        }
     </script>
 @endsection
