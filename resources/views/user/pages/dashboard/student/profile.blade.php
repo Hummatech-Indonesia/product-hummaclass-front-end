@@ -103,7 +103,9 @@
                                                     <input id="gender" name="gender" type="hidden"
                                                         value="{{ old('gender') }}">
                                                     <div class="submit-btn mt-25">
-                                                        <button type="submit" class="btn">Update Info</button>
+                                                        <button type="submit" class="btn" id="btn-update-info">Update Info
+                                                            <span id="btn-spinner-info" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true" style="display: none;"></span>    
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -131,7 +133,9 @@
                                                         type="password" placeholder="Re-Type New Password">
                                                 </div>
                                                 <div class="submit-btn mt-25">
-                                                    <button type="submit" class="btn">Update Password</button>
+                                                    <button type="submit" class="btn">Update Password
+                                                        <span id="btn-spinner-password" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true" style="display: none;"></span>    
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -183,8 +187,10 @@
             $('#profilePhotoInput').click();
         });
 
+
         $('#edit-profile-form').submit(function(e) {
             e.preventDefault();
+            $('#btn-spinner-info').show();
             var formData = new FormData(this);
             
 
@@ -207,6 +213,7 @@
                         icon: "success"
                     }).then(() => {
                     });
+                    $('#btn-spinner-info').hide();
                 },
                 error: function(response) {
                     if (response.status === 422) {
@@ -277,7 +284,7 @@
             // edit password
             $('#form-edit-password').submit(function(e) {
                 e.preventDefault();
-
+                $('#btn-spinner-password').show();
                 var formData = {};
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
@@ -299,6 +306,7 @@
                         }).then(function(param) {
 
                         });
+                        $('#btn-spinner-password').hide();
                     },
                     error: function(error) {
                         let errors = error.responseJSON.data || {};
