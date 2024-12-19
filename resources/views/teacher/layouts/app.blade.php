@@ -80,6 +80,83 @@
             --bs-primary: #9425FE;
         }
     </style>
+
+    <style>
+        .skeleton-loading {
+            background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+            padding: 15px;
+            height: 100%;
+        }
+
+        .skeleton-title,
+        .skeleton-date,
+        .skeleton-badge,
+        .skeleton-avatar,
+        .skeleton-line,
+        .skeleton-btn {
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .skeleton-title {
+            width: 60%;
+            height: 20px;
+            margin-bottom: 10px;
+            background-color: #e0e0e0;
+        }
+
+        .skeleton-date {
+            width: 40%;
+            height: 15px;
+            margin-bottom: 10px;
+            background-color: #d6d6d6;
+        }
+
+        .skeleton-badge {
+            width: 50%;
+            height: 20px;
+            margin-bottom: 15px;
+            background-color: #d1c4e9;
+        }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #b0bec5;
+        }
+
+        .skeleton-teacher {
+            width: 50%;
+            height: 12px;
+            background-color: #b0bec5;
+        }
+
+        .skeleton-btn {
+            width: 100%;
+            height: 30px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 0.4;
+            }
+        }
+    </style>
     @yield('style')
 </head>
 
@@ -844,6 +921,33 @@
                 icon: setting.status == 'success' ? 'info' : 'error',
                 confirmButtonText: 'Oke'
             });
+        }
+
+        function showSkeleton() {
+            $('#list-card').html(`
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-body rounded-3 border">
+                    <span class="side-stick"></span>
+                    <h5 class="note-title text-truncate w-75 mb-0 fw-semibold mb-1 skeleton-title" data-noteHeading=""></h5>
+                    <p class="note-date fs-2 mb-2 skeleton-date"></p>
+                    <div class="col-12 mb-3">
+                        <span class="mb-1 badge font-medium rounded-1 skeleton-badge" style="background-color: #F6EEFE; color: #9425FE"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-7 d-flex align-items-center mb-3">
+                            <img class="rounded-circle skeleton-avatar" width="31" height="31" />
+                            <div class="ms-3">
+                                <h6 class="fs-3 fw-semibold mb-0 skeleton-titleTeacher"></h6>
+                                <span class="fw-normal fs-2 skeleton-teacher"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-5 d-flex align-items-center justify-content-md-end justify-content-center">
+                            <a class="btn mb-1 waves-effect waves-light text-light w-100 btn-sm  skeleton-btn" style="background-color: #9425FE;" type="button"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `.repeat(6));
         }
     </script>
 

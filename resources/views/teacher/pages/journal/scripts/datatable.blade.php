@@ -16,10 +16,14 @@
                         <p class="mb-0 fw-normal">Tidak ada jurnal yang tersedia.</p>
                     </td>
                 </tr>
-            `
+            `;
         }
 
         function journalList(index, value) {
+            const shortDescription = value.description.length > 40 ?
+                value.description.substring(0, 40) + '...' :
+                value.description;
+
             return `
                 <tr>
                     <td>
@@ -39,7 +43,7 @@
                         <p class="mb-0 fw-normal">${value.classroom.name}</p>
                     </td>
                     <td>
-                        <p class="mb-0 fw-normal">${value.description}</p>
+                        <p class="mb-0 fw-normal">${shortDescription}</p>
                     </td>
                     <td class="text-center">
                         <a href="/dashboard/teacher/journal-detail/${value.id}"
@@ -53,10 +57,11 @@
                         </a>
                     </td>
                 </tr>
-            `
+            `;
         }
 
         function getJournalTeacher(page) {
+            $('#loading-spinner').show();
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/journals?page=" + page,
@@ -68,6 +73,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    $('#loading-spinner').hide();
                     $('#journal-list').empty();
                     if (response.data.data.length === 0) {
                         $('#journal-list').append(notData());

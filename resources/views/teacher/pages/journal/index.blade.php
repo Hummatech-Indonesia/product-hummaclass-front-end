@@ -59,7 +59,7 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
-        <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF; max-width: 250px;"
+        <input type="text" class="form-control" style="background-color: #FFFFFF; max-width: 250px;"
             id="search" placeholder="Cari...">
         <a href="/dashboard/teacher/journal-create" class="btn btn-primary" type="button">
             <i class="fa fa-plus fa-md d-none d-md-inline"></i> Tambah
@@ -71,25 +71,6 @@
             <h5 class="fw-semibold mb-3 mb-sm-3">
                 <b>Daftar Siswa</b>
             </h5>
-            {{-- <div class="row g-2 mb-3">
-                <div class="col-12 col-lg-3 col-md-3 col-sm-4">
-                    <input type="text" class="form-control rounded-3" id="placeholder" placeholder="Cari...">
-                </div>
-                <div class="col-12 col-lg-5 col-md-5 col-sm-4">
-                    <div class="row g-2">
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <select class="form-select rounded-3" id="schoolSelect">
-                                    <option selected disabled>Jenis Kelamin</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="table-responsive rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -120,6 +101,11 @@
                     <tbody id="journal-list">
                     </tbody>
                 </table>
+                <div id="loading-spinner" class="text-center my-3" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

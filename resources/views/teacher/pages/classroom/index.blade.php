@@ -1,4 +1,5 @@
 @extends('teacher.layouts.app')
+
 @section('content')
     <div class="card position-relative overflow-hidden" style="background-color: #E8DEF3;">
         <div class="card-body px-4 py-3">
@@ -31,7 +32,7 @@
             <div class="row g-2">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <select class="form-select rounded-3" style="background-color: #FFFFFF" id="schoolSelect">
+                        <select class="form-select" style="background-color: #FFFFFF" id="schoolSelect">
                             <option selected disabled>Sekolah...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -41,7 +42,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <select class="form-select rounded-3" style="background-color: #FFFFFF" id="classSelect">
+                        <select class="form-select" style="background-color: #FFFFFF" id="classSelect">
                             <option selected disabled>Kelas...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -61,17 +62,18 @@
 @push('script')
     <script>
         $(document).ready(function() {
-
             let debounceTimer;
 
             $('#search').keyup(function() {
                 clearTimeout(debounceTimer);
                 debounceTimer = setTimeout(function() {
-                    get(1)
+                    get(1);
                 }, 500);
             });
 
             function get(page) {
+                showSkeleton();
+
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/teacher/classrooms?page=" + page,
@@ -141,11 +143,10 @@
                         </div>
                     </div>
                 </div>
-                `
+                `;
             }
 
             get(1);
-
         });
     </script>
 @endpush

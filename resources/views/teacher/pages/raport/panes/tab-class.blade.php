@@ -3,8 +3,8 @@
     <div class="card-body p-3">
         <h5 class="fw-semibold mb-3"><b>Daftar Siswa</b></h5>
         <div class="col-12 col-sm-8 col-md-9 col-lg-4 mb-3">
-            <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF"
-                id="placeholder" placeholder="Cari...">
+            <input type="text" class="form-control rounded-3" style="background-color: #FFFFFF" id="placeholder"
+                placeholder="Cari...">
         </div>
         <div class="table-responsive rounded-2 mb-4">
             <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -38,7 +38,11 @@
                     @endforeach --}}
                 </tbody>
             </table>
+            <div id="loading-spinner" class="text-center my-3" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
