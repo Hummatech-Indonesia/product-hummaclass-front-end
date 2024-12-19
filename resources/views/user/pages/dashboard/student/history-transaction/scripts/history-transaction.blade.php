@@ -1,13 +1,18 @@
 <script>
     $(document).ready(function() {
+        let loading = true;
+        if (loading) {
+            $('#tab-all-history').append(loadingCard(1));
+        }
+
         $.ajax({
-            type: "GET"
-            , url: "{{ config('app.api_url') }}" + "/api/transactions-user"
-            , headers: {
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/transactions-user",
+            headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
                 console.log(response);
 
 
@@ -22,13 +27,14 @@
 
                     $.each(response.data, function(index, value) {
                         if (value.invoice_status === 'pending') {
-                            $('#tab-waiting-payment').append(allWaitingPayment(index, value)); 
+                            $('#tab-waiting-payment').append(allWaitingPayment(index,
+                                value));
                         }
                     });
 
                     $.each(response.data, function(index, value) {
                         if (value.invoice_status === 'paid') {
-                            $('#tab-finish').append(allFinish(index, value)); 
+                            $('#tab-finish').append(allFinish(index, value));
                         }
                     });
 
@@ -37,15 +43,15 @@
                     $('#tab-waiting-payment').append(empty());
                     $('#tab-finish').append(empty());
                 }
+                let loading = false;
 
-
-            }
-            , error: function(xhr) {
+            },
+            error: function(xhr) {
 
                 Swal.fire({
-                    title: "Terjadi Kesalahan!"
-                    , text: "Tidak dapat memuat data kategori."
-                    , icon: "error"
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data kategori.",
+                    icon: "error"
                 });
             }
         });
@@ -67,7 +73,7 @@
             statusText = 'Status Tidak Diketahui';
             statusClass = 'text-danger'; // Teks merah jika status tidak diketahui
         }
-        
+
         return `
             <div class="card mb-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                 <div class="courses__item-three shine__animate-item border-0">
@@ -134,7 +140,7 @@
             statusText = 'Status Tidak Diketahui';
             statusClass = 'text-danger'; // Teks merah jika status tidak diketahui
         }
-        
+
         return `
             <div class="card mb-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                 <div class="courses__item-three shine__animate-item border-0">
@@ -200,7 +206,7 @@
             statusText = 'Status Tidak Diketahui';
             statusClass = 'text-danger'; // Teks merah jika status tidak diketahui
         }
-        
+
         return `
             <div class="card mb-4 border-0" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
                 <div class="courses__item-three shine__animate-item border-0">
@@ -254,7 +260,57 @@
     `;
     }
 
+    function loadingCard(amount) {
+        let card = '';
+
+            card += `
+            <div class="card mb-4 border-0 shine__animate-item" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);">
+                <div class="courses__item-three border-0">
+                    <div class="courses__item-thumb placeholder-glow">
+                        <svg class="bd-placeholder-img" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <rect width="100%" height="100%" fill="#e9ecef"></rect>
+                        </svg>
+                    </div>
+                    <div class="courses__item-content">
+                        <ul class="courses__item-meta list-wrap placeholder-glow">
+                            <li class="courses__item-tag">
+                                <span class="placeholder col-6"></span>
+                            </li>
+                        </ul>
+                        <h5 class="title placeholder-glow">
+                            <span class="placeholder col-8"></span>
+                        </h5>
+                        <div class="courses__item-content-bottom d-flex justify-content-start">
+                            <div class="author-two placeholder-glow">
+                                <span class="placeholder col-6"></span>
+                            </div>
+                            <div class="avg-rating placeholder-glow">
+                                <span class="placeholder col-4"></span>
+                            </div>
+                        </div>
+                        <p class="info placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="border-card">
+                    <div class="d-flex align-items-center justify-content-between placeholder-glow">
+                        <div class="d-flex align-items-center gap-2">
+                            <h6 class="placeholder col-6"></h6>
+                            <h6 class="placeholder col-4"></h6>
+                        </div>
+                        <div class="d-flex align-items-center gap-3">
+                            <h6 class="placeholder col-5"></h6>
+                            <h4 class="placeholder col-6"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        return card;
+    }
+
+
     // jangan dihapus
     // <li><i class="flaticon-user-1"></i>by <a href="blog-details.html">Admin</a></li>
-
 </script>
