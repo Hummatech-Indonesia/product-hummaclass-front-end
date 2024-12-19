@@ -178,7 +178,7 @@
             $('#google-login').click(function(e) {
                 e.preventDefault();
                 window.location.href =
-                    "{{ env('API_URL') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
+                    "{{ config('app.api_url') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
             });
 
             // Login Form Submission
