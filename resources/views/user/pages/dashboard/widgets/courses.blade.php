@@ -126,6 +126,12 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            let loading = true;
+            if (loading) {
+                $('#process_courses').append(loadingCard(3));
+                $('#finished_courses').append(loadingCard(3));
+            }
+
             get(1)
 
             function get(page) {
@@ -141,6 +147,8 @@
                     },
                     success: function(response) {
                         console.log(response);
+                        $('#process_courses').empty();
+                        $('#finished_courses').empty();
 
                         if (response.data.length > 0) {
                             let hasProcessCourses = false;
@@ -167,6 +175,7 @@
                         } else {
                             $('#process_courses').append(empty());
                             $('#finished_courses').append(empty());
+                            $('.pagination__wrap').hide();
                         }
 
 
@@ -182,6 +191,40 @@
                     }
                 });
             }
+
+            function loadingCard(amount) {
+            let card = '';
+
+            for (let i = 0; i < amount; i++) {
+                card += `
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <div class="card shine__animate-item" aria-hidden="true">
+                            <div class="card-img-top placeholder-glow">
+                                <svg class="bd-placeholder-img" width="100%" height="180"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#e9ecef"></rect>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                </h5>
+                                <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                    <span class="placeholder col-8"></span>
+                                </p>
+                                <a href="#" class="btn btn-primary disabled placeholder col-6"></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            return card;
+        }
         });
 
         function process(index, value) {
