@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-body p-3">
                     <h5 class="mb-3 fw-semibold">Form Penilaian</h5>
-                    <form action="" action="" enctype="multipart/form-data">
+                    <form id="assessment-form-student" enctype="multipart/form-data">
                         <div class="table-responsive">
                             <table id="demo-foo-addrow" class="table table-bordered m-t-30 contact-list" data-paging="true"
                                 data-paging-size="7">
@@ -90,7 +90,6 @@
                                         <td class="custom-cell" style="background-color: #E8DEF3"></td>
                                         <td class="custom-cell" style="background-color: #E8DEF3"></td>
                                     </tr>
-                                    {{-- <div class="attitude-list"> --}}
                                     <tr>
                                         <td>1</td>
                                         <td>Menghargai orang sekitar dalam proses ujian</td>
@@ -110,8 +109,6 @@
                                             <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
-                                    {{-- </div> --}}
-
                                     <tr>
                                         <td class="custom-cell" style="background-color: #E8DEF3"><b>II</b></td>
                                         <td class="custom-cell" style="background-color: #E8DEF3"><b>KETERAMPILAN</b></td>
@@ -121,7 +118,6 @@
                                         <td class="custom-cell" style="background-color: #E8DEF3"></td>
                                         <td class="custom-cell" style="background-color: #E8DEF3"></td>
                                     </tr>
-                                    {{-- <div class="skill-list"> --}}
                                     <tr>
                                         <td>1</td>
                                         <td>Siswa mampu menjalankan dan membuat program di visual studio code</td>
@@ -142,7 +138,6 @@
                                             <input type="radio" name="skill" value="12-10-2014" id="date1">
                                         </td>
                                     </tr>
-                                    {{-- </div> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -236,19 +231,19 @@
                     <td>${index+1}</td>
                     <td>${value.indicator}</td>
                     <td class="text-center">
-                        <input type="radio" name="attitude-${index}" value="5" id="attitude-${index}">
+                        <input type="radio" name="attitude[${index}]" value="5" id="attitude-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="attitude-${index}" value="4" id="attitude-${index}">
+                        <input type="radio" name="attitude[${index}]" value="4" id="attitude-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="attitude-${index}" value="3" id="attitude-${index}">
+                        <input type="radio" name="attitude[${index}]" value="3" id="attitude-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="attitude-${index}" value="2" id="attitude-${index}">
+                        <input type="radio" name="attitude[${index}]" value="2" id="attitude-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="attitude-${index}" value="1" id="attitude-${index}">
+                        <input type="radio" name="attitude[${index}]" value="1" id="attitude-${index}" data-id="${value.id}">
                     </td>
                 </tr>
                 `
@@ -260,19 +255,19 @@
                     <td>${index+1}</td>
                     <td>${value.indicator}</td>
                     <td class="text-center">
-                        <input type="radio" name="skill-${index}" value="5" id="skill-${index}">
+                        <input type="radio" name="skill[${value.id}]" value="5" id="skill-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="skill-${index}" value="4" id="skill-${index}">
+                        <input type="radio" name="skill[${value.id}]" value="4" id="skill-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="skill-${index}" value="3" id="skill-${index}">
+                        <input type="radio" name="skill[${value.id}]" value="3" id="skill-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="skill-${index}" value="2" id="skill-${index}">
+                        <input type="radio" name="skill[${value.id}]" value="2" id="skill-${index}" data-id="${value.id}">
                     </td>
                     <td class="text-center">
-                        <input type="radio" name="skill-${index}" value="1" id="skill-${index}">
+                        <input type="radio" name="skill[${value.id}]" value="1" id="skill-${index}" data-id="${value.id}">
                     </td>
                 </tr>
                 `
@@ -380,6 +375,47 @@
                 class_level = $(this).data('class_level')
                 getForm(division_id, class_level)
             })
+
+            function submitForm(studentId) {
+                $('#assessment-form-student').submit(function(e) {
+                    e.preventDefault();
+
+                    let value = $.map($('input[type="radio"]:checked'), function(element, index) {
+                        return element.value;
+                    });
+                    let id = $.map($('input[type="radio"]:checked'), function(element, index) {
+                        return $(element).data('id');
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ config('app.api_url') }}/api/assesment-form-student/" +
+                            studentId,
+                        headers: {
+                            Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                        },
+                        data: {
+                            "value": value,
+                            "assessment_form_id": id
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: "Sukses!",
+                                text: "berhasil memberikan penilaian",
+                                icon: "success"
+                            });
+                        },
+                        error: function(xhr) {
+                            Swal.fire({
+                                title: "Terjadi kesalahan!",
+                                text: "gagal memberikan penilaian",
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+            }
 
         });
     </script>
