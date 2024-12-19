@@ -191,8 +191,8 @@
                     <div class="col-lg-8">
                         <div class="section__title text-center mb-40">
                             <span class="sub-title">Kursus Terlaris</span>
-                            <h2 class="title">Kursus Terlaris di hummaclass</h2>
-                            <p class="desc">daftar kursus yang paling laris di hummaclass</p>
+                            <h2 class="title">Kursus Terlaris</h2>
+                            <p class="desc">daftar kursus yang paling laris di GetSkill</p>
                         </div>
                         <div class="courses__nav">
                         </div>
@@ -326,19 +326,21 @@
                     <div class="col-lg-6">
                         <div class="section__title text-center mb-40">
                             <span class="sub-title">Fitur Unggulan Kami</span>
-                            <h2 class="title">Upgrade Skill Kamu dengan Hummaclass</h2>
-                            <p class="desc">belajar dari instruktur terbaik di kelas langsung terlibat, berinteraksi dan
+                            <h2 class="title" id="feature-title">Upgrade Skill Kamu dengan Hummaclass</h2>
+                            <p class="desc" id="feature-description">belajar dari instruktur terbaik di kelas langsung
+                                terlibat, berinteraksi dan
                                 menyelesaikan keraguan</p>
                         </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #F6EEFE;border-radius:20px;">
+                    <div class="row d-flex">
+                        <div class="col-lg-4 mb-3 d-flex">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #F6EEFE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
-                                            style="border-radius: 50%; background-color:#9425FE">
+                                            style="border-radius: 50%; background-color: #9425FE;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35"
                                                 viewBox="0 0 24 24">
                                                 <path fill="white"
@@ -348,18 +350,20 @@
                                         <h5 class="mb-0 ms-3">Mentor Terpercaya</h5>
                                     </div>
                                     <div class="d-flex align-items-center mt-3">
-                                        <p style="font-size: 15px;" id="feature-mentor">Mentor Kami ramah dan ahli dalam domain untuk membuat
-                                            Anda belajar dengan mudah</p>
+                                        <p style="font-size: 15px;" id="feature-mentor">
+                                            Mentor Kami ramah dan ahli dalam domain untuk membuat Anda belajar dengan mudah
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #EEF0FE;border-radius:20px;">
+                        <div class="col-lg-4 mb-3 d-flex">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #EEF0FE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
-                                            style="border-radius: 50%; background-color:#2925FE">
+                                            style="border-radius: 50%; background-color: #2925FE;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                 viewBox="0 0 24 24">
                                                 <g fill="none" stroke="white">
@@ -372,18 +376,21 @@
                                         <h5 class="mb-0 ms-3">Kursus Terbaik</h5>
                                     </div>
                                     <div class="d-flex align-items-center mt-3">
-                                        <p style="font-size: 15px;" id="feature-course">Semua kursus kami dibuat dan untuk membuat Anda
-                                            menikmati mempelajari hal-hal baru</p>
+                                        <p style="font-size: 15px;" id="feature-course">
+                                            Semua kursus kami dibuat dan untuk membuat Anda menikmati mempelajari hal-hal
+                                            baru
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 mb-3">
-                            <div class="card shadow-none border-0" style="background-color: #FEF5EE;border-radius:20px;">
+                        <div class="col-lg-4 mb-3 d-flex">
+                            <div class="card shadow-none border-0 h-100"
+                                style="background-color: #FEF5EE; border-radius: 20px;">
                                 <div class="card-body p-4 px-5">
                                     <div class="d-flex align-items-center">
                                         <div class="d-flex align-items-center justify-content-center p-3"
-                                            style="border-radius: 50%; background-color:#FFB649">
+                                            style="border-radius: 50%; background-color: #FFB649;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                 viewBox="0 0 24 24">
                                                 <path fill="white"
@@ -397,13 +404,15 @@
                                         <h5 class="mb-0 ms-3">Tugas Kompetensi</h5>
                                     </div>
                                     <div class="d-flex align-items-center mt-3 mb-4">
-                                        <p style="font-size: 15px;" id="feature-task">Bergabunglah dengan kelas kami dengan alat interaktif
-                                            dan dukungan keraguan</p>
+                                        <p style="font-size: 15px;" id="feature-task">
+                                            Bergabunglah dengan kelas kami dengan alat interaktif dan dukungan keraguan
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -427,7 +436,7 @@
             error: function(xhr) {
                 alert('gagal fetch header')
                 console.log(xhr);
-                
+
             }
         });
         $.ajax({

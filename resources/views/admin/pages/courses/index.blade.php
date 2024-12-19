@@ -1,14 +1,13 @@
 @extends('admin.layouts.app')
 
 @section('style')
+@section('style')
     <style>
         .btn-close {
             --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
             background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
         }
-    </style>
 
-    <style>
         .info-card {
             border-radius: 8px;
         }
@@ -25,11 +24,14 @@
             margin-right: 10px;
         }
 
-        /* .info-card .info-header {
-            font-weight: bold;
-            color: #ff8800;
-        } */
+        .card:hover {
+            transform: none !important;
+            transition: none !important;
+            cursor: default !important;
+        }
     </style>
+@endsection
+
 @endsection
 
 @section('content')
