@@ -180,6 +180,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
+            let loading = true;
 
             let data = {}
             $.ajax({
@@ -200,7 +201,7 @@
 
                     data['classroom_id'] = response.data.id
 
-                    getStudent();
+                    getStudent(); // Call the function to load students
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -210,14 +211,17 @@
                     });
                 }
             });
+
             $('#search-form').submit(function(e) {
                 e.preventDefault();
                 data['name'] = $('#input-search').val();
 
-                getStudent();
+                getStudent(); // Reload students based on the search query
             });
 
             function getStudent() {
+                showLoading();
+
                 $.ajax({
                     type: "get",
                     url: "{{ config('app.api_url') }}/api/mentor/detail-student/classroom",
@@ -226,11 +230,11 @@
                     },
                     data: data,
                     success: function(response) {
-                        $('#tableBody').empty();
+                        $('#tableBody').empty(); // Clear previous data in the table
                         $.each(response.data.data, function(index, value) {
-                            $('#tableBody').append(studentClassroom(index,
-                                value));
+                            $('#tableBody').append(studentClassroom(index, value));
                         });
+                        hideLoading(); // Hide the loading spinner when data is loaded
                     },
                     error: function(xhr) {
                         Swal.fire({
@@ -238,6 +242,7 @@
                             text: xhr.responseJSON.meta.message,
                             icon: "error"
                         });
+                        hideLoading(); // Hide loading spinner even if there is an error
                     }
                 });
             }
@@ -259,7 +264,15 @@
                     <td>${value.gender}</td>
                     <td>${value.nisn}</td>
                 </tr>
-            `
+            `;
+            }
+
+            function showLoading() {
+                $('#loading-row').show(); // Display the loading row (spinner)
+            }
+
+            function hideLoading() {
+                $('#loading-row').hide(); // Hide the loading row (spinner) once data is loaded
             }
         });
     </script>
