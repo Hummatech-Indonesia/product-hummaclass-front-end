@@ -1,5 +1,11 @@
 @section('script')
     <script>
+        let loading = true;
+        if (loading) {
+            $('#list-course').append(loadingCard(3));
+            $('#list-event').append(loadingCard(3));
+        }
+
         function getCourse(page) {
             $.ajax({
                 type: "GET",
@@ -20,10 +26,11 @@
                                 });
                             cardCourse(data);
                         });
-                        // $('#pagination').html(handlePaginate(response.data.paginate));
+                        // $('.pagination__wrap').html(handlePaginate(response.data.paginate));
                     } else {
                         $('#list-course').append(empty());
-                        $('#pagination').hide();
+                        $('.pagination__wrap').hide();
+                        
                     }
                 },
                 error: function(xhr) {
@@ -110,10 +117,10 @@
                                 });
                             cardEvent(data.event);
                         });
-                        // $('#pagination').html(handlePaginate(response.data.paginate));
+                        // $('.pagination__wrap').html(handlePaginate(response.data.paginate));
                     } else {
                         $('#list-event').append(empty());
-                        $('#pagination').hide();
+                        $('.pagination__wrap').hide();
                     }
                 },
                 error: function(xhr) {
@@ -165,6 +172,42 @@
 
             $('#list-event').append(card);
         }
+
+
+        function loadingCard(amount) {
+            let card = '';
+
+            for (let i = 0; i < amount; i++) {
+                card += `
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <div class="card shine__animate-item" aria-hidden="true">
+                            <div class="card-img-top placeholder-glow">
+                                <svg class="bd-placeholder-img" width="100%" height="180"
+                                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <rect width="100%" height="100%" fill="#e9ecef"></rect>
+                                </svg>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                </h5>
+                                <p class="card-text placeholder-glow">
+                                    <span class="placeholder col-7"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-4"></span>
+                                    <span class="placeholder col-6"></span>
+                                    <span class="placeholder col-8"></span>
+                                </p>
+                                <a href="#" class="btn btn-primary disabled placeholder col-6"></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            return card;
+        }
+
 
         getEvent(1);
         getCourse(1);
