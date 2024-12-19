@@ -2,7 +2,6 @@
     $(document).ready(function() {
         var id = "{{ $id }}";
         console.log(id);
-        
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/rewards/" + id,
@@ -26,8 +25,8 @@
                 // Event click untuk tombol "Tukarkan"
                 $('.storeConfirm').click(function(e) {
                     e.preventDefault();
-                    console.log('woii');
-
+                    $('#btn-spinner-exchange').show();
+                    $(this).prop('disabled', true);
                     var idReward = response.data.id;
 
                     Swal.fire({
@@ -54,6 +53,9 @@
                                         text: "Berhasil menukar poin.",
                                         icon: "success"
                                     });
+
+                                    $('#btn-spinner-exchange').hide();
+                                    $('.storeConfirm').prop('disabled', false);
                                 },
                                 error: function(xhr) {
                                     Swal.fire({
@@ -61,6 +63,8 @@
                                         text: "Gagal menukar poin.",
                                         icon: "error"
                                     });
+                                    $('#btn-spinner-exchange').hide();
+                                    $('.storeConfirm').prop('disabled', false);
                                 }
                             });
                         }
