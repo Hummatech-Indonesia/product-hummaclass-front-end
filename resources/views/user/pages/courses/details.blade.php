@@ -524,7 +524,7 @@
             <div class="accordion-item mt-3">
                 <div class="d-flex">
                     <a class="text-white d-flex align-items-center justify-content-center bg-warning p-1 rounded-circle py-1 px-3 me-2"
-                        href="javascript:void(0)" width="30" height="30">
+                        href="javascript:void(0)" style="height:43px !important; width: 43px !important;">
                         ${index + 1}
                     </a>
                     <h4>${value.title}</h4>
