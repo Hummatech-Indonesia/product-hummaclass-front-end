@@ -193,10 +193,10 @@
             }
 
             function loadingCard(amount) {
-            let card = '';
+                let card = '';
 
-            for (let i = 0; i < amount; i++) {
-                card += `
+                for (let i = 0; i < amount; i++) {
+                    card += `
                     <div class="col-lg-4 col-md-6 mb-3">
                         <div class="card shine__animate-item" aria-hidden="true">
                             <div class="card-img-top placeholder-glow">
@@ -222,9 +222,9 @@
                         </div>
                     </div>
                 `;
+                }
+                return card;
             }
-            return card;
-        }
         });
 
         function process(index, value) {
