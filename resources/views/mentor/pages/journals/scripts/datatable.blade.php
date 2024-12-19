@@ -1,4 +1,7 @@
 <script>
+ 
+    let loading = true;
+
     function mentorJournal(index, data) {
         return `
             <tr class="fw-semibold">
@@ -84,17 +87,26 @@
                 let content = '';
 
                 $('#tableBody').empty();
-                $.each(response.data.data, function(index, data) {
-                    content += mentorJournal(index, data);
-                });
-                $('#tableBody').append(content);
-                $('#pagination').html(handlePaginate(response.data.paginate));
+                if (response.data.data.length > 0) {
+                    $.each(response.data.data, function(index, data) {
+                        content += mentorJournal(index, data);
+                    });
+                    $('#tableBody').append(content);
+                    $('#pagination').html(handlePaginate(response.data.paginate));
+                } else {
+                    $('#tableBody').append(empty());
+                }
 
+                loading = false;
             }
         });
     }
 
     get(1)
+
+    if (loading) {
+        $('#tableBody').append(load(4));
+    }
 
     $(document).ready(function() {
 
@@ -172,4 +184,33 @@
             });
         })
     });
+
+    function load(amount) {
+        let card = '';
+
+        for (let i = 0; i <= amount; i++) {
+            card += `
+                <tr class="fw-semibold placeholder-glow">
+                    <td><p class="placeholder col-4"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                    <td>
+                        <span class="placeholder col-5"></span>
+                    </td>
+                    <td>   
+                        <span class="placeholder col-7"></span>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-1">
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-4"></span>
+                            <span class="placeholder col-4"></span>
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }
+        return card;
+    }
 </script>
