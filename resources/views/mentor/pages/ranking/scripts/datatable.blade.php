@@ -1,4 +1,5 @@
 <script>
+    let loading = true;
     let debounceTimer;
 
     $('#search-name').keyup(function() {
@@ -54,11 +55,18 @@
             dataType: "json",
             success: function(response) {
                 $('#tableBody').empty();
-                $.each(response.data.data, function(indexInArray, valueOfElement) {
-                    $('#tableBody').append(studentClassroom(indexInArray,
-                        valueOfElement));
-                });
-                $('#pagination').html(handlePaginate(response.data.paginate));
+
+                if (response.data.data.length > 0) {
+                    $.each(response.data.data, function(indexInArray, valueOfElement) {
+                        $('#tableBody').append(studentClassroom(indexInArray,
+                            valueOfElement));
+                    });
+                    $('#pagination').html(handlePaginate(response.data.paginate));
+                } else {
+                    $('#tableBody').append(empty());
+                }
+
+                loading = false;
             },
             error: function(xhr) {
                 Swal.fire({
@@ -66,11 +74,17 @@
                     text: xhr.responseJSON.meta.message,
                     icon: "error"
                 });
+
+                loading = false;
             }
         });
     }
 
     get(1);
+
+    if (loading) {
+        $('#tableBody').append(load(4));
+    }
 
     $.ajax({
         type: "GET",
@@ -88,4 +102,20 @@
             });
         }
     });
+
+    function load(amount) {
+        let card = '';
+
+        for (let i = 0; i <= amount; i++) {
+            card += `
+                <tr class="fw-semibold placeholder-glow">
+                    <td><p class="placeholder col-4"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                    <td><p class="placeholder col-5"></p></td>
+                </tr>
+            `;
+        }
+        return card;
+    }
 </script>

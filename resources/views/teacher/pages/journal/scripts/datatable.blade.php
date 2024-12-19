@@ -1,6 +1,7 @@
 <script>
     $(document).ready(function() {
         let debounceTimer;
+        let loading = true;
 
         $('#search').keyup(function() {
             clearTimeout(debounceTimer);
@@ -8,16 +9,6 @@
                 getJournalTeacher(1);
             }, 500);
         });
-
-        function notData() {
-            return `
-                <tr>
-                    <td colspan="7" class="text-center">
-                        <p class="mb-0 fw-normal">Tidak ada jurnal yang tersedia.</p>
-                    </td>
-                </tr>
-            `
-        }
 
         function journalList(index, value) {
             return `
@@ -70,13 +61,15 @@
                 success: function(response) {
                     $('#journal-list').empty();
                     if (response.data.data.length === 0) {
-                        $('#journal-list').append(notData());
+                        $('#journal-list').append(empty());
                     } else {
                         $.each(response.data.data, function(indexInArray, valueOfElement) {
                             $('#journal-list').append(journalList(indexInArray,
                                 valueOfElement));
                         });
                     }
+
+                    loading = false;
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -84,10 +77,50 @@
                         text: xhr.responseJSON.meta.message,
                         icon: "error"
                     });
+                    journal = false;
                 }
             });
         }
 
         getJournalTeacher(1);
     });
+
+    function loadCard(amount) {
+        let card = '';
+
+        for (let i = 0; i <= amount; i++) {
+            card += `
+                    <div class="col-lg-3 col-md-3 col-sm-12 mb-3">
+                        <div class="card" aria-hidden="true">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="150px"
+                                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
+                                        preserveAspectRatio="xMidYMid slice" focusable="false">
+                                        <title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#868e96"></rect>
+                                    </svg>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-6"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-7"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-4"></span>
+                                            <span class="placeholder col-6"></span>
+                                            <span class="placeholder col-8"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            
+        }
+        return card;
+    }
 </script>
