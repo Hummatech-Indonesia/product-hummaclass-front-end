@@ -46,6 +46,7 @@
     <script>
         $(document).ready(function() {
             function loadSchoolYears() {
+                $('#loading-spinner').show();
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/school-years",
@@ -64,6 +65,7 @@
                         }
                     },
                 });
+                
             }
 
             function loadClassrooms(query = '', grades = [], schoolYear = '') {

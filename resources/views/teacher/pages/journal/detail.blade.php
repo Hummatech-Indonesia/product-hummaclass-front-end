@@ -39,16 +39,19 @@
             <h5 class="fw-semibold mb-3"><b>Detail Jurnal</b></h5>
             <div class="row">
                 <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-                    <img id="image" src="" alt="No Image"
-                        class="rounded-2 img-fluid"
-                        style="width: 100%; height: 180px; object-fit: cover;">
+                    <!-- Skeleton Loading for Image -->
+                    <div class="skeleton-image rounded-2 img-fluid" style="width: 100%; height: 180px; background-color: #f0f0f0;"></div>
+                    <img id="image" src="" alt="No Image" class="rounded-2 img-fluid" style="width: 100%; height: 180px; object-fit: cover; display: none;">
                 </div>
-
+    
                 <div class="col-12 col-lg-9">
-                    <h5 class="fw-semibold"><b>Judul</b></h5>
-                    <p id="title"></p>
-                    <h5 class="fw-semibold"><b>Deskripsi</b></h5>
-                    <p id="desc"></p>
+                    <!-- Skeleton Loading for Title -->
+                    <div class="skeleton-text mb-3" style="height: 24px; background-color: #f0f0f0;"></div>
+                    <h5 class="fw-semibold" id="title" style="display: none;"></h5>
+    
+                    <!-- Skeleton Loading for Description -->
+                    <div class="skeleton-text mb-3" style="height: 60px; background-color: #f0f0f0;"></div>
+                    <p id="desc" style="display: none;"></p>
                 </div>
             </div>
         </div>
@@ -78,10 +81,14 @@
                     <tbody id="student-list">
                     </tbody>
                 </table>
+                <div id="loading-spinner" class="text-center my-3" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
 @endsection
 @section('script')
     @include('teacher.pages.journal.scripts.detail')
