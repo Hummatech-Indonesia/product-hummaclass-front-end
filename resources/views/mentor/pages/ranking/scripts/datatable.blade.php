@@ -40,7 +40,16 @@
             `
     }
 
+    function showLoading() {
+        $('#loading-row').show();
+    }
+
+    function hideLoading() {
+        $('#loading-row').hide();
+    }
+
     function get(page) {
+        showLoading();
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}/api/mentor/student/list?page=" + page,
@@ -82,10 +91,6 @@
 
     get(1);
 
-    if (loading) {
-        $('#tableBody').append(load(4));
-    }
-
     $.ajax({
         type: "GET",
         url: "{{ config('app.api_url') }}/api/schools-all",
@@ -102,20 +107,4 @@
             });
         }
     });
-
-    function load(amount) {
-        let card = '';
-
-        for (let i = 0; i <= amount; i++) {
-            card += `
-                <tr class="fw-semibold placeholder-glow">
-                    <td><p class="placeholder col-4"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                </tr>
-            `;
-        }
-        return card;
-    }
 </script>

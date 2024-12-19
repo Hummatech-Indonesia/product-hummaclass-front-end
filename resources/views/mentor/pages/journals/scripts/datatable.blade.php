@@ -1,5 +1,4 @@
 <script>
- 
     let loading = true;
 
     function mentorJournal(index, data) {
@@ -75,7 +74,17 @@
         `
     }
 
+    function showLoading() {
+        $('#loading-row').show();
+    }
+
+    function hideLoading() {
+        $('#loading-row').hide();
+    }
+
     function get(page) {
+        showLoading();
+
         $.ajax({
             type: "get",
             url: "{{ config('app.api_url') }}/api/journals?page=" + page,
@@ -103,10 +112,6 @@
     }
 
     get(1)
-
-    if (loading) {
-        $('#tableBody').append(load(4));
-    }
 
     $(document).ready(function() {
 
@@ -184,33 +189,4 @@
             });
         })
     });
-
-    function load(amount) {
-        let card = '';
-
-        for (let i = 0; i <= amount; i++) {
-            card += `
-                <tr class="fw-semibold placeholder-glow">
-                    <td><p class="placeholder col-4"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                    <td><p class="placeholder col-5"></p></td>
-                    <td>
-                        <span class="placeholder col-5"></span>
-                    </td>
-                    <td>   
-                        <span class="placeholder col-7"></span>
-                    </td>
-                    <td>
-                        <div class="d-flex gap-1">
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                        </div>
-                    </td>
-                </tr>
-            `;
-        }
-        return card;
-    }
 </script>

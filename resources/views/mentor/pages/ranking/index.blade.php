@@ -105,6 +105,13 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
+                        <tr id="loading-row" style="display: none;">
+                            <td colspan="6" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

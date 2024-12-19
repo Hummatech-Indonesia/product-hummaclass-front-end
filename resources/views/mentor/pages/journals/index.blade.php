@@ -82,8 +82,7 @@
                 placeholder="Search">
             <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
         </form>
-        <button class="btn me-1 mb-1 bg-primary text-white px-4" data-bs-toggle="modal"
-            data-bs-target="#modal-create">
+        <button class="btn me-1 mb-1 bg-primary text-white px-4" data-bs-toggle="modal" data-bs-target="#modal-create">
             <i class="fa fa-plus fa-md d-none d-md-inline"></i>
             Tambah
         </button>
@@ -106,6 +105,13 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
+                        <tr id="loading-row" style="display: none;">
+                            <td colspan="6" class="text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
