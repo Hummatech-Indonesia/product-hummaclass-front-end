@@ -29,8 +29,10 @@ class AuthController extends Controller
         return response()->json(['success' => true, 'next-url' => $nextUrl]);
     }
 
-    public function saveTokenGoogle(Request $request)
-    {
+    public function saveTokenGoogle($data)
+    {   
+        dd($data);
+
         Session::put('hummaclass-token', $request->token);
         Session::put('user', (array) json_decode($request->user, true));
         

@@ -45,7 +45,7 @@ Route::get('register', [App\Http\Controllers\AuthController::class, 'register'])
 Route::get('landing-dashboard', [LandingController::class, 'getDashboard']);
 Route::post('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('save-token', [App\Http\Controllers\AuthController::class, 'saveToken'])->name('save-token');
-Route::post('save-token-google', [App\Http\Controllers\AuthController::class, 'saveTokenGoogle'])->name('save-token-google');
+Route::get('save-token-google/{data}', [App\Http\Controllers\AuthController::class, 'saveTokenGoogle'])->name('save-token-google');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('{type}/pre-download-certificate/{course?}', fn($type, $course) => view('user.pages.courses.widgets.certificate.pre-download-certificate', compact('type', 'course')))->name('pre-download-certificate.index')->middleware('auth_custom');
 
