@@ -33,11 +33,11 @@
 
     <h3 class="mb-3"><b>Daftar Absensi</b></h3>
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Sekolah</th>
+                    <th>Kelas & Sekolah</th>
                     <th>Tanggal</th>
                     <th>Status</th>
                     <th>Link</th>
@@ -45,6 +45,13 @@
                 </tr>
             </thead>
             <tbody id="attendance-list">
+                <tr id="loading-row" style="display: none;">
+                    <td colspan="6" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -86,7 +93,17 @@
             `
         }
 
+        function showLoading() {
+            $('#loading-row').show();
+        }
+
+        function hideLoading() {
+            $('#loading-row').hide();
+        }
+
         function get(page) {
+            showLoading();  
+
             $.ajax({
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/attendances?page=" + page,
@@ -124,10 +141,6 @@
         }
 
         get(1);
-
-        if (loading) {
-            $('#attendance-list').append(load(3));
-        }
 
         $(document).on('click', '#share-link-button', function() {
             const id = $(this).data('id')
@@ -197,7 +210,7 @@
             const id = $(this).data('id')
             const classroom_id = $(this).data('classroom_id')
             const title = $(this).data('title')
-            const school_id = $(this).data('school_id') 
+            const school_id = $(this).data('school_id')
             $('#edit-attendance-modal').modal('show')
             $('#classroom_id').val(classroom_id).trigger('change')
             $('#school_id').val(school_id).trigger('change')
@@ -268,27 +281,5 @@
 
             });
         })
-
-        function load(amount) {
-            let card = '';
-
-            for (let i = 0; i <= amount; i++) {
-                card += `
-                    <tr class="placeholder-glow">
-                        <td><p class="placeholder col-4"></p></td>
-                        <td><p class="placeholder col-4"></p> <p class="placeholder col-5"></p></td>
-                        <td><p class="placeholder col-5"></p></td>
-                        <td><span class="placeholder col-4"></span></td>
-                        <td><span class="placeholder col-6"></span></td>
-                        <td>
-                            <span class="placeholder col-3"></span>
-                            <span class="placeholder col-3"></span>
-                            <span class="placeholder col-3"></span>
-                        </td>
-                    </tr>
-                `;
-            }
-            return card;
-        }
     </script>
 @endsection

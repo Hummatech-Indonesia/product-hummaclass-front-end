@@ -23,7 +23,8 @@
     </div>
 
     <div class="col-12 col-lg-3">
-        <input type="text" name="search" id="search" class="form-control mb-3" style="background-color: white" placeholder="Cari..">
+        <input type="text" name="search" id="search" class="form-control mb-3" style="background-color: white"
+            placeholder="Cari..">
     </div>
 
     <div class="table-responsive rounded">
@@ -37,18 +38,21 @@
                 </tr>
             </thead>
             <tbody id="attendance-student-list">
-                {{-- <tr>
-                    <td>1</td>
-                    <td>Ardi Pudidi</td>
-                    <td>XII RPL 1</td>
-                    <td>SMKN 1 Kepanjen</td>
-                </tr> --}}
+                <tr id="loading-row" style="display: none;">
+                    <td colspan="6" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 @endsection
 @section('script')
     <script>
+        let loading = true;
+
         $(document).ready(function() {
 
             let debounceTimer;
@@ -73,7 +77,17 @@
                         `
             }
 
+            function showLoading() {
+                $('#loading-row').show();
+            }
+
+            function hideLoading() {
+                $('#loading-row').hide();
+            }
+
             function getAttendanceStudent(page) {
+                showLoading();
+
                 $.ajax({
                     type: "GET",
                     url: "{{ config('app.api_url') }}/api/attendances/" + slug + '?page=' + page,
