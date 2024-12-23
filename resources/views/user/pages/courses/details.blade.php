@@ -397,9 +397,7 @@
                     $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
                     let price =
-                        response.data.promotional_price && response.data.promotional_price !== 0 &&
-                        response.data.promotional_price !== '' ?
-                        response.data.promotional_price :
+                        response.data.promotional_price != null || response.data.promotional_price == 0:
                         response.data.price;
                     $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(
                         price));
