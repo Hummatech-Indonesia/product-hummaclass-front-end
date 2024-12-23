@@ -118,7 +118,7 @@
                                     <div class="courses__details-sidebar">
                                         <div class="courses__cost-wrap">
                                             <span>Reedem Point:</span>
-                                            <h2 class="title" id="detail-point-required">1000 Pts</h2>
+                                            <h2 class="title"><span id="detail-point-required"></span>1000 Pts</h2>
                                         </div>
                                         <div class="courses__information-wrap">
                                             <h5 class="title">Reward Hummaclass:</h5>

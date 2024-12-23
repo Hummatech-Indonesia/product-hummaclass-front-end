@@ -14,16 +14,18 @@
             <div class="courses-cat-list">
                 <div class="input-group">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="minimum" class="form-control" placeholder="Harga Minimum">
+                    <input type="number" id="minimum" min="0" class="form-control" min="0"
+                        placeholder="Harga Minimum">
                 </div>
                 <div class="input-group my-4">
                     <span class="input-group-text">Rp</span>
-                    <input type="number" id="maksimum" class="form-control" placeholder="Harga Maksimum">
+                    <input type="number" id="maksimum" min="0" class="form-control" min="0"
+                        placeholder="Harga Maksimum">
                 </div>
                 
             </div>
         </div>
-        <div class="courses-widget">
+        {{-- <div class="courses-widget">
             <h4 class="widget-title">Rating</h4>
             <div class="courses-rating-list">
                 <ul class="list-wrap">
@@ -99,11 +101,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <button id="filter_price" class="btn"
-                    style="background-color: #ffc224;color:black; width:100%">Terapkan
-            <span id="btn-spinner-filter" class="spinner-border spinner-border-sm ms-2" role="status" aria-hidden="true" style="display: none;"></span>    
-            </button>
+        </div> --}}
     </aside>
 </div>
 
@@ -144,3 +142,17 @@
         color: #6D6C80;
     }
 </style>
+
+<script>
+    document.getElementById('minimum').addEventListener('input', function (e) {
+    if (this.value < 0) {
+        this.value = 0;
+    }
+});
+
+document.getElementById('maksimum').addEventListener('input', function (e) {
+    if (this.value < 0) {
+        this.value = 0;
+    }
+});
+</script>

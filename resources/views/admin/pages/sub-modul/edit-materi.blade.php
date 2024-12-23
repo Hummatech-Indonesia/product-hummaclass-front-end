@@ -73,17 +73,6 @@
         $(document).ready(function() {
             var id = "{{ $id }}";
             var modules;
-            $.ajax({
-                type: "GET",
-                url: "{{ config('app.api_url') }}/api/sub-modules/" + id + "/edit",
-                dataType: "json",
-                success: function(response) {
-                    $('.back').click(function(e) {
-                        e.preventDefault();
-                        window.location.href = "/admin/modules/" + response.data.module_id;
-                    });
-                }
-            });
 
             // Fungsi untuk set nilai ke form
             function setValue(data) {
@@ -156,7 +145,6 @@
                         }
                     });
                 }).catch((error) => {
-                    console.log('Error saving content:', error);
                 });
             });
 

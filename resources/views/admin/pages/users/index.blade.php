@@ -1,12 +1,12 @@
 @extends('admin.layouts.app')
 
 @section('style')
-    <style>
+    {{-- <style>
         .btn-close {
             --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
             background: transparent var(--bs-btn-close-bg) center/1em auto no-repeat;
         }
-    </style>
+    </style> --}}
 @endsection
 
 @section('content')
@@ -90,6 +90,9 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}/api/users?page=" + page,
                 dataType: "json",
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
                 data: {
                     name: $('#search-name').val(),
                 },
@@ -105,10 +108,25 @@
                 error: function(xhr) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
-                        text: "Tidak dapat memuat data kategori.",
+                        text: "Tidak dapat memuat data profil.",
                         icon: "error"
                     });
                 }
+            });
+        }
+
+        function escapeHTML(input) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '(': '&#40;',
+                ')': '&#41;'
+            };
+            return input.replace(/[&<>"'()]/g, function(m) {
+                return map[m];
             });
         }
 
@@ -119,15 +137,15 @@
                             <td>${index+1}</td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
-                                        class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
-                                        height="40" alt="">
-                                    <div class="ms-3">
-                                        <h6 class="fs-4 fw-semibold mb-0">${value.name}</h6>
-                                        <span class="fw-normal">${value.email}</span>
-                                    </div>
-                                </div>
-                            </td>
+                                     <img src="${value.photo && value.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-profile.jpeg') }}'}"
+                                         class="rounded-circle me-2 user-profile" style="object-fit: cover" width="40"
+                                         height="40" alt="">
+                                     <div class="ms-3">
+                                          <h6 class="fs-4 fw-semibold mb-0">${escapeHTML(value.name)}</h6>
+                                          <span class="fw-normal">${value.email}</span>
+                                     </div>
+                                 </div>
+                             </td>
                             <td>${value.total_courses} Kursus</td>
                             <td>
                                 <div class="d-flex gap-3">

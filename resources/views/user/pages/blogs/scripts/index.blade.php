@@ -139,7 +139,6 @@
                         newsParent.empty();
                         newsParent.append(
                             `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                        console.log('Gagal memuat data setelah beberapa kali percobaan.');
                         loading = false;
                     }
                 }
@@ -258,7 +257,7 @@
                 <div class="rc-post-item">
                     <div class="rc-post-thumb">
                         <a href="javascript:void(0)">
-                            <img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
+                            <img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
                         </a>
                     </div>
                     <div class="rc-post-content">

@@ -193,7 +193,6 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    console.log(response.data);
                     $('#total_question').html(response.data.total_question);
                     $('#finish').attr('href', `{{ route('courses.courses.show', '') }}/${response.data.course_slug}`);
                     $('#score').html(response.data.score);

@@ -30,7 +30,7 @@ class CourseController extends Controller
     }
 
     public function courseLesson($id)
-    {   
+    {
         return view('user.pages.courses.courses-lesson', compact('id'));
     }
 }

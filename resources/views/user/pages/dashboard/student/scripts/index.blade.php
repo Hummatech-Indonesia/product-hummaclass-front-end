@@ -9,14 +9,13 @@
         function getCourse(page) {
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-courses?page=" + page,
+                url: "{{ config('app.api_url') }}" + "/api/user-courses-guest?page=" + page,
                 headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 success: function(response) {
                     $('#list-course').empty();
-
                     if (response.data.data.length > 0) {
                         response.data.data.forEach(data => {
                             renderPagination(response.data.paginate.last_page, response.data.paginate
@@ -26,11 +25,9 @@
                                 });
                             cardCourse(data);
                         });
-                        // $('.pagination__wrap').html(handlePaginate(response.data.paginate));
                     } else {
                         $('#list-course').append(empty());
                         $('.pagination__wrap').hide();
-                        
                     }
                 },
                 error: function(xhr) {
@@ -43,30 +40,30 @@
             });
         }
 
-
         function cardCourse(data) {
-
+            const statusText = data.study_percentage === 100 ? "SELESAI" : "PROSES";
+            var url = "{{ config('app.api_url') }}";
             let card = `
             <div class="col-lg-4 col-md-6">
                 <div class="courses__item courses__item-two shine__animate-item">
                     <div class="courses__item-thumb courses__item-thumb-two">
                         <a href="{{ route('courses.courses.show', '') }}/${data.course.slug}"
                             class="shine__animate-link">
-                            <img src="{{ config('app.api_url') }}/storage/${data.course.photo}"
+                            <img src="${data.course.photo && data.course.photo !== url + '/storage' ? data.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 alt="img">
                         </a>
                     </div>
                     <div class="courses__item-content courses__item-content-two">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="course.html">${data.course.sub_category.name}</a>
+                                <a href="javascript:void(0)">${data.course.sub_category.name}</a>
                             </li>
                         </ul>
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${data.course.slug}">${data.course.title}</a></h5>
                         <div class="courses__item-content-bottom">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
-                                        src="assets/img/courses/course_author001.png"
+                                <a href="javascript:void(0)"><img
+                                        src="{{ asset('assets/img/no-image/no-profile.jpeg') }}"
                                         alt="img">${data.course.user?.name}</a>
                             </div>
                             <div class="avg-rating">
@@ -74,7 +71,7 @@
                             </div>
                         </div>
                         <div class="progress-item progress-item-two">
-                            <h6 class="title">COMPLETE <span>${data.study_percentage}%</span></h6>
+                            <h6 class="title">${statusText} <span>${data.study_percentage}%</span></h6>
                             <div class="progress" role="progressbar" aria-label="Example with label"
                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar" style="width: ${data.study_percentage}%"></div>
@@ -84,7 +81,7 @@
                     <div class="courses__item-bottom-two">
                         <ul class="list-wrap">
                             <li><i class="flaticon-book"></i>${data.total_module}</li>
-                            <li><i class="flaticon-clock"></i>11h 20m</li>
+                            <li><i class="flaticon-clock"></i>${data.study_time}</li>
                             <li><i class="flaticon-mortarboard"></i>${data.total_user}</li>
                         </ul>
                     </div>
@@ -100,13 +97,11 @@
                 type: "GET",
                 url: "{{ config('app.api_url') }}" + "/api/user-events?page=" + page,
                 headers: {
-                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 dataType: "json",
                 success: function(response) {
                     $('#list-event').empty();
-                    console.log(response.data.data);
-
                     if (response.data.data.length > 0) {
                         response.data.data.forEach(data => {
                             renderPagination(response.data.paginate.last_page, response.data
@@ -117,7 +112,6 @@
                                 });
                             cardEvent(data.event);
                         });
-                        // $('.pagination__wrap').html(handlePaginate(response.data.paginate));
                     } else {
                         $('#list-event').append(empty());
                         $('.pagination__wrap').hide();
@@ -135,7 +129,6 @@
 
 
         function cardEvent(data) {
-            // console.log(data);
 
             let card = `
             <div class="col-xl-4 col-lg-4 col-md-6">

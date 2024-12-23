@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="table-responsive mt-3">
                                     <table id="demo-foo-addrow"
-                                        class="table table-striped table-bordered m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg"
+                                        class="table table-striped table-bordered m-t-30 text-center table-hover contact-list footable footable-5 footable-paging footable-paging-center breakpoint-lg align-middle"
                                         data-paging="true" data-paging-size="7" style="">
                                         <thead>
                                             <tr class="footable-header">
@@ -135,7 +135,7 @@
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="d-flex justify-content-between">
-                                        <a href="" class="text-dark fw-bolder fs-6">
+                                        <a href="" id="prevButton" class="text-dark fw-bolder fs-6">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                 viewBox="0 0 16 9">
                                                 <path fill="currentColor"
@@ -145,7 +145,7 @@
                                             </svg>
                                             Kembali
                                         </a>
-                                        <a href="" class="text-dark fw-bolder fs-6">
+                                        <a href="" id="nextButton" class="text-dark fw-bolder fs-6">
                                             Selanjutnya
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
                                                 viewBox="0 0 16 9">
@@ -173,9 +173,10 @@
     <script>
         $(document).ready(function() {
 
+            var moduleSlug = "{{ $id }}"
             $.ajax({
                 type: "GET",
-                url: "{{ config('app.api_url') }}" + "/api/user-quizzes",
+                url: "{{ config('app.api_url') }}" + "/api/user-quizzes/" + moduleSlug,
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
@@ -186,10 +187,10 @@
 
                         if (value.status == "Lulus") {
                             status =
-                                `<td><span class="bg-success p-2 text-white rounded text-center">${value.status}</span></td>`;
+                                `<td><span class="bg-success px-3 text-white rounded text-center">${value.status}</span></td>`;
                         } else {
                             status =
-                                `<td><span class="bg-danger p-2 text-white rounded text-center">${value.status}</span></td>`;
+                                `<td><span class="bg-danger px-3 text-white rounded text-center">${value.status}</span></td>`;
                         }
 
                         $('#user-quizzes').append(
@@ -197,7 +198,7 @@
                                 <td>${value.created}</td>
                                 <td>${value.score}</td>
                                 ${status}
-                                <td><a class="btn btn-primary" href="">Lihat Detail</a></td>
+                                <td><a class="btn btn-primary p-3 py-2 mb-2" href="">Lihat Detail</a></td>
                             </tr>`
                         );
                     });
@@ -207,6 +208,47 @@
 
             let photo;
             var id = "{{ $id }}";
+
+
+            let urlNext;
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/next/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlNext =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#nextButton').attr("href", urlNext);
+                },
+                error: function(xhr) {
+
+                    if (xhr.responseJSON.meta.code === 400) {
+                        $('#nextButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
+                    }
+                }
+            });
+
+            let urlPrev;
+
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/sub-modules/prev/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    urlPrev =
+                        `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
+                    $('#prevButton').attr("href", urlPrev);
+
+                },
+                error: function(xhr) {}
+            });
 
             $.ajax({
                 type: "GET",
@@ -248,7 +290,7 @@
                         return `<li class="course-item">
                                     <a class="d-flex justify-content-between" style="color: black">
                                         <span class="ps-2">Quiz</span>
-                                        <span class="ps-2">${quiz.total_question} Soalk</span>
+                                        <span class="ps-2">${quiz.total_question} Soal</span>
                                     </a>
                                 </li>`;
                     }
@@ -283,34 +325,37 @@
                 },
                 dataType: "json",
                 success: function(response) {
-                    const createdAtStr = response.data.user_quizzes.created_at;
-                    const createdAt = new Date(createdAtStr);
-                    createdAt.setMinutes(createdAt.getMinutes() + response.data
-                        .duration);
-                    const targetTime = createdAt;
+
+                    if (response.data.user_quiz_me != null) {
+                        const createdAtStr = response.data.user_quiz_me.created_at;
+                        const createdAt = new Date(createdAtStr);
+                        createdAt.setMinutes(createdAt.getMinutes() + response.data
+                            .duration);
+                        const targetTime = createdAt;
 
 
-                    const options = {
-                        day: '2-digit',
-                        month: 'long', // Nama bulan lengkap dalam bahasa Indonesia
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        hour12: false // Format 24 jam
-                    };
+                        const options = {
+                            day: '2-digit',
+                            month: 'long', // Nama bulan lengkap dalam bahasa Indonesia
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                            hour12: false // Format 24 jam
+                        };
 
-                    const formattedTargetTime = new Intl.DateTimeFormat('id-ID', options).format(
-                        targetTime);
+                        const formattedTargetTime = new Intl.DateTimeFormat('id-ID', options).format(
+                            targetTime);
 
-                    const now = new Date();
+                        const now = new Date();
 
-                    if (now < targetTime) {
-                        $('#start_quiz').hide();
-                        $('#alert').append(
-                            `<div class="alert alert-warning" role="alert">
+                        if (now < targetTime) {
+                            $('#start_quiz').hide();
+                            $('#alert').append(
+                                `<div class="alert alert-warning" role="alert">
                                 Anda dapat mengerjakan ujian kembali pada ${formattedTargetTime}
                             </div>`);
+                        }
                     }
 
 

@@ -27,45 +27,49 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.addCategory', function() {
-            $('#modal-create').modal('show');
-        })
-        $('.storeConfirmation').click(function(e) {
-            e.preventDefault();
-            let formData = new FormData($('.createForm')[0]);
-            console.log(formData);
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.addCategory', function() {
+                $('#modal-create').modal('show');
+            })
+            $('.storeConfirmation').click(function(e) {
+                e.preventDefault();
+                let formData = new FormData($('.createForm')[0]);
 
-            $.ajax({
-                type: "POST",
-                url: "{{ config('app.api_url') }}/api/categories",
-                data: formData,
-                dataType: "json",
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    $('#modal-create').modal('hide');
-                    $('#modal-create-subcategory').find('input').val('');
-                    Swal.fire({
-                        title: "Berhasil!",
-                        text: response.meta.message,
-                        icon: "success"
-                    });
-                    get(1);
-                },
-                error: function(response) {
-                    let errorMessages = [];
-                    $.each(response.responseJSON.data,
-                        function(field, messages) {
-                            $.each(messages, function(index, message) {
-                                errorMessages.push(message);
-                            });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ config('app.api_url') }}/api/categories",
+                    data: formData,
+                    headers: {
+                        Authorization: 'Bearer {{ session('hummaclass-token') }}'
+                    },
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#modal-create').modal('hide');
+                        $('#modal-create-subcategory').find('input').val('');
+                        Swal.fire({
+                            title: "Berhasil!",
+                            text: response.meta.message,
+                            icon: "success"
                         });
-                    $('#category-name').addClass('is-invalid');
-                    $('.error-create').text(errorMessages.join('<br>'));
-                }
+                        get(1);
+                    },
+                    error: function(response) {
+                        let errorMessages = [];
+                        $.each(response.responseJSON.data,
+                            function(field, messages) {
+                                $.each(messages, function(index, message) {
+                                    errorMessages.push(message);
+                                });
+                            });
+                        $('#category-name').addClass('is-invalid');
+                        $('.error-create').text(errorMessages.join('<br>'));
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+@endpush

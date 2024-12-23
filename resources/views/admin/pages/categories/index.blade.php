@@ -26,7 +26,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted" href="index-2.html">Daftar kategori</a>
+                                <a class="text-muted" href="javascript:void(0)">Daftar kategori</a>
                             </li>
                         </ol>
                     </nav>
@@ -42,26 +42,27 @@
     <div class="card p-3">
         <h5 class="fw-semibold mb-3">Kategori</h5>
 
-        <div class="d-flex justify-content-between gap-2">
-            <div class="row">
-                <div class="col-12">
-                    <div class="position-relative">
-                        <input type="text" class="form-control product-search px-4 ps-5" id="search-name"
-                            placeholder="Search">
-                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
-                            style="color: #8B8B8B"></i>
+        <div class="row align-items-center g-3">
+            <div class="col-12 col-lg-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="position-relative">
+                            <input type="text" class="form-control product-search px-4 ps-5" id="search-name"
+                                placeholder="Search">
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 ms-3"
+                                style="color: #8B8B8B"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button class="btn text-white addCategory" style="background-color: #7209DB">
-                <span class="d-none d-sm-inline">
+            <div class="col-12 col-lg-3 text-end">
+                <button class="btn text-white addCategory" style="background-color: #7209DB">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
                     </svg>
-                </span>
-                Tambah <span class="d-none d-sm-inline">Kategori</span>
-            </button>
-
+                    Tambah Kategori
+                </button>
+            </div>
         </div>
 
 

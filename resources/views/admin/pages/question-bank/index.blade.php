@@ -8,7 +8,7 @@
                 <h4 style="font-weight: bold;">Bank Soal</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Detail kursus  dan daftar modul pada kursus</a></li>
+                        <li class="breadcrumb-item"><a class="text-muted " href="javascript:void(0)">Detail kursus  dan daftar modul pada kursus</a></li>
                     </ol>
                 </nav>
             </div>

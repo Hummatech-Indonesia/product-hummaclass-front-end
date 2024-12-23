@@ -206,10 +206,10 @@
             </li>
         </ul> --}}
         <div class="d-block d-lg-none">
-            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-                class="dark-logo" width="180" alt="" />
-            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
-                class="light-logo" width="180" alt="" />
+            <img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}"
+                class="dark-logo" width="140" alt="" />
+            <img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}"
+                class="light-logo" width="140" alt="" />
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

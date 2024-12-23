@@ -26,7 +26,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="index-2.html">Daftar - daftar faq di hummaclass</a>
+                                <a class="text-muted " href="javascript:void(0)">Daftar - daftar faq di hummaclass</a>
                             </li>
                         </ol>
                     </nav>
@@ -172,7 +172,6 @@
 
                 const question = $(this).data('question');
                 const answer = $(this).data('answer');
-                console.log(question, answer);
 
                 $('#edit-question').val(question);
                 $('#edit-answer').val(answer);

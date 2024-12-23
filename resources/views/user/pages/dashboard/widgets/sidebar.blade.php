@@ -1,7 +1,7 @@
 <div class="col-lg-3 mb-3">
     <div class="dashboard__sidebar-wrap">
         <div class="dashboard__sidebar-title mb-20">
-            <h6 class="title">Welcome, Jone Due</h6>
+            <h6 class="title">Welcome, <span class="sidebar-user-name"></span></h6>
         </div>
         <nav class="dashboard__sidebar-menu">
             <ul class="list-wrap">

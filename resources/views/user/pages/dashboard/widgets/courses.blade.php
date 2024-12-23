@@ -100,16 +100,6 @@
 
                         </div>
                     </div>
-                    <nav class="pagination__wrap my-30 pb-30">
-                        <ul class="list-wrap">
-                            <li><a href="#"><i class="fa-solid fa-arrow-left"></i></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
-                        </ul>
-                    </nav>
                 </div>
                 <div class="tab-pane fade" id="finished-tab-pane" role="tabpanel" aria-labelledby="finished-tab"
                     tabindex="0">
@@ -134,10 +124,10 @@
 
             get(1)
 
-            function get(page) {
+            function get() {
                 $.ajax({
                     type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/user-course-activities?page=" + page,
+                    url: "{{ config('app.api_url') }}" + "/api/user-course-activities",
                     headers: {
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
@@ -146,10 +136,6 @@
                         name: $('#search-name').val(),
                     },
                     success: function(response) {
-                        console.log(response);
-                        $('#process_courses').empty();
-                        $('#finished_courses').empty();
-
                         if (response.data.length > 0) {
                             let hasProcessCourses = false;
                             let hasFinishedCourses = false;
@@ -167,21 +153,17 @@
                             if (!hasProcessCourses) {
                                 $('#process_courses').append(empty());
                             }
-
                             if (!hasFinishedCourses) {
                                 $('#finished_courses').append(empty());
                             }
-
                         } else {
                             $('#process_courses').append(empty());
                             $('#finished_courses').append(empty());
                             $('.pagination__wrap').hide();
                         }
 
-
-                        // $('#pagination').html(handlePaginate(response.data.paginate))
-
                     },
+
                     error: function(xhr) {
                         Swal.fire({
                             title: "Terjadi Kesalahan!",
@@ -236,21 +218,21 @@
                     <div class="courses__item-thumb courses__item-thumb-two">
                         <a href="{{ route('courses.courses.show', '') }}/${value.course.slug}"
                             class="shine__animate-link">
-                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? url + value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                            <img src="${value.course.photo && value.course.photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.course.photo) ? value.course.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
                                 alt="img">
                         </a>
                     </div>
                     <div class="courses__item-content courses__item-content-two">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="course.html">${value.course.sub_category.name}</a>
+                                <a href="javascript:void(0)">${value.course.sub_category.name}</a>
                             </li>
                         </ul>
                         <h5 class="title"><a
                                 href="{{ route('courses.courses.show', '') }}/${value.course.slug}">${value.course.title}</a></h5>
                         <div class="courses__item-content-bottom">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>
@@ -293,14 +275,14 @@
                     <div class="courses__item-content courses__item-content-two">
                         <ul class="courses__item-meta list-wrap">
                             <li class="courses__item-tag">
-                                <a href="course.html">${value.course.sub_category.name}</a>
+                                <a href="javascript:void(0)">${value.course.sub_category.name}</a>
                             </li>
                         </ul>
                         <h5 class="title"><a
                                 href="{{ route('courses.courses.show', '') }}/${value.course.slug}">${value.course.title}</a></h5>
                         <div class="courses__item-content-bottom">
                             <div class="author-two">
-                                <a href="instructor-details.html"><img
+                                <a href="javascript:void(0)"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>

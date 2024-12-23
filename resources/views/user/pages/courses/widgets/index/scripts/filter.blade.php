@@ -97,26 +97,30 @@
                 if (value.sub_category.length > 0) {
                     $.each(value.sub_category, function(subIndex, subValue) {
                         subCategoryRows += `
-                <li>
-                    <div class="form-check">
-                        <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
-                        <label class="form-check-label" for="cat_1">${subValue.name} (${subValue.course_count})</label>
-                    </div>
-                </li>
-                `;
+                    <li>
+                        <div class="form-check">
+                            <input class="checkbox_sub_category form-check-input" name="sub_category" type="checkbox" value="${subValue.id}">
+                            <label class="form-check-label" for="cat_1">${subValue.name} (${subValue.course_count})</label>
+                        </div>
+                    </li>
+                    `;
                     });
                 }
+
+                const isActive = index === 0 ? 'show' : '';
+                const isExpanded = index === 0 ? 'true' : 'false';
+
                 return `
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-collapse-${index}" aria-expanded="true"
+                    <h2 class="accordion-header" id="flush-heading-${index}">
+                        <button class="accordion-button ${isActive ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse-${index}" aria-expanded="${isExpanded}"
                             aria-controls="flush-collapse-${index}">
                             ${value.name} (${value.course_item_count})
                         </button>
                     </h2>
-                    <div id="flush-collapse-${index}" class="accordion-collapse collapse show"
-                        aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                    <div id="flush-collapse-${index}" class="accordion-collapse collapse ${isActive}"
+                        aria-labelledby="flush-heading-${index}" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div class="courses-cat-list">
                                 <ul class="list-wrap">
@@ -129,24 +133,19 @@
             }
 
             let debounceTimer;
-            $('#search-name').keyup(function() {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(function() {
-                    handleGetCourses(1, {
-                        title: $('#search-name').val()
-                    })
-                }, 500);
-            });
-
+            const inputSearch = $('input[name="title"]');
             let loading = true;
             const gridParent = $('#courses-grid');
-
-            if (loading) {
-                gridParent.append(loadingCard(6));
-            }
-
             let retryCount = 0;
             const maxRetries = 3;
+
+            function getQueryParameter(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            const initialTitle = getQueryParameter('title') || '';
+            inputSearch.val(initialTitle);
 
             function handleGetCourses(page, data = {}) {
                 $.ajax({
@@ -159,7 +158,6 @@
                     dataType: "json",
                     success: function(response) {
                         gridParent.empty();
-                        console.log(response.data.data);
 
                         if (response.data.data.length > 0) {
                             $.each(response.data.data, function(index, value) {
@@ -169,7 +167,9 @@
                             renderPagination(response.data.paginate.last_page, response.data.paginate
                                 .current_page,
                                 function(page) {
-                                    handleGetCourses(page);
+                                    handleGetCourses(page, {
+                                        title: inputSearch.val()
+                                    });
                                 });
                             $('.pagination__wrap').show();
                         } else {
@@ -195,40 +195,58 @@
                         if (retryCount < maxRetries) {
                             retryCount++;
                             setTimeout(() => {
-                                handleGetCourses(1);
+                                handleGetCourses(page, data);
                             }, 1000);
                         } else {
                             gridParent.empty();
                             gridParent.append(
                                 `<p style="width:100%; text-align: center;">${errorMessage}</p>`);
-                            console.log('Gagal memuat data setelah beberapa kali percobaan.');
                             loading = false;
                         }
                     }
                 });
             }
 
-            handleGetCourses(1, filter);
+            inputSearch.keypress(function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(function() {
+                        const searchTitle = inputSearch.val();
+                        handleGetCourses(1, {
+                            title: searchTitle
+                        });
+                    }, 500);
+                }
+            });
+
+            if (loading) {
+                gridParent.append(loadingCard(6));
+            }
+
+            handleGetCourses(1, initialTitle ? {
+                title: initialTitle
+            } : {});
 
             function card(index, value) {
                 var url = "{{ config('app.api_url') }}";
-                let originalPrice, promoPrice;
+                let price;
 
-                if (value.promotional_price != 0) {
-                    originalPrice = `<h6 class="price" style="font-size:20px; color: grey;">
-                                        <del>${formatRupiah(value.price)}</del>
-                                    </h6>`;
-                    promoPrice = `<h6 class="price" style="font-size:25px;">
-                                        ${formatRupiah(value.promotional_price)}
-                                </h6>`;
+                if (value.promotional_price && parseFloat(value.promotional_price) > 0) {
+                    price = `<h6 class="price" style="font-size:13px">
+                        ${value.price && parseFloat(value.price) > 0 ? `<del style="font-size:13px">${formatRupiah(value.price)}</del>` : ''}
+                        ${formatRupiah(value.promotional_price)}
+                    </h6>`;
+                } else if (value.price && parseFloat(value.price) > 0) {
+                    price = `<h6 class="price" style="font-size:13px">
+                        ${formatRupiah(value.price)}
+                    </h6>`;
                 } else {
-                    originalPrice = `<h6 class="price" style="font-size:20px;">
-                                        ${formatRupiah(value.price)}
-                                    </h6>`;
+                    price = `<h6 class="price" style="font-size:13px">Gratis</h6>`;
                 }
 
-                return `<div class="col-lg-4">
-                <div class="courses__item shine__animate-item p-0">
+                return `<div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="courses__item shine__animate-item">
                     <div class="courses__item-thumb">
                         <a href="{{ route('courses.courses.show', '') }}/${value.slug}" class="shine__animate-link">
                             <img src="${value.photo && value.photo !== '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.photo) ? value.photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img">
@@ -239,13 +257,17 @@
                             <li class="courses__item-tag">
                                 <a class="sub_category">${value.sub_category}</a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i> (${value.course_review_count} Reviews)</li>
+                            <li class="avg-rating"><i class="fas fa-star"></i> (${value.rating} Reviews)</li>
                         </ul>
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}">${value.title}</a></h5>
-                        <p class="author">By <a href="#">David Millar</a></p>
-                        <div class="courses__item-bottom">
-                           ${promoPrice}
-                           ${originalPrice}
+                        <div class="courses__item-bottom gap-2">
+                            <div class="button">
+                                <a href="{{ route('courses.courses.show', '') }}/${value.slug}">
+                                    <span class="text">Daftar</span>
+                                    <i class="flaticon-arrow-right"></i>
+                                </a>
+                            </div>
+                           ${price}
                         </div>
                     </div>
                 </div>

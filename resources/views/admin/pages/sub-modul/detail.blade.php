@@ -16,7 +16,6 @@
         .text-primary {
             color: #7209DB !important;
         }
-
     </style>
 @endsection
 @section('content')
@@ -27,7 +26,7 @@
                     <h4 style="font-weight: bold;">Detail Modul</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-muted " href="javascript:void(0)">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page">Banner</li>
                         </ol>
                     </nav>
@@ -44,7 +43,8 @@
 
     <div class="card p-3">
         <div>
-            <ul class="nav nav-tabs d-flex justify-content-between" style="list-style-type: disc; padding-left: 20px;" role="tablist">
+            <ul class="nav nav-tabs d-flex justify-content-between" style="list-style-type: disc; padding-left: 20px;"
+                role="tablist">
                 <div class="d-flex">
                     <li class="nav-item materi">
                         <a class="nav-link" data-bs-toggle="tab" href="#materi" role="tab">
@@ -66,7 +66,7 @@
                                 </svg>
                                 </svg> Kembali</span>
                         </a>
-                        <button class="btn btn-warning editDescription">
+                        <a href="#" class="btn btn-warning editDescription" id="edit-btn">
                             <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -75,7 +75,7 @@
                                     <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                                     <path d="M13.5 6.5l4 4" />
                                 </svg> Edit Materi</span>
-                        </button>
+                        </a>
                     </li>
                 </div>
             </ul>

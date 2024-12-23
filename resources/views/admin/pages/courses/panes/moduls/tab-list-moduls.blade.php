@@ -201,6 +201,9 @@
                     type: "DELETE",
                     url: "{{ env('API_URL') }}/api/modules/" + id,
                     dataType: "json",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",

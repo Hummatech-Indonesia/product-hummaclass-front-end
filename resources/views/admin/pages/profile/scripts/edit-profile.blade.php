@@ -39,7 +39,7 @@
                 success: function(response) {
                     Swal.fire({
                         title: "Sukses",
-                        text: "Berhasil menambah data.",
+                        text: "Berhasil mengubah data.",
                         icon: "success"
                     }).then(() => {
                     });

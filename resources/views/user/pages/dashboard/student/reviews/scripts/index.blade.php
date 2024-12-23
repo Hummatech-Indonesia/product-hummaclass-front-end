@@ -27,9 +27,8 @@
     });
 
     function reviewUser(index, value) {
-        console.log(value.rating);
-        
-        let rating = value.rating; 
+
+        let rating = value.rating;
         let ratingHtml = '';
         for (let i = 1; i <= rating; i++) {
             ratingHtml += `
@@ -46,7 +45,7 @@
                 </svg>
             `;
         }
-   
+
         return `
             <tr>
                 <td class="text-start" style="display: table-cell;">${value.course_title}</td>

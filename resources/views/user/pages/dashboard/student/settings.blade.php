@@ -16,32 +16,7 @@
 <!-- dashboard-area -->
 <section class="dashboard__area section-pb-120">
     <div class="container">
-        <div class="dashboard__top-wrap">
-            <div class="dashboard__top-bg" data-background="{{ asset('assets/img/bg/student_bg.jpg') }}"></div>
-            <div class="dashboard__instructor-info">
-                <div class="dashboard__instructor-info-left">
-                    <div class="thumb">
-                        <img src="{{ asset('assets/img/courses/details_instructors02.jpg') }}" alt="img">
-                    </div>
-                    <div class="content">
-                        <h4 class="title">Emily Hannah</h4>
-                        <ul class="list-wrap">
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="20" height="20" viewBox="0 0 256 256"><path fill="currentColor" d="M239.18 97.26A16.38 16.38 0 0 0 224.92 86l-59-4.76l-22.78-55.09a16.36 16.36 0 0 0-30.27 0L90.11 81.23L31.08 86a16.46 16.46 0 0 0-9.37 28.86l45 38.83L53 211.75a16.38 16.38 0 0 0 24.5 17.82l50.5-31.08l50.53 31.08A16.4 16.4 0 0 0 203 211.75l-13.76-58.07l45-38.83a16.43 16.43 0 0 0 4.94-17.59m-15.34 5.47l-48.7 42a8 8 0 0 0-2.56 7.91l14.88 62.8a.37.37 0 0 1-.17.48c-.18.14-.23.11-.38 0l-54.72-33.65a8 8 0 0 0-8.38 0l-54.72 33.67c-.15.09-.19.12-.38 0a.37.37 0 0 1-.17-.48l14.88-62.8a8 8 0 0 0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16a8 8 0 0 0 6.72-4.94l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153 91.86a8 8 0 0 0 6.75 4.92l63.92 5.16c.15 0 .24 0 .33.29s0 .4-.16.5"/></svg>
-                                5 Courses Enrolled
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="20" height="20" viewBox="0 0 256 256"><path fill="currentColor" d="M128 136a8 8 0 0 1-8 8H72a8 8 0 0 1 0-16h48a8 8 0 0 1 8 8m-8-40H72a8 8 0 0 0 0 16h48a8 8 0 0 0 0-16m112 65.47V224a8 8 0 0 1-12 7l-24-13.74L172 231a8 8 0 0 1-12-7v-24H40a16 16 0 0 1-16-16V56a16 16 0 0 1 16-16h176a16 16 0 0 1 16 16v30.53a51.88 51.88 0 0 1 0 74.94M160 184v-22.53A52 52 0 0 1 216 76V56H40v128Zm56-12a51.88 51.88 0 0 1-40 0v38.22l16-9.16a8 8 0 0 1 7.94 0l16 9.16Zm16-48a36 36 0 1 0-36 36a36 36 0 0 0 36-36"/></svg>
-                                4 Certificate
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="dashboard__instructor-info-right">
-                    <a href="#" class="btn btn-two arrow-btn">Become an Instructor <img src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
-                </div>
-            </div>
-        </div>
+        @include('user.pages.dashboard.widgets.dashboard-top')
         <div class="row">
             @include('user.pages.dashboard.widgets.sidebar')
             <div class="col-lg-9">

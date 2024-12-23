@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="index-2.html"></a>
+                                <a class="text-muted " href="javascript:void(0)"></a>
                             </li>
                         </ol>
                     </nav>
@@ -94,12 +94,15 @@
                     <textarea id="description" name="description" class="form-control"></textarea>
                     <div class="invalid-feedback"></div>
                 </div>
-
-                <!-- Form Actions -->
-                <div class="form-actions mt-3 text-end">
-                    <button type="reset" class="btn btn-danger text-white font-medium back">Kembali</button>
-                    <button type="submit" style="background-color: #9425FE;"
-                        class="btn text-white font-medium">Tambah</button>
+                <div class="form-actions mt-3">
+                    <div class="text-end d-flex gap-2">
+                        <button type="reset" class="btn btn-danger text-white font-medium back">
+                            Kembali
+                        </button>
+                        <button type="submit" style="background-color: #9425FE;" class="btn text-white font-medium">
+                            Simpan
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -120,7 +123,6 @@
             $('#description').summernote();
 
             function setValue(data) {
-                console.log(data.photo);
                 $('#title').val(data.title);
                 $('#sub_title').val(data.sub_title);
                 $('#price').val(data.price);
@@ -145,7 +147,6 @@
             $('#update-course-form').submit(function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
-                console.log(formData);
 
                 formData.append('_method', 'PATCH');
 
@@ -162,7 +163,7 @@
                     success: function(response) {
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil menambah data.",
+                            text: "Berhasil mengubah data.",
                             icon: "success"
                         }).then(() => {
                             window.location.href = "/admin/courses";
@@ -317,5 +318,23 @@
                 });
             });
         });
+    </script>
+
+
+    <script>
+        const priceInput = document.getElementById('price');
+
+        priceInput.addEventListener('input', function(e) {
+            let value = this.value.replace(/[^0-9]/g, '');
+            if (value) {
+                this.value = formatRupiah(value);
+            } else {
+                this.value = '';
+            }
+        });
+
+        function formatRupiah(angka) {
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
     </script>
 @endsection

@@ -24,6 +24,8 @@
         "@editorjs/quote": "^2.7.2",
         "@editorjs/raw": "^2.5.0",
         "@editorjs/simple-image": "^1.6.0",
+        "@editorjs/table": "^2.4.2",
+        "@selectize/selectize": "^0.15.2",
         "add": "^2.0.6"
     }
 }

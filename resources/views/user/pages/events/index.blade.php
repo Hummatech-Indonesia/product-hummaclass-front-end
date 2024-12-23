@@ -61,7 +61,10 @@
         .calendar-day.selected h4 {
             color: #fff;
         }
-
+        .calendar-day.selected span {
+            color: #fff;
+        }
+        
         .event-list {
             list-style: none;
             padding: 0;
@@ -162,7 +165,7 @@
         }
 
         .calendar-day.selected span {
-            color: #fff;
+            color: #fff !important;
         }
     </style>
 @endsection

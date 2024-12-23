@@ -1,5 +1,8 @@
 <script>
     $(document).ready(function() {
+
+        let loading_blogs = true;
+
         $.ajax({
             type: "GET"
             , url: "{{ config('app.api_url') }}" + "/api/blogs"
@@ -13,9 +16,9 @@
 
                 if (response.data.data.length > 0) {
                     $.each(response.data.data, function(index, value) {
-                        if (index < 8) {
+                        // if (index < 8) {
                             $('#news-content').append(card(index, value));
-                        }
+                        // }
                     });
 
                     renderPagination(response.data.paginate.last_page, response.data.paginate
@@ -26,11 +29,8 @@
                 } else {
                     $('#news-content').append(empty());
                 }
-                if (courseData.length === 8) {
-                    $('#other-news').show();
-                } else {
-                    $('#other-news').hide();
-                }
+
+                loading_blogs = false;
 
             }
             , error: function(xhr) {
@@ -40,8 +40,14 @@
                     , text: "Tidak dapat memuat data kategori."
                     , icon: "error"
                 });
+
+                loading_blogs = false;
             }
         });
+
+        if (loading_blogs) {
+            $('#news-content').append(loadCard(3));
+        }
     });
 
     function card(index, value) {
@@ -50,7 +56,7 @@
             <div class="col-xl-3 col-md-6">
                 <div class="blog__post-item shine__animate-item">
                     <div class="blog__post-thumb">
-                        <a href="blog-details.html" class="shine__animate-link"><img src="${value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.thumbnail) ? url + value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img"></a>
+                        <a href="{{ route('news.show', '') }}/${value.id}" class="shine__animate-link"><img src="${value.thumbnail && value.thumbnail !== url + '/storage' ? value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" alt="img"></a>
                         <a href="javascript:void(0)" class="post-tag bg-warning">${value.sub_category}</a>
                     </div>
                     <div class="blog__post-content">
@@ -65,6 +71,7 @@
             </div>
     `;
     }
+
 
 
     // jangan dihapus

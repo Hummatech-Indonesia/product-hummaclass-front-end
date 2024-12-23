@@ -46,6 +46,10 @@
             if (loading) {
                 $('#eventContent').append(loadingCard(3));
             }
+            , dataType: "json"
+            , success: function(response) {
+                
+                $('#eventContent').empty();
 
             $.ajax({
                 type: "GET",

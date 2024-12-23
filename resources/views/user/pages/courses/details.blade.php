@@ -80,6 +80,26 @@
             fill: #FFB649;
             stroke: #FFB649;
         }
+
+        .arrow-btn img {
+            filter: brightness(0);
+            transition: filter 0.3s ease;
+        }
+
+        .arrow-btn:hover img {
+            filter: brightness(0) invert(1);
+        }
+
+        .course-review-head .review-author-content .author-name {
+            justify-content: start;
+        }
+
+        .review-text {
+            max-width: 700px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin: 0;
+        }
     </style>
 @endsection
 
@@ -137,7 +157,8 @@
                             <li class="courses__item-tag">
                                 <a href="{{ route('courses.courses.index') }}" id="detail-category"></a>
                             </li>
-                            <li class="avg-rating"><i class="fas fa-star"></i>(<span id="detail-rating"></span>&nbsp;Review)
+                            <li class="avg-rating"><i class="fas fa-star"></i>(<span
+                                    id="detail-rating"></span>&nbsp;Reviews)
                             </li>
                         </ul>
                         <h2 class="title mb-0" id="detail-title"></h2>
@@ -165,6 +186,11 @@
                                     aria-controls="curriculum-tab-pane" aria-selected="false">Konten Kursus</button>
                             </li>
                             <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="instructors-tab" data-bs-toggle="tab"
+                                    data-bs-target="#instructors-tab-pane" type="button" role="tab"
+                                    aria-controls="instructors-tab-pane" aria-selected="false">Instruktor</button>
+                            </li>
+                            <li class="nav-item" role="presentation" id="task-tab">
                                 <button class="nav-link" id="task-tab" data-bs-toggle="tab"
                                     data-bs-target="#task-tab-pane" type="button" role="tab"
                                     aria-controls="task-tab-pane" aria-selected="false">Tugas</button>
@@ -197,6 +223,8 @@
         $(document).ready(function() {
             let photo;
             var id = "{{ $id }}";
+
+            $('#task-tab').addClass('d-none');
 
             @if (session('warning'))
                 Swal.fire({
@@ -264,10 +292,12 @@
             var course;
 
             function reviewContent(value) {
+                var url = "{{ config('app.api_url') }}";
+                const reviewText = value.review ? value.review : 'Tidak ada review.';
                 return `
                 <div class="course-review-head">
                 <div class="review-author-thumb">
-                    <img src="${value.user.photo}" alt="img">
+                    <img src="${value.user_photo && value.user_photo !== url + '/storage' ? value.user_photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 64px; height: 64px; object-fit: cover;" alt="img">
                 </div>
                 <div class = "review-author-content" >
                 <div class="author-name">
@@ -280,106 +310,192 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p> ${value.review}</p>
+                <p class="review-text">${reviewText}</p>
                 </div>
                 </div>
             `;
             }
-
-            function getCourseDetail() {
-                $.ajax({
-                    type: "GET",
-                    url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
-                    headers: {
-                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        console.log(response);
-                        course = response.data;
-
-                        console.log(response.data.user_course);
-                        if (response.data.user_course) {
-                            if (response.data.user_course.has_pre_test == 0) {
-                                $('#btn-checkout').text('Mulai Pre Test');
-                                $('#btn-lesson').text('Mulai Pre Test');
-                                $('#btn-checkout').attr('href', "{{ route('pre.test.index', '') }}/" +
-                                    response.data.course_test_id);
-                                $('#btn-lesson').attr('href', "{{ route('pre.test.index', '') }}/" +
-                                    response.data.course_test_id);
-                                $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                                $('.paid-at').text(formatDate(response.data.user_course.created_at));
-                            } else if (response.data.user_course.has_pre_test == 1 && response.data
-                                .user_course.has_post_test == 0) {
-                                $('#btn-checkout').text('Mulai Post Test');
-                                $('#btn-lesson').text('Mulai Post Test');
-                                $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
-                                    response.data.course_test_id);
-                                $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
-                                    response.data.course_test_id);
-                                $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
-                                $('.paid-at').text(formatDate(response.data.user_course.created_at));
-                            } else if (response.data.user_course.has_pre_test == 1 && response.data
-                                .user_course.has_post_test == 1) {
-                                document.getElementById('certificate-download').style.display = 'block';
-                                $('#btn-checkout').text('Lanjutkan');
-                                $('#btn-lesson').text('Lanjutkan');
-                                $('#btn-checkout').attr('href',
-                                    "{{ route('courses.course-lesson.index', '') }}/" +
-                                    response.data.user_course.sub_module.slug);
-                                $('#btn-lesson').attr('href',
-                                    "{{ route('courses.course-lesson.index', '') }}/" +
-                                    response.data.user_course.sub_module.slug);
-                            } else {
-                                $('#btn-checkout').text('Lanjutkan');
-                                $('#btn-lesson').text('Lanjutkan');
-                                $('#btn-checkout').attr('href',
-                                    "{{ route('courses.course-lesson.index', '') }}/" +
-                                    response.data.user_course.sub_module.slug);
-                                $('#btn-lesson').attr('href',
-                                    "{{ route('courses.course-lesson.index', '') }}/" +
-                                    response.data.user_course.sub_module.slug);
-                            }
-                            document.getElementById('courses-detail-sidebar').style.display = 'none';
-                            document.getElementById('sidebar-tab-review').style.display = 'block';
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/courses/" + id,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+                    course = response.data;
+                    if (response.data.user_course) {
+                        if (response.data.user_course.has_pre_test == 0) {
+                            $('#btn-checkout').text('Mulai Pre Test');
+                            $('#btn-lesson').text('Mulai Pre Test');
+                            $('#btn-checkout').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('pre.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                            $('#task-tab').removeClass('d-none');
+                        } else if (response.data.user_course.has_pre_test == 1 && response.data
+                            .user_course.has_post_test == 0) {
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                        } else if (response.data.user_course.has_pre_test == 1 && response.data
+                            .user_course.has_post_test == 1) {
+                            document.getElementById('certificate-download').style.display = 'block';
+                            document.getElementById('review-course').style.display = 'block';
+                            $('#btn-checkout').text('Lanjutkan');
+                            $('#btn-lesson').text('Lanjutkan');
+                            $('#btn-checkout').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
+                            $('#btn-lesson').attr('href',
+                                "{{ route('courses.course-lesson.index', '') }}/" +
+                                response.data.user_course.sub_module.slug);
                         } else {
-                            document.getElementById('courses-detail-sidebar').style.display = 'block';
-                            document.getElementById('sidebar-tab-review').style.display = 'none';
+                            $('#btn-checkout').text('Mulai Post Test');
+                            $('#btn-lesson').text('Mulai Post Test');
+                            $('#btn-checkout').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('#btn-lesson').attr('href', "{{ route('post.test.index', '') }}/" +
+                                response.data.course_test_id);
+                            $('.user-name').text("{{ session('user')['name'] ?? '-' }}");
+                            $('.paid-at').text(formatDate(response.data.user_course.created_at));
+                        }
+                        document.getElementById('courses-detail-sidebar').style.display = 'none';
+                        document.getElementById('sidebar-tab-review').style.display = 'block';
+                    } else {
+                        document.getElementById('courses-detail-sidebar').style.display = 'block';
+                        document.getElementById('sidebar-tab-review').style.display = 'none';
+                    }
 
-                            @if (session('user')['roles'][0]['name'] == 'student')
-                                {
-                                    if (course.is_student) {
-                                        $('#btn-checkout').text('Mulai Materi');
-                                        $('#btn-checkout').click(function(e) {
-                                            e.preventDefault();
-                                            $.ajax({
-                                                type: "post",
-                                                url: "{{ config('app.api_url') }}/api/student/lesson-start/" +
-                                                    id,
-                                                headers: {
-                                                    Authorization: 'Bearer ' +
-                                                        "{{ session('hummaclass-token') }}",
-                                                    Accept: 'application/json'
-                                                },
-                                                dataType: "json",
-                                                success: function(response) {
-                                                    if (!response.data
-                                                        .has_pre_test) {
-                                                        window.location.href =
-                                                            "{{ route('pre.test.index', '') }}/" +
-                                                            response.data.course
-                                                            .course_test_id;
-                                                    } else {
-                                                        window.location.href =
-                                                            "{{ route('courses.course-lesson.index', '') }}/" +
-                                                            response.data
-                                                            .sub_module.slug;
-                                                    }
-                                                },
-                                                error: function(xhr) {
+                    response.data.course_reviews.forEach((review) => {
+                        $('#review-content').append(reviewContent(review));
+                    });
 
-                                                }
-                                            });
+                    // } else {
+                    //     $('#review-content').append(empty());
+                    // }
+
+                    const photo = response.data.photo && /\.(jpeg|jpg|gif|png)$/i.test(response.data
+                            .photo) ?
+                        response.data.photo :
+                        "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                    $('#photo').attr('src', photo);
+
+                    $('#sub-title').append(response.data.sub_title);
+                    $('#detail-title').append(response.data.title);
+                    $('#currentBreadcrumb').html(response.data.title).attr('href', '/courses/courses/' +
+                        response.data.slug);
+                    $('#detail-category').append(response.data.sub_category.name);
+                    $('#detail-count-user').append(response.data.user_courses_count);
+                    $('#detail-date').append(formatDate(response.data.created));
+                    $('#detail-rating').append(response.data.rating);
+                    let price =
+                        response.data.promotional_price && response.data.promotional_price !== 0 &&
+                        response.data.promotional_price !== '' ?
+                        response.data.promotional_price :
+                        response.data.price;
+                    $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(
+                        price));
+                    if (response.data.is_admin) {
+                        $('#btn-checkout').text('Lihat Kursus');
+                    }
+
+
+                    // tab deskripsi
+                    $('#description-title').append(response.data.title);
+                    $('#description-description').append(response.data.description);
+                    $.each(response.data.modules, function(index, value) {
+                        $('#module-content').append(moduleContent(index, value));
+                    });
+
+                    // tab konten kursus
+
+                    // tab ulasan
+                    $('#review-rating').append(response.data.rating);
+                    $('#review-rating-count').append(response.data.course_review_count);
+
+                    $('.rating1').html(response.data.ratings[1] || 0)
+                    $('.rating2').html(response.data.ratings[2] || 0)
+                    $('.rating3').html(response.data.ratings[3] || 0)
+                    $('.rating4').html(response.data.ratings[4] || 0)
+                    $('.rating5').html(response.data.ratings[5] || 0)
+
+                    $('.percentRating1')
+                        .css('width', response.data.ratings_percentage[1] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[1] || 0);
+                    $('.percentRating2')
+                        .css('width', response.data.ratings_percentage[2] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[2] || 0);
+
+                    $('.percentRating3')
+                        .css('width', response.data.ratings_percentage[3] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[3] || 0);
+
+                    $('.percentRating4')
+                        .css('width', response.data.ratings_percentage[4] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[4] || 0);
+
+                    $('.percentRating5')
+                        .css('width', response.data.ratings_percentage[5] || 0 + '%')
+                        .attr('aria-valuenow', response.data.ratings_percentage[5] || 0);
+
+
+                    response.data.course_reviews.forEach(review => {
+
+                    });
+
+
+                    $(document).on('click', '.addReviews', function() {
+                        $('#modal-create-review').modal('show');
+                    });
+
+                    $('#course_id').val(response.data.id);
+
+                    $('.storeConfirmation').click(function(e) {
+                        e.preventDefault();
+
+                        let formData = new FormData($('#form-create-review')[0]);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ config('app.api_url') }}/api/course-reviews/" +
+                                response.data.id,
+                            headers: {
+                                Authorization: 'Bearer ' +
+                                    "{{ session('hummaclass-token') }}",
+                            },
+                            data: formData,
+                            dataType: "json",
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                $('#modal-create-review').modal('hide');
+                                Swal.fire({
+                                    title: "Berhasil!",
+                                    text: "Berhasil menambah review",
+                                    icon: "success"
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            },
+                            error: function(response) {
+                                let errorMessages = [];
+
+                                if (response.responseJSON && response.responseJSON
+                                    .errors) {
+                                    $.each(response.responseJSON.errors, function(
+                                        field, messages) {
+                                        $.each(messages, function(index,
+                                            message) {
+                                            errorMessages.push(
+                                                message);
                                         });
                                     @endif
                                 }
@@ -573,7 +689,6 @@
         $('.last_step_update').click(function(e) {
             e.preventDefault();
             var sub_modul_id = $(this).data('sub-modul-id');
-            console.log(sub_modul_id);
         });
     </script>
 

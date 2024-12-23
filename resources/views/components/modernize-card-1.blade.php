@@ -53,7 +53,7 @@
                 dataType: "json",
                 data: {
                     title: $('#search-name').val(),
-                    categories: $('#sub-categories').val(),
+                    category: $('#sub-categories').val(),
                     status: $('#status').val()
                 },
                 success: function(response) {
@@ -99,6 +99,7 @@
 
         function funConfirmation(url) {
 
+            $('.deleteConfirmation').off('click');
             $('.deleteConfirmation').click(function(e) {
                 e.preventDefault();
                 $.ajax({
@@ -111,14 +112,14 @@
                         $('#modal-confirmation').modal('hide');
                         Swal.fire({
                             title: "Sukses",
-                            text: "Berhasil menghapus data.",
+                            text: "Berhasil konfirmasi data.",
                             icon: "success"
                         });
                         getCourse(1);
                     },
                     error: function(response) {
                         $('#modal-confirmation').modal('hide');
-                        if (response.status == 400) {
+                        if (response.status >= 400) {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
                                 text: response.responseJSON.meta.message,
@@ -127,7 +128,7 @@
                         } else {
                             Swal.fire({
                                 title: "Terjadi Kesalahan!",
-                                text: "Ada kesalahan saat menghapus data.",
+                                text: "Ada kesalahan saat konfirmasi data.",
                                 icon: "error"
                             });
                         }

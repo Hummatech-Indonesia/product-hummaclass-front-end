@@ -24,7 +24,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Voucher</p>
-                            <h5 class="fw-semibold mb-0 course-count">22</h5>
+                            <h5 class="fw-semibold mb-0 detail-course_voucher_count">22</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Jumlah Kursus</p>
-                            <h5 class="fw-semibold mb-0">88</h5>
+                            <h5 class="fw-semibold mb-0 detail-course_count">88</h5>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Kategori Kursus</p>
-                            <h5 class="fw-semibold mb-0">22</h5>
+                            <h5 class="fw-semibold mb-0 detail-sub_category_count">22</h5>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Berita</p>
-                            <h5 class="fw-semibold mb-0">7</h5>
+                            <h5 class="fw-semibold mb-0 detail-blog_count_count"></h5>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                                 </svg>
                             </div>
                             <p class="fw-semibold fs-2 mb-1">Jumlah Event</p>
-                            <h5 class="fw-semibold mb-0">15</h5>
+                            <h5 class="fw-semibold mb-0 detail-event_count">15</h5>
                         </div>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="earning"></div>
+                            <div id="earning-chart"></div>
                         </div>
                     </div>
                 </div>
@@ -280,33 +280,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (range(1, 4) as $item)
-                                <tr>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('admin/dist/images/profile/user-1.jpg') }}"
-                                                class="rounded-circle" width="40" height="40">
-                                            <div class="ms-3">
-                                                <h6 class="fs-4 fw-semibold mb-0">Sunil Joshi</h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="mb-0 fw-semibold text-dark fs-4">Learning JavaScript With Imagination...
-                                        </p>
-                                    </td>
-                                    <td>
-                                        Gopay
-                                    </td>
-                                    <td>
-                                        Rp400.000
-                                    </td>
-                                    <td>
-                                        24 Oktober 2024
-                                    </td>
-                                </tr>
-                            @endforeach
+                        <tbody id="latest-transactions">
                         </tbody>
                     </table>
                 </div>
@@ -319,7 +293,7 @@
         $(document).ready(function() {
             let month;
             let transactionStatistic;
-
+            
             $.ajax({
                 type: "get",
                 url: "{{ config('app.api_url') }}/api/courses/count",
@@ -377,11 +351,11 @@
                     const popularCourse = $('#popular-course');
                     response.data.data.forEach(course => {
                         popularCourse.append(`
-                        <div class="col-md-6">
+                        <div class="col-md-6 mb-3">
                             <div class="card overflow-hidden shadow-none border card-hover mb-4 mb-md-0">
                                 <button
                                     class="btn btn-sm btn-warning position-absolute ms-2 mt-2 text-dark">Development</button>
-                                <img src="${course.photo}" class="card-img-top"
+                                <img src="${course.photo}" class="card-img-top" style="width: 100%; height: 172px; object-fit: cover;"
                                     alt="...">
                                 <div class="card-body p-3">
                                     <div class="d-flex justify-content-between">
@@ -391,7 +365,7 @@
                                         </div>
                                     </div>
                                     <p class="card-title fw-bolder">${course.title}</p>
-                                    <p class="card-text">${course.sub_title}</p>
+                                    <p class="card-text" style="height: 50px;">${course.sub_title.length > 50 ? course.sub_title.substring(0, 50) + '...' : course.sub_title}</p>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <h4 class="fw-bolder" style="color: #7209DB">${formatRupiah(course.price)}
                                         </h4>
@@ -405,7 +379,7 @@
                                                     <path
                                                         d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
                                                 </svg></span>
-                                            <p class="fs-3 mb-0">(4.5, Reviews)</p>
+                                            <p class="fs-3 mb-0">(${course.course_review_count} Reviews)</p>
                                         </div>
                                     </div>
 
@@ -420,10 +394,10 @@
                                                 <path d="M9 8h6" />
                                             </svg>
 
-                                            20 Materi
+                                            ${course.modules_count} Materi
                                         </p>
 
-                                        <p class="text-muted ">20 Terjual</p>
+                                        <p class="text-muted ">${course.user_courses_count} Terjual</p>
                                     </div>
                                     <div class=" pe-0">
                                         <a href="{{ route('courses.courses.show', '') }}/${course.slug}" class="btn text-white fs-2" style="background: #9425FE; width: 100%;">Lihat
@@ -535,4 +509,198 @@
             };
         });
     </script>
+
+
+    <script>
+        function get(page) {
+            $('#tableBody').empty();
+            $.ajax({
+                type: "GET",
+                url: "{{ config('app.api_url') }}" + "/api/latest-transactions?page=" + page,
+                headers: {
+                    Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                },
+                dataType: "json",
+                success: function(response) {
+
+                    $('#latest-transactions').empty();
+
+                    if (response.data.length > 0) {
+                        $.each(response.data, function(index, value) {
+                            $('#latest-transactions').append(latestTransaction(index, value));
+                        });
+
+                        $('#pagination').html(handlePaginate(response.data.paginate))
+
+                    } else {
+                        $('#latest-transactions').append(empty());
+                    }
+
+                },
+                error: function(xhr) {
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Tidak dapat memuat data kategori.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+
+        function latestTransaction(index, value) {
+            var url = "{{ config('app.api_url') }}";
+            return `
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <img src="${value.user_photo && value.user_photo !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.user_photo) ? value.user_photo : '{{ asset('assets/img/no-image/no-image.jpg') }}'}"
+                                class="rounded-circle" width="40" height="40">
+                            <div class="ms-3">
+                                <h6 class="fs-4 fw-semibold mb-0">${value.user.name}</h6>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="mb-0 fw-semibold text-dark fs-4">${value.product.title}
+                        </p>
+                    </td>
+                    <td>
+                        ${value.payment_method}
+                    </td>
+                    <td>
+                        ${value.fee_amount}
+                    </td>
+                    <td>
+                        ${value.created_at}
+                    </td>
+                </tr>
+                `;
+        }
+
+        get(1);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                    type: "GET",
+                    url: "{{ config('app.api_url') }}/api/user-added",
+                    dataType: "json",
+                    headers: {
+                        Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+                    },
+                    success: function(response) {
+
+                        if (response.meta && response.meta.code === 200) {
+                            var data = response.data;
+
+                            // Mengambil data untuk grafik earning
+                            var earningsData = [];
+                            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+                                'Oct', 'Nov', 'Dec'
+                            ];
+
+                            // Mengonversi data menjadi array untuk grafik
+                            months.forEach(function(month) {
+                                earningsData.push(data[month] ||
+                                0); // Mengambil nilai untuk setiap bulan atau 0 jika tidak ada
+                            });
+
+                            // Data untuk grafik earnings
+                            var earning = {
+                                chart: {
+                                    id: "sparkline3",
+                                    type: "area",
+                                    height: 60,
+                                    sparkline: {
+                                        enabled: true,
+                                    },
+                                    group: "sparklines",
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                    foreColor: "#adb0bb",
+                                },
+                                series: [{
+                                    name: "Pengguna",
+                                    color: "var(--bs-secondary)",
+                                    data: earningsData,
+                                }, ],
+                                stroke: {
+                                    curve: "smooth",
+                                    width: 2,
+                                },
+                                fill: {
+                                    type: "gradient",
+                                    gradient: {
+                                        shadeIntensity: 0,
+                                        inverseColors: false,
+                                        opacityFrom: 0.15,
+                                        opacityTo: 0,
+                                        stops: [20, 180],
+                                    },
+                                    opacity: 0.5,
+                                },
+                                markers: {
+                                    size: 0,
+                                },
+                                tooltip: {
+                                    theme: "dark",
+                                    fixed: {
+                                        enabled: true,
+                                        position: "right",
+                                    },
+                                    x: {
+                                        show: false,
+                                    },
+                                },
+                            };
+
+                            // Render grafik earnings
+                            new ApexCharts(document.querySelector("#earning-chart"), earning).render();
+
+                        } else {
+                            console.error("Error fetching data: ", response.meta.message);
+                        }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching data: ", error);
+                    Swal.fire({
+                        title: "Terjadi Kesalahan!",
+                        text: "Data tidak dapat dimuat.",
+                        icon: "error",
+                    });
+                }
+            });
+        });
+    </script>
+
+<script>
+    $(document).ready(function() {
+
+        $.ajax({
+            type: "GET",
+            url: "{{ config('app.api_url') }}" + "/api/dashboard-api",
+            headers: {
+                Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log("Response Data: ", response.data); // Memeriksa data
+                $('.detail-blog_count_count').text(response.data.blog_count_count);
+                $('.detail-course_count').text(response.data.course_count);
+                $('.detail-course_voucher_count').text(response.data.course_voucher_count);
+                $('.detail-event_count').text(response.data.event_count);
+                $('.detail-sub_category_count').text(response.data.sub_category_count);
+
+                $('.owl-carousel').trigger('refresh.owl.carousel');
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    title: "Terjadi Kesalahan!",
+                    text: "Tidak dapat memuat data modul.",
+                    icon: "error"
+                });
+            }
+        });
+    });
+</script>
 @endpush

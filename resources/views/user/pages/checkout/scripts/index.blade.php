@@ -102,7 +102,6 @@
                                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                             });
 
-                        console.log(response);
 
                         event = response.data;
 
@@ -147,7 +146,6 @@
 
                     // Event listener for payment method change
                     $('.payment-method').change(function() {
-                        console.log(this);
 
                         checkoutData.payment_method = $(this).data('code');
                         pricingData.fee_service = $(this).data('fee');
@@ -229,9 +227,6 @@
                     });
                 }
 
-
-                // console.log(url, );
-
                 $.ajax({
                     type: "get",
                     url: url,
@@ -241,8 +236,6 @@
                         Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                     },
                     success: function(response) {
-                        console.log(response);
-
                         let transactionId = response.data.transaction.reference;
 
                         let url;

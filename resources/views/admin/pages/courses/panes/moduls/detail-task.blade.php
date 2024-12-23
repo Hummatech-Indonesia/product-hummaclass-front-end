@@ -55,8 +55,9 @@
                 </div>
                 <div class="">
                     <li class="">
-                        <button class="btn" style="background:#E8E8E8;">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <button class="btn back" style="background:#E8E8E8;" onclick="window.history.back();">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left">
@@ -64,8 +65,11 @@
                                     <path d="M5 12l14 0" />
                                     <path d="M5 12l6 6" />
                                     <path d="M5 12l6 -6" />
-                                </svg> Kembali</span>
+                                </svg>
+                                Kembali
+                            </span>
                         </button>
+
                         <button class="btn btn-warning edittask ms-2" id="edit-task">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-2 -2 24 24">
@@ -106,6 +110,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+
 
                     $.ajax({
                         type: "get",

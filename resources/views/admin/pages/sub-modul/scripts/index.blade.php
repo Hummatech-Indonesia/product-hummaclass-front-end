@@ -17,5 +17,16 @@
             $('.addModul').removeClass('d-none');
             $('.editMateriText').addClass('d-none');
         });
+
+        // $.ajax({
+        //     type: "get",
+        //     url: "sub-modules/detail/admin/{{ $id }}",
+        //     headers: {
+        //         Authorization: "Bearer {{ session('hummaclass-token') }}"
+        //     },
+        //     dataType: "json",
+        //     success: function (response) {
+        //     }
+        // });
     });
 </script>

@@ -20,27 +20,7 @@
     <!-- dashboard-area -->
     <section class="dashboard__area section-pb-120">
         <div class="container">
-            <div class="dashboard__top-wrap">
-                <div class="dashboard__top-bg" data-background="assets/img/bg/instructor_dashboard_bg.jpg"></div>
-                <div class="dashboard__instructor-info">
-                    <div class="dashboard__instructor-info-left">
-                        <div class="thumb">
-                            <img src="{{ asset('assets/img/courses/details_instructors01.jpg') }}" alt="img">
-                        </div>
-                        <div class="content">
-                            <h4 class="title">John Due</h4>
-                            <div class="d-flex gap-2">
-                                <span class=""><i class="far fa-star"></i> 40 points</span>
-                                <span><i></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard__instructor-info-right">
-                        <a href="#" class="btn btn-two arrow-btn">Create a New Course <img
-                                src="{{ asset('assets/img/icons/right_arrow.svg') }}" alt="img" class="injectable"></a>
-                    </div>
-                </div>
-            </div>
+            @include('user.pages.dashboard.widgets.dashboard-top')
             <div class="row">
                 @include('user.pages.dashboard.widgets.sidebar')
                 <div class="col-lg-9">
@@ -98,7 +78,7 @@
                                         <div class="courses__item-content courses__item-content-two">
                                             <ul class="courses__item-meta list-wrap">
                                                 <li class="courses__item-tag">
-                                                    <a href="course.html">Development</a>
+                                                    <a href="javascript:void(0)">Development</a>
                                                 </li>
                                             </ul>
                                             <h5 class="title"><a href="{{ route('courses.courses.show', $item) }}">Learning
@@ -106,7 +86,7 @@
                                                     Imagination</a></h5>
                                             <div class="courses__item-content-bottom">
                                                 <div class="author-two">
-                                                    <a href="instructor-details.html"><img
+                                                    <a href="javascript:void(0)"><img
                                                             src="assets/img/courses/course_author001.png"
                                                             alt="img">David Millar</a>
                                                 </div>

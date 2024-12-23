@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
         var id = "{{ $id }}";
-        console.log(id);
+        
         $.ajax({
             type: "GET",
             url: "{{ config('app.api_url') }}" + "/api/rewards/" + id,
@@ -10,7 +10,6 @@
             },
             dataType: "json",
             success: function(response) {
-                console.log(response);
 
                 const photo = response.data.image && /\.(jpeg|jpg|gif|png)$/i.test(response.data.image) 
                     ? response.data.image
@@ -25,8 +24,6 @@
                 // Event click untuk tombol "Tukarkan"
                 $('.storeConfirm').click(function(e) {
                     e.preventDefault();
-                    $('#btn-spinner-exchange').show();
-                    $(this).prop('disabled', true);
                     var idReward = response.data.id;
 
                     Swal.fire({
