@@ -396,11 +396,11 @@
                     $('#detail-count-user').append(response.data.user_courses_count);
                     $('#detail-date').append(formatDate(response.data.created));
                     $('#detail-rating').append(response.data.rating);
-                    let price =
-                        response.data.promotional_price == null || response.data.promotional_price == 0:
-                        response.data.price;
-                    $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(
-                        price));
+                    // let price =
+                    //     response.data.promotional_price == null || response.data.promotional_price == 0:
+                    //     response.data.price;
+                    // $('#price-course').html(price == null || price === "" ? "Gratis" : formatRupiah(
+                    //     price));
                     if (response.data.is_admin) {
                         $('#btn-checkout').text('Lihat Kursus');
                     }
