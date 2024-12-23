@@ -36,7 +36,7 @@
         </div> --}}
         <div class="courses__cost-wrap">
             <span>Harga Kursus:</span>
-            <h2 class="title" id="price-course">100000</h2>
+            <h2 class="title" id="price-course"></h2>
         </div>
 
         <div class="courses__details-enroll mb-5">
