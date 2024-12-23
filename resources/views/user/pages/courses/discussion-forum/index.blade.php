@@ -404,7 +404,7 @@
                                     <div class="ms-2 d-flex align-items-center">
                                         <span class="fw-semibold text-dark">Web Designer</span>
                                         <ul class="pt-3">
-                                            <li>1 tahun yang lalu</li>
+                                            <li>${value.time_ago}</li>
                                         </ul>
                                     </div>
                                 </div>
