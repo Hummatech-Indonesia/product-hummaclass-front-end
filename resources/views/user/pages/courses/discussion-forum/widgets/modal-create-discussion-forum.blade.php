@@ -86,7 +86,7 @@
                 <div class="modal-footer mb-4 d-flex gap-3">
                     <button type="button" class="outline-purple-primary" data-bs-dismiss="modal">Nanti saja</button>
                     <button type="submit" class="btn text-white updateConfirmation"
-                        style="background-color: #7209DB;">Kirim Review</button>
+                        style="background-color: #7209DB;">Kirim Diskusi</button>
                 </div>
             </form>
         </div>
