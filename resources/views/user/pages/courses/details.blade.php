@@ -630,10 +630,10 @@
                 }).join('');
                 const quizzes = value.quizzes.map(quiz => {
                     return `<li class="course-item open-item">
-                               <a class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer;">
+                               <div class="last_step_update d-flex justify-content-between" href="{{ route('courses.quizz.index', ['']) }}/${quiz.module_slug}" style="cursor: pointer; color: #9425FE;">
                                     <span class="ps-2">Quiz</span>
                                     <span class="ps-2"> ${quiz.total_question} Soal</span>                                
-                                </a>
+                                </div>
                             </li>`;
                 }).join('');
                 return `
