@@ -300,7 +300,8 @@
                         $('#content-course').append(contentCourse(index, value));
                     });
                     var urlFull = "{{ url()->full() }}";
-                    $("a[href='" + urlFull + "']").closest('.accordion-collapse.collapse').addClass('show');
+                    $("a[href='" + urlFull + "']").closest('.accordion-collapse.collapse').addClass(
+                        'show');
                 },
                 error: function(xhr) {}
             });
@@ -320,7 +321,6 @@
                     $('#nextButton').attr("href", urlNext);
                 },
                 error: function(xhr) {
-
                     if (xhr.responseJSON.meta.code === 400) {
                         $('#nextButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
                     }
