@@ -78,11 +78,17 @@
 
                         course = response.data;
 
-                        pricingData.course_price = course.promotional_price ?? course.price;
-                        checkoutData.course_price = course.promotional_price ?? course.price;
+                        if (course.promotional_price || course.promotional_price == 0) {
+                            pricingData.course_price = course.price;
+                            checkoutData.course_price = course.price;
+                        } else {
+                            pricingData.course_price = course.promotional_price;
+                            checkoutData.course_price = course.promotional_price;
+                        }
+
                         updatePricing();
 
-                        $('.price').text(formatRupiah(course.promotional_price ?? course.price));
+                        $('.price').text(formatRupiah(pricingData.course_price));
                         $('.title').text(course.title);
                         $('.course_photo').attr('src', course.photo);
                         $('.category').text(course.category.name);
