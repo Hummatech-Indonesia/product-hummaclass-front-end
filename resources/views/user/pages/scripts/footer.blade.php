@@ -12,6 +12,7 @@
             $('#detail-facebook').html(response.data.facebook);
             $('#detail-email').html(response.data.email);
             $('#detail-phone-number').html(response.data.phone_number);
+            $('#footer-description').html(response.data.description);
         },
         error: function(xhr) {
             Swal.fire({

@@ -30,14 +30,19 @@
             </div>
             <div class="card-body">
                 <div class="row mt-3">
-                    <div class="col col-md-6">
+                    <div class="col col-md-6 form-group">
                         <label for="" class="form-label">Email</label>
                         <input type="text" id="email" name="email" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-6 form-group">
                         <label for="" class="form-label">Nomor Telepon</label>
                         <input type="number" id="phone_number" name="phone_number" class="form-control">
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="col col-md-12 mt-3 form-group">
+                        <label for="description-footer" class="form-label">Deskripsi</label>
+                        <textarea name="description" id="description-footer" class="form-control" rows="3"></textarea>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -57,19 +62,19 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col col-md-6">
+                    <div class="col col-md-6 form-group">
                         <label for="" class="form-label">Facebook</label>
                         <input type="text" id="facebook" name="facebook" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
-                    <div class="col col-md-6">
+                    <div class="col col-md-6 form-group">
                         <label for="" class="form-label">Twitter</label>
                         <input type="text" id="twitter" name="twitter" class="form-control">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col col-md-12">
+                    <div class="col col-md-12 form-group">
                         <label for="" class="form-label">Whatsapp</label>
                         <input type="text" id="whatsapp" name="whatsapp" class="form-control">
                         <div class="invalid-feedback"></div>
@@ -121,11 +126,24 @@
                         });
                     },
                     error: function(response) {
-                        Swal.fire({
-                            title: "Terjadi Kesalahan!",
-                            text: "Ada kesalahan saat menyimpan data.",
-                            icon: "error"
-                        });
+                        if (response.status === 422) {
+                            let errors = response.responseJSON.data;
+
+                            $('.create-footer-form .is-invalid').removeClass('is-invalid');
+                            $('.create-footer-form .invalid-feedback').text('');
+
+                            $.each(errors, function(field, messages) {
+                                $(`[name="${field}"]`).addClass('is-invalid');
+                                $(`[name="${field}"]`).closest('.form-group').find(
+                                    '.invalid-feedback').text(messages[0]);
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Terjadi Kesalahan!",
+                                text: "Ada kesalahan saat menyimpan data.",
+                                icon: "error"
+                            });
+                        }
                     }
                 });
 
@@ -145,14 +163,15 @@
                     $("#phone_number").val(response.data.phone_number);
                     $("#facebook").val(response.data.facebook);
                     $("#twitter").val(response.data.twitter);
-                    $("#whatsapp").val(response.data.whatsapp);
+                    $("#whatsapp").val(response.data.whatsapp);                    
+                    $("#description-footer").val(response.data.description);
                 },
                 error: function(response) {
                     Swal.fire({
                         title: "Terjadi Kesalahan!",
                         text: "Ada kesalahan saat menyimpan data.",
                         icon: "error"
-                    });
+                    });                    
                 }
             });
         });

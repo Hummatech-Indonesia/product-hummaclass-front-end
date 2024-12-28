@@ -9,9 +9,7 @@
                                     width="230px" alt="img"></a>
                         </div>
                         <div class="footer__content">
-                            <p>when an unknown printer took galley of
-                                type and scrambled it to make pspecimen
-                                bookt has.</p>
+                            <p id="footer-description"></p>
                         </div>
                     </div>
                 </div>
