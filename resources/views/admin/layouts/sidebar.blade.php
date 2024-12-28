@@ -179,6 +179,14 @@
                                 <span class="hide-menu">Syarat & Ketentuan</span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.configuration.privacy-policy.index') }}" class="sidebar-link">
+                                <div class="round-16 d-flex align-items-center justify-content-center">
+                                    <i class="ti ti-circle"></i>
+                                </div>
+                                <span class="hide-menu">Kebijakan Privasi</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-small-cap">

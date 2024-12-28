@@ -62,8 +62,8 @@
                 <div class="col-md-5">
                     <div class="footer__bottom-menu">
                         <ul class="list-wrap">
-                            <li><a href="{{ route('terms-conditions.index') }}">Terms &  Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="{{ route('terms-conditions.index') }}">Terms & Conditions</a></li>
+                            <li><a href="{{ route('privacy-policy.index') }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,6 +83,7 @@
                 $('.detail-twitter').attr('href', response.data.twitter);
                 $('.detail-phone-number').html(response.data.phone_number);
                 $('.detail-email').attr('href', response.data.email);
+                $('#footer-description').html(response.data.description);
             }
         });
     });
