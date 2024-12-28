@@ -62,7 +62,7 @@
                 <div class="col-md-5">
                     <div class="footer__bottom-menu">
                         <ul class="list-wrap">
-                            <li><a href="#">Term of Use</a></li>
+                            <li><a href="{{ route('terms-conditions.index') }}">Terms &  Conditions</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                         </ul>
                     </div>

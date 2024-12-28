@@ -119,6 +119,8 @@ Route::prefix('password')->name('password.')->group(function () {
 // Landing
 Route::get('contacts', fn() => view('user.pages.contacts.index'))->name('contacts.index');
 
+Route::get('terms-conditions', fn() => view('user.pages.terms-conditions.index'))->name('terms-conditions.index');
+
 Route::get('404', fn() => view('user.errors.404'))->name('404.index');
 
 Route::get('list-mentors', fn() => view('user.pages.list-mentors.index'))->name('list-mentors.index');
@@ -209,6 +211,7 @@ Route::middleware(['auth_custom', 'admin'])->prefix('admin')->name('admin.')->gr
         Route::get('superior-feature', fn() => view('admin.pages.configuration.superior-feature'))->name('superior-feature.index');
         Route::get('header', fn() => view('admin.pages.configuration.header'))->name('header.index');
         Route::get('faq', fn() => view('admin.pages.configuration.faq'))->name('faq.index');
+        Route::get('terms-conditions', fn() => view('admin.pages.configuration.terms-conditions'))->name('terms-conditions.index');
     });
 });
 Route::get('point-exchange-detail/{id}', fn($id) => view('user.pages.points-exchange.detail-point-exchange', compact('id')))->name('detail-point-exchange.index');
