@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="javascript:void(0)">Pengaturan pada footer hummaclass</a>
+                                <a class="text-muted " href="javascript:void(0)">Pengaturan pada footer getskill</a>
                             </li>
                         </ol>
                     </nav>
