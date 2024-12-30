@@ -19,9 +19,10 @@ class UserCheckoutController extends Controller
             ->maxRedirects(5)
             ->post(config('app.api_url') . '/api/user-courses-check', ['course_slug' => $slug]);
 
-        if (isset($response->json()['data']['user_course'])) {
+        if ($response->json()['data']['user_course']) {
             return redirect()->route('courses.course-lesson.index', $response->json()['data']['user_course']['sub_module_slug']);
         } else {
+            // dd($response->json());
             $course = $response->json()['data']['course'];
             if (session('user')['roles'][0]['name'] == 'admin') {
                 return redirect()->route('courses.course-lesson.index', $course['modules'][0]['sub_modules'][0]['slug']);
@@ -31,9 +32,9 @@ class UserCheckoutController extends Controller
                 $response = Http::withToken($token)
                     ->maxRedirects(5)
                     ->get(config('app.api_url') . "/api/transaction-create/course/$courseId");
-                if (isset($response->json()['data'])) {
-                    $testId = $response->json()['data']['test_id'];
-                    return redirect()->route('pre.test.index', $testId);
+                if ($response->json()['data']) {
+                    $subModuleSlug = $response->json()['data']['course']['modules'][0]['sub_modules'][0]['slug'];
+                    return redirect()->route('courses.course-lesson.index', $subModuleSlug);
                 }
             } else {
                 return view('user.pages.checkout.index', compact('slug'));

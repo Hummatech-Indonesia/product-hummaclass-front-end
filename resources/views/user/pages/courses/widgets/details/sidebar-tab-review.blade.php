@@ -28,7 +28,7 @@
         <div>
             <a class="outline-purple-primary w-100 mt-4" id="btn-lesson"
                 style="border-radius: 50px; padding: 10px 10px; font-size: 14px;"></a>
-            <a href="{{ route('print-certificate.index', ['type' => 'courses', 'id' => $id]) }}"
+            <a href="{{ route('print-certificate.index', ['type' => 'course', 'id' => $id]) }}"
                 style="border-radius: 50px; padding: 10px 10px; font-size: 14px; display:none"
                 class="outline-purple-primary w-100 mt-3" id="certificate-download">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -38,8 +38,8 @@
                 </svg>
                 Unduh Sertifikat
             </a>
-            <button class="btn btn-primary w-100 mt-3 addReviews" style="display: none" id="review-course"
-                data-bs-toggle="modal" data-bs-target="#modal-create-review">
+            <button class="btn btn-primary w-100 mt-3 addReviews" data-bs-toggle="modal"
+                data-bs-target="#modal-create-review">
                 Review Kursus
             </button>
             {{-- <a class="btn btn-primary mt-3 w-100" id="btn-lesson">Lanjutkan</a> --}}

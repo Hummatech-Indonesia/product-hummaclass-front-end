@@ -239,9 +239,11 @@
                     },
                     dataType: "dataType",
                     success: function(response) {
+                        console.log(response);
                         alert(response.meta.message)
                     },
                     error: function(xhr) {
+                        console.log(xhr);
                         alert(xhr.responseText)
                     }
                 });

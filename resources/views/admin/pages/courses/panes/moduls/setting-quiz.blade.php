@@ -106,7 +106,7 @@
                     </div>
                     <div>
                         <h3 class="fw-bolder">Aturan Kuis</h3>
-                        <textarea name="rules" cols="30" rows="10" id="summernote-description" class="summernote"></textarea>
+                        <textarea name="rules" id="" cols="30" rows="10" class="summernote"></textarea>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-3">
@@ -149,11 +149,11 @@
                         },
                         dataType: "json",
                         success: function(response) {
-
-                            $('#summernote-description').summernote('code', response.data
-                                .rules);
                             for (const key in response.data) {
-
+                                if (key == 'rules') {
+                                    $('.summernote').val(response.data[key]).trigger(
+                                        'summernote.change');
+                                }
                                 $(`input[name='${key}']`).val(response.data[key]);
                             }
                         }

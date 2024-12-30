@@ -11,6 +11,7 @@ $(document).ready(function() {
         },
         dataType: "json",
         success: function(response) {
+            console.log(response);
             
             // Set idReward dari respons
             idReward = response.data.id;

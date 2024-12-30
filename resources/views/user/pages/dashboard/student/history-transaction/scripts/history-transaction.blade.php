@@ -10,11 +10,15 @@
             url: "{{ config('app.api_url') }}" + "/api/transactions-user",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
-            }
-            , dataType: "json"
-            , success: function(response) {
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+
 
                 $('#tab-all-history').empty();
+
+                console.log(response.data);
 
                 if (response.data.length > 0) {
                     $.each(response.data, function(index, value) {
@@ -54,6 +58,8 @@
     });
 
     function allHistory(index, value) {
+        console.log(value.invoice_status);
+
         let statusText = '';
         let statusClass = '';
 
@@ -86,7 +92,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="javascript:void(0)"><img
+                                <a href="instructor-details.html"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>
@@ -122,6 +128,8 @@
     }
 
     function allWaitingPayment(index, value) {
+        console.log(value.invoice_status);
+
         let statusText = '';
         let statusClass = '';
 
@@ -151,7 +159,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="javascript:void(0)"><img
+                                <a href="instructor-details.html"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>
@@ -186,6 +194,8 @@
     }
 
     function allFinish(index, value) {
+        console.log(value.invoice_status);
+
         let statusText = '';
         let statusClass = '';
 
@@ -215,7 +225,7 @@
                         <h5 class="title"><a href="{{ route('courses.courses.show', '') }}/${value.slug}"></a></h5>
                         <div class="courses__item-content-bottom d-flex justify-content-start">
                             <div class="author-two">
-                                <a href="javascript:void(0)"><img
+                                <a href="instructor-details.html"><img
                                         src="{{ asset('assets/img/courses/course_author001.png') }}"
                                         alt="img">David Millar</a>
                             </div>

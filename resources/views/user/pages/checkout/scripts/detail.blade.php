@@ -105,6 +105,7 @@
 
                                 transactionData.tripay.instructions.forEach((instruction,
                                     index) => {
+                                    // console.log(instruction.title, index);
 
                                     $('#accordionFlushExample').append(
                                         ` <div class="accordion-item">
@@ -123,9 +124,11 @@
                                     </div>`);
                                     instruction.steps
                                         .forEach((step, index) => {
+                                            // console.log(instruction.title);
                                             let title = instruction.title
                                                 .toLowerCase().replace(/ /g,
                                                     "_");
+                                            // console.log($(`.${title}`));
                                             $($(`.${title}`)).append(
                                                 `<div class="courses-cat-list">
                                                     <ul class="list-wrap">
@@ -138,10 +141,12 @@
                             }
                         },
                         error: function(response) {
+                            console.log(response);
                         }
                     });
                 },
                 error: function(response) {
+                    console.log(response);
                 }
             });
 
@@ -158,6 +163,7 @@
                     timerProgressBar: true
                 }).then((result) => {
                     if (result.dismiss === Swal.DismissReason.timer) {
+                        console.log('Alert closed by timer');
                     }
                 });
             });

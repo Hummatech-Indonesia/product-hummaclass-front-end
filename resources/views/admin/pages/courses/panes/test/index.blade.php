@@ -100,7 +100,6 @@
     <script>
         $(document).ready(function() {
             var id = "{{ $id }}";
-            console.log(id);
 
             $.ajax({
                 type: "GET",

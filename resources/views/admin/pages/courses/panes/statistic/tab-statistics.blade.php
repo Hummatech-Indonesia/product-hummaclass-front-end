@@ -94,7 +94,7 @@
                         <i class="ti ti-grid-dots fs-6"
                             style="color: #2a3547; background-color: rgba(42, 53, 71, 0.2); border-radius: 25%; padding: 8px;"></i>
                         <div class="ms-2">
-                            <h4 style="margin: 0;"><span id="uncomplete_percentage"></span>%</h4>
+                            <h4 style="margin: 0;">35%</h4>
                             <p style="margin: 0;">Belum Tercapai</p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                         <i class="ti ti-grid-dots fs-6"
                             style="color: #9425fe; background-color: rgba(148, 37, 254, 0.2); border-radius: 25%; padding: 8px;"></i>
                         <div class="ms-2">
-                            <h4 style="margin: 0;"><span id="complete_percentage"></span>%</h4>
+                            <h4 style="margin: 0;">35%</h4>
                             <p style="margin: 0;">Tercapai</p>
                         </div>
                     </div>
@@ -133,44 +133,40 @@
                         <div class="d-flex align-items-center mb-2">
                             <span class="me-2">5</span>
                             <div class="progress w-100">
-                                <div class="progress-bar bg-warning percentRating5" role="progressbar"
-                                    style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                </div>
+                                <div class="progress-bar bg-warning percentRating5" role="progressbar" style="width: 70%"
+                                    aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="ms-2 rating5"></span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="me-2">4</span>
                             <div class="progress w-100">
-                                <div class="progress-bar bg-warning percentRating4" role="progressbar"
-                                    style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                </div>
+                                <div class="progress-bar bg-warning percentRating4" role="progressbar" style="width: 50%"
+                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="ms-2 rating4"></span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="me-2">3</span>
                             <div class="progress w-100">
-                                <div class="progress-bar bg-warning percentRating3" role="progressbar"
-                                    style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                                </div>
+                                <div class="progress-bar bg-warning percentRating3" role="progressbar" style="width: 30%"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="ms-2 rating3"></span>
                         </div>
                         <div class="d-flex align-items-center mb-2">
                             <span class="me-2">2</span>
                             <div class="progress w-100">
-                                <div class="progress-bar bg-warning percentRating2" role="progressbar"
-                                    style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-warning percentRating2" role="progressbar" style="width: 0%"
+                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="ms-2 rating2"></span>
                         </div>
                         <div class="d-flex align-items-center">
                             <span class="me-2">1</span>
                             <div class="progress w-100">
-                                <div class="progress-bar bg-warning percentRating1" role="progressbar"
-                                    style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                </div>
+                                <div class="progress-bar bg-warning percentRating1" role="progressbar" style="width: 20%"
+                                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <span class="ms-2 rating1"></span>
                         </div>
@@ -186,6 +182,81 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
+        // Data untuk grafik selesai pengerjaan
+        var optionsZoomableCourse = {
+            series: [{
+                name: "Pengerjaan",
+                data: [{
+                    x: "2024-01-01",
+                    y: 20
+                }, {
+                    x: "2024-02-01",
+                    y: 40
+                }, {
+                    x: "2024-03-01",
+                    y: 30
+                }, {
+                    x: "2024-04-01",
+                    y: 50
+                }, {
+                    x: "2024-05-01",
+                    y: 35
+                }, {
+                    x: "2024-06-01",
+                    y: 45
+                }, ],
+            }],
+            chart: {
+                type: 'area',
+                height: 110,
+                zoom: {
+                    enabled: false
+                },
+                toolbar: {
+                    show: false
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+                colors: ['#9425fe']
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'light',
+                    gradientToColors: ['#f0e1ff'],
+                    opacityFrom: 0.4,
+                    opacityTo: 0,
+                    stops: [0, 100],
+                },
+            },
+            grid: {
+                show: false
+            },
+            xaxis: {
+                type: 'datetime',
+                labels: {
+                    show: false
+                },
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+            },
+            yaxis: {
+                show: false
+            },
+            tooltip: {
+                enabled: false
+            }
+        };
+        new ApexCharts(document.querySelector("#chart-line-zoomable-course"), optionsZoomableCourse).render();
 
 
     });
@@ -211,36 +282,35 @@
                 $('.post_test_average').html(response.data.post_test_average);
                 $('.pre_test_average').html(response.data.pre_test_average);
                 $('.completed').html(response.data.completed);
-                $('.rating1').html(response.data.ratings_distribution[1] || 0)
-                $('.rating2').html(response.data.ratings_distribution[2] || 0)
-                $('.rating3').html(response.data.ratings_distribution[3] || 0)
-                $('.rating4').html(response.data.ratings_distribution[4] || 0)
-                $('.rating5').html(response.data.ratings_distribution[5] || 0)
-                $('#uncomplete_percentage').html(response.data.uncomplete_percentage);
-                $('#complete_percentage').html(response.data.complete_percentage);
+                $('.rating1').html(response.data.ratings_distribution[1])
+                $('.rating2').html(response.data.ratings_distribution[2])
+                $('.rating3').html(response.data.ratings_distribution[3])
+                $('.rating4').html(response.data.ratings_distribution[4])
+                $('.rating5').html(response.data.ratings_distribution[5])
 
                 $('.percentRating1')
-                    .css('width', response.data.ratings_percentage_distribution[1] || 0 + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[1] || 0);
+                    .css('width', response.data.ratings_distribution[1] + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[1]);
                 $('.percentRating2')
-                    .css('width', response.data.ratings_percentage_distribution[2] || 0 + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[2] || 0);
+                    .css('width', response.data.ratings_percentage_distribution[2] + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[2]);
 
                 $('.percentRating3')
-                    .css('width', response.data.ratings_percentage_distribution[3] || 0 + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[3] || 0);
+                    .css('width', response.data.ratings_percentage_distribution[3] + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[3]);
 
                 $('.percentRating4')
-                    .css('width', response.data.ratings_percentage_distribution[4] || 0 + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[4] || 0);
+                    .css('width', response.data.ratings_percentage_distribution[4] + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[4]);
 
                 $('.percentRating5')
-                    .css('width', response.data.ratings_percentage_distribution[5] || 0 + '%')
-                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[5] || 0);
+                    .css('width', response.data.ratings_percentage_distribution[5] + '%')
+                    .attr('aria-valuenow', response.data.ratings_percentage_distribution[5]);
 
 
                 if (response.meta && response.meta.code === 200) {
                     var data = response.data;
+                    console.log(data);
 
 
                     var purchasesPerMonth = [{
@@ -298,6 +368,7 @@
                             x: item.month,
                             y: item.value
                         };
+                        console.log(item.value);
 
                     });
 
@@ -533,13 +604,13 @@
 
 
                     // Ambil nilai dari score_average
-                    var scoreAverage = parseFloat(data.score_average) || 0;
+                    var scoreAverage = parseFloat(data.score_average) ||
+                    0; // Menggunakan 0 sebagai default jika tidak ada
 
                     // Data untuk grafik radial
                     var optionsBasic = {
                         series: [
-                            scoreAverage
-                        ],
+                        scoreAverage], // Menggunakan nilai rata-rata dari score_average
                         chart: {
                             fontFamily: '"Nunito Sans", sans-serif',
                             height: 230,
@@ -565,73 +636,6 @@
                     // Render grafik radial
                     new ApexCharts(document.querySelector("#chart-radial-basic"), optionsBasic)
                         .render();
-
-                        var finishedWork = [];
-
-// Cek apakah data.completed_by_month ada dan bukan kosong
-if (data.completed_by_month && typeof data.completed_by_month === 'object') {
-    // Ambil nilai dari bulan yang ada (misalnya, 'november')
-    finishedWork = Object.values(data.completed_by_month); // Ambil semua nilai ke dalam array
-} else {
-    finishedWork = [0, 0]; // Jika tidak ada data, gunakan [0, 0]
-}
-
-// Opsi untuk grafik selesai pengerjaan
-var optionsZoomableCourse = {
-    series: [{
-        name: 'Completed Work',
-        data: finishedWork // Pastikan data adalah array
-    }],
-    chart: {
-        type: 'area',
-        height: 110,
-        zoom: {
-            enabled: false
-        },
-        toolbar: {
-            show: false
-        },
-    },
-    dataLabels: {
-        enabled: false
-    },
-    stroke: {
-        curve: 'smooth',
-        width: 2,
-        colors: ['#9425fe']
-    },
-    fill: {
-        type: 'gradient',
-        gradient: {
-            shade: 'light',
-            gradientToColors: ['#f0e1ff'],
-            opacityFrom: 0.4,
-            opacityTo: 0,
-            stops: [0, 100],
-        },
-    },
-    grid: {
-        show: false
-    },
-    xaxis: {
-        type: 'datetime',
-        labels: {
-            show: false
-        },
-        axisBorder: {
-            show: false
-        },
-        axisTicks: {
-            show: false
-        },
-    },
-    yaxis: {
-        show: false
-    },
-    tooltip: {
-        enabled: false
-    }
-};
 
                 } else {
                     console.error("Error fetching data: ", response.meta.message);

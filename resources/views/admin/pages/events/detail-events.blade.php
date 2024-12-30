@@ -56,7 +56,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="javascript:void(0)">Daftar event pada hummaclass</a>
+                                <a class="text-muted " href="index-2.html">Daftar event pada hummaclass</a>
                             </li>
                         </ol>
                     </nav>
@@ -215,6 +215,7 @@
 
                         $('#detail-location').html(response.data.location);
                     } else {
+                        console.log("tet");
 
                         $('#location').removeClass('d-flex');
                         $('#location').addClass('d-none');
@@ -354,6 +355,7 @@
             function generateListAttendance(list) {
                 let listEl = '';
 
+                console.log(list);
 
                 list.forEach(attendance => {
                     listEl += `

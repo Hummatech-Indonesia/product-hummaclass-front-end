@@ -1,6 +1,5 @@
 <script>
     let debounceTimer;
-    var id = "{{ $id }}"
     $('#search-name').keyup(function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function() {
@@ -12,7 +11,7 @@
         $('#test-content').empty();
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/user-course-tests/" + id,
+            url: "{{ config('app.api_url') }}" + "/api/user-course-tests",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },

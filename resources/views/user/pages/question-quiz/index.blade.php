@@ -157,7 +157,7 @@
                 headers: {
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}",
                 },
-                url: `{{ config('app.api_url') }}/api/quizzes/working/${id}?page=` + page,
+                url: `{{ config('app.api_url') }}/api/quizzes/working/${id}/?page=` + page,
                 dataType: "json",
                 success: function(response) {
                     const createdAtStr = response.data.user_quiz.created_at;
@@ -173,6 +173,7 @@
                         const timeDiff = targetTime - currentTime;
 
                         if (timeDiff <= 0) {
+                            console.log("Waktu tercapai!");
                             clearInterval(window.countdown);
                         } else {
                             const remainingHours = Math.floor(timeDiff / (1000 * 60 * 60)); // Jam
@@ -192,6 +193,7 @@
                             );
                             if (formattedHours == 00 && formattedMinutes == 00 && formattedSeconds ==
                                 00) {
+                                console.log('done');
                                 let answer = [];
                                 for (let index = 1; index <= response.data.paginate
                                     .last_page; index++) {
@@ -211,32 +213,20 @@
                     // Kode lainnya
                     $('#title').html(response.data.quiz.course_title);
                     $('.text-white.border-0.py-2').off('click').on('click', function() {
-                        Swal.fire({
-                            title: "Konfirmasi",
-                            text: "Apakah Anda yakin ingin mengirimkan quiz? Jawaban yang telah dikirim tidak bisa diubah!",
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonText: "Ya, Kirim sekarang",
-                            cancelButtonText: "Batal"
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                let answer = [];
-                                for (let index = 1; index <= response.data.paginate
-                                    .last_page; index++) {
-                                    const storedAnswer = localStorage.getItem(
-                                    `answer_${index}`);
-                                    if (storedAnswer) {
-                                        answer.push(storedAnswer);
-                                    } else {
-                                        answer.push(null);
-                                    }
-                                }
-                                submit_quiz(response.data.user_quiz.id, answer);
-                                localStorage.removeItem('current_page');
-                                removeChecked(response.data.paginate.last_page);
+                        let answer = [];
+                        for (let index = 1; index <= response.data.paginate.last_page; index++) {
+                            const storedAnswer = localStorage.getItem(`answer_${index}`);
+                            if (storedAnswer) {
+                                answer.push(storedAnswer);
+                            } else {
+                                answer.push(null);
                             }
-                        });
+                        }
+                        submit_quiz(response.data.user_quiz.id, answer);
+                        localStorage.removeItem('current_page');
+                        removeChecked(response.data.paginate.last_page);
                     });
+
                     $('#status_question').html(
                         `<h4 class="text-white">${response.data.paginate.current_page} dari ${response.data.paginate.last_page} soal</h4>`
                     );

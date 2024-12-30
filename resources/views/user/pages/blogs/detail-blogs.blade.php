@@ -183,14 +183,14 @@
                 </div>
                 <div class="col-xl-3 col-lg-4">
                     <aside class="blog-sidebar">
-                        {{-- <div class="blog-widget widget_search">
+                        <div class="blog-widget widget_search">
                             <div class="sidebar-search-form">
                                 <form action="#">
                                     <input type="text" placeholder="Search here">
                                     <button><i class="flaticon-search"></i></button>
                                 </form>
                             </div>
-                        </div> --}}
+                        </div>
                         {{-- <div class="blog-widget">
                         <h4 class="widget-title">Kategori</h4>
                         <div class="shop-cat-list">

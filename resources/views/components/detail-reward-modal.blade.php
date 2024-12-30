@@ -33,7 +33,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <div style="border: 1px solid #B5B5C3; padding: 20px 20px 20px 25px; border-radius: 10px;">
-                                <img src="{{ asset('assets/img/detail-course/apple.jpeg') }}" class="detail-image" id="detailImage" style="width: 100%" alt="">
+                                <img src="{{ asset('assets/img/detail-course/apple.jpeg') }}" id="detailImage" style="width: 100%" alt="">
                             </div>
                         </div>
                     </div>

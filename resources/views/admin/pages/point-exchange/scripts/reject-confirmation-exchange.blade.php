@@ -12,6 +12,7 @@
                 , }
 
 
+                console.log(data);
 
 
                 $.ajax({

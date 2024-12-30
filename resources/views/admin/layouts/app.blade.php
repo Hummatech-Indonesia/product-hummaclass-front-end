@@ -5,18 +5,19 @@
 
 <head>
     <!--  Title -->
-    <title>GetSkill</title>
+    <title>Mordenize</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="handheldfriendly" content="true" />
     <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="GetSkill" />
+    <meta name="description" content="Mordenize" />
     <meta name="author" content="" />
-    <meta name="keywords" content="GetSkill" />
+    <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/get-skill/logo.png') }}">
+    <link rel="shortcut icon" type="image/png"
+        href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('admin/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 
@@ -85,12 +86,12 @@
 <body style="background-color: #F5F5F5;">
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/img/logo/get-skill/logo.png') }}"
+        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
             alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('assets/img/logo/get-skill/logo.png') }}"
+        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
             alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!--  Body Wrapper -->

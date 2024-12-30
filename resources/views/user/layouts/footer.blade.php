@@ -5,8 +5,7 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="footer__widget">
                         <div class="logo mb-35">
-                            <a href="#"><img src="{{ asset('assets/img/logo/get-skill/landscape white.png') }}"
-                                    width="230px" alt="img"></a>
+                            <a href="#"><img src="{{ asset('assets/img/logo/logo-class-industri.png') }}" width="80px" alt="img"></a>
                         </div>
                         <div class="footer__content">
                             <p>when an unknown printer took galley of
@@ -45,8 +44,7 @@
                     <div class="footer__widget">
                         <h4 class="footer__widget-title">Kontak</h4>
                         <div class="footer__contact-content">
-                            <p><a href="" class="detail-email"></a><br> <span id="detail-phone-number"></span>
-                            </p>
+                            <p>asdasdasd87@gmail.com <br> <span id="detail-phone-number"></span></p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +56,7 @@
             <div class="row align-items-center">
                 <div class="col-md-7">
                     <div class="copy-right-text">
-                        <p>© 2010-2024 GetSkill. All rights reserved.</p>
+                        <p>© 2010-2024 hummaclass.com. All rights reserved.</p>
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -73,19 +71,3 @@
         </div>
     </div>
 </footer>
-<script>
-    $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "{{ config('app.api_url') }}/api/contact",
-            dataType: "json",
-            success: function(response) {
-                $('.detail-whatsapp').attr('href', response.data.whatsapp);
-                $('.detail-facebook').attr('href', response.data.facebook);
-                $('.detail-twitter').attr('href', response.data.twitter);
-                $('.detail-phone-number').html(response.data.phone_number);
-                $('.detail-email').attr('href', response.data.email);
-            }
-        });
-    });
-</script>

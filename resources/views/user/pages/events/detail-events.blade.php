@@ -71,7 +71,7 @@
                         <img id="detail-image" src="{{ asset('assets/img/events/event_details_img.jpg') }}"
                             style="width: 100%; height:455px;object-fit:cover;" alt="img">
                     </div>
-                    <h2 class="title detail-title" style="max-width: 50ch;"></h2>
+                    <h2 class="title detail-title" style="max-width: 50ch"></h2>
                     <div class="event__details-content-wrap">
                         <div class="row">
                             <div class="col-70">

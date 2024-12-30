@@ -5,7 +5,7 @@
 
 <head>
     <!--  Title -->
-    <title>Login | GetSkill</title>
+    <title>Login | Hummaclass</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,8 +16,8 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo/get-skill/logo.png') }}">
-
+    <link rel="shortcut icon" type="image/png"
+        href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin/dist/css/style.min.css') }}" />
 
@@ -46,7 +46,7 @@
                                         <h3 class="text-white fw-semibold fs-9">Kemampuanmu Di</h3>
                                         <h2 class="fw-bolder fs-12 mt-1 mb-3"
                                             style="color: #9425FE; position: relative; display: inline-block;">
-                                            GetSkill
+                                            HummaClass
                                             <span
                                                 style="position: absolute; bottom: -10px; left: 0px; width: calc(70% + 10px); height: 4px; background-color: #9425FE;"></span>
                                         </h2>
@@ -79,8 +79,8 @@
                             class="authentication-login min-vh-100 bg-body row justify-content-center align-items-center p-4">
                             <div class="col-sm-8 col-md-6 col-xl-9">
                                 <div class="logo mb-5">
-                                    <a href="/"><img src="{{ asset('assets/img/logo/get-skill/landscape.png') }}"
-                                            width="130px;" alt="Logo"></a>
+                                    <a href="/"><img src="assets/img/logo/logo.svg" width="100px;"
+                                            alt="Logo"></a>
                                 </div>
                                 <h2 class="mb-3 fs-7 fw-bolder">Selamat Datang👋</h2>
                                 <p class=" mb-9">Just enter your username and password below and you'll be back in
@@ -154,8 +154,8 @@
                                             Password</a>
                                     </div>
                                     <button type="submit" class="btn text-white btn-md mt-3 w-100"
-                                        style="background-color: #9425FE;border-radius: 10px;" id="btn-submit">
-                                        <span class="me-2 text">Masuk</span>
+                                        style="background-color: #9425FE;border-radius: 10px;">
+                                        Masuk
                                     </button>
                                     <div class="text-center mt-2">
                                         <p style="color: #989898;">Belum punya akun? <a href="{{ route('register') }}"
@@ -178,7 +178,7 @@
             $('#google-login').click(function(e) {
                 e.preventDefault();
                 window.location.href =
-                    "{{ config('app.api_url') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
+                "{{ config('app.api_url') }}/api/auth/google"; // Pastikan menempatkan URL dalam tanda kutip
             });
 
             // Login Form Submission
@@ -190,10 +190,6 @@
                 $(this).serializeArray().forEach(function(field) {
                     formData[field.name] = field.value;
                 });
-
-                $('#btn-submit').append(
-                    `<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>`);
-
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
@@ -208,7 +204,7 @@
                             data: {
                                 _token: "{{ csrf_token() }}", // Kirim CSRF token untuk keamanan
                                 token: response.data
-                                    .token, // Kirim token dari API ke server Laravel
+                                .token, // Kirim token dari API ke server Laravel
                                 user: response.data.user
                             },
                             success: function() {

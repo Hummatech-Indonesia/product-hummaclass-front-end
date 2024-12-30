@@ -193,6 +193,7 @@
                 },
                 dataType: "json",
                 success: function(response) {
+                    console.log(response.data);
                     $('#total_question').html(response.data.total_question);
                     if (response.data.test_type == "post-test") {
                         $('#finish').attr('href',

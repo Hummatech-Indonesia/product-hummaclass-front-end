@@ -52,14 +52,14 @@
                 </div>
                 <div class="col-xl-3 col-lg-4">
                     <aside class="blog-sidebar">
-                        {{-- <div class="blog-widget widget_search">
+                        <div class="blog-widget widget_search">
                             <div class="sidebar-search-form">
                                 <form action="#">
                                     <input type="text" id="search" placeholder="Search here">
                                     <button id="button-search"><i class="flaticon-search"></i></button>
                                 </form>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="blog-widget" id="news-latest-content">
                             <h4 class="widget-title">Berita Terbaru</h4>
                         </div>

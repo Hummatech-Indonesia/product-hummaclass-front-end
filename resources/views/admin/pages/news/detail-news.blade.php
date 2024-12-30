@@ -9,7 +9,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a class="text-muted " href="javascript:void(0)">Daftar berita pada hummaclass</a>
+                                <a class="text-muted " href="index-2.html">Daftar berita pada hummaclass</a>
                             </li>
                         </ol>
                     </nav>

@@ -27,7 +27,7 @@
 
     <div class="card p-4">
         <h4 class="fw-semibold mt-3">Edit Barang</h4>
-        <hr class="border border-1 border-dark mb-4">
+        <hr class="border border-1 border-secondary mb-4">
         <form id="editFormRewards" enctype="multipart/form-data">
             @csrf
             <div class="row">

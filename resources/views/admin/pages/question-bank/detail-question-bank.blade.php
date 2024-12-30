@@ -8,7 +8,7 @@
                     <h4 style="font-weight: bold;">Detail Modul</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-muted " href="javascript:void(0)">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a class="text-muted " href="index-2.html">Dashboard</a></li>
                             <li class="breadcrumb-item" aria-current="page">Banner</li>
                         </ol>
                     </nav>
@@ -151,6 +151,7 @@
                     Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
                 },
                 success: function(response) {
+                    console.log(response);
                     $.each(response.data, function(index, value) {
                         $('.moduleQuestionContainer').append(
                             `

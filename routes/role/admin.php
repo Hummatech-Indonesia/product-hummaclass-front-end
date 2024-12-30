@@ -35,7 +35,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth_custom')->group(functio
         'courses' => AdminCourseController::class,
         'users' => UserController::class,
         'modules' => AdminModuleController::class,
-        'sub-modules' => AdminSubModuleController::class    
+        'sub-modules' => AdminSubModuleController::class
     ]);
 
 

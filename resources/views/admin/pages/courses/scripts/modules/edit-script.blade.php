@@ -20,6 +20,7 @@
                 });
             },
             error: function(xhr) {
+                console.log('Gagal mengambil data');
             }
         });
 

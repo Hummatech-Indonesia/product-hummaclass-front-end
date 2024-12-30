@@ -94,10 +94,10 @@
                                 '.invalid-feedback').text(messages[0]);
                         });
                     } else {
-                        commonAlert({
-                            'title': 'Gagal',
-                            'text': xhr.responseJSON.message,
-                            'icon': status
+                        Swal.fire({
+                            title: "Terjadi Kesalahan!",
+                            text: "Ada kesalahan saat menyimpan data.",
+                            icon: "error"
                         });
                     }
                 }

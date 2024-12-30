@@ -229,10 +229,9 @@
 
 @section('script')
     <script>
-        var moduleSlug = "{{ $id }}";
         $.ajax({
             type: "GET",
-            url: "{{ config('app.api_url') }}" + "/api/user-quizzes/" + moduleSlug,
+            url: "{{ config('app.api_url') }}" + "/api/user-quizzes",
             headers: {
                 Authorization: 'Bearer ' + "{{ session('hummaclass-token') }}"
             },
@@ -282,7 +281,9 @@
                         }
                     }
                 },
-                error: function(xhr) {}
+                error: function(xhr) {
+                    console.log(xhr);
+                }
             });
         }
 
@@ -299,10 +300,10 @@
                     $.each(response.data, function(index, value) {
                         $('#content-course').append(contentCourse(index, value));
                     });
-                    var urlFull = "{{ url()->full() }}";
-                    $("a[href='" + urlFull + "']").closest('.accordion-collapse.collapse').addClass('show');
                 },
-                error: function(xhr) {}
+                error: function(xhr) {
+                    console.log(xhr);
+                }
             });
 
             let urlNext;
@@ -318,12 +319,10 @@
                     urlNext =
                         `{{ route('courses.course-lesson.index', ['']) }}/${response.data.slug}`;
                     $('#nextButton').attr("href", urlNext);
+
                 },
                 error: function(xhr) {
-
-                    if (xhr.responseJSON.meta.code === 400) {
-                        $('#nextButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
-                    }
+                    console.log(xhr);
                 }
             });
 
@@ -343,9 +342,7 @@
 
                 },
                 error: function(xhr) {
-                    if (xhr.responseJSON.meta.code === 400) {
-                        $('#prevButton').attr("href", `/courses/quizz/${xhr.responseJSON.data}`);
-                    }
+                    console.log(xhr);
                 }
             });
 
@@ -423,7 +420,7 @@
                             contentHtml += block.data.html; // Menambahkan HTML secara langsung
                         } else if (block.type === 'image') {
                             contentHtml +=
-                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 60%; border-radius: 15px;">`;
+                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
                         } else if (block.type === 'paragraph') {
                             contentHtml += `<p>${block.data.text}</p>`;
                         } else if (block.type === 'header') {

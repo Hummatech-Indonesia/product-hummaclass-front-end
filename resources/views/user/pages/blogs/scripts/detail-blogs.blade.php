@@ -14,16 +14,14 @@
                     $('#tags-news-list').append(tagsList(index, value));
                 });
 
-                const photo = response.data.thumbnail && /\.(jpeg|jpg|gif|png)$/i.test(response.data
-                        .thumbnail) ?
-                    response.data.thumbnail :
-                    "{{ asset('assets/img/no-image/no-image.jpg') }}";
+                const photo = response.data.thumbnail && /\.(jpeg|jpg|gif|png)$/i.test(response.data.thumbnail) 
+                    ? response.data.thumbnail
+                    : "{{ asset('assets/img/no-image/no-image.jpg') }}";
                 $('#detail-thumbnail').attr('src', photo);
                 $('#currentBreadcrumb').attr('href', '/news/' + id).html(response.data.title);
                 // $('#detail-thumbnail').attr('src', response.data.thumbnail);
                 // $('.detail-title').html(response.data.title);
                 $('#detail-view').html(response.data.view_count);
-                $('#detail-title').html(response.data.title);
                 $('#detail-created').html(response.data.created);
                 $('#detail-description').html(response.data.description);
             },
@@ -109,35 +107,23 @@
 
     function latestNews(index, value) {
         var url = "{{ config('app.api_url') }}";
-
-        var noImageUrl = "{{ asset('assets/img/no-image/no-image.jpg') }}";
-
-        var newsUrl = "{{ route('news.show', ':id') }}".replace(':id', value.id);
-
-        var imgUrl = value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value
-                .thumbnail) ?
-            value.thumbnail :
-            noImageUrl;
-
         return `
         <div class="rc-post-item">
             <div class="rc-post-thumb">
                 <a href="javascript:void(0)">
-                    <img src="${imgUrl}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
+                    <img src="${value.thumbnail && value.thumbnail !== url + '/storage' && /\.(jpeg|jpg|gif|png)$/i.test(value.thumbnail) ? url + value.thumbnail : '{{ asset('assets/img/no-image/no-image.jpg') }}'}" style="width: 60px; height: 60px; object-fit: cover;" alt="img">
                 </a>
             </div>
             <div class="rc-post-content">
                 <h4 class="title">
-                    <a href="${newsUrl}">
-                        ${value.title && value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}
+                    <a href="${route('news.show', value.id)}">
+                        ${value.title.length > 35 ? value.title.substring(0, 35) + '...' : value.title}
                     </a>
                 </h4>
             </div>
         </div>
     `;
     }
-
-
 
 
 

@@ -25,33 +25,14 @@
                 success: function(response) {
                     $('#title').html(response.data.title);
 
-                    var contentData = JSON.parse(response.data.content);
-                    let contentHtml = '';
-
-                    contentData.blocks.forEach(function(block) {
-                        if (block.type === 'raw') {
-                            contentHtml += block.data.html; // Menambahkan HTML secara langsung
-                        } else if (block.type === 'image') {
-                            contentHtml +=
-                                `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 60%; border-radius: 15px;">`;
-                        } else if (block.type === 'paragraph') {
-                            contentHtml += `<p>${block.data.text}</p>`;
-                        } else if (block.type === 'header') {
-                            contentHtml +=
-                                `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
-                        } else if (block.type === 'list') {
-                            const listItems = block.data.items.map(item => `<li>${item}</li>`)
-                                .join('');
-                            contentHtml += `<ul>${listItems}</ul>`;
-                        }
-                    });
-                    $('#content').html(contentHtml);
+                    // const contentHTML = renderContent(JSON.parse(response.data.content));
+                    $('#content').html(response.data.content);
 
                     var url = "{{ route('admin.modules.show', ':id') }}".replace(':id', response.data
                         .module_id);
                     $('#button-back').attr('href', url);
-                    $('#edit-btn').attr('href', "{{ route('admin.edit-materi.index', ':id') }}".replace(
-                        ':id', response.data.id));
+
+
                 },
                 error: function(xhr) {
                     Swal.fire({
@@ -63,35 +44,49 @@
             });
         });
 
+        function renderContent(data) {
+            let html = '';
+            data.blocks.forEach(block => {
+                switch (block.type) {
+                    case 'header':
+                        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>`;
+                        break;
+                    case 'paragraph':
+                        html += `<p>${block.data.text}</p>`;
+                        break;
+                        // Jika ada tipe lain (misalnya 'list', 'image', dsb.), tambahkan sesuai kebutuhan
+                }
+            });
+            return html;
+        }
+
         function convertToHTML(data) {
+
             let html = '';
 
             $.each(data.blocks, function(index, block) {
                 switch (block.type) {
                     case 'header':
-                        html +=
-                            `<h${block.data.level} style="color: #333; font-weight: bold; margin: 10px 0;">${block.data.text}</h${block.data.level}>\n`;
+                        html += `<h${block.data.level}>${block.data.text}</h${block.data.level}>\n`;
                         break;
                     case 'list':
-                        html += `<ul style="padding-left: 20px; list-style-type: disc;">\n`;
+                        html += `<ul>\n`;
                         block.data.items.forEach(item => {
-                            html +=
-                                `<li style="color: #555; font-size: 15px; margin-bottom: 5px;">${item}</li>\n`;
+                            html += `    <li>${item}</li>\n`;
                         });
                         html += `</ul>\n`;
                         break;
                     case 'paragraph':
-                        html +=
-                            `<p style="color: #666; line-height: 1.6; font-size: 15px; margin: 10px 0;">${block.data.text}</p>`;
+                        html += block.data.text;
                         break;
                     case 'image':
                         html +=
-                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px; margin: 15px 0;">`;
-                        break;
+                            `<img src="${block.data.file.url}" alt="${block.data.caption}" style="width: 100%; border-radius: 15px;">`;
                     default:
                         break;
                 }
             });
+
 
             return html;
         }

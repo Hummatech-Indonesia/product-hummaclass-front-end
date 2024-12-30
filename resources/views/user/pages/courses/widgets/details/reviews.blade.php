@@ -24,8 +24,8 @@
                     </div>
                     <div class="course-rate__details-row-value">
                         <div class="rating-gray"></div>
-                        <div class="rating percentRating5" style="width:80%;" title="80%"></div>
-                        <span class="rating-count rating5">2</span>
+                        <div class="rating" style="width:80%;" title="80%"></div>
+                        <span class="rating-count">2</span>
                     </div>
                 </div>
                 <div class="course-rate__details-row">
@@ -35,8 +35,8 @@
                     </div>
                     <div class="course-rate__details-row-value">
                         <div class="rating-gray"></div>
-                        <div class="rating percentRating4" style="width:50%;" title="50%"></div>
-                        <span class="rating-count rating4">1</span>
+                        <div class="rating" style="width:50%;" title="50%"></div>
+                        <span class="rating-count">1</span>
                     </div>
                 </div>
                 <div class="course-rate__details-row">
@@ -46,8 +46,8 @@
                     </div>
                     <div class="course-rate__details-row-value">
                         <div class="rating-gray"></div>
-                        <div class="rating percentRating3" style="width:0%;" title="0%"></div>
-                        <span class="rating-count rating3">0</span>
+                        <div class="rating" style="width:0%;" title="0%"></div>
+                        <span class="rating-count">0</span>
                     </div>
                 </div>
                 <div class="course-rate__details-row">
@@ -57,8 +57,8 @@
                     </div>
                     <div class="course-rate__details-row-value">
                         <div class="rating-gray"></div>
-                        <div class="rating percentRating2" style="width:0%;" title="0%"></div>
-                        <span class="rating-count rating2">0</span>
+                        <div class="rating" style="width:0%;" title="0%"></div>
+                        <span class="rating-count">0</span>
                     </div>
                 </div>
                 <div class="course-rate__details-row">
@@ -68,8 +68,8 @@
                     </div>
                     <div class="course-rate__details-row-value">
                         <div class="rating-gray"></div>
-                        <div class="rating percentRating1" style="width:0%;" title="0%"></div>
-                        <span class="rating-count rating1">0</span>
+                        <div class="rating" style="width:0%;" title="0%"></div>
+                        <span class="rating-count">0</span>
                     </div>
                 </div>
             </div>
@@ -106,5 +106,4 @@
             }
         });
     </script>
-
 @endpush

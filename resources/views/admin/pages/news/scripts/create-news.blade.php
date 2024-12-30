@@ -92,6 +92,7 @@
                 window.location.href = "/admin/news";
             },
             error: function(response) {
+                console.log(response);
 
 
             }

@@ -90,7 +90,7 @@
                             <div class="col-lg-8 mt-5">
                                 <label for="" class="form-label">Nama Lengkap</label>
                                 <input type="text" class="form-control" placeholder="Nama Lengkap Anda" id="username"
-                                    name="username">
+                                    name="username" id="">
                             </div>
                             <p class="mt-4">
                                 Pastikan nama diatas sesuai dengan identitas anda. Nama pada sertifikat tidak dapat diganti
@@ -127,7 +127,7 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    @if ($type == 'courses')
+                    @if($type == 'course')
                         $('#breadCrumbCourse').html(response.data.course.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
                             .slug);

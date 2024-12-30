@@ -1,6 +1,3 @@
-@php
-    use SimpleSoftwareIO\QrCode\Facades\QrCode;
-@endphp
 @extends('user.layouts.app')
 
 @section('style')
@@ -58,28 +55,27 @@
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             margin: 0 auto;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-            background-size: cover;
+            padding-left: 0.5rem padding-right: 0.5rem
         }
 
         .certificate-number {
             position: absolute;
-            font-family: 'Poppins', sans-serif;
-            left: 52%;
-            top: 27%;
+            font-family: 'poppins', sans-serif;
+            left: 53%;
+            top: 27.1%;
             transform: translate(-50%, -50%);
             font-size: 22px;
             font-weight: 400;
             letter-spacing: 4px;
             color: #333;
+            width: 100%;
         }
 
         .name-people {
-            font-family: "Great Vibes", cursive;
+            font-family: "Great Vibes";
             position: absolute;
             left: 50%;
-            top: 45%;
+            top: 48%;
             transform: translate(-50%, -50%);
             font-size: 42px;
             font-weight: 500;
@@ -93,156 +89,231 @@
             left: 50%;
             top: 60%;
             transform: translate(-50%, -50%);
-            font-size: 18px;
-            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-family: 'poppins', sans-serif;
             font-weight: 700;
             color: #555;
         }
 
-        .qr-code {
+        .qr-code .verifikasi {
             position: absolute;
             right: 12%;
-            bottom: 15%;
-            text-align: right;
-        }
-
-        .qr-code img {
-            width: 50px !important;
-        }
-
-        .qr-code .verifikasi {
-            font-size: 10px;
-            color: #000;
+            bottom: 17.6%;
+            font-size: 8px;
+            color: #000000;
         }
 
         .qr-code .link {
-            font-size: 10px;
+            position: absolute;
+            right: 12%;
+            bottom: 15.5%;
+            font-size: 8px;
             color: #333;
         }
 
+
         .qr-code .valid {
-            font-size: 14px;
+
+            position: absolute;
+            right: 12%;
+            bottom: 24%;
+            font-size: 56px;
             color: #333;
         }
 
         .date {
             position: absolute;
-            left: 20%;
-            transform: translateX(-50%);
-            font-family: 'Poppins', sans-serif;
+            left: -33%;
+            bottom: 29%;
+            font-family: 'poppins', sans-serif;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 9px;
             color: #333;
-            top: 67%;
+            width: 100%;
         }
 
-        .ttd-container {
+        .qr-code img {
+            width: 36px !important;
             position: absolute;
-            top: 70%;
+            right: 13%;
+            bottom: 21%;
+        }
+
+        @media (max-width: 428px) {
+            .certificate-container {
+                max-width: 448;
+            }
+
+
         }
 
         @media (max-width: 768px) {
             .certificate-container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            .certificate-number {
-                font-size: 18px;
-                top: 25%;
-            }
-
-            .name-people {
-                font-size: 32px;
-            }
-
-            .course-title {
-                font-size: 14px;
+                max-width: 768;
             }
 
             .qr-code img {
-                width: 40px;
-            }
-
-            .qr-code .verifikasi,
-            .qr-code .link {
-                font-size: 8px;
-            }
-
-            .qr-code .valid {
-                font-size: 12px;
-            }
-
-            .date {
-                font-size: 10px;
-            }
-        }
-
-        @media (max-width: 428px) {
-            .certificate-number {
-                font-size: 16px;
-                top: 22%;
+                width: 30px !important;
+                right: 10%;
+                bottom: 18%;
             }
 
             .name-people {
+                font-family: "Great Vibes";
+                top: 48%;
                 font-size: 28px;
             }
 
             .course-title {
-                font-size: 12px;
-            }
-
-            .qr-code img {
-                width: 35px;
-            }
-
-            .qr-code .verifikasi,
-            .qr-code .link {
-                font-size: 6px;
-            }
-
-            .qr-code .valid {
+                top: 60%;
                 font-size: 10px;
             }
 
+            .certificate-number {
+                font-size: 9px;
+                top: 28.1%;
+                left: 53%;
+            }
+
             .date {
-                font-size: 8px;
+                bottom: 28.6%;
+                left: -31%;
+                font-size: 5px;
+            }
+
+            .qr-code .verifikasi {
+                right: 15.5%;
+                bottom: 19%;
+                font-size: 4px;
+                color: #333;
+            }
+
+            .qr-code img {
+                width: 19px !important;
+                right: 15%;
+                bottom: 22%
+            }
+
+            .qr-code .link {
+                right: 15%;
+                bottom: 17.5%;
+                font-size: 4px;
+                color: #333;
             }
         }
 
         @media (max-width: 320px) {
-            .certificate-container {
-                max-width: 300px;
-            }
-
-            .certificate-number {
-                font-size: 14px;
-                top: 20%;
-            }
-
-            .name-people {
-                font-size: 22px;
-            }
-
-            .course-title {
-                font-size: 10px;
-            }
-
             .qr-code img {
-                width: 30px;
-            }
-
-            .qr-code .verifikasi,
-            .qr-code .link {
-                font-size: 5px;
-            }
-
-            .qr-code .valid {
-                font-size: 8px;
+                width: 19px !important;
+                right: 15%;
+                bottom: 23%
             }
 
             .date {
-                font-size: 6px;
+                bottom: 30%;
+                left: -29%;
+                font-size: 4px;
+            }
+
+            .name-people {
+                font-family: "Great Vibes";
+                top: 48%;
+                font-size: 18px;
+            }
+
+            .course-title {
+                top: 60%;
+                font-size: 7px;
+            }
+
+            .certificate-number {
+                letter-spacing: 2px;
+                left: 52%;
+                top: 29.9%;
+                transform: translate(-50%, -50%);
+                font-size: 7px;
+            }
+
+            .qr-code .verifikasi {
+                right: 15.5%;
+                bottom: 20%;
+                font-size: 4px;
+                color: #333;
+            }
+
+            .qr-code .link {
+                right: 15%;
+                bottom: 18.5%;
+                font-size: 4px;
+                color: #333;
+            }
+        }
+
+        .qr-code .valid {
+            right: 15.8%;
+            bottom: 16.5%;
+            font-size: 3px;
+            color: #333;
+        }
+
+        @media (max-width: 390px) {
+            .qr-code img {
+                width: 25px !important;
+                right: 16%;
+                bottom: 22%;
+            }
+
+
+            .date {
+                bottom: 30%;
+                left: -31%;
+                font-size: 4px;
+            }
+
+            .certificate-number {
+                letter-spacing: 2px;
+                left: 53%;
+                top: 28.9%;
+                transform: translate(-50%, -50%);
+                font-size: 11px;
+            }
+
+            .certificate-container {
+                max-width: 390px;
+            }
+
+            .name-people {
+                font-family: "Great Vibes";
+                top: 48%;
+                font-size: 18px;
+            }
+
+            .course-title {
+                top: 60%;
+                font-size: 7px;
+            }
+
+            .qr-code .verifikasi {
+                right: 16%;
+                bottom: 19%;
+                font-size: 5px;
+                color: #333;
+            }
+
+            .qr-code .link {
+                position: absolute;
+                right: 15%;
+                bottom: 17.6%;
+                font-size: 5px;
+                color: #333;
+            }
+
+            .qr-code .valid {
+                position: absolute;
+                right: 16%;
+                bottom: 16%;
+                font-size: 5px;
+                color: #333;
             }
         }
     </style>
@@ -271,6 +342,7 @@
                             <span property="itemListElement" typeof="ListItem"> <a href="/"
                                     id="breadCrumbPrint">Verifikasi Nama</a>
                             </span>
+
                         </nav>
                     </div>
                 </div>
@@ -298,22 +370,20 @@
                         <div class="certificate-container">
                             <img src="{{ asset('assets/img/certificate/serti-bg.png') }}" style="">
                             <div class="certificate-number" id="code"></div>
-                            <div class="name-people mb-3" id="username"></div>
+                            <div class="name-people" id="username"></div>
                             <div class="course-title" id="course_title">Belajar Membuat Aplikasi Kognitif</div>
                             <div class="date" id="date"><b></b></div>
                             <div class="qr-code">
-                                <div class="qrcode">
-                                    {!! QrCode::size(50)->generate(url()->current()) !!}
-                                </div>
+                                <img src="{{ asset('assets/img/certificate/qr.png') }}" alt="QR Code">
                                 <div class="verifikasi"><b>Verifikasi Sertifikat</b></div>
                                 <div class="link">class.hummatech.com/sertifikat/example</div>
-                                <div class=""><i>Berlaku hingga <span id="expired">28 Agustus 2024 </span></i></div>
+                                <div class="valid"><i>Berlaku hingga 28 Agustus 2024</i></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
-                        <h5>Download Sertifikat</a>
+                        <h5>Downlohd Sertifikat</a>
                             <p>sertifikat akan menjadi pdf jika didownload</p>
                             <div class="col-6 mt-5">
                                 <div id="updated">
@@ -322,7 +392,7 @@
                                 </div>
                                 <div>
                                     <a target="__blank"
-                                        href="{{ config('app.api_url') . "/$type/certificate-download/" . $course . '/' . session('user.id') }}"
+                                        href="{{ config('app.api_url') . "/$course/certificate-download/" . $type . '/' . session('user.id') }}"
                                         class="btn-warning w-100 mt-4">Download Sertifikat</a>
                                 </div>
                             </div>
@@ -346,7 +416,8 @@
                 contentType: false,
                 processData: false,
                 success: function(response) {
-                    @if ($type == 'courses')
+                    // console.log(response.data);
+                    @if ($type == 'course')
                         $('#breadCrumbCourse').html(response.data.course.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.course
                             .slug);
@@ -360,7 +431,6 @@
                         $('#course_title').html(response.data.course.title);
                         $('#username').html(response.data.username);
                         $('#date').html(formatDate(response.data.created_at));
-                        $('#expired').html(formatDate(response.data.expired));
                     @else
                         $('#breadCrumbCourse').html(response.data.event.title);
                         $('#breadCrumbCourse').attr('href', '/courses/courses/' + response.data.event
