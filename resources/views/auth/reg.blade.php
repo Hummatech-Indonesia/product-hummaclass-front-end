@@ -43,9 +43,8 @@
                                     style="width: 400px; height: 420px; background-image: url('{{ asset('assets/img/auth/log-oval.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center;">
                                     <div class="ms-5 ps-5 px-4 pt-4 mt-5"
                                         style="max-width: 300px; color: white; font-size: 16px;">
-                                        Groove’s intuitive shared inbox makes it easy for team members to organize,
-                                        prioritize and.In this episode of the Smashing Pod we’re
-                                        talking about Web Platform Baseline.
+                                        Selamat Datang di GetSkill.id. Silakan masuk untuk mengakses kursus dan mulai
+                                        tingkatkan keterampilan Anda hari ini!
                                     </div>
                                 </div>
 
@@ -100,56 +99,66 @@
 
                     <form action="" class="mt-4" id="register-form">
                         <div class="input-group mb-3">
-                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px" type="button">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="-5 -2 24 24">
-                                <path fill="#8B8B8B"
-                                    d="M3.534 10.07a1 1 0 1 1 .733 1.86A3.58 3.58 0 0 0 2 15.26V17a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.647a3.66 3.66 0 0 0-2.356-3.419a1 1 0 1 1 .712-1.868A5.66 5.66 0 0 1 14 15.353V17a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-1.74a5.58 5.58 0 0 1 3.534-5.19M7 0a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V4a2 2 0 0 0-2-2" />
-                            </svg>
+                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15"
+                                    viewBox="-5 -2 24 24">
+                                    <path fill="#8B8B8B"
+                                        d="M3.534 10.07a1 1 0 1 1 .733 1.86A3.58 3.58 0 0 0 2 15.26V17a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.647a3.66 3.66 0 0 0-2.356-3.419a1 1 0 1 1 .712-1.868A5.66 5.66 0 0 1 14 15.353V17a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-1.74a5.58 5.58 0 0 1 3.534-5.19M7 0a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V4a2 2 0 0 0-2-2" />
+                                </svg>
                             </button>
-                            <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="name" id="name"
-                            value="{{ old('name', request('name')) }}" placeholder="Nama" aria-label="" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control"
+                                style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="name"
+                                id="name" value="{{ old('name', request('name')) }}" placeholder="Nama"
+                                aria-label="" aria-describedby="basic-addon1">
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="input-group mb-3">
-                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px" type="button">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg" width="32" height="15" viewBox="-5 -2 24 24">
-                                <path fill="#8B8B8B"
-                                    d="M3.534 10.07a1 1 0 1 1 .733 1.86A3.58 3.58 0 0 0 2 15.26V17a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.647a3.66 3.66 0 0 0-2.356-3.419a1 1 0 1 1 .712-1.868A5.66 5.66 0 0 1 14 15.353V17a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-1.74a5.58 5.58 0 0 1 3.534-5.19M7 0a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V4a2 2 0 0 0-2-2" />
-                            </svg>
+                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px"
+                                type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="15"
+                                    viewBox="-5 -2 24 24">
+                                    <path fill="#8B8B8B"
+                                        d="M3.534 10.07a1 1 0 1 1 .733 1.86A3.58 3.58 0 0 0 2 15.26V17a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.647a3.66 3.66 0 0 0-2.356-3.419a1 1 0 1 1 .712-1.868A5.66 5.66 0 0 1 14 15.353V17a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3v-1.74a5.58 5.58 0 0 1 3.534-5.19M7 0a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V4a4 4 0 0 1 4-4m0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V4a2 2 0 0 0-2-2" />
+                                </svg>
                             </button>
-                            <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="email" id="email"
-                            value="{{ old('name', request('name')) }}" placeholder="Email" aria-label="" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control"
+                                style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="email"
+                                id="email" value="{{ old('name', request('name')) }}" placeholder="Email"
+                                aria-label="" aria-describedby="basic-addon1">
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="input-group mb-3">
-                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px" type="button">
-                                <svg class="ms-2"
-                                xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 16 16">
-                                <path fill="#8B8B8B" fill-rule="evenodd"
-                                    d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
+                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px"
+                                type="button">
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 16 16">
+                                    <path fill="#8B8B8B" fill-rule="evenodd"
+                                        d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
                             </button>
-                            <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password" id="password"
-                            value="{{ old('name', request('name')) }}" placeholder="Password" aria-label="" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control"
+                                style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0"
+                                name="password" id="password" value="{{ old('name', request('name')) }}"
+                                placeholder="Password" aria-label="" aria-describedby="basic-addon1">
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="input-group mb-3">
-                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px" type="button">
-                                <svg class="ms-2"
-                                xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                viewBox="0 0 16 16">
-                                <path fill="#8B8B8B" fill-rule="evenodd"
-                                    d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z"
-                                    clip-rule="evenodd" />
-                            </svg>
+                            <button class="btn" style="background-color: #F3F3F3;border-radius: 12px 0px 0px 12px"
+                                type="button">
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 16 16">
+                                    <path fill="#8B8B8B" fill-rule="evenodd"
+                                        d="M10.5 6V5a2.5 2.5 0 0 0-5 0v1zM4 5v1a3 3 0 0 0-3 3v3a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3V5a4 4 0 0 0-8 0m6.5 2.5H12A1.5 1.5 0 0 1 13.5 9v3a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 12V9A1.5 1.5 0 0 1 4 7.5zm-1.75 2a.75.75 0 0 0-1.5 0v2a.75.75 0 0 0 1.5 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
                             </button>
-                            <input type="text" class="form-control" style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0" name="password_confirmation"
-                            id="password_confirmation" value="{{ old('name', request('name')) }}"
-                            placeholder="Konfirmasi Password" aria-label="" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control"
+                                style="background-color: #F3F3F3;border:0px;border-radius: 0 12px 12px 0"
+                                name="password_confirmation" id="password_confirmation"
+                                value="{{ old('name', request('name')) }}" placeholder="Konfirmasi Password"
+                                aria-label="" aria-describedby="basic-addon1">
                             <div class="invalid-feedback"></div>
                         </div>
 
@@ -176,7 +185,7 @@
         $(document).ready(function() {
             $('#google-login').click(function(e) {
                 e.preventDefault();
-                window.location.href = `{{config('app.api_url')}}/api/auth/google`;
+                window.location.href = `{{ config('app.api_url') }}/api/auth/google`;
             });
         });
 
@@ -194,7 +203,7 @@
 
                 // Mengirim data menggunakan AJAX
                 $.ajax({
-                    url: `{{config('app.api_url')}}/api/register`,
+                    url: `{{ config('app.api_url') }}/api/register`,
                     type: 'POST',
                     data: formData,
                     success: function(response) {

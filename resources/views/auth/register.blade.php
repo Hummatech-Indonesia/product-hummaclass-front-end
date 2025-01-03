@@ -56,10 +56,8 @@
                                             style="width: 450px; height: 420px; background-image: url('{{ asset('assets/img/auth/log-oval.png') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center;border-radius:0 0 20px 0;">
                                             <div class="ms-5 ps-5 px-4 pt-4 mt-5"
                                                 style="max-width: 300px; color: white; font-size: 16px;">
-                                                Groove’s intuitive shared inbox makes it easy for team members to
-                                                organize,
-                                                prioritize and.In this episode of the Smashing Pod we’re
-                                                talking about Web Platform Baseline.
+                                                Selamat Datang di GetSkill.id. Silakan masuk untuk mengakses kursus dan
+                                                mulai tingkatkan keterampilan Anda hari ini!
                                             </div>
                                         </div>
 
