@@ -20,7 +20,7 @@
         <div class="row">
             @include('user.pages.dashboard.widgets.sidebar')
             <div class="col-lg-9">
-                <h5 class="my-3">Aktifitas Event</h5>
+                <h5 class="my-3">Aktivitas Event</h5>
                 <div class="event__inner-wrap">
                     <div class="row" id="eventContent">
 

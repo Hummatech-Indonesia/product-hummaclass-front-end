@@ -20,7 +20,11 @@
                             cardCourse(data);
                         });
                     } else {
-                        $('#list-course').append(empty());
+                        $('#list-course').append(
+                            `<p> Belum Ada Kursus</p>
+                            <a class="btn btn-primary" style="width:20%" href="/courses/courses">Lihat Kursus Disini</a>
+                            `
+                        );
                         $('.pagination__wrap').hide();
                     }
                 },
@@ -107,7 +111,11 @@
                             cardEvent(data.event);
                         });
                     } else {
-                        $('#list-event').append(empty());
+                        $('#list-event').append(
+                            `<p> Belum Ada Event</p>
+                            <a class="btn btn-primary" style="width:20%" href="/events">Lihat Event Disini</a>
+                            `
+                        );
                         $('.pagination__wrap').hide();
                     }
                 },

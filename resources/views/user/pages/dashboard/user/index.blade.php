@@ -62,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="my-3">Aktifitas Belajar</h3>
+                    <h3 class="my-3">Aktivitas Belajar</h3>
                     <div class="swiper dashboard-courses-active">
                         <div class="swiper-wrapper">
                             @forelse (range(1,4) as $item)
@@ -125,7 +125,7 @@
                             <li><a href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
                         </ul>
                     </nav>
-                    <h3 class="my-3">Aktifitas Event</h3>
+                    <h3 class="my-3">Aktivitas Event</h3>
                     <div class="event__inner-wrap">
                         <div class="row">
                             @forelse (range(1,3) as $data)
